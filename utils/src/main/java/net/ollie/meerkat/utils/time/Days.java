@@ -1,0 +1,49 @@
+package net.ollie.meerkat.utils.time;
+
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.time.Period;
+
+import net.ollie.meerkat.utils.numeric.Numeric;
+
+/**
+ *
+ * @author Ollie
+ */
+public class Days implements Numeric.Summable<Days> {
+
+    private final int numDays;
+
+    public Days(final int numDays) {
+        this.numDays = numDays;
+    }
+
+    public int value() {
+        return numDays;
+    }
+
+    public Period toPeriod() {
+        return Period.ofDays(numDays);
+    }
+
+    @Override
+    public Days times(final Number that) {
+        return new Days(numDays * that.intValue());
+    }
+
+    @Override
+    public Days plus(final Days that) {
+        return new Days(numDays + that.numDays);
+    }
+
+    @Override
+    public BigDecimal decimalValue(final MathContext context) {
+        return BigDecimal.valueOf(numDays);
+    }
+
+    @Override
+    public String toString() {
+        return numDays + " days";
+    }
+
+}
