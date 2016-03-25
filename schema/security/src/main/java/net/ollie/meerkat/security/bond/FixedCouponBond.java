@@ -26,7 +26,7 @@ public class FixedCouponBond extends StraightBond {
     private FixedInterestRate couponRate;
 
     @XmlElementRef(name = "coupon")
-    private Money couponAmount;
+    private Money<?> couponAmount;
 
     @XmlElement(name = "coupon_date")
     private List<LocalDate> couponDates;
@@ -37,9 +37,9 @@ public class FixedCouponBond extends StraightBond {
 
     FixedCouponBond(
             final String name,
-            final Money par,
+            final Money<?> par,
             final MaturingBondDates dates,
-            final Money couponAmount,
+            final Money<?> couponAmount,
             final List<LocalDate> couponDates,
             final BondCall call) {
         super(name, par, dates, call);
@@ -53,7 +53,7 @@ public class FixedCouponBond extends StraightBond {
     }
 
     @Nonnull
-    public Money couponAmount() {
+    public Money<?> couponAmount() {
         return couponAmount;
     }
 

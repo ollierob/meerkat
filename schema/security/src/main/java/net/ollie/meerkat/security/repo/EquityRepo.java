@@ -25,7 +25,7 @@ public class EquityRepo extends AbstractRepo<Equity> {
     public EquityRepo(
             final String name,
             final RepoRate rate,
-            final Money principal,
+            final Money<?> principal,
             final Equity collateral,
             final RepoDates dates) {
         super(name, rate, principal, dates);

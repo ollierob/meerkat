@@ -23,7 +23,7 @@ public class BondRepo extends AbstractRepo<Bond> {
     public BondRepo(
             final String name,
             final RepoRate rate,
-            final Money principal,
+            final Money<?> principal,
             final Bond collateral,
             final RepoDates dates) {
         super(name, rate, principal, dates);

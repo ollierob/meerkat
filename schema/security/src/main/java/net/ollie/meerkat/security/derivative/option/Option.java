@@ -19,10 +19,10 @@ public interface Option<S extends Security> extends Derivative<S> {
     boolean isPut();
 
     @Nonnull
-    Money strike();
+    Money<?> strike();
 
     @Nonnull
-    Money premium();
+    Money<?> premium();
 
     @CheckForNull
     OptionExercise exercise();

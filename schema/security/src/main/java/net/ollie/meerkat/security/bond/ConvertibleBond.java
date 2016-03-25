@@ -22,7 +22,7 @@ import net.ollie.meerkat.security.equity.Stock;
 public class ConvertibleBond extends AbstractBond {
 
     @XmlElementRef(name = "par")
-    private Money par;
+    private Money<?> par;
 
     @XmlElementRef(name = "stock")
     private Stock stock;
@@ -63,7 +63,7 @@ public class ConvertibleBond extends AbstractBond {
     public class ConvertibleBondNominal implements BondNominal {
 
         @Override
-        public Money par() {
+        public Money<?> par() {
             return par;
         }
 

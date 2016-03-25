@@ -8,10 +8,10 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.utils.collections.Sequence;
 import net.ollie.meerkat.security.bond.coupon.BondCoupon;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
 import net.ollie.meerkat.security.bond.dates.PerpetualBondDates;
+import net.ollie.meerkat.utils.collections.Sequence;
 
 /**
  *
@@ -53,7 +53,7 @@ public class PerpetualBond extends AbstractBond {
     public class PerpetualBondNominal implements BondNominal {
 
         @Override
-        public Money par() {
+        public Money<?> par() {
             return PerpetualBond.this.par();
         }
 

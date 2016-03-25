@@ -20,9 +20,9 @@ public class CreditDefaultSwapLeg implements SwapLeg {
     private LocalDate payment;
 
     @XmlElementRef(name = "premium")
-    private Money premium;
+    private Money<?> premium;
 
-    CreditDefaultSwapLeg(final LocalDate payment, final Money premium) {
+    CreditDefaultSwapLeg(final LocalDate payment, final Money<?> premium) {
         this.payment = payment;
         this.premium = premium;
     }
@@ -31,7 +31,7 @@ public class CreditDefaultSwapLeg implements SwapLeg {
         return payment;
     }
 
-    public Money premium() {
+    public Money<?> premium() {
         return premium;
     }
 

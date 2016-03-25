@@ -20,16 +20,16 @@ public class FxSwapLeg implements SwapLeg {
     private LocalDate date;
 
     @XmlElementRef(name = "pay")
-    private Money pay;
+    private Money<?> pay;
 
     @XmlElementRef(name = "receive")
-    private Money receive;
+    private Money<?> receive;
 
     @Deprecated
     FxSwapLeg() {
     }
 
-    public FxSwapLeg(final LocalDate date, final Money pay, final Money receive) {
+    public FxSwapLeg(final LocalDate date, final Money<?> pay, final Money<?> receive) {
         this.date = date;
         this.pay = pay;
         this.receive = receive;
@@ -39,7 +39,7 @@ public class FxSwapLeg implements SwapLeg {
         return date;
     }
 
-    public Money pay() {
+    public Money<?> pay() {
         return pay;
     }
 
@@ -59,9 +59,9 @@ public class FxSwapLeg implements SwapLeg {
 
     public class FxSwapSide implements CashPayment {
 
-        private final Money amount;
+        private final Money<?> amount;
 
-        public FxSwapSide(final Money amount) {
+        public FxSwapSide(final Money<?> amount) {
             this.amount = amount;
         }
 
@@ -71,7 +71,7 @@ public class FxSwapLeg implements SwapLeg {
         }
 
         @Override
-        public Money amount() {
+        public Money<?> amount() {
             return amount;
         }
 

@@ -1,7 +1,7 @@
 package net.ollie.meerkat.security.interest.swap;
 
-import net.ollie.meerkat.numeric.interest.earning.FixedInterestEarning;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.meerkat.numeric.interest.earning.FixedInterestEarning;
 import net.ollie.meerkat.numeric.money.Money;
 
 /**
@@ -14,7 +14,7 @@ public class FixedInterestRateSwapSide extends FixedInterestEarning implements I
     FixedInterestRateSwapSide() {
     }
 
-    public FixedInterestRateSwapSide(final Money notional, final FixedInterestRate rate) {
+    public FixedInterestRateSwapSide(final Money<?> notional, final FixedInterestRate rate) {
         super(notional, rate);
     }
 

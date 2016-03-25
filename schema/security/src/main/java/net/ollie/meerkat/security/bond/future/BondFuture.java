@@ -12,8 +12,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
@@ -31,7 +31,7 @@ public class BondFuture
     private BondBasket basket;
 
     @XmlElement(name = "notional")
-    private Money notional;
+    private Money<?> notional;
 
     @XmlAttribute(name = "rate")
     private Percentage rate;

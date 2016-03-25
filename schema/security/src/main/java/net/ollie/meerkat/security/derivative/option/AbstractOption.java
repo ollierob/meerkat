@@ -25,10 +25,10 @@ public abstract class AbstractOption<S extends Security>
     private OptionExercise exercise;
 
     @XmlElement(name = "premium")
-    private Money premium;
+    private Money<?> premium;
 
     @XmlElement(name = "strike")
-    private Money strike;
+    private Money<?> strike;
 
     @XmlElementRef(name = "multiplier")
     private Quantity contractMultiplier;
@@ -48,12 +48,12 @@ public abstract class AbstractOption<S extends Security>
     }
 
     @Override
-    public Money strike() {
+    public Money<?> strike() {
         return strike;
     }
 
     @Override
-    public Money premium() {
+    public Money<?> premium() {
         return premium;
     }
 

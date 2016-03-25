@@ -12,7 +12,7 @@ import net.ollie.meerkat.security.Security;
 public interface CashForCollateral<C extends Security> extends Security {
 
     @Nonnull
-    Money principal();
+    Money<?> principal();
 
     @Nonnull
     C collateral();

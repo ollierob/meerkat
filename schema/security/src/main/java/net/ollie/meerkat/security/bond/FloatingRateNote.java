@@ -27,7 +27,7 @@ public class FloatingRateNote extends StraightBond {
 
     public FloatingRateNote(
             final String name,
-            final Money par,
+            final Money<?> par,
             final MaturingBondDates dates,
             final List<FloatingCoupon> coupons,
             final BondCall call) {

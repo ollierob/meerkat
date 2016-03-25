@@ -3,9 +3,9 @@ package net.ollie.meerkat.security.repo;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.security.derivative.Derivative;
 import net.ollie.meerkat.security.Security;
 import net.ollie.meerkat.security.SecurityDefinition;
+import net.ollie.meerkat.security.derivative.Derivative;
 import net.ollie.meerkat.security.fx.CashForCollateral;
 import net.ollie.meerkat.security.repo.dates.RepoDates;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
@@ -21,7 +21,7 @@ public interface Repo<C extends Security>
     RepoRate rate();
 
     @Override
-    Money principal();
+    Money<?> principal();
 
     @Override
     C collateral();

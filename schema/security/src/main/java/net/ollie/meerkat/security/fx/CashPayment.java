@@ -17,7 +17,7 @@ public interface CashPayment {
     LocalDate date();
 
     @Nonnull
-    Money amount();
+    Money<?> amount();
 
     @Nonnull
     default CurrencyId currency() {

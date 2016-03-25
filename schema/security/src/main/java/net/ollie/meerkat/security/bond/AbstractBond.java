@@ -17,7 +17,7 @@ public abstract class AbstractBond
         implements Bond {
 
     @XmlElementRef(name = "par")
-    private Money par;
+    private Money<?> par;
 
     @XmlElementRef(name = "call")
     private BondCall call;
@@ -26,13 +26,13 @@ public abstract class AbstractBond
     protected AbstractBond() {
     }
 
-    protected AbstractBond(final String name, final Money par, final BondCall call) {
+    protected AbstractBond(final String name, final Money<?> par, final BondCall call) {
         super(name);
         this.par = par;
         this.call = call;
     }
 
-    protected Money par() {
+    protected Money<?> par() {
         return par;
     }
 

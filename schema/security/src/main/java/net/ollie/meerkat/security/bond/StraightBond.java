@@ -26,7 +26,7 @@ public abstract class StraightBond extends AbstractBond {
 
     public StraightBond(
             final String name,
-            final Money par,
+            final Money<?> par,
             final MaturingBondDates dates,
             final BondCall call) {
         super(name, par, call);
@@ -50,6 +50,7 @@ public abstract class StraightBond extends AbstractBond {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public <R> R handleWith(final Bond.Handler<R> handler) {
         return handler.handle(this);
     }
@@ -57,7 +58,7 @@ public abstract class StraightBond extends AbstractBond {
     public class StraightBondNominal implements BondNominal {
 
         @Override
-        public Money par() {
+        public Money<?> par() {
             return StraightBond.this.par();
         }
 

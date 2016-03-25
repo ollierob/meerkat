@@ -6,10 +6,10 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
-import net.ollie.meerkat.numeric.Percentage;
 
 /**
  *
@@ -19,7 +19,7 @@ import net.ollie.meerkat.numeric.Percentage;
 public class FixedCoupon extends AbstractBondCoupon implements CashPayment {
 
     @XmlElementRef(name = "amount")
-    private Money amount;
+    private Money<?> amount;
 
     @XmlElementRef(name = "day_count")
     private FixedInterestRate rate;
@@ -28,7 +28,7 @@ public class FixedCoupon extends AbstractBondCoupon implements CashPayment {
     FixedCoupon() {
     }
 
-    public FixedCoupon(final LocalDate paymentDate, final Money amount, final FixedInterestRate rate) {
+    public FixedCoupon(final LocalDate paymentDate, final Money<?> amount, final FixedInterestRate rate) {
         super(paymentDate);
         this.amount = amount;
         this.rate = rate;
@@ -40,7 +40,7 @@ public class FixedCoupon extends AbstractBondCoupon implements CashPayment {
     }
 
     @Override
-    public Money amount() {
+    public Money<?> amount() {
         return amount;
     }
 

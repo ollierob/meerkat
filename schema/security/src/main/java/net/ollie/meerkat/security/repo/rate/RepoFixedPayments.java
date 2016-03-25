@@ -1,8 +1,7 @@
 package net.ollie.meerkat.security.repo.rate;
 
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.numeric.money.DecimalMoney;
 import net.ollie.meerkat.numeric.money.Money;
 
 /**
@@ -11,22 +10,22 @@ import net.ollie.meerkat.numeric.money.Money;
  */
 public class RepoFixedPayments implements RepoRate {
 
-    @XmlElement(name = "spot")
-    private DecimalMoney spot;
+    @XmlElementRef(name = "spot")
+    private Money<?> spot;
 
-    @XmlElement(name = "forward")
-    private DecimalMoney forward;
+    @XmlElementRef(name = "forward")
+    private Money<?> forward;
 
-    public RepoFixedPayments(Money spot, Money forward) {
-        this.spot = spot.toDecimal();
-        this.forward = forward.toDecimal();
+    public RepoFixedPayments(final Money<?> spot, final Money<?> forward) {
+        this.spot = spot;
+        this.forward = forward;
     }
 
-    public DecimalMoney spot() {
+    public Money<?> spot() {
         return spot;
     }
 
-    public DecimalMoney forward() {
+    public Money<?> forward() {
         return forward;
     }
 

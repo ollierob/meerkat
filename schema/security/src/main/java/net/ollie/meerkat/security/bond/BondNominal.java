@@ -11,6 +11,6 @@ import net.ollie.meerkat.numeric.money.Money;
 public interface BondNominal {
 
     @Nonnull
-    Money par();
+    Money<?> par();
 
 }

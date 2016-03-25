@@ -21,7 +21,7 @@ public abstract class AbstractRepo<C extends Security>
     private RepoRate rate;
 
     @XmlElement(name = "principal")
-    private Money principal;
+    private Money<?> principal;
 
     @XmlElementRef(name = "dates")
     private RepoDates dates;
@@ -33,7 +33,7 @@ public abstract class AbstractRepo<C extends Security>
     protected AbstractRepo(
             final String name,
             final RepoRate rate,
-            final Money principal,
+            final Money<?> principal,
             final RepoDates dates) {
         super(name);
         this.rate = rate;
@@ -47,7 +47,7 @@ public abstract class AbstractRepo<C extends Security>
     }
 
     @Override
-    public Money principal() {
+    public Money<?> principal() {
         return principal;
     }
 
