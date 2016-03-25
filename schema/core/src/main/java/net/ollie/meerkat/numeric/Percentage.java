@@ -16,7 +16,12 @@ import net.ollie.meerkat.utils.numeric.Numeric;
 @XmlRootElement
 public class Percentage implements Numeric.Summable<Percentage> {
 
-    public static final Percentage ZERO = new Percentage(BigDecimal.ZERO);
+    public static final Percentage ZERO_PERCENT = new Percentage(BigDecimal.ZERO);
+    public static final Percentage ONE_PERCENT = new Percentage(BigDecimal.ONE);
+
+    public static Percentage basisPoints(final int amount) {
+        return new Percentage(BigDecimal.valueOf(amount).movePointLeft(2));
+    }
 
     @XmlValue
     private BigDecimal value;
