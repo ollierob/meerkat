@@ -20,4 +20,9 @@ public class JPY extends AbstractCurrencyIso {
         return Percentage.ONE_PERCENT;
     }
 
+    @Override
+    public String name() {
+        return "Japanese Yen";
+    }
+
 }

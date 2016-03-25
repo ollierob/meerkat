@@ -13,4 +13,9 @@ public class USD extends AbstractCurrencyIso {
         return "$";
     }
 
+    @Override
+    public String name() {
+        return "US Dollar";
+    }
+
 }

@@ -13,4 +13,9 @@ public class CAD extends AbstractCurrencyIso {
         return "$";
     }
 
+    @Override
+    public String name() {
+        return "Canadian Dollar";
+    }
+
 }

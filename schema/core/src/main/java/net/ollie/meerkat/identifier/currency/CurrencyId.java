@@ -7,7 +7,7 @@ package net.ollie.meerkat.identifier.currency;
 public interface CurrencyId extends HasCurrencyId {
 
     @Override
-    default CurrencyId currency() {
+    default CurrencyId currencyId() {
         return this;
     }
 

@@ -13,4 +13,9 @@ public class EUR extends AbstractCurrencyIso {
         return "€";
     }
 
+    @Override
+    public String name() {
+        return "Euro";
+    }
+
 }

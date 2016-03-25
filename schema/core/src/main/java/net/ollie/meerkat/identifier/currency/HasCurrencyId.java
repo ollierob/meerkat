@@ -9,6 +9,6 @@ import javax.annotation.Nonnull;
 public interface HasCurrencyId {
 
     @Nonnull
-    CurrencyId currency();
+    CurrencyId currencyId();
 
 }

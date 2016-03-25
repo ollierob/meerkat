@@ -47,7 +47,7 @@ public class IsinInMarketId implements SecurityInMarketId, HasMarketId, HasCurre
     }
 
     @Override
-    public CurrencyIso currency() {
+    public CurrencyIso currencyId() {
         return currency;
     }
 

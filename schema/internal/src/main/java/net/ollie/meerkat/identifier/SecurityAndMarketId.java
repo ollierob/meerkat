@@ -40,7 +40,7 @@ public class SecurityAndMarketId implements SecurityInMarketId, HasMarketId, Has
     }
 
     @Override
-    public CurrencyId currency() {
+    public CurrencyId currencyId() {
         return currency;
     }
 

@@ -29,7 +29,7 @@ public class InterestRateCurve implements Curve<LocalDate, Percentage>, HasName,
     private CurrencyId currency;
 
     @Override
-    public CurrencyId currency() {
+    public CurrencyId currencyId() {
         return currency;
     }
 

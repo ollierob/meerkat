@@ -34,7 +34,7 @@ public class YieldCurve implements Curve<Tenor, Percentage>, HasName, HasCurrenc
     }
 
     @Override
-    public CurrencyId currency() {
+    public CurrencyId currencyId() {
         return currency;
     }
 

@@ -46,7 +46,7 @@ public class DecimalMoney<C extends CurrencyId> implements Money<C>, Serializabl
     }
 
     @Override
-    public C currency() {
+    public C currencyId() {
         return currency;
     }
 

@@ -21,7 +21,7 @@ public interface CashPayment {
 
     @Nonnull
     default CurrencyId currency() {
-        return this.amount().currency();
+        return this.amount().currencyId();
     }
 
 }

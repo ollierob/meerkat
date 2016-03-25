@@ -23,6 +23,8 @@ import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  *
  * @author Ollie
@@ -33,7 +35,7 @@ public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
     public static <C extends CurrencyId> HistoricPnl<C> from(final Map<Instant, Money<C>> values) {
         final Iterator<Map.Entry<Instant, Money<C>>> iterator = values.entrySet().iterator();
         Map.Entry<Instant, Money<C>> previous = iterator.next();
-        final C currency = previous.getValue().currency();
+        final C currency = previous.getValue().currencyId();
         final NavigableMap<Interval, BigDecimal> pnl = new TreeMap<>(HistoricPnl::compareIntervals);
         while (iterator.hasNext()) {
             final Map.Entry<Instant, Money<C>> next = iterator.next();
@@ -61,7 +63,7 @@ public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
     }
 
     @Override
-    public C currency() {
+    public C currencyId() {
         return currency;
     }
 

@@ -13,4 +13,9 @@ public class ZAR extends AbstractCurrencyIso {
         return "R";
     }
 
+    @Override
+    public String name() {
+        return "South African Rand";
+    }
+
 }

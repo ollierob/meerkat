@@ -14,11 +14,6 @@ abstract class AbstractCurrencyIso implements Currency, CurrencyIso {
     }
 
     @Override
-    public String name() {
-        return this.value();
-    }
-
-    @Override
     public String toString() {
         return this.value();
     }

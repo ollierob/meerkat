@@ -18,7 +18,7 @@ import net.ollie.meerkat.utils.numeric.Numeric;
 public interface Money<C extends CurrencyId> extends HasCurrencyId, Numeric<Money<C>>, Security {
 
     @Override
-    C currency();
+    C currencyId();
 
     @Nonnull
     Number amount();
@@ -32,12 +32,12 @@ public interface Money<C extends CurrencyId> extends HasCurrencyId, Numeric<Mone
 
     @Nonnull
     default DecimalMoney<C> toDecimal() {
-        return DecimalMoney.valueOf(this.currency(), this.amount());
+        return DecimalMoney.valueOf(this.currencyId(), this.amount());
     }
 
     @Override
     default String name() {
-        return this.currency().toString();
+        return this.currencyId().toString();
     }
 
     default String toString(@Nonnull final MoneyFormat convention) {
@@ -45,7 +45,7 @@ public interface Money<C extends CurrencyId> extends HasCurrencyId, Numeric<Mone
     }
 
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {
-        return Objects.equals(left.currency(), right.currency())
+        return Objects.equals(left.currencyId(), right.currencyId())
                 && Numbers.equals(left.amount(), right.amount());
     }
 

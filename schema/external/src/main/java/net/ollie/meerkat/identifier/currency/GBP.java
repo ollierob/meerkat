@@ -13,4 +13,9 @@ public class GBP extends AbstractCurrencyIso {
         return "£";
     }
 
+    @Override
+    public String name() {
+        return "British Pound";
+    }
+
 }
