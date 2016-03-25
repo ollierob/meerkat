@@ -22,7 +22,7 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId> {
     @Nonnull
     BigDecimal rate();
 
-    default Money<T> convertTo(final Money<F> from) {
+    default Money<T> convert(final Money<F> from) {
         return new DecimalMoney<>(this.to(), this.rate().multiply(Numbers.toBigDecimal(from.amount())));
     }
 

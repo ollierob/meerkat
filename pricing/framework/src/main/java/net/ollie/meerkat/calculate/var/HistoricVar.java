@@ -1,20 +1,21 @@
 package net.ollie.meerkat.calculate.var;
 
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.money.Money;
 
 /**
  *
  * @author Ollie
  */
-public class HistoricVar implements Var {
+public class HistoricVar<C extends CurrencyId> implements Var {
 
     private final Percentage percentile;
-    private final Money value;
+    private final Money<C> atRisk;
 
-    public HistoricVar(final Percentage percentile, final Money value) {
+    public HistoricVar(final Percentage percentile, final Money<C> atRisk) {
         this.percentile = percentile;
-        this.value = value;
+        this.atRisk = atRisk;
     }
 
     public Percentage percentile() {
@@ -22,8 +23,8 @@ public class HistoricVar implements Var {
     }
 
     @Override
-    public Money atRisk() {
-        return value;
+    public Money<C> atRisk() {
+        return atRisk;
     }
 
 }

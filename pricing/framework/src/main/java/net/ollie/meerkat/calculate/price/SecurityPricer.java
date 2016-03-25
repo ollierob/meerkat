@@ -2,6 +2,7 @@ package net.ollie.meerkat.calculate.price;
 
 import java.time.temporal.Temporal;
 
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.security.Security;
 
 /**
@@ -10,6 +11,6 @@ import net.ollie.meerkat.security.Security;
  */
 public interface SecurityPricer<T extends Temporal, S extends Security> {
 
-    SecurityPrice price(T temporal, S security);
+    <C extends CurrencyId> SecurityPrice<C> price(T temporal, S security, C currency);
 
 }

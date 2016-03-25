@@ -1,4 +1,4 @@
-package net.ollie.meerkat.calculate.price;
+package net.ollie.meerkat.calculate.price.shifts;
 
 /**
  *

@@ -1,5 +1,6 @@
 package net.ollie.meerkat.calculate.sensitivity;
 
+import net.ollie.meerkat.identifier.currency.USD;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.utils.Accumulator;
 
@@ -8,10 +9,10 @@ import net.ollie.meerkat.utils.Accumulator;
  *
  * @author ollie
  */
-public class DollarDuration implements Sensitivity<Money> {
+public class DollarDuration implements Sensitivity<Money<USD>> {
 
     @Override
-    public Accumulator<Money, Money> accumulator() {
+    public Accumulator<Money<USD>, Money<USD>> accumulator() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

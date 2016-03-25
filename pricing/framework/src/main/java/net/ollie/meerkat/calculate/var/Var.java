@@ -1,5 +1,7 @@
 package net.ollie.meerkat.calculate.var;
 
+import javax.annotation.Nonnull;
+
 import net.ollie.meerkat.numeric.money.Money;
 
 /**
@@ -9,6 +11,7 @@ import net.ollie.meerkat.numeric.money.Money;
  */
 public interface Var {
 
-    Money atRisk();
+    @Nonnull
+    Money<?> atRisk();
 
 }

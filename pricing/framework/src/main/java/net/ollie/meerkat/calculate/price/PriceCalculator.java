@@ -3,6 +3,7 @@ package net.ollie.meerkat.calculate.price;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.UnsupportedSecurityException;
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.SecurityDefinition;
 
@@ -13,7 +14,7 @@ import net.ollie.meerkat.security.SecurityDefinition;
 public interface PriceCalculator {
 
     @Nonnull
-    Money price(@Nonnull SecurityDefinition security)
+    <C extends CurrencyId> Money<C> price(@Nonnull SecurityDefinition security, C currency)
             throws UnsupportedSecurityException;
 
 }

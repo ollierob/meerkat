@@ -16,7 +16,7 @@ public interface ExchangeRateCalculator {
 
     @Nonnull
     default <F extends CurrencyId, T extends CurrencyId> Money<T> convert(@Nonnull final Money<F> money, @Nonnull final T into) {
-        return this.rate(money.currencyId(), into).convertTo(money);
+        return this.rate(money.currencyId(), into).convert(money);
     }
 
     @Nonnull

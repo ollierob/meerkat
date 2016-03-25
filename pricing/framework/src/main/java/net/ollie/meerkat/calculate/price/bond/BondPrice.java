@@ -3,6 +3,7 @@ package net.ollie.meerkat.calculate.price.bond;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.price.SecurityPrice;
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
 
@@ -10,13 +11,13 @@ import net.ollie.meerkat.numeric.money.Money;
  *
  * @author ollie
  */
-public interface BondPrice extends SecurityPrice {
+public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
 
     @Nonnull
-    Money par();
+    Money<C> par();
 
     @Override
-    Money cleanPrice();
+    Money<C> cleanPrice();
 
     @Nonnull
     default Percentage cleanPercentage() {
@@ -24,7 +25,7 @@ public interface BondPrice extends SecurityPrice {
     }
 
     @Override
-    Money dirtyPrice();
+    Money<C> dirtyPrice();
 
     @Nonnull
     default Percentage dirtyPercentage() {
