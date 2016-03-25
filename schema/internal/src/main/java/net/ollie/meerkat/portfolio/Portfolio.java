@@ -20,11 +20,11 @@ public interface Portfolio extends HasName {
     Set<? extends Portfolio> children();
 
     @Nonnull
-    Map<PositionId, ? extends Quantity> selfPositions();
+    Map<PositionId, ? extends Quantity> ownPositions();
 
     @Nonnull
     default Map<PositionId, ? extends Quantity> allPositions() {
-        final Map<PositionId, Quantity> positions = new HashMap<>(this.selfPositions());
+        final Map<PositionId, Quantity> positions = new HashMap<>(this.ownPositions());
         this.children().forEach(portfolio -> positions.putAll(portfolio.allPositions()));
         return positions;
     }
