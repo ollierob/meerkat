@@ -59,4 +59,8 @@ public class FixedCoupon extends AbstractBondCoupon implements CashPayment {
         return this.paymentDate();
     }
 
+    public Money<?> accrue(final LocalDate to) {
+        return rate.accrue(amount, this.paymentDate(), to);
+    }
+
 }
