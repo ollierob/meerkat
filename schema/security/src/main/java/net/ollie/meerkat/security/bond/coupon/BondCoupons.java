@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.util.stream.Collectors.toList;
 
+import javax.annotation.CheckForNull;
+
 import net.ollie.meerkat.utils.collections.FiniteSequence;
 import net.ollie.meerkat.utils.time.TemporalSequence;
 
@@ -22,6 +24,9 @@ public interface BondCoupons<C extends BondCoupon> extends TemporalSequence<Loca
     }
 
     boolean hasFloatingRateCoupon();
+
+    @CheckForNull
+    C prior(LocalDate current);
 
     interface Finite<C extends BondCoupon> extends BondCoupons<C>, List<C> {
 
@@ -46,6 +51,20 @@ public interface BondCoupons<C extends BondCoupon> extends TemporalSequence<Loca
             return this.numCoupons() == 0;
         }
 
-    }
+        @Override
+        default C prior(final LocalDate current) {
+            C previous = null;
+            for (final C coupon : this) {
+                if (coupon.paymentDate().isAfter(current)) {
+                    return previous;
+                }
+                previous = coupon;
+            }
+            return null;
+        }
+
+    ;
+
+}
 
 }

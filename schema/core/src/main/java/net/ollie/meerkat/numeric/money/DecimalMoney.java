@@ -57,7 +57,9 @@ public class DecimalMoney<C extends CurrencyId> implements Money<C>, Serializabl
 
     @Override
     public Money<C> plus(final Money<C> that) {
-        return new DecimalMoney<>(currency, amount.add(that.decimalValue()));
+        return that.isZero()
+                ? this
+                : new DecimalMoney<>(currency, amount.add(that.decimalValue()));
     }
 
     @Override

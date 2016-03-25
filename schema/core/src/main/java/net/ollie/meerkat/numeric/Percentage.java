@@ -14,7 +14,7 @@ import net.ollie.meerkat.utils.numeric.Numeric;
  * @author Ollie
  */
 @XmlRootElement
-public class Percentage implements Numeric.Summable<Percentage> {
+public class Percentage extends Number implements Numeric.Summable<Percentage> {
 
     public static final Percentage ZERO_PERCENT = new Percentage(BigDecimal.ZERO);
     public static final Percentage ONE_PERCENT = new Percentage(BigDecimal.ONE);
@@ -69,6 +69,21 @@ public class Percentage implements Numeric.Summable<Percentage> {
     @Override
     public double doubleValue() {
         return this.decimalValue().doubleValue();
+    }
+
+    @Override
+    public int intValue() {
+        return this.decimalValue().intValue();
+    }
+
+    @Override
+    public long longValue() {
+        return this.decimalValue().longValue();
+    }
+
+    @Override
+    public float floatValue() {
+        return this.decimalValue().floatValue();
     }
 
     public boolean isNegative() {

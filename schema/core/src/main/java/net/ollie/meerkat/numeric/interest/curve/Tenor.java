@@ -6,18 +6,20 @@ import java.time.Period;
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 
+import org.apache.commons.math3.fraction.Fraction;
+
 import net.ollie.goat.date.Dates;
 import net.ollie.meerkat.numeric.interest.daycount.ActualActualAccrualFactor;
 import net.ollie.meerkat.numeric.interest.daycount.YearCount;
 import net.ollie.meerkat.utils.HasName;
-
-import org.apache.commons.math3.fraction.Fraction;
 
 /**
  *
  * @author Ollie
  */
 public class Tenor implements HasName {
+
+    public static final Tenor SPOT = new Tenor("spot", Period.ZERO);
 
     @XmlAttribute(name = "name")
     private String name;

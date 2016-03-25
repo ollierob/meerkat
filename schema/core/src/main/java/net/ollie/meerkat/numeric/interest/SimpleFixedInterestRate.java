@@ -58,7 +58,7 @@ public class SimpleFixedInterestRate implements FixedInterestRate {
     }
 
     @Override
-    public InterestRate with(final Percentage rate) {
+    public SimpleFixedInterestRate with(final Percentage rate) {
         return new SimpleFixedInterestRate(rate, yearCount);
     }
 

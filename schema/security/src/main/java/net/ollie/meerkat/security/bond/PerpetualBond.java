@@ -1,15 +1,15 @@
 package net.ollie.meerkat.security.bond;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.security.bond.coupon.BondCoupon;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
+import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
 import net.ollie.meerkat.security.bond.dates.PerpetualBondDates;
 import net.ollie.meerkat.utils.collections.Sequence;
 
@@ -22,6 +22,12 @@ public class PerpetualBond extends AbstractBond {
 
     @XmlAttribute(name = "yearly_frequency")
     private int yearlyFrequency;
+
+    @XmlElementRef(name = "coupon_amount")
+    private Money<?> couponAmount;
+
+    @XmlElementRef(name = "coupon_rate")
+    private FixedInterestRate couponRate;
 
     @XmlElementRef(name = "dates")
     private PerpetualBondDates dates;
@@ -59,7 +65,15 @@ public class PerpetualBond extends AbstractBond {
 
     }
 
-    public class PerpetualBondCoupons implements BondCoupons<BondCoupon> {
+    public class PerpetualBondCoupons implements BondCoupons<FixedCoupon> {
+
+        public FixedInterestRate recurringRate() {
+            return couponRate;
+        }
+
+        public Money<?> recurringAmount() {
+            return couponAmount;
+        }
 
         @Override
         public boolean hasFloatingRateCoupon() {
@@ -76,13 +90,13 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public Sequence<BondCoupon> onOrAfter(LocalDate time) {
+        public Sequence<FixedCoupon> onOrAfter(final LocalDate time) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
-        public List<BondCoupon> between(LocalDate start, LocalDate end) {
-            throw new UnsupportedOperationException("Not supported yet.");
+        public FixedCoupon prior(final LocalDate current) {
+            throw new UnsupportedOperationException(); //TODO
         }
 
     }

@@ -9,9 +9,7 @@ import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.meerkat.numeric.money.ExchangeRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
@@ -35,15 +33,10 @@ public class FixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponB
         final StraightBondNominal nominal = bond.nominal();
         final FixedCouponBondCoupons coupons = bond.coupons();
         final LocalDate matures = bond.dates().matures();
-        final Money<C> par = this.exchange(nominal.par(), currency, shifts, exchangeRates.apply(date));
+        final Money<C> par = this.shift(nominal.par(), shifts, currency, exchangeRates.apply(date));
         return coupons.isEmpty()
                 ? this.priceZeroCoupon(date, matures, par, bond.couponRate())
                 : this.priceCoupons(date, matures, par, coupons);
-    }
-
-    private <C extends CurrencyId, R extends CurrencyId> Money<C> exchange(final Money<R> par, final C reportingCurrency, final BondShifts shifts, final ExchangeRateCalculator exchangeRates) {
-        final ExchangeRate<R, C> rate = shifts.shiftExchangeRate(exchangeRates.rate(par.currencyId(), reportingCurrency));
-        return rate.convert(par);
     }
 
     protected <C extends CurrencyId> BondPrice<C> priceZeroCoupon(
@@ -52,7 +45,7 @@ public class FixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponB
             final Money<C> par,
             final FixedInterestRate rate) {
         final Money<C> price = rate.discount(par, date, maturity);
-        return new ZeroCouponBondPrice<>(par, price, price);
+        return new GenericBondPrice<>(par, price, price);
     }
 
     protected <C extends CurrencyId> BondPrice<C> priceCoupons(
@@ -61,43 +54,6 @@ public class FixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponB
             final Money<C> par,
             final List<FixedCoupon> coupons) {
         throw new UnsupportedOperationException();
-    }
-
-    private final class ZeroCouponBondPrice<C extends CurrencyId> implements BondPrice<C> {
-
-        private final Money<C> par, clean, dirty;
-
-        public ZeroCouponBondPrice(final Money<C> par, final Money<C> clean, final Money<C> dirty) {
-            this.par = par;
-            this.clean = clean;
-            this.dirty = dirty;
-        }
-
-        @Override
-        public Money<C> par() {
-            return par;
-        }
-
-        @Override
-        public Money<C> cleanPrice() {
-            return clean;
-        }
-
-        @Override
-        public Percentage cleanPercentage() {
-            return new Percentage(par.amount().doubleValue() / clean.amount().doubleValue());
-        }
-
-        @Override
-        public Money<C> dirtyPrice() {
-            return dirty;
-        }
-
-        @Override
-        public Percentage dirtyPercentage() {
-            return new Percentage(par.amount().doubleValue() / dirty.amount().doubleValue());
-        }
-
     }
 
 }

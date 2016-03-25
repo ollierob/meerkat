@@ -74,7 +74,7 @@ public class ConvertibleBond extends AbstractBond {
     }
 
     public class ConvertibleBondCoupons extends AbstractList<BondCoupon> implements BondCoupons.Finite<BondCoupon> {
-
+        
         @Override
         public BondCoupon get(int index) {
             return coupons.get(index);

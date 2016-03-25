@@ -1,5 +1,6 @@
 package net.ollie.meerkat.numeric.money;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.function.BinaryOperator;
 
@@ -7,6 +8,7 @@ import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
+import net.ollie.meerkat.numeric.DecimalFraction;
 import net.ollie.meerkat.security.Security;
 import net.ollie.meerkat.utils.numeric.Numbers;
 import net.ollie.meerkat.utils.numeric.Numeric;
@@ -35,6 +37,11 @@ public interface Money<C extends CurrencyId> extends HasCurrencyId, Numeric<Mone
         return DecimalMoney.valueOf(this.currencyId(), this.amount());
     }
 
+    @Nonnull
+    default Money<C> over(final Number number) {
+        return new FractionalMoney<>(this.currencyId(), DecimalFraction.of(this.amount(), number));
+    }
+
     @Override
     default String name() {
         return this.currencyId().toString();
@@ -42,6 +49,10 @@ public interface Money<C extends CurrencyId> extends HasCurrencyId, Numeric<Mone
 
     default String toString(@Nonnull final MoneyFormat convention) {
         return convention.toString(this);
+    }
+
+    static <C extends CurrencyId> DecimalMoney<C> zero(final C currency) {
+        return new DecimalMoney<>(currency, BigDecimal.ZERO);
     }
 
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {

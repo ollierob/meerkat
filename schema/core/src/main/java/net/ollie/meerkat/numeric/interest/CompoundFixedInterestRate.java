@@ -62,7 +62,7 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
     }
 
     @Override
-    public InterestRate with(final Percentage rate) {
+    public CompoundFixedInterestRate with(final Percentage rate) {
         return new CompoundFixedInterestRate(rate, yearCount, yearlyFrequency);
     }
 

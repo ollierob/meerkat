@@ -1,13 +1,14 @@
 package net.ollie.meerkat.numeric.interest.curve;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.Map;
 import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.utils.HasName;
 import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
@@ -17,7 +18,13 @@ import net.ollie.meerkat.utils.numeric.manifold.Curve;
  *
  * @author ollie
  */
-public class InterestRateCurve implements Curve<LocalDate, Percentage>, HasName, HasCurrencyId {
+public class InterestRateCurve implements Curve<LocalDate, Percentage>, HasName {
+
+    private static final LocalDate SOME_TIME = LocalDate.now();
+
+    public static InterestRateCurve flat(final String name, final Percentage percentage) {
+        return new InterestRateCurve(name, Collections.singletonMap(SOME_TIME, percentage));
+    }
 
     @XmlAttribute(name = "name")
     private String name;
@@ -25,12 +32,9 @@ public class InterestRateCurve implements Curve<LocalDate, Percentage>, HasName,
     @XmlElementWrapper
     private NavigableMap<LocalDate, Percentage> data;
 
-    @XmlAttribute(name = "currency")
-    private CurrencyId currency;
-
-    @Override
-    public CurrencyId currencyId() {
-        return currency;
+    public InterestRateCurve(final String name, final Map<LocalDate, Percentage> data) {
+        this.name = name;
+        this.data = new TreeMap<>(data);
     }
 
     @Override

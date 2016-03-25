@@ -1,7 +1,9 @@
 package net.ollie.meerkat.numeric.interest.curve;
 
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -27,6 +29,16 @@ public class YieldCurve implements Curve<Tenor, Percentage>, HasName, HasCurrenc
 
     @XmlAttribute(name = "currency")
     private CurrencyId currency;
+
+    @Deprecated
+    YieldCurve() {
+    }
+
+    public YieldCurve(final String name, final Map<Tenor, Percentage> data, final CurrencyId currency) {
+        this.name = name;
+        this.data = new TreeMap<>(data);
+        this.currency = currency;
+    }
 
     @Override
     public String name() {

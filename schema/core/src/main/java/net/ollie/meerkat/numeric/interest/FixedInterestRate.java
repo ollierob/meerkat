@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.interest.curve.InterestRateCurve;
 import net.ollie.meerkat.numeric.interest.daycount.YearCount;
 
 /**
@@ -30,7 +31,7 @@ public interface FixedInterestRate extends InterestRate, Comparable<FixedInteres
     }
 
     @Override
-    default InterestRate plus(final Percentage bump) {
+    default FixedInterestRate plus(final Percentage bump) {
         return this.with(this.annualRate().plus(bump));
     }
 
@@ -39,6 +40,11 @@ public interface FixedInterestRate extends InterestRate, Comparable<FixedInteres
         return this.annualRate().compareTo(that.annualRate());
     }
 
-    InterestRate with(Percentage rate);
+    FixedInterestRate with(Percentage rate);
+
+    @Nonnull
+    default InterestRateCurve toCurve() {
+        return InterestRateCurve.flat(this.name(), this.annualRate());
+    }
 
 }
