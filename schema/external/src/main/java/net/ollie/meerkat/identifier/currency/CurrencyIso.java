@@ -14,11 +14,6 @@ import net.ollie.meerkat.identifier.security.SecurityId;
  */
 public interface CurrencyIso extends Iso, CurrencyId, HasCountryId, SecurityId, Serializable {
 
-    GBP GBP = new GBP();
-    USD USD = new USD();
-    EUR EUR = new EUR();
-    JPY JPY = new JPY();
-
     String symbol();
 
     default String uniqueSymbol() {
@@ -43,5 +38,12 @@ public interface CurrencyIso extends Iso, CurrencyId, HasCountryId, SecurityId, 
     default String standard() {
         return "4217";
     }
+
+    CAD CAD = new CAD();
+    CNY CNY = new CNY();
+    EUR EUR = new EUR();
+    GBP GBP = new GBP();
+    JPY JPY = new JPY();
+    USD USD = new USD();
 
 }
