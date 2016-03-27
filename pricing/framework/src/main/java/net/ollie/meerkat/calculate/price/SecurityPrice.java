@@ -12,9 +12,9 @@ import net.ollie.meerkat.numeric.money.Money;
 public interface SecurityPrice<C extends CurrencyId> {
 
     @Nonnull
-    Money<C> cleanPrice();
+    Money<C> cleanValue();
 
     @Nonnull
-    Money<C> dirtyPrice();
+    Money<C> dirtyValue();
 
 }

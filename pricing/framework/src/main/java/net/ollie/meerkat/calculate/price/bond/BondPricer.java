@@ -1,6 +1,6 @@
 package net.ollie.meerkat.calculate.price.bond;
 
-import java.time.temporal.Temporal;
+import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
@@ -14,15 +14,15 @@ import net.ollie.meerkat.security.bond.Bond;
  *
  * @author ollie
  */
-public interface BondPricer<T extends Temporal, B extends Bond>
-        extends SecurityPricer<T, B>, ExchangeRateShifter, InterestRateShifter {
+public interface BondPricer<B extends Bond>
+        extends SecurityPricer<LocalDate, B>, ExchangeRateShifter, InterestRateShifter {
 
     @Override
-    default <C extends CurrencyId> BondPrice<C> price(final T temporal, final B bond, final C currency) {
-        return this.price(temporal, bond, BondShifts.NONE, currency);
+    default <C extends CurrencyId> BondPrice<C> price(final LocalDate date, final B bond, final C currency) {
+        return this.price(date, bond, BondShifts.NONE, currency);
     }
 
     @Nonnull
-    <C extends CurrencyId> BondPrice<C> price(T temporal, B bond, BondShifts shifts, C currency);
+    <C extends CurrencyId> BondPrice<C> price(LocalDate date, B bond, BondShifts shifts, C currency);
 
 }

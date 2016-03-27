@@ -22,27 +22,27 @@ final class GenericBondPrice<C extends CurrencyId> implements BondPrice<C> {
     }
 
     @Override
-    public Money<C> par() {
+    public Money<C> parValue() {
         return par;
     }
 
     @Override
-    public Money<C> cleanPrice() {
+    public Money<C> cleanValue() {
         return clean;
     }
 
     @Override
-    public Percentage cleanPercentage() {
+    public Percentage clean() {
         return new Percentage(par.amount().doubleValue() / clean.amount().doubleValue());
     }
 
     @Override
-    public Money<C> dirtyPrice() {
+    public Money<C> dirtyValue() {
         return dirty;
     }
 
     @Override
-    public Percentage dirtyPercentage() {
+    public Percentage dirty() {
         return new Percentage(par.amount().doubleValue() / dirty.amount().doubleValue());
     }
 

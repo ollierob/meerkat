@@ -16,21 +16,20 @@ import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.ollie.meerkat.security.bond.StraightBond.StraightBondNominal;
 import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
-import net.ollie.risk.risk.pricing.AnnuityPricer;
 
 /**
  *
  * @author ollie
  */
-public class FixedCouponBondPricer extends AnnuityPricer implements BondPricer<LocalDate, FixedCouponBond> {
+public class FixedCouponBondPricer implements BondPricer<FixedCouponBond> {
 
-    private final Function<LocalDate, ExchangeRateCalculator> exchangeRates;
+    private final Function<LocalDate, ExchangeRateCalculator> fxRates;
     private final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates;
 
     public FixedCouponBondPricer(
             final Function<LocalDate, ExchangeRateCalculator> exchangeRates,
             final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates) {
-        this.exchangeRates = exchangeRates;
+        this.fxRates = exchangeRates;
         this.discountRates = discountRates;
     }
 
@@ -41,65 +40,63 @@ public class FixedCouponBondPricer extends AnnuityPricer implements BondPricer<L
             final BondShifts shifts,
             final C currency) {
 
-        final StraightBondNominal nominal = bond.nominal();
-        final FixedCouponBondCoupons coupons = bond.coupons();
-        final LocalDate maturity = bond.dates().matures();
-        final Money<C> par = this.shift(nominal.par(), shifts, currency, exchangeRates.apply(date));
+        final ExchangeRateCalculator fxRates = this.fxRates.apply(date);
         final FixedInterestRate accrualRate = this.shift(bond.couponRate(), shifts);
+        final InterestRate discountRate = discountRates.apply(date, currency);
 
-        //Clean price
-        final Money<C> cleanPrice = this.cleanPrice(date, maturity, par, coupons, accrualRate, shifts);
-        final Money<C> dirtyPrice = this.dirtyPrice(date, coupons, cleanPrice, accrualRate, shifts);
+        final StraightBondNominal nominal = bond.nominal();
+        final Money<C> par = this.shift(nominal.par(), shifts, currency, fxRates);
 
-        return new GenericBondPrice<>(par, cleanPrice, dirtyPrice);
+        //Prices
+        final LocalDate maturity = bond.dates().matures();
+        final FixedCouponBondCoupons coupons = bond.coupons();
+        final Money<C> clean = this.cleanValue(date, maturity, par, coupons, accrualRate, discountRate, fxRates, shifts);
+        final Money<C> dirty = this.dirtyValue(date, coupons, clean, accrualRate, fxRates, shifts);
+
+        return new GenericBondPrice<>(par, clean, dirty);
 
     }
 
-    private <C extends CurrencyId> Money<C> cleanPrice(
+    private <C extends CurrencyId> Money<C> cleanValue(
             final LocalDate date,
             final LocalDate maturity,
             final Money<C> par,
             final FixedCouponBondCoupons coupons,
             final InterestRate accrualRate,
+            final InterestRate discountRate,
+            final ExchangeRateCalculator fxRates,
             final BondShifts shifts) {
 
         final C currency = par.currencyId();
-        final ExchangeRateCalculator fxRates = exchangeRates.apply(date);
 
-        Money<C> cleanPrice = par;
+        Money<C> cleanAmount = par;
         for (final FixedCoupon coupon : coupons.onOrAfter(date)) {
             final Money<C> amount = this.shift(coupon.amount(), shifts, currency, fxRates);
-            cleanPrice = cleanPrice.plus(accrualRate.accrue(amount, coupon.date(), maturity));
+            cleanAmount = cleanAmount.plus(accrualRate.accrue(amount, coupon.date(), maturity));
         }
 
-        return cleanPrice;
+        return discountRate.discount(cleanAmount, date, maturity);
 
     }
 
-    private <C extends Object & CurrencyId> Money<C> dirtyPrice(
+    private <C extends Object & CurrencyId> Money<C> dirtyValue(
             final LocalDate date,
             final FixedCouponBondCoupons coupons,
-            final Money<C> cleanPrice,
+            final Money<C> cleanValue,
             final InterestRate accrualRate,
+            final ExchangeRateCalculator fxRates,
             final BondShifts shifts) {
 
         final FixedCoupon prior = coupons.prior(date);
         if (prior == null) {
-            return cleanPrice;
+            return cleanValue;
         }
 
-        final ExchangeRateCalculator fxRates = exchangeRates.apply(date);
+        final Money<C> priorAmount = this.shift(prior.amount(), shifts, cleanValue.currencyId(), fxRates);
+        final Money<C> accruedAmount = accrualRate.accrue(priorAmount, prior.date(), date);
 
-        final Money<C> couponAmount = this.shift(prior.amount(), shifts, cleanPrice.currencyId(), fxRates);
-        final Money<C> accrued = accrualRate.accrue(couponAmount, prior.date(), date);
+        return cleanValue.plus(accruedAmount);
 
-        return cleanPrice.plus(accrued);
-
-    }
-
-    @Override
-    protected InterestRate discountRate(final LocalDate date, final CurrencyId currency) {
-        return discountRates.apply(date, currency);
     }
 
 }

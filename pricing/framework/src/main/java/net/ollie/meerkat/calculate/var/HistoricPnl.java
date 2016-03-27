@@ -1,4 +1,4 @@
-package net.ollie.meerkat.calculate.price.historic;
+package net.ollie.meerkat.calculate.var;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -17,13 +17,11 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.threeten.extra.Interval;
-
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 
-import static java.util.Objects.requireNonNull;
+import org.threeten.extra.Interval;
 
 /**
  *

@@ -1,7 +1,6 @@
 package net.ollie.risk.risk.pricing.bond;
 
 import java.time.LocalDate;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
@@ -10,30 +9,28 @@ import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.PerpetualBond;
 import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
-import net.ollie.risk.risk.pricing.AnnuityPricer;
 
 /**
  *
  * @author Ollie
  */
-public class PerpetualBondPricer extends AnnuityPricer implements BondPricer<LocalDate, PerpetualBond> {
+public class PerpetualBondPricer implements BondPricer<PerpetualBond> {
 
     private final Function<LocalDate, ExchangeRateCalculator> exchangeRates;
-    private final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates;
 
-    public PerpetualBondPricer(
-            final Function<LocalDate, ExchangeRateCalculator> exchangeRates,
-            final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates) {
+    public PerpetualBondPricer(final Function<LocalDate, ExchangeRateCalculator> exchangeRates) {
         this.exchangeRates = exchangeRates;
-        this.discountRates = discountRates;
     }
 
     @Override
-    public <C extends CurrencyId> BondPrice<C> price(final LocalDate date, final PerpetualBond bond, final BondShifts shifts, final C currency) {
+    public <C extends CurrencyId> BondPrice<C> price(
+            final LocalDate date,
+            final PerpetualBond bond,
+            final BondShifts shifts,
+            final C currency) {
 
         final ExchangeRateCalculator calculator = exchangeRates.apply(date);
 
@@ -49,11 +46,6 @@ public class PerpetualBondPricer extends AnnuityPricer implements BondPricer<Loc
         final Money<C> dirtyPrice = cleanPrice.plus(prior == null ? Money.zero(currency) : rate.accrue(amount, prior.date(), date));
         return new GenericBondPrice<>(par, cleanPrice, dirtyPrice);
 
-    }
-
-    @Override
-    protected InterestRate discountRate(final LocalDate date, final CurrencyId currency) {
-        return discountRates.apply(date, currency);
     }
 
 }

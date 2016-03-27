@@ -14,22 +14,22 @@ import net.ollie.meerkat.numeric.money.Money;
 public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
 
     @Nonnull
-    Money<C> par();
+    Money<C> parValue();
 
     @Override
-    Money<C> cleanPrice();
+    Money<C> cleanValue();
 
     @Nonnull
-    default Percentage cleanPercentage() {
-        return new Percentage(this.par().amount().doubleValue() / this.cleanPrice().amount().doubleValue());
+    default Percentage clean() {
+        return new Percentage(this.parValue().amount().doubleValue() / this.cleanValue().amount().doubleValue());
     }
 
     @Override
-    Money<C> dirtyPrice();
+    Money<C> dirtyValue();
 
     @Nonnull
-    default Percentage dirtyPercentage() {
-        return new Percentage(this.par().amount().doubleValue() / this.dirtyPrice().amount().doubleValue());
+    default Percentage dirty() {
+        return new Percentage(this.parValue().amount().doubleValue() / this.dirtyValue().amount().doubleValue());
     }
 
 }

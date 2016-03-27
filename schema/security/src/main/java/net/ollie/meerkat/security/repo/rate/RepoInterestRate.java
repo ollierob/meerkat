@@ -7,17 +7,13 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-
 /**
  *
  * @author ollie
  */
 public class RepoInterestRate implements RepoRate {
 
-    @XmlElementRef
+    @XmlElementRef(name = "rate")
     private FixedInterestRate rate;
 
     @Deprecated
@@ -28,13 +24,9 @@ public class RepoInterestRate implements RepoRate {
         this.rate = requireNonNull(rate);
     }
 
-    @Nonnull
+    @Override
     public FixedInterestRate rate() {
         return rate;
-    }
-
-    public boolean isSpecial() {
-        return rate.isNegative();
     }
 
     @Override
