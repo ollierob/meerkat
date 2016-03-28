@@ -24,8 +24,8 @@ public enum ActualActualAccrualFactor implements AccrualFactor {
     ACT_ACT_ICMA;
 
     @Override
-    public int daysBetween(final LocalDate startInclusive, final LocalDate endExclusive) {
-        return Math.toIntExact(ChronoUnit.DAYS.between(startInclusive, endExclusive));
+    public int daysBetween(final LocalDate startInclusive, final LocalDate endInclusive) {
+        return Math.toIntExact(ChronoUnit.DAYS.between(startInclusive, endInclusive));
     }
 
     private static final MonthDay JAN_1 = MonthDay.of(Month.JANUARY, 1);

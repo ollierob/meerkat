@@ -1,4 +1,4 @@
-package net.ollie.risk.risk.pricing.repo;
+package net.ollie.meerkat.pricing.repo;
 
 import java.time.LocalDate;
 

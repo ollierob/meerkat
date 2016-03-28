@@ -1,4 +1,4 @@
-package net.ollie.risk.risk.pricing.repo;
+package net.ollie.meerkat.pricing.repo;
 
 import net.ollie.meerkat.calculate.price.repo.RepoPrice;
 import net.ollie.meerkat.identifier.currency.CurrencyId;

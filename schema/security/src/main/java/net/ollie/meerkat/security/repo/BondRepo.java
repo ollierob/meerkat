@@ -23,16 +23,20 @@ public class BondRepo extends AbstractRepo<Bond> {
     public BondRepo(
             final String name,
             final RepoRate rate,
-            final Money<?> principal,
             final Bond collateral,
             final RepoDates dates) {
-        super(name, rate, principal, dates);
+        super(name, rate, dates);
         this.collateral = collateral;
     }
 
     @Override
     public Bond collateral() {
         return collateral;
+    }
+
+    @Override
+    public Money<?> principal() {
+        return collateral.nominal().par();
     }
 
     @Override

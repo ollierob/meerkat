@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import org.apache.commons.math3.fraction.Fraction;
-
 import net.ollie.meerkat.temporal.interim.Interim;
 import net.ollie.meerkat.temporal.interim.Interval;
+
+import org.apache.commons.math3.fraction.Fraction;
 
 /**
  *
@@ -17,10 +17,10 @@ import net.ollie.meerkat.temporal.interim.Interval;
 public interface YearCount {
 
     @Nonnull
-    Fraction yearsBetween(@Nonnull LocalDate startInclusive, @Nonnull LocalDate endExclusive);
+    Fraction yearsBetween(@Nonnull LocalDate startInclusive, @Nonnull LocalDate endInclusive);
 
     default Fraction yearsIn(@Nonnull final Interval interval) {
-        return this.yearsBetween(interval.startInclusive(), interval.endExclusive());
+        return this.yearsBetween(interval.startInclusive(), interval.endInclusive());
     }
 
     default Optional<Fraction> yearsIn(@Nonnull final Interim interim) {

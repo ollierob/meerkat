@@ -1,4 +1,4 @@
-package net.ollie.risk.risk.pricing.bond;
+package net.ollie.meerkat.pricing.bond;
 
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.identifier.currency.CurrencyId;

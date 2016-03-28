@@ -35,14 +35,16 @@ public class FixedCouponBond extends StraightBond {
     FixedCouponBond() {
     }
 
-    FixedCouponBond(
+    public FixedCouponBond(
             final String name,
             final Money<?> par,
             final MaturingBondDates dates,
             final Money<?> couponAmount,
+            final FixedInterestRate couponRate,
             final List<LocalDate> couponDates,
             final BondCall call) {
         super(name, par, dates, call);
+        this.couponRate = couponRate;
         this.couponAmount = couponAmount;
         this.couponDates = couponDates;
     }
@@ -64,7 +66,14 @@ public class FixedCouponBond extends StraightBond {
 
     @Override
     public StraightBond strip() {
-        return new FixedCouponBond(this.name(), this.par(), this.dates(), this.couponAmount(), Collections.emptyList(), this.call().orElse(null));
+        return new FixedCouponBond(
+                this.name(),
+                this.par(),
+                this.dates(),
+                this.couponAmount(),
+                this.couponRate(),
+                Collections.emptyList(),
+                this.call().orElse(null));
     }
 
     @Override

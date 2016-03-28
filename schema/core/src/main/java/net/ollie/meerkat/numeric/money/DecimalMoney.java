@@ -84,7 +84,7 @@ public class DecimalMoney<C extends CurrencyId> implements Money<C>, Serializabl
 
     @Override
     public String toString() {
-        return this.toString(MoneyFormat.CURRENCY_AMOUNT);
+        return this.toString(MoneyFormat.SYMBOL_AMOUNT);
     }
 
     @Override

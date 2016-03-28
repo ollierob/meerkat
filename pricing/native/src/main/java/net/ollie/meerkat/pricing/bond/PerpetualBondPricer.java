@@ -1,4 +1,4 @@
-package net.ollie.risk.risk.pricing.bond;
+package net.ollie.meerkat.pricing.bond;
 
 import java.time.LocalDate;
 import java.util.function.Function;

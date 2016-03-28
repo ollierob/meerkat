@@ -17,7 +17,8 @@ import net.ollie.meerkat.utils.numeric.Numeric;
  *
  * @author Ollie
  */
-public interface Money<C extends CurrencyId> extends HasCurrencyId, Numeric<Money<C>>, Security {
+public interface Money<C extends CurrencyId>
+        extends HasCurrencyId, Numeric<Money<C>>, Security {
 
     @Override
     C currencyId();

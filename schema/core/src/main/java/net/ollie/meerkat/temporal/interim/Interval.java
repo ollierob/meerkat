@@ -18,16 +18,21 @@ public class Interval implements Interim {
     private LocalDate startInclusive;
 
     @XmlAttribute(name = "end")
-    private LocalDate endExclusive;
+    private LocalDate endInclusive;
 
     @Deprecated
     Interval() {
     }
 
+    public Interval(LocalDate startInclusive, LocalDate endInclusive) {
+        this.startInclusive = startInclusive;
+        this.endInclusive = endInclusive;
+    }
+
     @Override
     public boolean contains(final LocalDate date) {
         return !date.isBefore(startInclusive)
-                && date.isBefore(endExclusive);
+                && !date.isAfter(endInclusive);
     }
 
     @Override
@@ -42,7 +47,12 @@ public class Interval implements Interim {
 
     @Nonnull
     public LocalDate endExclusive() {
-        return endExclusive;
+        return endInclusive.minusDays(1);
+    }
+
+    @Nonnull
+    public LocalDate endInclusive() {
+        return endInclusive;
     }
 
 }

@@ -6,12 +6,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.apache.commons.math3.fraction.Fraction;
-
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.daycount.YearCount;
 import net.ollie.meerkat.numeric.money.Money;
+
+import org.apache.commons.math3.fraction.Fraction;
 
 /**
  *
@@ -25,6 +25,10 @@ public class SimpleFixedInterestRate implements FixedInterestRate {
 
     @XmlElementRef(name = "day_count")
     private YearCount yearCount;
+
+    @Deprecated
+    SimpleFixedInterestRate() {
+    }
 
     public SimpleFixedInterestRate(final Percentage rate, final YearCount dayCount) {
         this.rate = rate;
@@ -60,6 +64,11 @@ public class SimpleFixedInterestRate implements FixedInterestRate {
     @Override
     public SimpleFixedInterestRate with(final Percentage rate) {
         return new SimpleFixedInterestRate(rate, yearCount);
+    }
+
+    @Override
+    public String toString() {
+        return "simple@" + rate;
     }
 
 }
