@@ -10,6 +10,8 @@ import net.ollie.goat.functions.Functions;
  */
 public class Numbers {
 
+    public static final BigDecimal ONE_HUNDRED = BigDecimal.ONE.movePointRight(2);
+
     protected Numbers() {
     }
 

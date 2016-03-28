@@ -2,7 +2,9 @@ package net.ollie.meerkat.numeric;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.Objects;
 
+import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
@@ -18,6 +20,7 @@ public class Percentage extends Number implements Numeric.Summable<Percentage> {
 
     public static final Percentage ZERO_PERCENT = new Percentage(BigDecimal.ZERO);
     public static final Percentage ONE_PERCENT = new Percentage(BigDecimal.ONE);
+    public static final Percentage ONE_HUNDRED_PERCENT = new Percentage(Numbers.ONE_HUNDRED);
 
     public static Percentage basisPoints(final int amount) {
         return new Percentage(BigDecimal.valueOf(amount).movePointLeft(2));
@@ -90,9 +93,34 @@ public class Percentage extends Number implements Numeric.Summable<Percentage> {
         return value.signum() < 0;
     }
 
+    public Percentage inverse() {
+        return ONE_HUNDRED_PERCENT.minus(this);
+    }
+
     @Override
     public String toString() {
         return value + "%";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.value);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Percentage
+                && this.equals((Percentage) obj);
+    }
+
+    public boolean equals(@Nonnull final Percentage that) {
+        return value.compareTo(that.value) == 0;
+    }
+
+    public boolean equals(@Nonnull final Percentage that, final double delta) {
+        return Math.abs(value.subtract(that.value).doubleValue()) < delta;
     }
 
 }

@@ -5,6 +5,7 @@ import java.time.Month;
 
 import net.ollie.meerkat.IntegrationTest;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
+import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.repo.RepoPrice;
 import net.ollie.meerkat.identifier.currency.CurrencyIso;
@@ -30,10 +31,6 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-
-import net.ollie.meerkat.calculate.price.bond.BondPricer;
 
 /**
  *
@@ -65,11 +62,11 @@ public class NativeBondRepoPricerIntegrationTest {
         final BondPrice<USD> mockBondPrice = mock(BondPrice.class);
         final Money<USD> dirtyValue = DecimalMoney.valueOf(usd, 12_157_315.07);
         when(mockBondPrice.dirtyValue()).thenReturn(dirtyValue);
-        when(mockBondPricer.price(priceDate, mockBond, BondShifts.NONE, usd)).thenReturn(mockBondPrice);
+        when(mockBondPricer.price(priceDate, mockBond, BondShifts.none(), usd)).thenReturn(mockBondPrice);
 
         final RepoRate rate = new RepoInterestRate(new SimpleFixedInterestRate(new Percentage(0.885), ActualFixedAccrualFactor.ACT_360));
         final RepoDates dates = new TermRepoDates(nearDate.minusDays(1), nearDate, farDate);
-        final BondRepo repo = new BondRepo("repo", rate, mockBond, dates);
+        final BondRepo repo = new BondRepo("repo", rate, mockBond, dates, null);
 
         final RepoPrice<USD> repoPrice = testRepoPricer.price(priceDate, repo, usd);
         assertThat(repoPrice.cleanValue().doubleValue(), Matchers.closeTo(12_166_579.96, 1e-2));

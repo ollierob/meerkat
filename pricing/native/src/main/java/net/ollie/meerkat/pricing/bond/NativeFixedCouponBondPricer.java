@@ -7,6 +7,7 @@ import java.util.function.Function;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
+import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.interest.InterestRate;
@@ -15,7 +16,6 @@ import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.ollie.meerkat.security.bond.StraightBond.StraightBondNominal;
 import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
-import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
 
 /**
  *
@@ -45,7 +45,7 @@ public class NativeFixedCouponBondPricer implements BondTypePricer<FixedCouponBo
         final InterestRate discountRate = discountRates.apply(date, currency);
 
         final StraightBondNominal nominal = bond.nominal();
-        final Money<C> par = this.shift(nominal.par(), shifts, currency, fxRates);
+        final Money<C> par = this.shiftPrice(nominal.par(), shifts, currency, fxRates);
 
         //Prices
         final LocalDate maturity = bond.dates().matures();
@@ -71,7 +71,7 @@ public class NativeFixedCouponBondPricer implements BondTypePricer<FixedCouponBo
 
         Money<C> cleanAmount = par;
         for (final FixedCoupon coupon : coupons.onOrAfter(date)) {
-            final Money<C> amount = this.shift(coupon.amount(), shifts, currency, fxRates);
+            final Money<C> amount = this.shiftPrice(coupon.amount(), shifts, currency, fxRates);
             cleanAmount = cleanAmount.plus(accrualRate.accrue(amount, coupon.date(), maturity));
         }
 
@@ -92,11 +92,19 @@ public class NativeFixedCouponBondPricer implements BondTypePricer<FixedCouponBo
             return cleanValue;
         }
 
-        final Money<C> priorAmount = this.shift(prior.amount(), shifts, cleanValue.currencyId(), fxRates);
+        final Money<C> priorAmount = this.shiftPrice(prior.amount(), shifts, cleanValue.currencyId(), fxRates);
         final Money<C> accruedAmount = accrualRate.accrue(priorAmount, prior.date(), date);
 
         return cleanValue.plus(accruedAmount);
 
+    }
+
+    private <C extends CurrencyId> Money<C> shiftPrice(
+            final Money<?> amount,
+            final BondShifts shifts,
+            final C currency,
+            final ExchangeRateCalculator fxRates) {
+        return shifts.shiftPrice(this.shiftFx(amount, shifts, currency, fxRates));
     }
 
 }

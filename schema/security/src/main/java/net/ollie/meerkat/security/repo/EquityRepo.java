@@ -15,7 +15,7 @@ import net.ollie.meerkat.security.repo.rate.RepoRate;
  */
 public class EquityRepo extends AbstractRepo<Equity> {
 
-    @XmlElementRef
+    @XmlElementRef(name = "collateral")
     private Equity collateral;
 
     @Deprecated
@@ -25,16 +25,20 @@ public class EquityRepo extends AbstractRepo<Equity> {
     public EquityRepo(
             final String name,
             final RepoRate rate,
-            final Money<?> principal,
             final Equity collateral,
             final RepoDates dates) {
-        super(name, rate, principal, dates);
+        super(name, rate, dates);
         this.collateral = requireNonNull(collateral);
     }
 
     @Override
     public Equity collateral() {
         return collateral;
+    }
+
+    @Override
+    public Money<?> principal() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

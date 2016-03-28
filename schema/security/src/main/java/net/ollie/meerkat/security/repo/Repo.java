@@ -2,7 +2,6 @@ package net.ollie.meerkat.security.repo;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.Security;
 import net.ollie.meerkat.security.SecurityDefinition;
 import net.ollie.meerkat.security.derivative.Derivative;
@@ -19,9 +18,6 @@ public interface Repo<C extends Security>
 
     @Nonnull
     RepoRate rate();
-
-    @Override
-    Money<?> principal();
 
     @Override
     C collateral();

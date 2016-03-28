@@ -6,6 +6,7 @@ import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.ExchangeRate;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
 
@@ -19,7 +20,7 @@ public interface RepoShifts extends SecurityShifts, ExchangeRateShifts {
     RepoRate shift(RepoRate rate);
 
     @Nonnull
-    BondShifts bondShifts();
+    BondShifts bondShifts(@Nonnull Percentage haircut);
 
     RepoShifts NONE = new RepoShifts() {
 
@@ -34,8 +35,8 @@ public interface RepoShifts extends SecurityShifts, ExchangeRateShifts {
         }
 
         @Override
-        public BondShifts bondShifts() {
-            return BondShifts.NONE;
+        public BondShifts bondShifts(@Nonnull final Percentage haircut) {
+            return BondShifts.relativePrice(haircut);
         }
 
     };

@@ -3,16 +3,16 @@ package net.ollie.meerkat.pricing.repo;
 import java.time.LocalDate;
 
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
+import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.repo.RepoPrice;
 import net.ollie.meerkat.calculate.price.repo.RepoShifts;
+import net.ollie.meerkat.calculate.price.repo.RepoTypePricer;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.repo.BondRepo;
-import net.ollie.meerkat.calculate.price.bond.BondPricer;
-import net.ollie.meerkat.calculate.price.repo.RepoTypePricer;
 
 /**
  *
@@ -33,8 +33,9 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
             final C currency,
             final RepoShifts shifts) {
 
-        final BondPrice<C> bondPrice = this.price(repo.collateral(), date, currency, shifts.bondShifts());
-        final Money<C> dirtyBondPrice = bondPrice.dirtyValue();
+        final BondShifts bondShifts = shifts.bondShifts(repo.haircut());
+        final BondPrice<C> bondPrice = this.price(repo.collateral(), date, currency, bondShifts);
+        final Money<C> dirtyBondPrice = bondPrice.dirtyValue(); //TODO apply haircut
 
         final InterestRate rate = shifts.shift(repo.rate()).rate();
 

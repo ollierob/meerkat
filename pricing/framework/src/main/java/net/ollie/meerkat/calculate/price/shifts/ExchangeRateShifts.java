@@ -15,7 +15,7 @@ public interface ExchangeRateShifts extends SecurityShifts {
 
     interface ExchangeRateShifter {
 
-        default <C extends CurrencyId, R extends CurrencyId> Money<C> shift(final Money<R> amount, final ExchangeRateShifts shifts, final C reportingCurrency, final ExchangeRateCalculator exchangeRates) {
+        default <C extends CurrencyId, R extends CurrencyId> Money<C> shiftFx(final Money<R> amount, final ExchangeRateShifts shifts, final C reportingCurrency, final ExchangeRateCalculator exchangeRates) {
             final ExchangeRate<R, C> baseRate = exchangeRates.rate(amount.currencyId(), reportingCurrency);
             final ExchangeRate<R, C> shiftedRate = shifts.shiftExchangeRate(baseRate);
             return shiftedRate.convert(amount);

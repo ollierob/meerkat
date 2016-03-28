@@ -19,7 +19,7 @@ public interface BondTypePricer<B extends Bond>
 
     @Override
     default <C extends CurrencyId> BondPrice<C> price(final LocalDate date, final B bond, final C currency) {
-        return this.price(date, bond, BondShifts.NONE, currency);
+        return this.price(date, bond, BondShifts.none(), currency);
     }
 
     @Nonnull

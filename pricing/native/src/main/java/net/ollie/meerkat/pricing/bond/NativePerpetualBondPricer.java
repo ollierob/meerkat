@@ -36,12 +36,12 @@ public class NativePerpetualBondPricer implements BondTypePricer<PerpetualBond> 
 
         //Coupons
         final PerpetualBond.PerpetualBondCoupons coupons = bond.coupons();
-        final Money<C> amount = this.shift(coupons.recurringAmount(), shifts, currency, calculator);
+        final Money<C> amount = this.shiftFx(coupons.recurringAmount(), shifts, currency, calculator);
         final FixedInterestRate rate = this.shift(coupons.recurringRate(), shifts);
         final FixedCoupon prior = coupons.prior(date);
 
         //Prices
-        final Money<C> par = this.shift(bond.nominal().par(), shifts, currency, calculator);
+        final Money<C> par = this.shiftFx(bond.nominal().par(), shifts, currency, calculator);
         final Money<C> cleanPrice = amount.over(rate.annualRate());
         final Money<C> dirtyPrice = cleanPrice.plus(prior == null ? Money.zero(currency) : rate.accrue(amount, prior.date(), date));
         return new GenericBondPrice<>(par, cleanPrice, dirtyPrice);

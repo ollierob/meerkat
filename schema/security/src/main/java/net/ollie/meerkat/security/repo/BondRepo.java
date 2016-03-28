@@ -1,7 +1,10 @@
 package net.ollie.meerkat.security.repo;
 
+import javax.annotation.Nonnull;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.repo.dates.RepoDates;
@@ -16,6 +19,9 @@ public class BondRepo extends AbstractRepo<Bond> {
     @XmlElementRef
     private Bond collateral;
 
+    @XmlAttribute(name = "haircut", required = false)
+    private Percentage haircut;
+
     @Deprecated
     BondRepo() {
     }
@@ -24,9 +30,11 @@ public class BondRepo extends AbstractRepo<Bond> {
             final String name,
             final RepoRate rate,
             final Bond collateral,
-            final RepoDates dates) {
+            final RepoDates dates,
+            final Percentage haircut) {
         super(name, rate, dates);
         this.collateral = collateral;
+        this.haircut = haircut;
     }
 
     @Override
@@ -36,7 +44,12 @@ public class BondRepo extends AbstractRepo<Bond> {
 
     @Override
     public Money<?> principal() {
-        return collateral.nominal().par();
+        return collateral.nominal().par().times(this.haircut().inverse());
+    }
+
+    @Nonnull
+    public Percentage haircut() {
+        return haircut == null ? Percentage.ZERO_PERCENT : haircut;
     }
 
     @Override
