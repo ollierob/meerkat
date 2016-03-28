@@ -3,26 +3,26 @@ package net.ollie.meerkat.pricing.repo;
 import java.time.LocalDate;
 
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondPriceHandler;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.repo.RepoPrice;
-import net.ollie.meerkat.calculate.price.repo.RepoPricer;
 import net.ollie.meerkat.calculate.price.repo.RepoShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.repo.BondRepo;
+import net.ollie.meerkat.calculate.price.bond.BondPricer;
+import net.ollie.meerkat.calculate.price.repo.RepoTypePricer;
 
 /**
  *
  * @author ollie
  */
-public class NativeBondRepoPricer implements RepoPricer<LocalDate, BondRepo> {
+public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo> {
 
-    private final BondPriceHandler bondPricer;
+    private final BondPricer bondPricer;
 
-    public NativeBondRepoPricer(final BondPriceHandler bondPricer) {
+    public NativeBondRepoPricer(final BondPricer bondPricer) {
         this.bondPricer = bondPricer;
     }
 

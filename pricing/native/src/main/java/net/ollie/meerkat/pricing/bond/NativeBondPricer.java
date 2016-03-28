@@ -3,31 +3,31 @@ package net.ollie.meerkat.pricing.bond;
 import java.time.LocalDate;
 
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondPriceHandler;
-import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.security.bond.ConvertibleBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FloatingRateNote;
 import net.ollie.meerkat.security.bond.PerpetualBond;
+import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
+import net.ollie.meerkat.calculate.price.bond.BondPricer;
 
 /**
  *
  * @author ollie
  */
-public class NativeBondPriceHandler implements BondPriceHandler {
+public class NativeBondPricer implements BondPricer {
 
-    private final BondPricer<PerpetualBond> perpetualPricer;
-    private final BondPricer<FixedCouponBond> fixedCouponPricer;
-    private final BondPricer<FloatingRateNote> floatingNotePricer;
-    private final BondPricer<ConvertibleBond> convertiblePricer;
+    private final BondTypePricer<PerpetualBond> perpetualPricer;
+    private final BondTypePricer<FixedCouponBond> fixedCouponPricer;
+    private final BondTypePricer<FloatingRateNote> floatingNotePricer;
+    private final BondTypePricer<ConvertibleBond> convertiblePricer;
 
-    public NativeBondPriceHandler(
-            final BondPricer<PerpetualBond> perpetualPricer,
-            final BondPricer<FixedCouponBond> fixedCouponPricer,
-            final BondPricer<FloatingRateNote> floatingNotePricer,
-            final BondPricer<ConvertibleBond> convertiblePricer) {
+    public NativeBondPricer(
+            final BondTypePricer<PerpetualBond> perpetualPricer,
+            final BondTypePricer<FixedCouponBond> fixedCouponPricer,
+            final BondTypePricer<FloatingRateNote> floatingNotePricer,
+            final BondTypePricer<ConvertibleBond> convertiblePricer) {
         this.perpetualPricer = perpetualPricer;
         this.fixedCouponPricer = fixedCouponPricer;
         this.floatingNotePricer = floatingNotePricer;

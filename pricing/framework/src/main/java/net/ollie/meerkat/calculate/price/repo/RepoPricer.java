@@ -1,9 +1,9 @@
 package net.ollie.meerkat.calculate.price.repo;
 
-import java.time.temporal.Temporal;
+import java.time.LocalDate;
 
-import net.ollie.meerkat.calculate.price.SecurityPricer;
-import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
+import javax.annotation.Nonnull;
+
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.security.repo.Repo;
 
@@ -11,14 +11,21 @@ import net.ollie.meerkat.security.repo.Repo;
  *
  * @author ollie
  */
-public interface RepoPricer<T extends Temporal, R extends Repo<?>>
-        extends SecurityPricer<T, R>, ExchangeRateShifter {
+public interface RepoPricer {
 
-    @Override
-    default <C extends CurrencyId> RepoPrice<C> price(T temporal, R security, C currency) {
-        return this.price(temporal, security, currency, RepoShifts.NONE);
+    @Nonnull
+    default <C extends CurrencyId> RepoPrice<C> price(
+            final LocalDate date,
+            final Repo<?> repo,
+            final RepoShifts shifts,
+            final C currency) {
+        return repo.handleWith(this.priceContext(date, currency, shifts));
     }
 
-    <C extends CurrencyId> RepoPrice<C> price(T temporal, R security, C currency, RepoShifts shifts);
+    <C extends CurrencyId> RepoPriceContext<C> priceContext(LocalDate date, C currency, RepoShifts shifts);
+
+    interface RepoPriceContext<C extends CurrencyId> extends Repo.Handler<RepoPrice<C>> {
+
+    }
 
 }

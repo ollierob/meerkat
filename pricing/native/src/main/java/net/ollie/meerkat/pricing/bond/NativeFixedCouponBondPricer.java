@@ -6,7 +6,6 @@ import java.util.function.Function;
 
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
@@ -16,17 +15,18 @@ import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.ollie.meerkat.security.bond.StraightBond.StraightBondNominal;
 import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
+import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
 
 /**
  *
  * @author ollie
  */
-public class FixedCouponBondPricer implements BondPricer<FixedCouponBond> {
+public class NativeFixedCouponBondPricer implements BondTypePricer<FixedCouponBond> {
 
     private final Function<LocalDate, ExchangeRateCalculator> fxRates;
     private final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates;
 
-    public FixedCouponBondPricer(
+    public NativeFixedCouponBondPricer(
             final Function<LocalDate, ExchangeRateCalculator> exchangeRates,
             final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates) {
         this.fxRates = exchangeRates;

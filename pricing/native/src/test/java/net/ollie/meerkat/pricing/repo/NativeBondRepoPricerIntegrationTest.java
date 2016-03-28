@@ -5,7 +5,6 @@ import java.time.Month;
 
 import net.ollie.meerkat.IntegrationTest;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondPriceHandler;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.repo.RepoPrice;
 import net.ollie.meerkat.identifier.currency.CurrencyIso;
@@ -34,6 +33,8 @@ import org.mockito.MockitoAnnotations;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
+import net.ollie.meerkat.calculate.price.bond.BondPricer;
+
 /**
  *
  * @author ollie
@@ -43,7 +44,7 @@ public class NativeBondRepoPricerIntegrationTest {
 
     private NativeBondRepoPricer testRepoPricer;
     @Mock
-    private BondPriceHandler mockBondPricer;
+    private BondPricer mockBondPricer;
 
     @Before
     public void before() {

@@ -6,7 +6,7 @@ import org.junit.Test;
  *
  * @author ollie
  */
-public class FixedCouponBondPricerTest {
+public class NativeFixedCouponBondPricerTest {
     
     @Test
     public void shouldPriceZeroCoupon() {

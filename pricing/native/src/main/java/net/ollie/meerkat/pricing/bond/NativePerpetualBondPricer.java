@@ -5,23 +5,23 @@ import java.util.function.Function;
 
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.PerpetualBond;
 import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
+import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
 
 /**
  *
  * @author Ollie
  */
-public class PerpetualBondPricer implements BondPricer<PerpetualBond> {
+public class NativePerpetualBondPricer implements BondTypePricer<PerpetualBond> {
 
     private final Function<LocalDate, ExchangeRateCalculator> exchangeRates;
 
-    public PerpetualBondPricer(final Function<LocalDate, ExchangeRateCalculator> exchangeRates) {
+    public NativePerpetualBondPricer(final Function<LocalDate, ExchangeRateCalculator> exchangeRates) {
         this.exchangeRates = exchangeRates;
     }
 
