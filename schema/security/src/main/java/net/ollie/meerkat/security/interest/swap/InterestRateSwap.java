@@ -39,7 +39,7 @@ public class InterestRateSwap
 
     @Override
     public FiniteSequence<InterestRateSwapLeg> legs() {
-        return new FiniteSequence<>(legs);
+        return FiniteSequence.of(legs);
     }
 
     public int numLegs() {

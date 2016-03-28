@@ -12,20 +12,21 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.numeric.interest.InterestRate;
-import net.ollie.meerkat.numeric.interest.InterestRateKey;
-import net.ollie.meerkat.numeric.interest.feature.RateFeature;
 import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.interest.HasInterestRateId;
+import net.ollie.meerkat.numeric.interest.InterestRate;
+import net.ollie.meerkat.numeric.interest.InterestRateId;
+import net.ollie.meerkat.numeric.interest.feature.RateFeature;
 
 /**
  *
  * @author ollie
  */
 @XmlRootElement(name = "floating")
-public class FloatingCoupon extends AbstractBondCoupon {
+public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRateId {
 
     @XmlElementRef(name = "key")
-    private InterestRateKey key;
+    private InterestRateId key;
 
     @XmlAttribute(name = "spread")
     private Percentage spread;
@@ -36,7 +37,7 @@ public class FloatingCoupon extends AbstractBondCoupon {
     public FloatingCoupon(
             final LocalDate paymentDate,
             final Percentage spread,
-            final InterestRateKey key,
+            final InterestRateId key,
             final Set<? extends RateFeature> features) {
         super(paymentDate);
         this.key = key;
@@ -53,16 +54,18 @@ public class FloatingCoupon extends AbstractBondCoupon {
         return Collections.unmodifiableCollection(features);
     }
 
-    public InterestRateKey referenceRateKey() {
-        return key;
-    }
-
     @Override
     public boolean hasReferenceRate() {
         return true;
     }
 
-    public InterestRate rate(final Function<? super InterestRateKey, ? extends InterestRate> getRate) {
+    @Override
+    public InterestRateId interestRateId() {
+        return key;
+    }
+
+    @Override
+    public InterestRate interestRate(final Function<? super InterestRateId, ? extends InterestRate> getRate) {
         Percentage spread = this.spread();
         for (final RateFeature feature : this.features) {
             spread = feature.apply(spread);

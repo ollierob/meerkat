@@ -15,14 +15,14 @@ public interface BondPricer {
 
     @Nonnull
     default <C extends CurrencyId> BondPrice<C> price(
-            final LocalDate date,
+            final LocalDate valuationDate,
             final Bond bond,
             final BondShifts shifts,
             final C currency) {
-        return bond.handleWith(this.priceContext(date, currency, shifts));
+        return bond.handleWith(this.priceContext(valuationDate, currency, shifts));
     }
 
-    <C extends CurrencyId> BondPriceContext<C> priceContext(LocalDate date, C currency, BondShifts shifts);
+    <C extends CurrencyId> BondPriceContext<C> priceContext(LocalDate valuationDate, C currency, BondShifts shifts);
 
     interface BondPriceContext<C extends CurrencyId> extends Bond.Handler<BondPrice<C>> {
 

@@ -28,19 +28,19 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
 
     @Override
     public <C extends CurrencyId> RepoPrice<C> price(
-            final LocalDate date,
+            final LocalDate valuationDate,
             final BondRepo repo,
             final C currency,
             final RepoShifts shifts) {
 
         final BondShifts bondShifts = shifts.bondShifts(repo.haircut());
-        final BondPrice<C> bondPrice = this.price(repo.collateral(), date, currency, bondShifts);
+        final BondPrice<C> bondPrice = this.price(repo.collateral(), valuationDate, currency, bondShifts);
         final Money<C> dirtyBondPrice = bondPrice.dirtyValue(); //TODO apply haircut
 
         final InterestRate rate = shifts.shift(repo.rate()).rate();
 
         final LocalDate near = repo.dates().near();
-        final LocalDate far = repo.dates().far().orElse(date.plusDays(1)); //TODO open repo
+        final LocalDate far = repo.dates().far().orElse(valuationDate.plusDays(1)); //TODO open repo
         final Money<C> repoPrice = rate.accrue(dirtyBondPrice, near, far);
         return new GenericRepoPrice<>(repoPrice);
 
@@ -48,10 +48,10 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
 
     private <C extends CurrencyId> BondPrice<C> price(
             final Bond bond,
-            final LocalDate date,
+            final LocalDate valuationDate,
             final C currency,
             final BondShifts shifts) {
-        return bondPricer.price(date, bond, shifts, currency);
+        return bondPricer.price(valuationDate, bond, shifts, currency);
     }
 
 }

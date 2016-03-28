@@ -6,8 +6,8 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.interest.InterestRate;
-import net.ollie.meerkat.numeric.interest.InterestRateKey;
 import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.numeric.interest.InterestRateId;
 
 /**
  *
@@ -41,7 +41,7 @@ public class FixedInterestEarning implements InterestEarning {
 
     @Override
     @Deprecated
-    public InterestRate rate(Function<? super InterestRateKey, ? extends InterestRate> getRate) {
+    public InterestRate rate(Function<? super InterestRateId, ? extends InterestRate> getRate) {
         return this.rate();
     }
 

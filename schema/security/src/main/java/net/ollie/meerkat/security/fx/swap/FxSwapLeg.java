@@ -29,16 +29,21 @@ public class FxSwapLeg implements SwapLeg {
     FxSwapLeg() {
     }
 
-    public FxSwapLeg(final LocalDate date, final Money<?> pay, final Money<?> receive) {
+    public FxSwapLeg(
+            final LocalDate date,
+            final Money<?> pay,
+            final Money<?> receive) {
         this.date = date;
         this.pay = pay;
         this.receive = receive;
     }
 
+    @Nonnull
     public LocalDate date() {
         return date;
     }
 
+    @Nonnull
     public Money<?> pay() {
         return pay;
     }
@@ -46,6 +51,11 @@ public class FxSwapLeg implements SwapLeg {
     @Nonnull
     public FxSwapSide paySide() {
         return new FxSwapSide(pay);
+    }
+
+    @Nonnull
+    public Money<?> receive() {
+        return receive;
     }
 
     @Nonnull

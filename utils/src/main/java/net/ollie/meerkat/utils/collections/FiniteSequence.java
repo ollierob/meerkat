@@ -1,14 +1,12 @@
 package net.ollie.meerkat.utils.collections;
 
 import java.util.AbstractList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Predicate;
-import static java.util.stream.Collectors.toList;
-import java.util.stream.Stream;
 
-import javax.annotation.CheckForNull;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
@@ -16,47 +14,19 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author ollie
  */
 @XmlTransient
-public class FiniteSequence<T> extends AbstractList<T> implements Sequence<T> {
+public abstract class FiniteSequence<T> extends AbstractList<T> implements Sequence<T> {
 
-    private final List<T> delegate;
-
-    public FiniteSequence(final Stream<T> delegate) {
-        this(delegate.collect(toList()));
+    public static <T> FiniteSequence<T> of(final List<T> list) {
+        return new DelegatedFiniteSequence<>(list);
     }
 
-    public FiniteSequence(final List<T> delegate) {
-        this.delegate = delegate;
+    @SafeVarargs
+    public static <T> FiniteSequence<T> of(final T... array) {
+        return new DelegatedFiniteSequence<>(Arrays.asList(array));
     }
 
-    @Override
-    @CheckForNull
-    public T first() {
-        return delegate.isEmpty() ? null : delegate.get(0);
-    }
-
-    @CheckForNull
-    public T last() {
-        return delegate.isEmpty() ? null : delegate.get(delegate.size() - 1);
-    }
-
-    @Override
-    public T get(final int index) {
-        return delegate.get(index);
-    }
-
-    @Override
-    public T set(int index, T element) {
-        return delegate.set(index, element);
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return delegate.isEmpty();
-    }
-
-    @Override
-    public int size() {
-        return delegate.size();
+    public static <F, T> FiniteSequence<T> transformed(final Collection<F> list, final Function<? super F, ? extends T> transform) {
+        return of(Lists.eagerlyTransform(list, transform));
     }
 
     @Override
@@ -69,14 +39,24 @@ public class FiniteSequence<T> extends AbstractList<T> implements Sequence<T> {
         return true;
     }
 
-    @Override
-    public FiniteSequence<T> where(final Predicate<? super T> predicate) {
-        return new FiniteSequence<>(delegate.stream().filter(predicate));
-    }
+    static final class DelegatedFiniteSequence<T> extends FiniteSequence<T> {
 
-    @Override
-    public <R> FiniteSequence<R> transform(final Function<? super T, ? extends R> function) {
-        return Sequence.transformed(delegate, function);
+        private final List<T> delegate;
+
+        DelegatedFiniteSequence(final List<T> delegate) {
+            this.delegate = delegate;
+        }
+
+        @Override
+        public T get(final int index) {
+            return delegate.get(index);
+        }
+
+        @Override
+        public int size() {
+            return delegate.size();
+        }
+
     }
 
 }

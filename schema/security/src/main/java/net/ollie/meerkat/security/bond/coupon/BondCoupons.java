@@ -41,7 +41,7 @@ public interface BondCoupons<C extends BondCoupon> extends TemporalSequence<Loca
 
         @Override
         default FiniteSequence<C> onOrAfter(final LocalDate start) {
-            return new FiniteSequence<>(this.stream()
+            return FiniteSequence.of(this.stream()
                     .filter(coupon -> !coupon.paymentDate().isBefore(start))
                     .collect(toList()));
         }

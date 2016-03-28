@@ -15,10 +15,10 @@ public interface RepoTypePricer<T extends Temporal, R extends Repo<?>>
         extends SecurityPricer<T, R>, ExchangeRateShifter {
 
     @Override
-    default <C extends CurrencyId> RepoPrice<C> price(T temporal, R security, C currency) {
-        return this.price(temporal, security, currency, RepoShifts.NONE);
+    default <C extends CurrencyId> RepoPrice<C> price(T valuation, R security, C currency) {
+        return this.price(valuation, security, currency, RepoShifts.NONE);
     }
 
-    <C extends CurrencyId> RepoPrice<C> price(T temporal, R security, C currency, RepoShifts shifts);
+    <C extends CurrencyId> RepoPrice<C> price(T valuation, R security, C currency, RepoShifts shifts);
 
 }

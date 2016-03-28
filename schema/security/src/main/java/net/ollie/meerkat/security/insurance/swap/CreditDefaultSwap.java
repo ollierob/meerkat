@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlElementRef;
 import net.ollie.meerkat.security.derivative.swap.AbstractSwap;
 import net.ollie.meerkat.security.insurance.Insurance;
 import net.ollie.meerkat.utils.collections.FiniteSequence;
-import net.ollie.meerkat.utils.collections.Sequence;
 
 /**
  *
@@ -32,7 +31,7 @@ public class CreditDefaultSwap
 
     @Override
     public FiniteSequence<CreditDefaultSwapLeg> legs() {
-        return Sequence.of(legs);
+        return FiniteSequence.of(legs);
     }
 
     public CreditDefaultSwapDates dates() {

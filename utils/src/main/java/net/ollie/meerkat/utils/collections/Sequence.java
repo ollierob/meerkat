@@ -1,9 +1,6 @@
 package net.ollie.meerkat.utils.collections;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -41,27 +38,18 @@ public interface Sequence<T> extends Iterable<T> {
     }
 
     @Nonnull
-    Sequence<T> where(Predicate<? super T> predicate);
+    default Sequence<T> where(Predicate<? super T> predicate) {
+        throw new UnsupportedOperationException(); //TODO
+    }
 
-    <R> Sequence<R> transform(Function<? super T, ? extends R> function);
+    default <R> Sequence<R> transform(Function<? super T, ? extends R> function) {
+        throw new UnsupportedOperationException(); //TODO
+    }
 
     @CheckForNull
     default T first() {
         final Iterator<T> iterator = this.iterator();
         return iterator.hasNext() ? iterator.next() : null;
-    }
-
-    static <T> FiniteSequence<T> of(final List<T> list) {
-        return new FiniteSequence<>(list);
-    }
-
-    @SafeVarargs
-    static <T> FiniteSequence<T> of(final T... array) {
-        return new FiniteSequence<>(Arrays.asList(array));
-    }
-
-    static <F, T> FiniteSequence<T> transformed(final Collection<F> list, final Function<? super F, ? extends T> transform) {
-        return of(Lists.eagerlyTransform(list, transform));
     }
 
 }

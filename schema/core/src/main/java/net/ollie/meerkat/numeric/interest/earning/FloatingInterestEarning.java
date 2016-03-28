@@ -7,8 +7,8 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.InterestRate;
-import net.ollie.meerkat.numeric.interest.InterestRateKey;
 import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.numeric.interest.InterestRateId;
 
 /**
  *
@@ -23,12 +23,12 @@ public class FloatingInterestEarning implements InterestEarning {
     private Percentage spread;
 
     @XmlElementRef(name = "basis")
-    private InterestRateKey basis;
+    private InterestRateId basis;
 
     protected FloatingInterestEarning() {
     }
 
-    public FloatingInterestEarning(Money notional, Percentage spread, InterestRateKey basis) {
+    public FloatingInterestEarning(Money notional, Percentage spread, InterestRateId basis) {
         this.notional = notional;
         this.spread = spread;
         this.basis = basis;
@@ -40,7 +40,7 @@ public class FloatingInterestEarning implements InterestEarning {
     }
 
     @Override
-    public InterestRate rate(final Function<? super InterestRateKey, ? extends InterestRate> getRate) {
+    public InterestRate rate(final Function<? super InterestRateId, ? extends InterestRate> getRate) {
         return getRate.apply(basis).plus(spread);
     }
 

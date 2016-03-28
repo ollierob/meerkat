@@ -5,7 +5,6 @@ import javax.xml.bind.annotation.XmlElement;
 import net.ollie.meerkat.security.derivative.swap.AbstractSwap;
 import net.ollie.meerkat.security.fx.FxDerivative;
 import net.ollie.meerkat.utils.collections.FiniteSequence;
-import net.ollie.meerkat.utils.collections.Sequence;
 
 /**
  *
@@ -33,7 +32,7 @@ public class FxSwap
 
     @Override
     public FiniteSequence<FxSwapLeg> legs() {
-        return Sequence.of(spot, forward);
+        return FiniteSequence.of(spot, forward);
     }
 
     @Override
