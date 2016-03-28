@@ -44,8 +44,6 @@ public interface Repo<C extends Security>
 
         R handle(BondRepo repo);
 
-        R handle(EquityRepo repo);
-
     }
 
 }
