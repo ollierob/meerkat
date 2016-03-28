@@ -14,12 +14,12 @@ import net.ollie.meerkat.security.repo.EquityRepo;
  *
  * @author ollie
  */
-public class NativeRepoPricerHandler implements RepoPriceHandler {
+public class NativeRepoPricer implements RepoPriceHandler {
 
     private final RepoPricer<LocalDate, BondRepo> bondRepoPricer;
     private final RepoPricer<LocalDate, EquityRepo> equityRepoPricer;
 
-    public NativeRepoPricerHandler(
+    public NativeRepoPricer(
             final RepoPricer<LocalDate, BondRepo> bondRepoPricer,
             final RepoPricer<LocalDate, EquityRepo> equityRepoPricer) {
         this.bondRepoPricer = bondRepoPricer;

@@ -31,22 +31,24 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
 
 /**
  *
  * @author ollie
  */
 @Category(IntegrationTest.class)
-public class BondRepoPricerIntegrationTest {
+public class NativeBondRepoPricerIntegrationTest {
 
-    private BondRepoPricer testRepoPricer;
+    private NativeBondRepoPricer testRepoPricer;
     @Mock
     private BondPriceHandler mockBondPricer;
 
     @Before
     public void before() {
         MockitoAnnotations.initMocks(this);
-        testRepoPricer = new BondRepoPricer(mockBondPricer);
+        testRepoPricer = new NativeBondRepoPricer(mockBondPricer);
     }
 
     @Test

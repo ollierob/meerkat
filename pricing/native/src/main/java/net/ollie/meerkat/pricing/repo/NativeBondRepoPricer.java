@@ -18,11 +18,11 @@ import net.ollie.meerkat.security.repo.BondRepo;
  *
  * @author ollie
  */
-public class BondRepoPricer implements RepoPricer<LocalDate, BondRepo> {
+public class NativeBondRepoPricer implements RepoPricer<LocalDate, BondRepo> {
 
     private final BondPriceHandler bondPricer;
 
-    public BondRepoPricer(final BondPriceHandler bondPricer) {
+    public NativeBondRepoPricer(final BondPriceHandler bondPricer) {
         this.bondPricer = bondPricer;
     }
 
