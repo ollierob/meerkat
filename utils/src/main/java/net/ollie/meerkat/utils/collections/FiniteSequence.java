@@ -16,6 +16,16 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlTransient
 public abstract class FiniteSequence<T> extends AbstractList<T> implements Sequence<T> {
 
+    @Override
+    public Optional<Integer> count() {
+        return Optional.of(this.size());
+    }
+
+    @Override
+    public boolean isFinite() {
+        return true;
+    }
+
     public static <T> FiniteSequence<T> of(final List<T> list) {
         return new DelegatedFiniteSequence<>(list);
     }
@@ -27,16 +37,6 @@ public abstract class FiniteSequence<T> extends AbstractList<T> implements Seque
 
     public static <F, T> FiniteSequence<T> transformed(final Collection<F> list, final Function<? super F, ? extends T> transform) {
         return of(Lists.eagerlyTransform(list, transform));
-    }
-
-    @Override
-    public Optional<Integer> count() {
-        return Optional.of(this.size());
-    }
-
-    @Override
-    public boolean isFinite() {
-        return true;
     }
 
     static final class DelegatedFiniteSequence<T> extends FiniteSequence<T> {

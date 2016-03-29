@@ -6,6 +6,7 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.derivative.swap.SwapLeg;
 import net.ollie.meerkat.security.fx.CashPayment;
@@ -49,8 +50,8 @@ public class FxSwapLeg implements SwapLeg {
     }
 
     @Nonnull
-    public FxSwapSide paySide() {
-        return new FxSwapSide(pay);
+    public FxSwapSide<?> paySide() {
+        return new FxSwapSide<>(pay);
     }
 
     @Nonnull
@@ -59,19 +60,19 @@ public class FxSwapLeg implements SwapLeg {
     }
 
     @Nonnull
-    public FxSwapSide receiveSide() {
-        return new FxSwapSide(receive);
+    public FxSwapSide<?> receiveSide() {
+        return new FxSwapSide<>(receive);
     }
 
     public FxSwapLeg inverse(final LocalDate date) {
         return new FxSwapLeg(date, receive, pay);
     }
 
-    public class FxSwapSide implements CashPayment {
+    public class FxSwapSide<C extends CurrencyId> implements CashPayment<C> {
 
-        private final Money<?> amount;
+        private final Money<C> amount;
 
-        public FxSwapSide(final Money<?> amount) {
+        public FxSwapSide(final Money<C> amount) {
             this.amount = amount;
         }
 
@@ -81,7 +82,7 @@ public class FxSwapLeg implements SwapLeg {
         }
 
         @Override
-        public Money<?> amount() {
+        public Money<C> amount() {
             return amount;
         }
 

@@ -36,12 +36,12 @@ import org.mockito.MockitoAnnotations;
  *
  * @author ollie
  */
-@Category(IntegrationTest.class)
-public class NativeBondRepoPricerIntegrationTest {
+@SuppressWarnings("unchecked")
+public class NativeBondRepoPricerTest {
 
-    private NativeBondRepoPricer testRepoPricer;
     @Mock
     private BondPricer mockBondPricer;
+    private NativeBondRepoPricer testRepoPricer;
 
     @Before
     public void before() {
@@ -50,6 +50,7 @@ public class NativeBondRepoPricerIntegrationTest {
     }
 
     @Test
+    @Category(IntegrationTest.class)
     public void testExample() {
 
         final USD usd = CurrencyIso.USD;

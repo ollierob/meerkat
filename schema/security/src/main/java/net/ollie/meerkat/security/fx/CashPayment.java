@@ -11,17 +11,21 @@ import net.ollie.meerkat.numeric.money.Money;
  *
  * @author ollie
  */
-public interface CashPayment {
+public interface CashPayment<C extends CurrencyId> {
 
     @Nonnull
     LocalDate date();
 
     @Nonnull
-    Money<?> amount();
+    Money<C> amount();
 
     @Nonnull
-    default CurrencyId currency() {
+    default C currency() {
         return this.amount().currencyId();
+    }
+
+    static <C extends CurrencyId> CashPayment<C> of(final LocalDate date, final Money<C> amount) {
+        return new DefaultCashPayment<>(date, amount);
     }
 
 }

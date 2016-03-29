@@ -3,9 +3,11 @@ package net.ollie.meerkat.security.bond;
 import java.util.AbstractList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.call.BondCall;
@@ -21,19 +23,22 @@ import net.ollie.meerkat.security.equity.Stock;
 @XmlRootElement
 public class ConvertibleBond extends AbstractBond {
 
-    @XmlElementRef(name = "par")
+    @XmlElementRef(name = "par", required = true)
     private Money<?> par;
 
-    @XmlElementRef(name = "stock")
+    @XmlElementRef(name = "stock", required = true)
     private Stock stock;
 
-    @XmlElement(name = "dates")
+    @XmlAttribute(name = "mandatory")
+    private boolean mandatory;
+
+    @XmlElement(name = "dates", required = true)
     private MaturingBondDates dates;
 
     @XmlElementRef(name = "coupon")
     private List<BondCoupon> coupons;
 
-    @XmlElementRef(name = "call")
+    @XmlElementRef(name = "call", required = false)
     private BondCall call;
 
     @Deprecated
@@ -60,7 +65,11 @@ public class ConvertibleBond extends AbstractBond {
         return handler.handle(this);
     }
 
+    @XmlTransient
     public class ConvertibleBondNominal implements BondNominal {
+
+        private ConvertibleBondNominal() {
+        }
 
         @Override
         public Money<?> par() {
@@ -71,10 +80,18 @@ public class ConvertibleBond extends AbstractBond {
             return stock;
         }
 
+        public boolean isMandatory() {
+            return mandatory;
+        }
+
     }
 
+    @XmlTransient
     public class ConvertibleBondCoupons extends AbstractList<BondCoupon> implements BondCoupons.Finite<BondCoupon> {
-        
+
+        private ConvertibleBondCoupons() {
+        }
+
         @Override
         public BondCoupon get(int index) {
             return coupons.get(index);
