@@ -20,8 +20,8 @@ import org.apache.commons.math3.fraction.Fraction;
 @XmlRootElement
 public class CompoundFixedInterestRate implements FixedInterestRate {
 
-    @XmlAttribute(name = "rate")
-    private Percentage rate;
+    @XmlAttribute(name = "annual_rate")
+    private Percentage annualRate;
 
     @XmlElementRef(name = "year_count")
     private YearCount yearCount;
@@ -33,20 +33,20 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
     CompoundFixedInterestRate() {
     }
 
-    public CompoundFixedInterestRate(final Percentage rate, final YearCount yearCount, final double yearlyFrequency) {
-        this.rate = rate;
+    public CompoundFixedInterestRate(final Percentage annualRate, final YearCount yearCount, final double yearlyFrequency) {
+        this.annualRate = annualRate;
         this.yearCount = yearCount;
         this.yearlyFrequency = yearlyFrequency;
     }
 
     @Override
     public String name() {
-        return "compound@" + rate;
+        return "compound@" + annualRate;
     }
 
     @Override
     public Percentage annualRate() {
-        return rate;
+        return annualRate;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
     @Override
     public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
         final Fraction years = yearCount.yearsBetween(start, accrualDate);
-        final double multiplier = Math.pow(1. + rate.doubleValue() / yearlyFrequency, yearlyFrequency * years.doubleValue());
+        final double multiplier = Math.pow(1. + annualRate.doubleValue() / yearlyFrequency, yearlyFrequency * years.doubleValue());
         return money.times(multiplier);
     }
 
