@@ -28,9 +28,10 @@ public class DecimalFraction extends Number {
     }
 
     public static DecimalFraction of(final BigDecimal numerator, final BigDecimal denominator) {
-        return numerator.signum() == 0
-                ? ZERO
-                : new DecimalFraction(numerator, denominator);
+        if (numerator.signum() == 0) {
+            return ZERO;
+        }
+        return new DecimalFraction(numerator, denominator);
     }
 
     @XmlAttribute(name = "numerator")
@@ -44,6 +45,9 @@ public class DecimalFraction extends Number {
     }
 
     DecimalFraction(final BigDecimal numerator, final BigDecimal denominator) {
+        if (denominator.signum() == 0) {
+            throw new ArithmeticException(numerator + "/" + denominator);
+        }
         this.numerator = numerator;
         this.denominator = denominator;
     }
@@ -85,7 +89,7 @@ public class DecimalFraction extends Number {
     }
 
     public DecimalFraction over(final DecimalFraction that) {
-        return of(numerator.multiply(that.denominator), denominator.multiply(that.numerator));
+        return this.times(that.inverse());
     }
 
     public DecimalFraction inverse() {
@@ -113,7 +117,27 @@ public class DecimalFraction extends Number {
 
     @Override
     public double doubleValue() {
-        return this.decimalValue(MathContext.DECIMAL64).intValue();
+        return this.decimalValue(MathContext.DECIMAL64).doubleValue();
+    }
+
+    @Override
+    public String toString() {
+        return numerator + "/" + denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return Double.hashCode(this.doubleValue());
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        return obj instanceof DecimalFraction
+                && this.equals((DecimalFraction) obj);
+    }
+
+    public boolean equals(final DecimalFraction that) {
+        return this.doubleValue() == that.doubleValue();
     }
 
 }

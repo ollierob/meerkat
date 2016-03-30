@@ -1,10 +1,12 @@
-package net.ollie.meerkat.numeric.money;
+package net.ollie.meerkat.numeric.money.fx;
 
 import java.math.BigDecimal;
 
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.meerkat.numeric.money.DecimalMoney;
+import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.utils.numeric.Numbers;
 
 /**

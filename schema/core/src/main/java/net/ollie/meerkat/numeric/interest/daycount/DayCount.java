@@ -5,8 +5,8 @@ import java.util.OptionalInt;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.temporal.interim.Interim;
-import net.ollie.meerkat.temporal.interim.Interval;
+import net.ollie.meerkat.time.interim.Interim;
+import net.ollie.meerkat.time.interim.Interval;
 
 /**
  *

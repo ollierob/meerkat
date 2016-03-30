@@ -8,7 +8,7 @@ import net.ollie.meerkat.calculate.price.shifts.PriceShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.meerkat.numeric.money.ExchangeRate;
+import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
 import net.ollie.meerkat.numeric.money.Money;
 
 /**

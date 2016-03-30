@@ -1,11 +1,11 @@
-package net.ollie.meerkat.temporal.calendar;
+package net.ollie.meerkat.time.calendar;
 
 import java.time.LocalDate;
 import java.util.SortedSet;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.temporal.interim.Interval;
+import net.ollie.meerkat.time.interim.Interval;
 
 /**
  *

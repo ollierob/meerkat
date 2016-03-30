@@ -22,7 +22,7 @@ import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.ollie.meerkat.security.bond.StraightBond.StraightBondNominal;
 import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
-import net.ollie.meerkat.temporal.interim.Interval;
+import net.ollie.meerkat.time.interim.Interval;
 import net.ollie.meerkat.utils.collections.FiniteSequence;
 
 /**

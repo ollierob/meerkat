@@ -1,4 +1,4 @@
-package net.ollie.meerkat.temporal.business;
+package net.ollie.meerkat.time.business;
 
 import java.time.LocalDate;
 

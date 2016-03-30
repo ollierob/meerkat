@@ -7,7 +7,7 @@ import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
-import net.ollie.meerkat.temporal.interim.Interval;
+import net.ollie.meerkat.time.interim.Interval;
 import net.ollie.meerkat.utils.collections.Sequence;
 
 /**

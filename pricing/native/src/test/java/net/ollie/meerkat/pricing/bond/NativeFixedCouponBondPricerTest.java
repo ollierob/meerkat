@@ -23,12 +23,12 @@ import net.ollie.meerkat.numeric.interest.SimpleFixedInterestRate;
 import net.ollie.meerkat.numeric.interest.daycount.ActualFixedAccrualFactor;
 import net.ollie.meerkat.numeric.interest.daycount.FixedFixedAccrualFactor;
 import net.ollie.meerkat.numeric.money.DecimalMoney;
-import net.ollie.meerkat.numeric.money.ExchangeRate;
+import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.call.BondCall;
 import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
-import net.ollie.meerkat.temporal.interim.Interval;
+import net.ollie.meerkat.time.interim.Interval;
 
 import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertThat;

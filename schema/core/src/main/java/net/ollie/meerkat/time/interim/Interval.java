@@ -1,4 +1,4 @@
-package net.ollie.meerkat.temporal.interim;
+package net.ollie.meerkat.time.interim;
 
 import java.time.LocalDate;
 import java.util.Optional;
