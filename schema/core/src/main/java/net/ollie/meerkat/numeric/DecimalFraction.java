@@ -31,7 +31,9 @@ public class DecimalFraction extends Number {
         if (numerator.signum() == 0) {
             return ZERO;
         }
-        return new DecimalFraction(numerator, denominator);
+        return denominator.signum() < 0
+                ? new DecimalFraction(numerator.negate(), denominator.negate())
+                : new DecimalFraction(numerator, denominator);
     }
 
     @XmlAttribute(name = "numerator")
@@ -58,6 +60,10 @@ public class DecimalFraction extends Number {
 
     public BigDecimal denominator() {
         return denominator;
+    }
+
+    public DecimalFraction plus(final BigDecimal bd) {
+        return of(numerator.add(bd.multiply(denominator)), denominator);
     }
 
     public DecimalFraction negate() {
