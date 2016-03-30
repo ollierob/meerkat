@@ -44,7 +44,7 @@ public class BondRepo extends AbstractRepo<Bond> {
 
     @Override
     public Money<?> principal() {
-        return collateral.nominal().par().times(this.haircut().inverse());
+        return collateral.par().times(this.haircut().inverse());
     }
 
     @Nonnull

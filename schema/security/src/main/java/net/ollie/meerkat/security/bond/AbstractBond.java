@@ -32,7 +32,8 @@ public abstract class AbstractBond
         this.call = call;
     }
 
-    protected Money<?> par() {
+    @Override
+    public Money<?> par() {
         return par;
     }
 

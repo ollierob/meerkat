@@ -41,7 +41,7 @@ public class NativePerpetualBondPricer implements BondTypePricer<PerpetualBond> 
         final FixedCoupon prior = coupons.prior(date);
 
         //Prices
-        final Money<C> par = this.shiftFx(bond.nominal().par(), shifts, currency, calculator);
+        final Money<C> par = this.shiftFx(bond.par(), shifts, currency, calculator);
         final Money<C> cleanPrice = amount.over(rate.annualRate());
         final Money<C> dirtyPrice = cleanPrice.plus(prior == null ? Money.zero(currency) : rate.accrue(amount, prior.date(), date));
         throw new UnsupportedOperationException();

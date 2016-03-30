@@ -37,11 +37,6 @@ public class PerpetualBond extends AbstractBond {
     }
 
     @Override
-    public PerpetualBondNominal nominal() {
-        return new PerpetualBondNominal();
-    }
-
-    @Override
     public PerpetualBondCoupons coupons() {
         return new PerpetualBondCoupons();
     }
@@ -54,15 +49,6 @@ public class PerpetualBond extends AbstractBond {
     @Override
     public <R> R handleWith(final Bond.Handler<R> handler) {
         return handler.handle(this);
-    }
-
-    public class PerpetualBondNominal implements BondNominal {
-
-        @Override
-        public Money<?> par() {
-            return PerpetualBond.this.par();
-        }
-
     }
 
     public class PerpetualBondCoupons implements BondCoupons<FixedCoupon> {

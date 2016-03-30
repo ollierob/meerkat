@@ -2,6 +2,7 @@ package net.ollie.meerkat.security.bond;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.Callable;
 import net.ollie.meerkat.security.Security;
 import net.ollie.meerkat.security.SecurityDefinition;
@@ -16,10 +17,10 @@ import net.ollie.meerkat.security.bond.dates.BondDates;
 public interface Bond extends SecurityDefinition, Callable<BondCall> {
 
     @Nonnull
-    BondCoupons<?> coupons();
+    Money<?> par();
 
     @Nonnull
-    BondNominal nominal();
+    BondCoupons<?> coupons();
 
     @Nonnull
     BondDates dates();

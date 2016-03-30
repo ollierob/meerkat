@@ -34,11 +34,6 @@ public abstract class StraightBond extends AbstractBond {
     }
 
     @Override
-    public StraightBondNominal nominal() {
-        return new StraightBondNominal();
-    }
-
-    @Override
     public abstract StraightBondCoupons<?> coupons();
 
     @Nonnull
@@ -53,15 +48,6 @@ public abstract class StraightBond extends AbstractBond {
     @SuppressWarnings("deprecation")
     public <R> R handleWith(final Bond.Handler<R> handler) {
         return handler.handle(this);
-    }
-
-    public class StraightBondNominal implements BondNominal {
-
-        @Override
-        public Money<?> par() {
-            return StraightBond.this.par();
-        }
-
     }
 
     public abstract class StraightBondCoupons<C extends BondCoupon>

@@ -19,7 +19,6 @@ import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
-import net.ollie.meerkat.security.bond.StraightBond.StraightBondNominal;
 import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
 import net.ollie.meerkat.time.interim.Interval;
@@ -51,8 +50,7 @@ public class NativeFixedCouponBondPricer implements BondTypePricer<FixedCouponBo
         final ExchangeRateCalculator fxRates = requireNonNull(this.fxRates.apply(date));
         final InterestRate discountRate = requireNonNull(discountRates.apply(date, currency), () -> "Discount rate cannot be null");
 
-        final StraightBondNominal nominal = bond.nominal();
-        final Money<C> par = this.shiftPrice(nominal.par(), shifts, currency, fxRates);
+        final Money<C> par = this.shiftPrice(bond.par(), shifts, currency, fxRates);
 
         //Prices
         final LocalDate maturity = bond.dates().matures();

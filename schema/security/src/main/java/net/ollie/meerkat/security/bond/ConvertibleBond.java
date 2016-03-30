@@ -51,11 +51,6 @@ public class ConvertibleBond extends AbstractBond {
     }
 
     @Override
-    public ConvertibleBondNominal nominal() {
-        return new ConvertibleBondNominal();
-    }
-
-    @Override
     public ConvertibleBondCoupons coupons() {
         return new ConvertibleBondCoupons();
     }
@@ -63,27 +58,6 @@ public class ConvertibleBond extends AbstractBond {
     @Override
     public <R> R handleWith(final Bond.Handler<R> handler) {
         return handler.handle(this);
-    }
-
-    @XmlTransient
-    public class ConvertibleBondNominal implements BondNominal {
-
-        private ConvertibleBondNominal() {
-        }
-
-        @Override
-        public Money<?> par() {
-            return par;
-        }
-
-        public Stock stock() {
-            return stock;
-        }
-
-        public boolean isMandatory() {
-            return mandatory;
-        }
-
     }
 
     @XmlTransient

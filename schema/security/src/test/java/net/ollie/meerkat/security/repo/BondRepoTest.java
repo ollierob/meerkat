@@ -3,7 +3,6 @@ package net.ollie.meerkat.security.repo;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
-import net.ollie.meerkat.security.bond.BondNominal;
 import net.ollie.meerkat.security.repo.dates.RepoDates;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
 
@@ -41,9 +40,7 @@ public class BondRepoTest {
         assertThat(repo.haircut(), is(Percentage.ZERO_PERCENT));
 
         final Money mockPar = mock(Money.class);
-        final BondNominal mockNominal = mock(BondNominal.class);
-        when(mockNominal.par()).thenReturn(mockPar);
-        when(mockBond.nominal()).thenReturn(mockNominal);
+        when(mockBond.par()).thenReturn(mockPar);
         
         when(mockPar.times(Percentage.ONE_HUNDRED_PERCENT)).thenReturn(mockPar);
         
