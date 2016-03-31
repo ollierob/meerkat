@@ -1,8 +1,8 @@
 package net.ollie.meerkat.issue;
 
-import net.ollie.meerkat.issue.rating.IssueRating;
-
 import javax.xml.bind.annotation.XmlElement;
+
+import net.ollie.meerkat.issue.rating.CreditRating;
 
 /**
  *
@@ -11,6 +11,6 @@ import javax.xml.bind.annotation.XmlElement;
 public class Issue {
 
     @XmlElement(name = "rating")
-    private IssueRating rating;
+    private CreditRating rating;
 
 }

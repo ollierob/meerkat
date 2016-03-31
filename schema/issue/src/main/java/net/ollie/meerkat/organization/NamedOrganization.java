@@ -2,13 +2,11 @@ package net.ollie.meerkat.organization;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-import net.ollie.meerkat.utils.HasName;
-
 /**
  *
  * @author ollie
  */
-public class NamedOrganization implements Organization, HasName {
+public class NamedOrganization implements Organization {
 
     @XmlAttribute(name = "name")
     private String name;
