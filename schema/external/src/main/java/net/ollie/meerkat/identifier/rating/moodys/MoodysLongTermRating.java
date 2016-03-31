@@ -51,7 +51,8 @@ public enum MoodysLongTermRating implements MoodysRating {
         return this.ordinal() <= Baa3.ordinal();
     }
 
-    public CreditRatingBand band() {
+    @Override
+    public CreditRatingBand bestBand() {
         return band;
     }
 

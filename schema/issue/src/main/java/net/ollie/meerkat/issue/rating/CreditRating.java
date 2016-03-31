@@ -14,12 +14,17 @@ public interface CreditRating {
     @Nonnull
     Set<CreditRatingBand> bands();
 
+    @Nonnull
     default CreditRatingBand bestBand() {
         return Collections.min(this.bands());
     }
 
     default boolean isInvestmentGrade() {
         return this.bestBand().isInvestmentGrade();
+    }
+
+    default boolean isDefault() {
+        return this.bestBand().isDefault();
     }
 
     @Nonnull

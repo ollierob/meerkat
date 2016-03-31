@@ -35,11 +35,6 @@ public enum CreditRatingBand implements CreditRating {
     }
 
     @Override
-    public boolean isInvestmentGrade() {
-        return this.ordinal() <= BBB.ordinal();
-    }
-
-    @Override
     public Set<CreditRatingBand> bands() {
         return Collections.singleton(this);
     }
@@ -47,6 +42,16 @@ public enum CreditRatingBand implements CreditRating {
     @Override
     public CreditRatingBand bestBand() {
         return this;
+    }
+
+    @Override
+    public boolean isInvestmentGrade() {
+        return this.ordinal() <= BBB.ordinal();
+    }
+
+    @Override
+    public boolean isDefault() {
+        return this == D;
     }
 
     @Override
