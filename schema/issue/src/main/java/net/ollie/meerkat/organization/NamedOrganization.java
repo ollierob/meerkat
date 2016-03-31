@@ -13,6 +13,14 @@ public class NamedOrganization implements Organization, HasName {
     @XmlAttribute(name = "name")
     private String name;
 
+    @Deprecated
+    protected NamedOrganization() {
+    }
+
+    public NamedOrganization(final String name) {
+        this.name = name;
+    }
+
     @Override
     public String name() {
         return name;
