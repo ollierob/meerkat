@@ -1,8 +1,9 @@
 package net.ollie.meerkat.security.bond;
 
-import java.util.AbstractList;
+import java.math.BigDecimal;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
@@ -10,11 +11,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.security.bond.call.BondCall;
 import net.ollie.meerkat.security.bond.coupon.BondCoupon;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
-import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
+import net.ollie.meerkat.security.bond.dates.ConvertibleBondDates;
 import net.ollie.meerkat.security.equity.Stock;
+import net.ollie.meerkat.utils.collections.FiniteSequence;
 
 /**
  *
@@ -23,30 +24,24 @@ import net.ollie.meerkat.security.equity.Stock;
 @XmlRootElement
 public class ConvertibleBond extends AbstractBond {
 
-    @XmlElementRef(name = "par", required = true)
-    private Money<?> par;
-
-    @XmlElementRef(name = "stock", required = true)
-    private Stock stock;
-
-    @XmlAttribute(name = "mandatory")
-    private boolean mandatory;
-
     @XmlElement(name = "dates", required = true)
-    private MaturingBondDates dates;
+    private ConvertibleBondDates dates;
 
     @XmlElementRef(name = "coupon")
     private List<BondCoupon> coupons;
 
-    @XmlElementRef(name = "call", required = false)
-    private BondCall call;
+    @XmlElement(name = "stock", required = true)
+    private Stock stock;
+
+    @XmlAttribute(name = "conversion_ratio", required = true)
+    private BigDecimal conversionRatio;
 
     @Deprecated
     ConvertibleBond() {
     }
 
     @Override
-    public MaturingBondDates dates() {
+    public ConvertibleBondDates dates() {
         return dates;
     }
 
@@ -55,13 +50,25 @@ public class ConvertibleBond extends AbstractBond {
         return new ConvertibleBondCoupons();
     }
 
+    @Nonnull
+    public BigDecimal conversionRatio() {
+        return conversionRatio;
+    }
+
+    @Nonnull
+    public Money<?> conversionPrice() {
+        return this.par().over(this.conversionRatio());
+    }
+
     @Override
     public <R> R handleWith(final Bond.Handler<R> handler) {
         return handler.handle(this);
     }
 
     @XmlTransient
-    public class ConvertibleBondCoupons extends AbstractList<BondCoupon> implements BondCoupons.Finite<BondCoupon> {
+    public class ConvertibleBondCoupons
+            extends FiniteSequence<BondCoupon>
+            implements BondCoupons.Finite<BondCoupon> {
 
         private ConvertibleBondCoupons() {
         }

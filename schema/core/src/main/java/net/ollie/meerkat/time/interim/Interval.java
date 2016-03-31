@@ -1,18 +1,21 @@
 package net.ollie.meerkat.time.interim;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.utils.collections.FiniteSequence;
+
 /**
  *
  * @author ollie
  */
 @XmlRootElement
-public class Interval implements Interim {
+public class Interval extends FiniteSequence<LocalDate> implements Interim {
 
     @XmlAttribute(name = "start")
     private LocalDate startInclusive;
@@ -24,7 +27,7 @@ public class Interval implements Interim {
     Interval() {
     }
 
-    public Interval(LocalDate startInclusive, LocalDate endInclusive) {
+    public Interval(final LocalDate startInclusive, final LocalDate endInclusive) {
         this.startInclusive = startInclusive;
         this.endInclusive = endInclusive;
     }
@@ -47,12 +50,22 @@ public class Interval implements Interim {
 
     @Nonnull
     public LocalDate endExclusive() {
-        return endInclusive.minusDays(1);
+        return endInclusive.plusDays(1);
     }
 
     @Nonnull
     public LocalDate endInclusive() {
         return endInclusive;
+    }
+
+    @Override
+    public LocalDate get(final int index) {
+        return startInclusive.plusDays(index);
+    }
+
+    @Override
+    public int size() {
+        return Math.toIntExact(ChronoUnit.DAYS.between(startInclusive, endInclusive)) + 1;
     }
 
 }

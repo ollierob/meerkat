@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 public interface Callable<C> {
 
     @Nonnull
-    Optional<C> call();
+    Optional<? extends C> call();
 
     default boolean isCallable() {
         return this.call().isPresent();

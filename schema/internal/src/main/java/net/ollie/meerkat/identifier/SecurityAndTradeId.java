@@ -1,15 +1,17 @@
-package net.ollie.meerkat.identifier.trade;
+package net.ollie.meerkat.identifier;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.security.HasSecurityId;
 import net.ollie.meerkat.identifier.security.SecurityId;
+import net.ollie.meerkat.identifier.trade.HasTradeId;
+import net.ollie.meerkat.identifier.trade.TradeId;
 
 /**
  *
  * @author ollie
  */
-public class TradeAndSecurityId implements HasSecurityId, HasTradeId {
+public class SecurityAndTradeId implements HasSecurityId, HasTradeId {
 
     @XmlElementRef(name = "security")
     private SecurityId securityId;
