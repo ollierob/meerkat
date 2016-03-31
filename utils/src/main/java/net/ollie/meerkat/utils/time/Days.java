@@ -2,8 +2,10 @@ package net.ollie.meerkat.utils.time;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.time.Period;
 
+import net.ollie.meerkat.utils.numeric.Numbers;
 import net.ollie.meerkat.utils.numeric.Numeric;
 
 /**
@@ -29,6 +31,10 @@ public class Days implements Numeric.Summable<Days> {
     @Override
     public Days times(final Number that) {
         return new Days(numDays * that.intValue());
+    }
+
+    public Days over(final Number that, final RoundingMode rounding) {
+        return new Days(Numbers.round(numDays / that.doubleValue(), rounding));
     }
 
     @Override

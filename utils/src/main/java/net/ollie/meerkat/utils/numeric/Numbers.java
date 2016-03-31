@@ -1,6 +1,7 @@
 package net.ollie.meerkat.utils.numeric;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import net.ollie.goat.functions.Functions;
 
@@ -56,6 +57,21 @@ public class Numbers {
 
     public static Integer add(final Integer left, final Integer right) {
         return Functions.ifBothNonNull(left, right, (final Integer i, final Integer j) -> i + j);
+    }
+
+    public static int round(final double d, final RoundingMode rounding) {
+        switch (rounding) {
+            case UP:
+                return (int) (d > 0 ? Math.ceil(d) : Math.floor(d));
+            case DOWN:
+                return (int) d;
+            case CEILING:
+                return (int) Math.ceil(d);
+            case FLOOR:
+                return (int) Math.floor(d);
+            default:
+                throw new UnsupportedOperationException(); //TODO
+        }
     }
 
 }
