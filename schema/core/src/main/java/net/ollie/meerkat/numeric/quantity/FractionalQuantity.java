@@ -1,15 +1,20 @@
 package net.ollie.meerkat.numeric.quantity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author ollie
  */
-public class FractionalQuantity extends AbstractQuantity {
+@XmlRootElement
+public class FractionalQuantity extends AbstractQuantity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     public static final FractionalQuantity ZERO = new FractionalQuantity(DecimalQuantity.ZERO, DecimalQuantity.ONE);
 

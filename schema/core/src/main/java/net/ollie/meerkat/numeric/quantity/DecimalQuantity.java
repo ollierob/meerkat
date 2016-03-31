@@ -16,7 +16,7 @@ import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
  * @author Ollie
  */
 @XmlRootElement
-public class DecimalQuantity extends AbstractQuantity implements Quantity, Serializable {
+public class DecimalQuantity extends AbstractQuantity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
