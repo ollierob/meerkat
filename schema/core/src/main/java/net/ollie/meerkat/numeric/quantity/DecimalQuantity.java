@@ -50,7 +50,7 @@ public class DecimalQuantity extends AbstractQuantity implements Quantity, Seria
     }
 
     @Override
-    public Quantity over(final Number that, MathContext context) {
+    public DecimalQuantity over(final Number that, final MathContext context) {
         return valueOf(value.divide(toBigDecimal(that), context));
     }
 

@@ -2,6 +2,7 @@ package net.ollie.meerkat.utils.numeric;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
 import javax.annotation.Nonnull;
 
@@ -19,15 +20,15 @@ public interface Numeric<T extends Numeric<T>> extends Comparable<T>, SelfTyped<
     }
 
     default T negate() {
-        return this.times(-1);
+        return this.times(-1, RoundingMode.UNNECESSARY);
     }
 
     @Nonnull
-    T times(@Nonnull Number that);
+    T times(@Nonnull Number that, RoundingMode rounding);
 
     @Nonnull
     default T over(@Nonnull final Number that, @Nonnull final MathContext context) {
-        return this.times(BigDecimal.ONE.divide(toBigDecimal(that), context));
+        return this.times(BigDecimal.ONE.divide(toBigDecimal(that), context), context.getRoundingMode());
     }
 
     @Nonnull

@@ -1,11 +1,13 @@
 package net.ollie.meerkat.numeric.quantity;
 
+import java.math.RoundingMode;
+
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
 import net.ollie.meerkat.utils.numeric.Numeric;
 import net.ollie.meerkat.utils.xml.ExtendingXmlAdapter;
-import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
 
 /**
  *
@@ -20,9 +22,14 @@ public interface Quantity extends Numeric.Summable<Quantity> {
         return DecimalQuantity.valueOf(this.decimalValue().add(number.decimalValue()));
     }
 
-    @Override
     default Quantity times(final Number number) {
         return DecimalQuantity.valueOf(this.decimalValue().multiply(toBigDecimal(number)));
+    }
+
+    @Override
+    @Deprecated
+    default Quantity times(final Number number, final RoundingMode rounding) {
+        return this.times(number);
     }
 
     @Nonnull

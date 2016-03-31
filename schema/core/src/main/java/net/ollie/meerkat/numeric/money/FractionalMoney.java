@@ -2,6 +2,7 @@ package net.ollie.meerkat.numeric.money;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
@@ -49,8 +50,14 @@ public class FractionalMoney<C extends CurrencyId> implements Money<C> {
     }
 
     @Override
-    public FractionalMoney<C> times(final Number that) {
-        return this.with(fraction.times(that));
+    public FractionalMoney<C> times(final Number n) {
+        return this.with(fraction.times(n));
+    }
+
+    @Override
+    @Deprecated
+    public FractionalMoney<C> times(final Number that, final RoundingMode rounding) {
+        return this.times(that);
     }
 
     @Override

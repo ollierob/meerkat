@@ -2,16 +2,18 @@ package net.ollie.meerkat.numeric;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
 import net.ollie.meerkat.utils.numeric.Numbers;
+import net.ollie.meerkat.utils.numeric.Numeric;
 
 /**
  *
  * @author Ollie
  */
-public class DecimalFraction extends Number {
+public class DecimalFraction extends Number implements Numeric.Summable<DecimalFraction> {
 
     private static final long serialVersionUID = 1L;
 
@@ -66,8 +68,20 @@ public class DecimalFraction extends Number {
         return of(numerator.add(bd.multiply(denominator)), denominator);
     }
 
+    @Override
+    public DecimalFraction plus(final DecimalFraction that) {
+        throw new UnsupportedOperationException(); //TODO
+    }
+
+    @Override
     public DecimalFraction negate() {
         return new DecimalFraction(numerator.negate(), denominator);
+    }
+
+    @Override
+    @Deprecated
+    public DecimalFraction times(final Number that, final RoundingMode rounding) {
+        return this.times(that);
     }
 
     public DecimalFraction times(final Number number) {

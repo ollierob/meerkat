@@ -18,7 +18,7 @@ import net.ollie.meerkat.utils.numeric.Numeric;
  * @author Ollie
  */
 public interface Money<C extends CurrencyId>
-        extends HasCurrencyId, Numeric<Money<C>>, Security {
+        extends HasCurrencyId, Numeric.Summable<Money<C>>, Security {
 
     @Override
     C currencyId();
@@ -26,9 +26,12 @@ public interface Money<C extends CurrencyId>
     @Nonnull
     Number amount();
 
-    @Nonnull
+    Money<C> times(Number n);
+
+    @Override
     Money<C> plus(@Nonnull Money<C> that);
 
+    @Override
     default Money<C> minus(final Money<C> that) {
         return this.plus(that.negate());
     }

@@ -3,6 +3,7 @@ package net.ollie.meerkat.numeric.money;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -63,8 +64,14 @@ public class DecimalMoney<C extends CurrencyId> implements Money<C>, Serializabl
     }
 
     @Override
-    public Money<C> times(final Number that) {
-        return new DecimalMoney<>(currency, amount.multiply(toBigDecimal(that)));
+    public DecimalMoney<C> times(final Number n) {
+        return new DecimalMoney<>(currency, amount.multiply(toBigDecimal(n)));
+    }
+
+    @Override
+    @Deprecated
+    public Money<C> times(final Number that, final RoundingMode rounding) {
+        return this.times(that);
     }
 
     @Override

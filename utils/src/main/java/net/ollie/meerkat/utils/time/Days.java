@@ -29,8 +29,13 @@ public class Days implements Numeric.Summable<Days> {
     }
 
     @Override
-    public Days times(final Number that) {
-        return new Days(numDays * that.intValue());
+    public Days negate() {
+        return new Days(-numDays);
+    }
+
+    @Override
+    public Days times(final Number that, final RoundingMode rounding) {
+        return new Days(Numbers.round(numDays * that.doubleValue(), rounding));
     }
 
     public Days over(final Number that, final RoundingMode rounding) {

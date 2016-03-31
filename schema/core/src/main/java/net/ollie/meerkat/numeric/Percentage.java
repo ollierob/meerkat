@@ -2,6 +2,7 @@ package net.ollie.meerkat.numeric;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 import javax.annotation.Nonnull;
@@ -51,12 +52,16 @@ public class Percentage extends Number implements Numeric.Summable<Percentage> {
     }
 
     @Override
+    public Percentage times(final Number that, final RoundingMode rounding) {
+        return this.times(that);
+    }
+
     public Percentage times(final Number that) {
         return new Percentage(value.multiply(Numbers.toBigDecimal(that)));
     }
 
-    public <T extends Numeric<T>> T times(final T that) {
-        return that.times(this.doubleValue());
+    public <T extends Numeric<T>> T times(final T that, final RoundingMode rounding) {
+        return that.times(this.doubleValue(), rounding);
     }
 
     @Override
