@@ -12,38 +12,45 @@ import net.ollie.meerkat.issue.rating.CreditRatingBand;
  */
 public enum SAndPLongTermIssueRating implements SAndPRating {
 
-    AAA(CreditRatingBand.AAA),
-    AA_PLUS(CreditRatingBand.AA),
-    AA(CreditRatingBand.AA),
-    AA_MINUS(CreditRatingBand.AA),
-    A_PLUS(CreditRatingBand.A),
-    A(CreditRatingBand.A),
-    A_MINUS(CreditRatingBand.A),
-    BBB_PLUS(CreditRatingBand.BBB),
-    BBB(CreditRatingBand.BBB),
-    BBB_MINUS(CreditRatingBand.BBB),
-    BB_PLUS(CreditRatingBand.BB),
-    BB(CreditRatingBand.BB),
-    BB_MINUS(CreditRatingBand.BB),
-    B_PLUS(CreditRatingBand.B),
-    B(CreditRatingBand.B),
-    B_MINUS(CreditRatingBand.B),
-    CCC_PLUS(CreditRatingBand.CCC),
-    CCC(CreditRatingBand.CCC),
-    CCC_MINUS(CreditRatingBand.CCC),
-    CC(CreditRatingBand.CC),
-    C_PLUS(CreditRatingBand.C),
-    C(CreditRatingBand.C),
-    C_MINUS(CreditRatingBand.C),
-    RD(CreditRatingBand.D),
-    SD(CreditRatingBand.D),
-    D(CreditRatingBand.D),
-    NR(CreditRatingBand.U);
+    AAA("Extremely strong capacity to meet financial obligations", CreditRatingBand.AAA),
+    AA_PLUS("Very strong capacity to meet financial obligations", CreditRatingBand.AA),
+    AA("Very strong capacity to meet financial obligations", CreditRatingBand.AA),
+    AA_MINUS("Very strong capacity to meet financial obligations", CreditRatingBand.AA),
+    A_PLUS("Strong capacity to meet financial obligations", CreditRatingBand.A),
+    A("Strong capacity to meet financial obligations", CreditRatingBand.A),
+    A_MINUS("Strong capacity to meet financial obligations", CreditRatingBand.A),
+    BBB_PLUS("Weakened capacity to meet financial obligations", CreditRatingBand.BBB),
+    BBB("Weakened capacity to meet financial obligations", CreditRatingBand.BBB),
+    BBB_MINUS("Weakened capacity to meet financial obligations", CreditRatingBand.BBB),
+    BB_PLUS("Somewhat weak capacity to meet financial obligations", CreditRatingBand.BB),
+    BB("Somewhat weak capacity to meet financial obligations", CreditRatingBand.BB),
+    BB_MINUS("Somewhat weak capacity to meet financial obligations", CreditRatingBand.BB),
+    B_PLUS("Weak capacity to meet financial obligations", CreditRatingBand.B),
+    B("Weak capacity to meet financial obligations", CreditRatingBand.B),
+    B_MINUS("Weak capacity to meet financial obligations", CreditRatingBand.B),
+    CCC_PLUS("Unlikely to have capacity to meet financial obligations", CreditRatingBand.CCC),
+    CCC("Unlikely to have capacity to meet financial obligations", CreditRatingBand.CCC),
+    CCC_MINUS("Unlikely to have capacity to meet financial obligations", CreditRatingBand.CCC),
+    CC("Default a virtual certainty", CreditRatingBand.CC),
+    C_PLUS("Highly vulnerable to nonpayment", CreditRatingBand.C),
+    C("Highly vulnerable to nonpayment", CreditRatingBand.C),
+    C_MINUS("Highly vulnerable to nonpayment", CreditRatingBand.C),
+    RD("Received default", CreditRatingBand.D),
+    SD("Selective default", CreditRatingBand.D),
+    D("Default", CreditRatingBand.D),
+    NR("Not rated", CreditRatingBand.U);
 
+    private final String description;
     private final CreditRatingBand band;
 
-    private SAndPLongTermIssueRating(final CreditRatingBand band) {
+    private SAndPLongTermIssueRating(final String description, final CreditRatingBand band) {
+        this.description = description;
         this.band = band;
+    }
+
+    @Override
+    public String description() {
+        return description;
     }
 
     @Override

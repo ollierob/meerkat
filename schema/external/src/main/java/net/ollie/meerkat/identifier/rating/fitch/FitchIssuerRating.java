@@ -1,5 +1,7 @@
 package net.ollie.meerkat.identifier.rating.fitch;
 
+import javax.annotation.Nonnull;
+
 import net.ollie.meerkat.issue.rating.CreditRating;
 
 /**
@@ -10,6 +12,9 @@ import net.ollie.meerkat.issue.rating.CreditRating;
  * ratings</a>
  */
 public interface FitchIssuerRating extends CreditRating {
+
+    @Nonnull
+    FitchShortTermRating shortTermEquivalent();
 
     @Override
     default String agency() {

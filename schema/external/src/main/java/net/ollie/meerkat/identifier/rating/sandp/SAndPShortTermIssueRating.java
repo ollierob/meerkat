@@ -1,11 +1,9 @@
 package net.ollie.meerkat.identifier.rating.sandp;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 import net.ollie.meerkat.issue.rating.CreditRatingBand;
+import net.ollie.meerkat.utils.collections.Sets;
 
 /**
  *
@@ -13,18 +11,25 @@ import net.ollie.meerkat.issue.rating.CreditRatingBand;
  */
 public enum SAndPShortTermIssueRating implements SAndPRating {
 
-    A1_PLUS(CreditRatingBand.AAA, CreditRatingBand.AA),
-    A1(CreditRatingBand.A),
-    A2(CreditRatingBand.A, CreditRatingBand.BBB),
-    A3(CreditRatingBand.BBB),
-    B(CreditRatingBand.BB, CreditRatingBand.B),
-    C(CreditRatingBand.CCC, CreditRatingBand.CC, CreditRatingBand.C),
-    D(CreditRatingBand.D);
+    A1_PLUS("Extremely strong capacity to meet financial commitments", CreditRatingBand.AAA, CreditRatingBand.AA),
+    A1("Strong capacity to meet financial commitments", CreditRatingBand.A),
+    A2("Satisfactory capacity to meet financial commitments", CreditRatingBand.A, CreditRatingBand.BBB),
+    A3("Weakened capacity to meet financial commitments", CreditRatingBand.BBB),
+    B("Uncertain capacity to meet financial commitments", CreditRatingBand.BB, CreditRatingBand.B),
+    C("Vulnerable to nonpayment", CreditRatingBand.CCC, CreditRatingBand.CC, CreditRatingBand.C),
+    D("In default or in breach of an imputed promise", CreditRatingBand.D);
 
+    private final String description;
     private final Set<CreditRatingBand> bands;
 
-    private SAndPShortTermIssueRating(final CreditRatingBand... bands) {
-        this.bands = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(bands)));
+    private SAndPShortTermIssueRating(final String description, final CreditRatingBand... bands) {
+        this.description = description;
+        this.bands = Sets.asUnmodifiableSet(bands);
+    }
+
+    @Override
+    public String description() {
+        return description;
     }
 
     @Override
