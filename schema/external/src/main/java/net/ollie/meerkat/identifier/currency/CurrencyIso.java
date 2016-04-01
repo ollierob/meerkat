@@ -14,13 +14,13 @@ import net.ollie.meerkat.identifier.security.SecurityId;
  */
 public interface CurrencyIso extends Iso, CurrencyId, HasCountryId, SecurityId, Serializable {
 
+    default boolean isReserved() {
+        return this.first() == 'X';
+    }
+
     @Override
     default CurrencyIso currencyId() {
         return this;
-    }
-
-    default boolean isReserved() {
-        return this.first() == 'X';
     }
 
     @Override

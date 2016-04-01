@@ -1,11 +1,13 @@
 package net.ollie.meerkat.identifier.country;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Ollie
  */
+@XmlRootElement
 public class CountrySubdivisionIso extends CountryIso {
 
     private static final long serialVersionUID = 1L;
