@@ -15,7 +15,8 @@ public enum MoodysNationalShortTermRating implements MoodysRating {
     N1("Strong ability to repay short-term debt", AAA, AA, A),
     N2("Above average ability to repay short-term debt", BBB),
     N3("Average ability to repay short-term debt", BB),
-    N4("Below average ability to repay short-term debt", B);
+    N4("Below average ability to repay short-term debt", B),
+    NR("Not rated", U);
 
     private final String description;
     private final Set<CreditRatingBand> bands;
