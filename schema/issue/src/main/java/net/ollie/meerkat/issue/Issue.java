@@ -2,7 +2,7 @@ package net.ollie.meerkat.issue;
 
 import javax.xml.bind.annotation.XmlElement;
 
-import net.ollie.meerkat.issue.rating.CreditRating;
+import net.ollie.meerkat.rating.CreditRating;
 
 /**
  *

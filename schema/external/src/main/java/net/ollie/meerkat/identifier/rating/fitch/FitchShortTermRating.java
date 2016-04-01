@@ -2,8 +2,8 @@ package net.ollie.meerkat.identifier.rating.fitch;
 
 import java.util.Set;
 
-import net.ollie.meerkat.issue.rating.CreditRating;
-import net.ollie.meerkat.issue.rating.CreditRatingBand;
+import net.ollie.meerkat.rating.CreditRating;
+import net.ollie.meerkat.rating.CreditRatingBand;
 import net.ollie.meerkat.utils.collections.Sets;
 
 /**

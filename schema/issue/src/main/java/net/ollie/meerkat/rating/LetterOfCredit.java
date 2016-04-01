@@ -1,4 +1,4 @@
-package net.ollie.meerkat.issue.rating;
+package net.ollie.meerkat.rating;
 
 import java.util.Set;
 
