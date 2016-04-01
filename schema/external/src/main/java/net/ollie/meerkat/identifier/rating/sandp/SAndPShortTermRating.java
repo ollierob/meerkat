@@ -9,7 +9,7 @@ import net.ollie.meerkat.utils.collections.Sets;
  *
  * @author ollie
  */
-public enum SAndPShortTermIssuerRating implements SAndPRating {
+public enum SAndPShortTermRating implements SAndPRating {
 
     A1_PLUS("Extremely strong capacity to meet financial commitments", CreditRatingBand.AAA),
     A1("Strong capacity to meet financial commitments"),
@@ -25,7 +25,7 @@ public enum SAndPShortTermIssuerRating implements SAndPRating {
     private final String description;
     private final Set<CreditRatingBand> bands;
 
-    private SAndPShortTermIssuerRating(final String description, final CreditRatingBand... bands) {
+    private SAndPShortTermRating(final String description, final CreditRatingBand... bands) {
         this.description = description;
         this.bands = Sets.asUnmodifiableSet(bands);
     }

@@ -10,7 +10,7 @@ import net.ollie.meerkat.issue.rating.CreditRatingBand;
  *
  * @author ollie
  */
-public enum SAndPLongTermIssuerRating implements SAndPRating {
+public enum SAndPLongTermRating implements SAndPRating {
 
     AAA("Extremely strong capacity to meet financial obligations", CreditRatingBand.AAA),
     AA_PLUS("Very strong capacity to meet financial obligations", CreditRatingBand.AA),
@@ -43,7 +43,7 @@ public enum SAndPLongTermIssuerRating implements SAndPRating {
     private final String description;
     private final CreditRatingBand band;
 
-    private SAndPLongTermIssuerRating(final String description, final CreditRatingBand band) {
+    private SAndPLongTermRating(final String description, final CreditRatingBand band) {
         this.description = description;
         this.band = band;
     }
@@ -65,8 +65,8 @@ public enum SAndPLongTermIssuerRating implements SAndPRating {
 
     @Override
     public int compareTo(final CreditRating that) {
-        return that instanceof SAndPLongTermIssuerRating
-                ? this.compareTo((SAndPLongTermIssuerRating) that)
+        return that instanceof SAndPLongTermRating
+                ? this.compareTo((SAndPLongTermRating) that)
                 : SAndPRating.super.compareTo(that);
     }
 
