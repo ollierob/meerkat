@@ -12,5 +12,7 @@ public interface MoodysRating extends CreditRating {
     public default String agency() {
         return "Moodys";
     }
+    
+    String description();
 
 }

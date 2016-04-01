@@ -16,17 +16,24 @@ import static net.ollie.meerkat.issue.rating.CreditRatingBand.*;
  * @author Ollie
  */
 @XmlEnum
-public enum MoodysShortTermRating implements MoodysRating {
+public enum MoodysGlobalShortTermRating implements MoodysRating {
 
-    P1(AAA, AA, A),
-    P2(A, BBB),
-    P3(BBB),
-    NP(BB, B, CCC, CC, C, D, U); //Not prime
+    P1("Superior ability to repay short-term debt obligations", AAA, AA, A),
+    P2("Strong ability to repay short-term debt obligations", A, BBB),
+    P3("Acceptable abiluty to repay short-term debt obligations", BBB),
+    NP("Not prime", BB, B, CCC, CC, C, D, U);
 
+    private final String description;
     private final Set<CreditRatingBand> bands;
 
-    private MoodysShortTermRating(final CreditRatingBand... bands) {
+    private MoodysGlobalShortTermRating(final String description, final CreditRatingBand... bands) {
+        this.description = description;
         this.bands = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(bands)));
+    }
+
+    @Override
+    public String description() {
+        return description;
     }
 
     @Override
@@ -41,8 +48,8 @@ public enum MoodysShortTermRating implements MoodysRating {
 
     @Override
     public int compareTo(final CreditRating that) {
-        return that instanceof MoodysShortTermRating
-                ? this.compareTo((MoodysShortTermRating) that)
+        return that instanceof MoodysGlobalShortTermRating
+                ? this.compareTo((MoodysGlobalShortTermRating) that)
                 : MoodysRating.super.compareTo(that);
     }
 
