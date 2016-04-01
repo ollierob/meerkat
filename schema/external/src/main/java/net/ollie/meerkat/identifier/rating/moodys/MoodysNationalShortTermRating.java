@@ -2,6 +2,7 @@ package net.ollie.meerkat.identifier.rating.moodys;
 
 import java.util.Set;
 
+import net.ollie.meerkat.issue.rating.CreditRating;
 import net.ollie.meerkat.issue.rating.CreditRatingBand;
 import static net.ollie.meerkat.issue.rating.CreditRatingBand.*;
 import net.ollie.meerkat.utils.collections.Sets;
@@ -34,6 +35,13 @@ public enum MoodysNationalShortTermRating implements MoodysRating {
     @Override
     public Set<CreditRatingBand> bands() {
         return bands;
+    }
+    
+    @Override
+    public int compareTo(final CreditRating that) {
+        return that instanceof MoodysNationalShortTermRating
+                ? this.compareTo((MoodysNationalShortTermRating) that)
+                : MoodysRating.super.compareTo(that);
     }
 
 }
