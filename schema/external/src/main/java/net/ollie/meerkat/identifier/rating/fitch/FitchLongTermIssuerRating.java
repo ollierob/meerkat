@@ -3,6 +3,7 @@ package net.ollie.meerkat.identifier.rating.fitch;
 import java.util.Collections;
 import java.util.Set;
 
+import net.ollie.meerkat.issue.rating.CreditRating;
 import net.ollie.meerkat.issue.rating.CreditRatingBand;
 
 /**
@@ -31,7 +32,8 @@ public enum FitchLongTermIssuerRating implements FitchIssuerRating {
     CC(CreditRatingBand.CC),
     C(CreditRatingBand.C),
     RD(CreditRatingBand.D),
-    D(CreditRatingBand.D);
+    D(CreditRatingBand.D),
+    NR(CreditRatingBand.U);
 
     private final CreditRatingBand band;
 
@@ -47,6 +49,18 @@ public enum FitchLongTermIssuerRating implements FitchIssuerRating {
     @Override
     public CreditRatingBand bestBand() {
         return band;
+    }
+
+    @Override
+    public boolean isDefault() {
+        return this == D;
+    }
+
+    @Override
+    public int compareTo(final CreditRating that) {
+        return that instanceof FitchLongTermIssuerRating
+                ? this.compareTo((FitchLongTermIssuerRating) that)
+                : FitchIssuerRating.super.compareTo(that);
     }
 
 }
