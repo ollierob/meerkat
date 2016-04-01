@@ -20,6 +20,11 @@ public class CreditRatings implements CreditRating {
     private Set<CreditRating> otherRatings;
 
     @Override
+    public String description() {
+        return finalRating.description();
+    }
+
+    @Override
     public boolean isInvestmentGrade() {
         return finalRating.isInvestmentGrade();
     }

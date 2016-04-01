@@ -21,6 +21,11 @@ public class LetterOfCredit implements CreditRating {
     }
 
     @Override
+    public String description() {
+        return underlying.description();
+    }
+
+    @Override
     public Set<CreditRatingBand> bands() {
         return underlying.bands();
     }

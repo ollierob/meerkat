@@ -12,6 +12,9 @@ import javax.annotation.Nonnull;
 public interface CreditRating {
 
     @Nonnull
+    String description();
+
+    @Nonnull
     Set<CreditRatingBand> bands();
 
     @Nonnull
