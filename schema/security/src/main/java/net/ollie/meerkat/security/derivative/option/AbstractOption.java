@@ -1,6 +1,5 @@
 package net.ollie.meerkat.security.derivative.option;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
@@ -18,9 +17,6 @@ public abstract class AbstractOption<S extends Security>
         extends NamedSecurity
         implements Option<S> {
 
-    @XmlAttribute(name = "put")
-    private boolean isPut;
-
     @XmlElementRef(name = "exercise")
     private OptionExercise exercise;
 
@@ -35,11 +31,6 @@ public abstract class AbstractOption<S extends Security>
 
     @Deprecated
     protected AbstractOption() {
-    }
-
-    @Override
-    public boolean isPut() {
-        return isPut;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package net.ollie.meerkat.security.fx.swap;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.security.derivative.swap.AbstractSwap;
 import net.ollie.meerkat.security.fx.FxDerivative;
@@ -10,6 +11,7 @@ import net.ollie.meerkat.utils.collections.FiniteSequence;
  *
  * @author ollie
  */
+@XmlRootElement
 public class FxSwap
         extends AbstractSwap
         implements FxDerivative {

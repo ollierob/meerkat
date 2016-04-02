@@ -16,9 +16,6 @@ import net.ollie.meerkat.security.derivative.option.exercise.OptionExercise;
 public interface Option<S extends Security> extends Derivative<S> {
 
     @Nonnull
-    boolean isPut();
-
-    @Nonnull
     Money<?> strike();
 
     @Nonnull

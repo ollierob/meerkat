@@ -64,13 +64,20 @@ public class DecimalFraction extends Number implements Numeric.Summable<DecimalF
         return denominator;
     }
 
+    @Override
+    public boolean isZero() {
+        return numerator.signum() == 0;
+    }
+
     public DecimalFraction plus(final BigDecimal bd) {
         return of(numerator.add(bd.multiply(denominator)), denominator);
     }
 
     @Override
     public DecimalFraction plus(final DecimalFraction that) {
-        throw new UnsupportedOperationException(); //TODO
+        return of(
+                this.numerator.multiply(that.denominator).add(that.numerator.multiply(this.denominator)),
+                this.denominator.multiply(that.denominator));
     }
 
     @Override
@@ -116,6 +123,7 @@ public class DecimalFraction extends Number implements Numeric.Summable<DecimalF
         return of(denominator, numerator);
     }
 
+    @Override
     public BigDecimal decimalValue(final MathContext context) {
         return numerator.divide(denominator, context);
     }
@@ -157,7 +165,14 @@ public class DecimalFraction extends Number implements Numeric.Summable<DecimalF
     }
 
     public boolean equals(final DecimalFraction that) {
-        return this.doubleValue() == that.doubleValue();
+        return this.minus(that).isZero();
+    }
+
+    @Override
+    public int compareTo(final DecimalFraction that) {
+        final BigDecimal n1 = this.numerator.multiply(that.denominator);
+        final BigDecimal n2 = that.numerator.multiply(this.denominator);
+        return n1.compareTo(n2);
     }
 
 }

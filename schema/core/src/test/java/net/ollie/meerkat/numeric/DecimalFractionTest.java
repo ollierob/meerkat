@@ -27,4 +27,13 @@ public class DecimalFractionTest {
         assertThat(DecimalFraction.of(2, 3).times(DecimalFraction.of(5, 7)), is(DecimalFraction.of(10, 21)));
     }
 
+    @Test
+    public void testCompare() {
+        final DecimalFraction d1 = DecimalFraction.of(1, 2);
+        final DecimalFraction d2 = DecimalFraction.of(1, 3);
+        assertThat(d1.compareTo(d1), is(0));
+        assertTrue(d1.compareTo(d2) > 0);
+        assertTrue(d2.compareTo(d1) < 0);
+    }
+
 }

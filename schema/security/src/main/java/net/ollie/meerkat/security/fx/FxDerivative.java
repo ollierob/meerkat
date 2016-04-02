@@ -1,6 +1,7 @@
 package net.ollie.meerkat.security.fx;
 
 import net.ollie.meerkat.security.SecurityDefinition;
+import net.ollie.meerkat.security.fx.option.FxOption;
 import net.ollie.meerkat.security.fx.swap.FxSwap;
 
 /**
@@ -21,6 +22,8 @@ public interface FxDerivative extends SecurityDefinition {
     interface Handler<R> extends SecurityDefinition.Handler<R> {
 
         R handle(FxSwap swap);
+
+        R handle(FxOption option);
 
     }
 

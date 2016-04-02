@@ -3,7 +3,6 @@ package net.ollie.meerkat.security;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 /**
  *
  * @author Ollie
@@ -25,6 +24,11 @@ public class NamedSecurity implements Security {
     @Override
     public String name() {
         return name;
+    }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + ": " + name;
     }
 
 }
