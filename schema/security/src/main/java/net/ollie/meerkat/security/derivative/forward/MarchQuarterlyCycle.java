@@ -1,6 +1,6 @@
 package net.ollie.meerkat.security.derivative.forward;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,8 +28,8 @@ public class MarchQuarterlyCycle implements FutureDelivery<Month> {
     }
 
     @Override
-    public boolean contains(final LocalDateTime time) {
-        return MONTHS.contains(time.getMonth());
+    public boolean contains(final LocalDate date) {
+        return MONTHS.contains(date.getMonth());
     }
 
 }
