@@ -15,43 +15,43 @@ import net.ollie.meerkat.security.NamedSecurity;
  * @author Ollie
  */
 @XmlRootElement
-public class FxOptionRate<F extends CurrencyId, T extends CurrencyId>
+public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
         extends NamedSecurity
-        implements ExchangeRate<F, T> {
+        implements ExchangeRate<C, P> {
 
     @XmlElementRef(name = "call", required = true)
-    private Money<F> call;
+    private Money<C> call;
 
     @XmlElementRef(name = "put", required = true)
-    private Money<T> put;
+    private Money<P> put;
 
     @Deprecated
     FxOptionRate() {
     }
 
-    public FxOptionRate(final String name, final Money<F> call, final Money<T> put) {
+    public FxOptionRate(final String name, final Money<C> call, final Money<P> put) {
         super(name);
         this.call = call;
         this.put = put;
     }
 
     @Nonnull
-    public Money<F> call() {
+    public Money<C> call() {
         return call;
     }
 
     @Override
-    public F from() {
+    public C from() {
         return call.currencyId();
     }
 
     @Nonnull
-    public Money<T> put() {
+    public Money<P> put() {
         return put;
     }
 
     @Override
-    public T to() {
+    public P to() {
         return put.currencyId();
     }
 

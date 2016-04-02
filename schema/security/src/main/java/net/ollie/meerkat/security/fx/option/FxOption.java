@@ -15,8 +15,8 @@ public class FxOption
         extends AbstractOption<FxOptionRate<?, ?>>
         implements FxDerivative {
 
-    @XmlElement(name = "notional")
-    private FxOptionRate<?, ?> notional;
+    @XmlElement(name = "rate")
+    private FxOptionRate<?, ?> rate;
 
     @Deprecated
     FxOption() {
@@ -24,7 +24,7 @@ public class FxOption
 
     @Override
     public FxOptionRate<?, ?> underlying() {
-        return notional;
+        return rate;
     }
 
     @Override
