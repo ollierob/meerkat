@@ -72,9 +72,13 @@ public class NativeBondFuturePricer<T extends Temporal>
             return unshiftedBondPrice.shift(shifts.bondShifts());
         }
 
+        BigDecimal conversionFactor() {
+            return shifts.shiftConversionFactor(conversionFactor);
+        }
+
         @Override
         public Money<C> cleanValue() {
-            return this.bondPrice().cleanValue().times(conversionFactor);
+            return this.bondPrice().cleanValue().times(this.conversionFactor());
         }
 
         @Override
