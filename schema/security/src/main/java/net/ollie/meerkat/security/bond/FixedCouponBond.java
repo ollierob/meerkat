@@ -84,11 +84,11 @@ public class FixedCouponBond extends StraightBond {
         return handler.handle(this);
     }
 
-    public class FixedCouponBondCoupons extends StraightBondCoupons<FixedCoupon> {
+    public class FixedCouponBondCoupons extends StraightBondCoupons<FixedCoupon<?>> {
 
         @Override
-        public FixedCoupon get(final int index) {
-            return new FixedCoupon(couponDates.get(index), couponAmount, couponRate);
+        public FixedCoupon<?> get(final int index) {
+            return new FixedCoupon<>(couponDates.get(index), couponAmount, couponRate);
         }
 
         @Override

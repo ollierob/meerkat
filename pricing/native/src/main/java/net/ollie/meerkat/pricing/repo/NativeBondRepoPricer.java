@@ -20,9 +20,9 @@ import net.ollie.meerkat.security.repo.BondRepo;
  */
 public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo> {
 
-    private final BondPricer bondPricer;
+    private final BondPricer<LocalDate> bondPricer;
 
-    public NativeBondRepoPricer(final BondPricer bondPricer) {
+    public NativeBondRepoPricer(final BondPricer<LocalDate> bondPricer) {
         this.bondPricer = bondPricer;
     }
 
@@ -42,7 +42,7 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
         final LocalDate near = repo.dates().near();
         final LocalDate far = repo.dates().far().orElse(valuationDate.plusDays(1)); //TODO open repo
         final Money<C> repoPrice = rate.accrue(dirtyBondPrice, near, far);
-        return new GenericRepoPrice<>(repoPrice);
+        return new SimpleRepoPrice<>(repoPrice);
 
     }
 

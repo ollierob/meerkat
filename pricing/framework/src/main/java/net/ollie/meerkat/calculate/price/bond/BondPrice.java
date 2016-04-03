@@ -1,5 +1,8 @@
 package net.ollie.meerkat.calculate.price.bond;
 
+import java.util.List;
+
+import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.price.SecurityPrice;
@@ -8,7 +11,6 @@ import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
 import net.ollie.meerkat.time.interim.Interval;
-import net.ollie.meerkat.utils.collections.Sequence;
 
 /**
  *
@@ -23,7 +25,7 @@ public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
     Money<C> cleanValue();
 
     @Nonnull
-    Sequence<CashPayment<C>> cleanFlow(Interval interval);
+    List<CashPayment<C>> cleanFlow(Interval interval);
 
     @Nonnull
     default Percentage clean() {
@@ -46,5 +48,14 @@ public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
     default Money<C> accrued() {
         return this.dirtyValue().minus(this.cleanValue());
     }
+
+    /**
+     * Regenerate a price given some shifts. Should recalculate as little as possible.
+     *
+     * @param shifts
+     * @return
+     */
+    @CheckReturnValue
+    BondPrice<C> shift(BondShifts shifts);
 
 }

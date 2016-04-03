@@ -1,10 +1,9 @@
 package net.ollie.meerkat.pricing.bond;
 
-import java.time.LocalDate;
+import java.time.temporal.Temporal;
 
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
-import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.security.bond.ConvertibleBond;
@@ -16,18 +15,18 @@ import net.ollie.meerkat.security.bond.PerpetualBond;
  *
  * @author ollie
  */
-public class NativeBondPricer implements BondPricer {
+public class NativeBondPricer<T extends Temporal> implements BondPricer<T> {
 
-    private final BondTypePricer<PerpetualBond> perpetualPricer;
-    private final BondTypePricer<FixedCouponBond> fixedCouponPricer;
-    private final BondTypePricer<FloatingRateNote> floatingNotePricer;
-    private final BondTypePricer<ConvertibleBond> convertiblePricer;
+    private final BondTypePricer<T, PerpetualBond> perpetualPricer;
+    private final BondTypePricer<T, FixedCouponBond> fixedCouponPricer;
+    private final BondTypePricer<T, FloatingRateNote> floatingNotePricer;
+    private final BondTypePricer<T, ConvertibleBond> convertiblePricer;
 
     public NativeBondPricer(
-            final BondTypePricer<PerpetualBond> perpetualPricer,
-            final BondTypePricer<FixedCouponBond> fixedCouponPricer,
-            final BondTypePricer<FloatingRateNote> floatingNotePricer,
-            final BondTypePricer<ConvertibleBond> convertiblePricer) {
+            final BondTypePricer<T, PerpetualBond> perpetualPricer,
+            final BondTypePricer<T, FixedCouponBond> fixedCouponPricer,
+            final BondTypePricer<T, FloatingRateNote> floatingNotePricer,
+            final BondTypePricer<T, ConvertibleBond> convertiblePricer) {
         this.perpetualPricer = perpetualPricer;
         this.fixedCouponPricer = fixedCouponPricer;
         this.floatingNotePricer = floatingNotePricer;
@@ -35,30 +34,34 @@ public class NativeBondPricer implements BondPricer {
     }
 
     @Override
-    public <C extends CurrencyId> BondPriceContext<C> priceContext(final LocalDate date, final C currency, final BondShifts shifts) {
+    public <C extends CurrencyId> BondPriceContext<C> priceContext(
+            final T temporal,
+            final C currency) {
+
         return new BondPriceContext<C>() {
 
             @Override
             public BondPrice<C> handle(final FixedCouponBond bond) {
-                return fixedCouponPricer.price(date, bond, shifts, currency);
+                return fixedCouponPricer.price(temporal, bond, currency);
             }
 
             @Override
             public BondPrice<C> handle(final FloatingRateNote bond) {
-                return floatingNotePricer.price(date, bond, shifts, currency);
+                return floatingNotePricer.price(temporal, bond, currency);
             }
 
             @Override
             public BondPrice<C> handle(final PerpetualBond bond) {
-                return perpetualPricer.price(date, bond, shifts, currency);
+                return perpetualPricer.price(temporal, bond, currency);
             }
 
             @Override
             public BondPrice<C> handle(final ConvertibleBond bond) {
-                return convertiblePricer.price(date, bond, shifts, currency);
+                return convertiblePricer.price(temporal, bond, currency);
             }
 
         };
+
     }
 
 }

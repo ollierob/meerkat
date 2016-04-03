@@ -30,7 +30,7 @@ public interface RepoShifts extends SecurityShifts, ExchangeRateShifts {
         }
 
         @Override
-        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shiftExchangeRate(final ExchangeRate<F, T> rate) {
+        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(final ExchangeRate<F, T> rate) {
             return rate;
         }
 

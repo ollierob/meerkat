@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.IntFunction;
 
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -33,6 +34,10 @@ public abstract class FiniteSequence<T> extends AbstractList<T> implements Seque
     @SafeVarargs
     public static <T> FiniteSequence<T> of(final T... array) {
         return new DelegatedFiniteSequence<>(Arrays.asList(array));
+    }
+
+    public static <T> FiniteSequence<T> lazy(final int size, final IntFunction<? extends T> create) {
+        return of(Lists.lazy(size, create));
     }
 
     public static <F, T> FiniteSequence<T> transformed(final Collection<F> list, final Function<? super F, ? extends T> transform) {

@@ -8,11 +8,11 @@ import net.ollie.meerkat.numeric.money.Money;
  *
  * @author ollie
  */
-class GenericRepoPrice<C extends CurrencyId> implements RepoPrice<C> {
+class SimpleRepoPrice<C extends CurrencyId> implements RepoPrice<C> {
 
     private final Money<C> clean;
 
-    GenericRepoPrice(final Money<C> clea) {
+    SimpleRepoPrice(final Money<C> clea) {
         this.clean = clea;
     }
 

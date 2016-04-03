@@ -8,8 +8,9 @@ import net.ollie.meerkat.calculate.price.shifts.PriceShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
+import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
 
 /**
  *
@@ -37,17 +38,22 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
         static final NoBondShifts INSTANCE = new NoBondShifts();
 
         @Override
-        public <C extends CurrencyId> Money<C> shiftPrice(Money<C> price) {
+        public <C extends CurrencyId> Money<C> shiftPrice(final Money<C> price) {
             return price;
         }
 
         @Override
-        public FixedInterestRate shiftRates(FixedInterestRate rate) {
+        public FixedInterestRate shift(final FixedInterestRate rate) {
             return rate;
         }
 
         @Override
-        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shiftExchangeRate(ExchangeRate<F, T> rate) {
+        public InterestRate shift(final InterestRate rate) {
+            return rate;
+        }
+
+        @Override
+        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate) {
             return rate;
         }
 

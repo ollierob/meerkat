@@ -36,9 +36,11 @@ public class PerpetualBond extends AbstractBond {
     PerpetualBond() {
     }
 
+    private transient PerpetualBondCoupons coupons;
+
     @Override
     public PerpetualBondCoupons coupons() {
-        return new PerpetualBondCoupons();
+        return coupons == null ? (coupons = new PerpetualBondCoupons()) : coupons;
     }
 
     @Override
@@ -51,19 +53,19 @@ public class PerpetualBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    public class PerpetualBondCoupons implements BondCoupons<FixedCoupon> {
+    public class PerpetualBondCoupons implements BondCoupons<FixedCoupon<?>> {
 
-        public FixedInterestRate recurringRate() {
+        public FixedInterestRate yearlyRate() {
             return couponRate;
         }
 
-        public Money<?> recurringAmount() {
+        public Money<?> yearlyAmount() {
             return couponAmount;
         }
 
         @Override
         public boolean hasFloatingRateCoupon() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return false;
         }
 
         public int yearlyFrequency() {
@@ -76,12 +78,12 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public Sequence<FixedCoupon> onOrAfter(final LocalDate time) {
+        public Sequence<FixedCoupon<?>> onOrAfter(final LocalDate time) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
-        public FixedCoupon prior(final LocalDate current) {
+        public FixedCoupon<?> prior(final LocalDate current) {
             throw new UnsupportedOperationException(); //TODO
         }
 
