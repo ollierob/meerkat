@@ -21,7 +21,7 @@ public class SecurityIds {
         return new SecurityIds(Collections.singleton(id));
     }
 
-    @XmlElementRef(name = "id")
+    @XmlElementRef(name = "id", required = true)
     private Set<SecurityId> ids;
 
     @Deprecated
@@ -39,6 +39,10 @@ public class SecurityIds {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .findAny();
+    }
+
+    public boolean isEmpty() {
+        return ids.isEmpty();
     }
 
 }

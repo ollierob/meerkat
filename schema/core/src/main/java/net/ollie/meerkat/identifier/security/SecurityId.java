@@ -7,6 +7,7 @@ package net.ollie.meerkat.identifier.security;
 public interface SecurityId extends HasSecurityId {
 
     @Override
+    @Deprecated
     default SecurityId securityId() {
         return this;
     }

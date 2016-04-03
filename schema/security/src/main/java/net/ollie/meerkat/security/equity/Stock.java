@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.security.HasIsin;
+import net.ollie.meerkat.identifier.security.HasStockTicker;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 
@@ -12,7 +13,9 @@ import net.ollie.meerkat.security.NamedSecurity;
  * @author Ollie
  */
 @XmlRootElement
-public class Stock extends NamedSecurity implements Equity, HasIsin {
+public class Stock
+        extends NamedSecurity
+        implements Equity, HasIsin, HasStockTicker {
 
     @XmlAttribute(name = "preferred")
     private boolean preferred;
