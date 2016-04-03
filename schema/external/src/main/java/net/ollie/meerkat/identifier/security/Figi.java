@@ -9,7 +9,9 @@ import net.ollie.meerkat.StringWrapper;
  * @see
  * <a href="https://en.wikipedia.org/wiki/Financial_Instrument_Global_Identifier">FIGI</a>
  */
-public class Figi extends StringWrapper implements HasCheckDigit, SecurityId {
+public class Figi
+        extends StringWrapper
+        implements HasCheckDigit, SecurityId {
 
     @Deprecated
     Figi() {

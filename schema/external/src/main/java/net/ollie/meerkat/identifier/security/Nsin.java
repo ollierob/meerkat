@@ -12,7 +12,9 @@ import net.ollie.meerkat.identifier.country.CountryIso;
  * @see <a href="https://en.wikipedia.org/wiki/NSIN">NSIN</a>
  */
 @XmlRootElement
-public class Nsin extends StringWrapper implements SecurityId {
+public class Nsin
+        extends StringWrapper
+        implements SecurityId {
 
     @Deprecated
     protected Nsin() {

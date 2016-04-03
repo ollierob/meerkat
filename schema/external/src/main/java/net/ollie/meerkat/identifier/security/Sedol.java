@@ -9,7 +9,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @see <a href="https://en.wikipedia.org/wiki/SEDOL">SEDOL</a>
  */
 @XmlRootElement
-public class Sedol extends Nsin implements HasCheckDigit {
+public class Sedol
+        extends Nsin
+        implements HasCheckDigit {
 
     @Deprecated
     Sedol() {

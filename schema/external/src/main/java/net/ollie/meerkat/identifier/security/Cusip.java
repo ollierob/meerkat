@@ -11,7 +11,9 @@ import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
  * @author ollie
  */
 @XmlRootElement
-public class Cusip extends Nsin implements HasCheckDigit {
+public class Cusip
+        extends Nsin
+        implements HasCheckDigit {
 
     @Deprecated
     Cusip() {

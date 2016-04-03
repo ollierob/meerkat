@@ -1,5 +1,6 @@
 package net.ollie.meerkat.identifier.security;
 
+import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -13,7 +14,9 @@ import net.ollie.meerkat.identifier.market.Mic;
  * @author ollie
  */
 @XmlRootElement
-public class StockTicker extends StringWrapper implements SecurityInMarketId, SecurityId, HasMarketId {
+public class StockTicker 
+        extends StringWrapper 
+        implements SecurityInMarketId, SecurityId, HasMarketId {
 
     @XmlAttribute(name = "market", required = true)
     private Mic mic;
@@ -32,8 +35,8 @@ public class StockTicker extends StringWrapper implements SecurityInMarketId, Se
         return mic;
     }
 
-    @Override
-    public String value() {
+    @Nonnull
+    public String ticker() {
         return super.value();
     }
 
