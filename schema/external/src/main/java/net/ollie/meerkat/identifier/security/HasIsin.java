@@ -4,13 +4,11 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.IdentifiedSecurity;
-
 /**
  *
  * @author Ollie
  */
-public interface HasIsin extends IdentifiedSecurity {
+public interface HasIsin extends HasSecurityIds {
 
     @Nonnull
     default Optional<Isin> isin() {

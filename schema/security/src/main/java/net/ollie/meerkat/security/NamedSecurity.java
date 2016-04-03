@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.IdentifiedSecurity;
+import net.ollie.meerkat.identifier.security.HasSecurityIds;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.utils.HasName;
 
@@ -13,12 +13,12 @@ import net.ollie.meerkat.utils.HasName;
  * @author Ollie
  */
 @XmlRootElement
-public class NamedSecurity implements IdentifiedSecurity, HasName {
+public class NamedSecurity implements Security, HasSecurityIds, HasName {
 
-    @XmlElement(name = "ids")
+    @XmlElement(name = "ids", required = true)
     private SecurityIds identifiers;
 
-    @XmlAttribute(name = "name")
+    @XmlAttribute(name = "name", required = true)
     private String name;
 
     @Deprecated
