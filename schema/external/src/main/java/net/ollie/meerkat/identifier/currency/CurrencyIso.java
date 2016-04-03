@@ -41,6 +41,7 @@ public interface CurrencyIso extends Iso, CurrencyId, HasCountryId, SecurityId, 
     GBP GBP = new GBP();
     JPY JPY = new JPY();
     INR INR = new INR();
+    NZD NZD = new NZD();
     USD USD = new USD();
     ZAR ZAR = new ZAR();
 
