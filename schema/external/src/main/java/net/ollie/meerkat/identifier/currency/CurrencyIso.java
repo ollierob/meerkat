@@ -33,7 +33,9 @@ public interface CurrencyIso extends Iso, CurrencyId, HasCountryId, SecurityId, 
         return "4217";
     }
 
+    AUD AUD = new AUD();
     CAD CAD = new CAD();
+    CHF CHF = new CHF();
     CNY CNY = new CNY();
     EUR EUR = new EUR();
     GBP GBP = new GBP();

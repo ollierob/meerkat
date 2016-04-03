@@ -2,6 +2,7 @@ package net.ollie.meerkat.identifier.security;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import net.ollie.meerkat.identifier.country.CountryIso;
@@ -11,6 +12,13 @@ import net.ollie.meerkat.identifier.country.CountryIso;
  * @author ollie
  */
 public class SedolTest {
+
+    @Test
+    public void testCheckDigit_GB() {
+        final Sedol sedol = new Sedol("BY2ZN89");
+        assertThat(sedol.checkDigit(), is('9'));
+        assertTrue(sedol.isValid());
+    }
 
     @Test
     public void testToIsin_GB() {
