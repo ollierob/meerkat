@@ -2,6 +2,7 @@ package net.ollie.meerkat.pricing.repo;
 
 import java.time.LocalDate;
 
+import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
@@ -9,10 +10,11 @@ import net.ollie.meerkat.calculate.price.repo.RepoPrice;
 import net.ollie.meerkat.calculate.price.repo.RepoShifts;
 import net.ollie.meerkat.calculate.price.repo.RepoTypePricer;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.interest.InterestRate;
+import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.repo.BondRepo;
+import net.ollie.meerkat.security.repo.rate.RepoRate;
 
 /**
  *
@@ -30,28 +32,64 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
     public <C extends CurrencyId> RepoPrice<C> price(
             final LocalDate valuationDate,
             final BondRepo repo,
-            final C currency,
-            final RepoShifts shifts) {
-
-        final BondShifts bondShifts = shifts.bondShifts(repo.haircut());
-        final BondPrice<C> bondPrice = this.price(repo.collateral(), valuationDate, currency, bondShifts);
-        final Money<C> dirtyBondPrice = bondPrice.dirtyValue(); //TODO apply haircut
-
-        final InterestRate rate = shifts.shift(repo.rate()).rate();
-
+            final C currency) {
+        final RepoRate repoRate = repo.rate();
+        final Percentage haircut = repo.haircut();
         final LocalDate near = repo.dates().near();
-        final LocalDate far = repo.dates().far().orElse(valuationDate.plusDays(1)); //TODO open repo
-        final Money<C> repoPrice = rate.accrue(dirtyBondPrice, near, far);
-        return new SimpleRepoPrice<>(repoPrice);
-
+        final LocalDate far = repo.dates().far().orElseGet(() -> valuationDate.plusDays(1));
+        final BondPrice<C> bondPrice = bondPricer.price(valuationDate, repo.collateral(), currency);
+        return new BondRepoPrice<>(repoRate, haircut, near, far, bondPrice, RepoShifts.NONE);
     }
 
-    private <C extends CurrencyId> BondPrice<C> price(
-            final Bond bond,
-            final LocalDate valuationDate,
-            final C currency,
-            final BondShifts shifts) {
-        return bondPricer.price(valuationDate, bond, currency, shifts);
+    private static final class BondRepoPrice<C extends CurrencyId>
+            implements RepoPrice<C> {
+
+        private final RepoRate repoRate;
+        private final Percentage haircut;
+        private final LocalDate near, far;
+        private final BondPrice<C> bondPrice;
+        private final RepoShifts shifts;
+
+        BondRepoPrice(
+                final RepoRate repoRate,
+                final Percentage haircut,
+                final LocalDate near,
+                final LocalDate far,
+                final BondPrice<C> bondPrice,
+                final RepoShifts shifts) {
+            this.repoRate = repoRate;
+            this.haircut = haircut;
+            this.near = near;
+            this.far = far;
+            this.shifts = shifts;
+            this.bondPrice = bondPrice;
+        }
+
+        FixedInterestRate repoRate() {
+            return shifts.shift(repoRate).rate();
+        }
+
+        Money<C> dirtyBondPrice() {
+            final BondShifts bondShifts = shifts.bondShifts(haircut);
+            return bondPrice.shift(bondShifts).dirtyValue();
+        }
+
+        private final Lazy<Money<C>> cleanValue = Lazy.loadOnceNonnull(this::calculateCleanValue);
+
+        @Override
+        public Money<C> cleanValue() {
+            return cleanValue.get();
+        }
+
+        private Money<C> calculateCleanValue() {
+            return this.repoRate().accrue(this.dirtyBondPrice(), near, far);
+        }
+
+        @Override
+        public BondRepoPrice<C> shift(final RepoShifts shifts) {
+            return new BondRepoPrice<>(repoRate, haircut, near, far, bondPrice, shifts);
+        }
+
     }
 
 }
