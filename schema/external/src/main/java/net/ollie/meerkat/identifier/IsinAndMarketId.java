@@ -8,6 +8,7 @@ import net.ollie.meerkat.identifier.currency.CurrencyIso;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.identifier.market.HasMarketId;
 import net.ollie.meerkat.identifier.market.Mic;
+import net.ollie.meerkat.identifier.security.HasSecurityId;
 import net.ollie.meerkat.identifier.security.Isin;
 
 /**
@@ -15,7 +16,7 @@ import net.ollie.meerkat.identifier.security.Isin;
  * @author Ollie
  */
 @XmlRootElement
-public class IsinAndMarketId implements SecurityInMarketId, HasMarketId, HasCurrencyId {
+public class IsinAndMarketId implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId {
 
     @XmlElement(name = "isin")
     private Isin isin;

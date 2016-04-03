@@ -8,6 +8,7 @@ import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.identifier.market.HasMarketId;
 import net.ollie.meerkat.identifier.market.MarketId;
+import net.ollie.meerkat.identifier.security.HasSecurityId;
 import net.ollie.meerkat.identifier.security.SecurityId;
 
 /**
@@ -15,7 +16,7 @@ import net.ollie.meerkat.identifier.security.SecurityId;
  * @author Ollie
  */
 @XmlRootElement
-public class SecurityAndMarketId implements SecurityInMarketId, HasMarketId, HasCurrencyId {
+public class SecurityAndMarketId implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId {
 
     @XmlElementRef(name = "security")
     private SecurityId security;

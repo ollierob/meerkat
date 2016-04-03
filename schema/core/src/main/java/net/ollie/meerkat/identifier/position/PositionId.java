@@ -1,7 +1,7 @@
 package net.ollie.meerkat.identifier.position;
 
+import net.ollie.meerkat.identifier.SecurityInMarketId;
 import net.ollie.meerkat.identifier.portfolio.PortfolioId;
-import net.ollie.meerkat.identifier.security.SecurityId;
 
 /**
  *
@@ -18,6 +18,6 @@ public interface PositionId extends HasPositionId {
     PortfolioId portfolioId();
 
     @Override
-    SecurityId securityId();
+    SecurityInMarketId securityInMarketId();
 
 }
