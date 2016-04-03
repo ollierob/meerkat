@@ -1,4 +1,4 @@
-package net.ollie.meerkat.reporting.issue;
+package net.ollie.meerkat.reporting.security;
 
 import net.ollie.meerkat.identifier.SecurityInMarketId;
 import net.ollie.meerkat.issue.Issue;
