@@ -2,6 +2,7 @@ package net.ollie.meerkat;
 
 import java.util.Objects;
 
+import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlValue;
 
 /**
@@ -17,11 +18,12 @@ public abstract class StringWrapper {
     protected StringWrapper() {
     }
 
-    protected StringWrapper(final String value) {
-        this.value = value;
+    protected StringWrapper(@Nonnull final String value) {
+        this.value = Objects.requireNonNull(value);
     }
 
-    public String value() {
+    @Nonnull
+    protected String value() {
         return value;
     }
 

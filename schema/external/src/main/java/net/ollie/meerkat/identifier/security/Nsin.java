@@ -22,6 +22,11 @@ public class Nsin extends StringWrapper implements SecurityId {
         super(value);
     }
 
+    @Override
+    public String value() {
+        return super.value();
+    }
+
     public Isin toIsin(final CountryIso country) {
         return Isin.create(country, this);
     }

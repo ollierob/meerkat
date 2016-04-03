@@ -53,6 +53,11 @@ public class CountryIso extends StringWrapper implements Iso, CountryId, Seriali
     }
 
     @Override
+    public String value() {
+        return super.value();
+    }
+
+    @Override
     public String standard() {
         return "3166-1";
     }
