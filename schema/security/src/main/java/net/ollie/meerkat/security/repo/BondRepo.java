@@ -16,8 +16,8 @@ import net.ollie.meerkat.security.repo.rate.RepoRate;
  */
 public class BondRepo extends AbstractRepo<Bond> {
 
-    @XmlElementRef(name = "bond", required = true)
-    private Bond bond;
+    @XmlElementRef(name = "collateral", required = true)
+    private Bond collateral;
 
     @XmlAttribute(name = "haircut", required = false)
     private Percentage haircut;
@@ -29,22 +29,22 @@ public class BondRepo extends AbstractRepo<Bond> {
     public BondRepo(
             final String name,
             final RepoRate rate,
-            final Bond bond,
+            final Bond collateral,
             final RepoDates dates,
             final Percentage haircut) {
         super(name, rate, dates);
-        this.bond = bond;
+        this.collateral = collateral;
         this.haircut = haircut;
     }
 
     @Override
     public Bond collateral() {
-        return bond;
+        return collateral;
     }
 
     @Override
     public Money<?> principal() {
-        return bond.par().times(this.haircut().inverse());
+        return collateral.par().times(this.haircut().inverse());
     }
 
     @Nonnull

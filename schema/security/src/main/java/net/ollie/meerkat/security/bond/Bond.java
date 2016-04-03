@@ -2,7 +2,6 @@ package net.ollie.meerkat.security.bond;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.identifier.security.Isin;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.Callable;
 import net.ollie.meerkat.security.Security;
@@ -16,9 +15,6 @@ import net.ollie.meerkat.security.bond.dates.BondDates;
  * @author Ollie
  */
 public interface Bond extends SecurityDefinition, Callable<BondCall> {
-
-    @Nonnull
-    Isin isin();
 
     @Nonnull
     Money<?> par();
