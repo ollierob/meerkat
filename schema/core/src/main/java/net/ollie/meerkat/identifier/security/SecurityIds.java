@@ -32,6 +32,10 @@ public class SecurityIds {
         this.ids = ids;
     }
 
+    public boolean contains(final SecurityId id) {
+        return ids.contains(id);
+    }
+
     @Nonnull
     public <S extends SecurityId> Optional<S> id(final Class<S> clazz) {
         return ids.stream()

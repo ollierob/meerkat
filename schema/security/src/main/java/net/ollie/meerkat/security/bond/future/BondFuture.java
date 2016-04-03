@@ -1,20 +1,11 @@
 package net.ollie.meerkat.security.bond.future;
 
 import java.time.Month;
-import java.time.Period;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Optional;
 
-import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
 import net.ollie.meerkat.security.derivative.forward.FutureDelivery;
@@ -24,20 +15,11 @@ import net.ollie.meerkat.security.derivative.forward.FutureDelivery;
  * @author ollie
  */
 public class BondFuture
-        extends AbstractFuture<BondBasket>
-        implements BondDerivative<BondBasket> {
+        extends AbstractFuture<BondFutureBasket>
+        implements BondDerivative<BondFutureBasket> {
 
-    @XmlElementRef(name = "basket")
-    private BondBasket basket;
-
-    @XmlElement(name = "notional")
-    private Money<?> notional;
-
-    @XmlAttribute(name = "rate")
-    private Percentage rate;
-
-    @XmlAttribute(name = "maturity")
-    private Period minimumMaturity;
+    @XmlElement(name = "basket")
+    private BondFutureBasket basket;
 
     @XmlElementRef(name = "delivery")
     private FutureDelivery<Month> deliveryMonths;
@@ -47,7 +29,7 @@ public class BondFuture
     }
 
     @Override
-    public BondBasket underlying() {
+    public BondFutureBasket underlying() {
         return basket;
     }
 
@@ -56,15 +38,18 @@ public class BondFuture
         return deliveryMonths;
     }
 
-    @Nonnull
-    public <B extends Bond, C extends CurrencyId> Optional<B> cheapestToDeliver(final Map<B, Money<C>> bondPrices) {
-        return bondPrices.entrySet()
-                .stream()
-                .filter(e -> basket.contains(e.getKey()))
-                .min(Comparator.comparing(Map.Entry::getValue))
-                .map(Map.Entry::getKey);
+    public Percentage referenceYield() {
+        return basket.referenceYield();
     }
 
+//    @Nonnull
+//    public <S extends HasSecurityId, C extends CurrencyId> Optional<S> cheapestToDeliver(final Map<S, Money<C>> bondPrices) {
+//        return bondPrices.entrySet()
+//                .stream()
+//                .filter(e -> basket.contains(e.getKey().securityId()))
+//                .min(Comparator.comparing(Map.Entry::getValue))
+//                .map(Map.Entry::getKey);
+//    }
     @Override
     public <R> R handleWith(final BondDerivative.Handler<R> handler) {
         return handler.handle(this);
