@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
     <parent>
         <groupId>net.ollie.meerkat</groupId>
-        <artifactId>meerkat</artifactId>
+        <artifactId>meerkat-reporting</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    
-    <name>reporting</name>
-    <artifactId>meerkat-reporting</artifactId>
-    <packaging>pom</packaging>
-    
-    <modules>
-        <module>framework</module>
-    </modules>
-    
+    <artifactId>meerkat-reporting-framework</artifactId>
+    <packaging>jar</packaging>
+    <name>reporting-framework</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-schema-internal</artifactId>
+            <artifactId>meerkat-schema-security</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-    
 </project>
