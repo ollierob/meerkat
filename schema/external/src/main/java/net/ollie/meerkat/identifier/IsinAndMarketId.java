@@ -15,7 +15,7 @@ import net.ollie.meerkat.identifier.security.Isin;
  * @author Ollie
  */
 @XmlRootElement
-public class IsinInMarketId implements SecurityInMarketId, HasMarketId, HasCurrencyId {
+public class IsinAndMarketId implements SecurityInMarketId, HasMarketId, HasCurrencyId {
 
     @XmlElement(name = "isin")
     private Isin isin;
@@ -27,10 +27,10 @@ public class IsinInMarketId implements SecurityInMarketId, HasMarketId, HasCurre
     private CurrencyIso currency;
 
     @Deprecated
-    IsinInMarketId() {
+    IsinAndMarketId() {
     }
 
-    public IsinInMarketId(final Isin isin, final Mic market, final CurrencyIso currency) {
+    public IsinAndMarketId(final Isin isin, final Mic market, final CurrencyIso currency) {
         this.isin = isin;
         this.market = market;
         this.currency = currency;

@@ -2,6 +2,7 @@ package net.ollie.meerkat.identifier;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
@@ -13,6 +14,7 @@ import net.ollie.meerkat.identifier.security.SecurityId;
  *
  * @author Ollie
  */
+@XmlRootElement
 public class SecurityAndMarketId implements SecurityInMarketId, HasMarketId, HasCurrencyId {
 
     @XmlElementRef(name = "security")
