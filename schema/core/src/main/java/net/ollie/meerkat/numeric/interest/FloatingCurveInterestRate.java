@@ -21,8 +21,8 @@ import net.ollie.meerkat.numeric.money.Money;
 @XmlRootElement
 public class FloatingCurveInterestRate implements FloatingInterestRate {
 
-    public static FloatingCurveInterestRate flat(final String name, final Percentage rate, final InterestRateInterpolator interpolator) {
-        return new FloatingCurveInterestRate(InterestRateCurve.flat(name, rate), interpolator);
+    public static FloatingCurveInterestRate flat(final Percentage rate, final InterestRateInterpolator interpolator) {
+        return new FloatingCurveInterestRate(InterestRateCurve.flat(rate), interpolator);
     }
 
     @XmlElement(name = "curve")
@@ -67,8 +67,8 @@ public class FloatingCurveInterestRate implements FloatingInterestRate {
     }
 
     @Override
-    public String name() {
-        return curve.name();
+    public String toString() {
+        return curve.toString();
     }
 
 }

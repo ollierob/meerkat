@@ -48,7 +48,7 @@ public abstract class AbstractRepo<C extends Security>
     public String toString() {
         return this.getClass().getSimpleName()
                 + ": principal [" + this.principal()
-                + "] collateral [" + this.collateral().name()
+                + "] collateral [" + this.collateral()
                 + "] rate [" + rate
                 + "] dates [" + dates
                 + "] ";

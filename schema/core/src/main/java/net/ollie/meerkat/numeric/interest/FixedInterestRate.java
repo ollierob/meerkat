@@ -44,7 +44,7 @@ public interface FixedInterestRate extends InterestRate, Comparable<FixedInteres
 
     @Nonnull
     default InterestRateCurve toCurve() {
-        return InterestRateCurve.flat(this.name(), this.annualRate());
+        return InterestRateCurve.flat(this.annualRate());
     }
 
 }

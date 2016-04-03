@@ -1,6 +1,5 @@
 package net.ollie.meerkat.security.bond.future;
 
-import java.math.BigDecimal;
 import java.time.Month;
 import java.time.Period;
 import java.util.Comparator;
@@ -12,6 +11,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
@@ -57,7 +57,7 @@ public class BondFuture
     }
 
     @Nonnull
-    public <B extends Bond> Optional<B> cheapestToDeliver(final Map<B, BigDecimal> bondPrices) {
+    public <B extends Bond, C extends CurrencyId> Optional<B> cheapestToDeliver(final Map<B, Money<C>> bondPrices) {
         return bondPrices.entrySet()
                 .stream()
                 .filter(e -> basket.contains(e.getKey()))

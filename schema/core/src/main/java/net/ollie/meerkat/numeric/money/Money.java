@@ -10,6 +10,7 @@ import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.DecimalFraction;
 import net.ollie.meerkat.security.Security;
+import net.ollie.meerkat.utils.HasName;
 import net.ollie.meerkat.utils.numeric.Numbers;
 import net.ollie.meerkat.utils.numeric.Numeric;
 
@@ -18,7 +19,7 @@ import net.ollie.meerkat.utils.numeric.Numeric;
  * @author Ollie
  */
 public interface Money<C extends CurrencyId>
-        extends HasCurrencyId, Numeric.Summable<Money<C>>, Security {
+        extends HasCurrencyId, HasName, Numeric.Summable<Money<C>>, Security {
 
     @Override
     C currencyId();

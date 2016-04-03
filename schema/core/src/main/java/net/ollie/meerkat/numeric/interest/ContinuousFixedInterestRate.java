@@ -34,11 +34,6 @@ public class ContinuousFixedInterestRate implements FixedInterestRate {
     }
 
     @Override
-    public String name() {
-        return "continuous@" + annualRate;
-    }
-
-    @Override
     public Percentage annualRate() {
         return annualRate;
     }
@@ -58,6 +53,11 @@ public class ContinuousFixedInterestRate implements FixedInterestRate {
     @Override
     public ContinuousFixedInterestRate with(final Percentage rate) {
         return new ContinuousFixedInterestRate(rate, yearCount);
+    }
+
+    @Override
+    public String toString() {
+        return "continuous@" + annualRate;
     }
 
 }

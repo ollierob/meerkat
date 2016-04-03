@@ -6,12 +6,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.apache.commons.math3.fraction.Fraction;
+
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.daycount.YearCount;
 import net.ollie.meerkat.numeric.money.Money;
-
-import org.apache.commons.math3.fraction.Fraction;
 
 /**
  *
@@ -40,11 +40,6 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
     }
 
     @Override
-    public String name() {
-        return "compound@" + annualRate;
-    }
-
-    @Override
     public Percentage annualRate() {
         return annualRate;
     }
@@ -64,6 +59,11 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
     @Override
     public CompoundFixedInterestRate with(final Percentage rate) {
         return new CompoundFixedInterestRate(rate, yearCount, yearlyFrequency);
+    }
+
+    @Override
+    public String toString() {
+        return "compound@" + annualRate;
     }
 
 }

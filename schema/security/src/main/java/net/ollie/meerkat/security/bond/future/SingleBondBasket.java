@@ -15,7 +15,7 @@ import net.ollie.meerkat.security.bond.Bond;
 @XmlRootElement
 public class SingleBondBasket implements BondBasket {
 
-    @XmlElementRef(name = "bond")
+    @XmlElementRef(name = "bond", required = true)
     private Bond bond;
 
     @Deprecated
@@ -29,11 +29,6 @@ public class SingleBondBasket implements BondBasket {
     @Override
     public Set<Bond> bonds() {
         return Collections.singleton(bond);
-    }
-
-    @Override
-    public String name() {
-        return bond.name();
     }
 
     @Override

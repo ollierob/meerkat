@@ -5,12 +5,13 @@ import javax.annotation.Nonnull;
 import net.ollie.meerkat.identifier.country.HasCountryId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.security.Security;
+import net.ollie.meerkat.utils.HasName;
 
 /**
  *
  * @author Ollie
  */
-public interface Currency extends HasCurrencyId, HasCountryId, Security {
+public interface Currency extends HasCurrencyId, HasCountryId, HasName, Security {
 
     Percentage STANDARD_PIP = Percentage.basisPoints(1);
 
