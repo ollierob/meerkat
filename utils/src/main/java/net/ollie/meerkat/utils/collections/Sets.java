@@ -12,7 +12,12 @@ public class Sets {
 
     @SafeVarargs
     public static <T> Set<T> asUnmodifiableSet(final T... array) {
-        return java.util.Collections.unmodifiableSet(new HashSet<>(Arrays.asList(array)));
+        return java.util.Collections.unmodifiableSet(asSet(array));
+    }
+
+    @SafeVarargs
+    public static <T> Set<T> asSet(final T... array) {
+        return new HashSet<>(Arrays.asList(array));
     }
 
 }
