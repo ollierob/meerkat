@@ -64,7 +64,7 @@ public class NativeBondRepoPricerTest {
         final BondPrice<USD> mockBondPrice = mock(BondPrice.class);
         final Money<USD> dirtyValue = DecimalMoney.valueOf(usd, 12_157_315.07);
         when(mockBondPrice.dirtyValue()).thenReturn(dirtyValue);
-        when(mockBondPricer.price(priceDate, mockBond, BondShifts.none(), usd)).thenReturn(mockBondPrice);
+        when(mockBondPricer.price(priceDate, mockBond, usd, BondShifts.none())).thenReturn(mockBondPrice);
 
         final RepoRate rate = new RepoInterestRate(new SimpleFixedInterestRate(new Percentage(0.885), ActualFixedAccrualFactor.ACT_360));
         final RepoDates dates = new TermRepoDates(nearDate.minusDays(1), nearDate, farDate);

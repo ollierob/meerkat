@@ -51,7 +51,7 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
             final LocalDate valuationDate,
             final C currency,
             final BondShifts shifts) {
-        return bondPricer.price(valuationDate, bond, shifts, currency);
+        return bondPricer.price(valuationDate, bond, currency, shifts);
     }
 
 }
