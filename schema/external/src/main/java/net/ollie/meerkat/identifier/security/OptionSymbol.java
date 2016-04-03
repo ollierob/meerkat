@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author ollie
+ * @see <a href="https://en.wikipedia.org/wiki/Option_symbol">Optional symbol</a>
  */
 @XmlRootElement
 public class OptionSymbol implements SecurityId {

@@ -2,6 +2,7 @@ package net.ollie.meerkat.identifier.security;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -16,7 +17,7 @@ import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
  * @author Ollie
  */
 @XmlRootElement
-public class Isin implements SecurityId, HasCheckDigit, Serializable {
+public class Isin implements SecurityId, HasCheckDigit, HasNsin, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -56,8 +57,9 @@ public class Isin implements SecurityId, HasCheckDigit, Serializable {
         return country;
     }
 
-    public Nsin nsin() {
-        return nsin;
+    @Override
+    public Optional<Nsin> nsin() {
+        return Optional.of(nsin);
     }
 
     @Override
@@ -110,7 +112,7 @@ public class Isin implements SecurityId, HasCheckDigit, Serializable {
     public boolean equals(@Nonnull final Isin that) {
         return this.checkDigit() == that.checkDigit()
                 && Objects.equals(this.country(), that.country())
-                && Objects.equals(this.nsin().value(), that.nsin().value());
+                && Objects.equals(this.nsin(), that.nsin());
     }
 
 }

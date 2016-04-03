@@ -3,6 +3,7 @@ package net.ollie.meerkat.security.derivative.option;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
+import net.ollie.meerkat.identifier.security.HasOptionSymbol;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.numeric.quantity.Quantity;
 import net.ollie.meerkat.security.Security;
@@ -13,7 +14,8 @@ import net.ollie.meerkat.security.derivative.option.exercise.OptionExercise;
  *
  * @author Ollie
  */
-public interface Option<S extends Security> extends Derivative<S> {
+public interface Option<S extends Security>
+        extends Derivative<S>, HasOptionSymbol {
 
     @Nonnull
     Money<?> strike();
