@@ -1,10 +1,14 @@
 package net.ollie.meerkat.security.bond.future;
 
+import java.math.BigDecimal;
 import java.time.Month;
 
+import javax.annotation.Nonnull;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
@@ -18,14 +22,34 @@ public class BondFuture
         extends AbstractFuture<BondFutureBasket>
         implements BondDerivative<BondFutureBasket> {
 
-    @XmlElement(name = "basket")
+    @XmlAttribute(name = "conversion_factor", required = true)
+    private BigDecimal conversionFactor;
+
+    @XmlElement(name = "basket", required = true)
     private BondFutureBasket basket;
 
-    @XmlElementRef(name = "delivery")
+    @XmlElementRef(name = "delivery", required = true)
     private FutureDelivery<Month> deliveryMonths;
 
     @Deprecated
     BondFuture() {
+    }
+
+    public BondFuture(
+            final String name,
+            final SecurityIds identifiers,
+            final BigDecimal conversionFactor,
+            final BondFutureBasket basket,
+            final FutureDelivery<Month> deliveryMonths) {
+        super(name, identifiers);
+        this.conversionFactor = conversionFactor;
+        this.basket = basket;
+        this.deliveryMonths = deliveryMonths;
+    }
+
+    @Nonnull
+    public BigDecimal conversionFactor() {
+        return conversionFactor;
     }
 
     @Override
