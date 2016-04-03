@@ -116,17 +116,18 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
             });
         }
 
-        private final Lazy<Money<C>> dirtyValue = Lazy.loadOnceNonnull(this::calculateDirtyValue);
+        private final Lazy<Money<C>> accruedInterest = Lazy.loadOnceNonnull(this::calculateAccuredInterest);
 
         @Override
-        public Money<C> dirtyValue() {
-            return dirtyValue.get();
+        public Money<C> accruedInterest() {
+            return accruedInterest.get();
         }
 
         @Nonnull
-        private Money<C> calculateDirtyValue() {
+        private Money<C> calculateAccuredInterest() {
             final FixedCoupon<?> priorCoupon = bond.coupons().prior(date);
-            return this.discountRate().accrue(this.couponAmount(), priorCoupon.date(), date);
+            final Money<C> priorAmount = this.couponAmount();
+            return this.discountRate().accrue(priorAmount, priorCoupon.date(), date).minus(priorAmount);
         }
 
         @Override

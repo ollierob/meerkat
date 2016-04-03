@@ -33,7 +33,9 @@ public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
     }
 
     @Override
-    Money<C> dirtyValue();
+    default Money<C> dirtyValue() {
+        return this.cleanValue().plus(this.accruedInterest());
+    }
 
     @Nonnull
     default Percentage dirty() {
@@ -45,12 +47,13 @@ public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
     }
 
     @Nonnull
-    default Money<C> accrued() {
-        return this.dirtyValue().minus(this.cleanValue());
-    }
+    Money<C> accruedInterest();
 
     /**
-     * Regenerate a price given some shifts. Should recalculate as little as possible.
+     * Recalculate a price given some shifts. Should recalculate as little as
+     * possible.
+     *
+     * Shifts do not accumulate.
      *
      * @param shifts
      * @return
