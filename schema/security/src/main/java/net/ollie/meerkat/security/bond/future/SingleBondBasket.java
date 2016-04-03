@@ -32,11 +32,6 @@ public class SingleBondBasket implements BondBasket {
     }
 
     @Override
-    public String name() {
-        return bond.name();
-    }
-
-    @Override
     public boolean contains(final Bond bond) {
         return this.bond.equals(bond);
     }

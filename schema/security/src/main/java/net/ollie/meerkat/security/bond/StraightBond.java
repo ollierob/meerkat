@@ -5,6 +5,7 @@ import java.util.AbstractList;
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.identifier.security.Isin;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.call.BondCall;
 import net.ollie.meerkat.security.bond.coupon.BondCoupon;
@@ -26,10 +27,11 @@ public abstract class StraightBond extends AbstractBond {
 
     public StraightBond(
             final String name,
+            final Isin isin,
             final Money<?> par,
             final MaturingBondDates dates,
             final BondCall call) {
-        super(name, par, call);
+        super(name, isin, par, call);
         this.dates = dates;
     }
 

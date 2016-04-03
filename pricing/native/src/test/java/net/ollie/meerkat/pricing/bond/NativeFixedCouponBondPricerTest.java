@@ -9,27 +9,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import net.ollie.meerkat.IntegrationTest;
-import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
-import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.currency.CurrencyIso;
-import net.ollie.meerkat.identifier.currency.USD;
-import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.numeric.interest.CompoundFixedInterestRate;
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.meerkat.numeric.interest.InterestRate;
-import net.ollie.meerkat.numeric.interest.SimpleFixedInterestRate;
-import net.ollie.meerkat.numeric.interest.daycount.ActualFixedAccrualFactor;
-import net.ollie.meerkat.numeric.interest.daycount.FixedFixedAccrualFactor;
-import net.ollie.meerkat.numeric.money.DecimalMoney;
-import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
-import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.security.bond.FixedCouponBond;
-import net.ollie.meerkat.security.bond.call.BondCall;
-import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
-import net.ollie.meerkat.time.interim.Interval;
-
 import static org.hamcrest.Matchers.closeTo;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
@@ -41,6 +20,28 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
+
+import net.ollie.meerkat.IntegrationTest;
+import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
+import net.ollie.meerkat.calculate.price.bond.BondPrice;
+import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.meerkat.identifier.currency.CurrencyIso;
+import net.ollie.meerkat.identifier.currency.USD;
+import net.ollie.meerkat.identifier.security.Isin;
+import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.interest.CompoundFixedInterestRate;
+import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.meerkat.numeric.interest.InterestRate;
+import net.ollie.meerkat.numeric.interest.SimpleFixedInterestRate;
+import net.ollie.meerkat.numeric.interest.daycount.ActualFixedAccrualFactor;
+import net.ollie.meerkat.numeric.interest.daycount.FixedFixedAccrualFactor;
+import net.ollie.meerkat.numeric.money.DecimalMoney;
+import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
+import net.ollie.meerkat.security.bond.FixedCouponBond;
+import net.ollie.meerkat.security.bond.call.BondCall;
+import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
+import net.ollie.meerkat.time.interim.Interval;
 
 /**
  *
@@ -87,7 +88,7 @@ public class NativeFixedCouponBondPricerTest {
         final Money<USD> par = DecimalMoney.valueOf(usd, 100);
         final Money<USD> coupon = DecimalMoney.valueOf(usd, 3);
         final BondCall call = mock(BondCall.class);
-        final FixedCouponBond bond = new FixedCouponBond("name", par, dates, coupon, rate, couponDates, call);
+        final FixedCouponBond bond = new FixedCouponBond("name", mock(Isin.class), par, dates, coupon, rate, couponDates, call);
 
         //When - priced at issue
         {

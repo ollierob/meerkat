@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.security.Isin;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.call.BondCall;
 import net.ollie.meerkat.security.bond.coupon.FloatingCoupon;
@@ -27,11 +28,12 @@ public class FloatingRateNote extends StraightBond {
 
     public FloatingRateNote(
             final String name,
+            final Isin isin,
             final Money<?> par,
             final MaturingBondDates dates,
             final List<FloatingCoupon> coupons,
             final BondCall call) {
-        super(name, par, dates, call);
+        super(name, isin, par, dates, call);
         this.coupons = coupons;
     }
 
@@ -42,7 +44,10 @@ public class FloatingRateNote extends StraightBond {
 
     @Override
     public FloatingRateNote strip() {
-        return new FloatingRateNote(this.name(), this.par(), this.dates(), Collections.emptyList(), this.call().orElse(null));
+        return new FloatingRateNote(
+                this.name(),
+                this.isin(),
+                this.par(), this.dates(), Collections.emptyList(), this.call().orElse(null));
     }
 
     @Override
