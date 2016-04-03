@@ -2,6 +2,7 @@ package net.ollie.meerkat.security.repo;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 import net.ollie.meerkat.security.Security;
 import net.ollie.meerkat.security.repo.dates.RepoDates;
@@ -27,9 +28,10 @@ public abstract class AbstractRepo<C extends Security>
 
     protected AbstractRepo(
             final String name,
+            final SecurityIds identifiers,
             final RepoRate rate,
             final RepoDates dates) {
-        super(name);
+        super(name, identifiers);
         this.rate = rate;
         this.dates = dates;
     }

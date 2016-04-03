@@ -3,6 +3,7 @@ package net.ollie.meerkat.security.equity;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 
 /**
@@ -19,8 +20,11 @@ public class Stock extends NamedSecurity implements Equity {
     Stock() {
     }
 
-    public Stock(final String name, final boolean preferred) {
-        super(name);
+    public Stock(
+            final String name,
+            final SecurityIds identifiers,
+            final boolean preferred) {
+        super(name, identifiers);
         this.preferred = preferred;
     }
 

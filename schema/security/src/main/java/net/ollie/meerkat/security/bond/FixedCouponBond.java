@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.call.BondCall;
@@ -37,13 +38,14 @@ public class FixedCouponBond extends StraightBond {
 
     public FixedCouponBond(
             final String name,
+            final SecurityIds identifiers,
             final Money<?> par,
             final MaturingBondDates dates,
             final Money<?> couponAmount,
             final FixedInterestRate couponRate,
             final List<LocalDate> couponDates,
             final BondCall call) {
-        super(name, par, dates, call);
+        super(name, identifiers, par, dates, call);
         this.couponRate = couponRate;
         this.couponAmount = couponAmount;
         this.couponDates = couponDates;
@@ -68,6 +70,7 @@ public class FixedCouponBond extends StraightBond {
     public StraightBond strip() {
         return new FixedCouponBond(
                 this.name(),
+                this.securityIds(),
                 this.par(),
                 this.dates(),
                 this.couponAmount(),

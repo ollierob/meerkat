@@ -3,6 +3,7 @@ package net.ollie.meerkat.security.fx.swap;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.derivative.swap.AbstractSwap;
 import net.ollie.meerkat.security.fx.FxDerivative;
 import net.ollie.meerkat.utils.collections.FiniteSequence;
@@ -26,8 +27,12 @@ public class FxSwap
     FxSwap() {
     }
 
-    public FxSwap(final String name, final FxSwapLeg spot, final FxSwapLeg forward) {
-        super(name);
+    public FxSwap(
+            final String name,
+            final SecurityIds identifiers,
+            final FxSwapLeg spot,
+            final FxSwapLeg forward) {
+        super(name, identifiers);
         this.spot = spot;
         this.forward = forward;
     }

@@ -2,6 +2,7 @@ package net.ollie.meerkat.security.equity;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 
 /**
@@ -15,8 +16,8 @@ public class StockIndex extends NamedSecurity {
     StockIndex() {
     }
 
-    public StockIndex(final String name) {
-        super(name);
+    public StockIndex(final String name, final SecurityIds identifiers) {
+        super(name, identifiers);
     }
 
 }

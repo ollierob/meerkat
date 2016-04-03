@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.NamedSecurity;
 import net.ollie.meerkat.security.bond.call.BondCall;
@@ -26,8 +27,8 @@ public abstract class AbstractBond
     protected AbstractBond() {
     }
 
-    protected AbstractBond(final String name, final Money<?> par, final BondCall call) {
-        super(name);
+    protected AbstractBond(final String name, final SecurityIds identifiers, final Money<?> par, final BondCall call) {
+        super(name, identifiers);
         this.par = par;
         this.call = call;
     }

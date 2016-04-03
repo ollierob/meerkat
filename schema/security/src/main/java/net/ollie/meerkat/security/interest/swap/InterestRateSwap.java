@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.derivative.swap.AbstractSwap;
 import net.ollie.meerkat.security.interest.InterestRateDerivative;
 import net.ollie.meerkat.utils.collections.FiniteSequence;
@@ -32,8 +33,9 @@ public class InterestRateSwap
 
     public InterestRateSwap(
             final String name,
+            final SecurityIds identifiers,
             final LocalDate tradeDate) {
-        super(name);
+        super(name, identifiers);
         this.tradeDate = tradeDate;
     }
 

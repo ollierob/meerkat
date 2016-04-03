@@ -3,6 +3,7 @@ package net.ollie.meerkat.security.bond.swap;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.interest.InterestRateId;
 import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
@@ -30,8 +31,12 @@ public class BondAssetSwap
     BondAssetSwap() {
     }
 
-    public BondAssetSwap(final String name, final FixedCouponBond underlying, final InterestRateId referenceRate) {
-        super(name);
+    public BondAssetSwap(
+            final String name,
+            final SecurityIds identifiers,
+            final FixedCouponBond underlying,
+            final InterestRateId referenceRate) {
+        super(name, identifiers);
         this.underlying = underlying;
         this.referenceRate = referenceRate;
     }

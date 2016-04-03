@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.DecimalFraction;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
@@ -29,8 +30,12 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
     FxOptionRate() {
     }
 
-    public FxOptionRate(final String name, final Money<C> call, final Money<P> put) {
-        super(name);
+    public FxOptionRate(
+            final String name,
+            final SecurityIds identifiers,
+            final Money<C> call,
+            final Money<P> put) {
+        super(name, identifiers);
         this.call = call;
         this.put = put;
     }

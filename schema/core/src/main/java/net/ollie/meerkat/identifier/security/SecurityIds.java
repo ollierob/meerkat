@@ -1,5 +1,6 @@
 package net.ollie.meerkat.identifier.security;
 
+import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -16,8 +17,20 @@ import net.ollie.meerkat.utils.Classes;
 @XmlRootElement
 public class SecurityIds {
 
+    public static SecurityIds singleton(final SecurityId id) {
+        return new SecurityIds(Collections.singleton(id));
+    }
+
     @XmlElementRef(name = "id")
     private Set<SecurityId> ids;
+
+    @Deprecated
+    SecurityIds() {
+    }
+
+    public SecurityIds(final Set<SecurityId> ids) {
+        this.ids = ids;
+    }
 
     @Nonnull
     public <S extends SecurityId> Optional<S> id(final Class<S> clazz) {

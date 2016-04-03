@@ -1,8 +1,11 @@
 package net.ollie.meerkat.security.derivative.forward;
 
-import javax.xml.bind.annotation.XmlElement;
+import java.util.Optional;
+
+import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.identifier.security.FutureTicker;
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 import net.ollie.meerkat.security.Security;
 
@@ -14,21 +17,17 @@ public abstract class AbstractFuture<S extends Security>
         extends NamedSecurity
         implements Future<S> {
 
-    @XmlElement(name = "ticker")
-    private FutureTicker ticker;
-
     @Deprecated
     protected AbstractFuture() {
     }
 
-    public AbstractFuture(final FutureTicker ticker, final String name) {
-        super(name);
-        this.ticker = ticker;
+    public AbstractFuture(final String name, final SecurityIds identifiers) {
+        super(name, identifiers);
     }
 
-    @Override
-    public FutureTicker ticker() {
-        return ticker;
+    @Nonnull
+    public Optional<FutureTicker> ticker() {
+        return this.securityIds().id(FutureTicker.class);
     }
 
 }

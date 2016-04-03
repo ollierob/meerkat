@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
@@ -28,11 +29,12 @@ public class BondRepo extends AbstractRepo<Bond> {
 
     public BondRepo(
             final String name,
+            final SecurityIds identifiers,
             final RepoRate rate,
             final Bond collateral,
             final RepoDates dates,
             final Percentage haircut) {
-        super(name, rate, dates);
+        super(name, identifiers, rate, dates);
         this.collateral = collateral;
         this.haircut = haircut;
     }
