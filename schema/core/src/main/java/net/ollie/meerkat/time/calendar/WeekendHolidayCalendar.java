@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Ollie
  */
 @XmlRootElement
-public class WeekendCalendar implements BusinessCalendar {
+public class WeekendHolidayCalendar implements BusinessDayCalendar {
 
     @Override
     public boolean isHoliday(final LocalDate date) {

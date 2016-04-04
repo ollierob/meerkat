@@ -10,19 +10,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Ollie
  */
 @XmlRootElement
-public class CombinedCalendar implements BusinessCalendar {
+public class CombinedBusinessDayCalendar implements BusinessDayCalendar {
 
     @XmlElementRef(name = "first")
-    private BusinessCalendar first;
+    private BusinessDayCalendar first;
 
     @XmlElementRef(name = "second")
-    private BusinessCalendar second;
+    private BusinessDayCalendar second;
 
     @Deprecated
-    CombinedCalendar() {
+    CombinedBusinessDayCalendar() {
     }
 
-    public CombinedCalendar(final BusinessCalendar first, final BusinessCalendar second) {
+    public CombinedBusinessDayCalendar(final BusinessDayCalendar first, final BusinessDayCalendar second) {
         this.first = first;
         this.second = second;
     }

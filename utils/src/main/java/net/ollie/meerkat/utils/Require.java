@@ -22,14 +22,19 @@ public class Require {
         }
     }
 
+    public static boolean isTrue(final boolean b, final Supplier<String> message) {
+        if (!b) {
+            throw new IllegalArgumentException(message.get());
+        }
+        return b;
+    }
+
     public static void argumentsEqual(final Object left, final Object right) {
         argumentsEqual(left, right, () -> "Objects were not equal: [" + left + "} != [" + right + "]");
     }
 
     public static void argumentsEqual(final Object left, final Object right, final Supplier<String> message) {
-        if (!Objects.equals(left, right)) {
-            throw new IllegalArgumentException(message.get());
-        }
+        isTrue(Objects.equals(left, right), message);
     }
 
 }

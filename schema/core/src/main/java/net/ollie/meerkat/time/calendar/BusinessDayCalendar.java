@@ -13,11 +13,11 @@ import net.ollie.meerkat.time.interim.Interval;
  *
  * @author Ollie
  */
-public interface BusinessCalendar {
+public interface BusinessDayCalendar {
 
     boolean isHoliday(@Nonnull LocalDate date);
 
-    default boolean isNotHoliday(@Nonnull final LocalDate date) {
+    default boolean isBusinessDay(@Nonnull final LocalDate date) {
         return !this.isHoliday(date);
     }
 
@@ -26,7 +26,7 @@ public interface BusinessCalendar {
         final NavigableSet<LocalDate> holidays = new TreeSet<>();
         LocalDate date = startInclusive;
         while (date.isBefore(endExclusive)) {
-            if (!this.isNotHoliday(date)) {
+            if (!this.isBusinessDay(date)) {
                 holidays.add(date);
             }
         }
@@ -36,7 +36,7 @@ public interface BusinessCalendar {
     @Nonnull
     default NavigableSet<LocalDate> holidaysIn(final Interval interval) {
         return interval.stream()
-                .filter(this::isNotHoliday)
+                .filter(this::isBusinessDay)
                 .collect(Collectors.toCollection(TreeSet::new));
     }
 
