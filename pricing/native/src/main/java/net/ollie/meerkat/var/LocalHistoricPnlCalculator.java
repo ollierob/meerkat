@@ -46,9 +46,10 @@ public class LocalHistoricPnlCalculator implements HistoricPnlCalculator {
             final C currency,
             final LocalDate valuation,
             final Map<LocalDate, SecurityShifts> shifts) {
-        final SecurityDefinition security = getSecurityDefinition.apply(securityId);
-        return this.getFuture(CompletableFuture.supplyAsync(() -> pricer.price(valuation, security, currency), executor)
-                .thenApply(basePrice -> this.pnl(basePrice, shifts)));
+        final Future<HistoricPnl<C>> future = CompletableFuture.supplyAsync(() -> getSecurityDefinition.apply(securityId), executor)
+                .thenApplyAsync(security -> pricer.price(valuation, security, currency), executor)
+                .thenApplyAsync(basePrice -> this.pnl(basePrice, shifts), executor);
+        return this.complete(future);
     }
 
     private <C extends CurrencyId> HistoricPnl<C> pnl(
@@ -56,12 +57,12 @@ public class LocalHistoricPnlCalculator implements HistoricPnlCalculator {
             final Map<LocalDate, SecurityShifts> shifts) {
         final Map<LocalDate, Callable<SecurityPrice<C>>> shifters = Maps.transformValues(shifts, shift -> () -> basePrice.shift(shift));
         final Map<LocalDate, Future<SecurityPrice<C>>> scenarios = Maps.transformValues(shifters, executor::submit);
-        final Map<LocalDate, SecurityPrice<C>> securityPrices = Maps.transformValues(scenarios, this::getFuture);
+        final Map<LocalDate, SecurityPrice<C>> securityPrices = Maps.transformValues(scenarios, this::complete);
         final Map<LocalDate, Money<C>> dirtyPrices = Maps.transformValues(securityPrices, SecurityPrice::dirtyValue);
         return HistoricPnl.from(dirtyPrices);
     }
 
-    private <T> T getFuture(final Future<T> future) {
+    private <T> T complete(final Future<T> future) {
         try {
             return future.get();
         } catch (final InterruptedException | ExecutionException ex) {
