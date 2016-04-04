@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.date.Dates;
 import net.ollie.meerkat.time.interim.Interval;
 
 /**
@@ -19,6 +20,29 @@ public interface BusinessDayCalendar {
 
     default boolean isBusinessDay(@Nonnull final LocalDate date) {
         return !this.isHoliday(date);
+    }
+
+    default int countBusinessDays(final LocalDate start, final LocalDate end) {
+        int count = 0;
+        for (final LocalDate date : Dates.over(start, end)) {
+            if (this.isBusinessDay(date)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    default LocalDate nthBusinessDay(final LocalDate date, final int n) {
+        final int signum = n > 0 ? +1 : -1;
+        int c = 0;
+        LocalDate current = date;
+        while (c < n) {
+            current = current.plusDays(signum);
+            if (this.isBusinessDay(current)) {
+                c++;
+            }
+        }
+        return current;
     }
 
     @Nonnull
