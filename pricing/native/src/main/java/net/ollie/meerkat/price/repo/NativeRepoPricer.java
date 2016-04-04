@@ -1,4 +1,4 @@
-package net.ollie.meerkat.pricing.repo;
+package net.ollie.meerkat.price.repo;
 
 import java.time.temporal.Temporal;
 

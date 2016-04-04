@@ -5,12 +5,13 @@ import java.math.BigDecimal;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
+import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 
 /**
  *
  * @author ollie
  */
-public interface BondFutureShifts {
+public interface BondFutureShifts extends SecurityShifts {
 
     @Nonnull
     BondShifts bondShifts();

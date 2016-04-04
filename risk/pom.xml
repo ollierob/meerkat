@@ -6,7 +6,9 @@
         <artifactId>meerkat</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>meerkat-market-risk</artifactId>
+    
+    <artifactId>meerkat-risk</artifactId>
     <packaging>pom</packaging>
-    <name>market-risk</name>
+    <name>risk</name>
+    
 </project>

@@ -1,5 +1,7 @@
 package net.ollie.meerkat.pricing.repo;
 
+import net.ollie.meerkat.price.repo.NativeBondRepoPricer;
+
 import java.time.LocalDate;
 import java.time.Month;
 

@@ -1,4 +1,4 @@
-package net.ollie.meerkat.pricing.bond.future;
+package net.ollie.meerkat.price.bond.future;
 
 import java.math.BigDecimal;
 import java.time.temporal.Temporal;

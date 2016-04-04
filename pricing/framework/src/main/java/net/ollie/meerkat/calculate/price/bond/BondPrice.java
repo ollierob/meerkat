@@ -6,6 +6,7 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.price.SecurityPrice;
+import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
@@ -49,15 +50,11 @@ public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
     @Nonnull
     Money<C> accruedInterest();
 
-    /**
-     * Recalculate a price given some shifts. Should recalculate as little as
-     * possible.
-     *
-     * Shifts do not accumulate.
-     *
-     * @param shifts
-     * @return
-     */
+    @Override
+    default BondPrice<C> shift(final SecurityShifts shifts) {
+        return this.shift(shifts.definiteCast(BondShifts.class));
+    }
+
     @CheckReturnValue
     BondPrice<C> shift(BondShifts shifts);
 

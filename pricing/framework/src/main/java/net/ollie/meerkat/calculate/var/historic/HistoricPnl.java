@@ -1,14 +1,13 @@
-package net.ollie.meerkat.calculate.var;
+package net.ollie.meerkat.calculate.var.historic;
 
 import java.math.BigDecimal;
-import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NavigableMap;
-import java.util.NavigableSet;
 import static java.util.Objects.requireNonNull;
 import java.util.TreeMap;
 
@@ -21,8 +20,6 @@ import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 
-import org.threeten.extra.Interval;
-
 /**
  *
  * @author Ollie
@@ -30,16 +27,15 @@ import org.threeten.extra.Interval;
 @XmlRootElement
 public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
 
-    public static <C extends CurrencyId> HistoricPnl<C> from(final Map<Instant, Money<C>> values) {
-        final Iterator<Map.Entry<Instant, Money<C>>> iterator = values.entrySet().iterator();
-        Map.Entry<Instant, Money<C>> previous = iterator.next();
+    public static <C extends CurrencyId> HistoricPnl<C> from(final Map<LocalDate, Money<C>> values) {
+        final Iterator<Map.Entry<LocalDate, Money<C>>> iterator = values.entrySet().iterator();
+        Map.Entry<LocalDate, Money<C>> previous = iterator.next();
         final C currency = previous.getValue().currencyId();
-        final NavigableMap<Interval, BigDecimal> pnl = new TreeMap<>(HistoricPnl::compareIntervals);
+        final NavigableMap<LocalDate, BigDecimal> pnl = new TreeMap<>();
         while (iterator.hasNext()) {
-            final Map.Entry<Instant, Money<C>> next = iterator.next();
+            final Map.Entry<LocalDate, Money<C>> next = iterator.next();
             final Money<C> diff = next.getValue().minus(previous.getValue());
-            final Interval interval = Interval.of(previous.getKey(), next.getKey());
-            pnl.put(interval, diff.decimalValue());
+            pnl.put(next.getKey(), diff.decimalValue());
             previous = next;
         }
         return new HistoricPnl<>(currency, pnl);
@@ -49,13 +45,13 @@ public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
     private C currency;
 
     @XmlElementWrapper(name = "pnl")
-    private NavigableMap<Interval, BigDecimal> pnl;
+    private NavigableMap<LocalDate, BigDecimal> pnl;
 
     @Deprecated
     HistoricPnl() {
     }
 
-    public HistoricPnl(final C currency, final NavigableMap<Interval, BigDecimal> pnl) {
+    public HistoricPnl(final C currency, final NavigableMap<LocalDate, BigDecimal> pnl) {
         this.currency = requireNonNull(currency);
         this.pnl = requireNonNull(pnl);
     }
@@ -83,17 +79,8 @@ public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
     }
 
     @Nonnull
-    public NavigableMap<Interval, BigDecimal> byTime() {
+    public NavigableMap<LocalDate, BigDecimal> byDate() {
         return new TreeMap<>(pnl);
-    }
-
-    @Nonnull
-    public NavigableSet<Interval> intervals() {
-        return this.byTime().navigableKeySet();
-    }
-
-    static int compareIntervals(final Interval left, final Interval right) {
-        return left.getStart().compareTo(right.getStart());
     }
 
 }

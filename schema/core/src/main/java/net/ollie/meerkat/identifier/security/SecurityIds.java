@@ -8,8 +8,6 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.utils.Classes;
-
 /**
  *
  * @author Ollie
@@ -39,7 +37,7 @@ public class SecurityIds {
     @Nonnull
     public <S extends SecurityId> Optional<S> id(final Class<S> clazz) {
         return ids.stream()
-                .map(id -> Classes.cast(id, clazz))
+                .map(id -> id.cast(clazz))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .findAny();

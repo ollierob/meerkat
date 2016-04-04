@@ -1,3 +1,5 @@
+package net.ollie.meerkat.price.bond;
+
 //package net.ollie.meerkat.pricing.bond;
 //
 //import java.time.LocalDate;
