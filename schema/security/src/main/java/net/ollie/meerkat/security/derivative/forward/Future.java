@@ -11,6 +11,6 @@ import net.ollie.meerkat.security.Security;
 public interface Future<S extends Security> extends Forward<S> {
 
     @Nonnull
-    FutureDelivery<?> deliveryDates();
+    FutureDelivery deliveryDates();
 
 }

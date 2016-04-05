@@ -1,7 +1,6 @@
 package net.ollie.meerkat.security.bond.future;
 
 import java.math.BigDecimal;
-import java.time.Month;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -29,7 +28,7 @@ public class BondFuture
     private BondFutureBasket basket;
 
     @XmlElementRef(name = "delivery", required = true)
-    private FutureDelivery<Month> deliveryMonths;
+    private FutureDelivery deliveryMonths;
 
     @Deprecated
     BondFuture() {
@@ -40,7 +39,7 @@ public class BondFuture
             final SecurityIds identifiers,
             final BigDecimal conversionFactor,
             final BondFutureBasket basket,
-            final FutureDelivery<Month> deliveryMonths) {
+            final FutureDelivery deliveryMonths) {
         super(name, identifiers);
         this.conversionFactor = conversionFactor;
         this.basket = basket;
@@ -58,7 +57,7 @@ public class BondFuture
     }
 
     @Override
-    public FutureDelivery<Month> deliveryDates() {
+    public FutureDelivery deliveryDates() {
         return deliveryMonths;
     }
 

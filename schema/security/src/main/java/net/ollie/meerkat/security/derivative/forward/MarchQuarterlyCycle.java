@@ -10,11 +10,12 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Any business day in March, June, September or December.
  *
  * @author ollie
  */
 @XmlRootElement
-public class MarchQuarterlyCycle implements FutureDelivery<Month> {
+public class MarchQuarterlyCycle implements FutureDelivery {
 
     private static final Set<Month> MONTHS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
             Month.MARCH,
@@ -22,8 +23,7 @@ public class MarchQuarterlyCycle implements FutureDelivery<Month> {
             Month.SEPTEMBER,
             Month.DECEMBER)));
 
-    @Override
-    public Set<Month> delivery() {
+    public Set<Month> deliveryMonths() {
         return MONTHS;
     }
 

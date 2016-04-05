@@ -1,7 +1,5 @@
 package net.ollie.meerkat.security.interest.future;
 
-import java.time.Month;
-
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.numeric.interest.InterestRate;
@@ -18,14 +16,14 @@ public class ShortTermInterestRateFuture
         implements InterestRateDerivative {
 
     @XmlElementRef(name = "delivery")
-    private FutureDelivery<Month> delivery;
+    private FutureDelivery delivery;
 
     @Deprecated
     ShortTermInterestRateFuture() {
     }
 
     @Override
-    public FutureDelivery<Month> deliveryDates() {
+    public FutureDelivery deliveryDates() {
         return delivery;
     }
 
