@@ -1,9 +1,11 @@
 package net.ollie.meerkat.calculate.price.bond.future;
 
 import java.time.temporal.Temporal;
+import java.util.Optional;
 
-import net.ollie.meerkat.security.bond.Bond;
-import net.ollie.meerkat.security.bond.future.BondFuture;
+import javax.annotation.Nonnull;
+
+import net.ollie.meerkat.identifier.security.SecurityIds;
 
 /**
  *
@@ -11,6 +13,7 @@ import net.ollie.meerkat.security.bond.future.BondFuture;
  */
 public interface CheapestToDeliverProvider<T extends Temporal> {
 
-    Bond get(T temporal, BondFuture future);
+    @Nonnull
+    Optional<CheapestToDeliver<?>> get(T temporal, SecurityIds bondFutureId);
 
 }

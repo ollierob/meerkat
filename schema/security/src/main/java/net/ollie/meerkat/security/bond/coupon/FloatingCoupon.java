@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.HasInterestRateId;
 import net.ollie.meerkat.numeric.interest.InterestRate;
@@ -71,6 +72,11 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
             spread = feature.apply(spread);
         }
         return getRate.apply(key).plus(spread);
+    }
+
+    @Override
+    public CurrencyId currencyId() {
+        return key.currencyId();
     }
 
 }

@@ -5,13 +5,14 @@ import java.time.LocalDate;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 
 /**
  *
  * @author ollie
  */
-public interface CashPayment<C extends CurrencyId> {
+public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
 
     @Nonnull
     LocalDate date();
@@ -19,8 +20,8 @@ public interface CashPayment<C extends CurrencyId> {
     @Nonnull
     Money<C> amount();
 
-    @Nonnull
-    default C currency() {
+    @Override
+    default C currencyId() {
         return this.amount().currencyId();
     }
 

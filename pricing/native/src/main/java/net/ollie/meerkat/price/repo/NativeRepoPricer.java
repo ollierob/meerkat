@@ -2,7 +2,6 @@ package net.ollie.meerkat.price.repo;
 
 import java.time.temporal.Temporal;
 
-import net.ollie.meerkat.calculate.price.repo.RepoPrice;
 import net.ollie.meerkat.calculate.price.repo.RepoPricer;
 import net.ollie.meerkat.calculate.price.repo.RepoTypePricer;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
@@ -24,14 +23,7 @@ public class NativeRepoPricer<T extends Temporal> implements RepoPricer<T> {
     public <C extends CurrencyId> RepoPriceContext<C> priceContext(
             final T temporal,
             final C currency) {
-        return new RepoPriceContext<C>() {
-
-            @Override
-            public RepoPrice<C> handle(final BondRepo repo) {
-                return bondRepoPricer.price(temporal, repo, currency);
-            }
-
-        };
+        return repo -> bondRepoPricer.price(temporal, repo, currency);
     }
 
 }

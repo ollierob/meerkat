@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
@@ -94,6 +95,11 @@ public class FixedCouponBond extends StraightBond {
         @Override
         public int size() {
             return couponDates.size();
+        }
+
+        @Override
+        public CurrencyId currencyId() {
+            return couponAmount.currencyId();
         }
 
     }

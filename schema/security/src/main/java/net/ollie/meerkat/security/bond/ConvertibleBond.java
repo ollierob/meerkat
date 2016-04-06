@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.coupon.BondCoupon;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
@@ -81,6 +82,11 @@ public class ConvertibleBond extends AbstractBond {
         @Override
         public int size() {
             return coupons.size();
+        }
+
+        @Override
+        public CurrencyId currencyId() {
+            return coupons.get(0).currencyId(); //FIXME
         }
 
     }

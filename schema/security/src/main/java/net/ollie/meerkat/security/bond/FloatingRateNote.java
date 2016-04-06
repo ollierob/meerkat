@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.call.BondCall;
@@ -73,6 +74,11 @@ public class FloatingRateNote extends StraightBond {
         @Override
         public boolean isEmpty() {
             return coupons.isEmpty();
+        }
+
+        @Override
+        public CurrencyId currencyId() {
+            return coupons.get(0).currencyId(); //FIXME
         }
 
     }

@@ -7,6 +7,7 @@ import static java.util.stream.Collectors.toList;
 
 import javax.annotation.CheckForNull;
 
+import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.utils.collections.FiniteSequence;
 import net.ollie.meerkat.utils.time.TemporalSequence;
 
@@ -14,7 +15,7 @@ import net.ollie.meerkat.utils.time.TemporalSequence;
  *
  * @author ollie
  */
-public interface BondCoupons<C extends BondCoupon> extends TemporalSequence<LocalDate, C> {
+public interface BondCoupons<C extends BondCoupon> extends TemporalSequence<LocalDate, C>, HasCurrencyId {
 
     @Override
     default List<C> between(final LocalDate startInclusive, final LocalDate endExclusive) {

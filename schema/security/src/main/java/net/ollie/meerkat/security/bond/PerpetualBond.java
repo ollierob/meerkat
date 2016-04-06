@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
@@ -85,6 +86,11 @@ public class PerpetualBond extends AbstractBond {
         @Override
         public FixedCoupon<?> prior(final LocalDate current) {
             throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public CurrencyId currencyId() {
+            return couponAmount.currencyId();
         }
 
     }
