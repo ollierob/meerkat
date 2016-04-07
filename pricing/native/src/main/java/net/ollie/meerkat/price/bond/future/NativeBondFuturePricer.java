@@ -4,11 +4,10 @@ import java.math.BigDecimal;
 import java.time.temporal.Temporal;
 import java.util.function.Function;
 
-import javax.annotation.Nonnull;
-
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
+import net.ollie.meerkat.calculate.price.bond.SpotExchangedBondPrice;
 import net.ollie.meerkat.calculate.price.bond.future.BondFuturePrice;
 import net.ollie.meerkat.calculate.price.bond.future.BondFuturePricer;
 import net.ollie.meerkat.calculate.price.bond.future.BondFutureShifts;
@@ -16,6 +15,8 @@ import net.ollie.meerkat.calculate.price.bond.future.CheapestToDeliver;
 import net.ollie.meerkat.calculate.price.bond.future.CheapestToDeliverProvider;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
+import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.bond.future.BondFuture;
 
 /**
@@ -39,7 +40,7 @@ public class NativeBondFuturePricer<T extends Temporal>
     public <C extends CurrencyId> BondFuturePrice<C> price(final T temporal, final BondFuture bondFuture, final C currency) {
         final CheapestToDeliver<?> cheapestToDeliver = this.cheapestToDeliver(temporal, bondFuture);
         final ExchangeRateCalculator exchangeRates = getExchangeRates.apply(temporal);
-        return new NativeBondFuturePrice<>(cheapestToDeliver, bondFuture.conversionFactor(), exchangeRates, BondFutureShifts.none());
+        return new NativeBondFuturePrice<>(currency, cheapestToDeliver, exchangeRates, BondFutureShifts.none());
     }
 
     private CheapestToDeliver<?> cheapestToDeliver(final T temporal, final BondFuture bondFuture) {
@@ -57,60 +58,79 @@ public class NativeBondFuturePricer<T extends Temporal>
 
     }
 
-    private final class NativeBondFuturePrice<C extends CurrencyId>
+    private static final class NativeBondFuturePrice<C extends CurrencyId>
             implements BondFuturePrice<C> {
 
+        private final C currencyId;
         private final CheapestToDeliver<?> cheapestToDeliver;
-        private final BigDecimal conversionFactor;
         private final ExchangeRateCalculator exchangeRates;
         private final BondFutureShifts shifts;
 
         NativeBondFuturePrice(
+                final C currencyId,
                 final CheapestToDeliver<?> cheapestToDeliver,
-                final BigDecimal conversionFactor,
                 final ExchangeRateCalculator exchangeRates,
                 final BondFutureShifts shifts) {
+            this.currencyId = currencyId;
             this.cheapestToDeliver = cheapestToDeliver;
-            this.conversionFactor = conversionFactor;
             this.exchangeRates = exchangeRates;
             this.shifts = shifts;
         }
 
-        private final Lazy<BondPrice<C>> bondPrice = Lazy.loadOnceNonnull(this::computeBondPrice);
-
-        private BondPrice<C> bondPrice() {
-            return bondPrice.get();
+        BigDecimal shiftedConversionFactor() {
+            return this.cheapestToDeliver().conversionFactor();
         }
 
-        @Nonnull
-        private BondPrice<C> computeBondPrice() {
-            final BondPrice<?> price = cheapestToDeliver.price();
-            //return unshiftedBondPrice.shift(shifts.bondShifts());
-            throw new UnsupportedOperationException();
-        }
-
-        BigDecimal conversionFactor() {
-            return shifts.shiftConversionFactor(conversionFactor);
+        //FIXME this should be valued on the delivery date.
+        BondPrice<C> shiftedBondPrice() {
+            return this.cheapestToDeliver().price();
         }
 
         @Override
         public Money<C> cleanValue() {
-            return this.bondPrice().cleanValue().times(this.conversionFactor());
+            return this.shiftedBondPrice().cleanValue().over(this.shiftedConversionFactor());
         }
 
         @Override
         public Money<C> dirtyValue() {
-            return this.cleanValue().plus(this.bondPrice().accruedInterest());
+            return this.shiftedBondPrice().dirtyValue().over(this.shiftedConversionFactor());
         }
+
+        private final Lazy<CheapestToDeliver<C>> shiftedCheapestToDeliver = Lazy.loadOnceNonnull(NativeCheapestToDeliver::new);
 
         @Override
         public CheapestToDeliver<C> cheapestToDeliver() {
-            throw new UnsupportedOperationException(); //TODO
+            return shiftedCheapestToDeliver.get();
         }
 
         @Override
         public BondFuturePrice<C> shift(final BondFutureShifts shifts) {
-            return new NativeBondFuturePrice<>(cheapestToDeliver, conversionFactor, exchangeRates, shifts);
+            return new NativeBondFuturePrice<>(currencyId, cheapestToDeliver, exchangeRates, shifts);
+        }
+
+        final class NativeCheapestToDeliver implements CheapestToDeliver<C> {
+
+            @Override
+            public BigDecimal conversionFactor() {
+                return shifts.shiftConversionFactor(cheapestToDeliver.conversionFactor());
+            }
+
+            @Override
+            public Bond bond() {
+                return cheapestToDeliver.bond();
+            }
+
+            @Override
+            public BondPrice<C> price() {
+                return this.shiftSpotFx(cheapestToDeliver.price());
+            }
+
+            private <F extends CurrencyId> SpotExchangedBondPrice<F, C> shiftSpotFx(final BondPrice<F> bondPrice) {
+                final ExchangeRate<F, C> rate = exchangeRates.rate(bondPrice.currencyId(), currencyId);
+                final ExchangeRate<F, C> shiftedRate = shifts.shift(rate);
+                return new SpotExchangedBondPrice<>(bondPrice, shiftedRate);
+            }
+
         }
 
     }

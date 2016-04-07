@@ -137,6 +137,11 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
                     : new PerpetualBondPrice<>(bond, currency, date, fxRates, discountRate, shifts);
         }
 
+        @Override
+        public C currencyId() {
+            return currency;
+        }
+
     }
 
 }

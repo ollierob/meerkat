@@ -5,3 +5,7 @@
 /schema/internal/target/
 /reporting/framework/target/
 /utils/target/
+/schema/core/target/
+/schema/security/target/
+/pricing/framework/target/
+/pricing/native/target/

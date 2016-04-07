@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
@@ -17,7 +18,8 @@ import net.ollie.meerkat.time.interim.Interval;
  *
  * @author ollie
  */
-public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
+public interface BondPrice<C extends CurrencyId>
+        extends SecurityPrice<C>, HasCurrencyId {
 
     @Nonnull
     Money<C> parValue();
@@ -57,5 +59,10 @@ public interface BondPrice<C extends CurrencyId> extends SecurityPrice<C> {
 
     @CheckReturnValue
     BondPrice<C> shift(BondShifts shifts);
+
+    @Override
+    default C currencyId() {
+        return this.cleanValue().currencyId();
+    }
 
 }

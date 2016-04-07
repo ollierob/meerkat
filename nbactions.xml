@@ -9,7 +9,7 @@
                 <goal>clean</goal>
                 <goal>install</goal>
                 <goal>-T</goal>
-                <goal>2</goal>
+                <goal>4</goal>
             </goals>
         </action>
         <action>

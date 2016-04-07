@@ -1,9 +1,5 @@
 package net.ollie.meerkat.security.bond.future;
 
-import java.math.BigDecimal;
-
-import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
@@ -21,9 +17,6 @@ public class BondFuture
         extends AbstractFuture<BondFutureBasket>
         implements BondDerivative<BondFutureBasket> {
 
-    @XmlAttribute(name = "conversion_factor", required = true)
-    private BigDecimal conversionFactor;
-
     @XmlElement(name = "basket", required = true)
     private BondFutureBasket basket;
 
@@ -37,18 +30,11 @@ public class BondFuture
     public BondFuture(
             final String name,
             final SecurityIds identifiers,
-            final BigDecimal conversionFactor,
             final BondFutureBasket basket,
             final FutureDelivery deliveryMonths) {
         super(name, identifiers);
-        this.conversionFactor = conversionFactor;
         this.basket = basket;
         this.deliveryMonths = deliveryMonths;
-    }
-
-    @Nonnull
-    public BigDecimal conversionFactor() {
-        return conversionFactor;
     }
 
     @Override
