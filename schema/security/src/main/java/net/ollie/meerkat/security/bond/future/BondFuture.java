@@ -7,7 +7,7 @@ import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
-import net.ollie.meerkat.security.derivative.forward.FutureDelivery;
+import net.ollie.meerkat.security.derivative.forward.FutureDeliveryDates;
 
 /**
  *
@@ -21,7 +21,7 @@ public class BondFuture
     private BondFutureBasket basket;
 
     @XmlElementRef(name = "delivery", required = true)
-    private FutureDelivery deliveryMonths;
+    private FutureDeliveryDates deliveryDates;
 
     @Deprecated
     BondFuture() {
@@ -31,10 +31,10 @@ public class BondFuture
             final String name,
             final SecurityIds identifiers,
             final BondFutureBasket basket,
-            final FutureDelivery deliveryMonths) {
+            final FutureDeliveryDates deliveryDates) {
         super(name, identifiers);
         this.basket = basket;
-        this.deliveryMonths = deliveryMonths;
+        this.deliveryDates = deliveryDates;
     }
 
     @Override
@@ -43,8 +43,8 @@ public class BondFuture
     }
 
     @Override
-    public FutureDelivery deliveryDates() {
-        return deliveryMonths;
+    public FutureDeliveryDates deliveryDates() {
+        return deliveryDates;
     }
 
     public Percentage referenceYield() {

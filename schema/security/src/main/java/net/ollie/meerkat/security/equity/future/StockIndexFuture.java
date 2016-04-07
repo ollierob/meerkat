@@ -3,9 +3,9 @@ package net.ollie.meerkat.security.equity.future;
 import javax.xml.bind.annotation.XmlElement;
 
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
-import net.ollie.meerkat.security.derivative.forward.FutureDelivery;
 import net.ollie.meerkat.security.equity.EquityDerivative;
 import net.ollie.meerkat.security.equity.StockIndex;
+import net.ollie.meerkat.security.derivative.forward.FutureDeliveryDates;
 
 /**
  *
@@ -28,7 +28,7 @@ public class StockIndexFuture
     }
 
     @Override
-    public FutureDelivery deliveryDates() {
+    public FutureDeliveryDates deliveryDates() {
         throw new UnsupportedOperationException(); //TODO
     }
 

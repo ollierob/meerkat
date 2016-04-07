@@ -4,8 +4,8 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
-import net.ollie.meerkat.security.derivative.forward.FutureDelivery;
 import net.ollie.meerkat.security.interest.InterestRateDerivative;
+import net.ollie.meerkat.security.derivative.forward.FutureDeliveryDates;
 
 /**
  *
@@ -16,14 +16,14 @@ public class ShortTermInterestRateFuture
         implements InterestRateDerivative {
 
     @XmlElementRef(name = "delivery")
-    private FutureDelivery delivery;
+    private FutureDeliveryDates delivery;
 
     @Deprecated
     ShortTermInterestRateFuture() {
     }
 
     @Override
-    public FutureDelivery deliveryDates() {
+    public FutureDeliveryDates deliveryDates() {
         return delivery;
     }
 
