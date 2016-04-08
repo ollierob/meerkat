@@ -9,6 +9,7 @@ import javax.annotation.Nonnull;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
+import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
 import net.ollie.meerkat.calculate.price.bond.future.BondFuturePrice;
 import net.ollie.meerkat.calculate.price.bond.future.BondFuturePricer;
 import net.ollie.meerkat.calculate.price.bond.future.BondFutureShifts;
@@ -38,25 +39,19 @@ public class NativeBondFuturePricer<T extends Temporal>
 
     @Override
     public <C extends CurrencyId> BondFuturePrice<C> price(final T temporal, final BondFuture bondFuture, final C currency) {
-        final CheapestToDeliver<?> cheapestToDeliver = this.cheapestToDeliver(temporal, bondFuture);
-        final BondPrice<C> price = bondPricer.price(bondFuture.deliveryDates().earliest(), cheapestToDeliver.bond(), currency);
-        return new NativeBondFuturePrice<>(cheapestToDeliver.bond(), cheapestToDeliver.conversionFactor(), price, BondFutureShifts.none());
+        try {
+            final CheapestToDeliver<?> cheapestToDeliver = this.cheapestToDeliver(temporal, bondFuture);
+            final BondPrice<C> price = bondPricer.price(bondFuture.deliveryDates().earliest(), cheapestToDeliver.bond(), currency);
+            return new NativeBondFuturePrice<>(cheapestToDeliver.bond(), cheapestToDeliver.conversionFactor(), price, BondFutureShifts.none());
+        } catch (final BondPriceException bex) {
+            throw new BondFuturePriceException("Failed to price cheapest to delivery", bex, bondFuture);
+        }
     }
 
     @Nonnull
     private CheapestToDeliver<?> cheapestToDeliver(final T temporal, final BondFuture bondFuture) {
         return getCheapestToDeliver.get(temporal, bondFuture.securityIds())
-                .orElseThrow(() -> new BondFuturePriceException("Could not determine cheapest to deliver"));
-    }
-
-    static final class BondFuturePriceException extends PriceException {
-
-        private static final long serialVersionUID = 1L;
-
-        BondFuturePriceException(final String message) {
-            super(message);
-        }
-
+                .orElseThrow(() -> new BondFuturePriceException("Could not determine cheapest to deliver", bondFuture));
     }
 
     private static final class NativeBondFuturePrice<C extends CurrencyId>

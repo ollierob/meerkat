@@ -16,6 +16,7 @@ import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.call.BondCall;
 import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
 import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
+import net.ollie.meerkat.security.fx.CashPayment;
 
 /**
  *
@@ -52,6 +53,10 @@ public class FixedCouponBond extends StraightBond {
         this.couponDates = couponDates;
     }
 
+    public CashPayment<?> nominal() {
+        return CashPayment.of(this.maturity(), this.par());
+    }
+
     @Nonnull
     public FixedInterestRate couponRate() {
         return couponRate;
@@ -62,9 +67,13 @@ public class FixedCouponBond extends StraightBond {
         return couponAmount;
     }
 
+    public LocalDate maturity() {
+        return this.dates().matures();
+    }
+
     @Override
-    public FixedCouponBondCoupons coupons() {
-        return new FixedCouponBondCoupons();
+    public FixedCouponBondCoupons<?> coupons() {
+        return new FixedCouponBondCoupons<>(couponAmount);
     }
 
     @Override
@@ -85,10 +94,16 @@ public class FixedCouponBond extends StraightBond {
         return handler.handle(this);
     }
 
-    public class FixedCouponBondCoupons extends StraightBondCoupons<FixedCoupon<?>> {
+    public class FixedCouponBondCoupons<C extends CurrencyId> extends StraightBondCoupons<FixedCoupon<C>> {
+
+        private final Money<C> couponAmount;
+
+        FixedCouponBondCoupons(final Money<C> couponAmount) {
+            this.couponAmount = couponAmount;
+        }
 
         @Override
-        public FixedCoupon<?> get(final int index) {
+        public FixedCoupon<C> get(final int index) {
             return new FixedCoupon<>(couponDates.get(index), couponAmount, couponRate);
         }
 
@@ -98,7 +113,7 @@ public class FixedCouponBond extends StraightBond {
         }
 
         @Override
-        public CurrencyId currencyId() {
+        public C currencyId() {
             return couponAmount.currencyId();
         }
 

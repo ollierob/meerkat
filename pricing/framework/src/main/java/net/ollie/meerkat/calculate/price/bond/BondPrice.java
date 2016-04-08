@@ -1,5 +1,6 @@
 package net.ollie.meerkat.calculate.price.bond;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.CheckReturnValue;
@@ -28,7 +29,11 @@ public interface BondPrice<C extends CurrencyId>
     Money<C> cleanValue();
 
     @Nonnull
-    List<CashPayment<C>> cleanFlow(Interval interval);
+    default List<CashPayment<C>> cleanFlow(final Interval interval) {
+        return this.cleanFlow(interval.startInclusive(), interval.endExclusive());
+    }
+
+    List<CashPayment<C>> cleanFlow(LocalDate starInclusive, LocalDate endExclusive);
 
     @Nonnull
     default Percentage clean() {

@@ -12,6 +12,10 @@ import net.ollie.meerkat.utils.HasName;
  */
 public interface SecurityDefinition extends Security, HasSecurityIds, HasName {
 
+    default String toShortString() {
+        return this.securityIds().toString();
+    }
+
     @CheckForNull
     <R> R handleWith(@Nonnull Handler<R> handler);
 

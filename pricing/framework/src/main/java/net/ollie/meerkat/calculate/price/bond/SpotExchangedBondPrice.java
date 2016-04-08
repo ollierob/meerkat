@@ -1,12 +1,12 @@
 package net.ollie.meerkat.calculate.price.bond;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
 import net.ollie.meerkat.security.fx.CashPayment;
-import net.ollie.meerkat.time.interim.Interval;
 
 /**
  *
@@ -34,7 +34,7 @@ public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
     }
 
     @Override
-    public List<CashPayment<C>> cleanFlow(final Interval interval) {
+    public List<CashPayment<C>> cleanFlow(final LocalDate start, final LocalDate end) {
         throw new UnsupportedOperationException("Not supported yet."); //TODO
     }
 

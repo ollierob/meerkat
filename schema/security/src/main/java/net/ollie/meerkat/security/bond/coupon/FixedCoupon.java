@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.meerkat.numeric.interest.daycount.YearCount;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
 
@@ -17,7 +18,9 @@ import net.ollie.meerkat.security.fx.CashPayment;
  * @author Ollie
  */
 @XmlRootElement(name = "fixed")
-public class FixedCoupon<C extends CurrencyId> extends AbstractBondCoupon implements CashPayment<C> {
+public class FixedCoupon<C extends CurrencyId>
+        extends AbstractBondCoupon
+        implements CashPayment<C> {
 
     @XmlElementRef(name = "amount")
     private Money<C> amount;
@@ -62,6 +65,10 @@ public class FixedCoupon<C extends CurrencyId> extends AbstractBondCoupon implem
 
     public Money<?> accrue(final LocalDate to) {
         return rate.accrue(amount, this.paymentDate(), to);
+    }
+
+    public YearCount yearCount() {
+        return rate.yearCount();
     }
 
 }
