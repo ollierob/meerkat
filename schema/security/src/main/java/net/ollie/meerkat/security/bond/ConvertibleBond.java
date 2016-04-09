@@ -1,6 +1,7 @@
 package net.ollie.meerkat.security.bond;
 
 import java.math.BigDecimal;
+import java.util.AbstractList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -16,7 +17,6 @@ import net.ollie.meerkat.security.bond.coupon.BondCoupon;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
 import net.ollie.meerkat.security.bond.dates.ConvertibleBondDates;
 import net.ollie.meerkat.security.equity.Stock;
-import net.ollie.meerkat.utils.collections.FiniteSequence;
 
 /**
  *
@@ -68,7 +68,7 @@ public class ConvertibleBond extends AbstractBond {
 
     @XmlTransient
     public class ConvertibleBondCoupons
-            extends FiniteSequence<BondCoupon>
+            extends AbstractList<BondCoupon>
             implements BondCoupons.Finite<BondCoupon> {
 
         private ConvertibleBondCoupons() {

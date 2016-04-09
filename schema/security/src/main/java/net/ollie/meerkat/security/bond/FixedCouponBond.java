@@ -14,7 +14,7 @@ import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.call.BondCall;
-import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
+import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
 import net.ollie.meerkat.security.fx.CashPayment;
 
@@ -94,7 +94,7 @@ public class FixedCouponBond extends StraightBond {
         return handler.handle(this);
     }
 
-    public class FixedCouponBondCoupons<C extends CurrencyId> extends StraightBondCoupons<FixedCoupon<C>> {
+    public class FixedCouponBondCoupons<C extends CurrencyId> extends StraightBondCoupons<FixedRateCoupon<C>> {
 
         private final Money<C> couponAmount;
 
@@ -103,8 +103,8 @@ public class FixedCouponBond extends StraightBond {
         }
 
         @Override
-        public FixedCoupon<C> get(final int index) {
-            return new FixedCoupon<>(couponDates.get(index), couponAmount, couponRate);
+        public FixedRateCoupon<C> get(final int index) {
+            return new FixedRateCoupon<>(couponDates.get(index), couponAmount, couponRate);
         }
 
         @Override

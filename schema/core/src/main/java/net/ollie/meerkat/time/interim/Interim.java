@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.utils.collections.Sequence;
+import net.ollie.meerkat.utils.collections.sequence.Sequence;
 
 /**
  *

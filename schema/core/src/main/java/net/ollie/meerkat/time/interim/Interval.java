@@ -6,13 +6,14 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.AbstractList;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.utils.collections.FiniteSequence;
+import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Interval
         implements Interim, Externalizable {
 
     private static final long serialVersionUID = 1L;
+public class Interval extends AbstractList<LocalDate> implements FiniteSequence<LocalDate>, Interim {
 
     @XmlAttribute(name = "start")
     private LocalDate startInclusive;

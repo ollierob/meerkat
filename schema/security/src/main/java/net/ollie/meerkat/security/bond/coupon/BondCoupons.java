@@ -1,43 +1,40 @@
 package net.ollie.meerkat.security.bond.coupon;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 import javax.annotation.CheckForNull;
 
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
-import net.ollie.meerkat.utils.collections.FiniteSequence;
-import net.ollie.meerkat.utils.time.TemporalSequence;
+import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
+import net.ollie.meerkat.utils.collections.sequence.OrderedSequence;
+import net.ollie.meerkat.utils.collections.sequence.StartingSequence;
 
 /**
  *
  * @author ollie
  */
-public interface BondCoupons<C extends BondCoupon> extends TemporalSequence<LocalDate, C>, HasCurrencyId {
+public interface BondCoupons<C extends BondCoupon>
+        extends OrderedSequence<LocalDate, C>, StartingSequence<C>, HasCurrencyId {
 
     @Override
-    default List<C> between(final LocalDate startInclusive, final LocalDate endExclusive) {
-        final List<C> coupons = new ArrayList<>();
-        this.onOrAfter(startInclusive).until(coupon -> !endExclusive.isAfter(coupon.paymentDate()), coupons::add);
-        return coupons;
-    }
+    FiniteSequence<C> between(LocalDate startInclusive, LocalDate endExclusive);
 
     boolean hasFloatingRateCoupon();
 
     @CheckForNull
     C prior(LocalDate current);
 
-    interface Finite<C extends BondCoupon> extends BondCoupons<C>, List<C> {
-
-        default int numCoupons() {
-            return this.size();
-        }
+    interface Finite<C extends BondCoupon> extends BondCoupons<C>, FiniteSequence<C> {
 
         @Override
         default boolean hasFloatingRateCoupon() {
             return this.stream().anyMatch(BondCoupon::hasReferenceRate);
+        }
+
+        @Override
+        default FiniteSequence<C> between(final LocalDate startInclusive, final LocalDate endExclusive) {
+            return this.onOrAfter(startInclusive).where(coupon -> coupon.paymentDate().isBefore(endExclusive));
         }
 
         @Override
@@ -49,7 +46,7 @@ public interface BondCoupons<C extends BondCoupon> extends TemporalSequence<Loca
 
         @Override
         default boolean isEmpty() {
-            return this.numCoupons() == 0;
+            return this.size() == 0;
         }
 
         @Override

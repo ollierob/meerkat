@@ -1,5 +1,7 @@
 package net.ollie.meerkat.security.bond.swap;
 
+import java.util.AbstractList;
+
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -8,9 +10,9 @@ import net.ollie.meerkat.numeric.interest.InterestRateId;
 import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
-import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
+import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.derivative.swap.AbstractSwap;
-import net.ollie.meerkat.utils.collections.FiniteSequence;
+import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *
@@ -56,13 +58,13 @@ public class BondAssetSwap
         return handler.handle(this);
     }
 
-    public class BondAssetSwapLegs extends FiniteSequence<BondAssetSwapLeg> {
+    public class BondAssetSwapLegs extends AbstractList<BondAssetSwapLeg> implements FiniteSequence<BondAssetSwapLeg> {
 
         private final FixedCouponBondCoupons coupons = underlying.coupons();
 
         @Override
         public BondAssetSwapLeg get(final int index) {
-            final FixedCoupon coupon = coupons.get(index);
+            final FixedRateCoupon coupon = coupons.get(index);
             return new BondAssetSwapLeg(coupon, referenceRate);
         }
 

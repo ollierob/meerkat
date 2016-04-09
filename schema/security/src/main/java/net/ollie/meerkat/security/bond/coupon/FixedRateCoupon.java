@@ -18,7 +18,7 @@ import net.ollie.meerkat.security.fx.CashPayment;
  * @author Ollie
  */
 @XmlRootElement(name = "fixed")
-public class FixedCoupon<C extends CurrencyId>
+public class FixedRateCoupon<C extends CurrencyId>
         extends AbstractBondCoupon
         implements CashPayment<C> {
 
@@ -29,10 +29,10 @@ public class FixedCoupon<C extends CurrencyId>
     private FixedInterestRate rate;
 
     @Deprecated
-    FixedCoupon() {
+    FixedRateCoupon() {
     }
 
-    public FixedCoupon(final LocalDate paymentDate, final Money<C> amount, final FixedInterestRate rate) {
+    public FixedRateCoupon(final LocalDate paymentDate, final Money<C> amount, final FixedInterestRate rate) {
         super(paymentDate);
         this.amount = amount;
         this.rate = rate;

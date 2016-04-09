@@ -1,11 +1,13 @@
 package net.ollie.meerkat.utils.collections;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.IntFunction;
+import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
 
 import javax.annotation.CheckForNull;
@@ -38,6 +40,16 @@ public final class Lists extends Collections {
 
     public static <F, T> List<T> eagerlyTransform(final Collection<F> collection, final Function<? super F, ? extends T> transform) {
         return collection.stream().map(transform).collect(toList());
+    }
+
+    public static <T> List<T> eagerlyFilter(final Iterable<? extends T> list, final Predicate<? super T> predicate) {
+        final List<T> out = new ArrayList<>();
+        list.forEach(element -> {
+            if (predicate.test(element)) {
+                out.add(element);
+            }
+        });
+        return out;
     }
 
     @CheckForNull

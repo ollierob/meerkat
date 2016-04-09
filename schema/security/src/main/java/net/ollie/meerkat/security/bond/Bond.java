@@ -25,6 +25,15 @@ public interface Bond extends SecurityDefinition, Callable<BondCall>, HasIsin {
     @Nonnull
     BondDates dates();
 
+    default boolean isZeroCoupon() {
+        return this.coupons().isEmpty();
+    }
+    
+    default boolean isAmortizing() {
+        return !this.dates().maturity().isPresent()
+                && this.coupons().count().isPresent();
+    }
+
     @Override
     @Deprecated
     default <R> R handleWith(final SecurityDefinition.Handler<R> handler) {

@@ -20,10 +20,12 @@ import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
-import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
+import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
 
 import org.apache.commons.math3.fraction.Fraction;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
@@ -121,7 +123,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
 
         @Override
         public Money<C> accruedInterest() {
-            final FixedCoupon<Z> prior = coupons.prior(valuationDate);
+            final FixedRateCoupon<Z> prior = coupons.prior(valuationDate);
             final Fraction years = prior.yearCount().yearsBetween(valuationDate, valuationDate);
             final Money<C> couponAmount = this.couponFxRate().convert(prior.amount());
             return couponAmount.times(years);
@@ -158,9 +160,9 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
 
         SortedMap<LocalDate, Money<C>> cleanFlow(LocalDate startInclusive, LocalDate endExclusive, InterestRate discountRate) {
             final ExchangeRate<Z, C> fxRate = this.couponFxRate();
-            final List<FixedCoupon<Z>> coupons = this.coupons.between(startInclusive, endExclusive);
+            final List<FixedRateCoupon<Z>> coupons = this.coupons.between(startInclusive, endExclusive);
             final SortedMap<LocalDate, Money<C>> flow = Maps.newTreeMap();
-            for (final FixedCoupon<Z> coupon : coupons) {
+            for (final FixedRateCoupon<Z> coupon : coupons) {
                 final Money<C> money = fxRate.convert(coupon.amount());
                 flow.compute(coupon.date(), (d, c) -> c == null ? money : money.plus(c));
             }

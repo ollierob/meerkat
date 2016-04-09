@@ -1,6 +1,7 @@
 package net.ollie.meerkat.security.bond;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
@@ -10,9 +11,8 @@ import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
-import net.ollie.meerkat.security.bond.coupon.FixedCoupon;
+import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.bond.dates.PerpetualBondDates;
-import net.ollie.meerkat.utils.collections.Sequence;
 
 /**
  *
@@ -54,7 +54,7 @@ public class PerpetualBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    public class PerpetualBondCoupons implements BondCoupons<FixedCoupon<?>> {
+    public class PerpetualBondCoupons implements BondCoupons<FixedRateCoupon<?>> {
 
         public FixedInterestRate yearlyRate() {
             return couponRate;
@@ -79,13 +79,18 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public Sequence<FixedCoupon<?>> onOrAfter(final LocalDate time) {
+        public PerpetualBondCoupons onOrAfter(final LocalDate time) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
-        public FixedCoupon<?> prior(final LocalDate current) {
+        public FixedRateCoupon<?> prior(final LocalDate current) {
             throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public Optional<Integer> count() {
+            return Optional.empty();
         }
 
         @Override
