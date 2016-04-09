@@ -21,11 +21,10 @@ import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
  */
 @XmlRootElement
 public class Interval
-        extends FiniteSequence<LocalDate>
-        implements Interim, Externalizable {
+        extends AbstractList<LocalDate>
+        implements FiniteSequence<LocalDate>, Interim, Externalizable {
 
     private static final long serialVersionUID = 1L;
-public class Interval extends AbstractList<LocalDate> implements FiniteSequence<LocalDate>, Interim {
 
     @XmlAttribute(name = "start")
     private LocalDate startInclusive;
