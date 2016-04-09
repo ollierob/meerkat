@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class SecurityIds implements Externalizable {
 
+    private static final long serialVersionUID = 1L;
+
     public static SecurityIds singleton(final SecurityId id) {
         return new SecurityIds(Collections.singleton(id));
     }

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
+import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.repo.RepoPrice;
 import net.ollie.meerkat.calculate.price.repo.RepoShifts;
@@ -29,25 +30,32 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
     }
 
     @Override
-    public <C extends CurrencyId> RepoPrice<C> price(
+    public <C extends CurrencyId> RepoPrice.Shiftable<C> price(
             final LocalDate valuationDate,
             final BondRepo repo,
-            final C currency) {
-        final RepoRate repoRate = repo.rate();
-        final Percentage haircut = repo.haircut();
-        final LocalDate near = repo.dates().near();
-        final LocalDate far = repo.dates().far().orElseGet(() -> valuationDate.plusDays(1));
-        final BondPrice<C> bondPrice = bondPricer.price(valuationDate, repo.collateral(), currency);
-        return new BondRepoPrice<>(repoRate, haircut, near, far, bondPrice, RepoShifts.NONE);
+            final C currency)
+            throws RepoPriceException {
+
+        try {
+            final RepoRate repoRate = repo.rate();
+            final Percentage haircut = repo.haircut();
+            final LocalDate near = repo.dates().near();
+            final LocalDate far = repo.dates().far().orElseGet(() -> valuationDate.plusDays(1));
+            final BondPrice.Shiftable<C> bondPrice = bondPricer.price(valuationDate, repo.collateral(), currency);
+            return new BondRepoPrice<>(repoRate, haircut, near, far, bondPrice, RepoShifts.NONE);
+        } catch (final BondPriceException bpex) {
+            throw new RepoPriceException("Could not price underlying bond!", bpex);
+        }
+
     }
 
     private static final class BondRepoPrice<C extends CurrencyId>
-            implements RepoPrice<C> {
+            implements RepoPrice.Shiftable<C> {
 
         private final RepoRate repoRate;
         private final Percentage haircut;
         private final LocalDate near, far;
-        private final BondPrice<C> bondPrice;
+        private final BondPrice.Shiftable<C> bondPrice;
         private final RepoShifts shifts;
 
         BondRepoPrice(
@@ -55,7 +63,7 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
                 final Percentage haircut,
                 final LocalDate near,
                 final LocalDate far,
-                final BondPrice<C> bondPrice,
+                final BondPrice.Shiftable<C> bondPrice,
                 final RepoShifts shifts) {
             this.repoRate = repoRate;
             this.haircut = haircut;

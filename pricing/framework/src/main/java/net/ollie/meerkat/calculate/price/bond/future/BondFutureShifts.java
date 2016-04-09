@@ -40,7 +40,7 @@ public interface BondFutureShifts extends PriceShifts {
     @Nonnull
     BondShifts bondShifts();
 
-    default <C extends CurrencyId> BondPrice<C> shift(final BondPrice<C> price) {
+    default <C extends CurrencyId> BondPrice.Shiftable<C> shift(final BondPrice.Shiftable<C> price) {
         return price.shift(this.bondShifts());
     }
 

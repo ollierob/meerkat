@@ -14,7 +14,7 @@ import net.ollie.meerkat.security.repo.Repo;
 public interface RepoPricer<T extends Temporal> {
 
     @Nonnull
-    default <C extends CurrencyId> RepoPrice<C> price(
+    default <C extends CurrencyId> RepoPrice.Shiftable<C> price(
             final T temporal,
             final Repo<?> repo,
             final C currency) {
@@ -32,7 +32,7 @@ public interface RepoPricer<T extends Temporal> {
 
     <C extends CurrencyId> RepoPriceContext<C> priceContext(T date, C currency);
 
-    interface RepoPriceContext<C extends CurrencyId> extends Repo.Handler<RepoPrice<C>> {
+    interface RepoPriceContext<C extends CurrencyId> extends Repo.Handler<RepoPrice.Shiftable<C>> {
 
     }
 

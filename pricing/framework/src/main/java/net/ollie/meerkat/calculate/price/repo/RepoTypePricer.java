@@ -15,6 +15,21 @@ public interface RepoTypePricer<T extends Temporal, R extends Repo<?>>
         extends SecurityTypePricer<T, R>, ExchangeRateShifter {
 
     @Override
-    <C extends CurrencyId> RepoPrice<C> price(T valuation, R security, C currency) throws PriceException;
+    <C extends CurrencyId> RepoPrice.Shiftable<C> price(T valuation, R security, C currency)
+            throws RepoPriceException;
+
+    class RepoPriceException extends PriceException {
+
+        private static final long serialVersionUID = 1L;
+
+        public RepoPriceException(final String message) {
+            super(message);
+        }
+
+        public RepoPriceException(final String message, final Exception cause) {
+            super(message, cause);
+        }
+
+    }
 
 }

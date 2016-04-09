@@ -15,7 +15,7 @@ import net.ollie.meerkat.security.bond.Bond;
 public interface BondPricer<T extends Temporal> {
 
     @Nonnull
-    default <C extends CurrencyId> BondPrice<C> price(
+    default <C extends CurrencyId> BondPrice.Shiftable<C> price(
             final T valuation,
             final Bond bond,
             final C currency)
@@ -24,7 +24,7 @@ public interface BondPricer<T extends Temporal> {
     }
 
     @Nonnull
-    default <C extends CurrencyId> BondPrice<C> price(
+    default <C extends CurrencyId> BondPrice.Shiftable<C> price(
             final T valuation,
             final Bond bond,
             final C currency,
@@ -36,7 +36,7 @@ public interface BondPricer<T extends Temporal> {
     <C extends CurrencyId> BondPriceContext<C> priceContext(T valuation, C currency)
             throws BondPriceException;
 
-    interface BondPriceContext<C extends CurrencyId> extends Bond.Handler<BondPrice<C>> {
+    interface BondPriceContext<C extends CurrencyId> extends Bond.Handler<BondPrice.Shiftable<C>> {
 
     }
 

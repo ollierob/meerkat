@@ -13,6 +13,7 @@ import java.util.function.Function;
 
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.SecurityPricer;
+import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnl;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnlCalculator;
@@ -48,12 +49,12 @@ public class LocalHistoricPnlCalculator implements HistoricPnlCalculator {
             final Map<LocalDate, SecurityShifts> shifts) {
         final Future<HistoricPnl<C>> future = CompletableFuture.supplyAsync(() -> getSecurityDefinition.apply(securityId), executor)
                 .thenApplyAsync(security -> pricer.price(valuation, security, currency), executor)
-                .thenApplyAsync(basePrice -> this.pnl(basePrice, shifts), executor);
+                .thenApplyAsync(net.ollie.meerkat.calculate.price.ShiftableSecurityPrice<C> basePrice -> this.pnl(basePrice, shifts), executor);
         return this.complete(future);
     }
 
     private <C extends CurrencyId> HistoricPnl<C> pnl(
-            final SecurityPrice<C> basePrice,
+            final ShiftableSecurityPrice<C> basePrice,
             final Map<LocalDate, SecurityShifts> shifts) {
         final Map<LocalDate, Callable<SecurityPrice<C>>> shifters = Maps.transformValues(shifts, shift -> () -> basePrice.shift(shift));
         final Map<LocalDate, Future<SecurityPrice<C>>> scenarios = Maps.transformValues(shifters, executor::submit);

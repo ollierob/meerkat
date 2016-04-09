@@ -41,22 +41,22 @@ public class NativeBondPricer<T extends Temporal> implements BondPricer<T> {
         return new BondPriceContext<C>() {
 
             @Override
-            public BondPrice<C> handle(final FixedCouponBond bond) {
+            public BondPrice.Shiftable<C> handle(final FixedCouponBond bond) {
                 return fixedCouponPricer.price(temporal, bond, currency);
             }
 
             @Override
-            public BondPrice<C> handle(final FloatingRateNote bond) {
+            public BondPrice.Shiftable<C> handle(final FloatingRateNote bond) {
                 return floatingNotePricer.price(temporal, bond, currency);
             }
 
             @Override
-            public BondPrice<C> handle(final PerpetualBond bond) {
+            public BondPrice.Shiftable<C> handle(final PerpetualBond bond) {
                 return perpetualPricer.price(temporal, bond, currency);
             }
 
             @Override
-            public BondPrice<C> handle(final ConvertibleBond bond) {
+            public BondPrice.Shiftable<C> handle(final ConvertibleBond bond) {
                 return convertiblePricer.price(temporal, bond, currency);
             }
 

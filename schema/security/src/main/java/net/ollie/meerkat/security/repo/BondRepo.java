@@ -17,6 +17,8 @@ import net.ollie.meerkat.security.repo.rate.RepoRate;
  */
 public class BondRepo extends AbstractRepo<Bond> {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElementRef(name = "collateral", required = true)
     private Bond collateral;
 

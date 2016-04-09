@@ -1,5 +1,11 @@
 package net.ollie.meerkat.security;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,7 +19,8 @@ import net.ollie.meerkat.utils.HasName;
  * @author Ollie
  */
 @XmlRootElement
-public class NamedSecurity implements Security, HasSecurityIds, HasName {
+public class NamedSecurity
+        implements Security, HasSecurityIds, HasName, Externalizable {
 
     @XmlElement(name = "ids", required = true)
     private SecurityIds identifiers;
@@ -43,6 +50,20 @@ public class NamedSecurity implements Security, HasSecurityIds, HasName {
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + ": " + name;
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(identifiers);
+        out.writeUTF(name);
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        identifiers = (SecurityIds) in.readObject();
+        name = in.readUTF();
     }
 
 }

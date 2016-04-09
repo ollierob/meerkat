@@ -38,34 +38,34 @@ public class NativeBondFuturePricer<T extends Temporal>
     }
 
     @Override
-    public <C extends CurrencyId> BondFuturePrice<C> price(final T temporal, final BondFuture bondFuture, final C currency) {
+    public <C extends CurrencyId> BondFuturePrice.Shiftable<C> price(final T temporal, final BondFuture bondFuture, final C currency) {
         try {
             final CheapestToDeliver<?> cheapestToDeliver = this.cheapestToDeliver(temporal, bondFuture);
-            final BondPrice<C> price = bondPricer.price(bondFuture.deliveryDates().earliest(), cheapestToDeliver.bond(), currency);
+            final BondPrice.Shiftable<C> price = bondPricer.price(bondFuture.deliveryDates().earliest(), cheapestToDeliver.bond(), currency);
             return new NativeBondFuturePrice<>(cheapestToDeliver.bond(), cheapestToDeliver.conversionFactor(), price, BondFutureShifts.none());
         } catch (final BondPriceException bex) {
-            throw new BondFuturePriceException("Failed to price cheapest to delivery", bex, bondFuture);
+            throw new BondFuturePriceException("Failed to price cheapest to deliver!", bex);
         }
     }
 
     @Nonnull
     private CheapestToDeliver<?> cheapestToDeliver(final T temporal, final BondFuture bondFuture) {
         return getCheapestToDeliver.get(temporal, bondFuture.securityIds())
-                .orElseThrow(() -> new BondFuturePriceException("Could not determine cheapest to deliver", bondFuture));
+                .orElseThrow(() -> new BondFuturePriceException("Could not determine cheapest to deliver!"));
     }
 
     private static final class NativeBondFuturePrice<C extends CurrencyId>
-            implements BondFuturePrice<C> {
+            implements BondFuturePrice.Shiftable<C> {
 
         private final Bond cheapestToDeliver;
         private final BigDecimal conversionFactor;
-        private final BondPrice<C> bondPrice;
+        private final BondPrice.Shiftable<C> bondPrice;
         private final BondFutureShifts shifts;
 
         NativeBondFuturePrice(
                 final Bond cheapestToDeliver,
                 final BigDecimal conversionFactor,
-                final BondPrice<C> bondPrice,
+                final BondPrice.Shiftable<C> bondPrice,
                 final BondFutureShifts shifts) {
             this.cheapestToDeliver = cheapestToDeliver;
             this.conversionFactor = conversionFactor;
@@ -81,7 +81,7 @@ public class NativeBondFuturePricer<T extends Temporal>
         private final Lazy<BondPrice<C>> shiftedPrice = Lazy.loadOnceNonnull(() -> this.computeShiftedBondPrice());
 
         @Nonnull
-        BondPrice<C> computeShiftedBondPrice() {
+        BondPrice.Shiftable<C> computeShiftedBondPrice() {
             return shifts.shift(bondPrice);
         }
 
@@ -123,7 +123,7 @@ public class NativeBondFuturePricer<T extends Temporal>
         }
 
         @Override
-        public BondFuturePrice<C> shift(final BondFutureShifts shifts) {
+        public BondFuturePrice.Shiftable<C> shift(final BondFutureShifts shifts) {
             return new NativeBondFuturePrice<>(cheapestToDeliver, conversionFactor, bondPrice, shifts);
         }
 

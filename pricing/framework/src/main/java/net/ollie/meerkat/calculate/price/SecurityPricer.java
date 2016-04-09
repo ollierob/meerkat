@@ -11,7 +11,7 @@ import net.ollie.meerkat.security.SecurityDefinition;
  */
 public interface SecurityPricer<T extends Temporal> {
 
-    default <C extends CurrencyId> SecurityPrice<C> price(
+    default <C extends CurrencyId> ShiftableSecurityPrice<C> price(
             final T valuation,
             final SecurityDefinition security,
             final C currency) {
@@ -20,7 +20,7 @@ public interface SecurityPricer<T extends Temporal> {
 
     <C extends CurrencyId> SecurityPriceContext<C> priceContext(T valuation, C currency);
 
-    interface SecurityPriceContext<C extends CurrencyId> extends SecurityDefinition.Handler<SecurityPrice<C>> {
+    interface SecurityPriceContext<C extends CurrencyId> extends SecurityDefinition.Handler<ShiftableSecurityPrice<C>> {
 
     }
 

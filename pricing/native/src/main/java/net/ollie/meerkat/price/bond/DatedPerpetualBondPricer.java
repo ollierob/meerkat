@@ -40,7 +40,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
     }
 
     @Override
-    public <C extends CurrencyId> BondPrice<C> price(
+    public <C extends CurrencyId> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final PerpetualBond bond,
             final C currency) {
@@ -50,7 +50,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
     }
 
     private static final class PerpetualBondPrice<C extends CurrencyId>
-            implements BondPrice<C>, ExchangeRateShifter, InterestRateShifter {
+            implements BondPrice.Shiftable<C>, ExchangeRateShifter, InterestRateShifter {
 
         private final PerpetualBond bond;
         private final C currency;
@@ -122,6 +122,11 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
             return accruedInterest.get();
         }
 
+        @Override
+        public Money<C> dirtyValue() {
+            return this.cleanValue().plus(this.accruedInterest());
+        }
+
         @Nonnull
         private Money<C> calculateAccuredInterest() {
             final FixedRateCoupon<?> priorCoupon = bond.coupons().prior(date);
@@ -130,7 +135,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         }
 
         @Override
-        public BondPrice<C> shift(final BondShifts shifts) {
+        public BondPrice.Shiftable<C> shift(final BondShifts shifts) {
             return shifts == this.shifts
                     ? this
                     : new PerpetualBondPrice<>(bond, currency, date, fxRates, discountRate, shifts);

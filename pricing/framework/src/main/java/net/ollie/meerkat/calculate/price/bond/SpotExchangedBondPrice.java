@@ -13,12 +13,12 @@ import net.ollie.meerkat.security.fx.CashPayment;
  * @author ollie
  */
 public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
-        implements BondPrice<C> {
+        implements BondPrice.Shiftable<C> {
 
-    private final BondPrice<F> bondPrice;
+    private final BondPrice.Shiftable<F> bondPrice;
     private final ExchangeRate<F, C> rate;
 
-    public SpotExchangedBondPrice(final BondPrice<F> bondPrice, final ExchangeRate<F, C> rate) {
+    public SpotExchangedBondPrice(final BondPrice.Shiftable<F> bondPrice, final ExchangeRate<F, C> rate) {
         this.bondPrice = bondPrice;
         this.rate = rate;
     }

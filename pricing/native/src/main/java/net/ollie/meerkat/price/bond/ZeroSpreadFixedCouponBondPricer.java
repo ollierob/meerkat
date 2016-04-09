@@ -25,8 +25,6 @@ import net.ollie.meerkat.security.fx.CashPayment;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import static java.util.Objects.requireNonNull;
-
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
  *
@@ -45,14 +43,14 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
     }
 
     @Override
-    public <C extends CurrencyId> BondPrice<C> price(
+    public <C extends CurrencyId> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final FixedCouponBond bond,
             final C currency) {
         return this.price(date, bond.nominal(), bond.coupons(), currency);
     }
 
-    public <P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId> BondPrice<C> price(
+    public <P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final CashPayment<P> par,
             final FixedCouponBondCoupons<Z> coupons,
@@ -69,7 +67,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
     }
 
     private static final class ZeroSpreadFixedCouponBondPrice<P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId>
-            implements BondPrice<C> {
+            implements BondPrice.Shiftable<C> {
 
         private final LocalDate valuationDate;
         private final CashPayment<P> par;
@@ -130,7 +128,12 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
         }
 
         @Override
-        public BondPrice<C> shift(final BondShifts shifts) {
+        public Money<C> dirtyValue() {
+            return this.cleanValue().plus(this.accruedInterest());
+        }
+
+        @Override
+        public BondPrice.Shiftable<C> shift(final BondShifts shifts) {
             return new ZeroSpreadFixedCouponBondPrice<>(valuationDate, par, coupons, parFxRate, couponFxRate, discountRate, shifts);
         }
 

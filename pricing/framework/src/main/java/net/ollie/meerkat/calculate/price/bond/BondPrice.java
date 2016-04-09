@@ -7,6 +7,7 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.price.SecurityPrice;
+import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
@@ -29,21 +30,12 @@ public interface BondPrice<C extends CurrencyId>
     Money<C> cleanValue();
 
     @Nonnull
-    default List<CashPayment<C>> cleanFlow(final Interval interval) {
-        return this.cleanFlow(interval.startInclusive(), interval.endExclusive());
-    }
-
-    List<CashPayment<C>> cleanFlow(LocalDate starInclusive, LocalDate endExclusive);
-
-    @Nonnull
     default Percentage clean() {
         return new Percentage(this.parValue().amount().doubleValue() / this.cleanValue().amount().doubleValue());
     }
 
     @Override
-    default Money<C> dirtyValue() {
-        return this.cleanValue().plus(this.accruedInterest());
-    }
+    Money<C> dirtyValue();
 
     @Nonnull
     default Percentage dirty() {
@@ -55,19 +47,33 @@ public interface BondPrice<C extends CurrencyId>
     }
 
     @Nonnull
-    Money<C> accruedInterest();
-
-    @Override
-    default BondPrice<C> shift(final SecurityShifts shifts) {
-        return this.shift(shifts.definiteCast(BondShifts.class));
+    default Money<C> accruedInterest() {
+        return this.dirtyValue().minus(this.cleanValue());
     }
-
-    @CheckReturnValue
-    BondPrice<C> shift(BondShifts shifts);
 
     @Override
     default C currencyId() {
         return this.cleanValue().currencyId();
+    }
+
+    interface Shiftable<C extends CurrencyId>
+            extends BondPrice<C>, ShiftableSecurityPrice<C> {
+
+        @Override
+        default BondPrice.Shiftable<C> shift(final SecurityShifts shifts) {
+            return this.shift(shifts.definiteCast(BondShifts.class));
+        }
+
+        @CheckReturnValue
+        BondPrice.Shiftable<C> shift(BondShifts shifts);
+
+        @Nonnull
+        default List<CashPayment<C>> cleanFlow(final Interval interval) {
+            return this.cleanFlow(interval.startInclusive(), interval.endExclusive());
+        }
+
+        List<CashPayment<C>> cleanFlow(LocalDate starInclusive, LocalDate endExclusive);
+
     }
 
 }

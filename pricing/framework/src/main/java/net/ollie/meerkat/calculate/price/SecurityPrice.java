@@ -19,7 +19,10 @@ public interface SecurityPrice<C extends CurrencyId> {
     Money<C> dirtyValue();
 
     @Nonnull
-    SecurityPrice<C> shift(@Nonnull SecurityShifts shifts) throws InvalidShiftTypeException;
+    default EvaluatedSecurityPrice<C> evaluate() {
+        return new EvaluatedSecurityPrice<>(this.cleanValue(), this.dirtyValue());
+    }
+
 
     class InvalidShiftTypeException extends RuntimeException {
 

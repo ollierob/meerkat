@@ -15,7 +15,7 @@ public interface BondTypePricer<T extends Temporal, B extends Bond>
         extends SecurityTypePricer<T, B> {
 
     @Override
-    <C extends CurrencyId> BondPrice<C> price(T temporal, B bond, C currency)
+    <C extends CurrencyId> BondPrice.Shiftable<C> price(T temporal, B bond, C currency)
             throws BondPriceException;
 
 }
