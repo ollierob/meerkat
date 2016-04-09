@@ -13,6 +13,7 @@ import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.bond.dates.PerpetualBondDates;
+import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *
@@ -74,6 +75,11 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
+        public FixedRateCoupon<?> first() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
         public boolean isEmpty() {
             return false;
         }
@@ -84,12 +90,17 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
+        public FiniteSequence<FixedRateCoupon<?>> between(LocalDate startInclusive, LocalDate endExclusive) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
         public FixedRateCoupon<?> prior(final LocalDate current) {
             throw new UnsupportedOperationException(); //TODO
         }
 
         @Override
-        public Optional<Integer> count() {
+        public Optional<Long> count() {
             return Optional.empty();
         }
 
