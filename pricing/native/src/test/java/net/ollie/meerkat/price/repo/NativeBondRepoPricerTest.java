@@ -1,4 +1,4 @@
-package net.ollie.meerkat.pricing.repo;
+package net.ollie.meerkat.price.repo;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -16,7 +16,6 @@ import net.ollie.meerkat.numeric.interest.SimpleFixedInterestRate;
 import net.ollie.meerkat.numeric.interest.daycount.ActualFixedAccrualFactor;
 import net.ollie.meerkat.numeric.money.DecimalMoney;
 import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.price.repo.NativeBondRepoPricer;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.repo.BondRepo;
 import net.ollie.meerkat.security.repo.dates.RepoDates;

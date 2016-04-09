@@ -1,4 +1,4 @@
-package net.ollie.meerkat.pricing.bond;
+package net.ollie.meerkat.price.bond;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
