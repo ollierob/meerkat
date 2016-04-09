@@ -1,6 +1,5 @@
 package net.ollie.meerkat.identifier.country;
 
-import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
@@ -16,7 +15,9 @@ import net.ollie.meerkat.identifier.Iso;
  * @author Ollie
  */
 @XmlRootElement
-public class CountryIso extends StringWrapper implements Iso, CountryId, Serializable {
+public class CountryIso 
+        extends StringWrapper 
+        implements Iso, CountryId {
 
     private static final long serialVersionUID = 1L;
 

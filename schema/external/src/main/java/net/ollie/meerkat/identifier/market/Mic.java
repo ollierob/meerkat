@@ -12,7 +12,11 @@ import net.ollie.meerkat.identifier.Iso;
  * @see <a href="https://en.wikipedia.org/wiki/Market_Identifier_Code">MIC</a>
  */
 @XmlRootElement
-public class Mic extends StringWrapper implements Iso, MarketId {
+public class Mic
+        extends StringWrapper
+        implements Iso, MarketId {
+
+    private static final long serialVersionUID = 1L;
 
     @Deprecated
     Mic() {

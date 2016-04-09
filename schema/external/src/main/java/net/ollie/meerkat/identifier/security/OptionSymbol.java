@@ -1,5 +1,9 @@
 package net.ollie.meerkat.identifier.security;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -12,10 +16,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  *
  * @author ollie
- * @see <a href="https://en.wikipedia.org/wiki/Option_symbol">Optional symbol</a>
+ * @see <a href="https://en.wikipedia.org/wiki/Option_symbol">Optional
+ * symbol</a>
  */
 @XmlRootElement
-public class OptionSymbol implements SecurityId {
+public class OptionSymbol implements SecurityId, Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlAttribute(name = "root")
     private String root;
@@ -61,6 +68,22 @@ public class OptionSymbol implements SecurityId {
                 + YYMMDD.format(symbol.expiration)
                 + (symbol.isPut ? 'P' : 'C')
                 + SIGFIGS.format(symbol.strike.scaleByPowerOfTen(3));
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF(root);
+        out.writeObject(expiration);
+        out.writeBoolean(isPut);
+        out.writeObject(strike);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        root = in.readUTF();
+        expiration = (LocalDate) in.readObject();
+        isPut = in.readBoolean();
+        strike = (BigDecimal) in.readObject();
     }
 
 }

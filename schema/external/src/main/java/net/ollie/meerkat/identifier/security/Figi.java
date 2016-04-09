@@ -13,6 +13,8 @@ public class Figi
         extends StringWrapper
         implements HasCheckDigit, SecurityId {
 
+    private static final long serialVersionUID = 1L;
+
     @Deprecated
     Figi() {
     }

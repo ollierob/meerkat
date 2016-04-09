@@ -15,6 +15,8 @@ public class Cusip
         extends Nsin
         implements HasCheckDigit {
 
+    private static final long serialVersionUID = 1L;
+
     @Deprecated
     Cusip() {
     }

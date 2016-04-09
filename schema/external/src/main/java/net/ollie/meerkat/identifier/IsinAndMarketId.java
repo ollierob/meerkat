@@ -1,5 +1,10 @@
 package net.ollie.meerkat.identifier;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,7 +21,10 @@ import net.ollie.meerkat.identifier.security.Isin;
  * @author Ollie
  */
 @XmlRootElement
-public class IsinAndMarketId implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId {
+public class IsinAndMarketId
+        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId, Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElement(name = "isin")
     private Isin isin;
@@ -50,6 +58,20 @@ public class IsinAndMarketId implements SecurityInMarketId, HasSecurityId, HasMa
     @Override
     public CurrencyIso currencyId() {
         return currency;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(isin);
+        out.writeObject(market);
+        out.writeObject(currency);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        isin = (Isin) in.readObject();
+        market = (Mic) in.readObject();
+        currency = (CurrencyIso) in.readObject();
     }
 
 }

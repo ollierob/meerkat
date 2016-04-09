@@ -11,6 +11,8 @@ import net.ollie.meerkat.rating.CreditRatings;
 @XmlRootElement
 public class BloombergCompositeRating extends CreditRatings {
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     public String agency() {
         return "Bloomberg";

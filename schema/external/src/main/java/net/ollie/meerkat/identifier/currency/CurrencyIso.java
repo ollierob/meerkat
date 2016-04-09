@@ -12,7 +12,8 @@ import net.ollie.meerkat.identifier.security.SecurityId;
  *
  * @author Ollie
  */
-public interface CurrencyIso extends Iso, CurrencyId, HasCountryId, SecurityId, Serializable {
+public interface CurrencyIso
+        extends Iso, CurrencyId, HasCountryId, SecurityId, Serializable {
 
     default boolean isReserved() {
         return this.first() == 'X';

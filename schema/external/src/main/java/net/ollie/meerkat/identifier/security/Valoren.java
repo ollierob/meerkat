@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Valoren extends Nsin {
 
+    private static final long serialVersionUID = 1L;
+
     @Deprecated
     Valoren() {
     }

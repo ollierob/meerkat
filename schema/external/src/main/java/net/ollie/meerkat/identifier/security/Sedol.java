@@ -13,6 +13,8 @@ public class Sedol
         extends Nsin
         implements HasCheckDigit {
 
+    private static final long serialVersionUID = 1L;
+
     @Deprecated
     Sedol() {
     }

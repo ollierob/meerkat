@@ -1,5 +1,9 @@
 package net.ollie.meerkat.identifier.security;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.time.Month;
 import java.time.YearMonth;
 import java.util.function.Function;
@@ -12,7 +16,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author ollie
  */
 @XmlRootElement
-public class FutureTicker implements SecurityId {
+public class FutureTicker implements SecurityId, Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlAttribute(name = "underlying", required = true)
     private String underlying;
@@ -54,6 +60,20 @@ public class FutureTicker implements SecurityId {
     @Override
     public String toString() {
         return this.toString(DeliveryMonth::toString);
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeUTF(underlying);
+        out.writeUTF(suffix);
+        out.writeObject(delivery);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        underlying = in.readUTF();
+        suffix = in.readUTF();
+        delivery = (YearMonth) in.readObject();
     }
 
     public enum DeliveryMonth {

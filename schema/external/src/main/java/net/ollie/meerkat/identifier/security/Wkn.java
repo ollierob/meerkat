@@ -6,6 +6,8 @@ package net.ollie.meerkat.identifier.security;
  */
 public class Wkn extends Nsin {
 
+    private static final long serialVersionUID = 1L;
+
     @Deprecated
     Wkn() {
     }

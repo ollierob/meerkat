@@ -1,5 +1,9 @@
 package net.ollie.meerkat.identifier.trade;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -14,7 +18,11 @@ import net.ollie.meerkat.StringWrapper;
  * USI</a>
  */
 @XmlRootElement
-public class UniqueSwapIdentifier extends StringWrapper implements TradeId {
+public class UniqueSwapIdentifier
+        extends StringWrapper
+        implements TradeId {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlAttribute(name = "namespace")
     private String namespace;
@@ -34,6 +42,18 @@ public class UniqueSwapIdentifier extends StringWrapper implements TradeId {
 
     public String transaction() {
         return this.value();
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeUTF(namespace);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        namespace = in.readUTF();
     }
 
 }

@@ -16,6 +16,8 @@ public class Nsin
         extends StringWrapper
         implements SecurityId {
 
+    private static final long serialVersionUID = 1L;
+
     @Deprecated
     protected Nsin() {
     }
