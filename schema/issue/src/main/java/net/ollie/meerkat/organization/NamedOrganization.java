@@ -1,27 +1,28 @@
 package net.ollie.meerkat.organization;
 
-import javax.xml.bind.annotation.XmlAttribute;
+import net.ollie.meerkat.StringWrapper;
 
 /**
  *
  * @author ollie
  */
-public class NamedOrganization implements Organization {
+public class NamedOrganization
+        extends StringWrapper
+        implements Organization {
 
-    @XmlAttribute(name = "name")
-    private String name;
+    private static final long serialVersionUID = 1L;
 
     @Deprecated
     protected NamedOrganization() {
     }
 
     public NamedOrganization(final String name) {
-        this.name = name;
+        super(name);
     }
 
     @Override
     public String name() {
-        return name;
+        return this.value();
     }
 
 }

@@ -1,5 +1,10 @@
 package net.ollie.meerkat.identifier;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -16,7 +21,8 @@ import net.ollie.meerkat.identifier.security.SecurityId;
  * @author Ollie
  */
 @XmlRootElement
-public class SecurityAndMarketId implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId {
+public class SecurityAndMarketId
+        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId, Externalizable {
 
     @XmlElementRef(name = "security")
     private SecurityId security;
@@ -50,6 +56,20 @@ public class SecurityAndMarketId implements SecurityInMarketId, HasSecurityId, H
     @Override
     public MarketId marketId() {
         return market;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(security);
+        out.writeObject(market);
+        out.writeObject(currency);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        security = (SecurityId) in.readObject();
+        market = (MarketId) in.readObject();
+        currency = (CurrencyId) in.readObject();
     }
 
 }
