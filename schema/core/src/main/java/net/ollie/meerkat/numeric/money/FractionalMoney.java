@@ -1,5 +1,9 @@
 package net.ollie.meerkat.numeric.money;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -9,12 +13,16 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.DecimalFraction;
+import net.ollie.meerkat.security.Security;
 
 /**
  *
  * @author Ollie
  */
-public class FractionalMoney<C extends CurrencyId> implements Money<C> {
+public class FractionalMoney<C extends CurrencyId>
+        implements Money<C>, Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "currency")
     private C currency;
@@ -63,6 +71,33 @@ public class FractionalMoney<C extends CurrencyId> implements Money<C> {
     @Override
     public BigDecimal decimalValue(final MathContext context) {
         return fraction.decimalValue(context);
+    }
+
+    @Override
+    public String name() {
+        throw new UnsupportedOperationException(); //TODO
+    }
+
+    @Override
+    public int compareTo(Money<C> o) {
+        throw new UnsupportedOperationException(); //TODO
+    }
+
+    @Override
+    public Security security() {
+        throw new UnsupportedOperationException(); //TODO
+    }
+
+    @Override
+    public void writeExternal(final ObjectOutput out) throws IOException {
+        out.writeObject(currency);
+        out.writeObject(fraction);
+    }
+
+    @Override
+    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
+        currency = (C) in.readObject();
+        fraction = (DecimalFraction) in.readObject();
     }
 
 }

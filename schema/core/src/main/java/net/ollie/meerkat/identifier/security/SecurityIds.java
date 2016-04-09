@@ -1,5 +1,9 @@
 package net.ollie.meerkat.identifier.security;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
@@ -13,7 +17,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Ollie
  */
 @XmlRootElement
-public class SecurityIds {
+public class SecurityIds implements Externalizable {
 
     public static SecurityIds singleton(final SecurityId id) {
         return new SecurityIds(Collections.singleton(id));
@@ -45,6 +49,16 @@ public class SecurityIds {
 
     public boolean isEmpty() {
         return ids.isEmpty();
+    }
+
+    @Override
+    public void writeExternal(final ObjectOutput out) throws IOException {
+        out.writeObject(ids);
+    }
+
+    @Override
+    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
+        ids = (Set) in.readObject();
     }
 
 }

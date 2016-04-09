@@ -1,5 +1,9 @@
 package net.ollie.meerkat.numeric;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -13,7 +17,9 @@ import net.ollie.meerkat.utils.numeric.Numeric;
  *
  * @author Ollie
  */
-public class DecimalFraction extends Number implements Numeric.Summable<DecimalFraction> {
+public class DecimalFraction
+        extends Number
+        implements Numeric.Summable<DecimalFraction>, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -173,6 +179,18 @@ public class DecimalFraction extends Number implements Numeric.Summable<DecimalF
         final BigDecimal n1 = this.numerator.multiply(that.denominator);
         final BigDecimal n2 = that.numerator.multiply(this.denominator);
         return n1.compareTo(n2);
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(numerator);
+        out.writeObject(denominator);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        numerator = (BigDecimal) in.readObject();
+        denominator = (BigDecimal) in.readObject();
     }
 
 }

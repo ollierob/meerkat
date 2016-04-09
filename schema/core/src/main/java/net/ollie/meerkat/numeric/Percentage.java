@@ -1,5 +1,9 @@
 package net.ollie.meerkat.numeric;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -17,8 +21,11 @@ import net.ollie.meerkat.utils.numeric.Numeric;
  * @author Ollie
  */
 @XmlRootElement
-public class Percentage extends Number implements Numeric.Summable<Percentage> {
+public class Percentage
+        extends Number
+        implements Numeric.Summable<Percentage>, Externalizable {
 
+    private static final long serialVersionUID = 1L;
     public static final Percentage ZERO_PERCENT = new Percentage(BigDecimal.ZERO);
     public static final Percentage ONE_PERCENT = new Percentage(BigDecimal.ONE);
     public static final Percentage ONE_HUNDRED_PERCENT = new Percentage(Numbers.ONE_HUNDRED);
@@ -126,6 +133,16 @@ public class Percentage extends Number implements Numeric.Summable<Percentage> {
 
     public boolean equals(@Nonnull final Percentage that, final double delta) {
         return Math.abs(value.subtract(that.value).doubleValue()) < delta;
+    }
+
+    @Override
+    public void writeExternal(final ObjectOutput out) throws IOException {
+        out.writeObject(value);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        value = (BigDecimal) in.readObject();
     }
 
 }

@@ -1,5 +1,9 @@
 package net.ollie.meerkat.time.interim;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Optional;
@@ -15,7 +19,11 @@ import net.ollie.meerkat.utils.collections.FiniteSequence;
  * @author ollie
  */
 @XmlRootElement
-public class Interval extends FiniteSequence<LocalDate> implements Interim {
+public class Interval
+        extends FiniteSequence<LocalDate>
+        implements Interim, Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlAttribute(name = "start")
     private LocalDate startInclusive;
@@ -66,6 +74,18 @@ public class Interval extends FiniteSequence<LocalDate> implements Interim {
     @Override
     public int size() {
         return Math.toIntExact(ChronoUnit.DAYS.between(startInclusive, endInclusive)) + 1;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(startInclusive);
+        out.writeObject(endInclusive);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        startInclusive = (LocalDate) in.readObject();
+        endInclusive = (LocalDate) in.readObject();
     }
 
 }

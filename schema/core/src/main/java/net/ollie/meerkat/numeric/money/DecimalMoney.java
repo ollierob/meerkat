@@ -1,6 +1,9 @@
 package net.ollie.meerkat.numeric.money;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -19,7 +22,8 @@ import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
  * @author Ollie
  */
 @XmlRootElement
-public class DecimalMoney<C extends CurrencyId> implements Money<C>, Serializable {
+public class DecimalMoney<C extends CurrencyId>
+        implements Money<C>, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -121,6 +125,18 @@ public class DecimalMoney<C extends CurrencyId> implements Money<C>, Serializabl
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(currency);
+        out.writeObject(amount);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        currency = (C) in.readObject();
+        amount = (BigDecimal) in.readObject();
     }
 
 }
