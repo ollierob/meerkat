@@ -6,18 +6,37 @@ import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
-import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
+import net.ollie.meerkat.calculate.price.shifts.PriceShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.meerkat.numeric.money.Money;
 
 /**
  *
  * @author ollie
  */
-public interface BondFutureShifts extends SecurityShifts {
+public interface BondFutureShifts extends PriceShifts {
 
+    /**
+     *
+     * @param conversionFactor
+     * @return
+     */
     @Nonnull
-    BigDecimal shiftConversionFactor(BigDecimal conversionFactor);
+    BigDecimal shiftConversionFactor(@Nonnull BigDecimal conversionFactor);
 
+    /**
+     *
+     * @param <C>
+     * @param bondPrice
+     * @return
+     */
+    @Override
+    <C extends CurrencyId> Money<C> shift(Money<C> bondPrice);
+
+    /**
+     *
+     * @return shifts to apply to the cheapest to deliver.
+     */
     @Nonnull
     BondShifts bondShifts();
 
@@ -36,6 +55,11 @@ public interface BondFutureShifts extends SecurityShifts {
         @Override
         public BondShifts bondShifts() {
             return BondShifts.none();
+        }
+
+        @Override
+        public <C extends CurrencyId> Money<C> shift(final Money<C> price) {
+            return price;
         }
 
         @Override

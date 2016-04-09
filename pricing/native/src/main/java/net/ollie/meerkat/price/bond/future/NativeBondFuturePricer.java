@@ -73,14 +73,15 @@ public class NativeBondFuturePricer<T extends Temporal>
             this.shifts = shifts;
         }
 
-        private final Lazy<BondPrice<C>> shiftedPrice = Lazy.loadOnceNonnull(() -> this.shiftPrice());
-
-        BondPrice<C> shiftedPrice() {
+        @Nonnull
+        BondPrice<C> shiftedBondPrice() {
             return shiftedPrice.get();
         }
 
+        private final Lazy<BondPrice<C>> shiftedPrice = Lazy.loadOnceNonnull(() -> this.computeShiftedBondPrice());
+
         @Nonnull
-        BondPrice<C> shiftPrice() {
+        BondPrice<C> computeShiftedBondPrice() {
             return shifts.shift(bondPrice);
         }
 
@@ -91,12 +92,12 @@ public class NativeBondFuturePricer<T extends Temporal>
 
         @Override
         public Money<C> cleanValue() {
-            return this.shiftPrice().cleanValue().over(this.shiftedConversionFactor());
+            return this.shiftedBondPrice().cleanValue().over(this.shiftedConversionFactor());
         }
 
         @Override
         public Money<C> dirtyValue() {
-            return this.shiftPrice().dirtyValue().over(this.shiftedConversionFactor());
+            return this.shiftedBondPrice().dirtyValue().over(this.shiftedConversionFactor());
         }
 
         @Override
@@ -115,7 +116,7 @@ public class NativeBondFuturePricer<T extends Temporal>
 
                 @Override
                 public BondPrice<C> price() {
-                    return shiftPrice();
+                    return shiftedBondPrice();
                 }
 
             };

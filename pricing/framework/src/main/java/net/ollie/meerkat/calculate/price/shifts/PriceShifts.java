@@ -1,5 +1,7 @@
 package net.ollie.meerkat.calculate.price.shifts;
 
+import javax.annotation.Nonnull;
+
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
 
@@ -9,6 +11,7 @@ import net.ollie.meerkat.numeric.money.Money;
  */
 public interface PriceShifts extends SecurityShifts {
 
-    <C extends CurrencyId> Money<C> shiftPrice(Money<C> price);
+    @Nonnull
+    <C extends CurrencyId> Money<C> shift(@Nonnull Money<C> price);
 
 }
