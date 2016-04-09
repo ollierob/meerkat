@@ -49,7 +49,7 @@ public class LocalHistoricPnlCalculator implements HistoricPnlCalculator {
             final Map<LocalDate, SecurityShifts> shifts) {
         final Future<HistoricPnl<C>> future = CompletableFuture.supplyAsync(() -> getSecurityDefinition.apply(securityId), executor)
                 .thenApplyAsync(security -> pricer.price(valuation, security, currency), executor)
-                .thenApplyAsync(net.ollie.meerkat.calculate.price.ShiftableSecurityPrice<C> basePrice -> this.pnl(basePrice, shifts), executor);
+                .thenApplyAsync(basePrice -> this.pnl(basePrice, shifts), executor);
         return this.complete(future);
     }
 
