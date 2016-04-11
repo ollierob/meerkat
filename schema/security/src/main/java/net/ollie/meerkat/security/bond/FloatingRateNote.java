@@ -1,17 +1,17 @@
 package net.ollie.meerkat.security.bond;
 
-import java.util.Collections;
+import java.time.LocalDate;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.security.bond.call.BondCall;
+import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.interest.InterestRateId;
 import net.ollie.meerkat.security.bond.coupon.FloatingCoupon;
-import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
 
 /**
  *
@@ -20,38 +20,32 @@ import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
 @XmlRootElement
 public class FloatingRateNote extends StraightBond {
 
-    @XmlElementRef(name = "coupon")
-    private List<FloatingCoupon> coupons;
+    private static final long serialVersionUID = 1L;
+
+    @XmlElementRef(name = "coupon_currency")
+    private CurrencyId couponCurrency;
+
+    @XmlAttribute(name = "spread")
+    private Percentage spread;
+
+    @XmlElementRef(name = "reference_rate")
+    private InterestRateId referenceRate;
+
+    @XmlElement(name = "coupon_date")
+    private List<LocalDate> couponDates;
 
     @Deprecated
     FloatingRateNote() {
     }
 
-    public FloatingRateNote(
-            final String name,
-            final SecurityIds identifiers,
-            final Money<?> par,
-            final MaturingBondDates dates,
-            final List<FloatingCoupon> coupons,
-            final BondCall call) {
-        super(name, identifiers, par, dates, call);
-        this.coupons = coupons;
-    }
-
     @Override
-    public FloatingRateNoteCoupons coupons() {
-        return new FloatingRateNoteCoupons();
+    public FloatingRateNoteCoupons<?> coupons() {
+        return new FloatingRateNoteCoupons<>(couponCurrency);
     }
 
     @Override
     public FloatingRateNote strip() {
-        return new FloatingRateNote(
-                this.name(),
-                this.securityIds(),
-                this.par(),
-                this.dates(),
-                Collections.emptyList(),
-                this.call().orElse(null));
+        throw new UnsupportedOperationException(); //TODO
     }
 
     @Override
@@ -59,26 +53,33 @@ public class FloatingRateNote extends StraightBond {
         return handler.handle(this);
     }
 
-    public class FloatingRateNoteCoupons extends StraightBondCoupons<FloatingCoupon> {
+    public class FloatingRateNoteCoupons<C extends CurrencyId>
+            extends StraightBondCoupons<FloatingCoupon> {
+
+        private final C currency;
+
+        FloatingRateNoteCoupons(final C currency) {
+            this.currency = currency;
+        }
 
         @Override
         public FloatingCoupon get(final int index) {
-            return coupons.get(index);
+            return new FloatingCoupon(couponDates.get(index), spread, referenceRate);
         }
 
         @Override
         public int size() {
-            return coupons.size();
+            return couponDates.size();
         }
 
         @Override
         public boolean isEmpty() {
-            return coupons.isEmpty();
+            return couponDates.isEmpty();
         }
 
         @Override
-        public CurrencyId currencyId() {
-            return coupons.get(0).currencyId(); //FIXME
+        public C currencyId() {
+            return currency;
         }
 
     }

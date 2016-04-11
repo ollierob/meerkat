@@ -25,10 +25,12 @@ import net.ollie.meerkat.security.fx.CashPayment;
 @XmlRootElement
 public class FixedCouponBond extends StraightBond {
 
-    @XmlElementRef(name = "rate")
+    private static final long serialVersionUID = 1L;
+
+    @XmlElementRef(name = "coupon_rate")
     private FixedInterestRate couponRate;
 
-    @XmlElementRef(name = "coupon")
+    @XmlElementRef(name = "coupon_amount")
     private Money<?> couponAmount;
 
     @XmlElement(name = "coupon_date")

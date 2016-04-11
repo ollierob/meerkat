@@ -3,8 +3,6 @@ package net.ollie.meerkat.security.bond.coupon;
 import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
@@ -17,20 +15,12 @@ import net.ollie.meerkat.security.fx.CashPayment;
  *
  * @author Ollie
  */
-@XmlRootElement(name = "fixed")
 public class FixedRateCoupon<C extends CurrencyId>
         extends AbstractBondCoupon
         implements CashPayment<C> {
 
-    @XmlElementRef(name = "amount")
-    private Money<C> amount;
-
-    @XmlElementRef(name = "day_count")
-    private FixedInterestRate rate;
-
-    @Deprecated
-    FixedRateCoupon() {
-    }
+    private final Money<C> amount;
+    private final FixedInterestRate rate;
 
     public FixedRateCoupon(final LocalDate paymentDate, final Money<C> amount, final FixedInterestRate rate) {
         super(paymentDate);

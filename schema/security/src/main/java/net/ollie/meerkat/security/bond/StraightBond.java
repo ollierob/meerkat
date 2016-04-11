@@ -18,6 +18,8 @@ import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
  */
 public abstract class StraightBond extends AbstractBond {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElementRef(name = "dates")
     private MaturingBondDates dates;
 

@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
@@ -38,11 +39,11 @@ public class PerpetualBond extends AbstractBond {
     PerpetualBond() {
     }
 
-    private transient PerpetualBondCoupons coupons;
+    private transient PerpetualBondCoupons<?> coupons;
 
     @Override
-    public PerpetualBondCoupons coupons() {
-        return coupons == null ? (coupons = new PerpetualBondCoupons()) : coupons;
+    public PerpetualBondCoupons<?> coupons() {
+        return coupons == null ? (coupons = new PerpetualBondCoupons<>(couponAmount)) : coupons;
     }
 
     @Override
@@ -55,7 +56,14 @@ public class PerpetualBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    public class PerpetualBondCoupons implements BondCoupons<FixedRateCoupon<?>> {
+    public class PerpetualBondCoupons<C extends CurrencyId>
+            implements BondCoupons<FixedRateCoupon<?>>, HasCurrencyId {
+
+        private final Money<C> coupon;
+
+        PerpetualBondCoupons(final Money<C> coupon) {
+            this.coupon = coupon;
+        }
 
         public FixedInterestRate yearlyRate() {
             return couponRate;
@@ -85,7 +93,7 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public PerpetualBondCoupons onOrAfter(final LocalDate time) {
+        public PerpetualBondCoupons<C> onOrAfter(final LocalDate time) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
@@ -105,8 +113,8 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public CurrencyId currencyId() {
-            return couponAmount.currencyId();
+        public C currencyId() {
+            return coupon.currencyId();
         }
 
     }
