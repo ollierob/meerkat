@@ -9,9 +9,6 @@ import javax.annotation.Nonnull;
 
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
-import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondShifts;
-import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
 import net.ollie.meerkat.identifier.currency.CurrencyId;

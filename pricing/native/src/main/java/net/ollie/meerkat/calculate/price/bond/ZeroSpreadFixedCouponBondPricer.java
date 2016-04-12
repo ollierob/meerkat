@@ -1,7 +1,5 @@
 package net.ollie.meerkat.calculate.price.bond;
 
-import com.google.common.collect.Maps;
-
 import java.time.LocalDate;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
@@ -10,10 +8,11 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import com.google.common.collect.Maps;
+
+import org.apache.commons.math3.fraction.Fraction;
+
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
-import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondShifts;
-import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
@@ -22,8 +21,6 @@ import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
-
-import org.apache.commons.math3.fraction.Fraction;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.

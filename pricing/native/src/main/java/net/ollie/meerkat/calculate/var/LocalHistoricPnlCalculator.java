@@ -1,7 +1,5 @@
 package net.ollie.meerkat.calculate.var;
 
-import com.google.common.collect.Maps;
-
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -10,6 +8,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.function.Function;
+
+import com.google.common.collect.Maps;
 
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.SecurityPricer;

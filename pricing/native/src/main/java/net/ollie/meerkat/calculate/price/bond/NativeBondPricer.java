@@ -2,9 +2,6 @@ package net.ollie.meerkat.calculate.price.bond;
 
 import java.time.temporal.Temporal;
 
-import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondPricer;
-import net.ollie.meerkat.calculate.price.bond.BondTypePricer;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.security.bond.ConvertibleBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
