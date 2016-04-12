@@ -1,15 +1,22 @@
 package net.ollie.meerkat.calculate.price.repo;
 
-import net.ollie.meerkat.calculate.price.repo.NativeBondRepoPricer;
-
 import java.time.LocalDate;
 import java.time.Month;
+
+import org.hamcrest.Matchers;
+import static org.junit.Assert.assertThat;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
+import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import org.mockito.MockitoAnnotations;
 
 import net.ollie.meerkat.IntegrationTest;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
-import net.ollie.meerkat.calculate.price.repo.RepoPrice;
 import net.ollie.meerkat.identifier.currency.CurrencyIso;
 import net.ollie.meerkat.identifier.currency.USD;
 import net.ollie.meerkat.identifier.security.SecurityIds;
@@ -24,16 +31,6 @@ import net.ollie.meerkat.security.repo.dates.RepoDates;
 import net.ollie.meerkat.security.repo.dates.TermRepoDates;
 import net.ollie.meerkat.security.repo.rate.RepoInterestRate;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
-
-import org.hamcrest.Matchers;
-import static org.junit.Assert.assertThat;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.experimental.categories.Category;
-import org.mockito.Mock;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import org.mockito.MockitoAnnotations;
 
 /**
  *

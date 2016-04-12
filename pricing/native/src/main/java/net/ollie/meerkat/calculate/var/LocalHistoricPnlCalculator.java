@@ -12,7 +12,6 @@ import java.util.function.Function;
 import com.google.common.collect.Maps;
 
 import net.ollie.meerkat.calculate.price.SecurityPrice;
-import net.ollie.meerkat.calculate.price.SecurityPricer;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnl;
@@ -21,6 +20,7 @@ import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.security.SecurityId;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.SecurityDefinition;
+import net.ollie.meerkat.calculate.price.SecurityPriceCalculator;
 
 /**
  *
@@ -29,12 +29,12 @@ import net.ollie.meerkat.security.SecurityDefinition;
 public class LocalHistoricPnlCalculator implements HistoricPnlCalculator {
 
     private final Function<SecurityId, SecurityDefinition> getSecurityDefinition;
-    private final SecurityPricer<LocalDate> pricer;
+    private final SecurityPriceCalculator<LocalDate> pricer;
     private final ExecutorService executor;
 
     public LocalHistoricPnlCalculator(
             final Function<SecurityId, SecurityDefinition> getSecurityDefinition,
-            final SecurityPricer<LocalDate> pricer,
+            final SecurityPriceCalculator<LocalDate> pricer,
             final ExecutorService executor) {
         this.getSecurityDefinition = getSecurityDefinition;
         this.pricer = pricer;

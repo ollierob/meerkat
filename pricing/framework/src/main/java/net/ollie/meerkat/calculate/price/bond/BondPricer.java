@@ -4,7 +4,7 @@ import java.time.temporal.Temporal;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.calculate.price.SecurityTypePricer.PriceException;
+import net.ollie.meerkat.calculate.price.SecurityPriceException;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.security.bond.Bond;
 
@@ -40,7 +40,7 @@ public interface BondPricer<T extends Temporal> {
 
     }
 
-    class BondPriceException extends PriceException {
+    class BondPriceException extends SecurityPriceException {
 
         private static final long serialVersionUID = 1L;
 

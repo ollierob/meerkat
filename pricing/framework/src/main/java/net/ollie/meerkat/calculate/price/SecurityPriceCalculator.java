@@ -2,6 +2,8 @@ package net.ollie.meerkat.calculate.price;
 
 import java.time.temporal.Temporal;
 
+import javax.annotation.Nonnull;
+
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.security.SecurityDefinition;
 
@@ -9,12 +11,12 @@ import net.ollie.meerkat.security.SecurityDefinition;
  *
  * @author ollie
  */
-public interface SecurityPricer<T extends Temporal> {
+public interface SecurityPriceCalculator<T extends Temporal> {
 
     default <C extends CurrencyId> ShiftableSecurityPrice<C> price(
-            final T valuation,
-            final SecurityDefinition security,
-            final C currency) {
+            @Nonnull final T valuation,
+            @Nonnull final SecurityDefinition security,
+            @Nonnull final C currency) {
         return security.handleWith(this.priceContext(valuation, currency));
     }
 
