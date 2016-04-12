@@ -15,6 +15,8 @@ public class EvaluatedRepoPrice<C extends CurrencyId>
         extends EvaluatedSecurityPrice<C>
         implements RepoPrice<C> {
 
+    private static final long serialVersionUID = 1L;
+
     @Deprecated
     protected EvaluatedRepoPrice() {
     }

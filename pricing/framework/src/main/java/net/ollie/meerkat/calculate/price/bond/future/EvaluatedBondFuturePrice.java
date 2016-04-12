@@ -1,5 +1,9 @@
 package net.ollie.meerkat.calculate.price.bond.future;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
 import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.money.Money;
@@ -11,6 +15,8 @@ import net.ollie.meerkat.numeric.money.Money;
 public class EvaluatedBondFuturePrice<C extends CurrencyId>
         extends EvaluatedSecurityPrice<C>
         implements BondFuturePrice<C> {
+
+    private static final long serialVersionUID = 1L;
 
     private CheapestToDeliver<C> cheapestToDeliver;
 
@@ -32,6 +38,19 @@ public class EvaluatedBondFuturePrice<C extends CurrencyId>
     @Deprecated
     public EvaluatedBondFuturePrice<C> evaluate() {
         return this;
+    }
+
+    @Override
+    public void writeExternal(final ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeObject(cheapestToDeliver);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        cheapestToDeliver = (CheapestToDeliver<C>) in.readObject();
     }
 
 }

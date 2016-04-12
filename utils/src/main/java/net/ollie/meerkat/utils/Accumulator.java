@@ -6,6 +6,9 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 /**
+ * Stateless value accumulator.
+ *
+ * Can be converted into a stateful {@link #collector Collector}.
  *
  * @author Ollie
  * @param <R> collector type (e.g. a list)
@@ -30,10 +33,21 @@ public interface Accumulator<R, T> {
                 this::finish);
     }
 
+    @Deprecated
+    default T accumulate(final T value) {
+        return value;
+    }
+
     default T accumulate(final T left, final T right) {
         final R container = this.container();
         this.fold(container, left);
         this.fold(container, right);
+        return this.finish(container);
+    }
+
+    default T accumulate(final Iterable<T> values) {
+        final R container = this.container();
+        values.forEach(value -> this.fold(container, value));
         return this.finish(container);
     }
 

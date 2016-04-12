@@ -1,10 +1,12 @@
 package net.ollie.meerkat.numeric.quantity;
 
+import java.io.Serializable;
 import java.math.RoundingMode;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
+import net.ollie.meerkat.utils.Accumulator;
 import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
 import net.ollie.meerkat.utils.numeric.Numeric;
 import net.ollie.meerkat.utils.xml.ExtendingXmlAdapter;
@@ -13,7 +15,8 @@ import net.ollie.meerkat.utils.xml.ExtendingXmlAdapter;
  *
  * @author Ollie
  */
-public interface Quantity extends Numeric.Summable<Quantity> {
+public interface Quantity
+        extends Numeric.Summable<Quantity>, Serializable {
 
     Quantity ZERO = DecimalQuantity.ZERO;
 
@@ -45,6 +48,7 @@ public interface Quantity extends Numeric.Summable<Quantity> {
         return quantity.decimalValue().hashCode();
     }
 
+    Accumulator.Homogeneous<Quantity> ACCUMULATOR = Quantity::plus;
     XmlAdapter<DecimalQuantity, Quantity> XML_ADAPTER = ExtendingXmlAdapter.of(Quantity::toDecimalQuantity);
 
 }

@@ -12,13 +12,8 @@ import net.ollie.meerkat.utils.Accumulator;
 public class DollarDuration implements Sensitivity<Money<USD>> {
 
     @Override
-    public Accumulator<Money<USD>, Money<USD>> accumulator() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public String name() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Accumulator.Homogeneous<Money<USD>> accumulator() {
+        return Money.accumulator();
     }
 
 }

@@ -1,5 +1,8 @@
 package net.ollie.meerkat.calculate.price.bond;
 
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
@@ -14,6 +17,8 @@ import net.ollie.meerkat.numeric.money.Money;
 public class EvaluatedBondPrice<C extends CurrencyId>
         extends EvaluatedSecurityPrice<C>
         implements BondPrice<C> {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "par")
     private Money<C> par;
@@ -31,6 +36,19 @@ public class EvaluatedBondPrice<C extends CurrencyId>
     @Override
     public Money<C> parValue() {
         return par;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        super.writeExternal(out);
+        out.writeObject(par);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        super.readExternal(in);
+        par = (Money<C>) in.readObject();
     }
 
 }

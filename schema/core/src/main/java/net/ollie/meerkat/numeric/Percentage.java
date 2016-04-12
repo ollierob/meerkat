@@ -13,6 +13,7 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
+import net.ollie.meerkat.utils.Accumulator;
 import net.ollie.meerkat.utils.numeric.Numbers;
 import net.ollie.meerkat.utils.numeric.Numeric;
 
@@ -32,6 +33,10 @@ public class Percentage
 
     public static Percentage basisPoints(final int amount) {
         return new Percentage(BigDecimal.valueOf(amount).movePointLeft(2));
+    }
+
+    public static Accumulator.Homogeneous<Percentage> accumulator() {
+        return Percentage::plus;
     }
 
     @XmlValue

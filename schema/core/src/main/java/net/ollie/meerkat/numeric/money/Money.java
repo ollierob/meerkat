@@ -1,5 +1,6 @@
 package net.ollie.meerkat.numeric.money;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.function.BinaryOperator;
@@ -19,7 +20,7 @@ import net.ollie.meerkat.utils.numeric.Numeric;
  * @author Ollie
  */
 public interface Money<C extends CurrencyId>
-        extends HasCurrencyId, HasName, Numeric.Summable<Money<C>>, Security {
+        extends HasCurrencyId, HasName, Numeric.Summable<Money<C>>, Security, Serializable {
 
     @Override
     C currencyId();
@@ -63,6 +64,10 @@ public interface Money<C extends CurrencyId>
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {
         return Objects.equals(left.currencyId(), right.currencyId())
                 && Numbers.equals(left.amount(), right.amount());
+    }
+
+    static <C extends CurrencyId> Accumulator.Homogeneous<Money<C>> accumulator() {
+        return Money::plus;
     }
 
     interface Accumulator<C extends CurrencyId> extends net.ollie.meerkat.utils.Accumulator.Homogeneous<Money<C>> {

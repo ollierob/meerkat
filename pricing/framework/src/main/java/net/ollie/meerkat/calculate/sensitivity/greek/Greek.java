@@ -1,5 +1,6 @@
 package net.ollie.meerkat.calculate.sensitivity.greek;
 
+import net.ollie.meerkat.calculate.sensitivity.DollarDuration;
 import net.ollie.meerkat.calculate.sensitivity.Sensitivity;
 
 /**
@@ -8,5 +9,10 @@ import net.ollie.meerkat.calculate.sensitivity.Sensitivity;
  * @author Ollie
  */
 public interface Greek<T> extends Sensitivity<T> {
+
+    Delta DELTA = new Delta();
+    DollarDuration DV01 = new DollarDuration();
+
+    Rho RHO = new Rho();
 
 }

@@ -1,6 +1,9 @@
 package net.ollie.meerkat.calculate.sensitivity;
 
-import javax.annotation.CheckForNull;
+import java.util.Map;
+import java.util.Optional;
+
+import javax.annotation.Nonnull;
 
 /**
  *
@@ -8,7 +11,10 @@ import javax.annotation.CheckForNull;
  */
 public interface SensitivityMap {
 
-    @CheckForNull
-    <T> T get(Sensitivity<T> sensitivity);
+    @Nonnull
+    <T> Optional<T> get(Sensitivity<T> sensitivity);
+
+    @Nonnull
+    Map<Sensitivity<?>, Object> toMap();
 
 }

@@ -10,6 +10,7 @@ import java.math.RoundingMode;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
+import net.ollie.meerkat.utils.Accumulator;
 import net.ollie.meerkat.utils.numeric.Numbers;
 import net.ollie.meerkat.utils.numeric.Numeric;
 
@@ -24,6 +25,10 @@ public class DecimalFraction
     private static final long serialVersionUID = 1L;
 
     public static final DecimalFraction ZERO = new DecimalFraction(BigDecimal.ZERO, BigDecimal.ONE);
+
+    public static Accumulator.Homogeneous<DecimalFraction> accumulator() {
+        return DecimalFraction::plus;
+    }
 
     public static DecimalFraction of(final Number numerator, final Number denominator) {
         if (numerator instanceof DecimalFraction) {

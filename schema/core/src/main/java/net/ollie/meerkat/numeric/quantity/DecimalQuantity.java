@@ -1,6 +1,9 @@
 package net.ollie.meerkat.numeric.quantity;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import static java.util.Objects.requireNonNull;
@@ -16,7 +19,9 @@ import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
  * @author Ollie
  */
 @XmlRootElement
-public class DecimalQuantity extends AbstractQuantity implements Serializable {
+public class DecimalQuantity
+        extends AbstractQuantity
+        implements Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -62,6 +67,16 @@ public class DecimalQuantity extends AbstractQuantity implements Serializable {
     @Override
     public String toString() {
         return value.toString();
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(value);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        value = (BigDecimal) in.readObject();
     }
 
 }

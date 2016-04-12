@@ -1,5 +1,6 @@
 package net.ollie.meerkat.utils.numeric;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -13,7 +14,8 @@ import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
  *
  * @author Ollie
  */
-public interface Numeric<T extends Numeric<T>> extends Comparable<T>, SelfTyped<T> {
+public interface Numeric<T extends Numeric<T>>
+        extends Comparable<T>, SelfTyped<T>, Serializable {
 
     default boolean isZero() {
         return this.decimalValue().signum() == 0;

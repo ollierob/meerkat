@@ -1,5 +1,11 @@
 package net.ollie.meerkat.calculate.price;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
@@ -9,7 +15,10 @@ import net.ollie.meerkat.numeric.money.Money;
  *
  * @author ollie
  */
-public class EvaluatedSecurityPrice<C extends CurrencyId> implements SecurityPrice<C> {
+public class EvaluatedSecurityPrice<C extends CurrencyId>
+        implements SecurityPrice<C>, Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "clean")
     private Money<C> clean;
@@ -40,6 +49,21 @@ public class EvaluatedSecurityPrice<C extends CurrencyId> implements SecurityPri
     @Deprecated
     public EvaluatedSecurityPrice<C> evaluate() {
         return this;
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(clean);
+        out.writeObject(dirty);
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    @SuppressWarnings("unchecked")
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        clean = (Money<C>) in.readObject();
+        dirty = (Money<C>) in.readObject();
     }
 
 }

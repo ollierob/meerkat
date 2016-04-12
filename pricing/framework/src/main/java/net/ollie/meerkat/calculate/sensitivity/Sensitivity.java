@@ -14,4 +14,9 @@ public interface Sensitivity<T> extends HasName {
     @Nonnull
     Accumulator<?, T> accumulator();
 
+    @Override
+    default String name() {
+        return this.getClass().getSimpleName();
+    }
+
 }
