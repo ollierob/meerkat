@@ -1,4 +1,4 @@
-package net.ollie.meerkat.var;
+package net.ollie.meerkat.calculate.var;
 
 import com.google.common.collect.Maps;
 

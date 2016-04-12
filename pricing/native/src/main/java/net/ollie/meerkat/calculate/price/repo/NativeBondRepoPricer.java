@@ -1,4 +1,4 @@
-package net.ollie.meerkat.price.repo;
+package net.ollie.meerkat.calculate.price.repo;
 
 import java.time.LocalDate;
 
