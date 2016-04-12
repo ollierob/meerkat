@@ -24,6 +24,7 @@ public class DecimalFraction
 
     private static final long serialVersionUID = 1L;
 
+    public static final DecimalFraction MINUS_ONE = DecimalFraction.of(-1, 1);
     public static final DecimalFraction ZERO = new DecimalFraction(BigDecimal.ZERO, BigDecimal.ONE);
 
     public static Accumulator.Homogeneous<DecimalFraction> accumulator() {

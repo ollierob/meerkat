@@ -2,7 +2,6 @@ package net.ollie.meerkat.security.bond;
 
 import java.util.AbstractList;
 
-import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.security.SecurityIds;
@@ -39,9 +38,6 @@ public abstract class StraightBond extends AbstractBond {
 
     @Override
     public abstract StraightBondCoupons<?> coupons();
-
-    @Nonnull
-    public abstract StraightBond strip();
 
     @Override
     public MaturingBondDates dates() {

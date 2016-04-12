@@ -2,6 +2,7 @@ package net.ollie.meerkat.security.bond;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -11,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.InterestRateId;
+import net.ollie.meerkat.numeric.interest.feature.RateFeature;
 import net.ollie.meerkat.security.bond.coupon.FloatingCoupon;
 
 /**
@@ -34,6 +36,9 @@ public class FloatingRateNote extends StraightBond {
     @XmlElement(name = "coupon_date")
     private List<LocalDate> couponDates;
 
+    @XmlElementRef(name = "coupon_feature")
+    private Set<? extends RateFeature> features;
+
     @Deprecated
     FloatingRateNote() {
     }
@@ -41,11 +46,6 @@ public class FloatingRateNote extends StraightBond {
     @Override
     public FloatingRateNoteCoupons<?> coupons() {
         return new FloatingRateNoteCoupons<>(couponCurrency);
-    }
-
-    @Override
-    public FloatingRateNote strip() {
-        throw new UnsupportedOperationException(); //TODO
     }
 
     @Override
@@ -64,7 +64,7 @@ public class FloatingRateNote extends StraightBond {
 
         @Override
         public FloatingCoupon get(final int index) {
-            return new FloatingCoupon(couponDates.get(index), spread, referenceRate);
+            return new FloatingCoupon(couponDates.get(index), spread, referenceRate, features);
         }
 
         @Override

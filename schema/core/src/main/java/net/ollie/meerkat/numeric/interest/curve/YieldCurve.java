@@ -1,8 +1,13 @@
 package net.ollie.meerkat.numeric.interest.curve;
 
+import com.google.common.collect.Sets;
+
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Map;
 import java.util.NavigableMap;
+import java.util.NavigableSet;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -11,7 +16,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.utils.HasName;
 import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
 import net.ollie.meerkat.utils.numeric.manifold.Curve;
 
@@ -19,34 +23,30 @@ import net.ollie.meerkat.utils.numeric.manifold.Curve;
  *
  * @author Ollie
  */
-public class YieldCurve implements Curve<Tenor, Percentage>, HasName, HasCurrencyId {
-
-    @XmlAttribute(name = "name")
-    private String name;
+public class YieldCurve<C extends CurrencyId>
+        implements Curve<Tenor, Percentage>, HasCurrencyId {
 
     @XmlElementWrapper
     private NavigableMap<Tenor, Percentage> data;
 
     @XmlAttribute(name = "currency")
-    private CurrencyId currency;
+    private C currency;
 
     @Deprecated
     YieldCurve() {
     }
 
-    public YieldCurve(final String name, final Map<Tenor, Percentage> data, final CurrencyId currency) {
-        this.name = name;
+    public YieldCurve(final Map<Tenor, Percentage> data, final C currency) {
         this.data = new TreeMap<>(data);
         this.currency = currency;
     }
 
-    @Override
-    public String name() {
-        return name;
+    public NavigableSet<Tenor> tenors() {
+        return Collections.unmodifiableNavigableSet(data.navigableKeySet());
     }
 
     @Override
-    public CurrencyId currencyId() {
+    public C currencyId() {
         return currency;
     }
 
@@ -62,6 +62,16 @@ public class YieldCurve implements Curve<Tenor, Percentage>, HasName, HasCurrenc
 
     public InterestRateCurve relativeTo(final LocalDate date) {
         throw new UnsupportedOperationException();
+    }
+
+    public YieldCurve<C> plus(final YieldCurve<C> that, final Interpolator<Tenor, Percentage> interpolator) {
+        final NavigableMap<Tenor, Percentage> data = new TreeMap<>();
+        final Set<Tenor> tenors = Sets.union(this.tenors(), that.tenors());
+        tenors.forEach(tenor -> {
+            final Percentage rate = this.get(tenor, interpolator).plus(that.get(tenor, interpolator));
+            data.put(tenor, rate);
+        });
+        return new YieldCurve<>(data, currency);
     }
 
 }

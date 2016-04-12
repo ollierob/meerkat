@@ -1,7 +1,6 @@
 package net.ollie.meerkat.security.bond;
 
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -76,19 +75,6 @@ public class FixedCouponBond extends StraightBond {
     @Override
     public FixedCouponBondCoupons<?> coupons() {
         return new FixedCouponBondCoupons<>(couponAmount);
-    }
-
-    @Override
-    public StraightBond strip() {
-        return new FixedCouponBond(
-                this.name(),
-                this.securityIds(),
-                this.par(),
-                this.dates(),
-                this.couponAmount(),
-                this.couponRate(),
-                Collections.emptyList(),
-                this.call().orElse(null));
     }
 
     @Override

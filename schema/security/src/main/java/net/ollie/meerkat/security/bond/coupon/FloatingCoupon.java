@@ -26,11 +26,12 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
     public FloatingCoupon(
             final LocalDate paymentDate,
             final Percentage spread,
-            final InterestRateId key) {
+            final InterestRateId key,
+            final Set<? extends RateFeature> features) {
         super(paymentDate);
         this.key = key;
         this.spread = spread;
-        this.features = Collections.emptySet();
+        this.features = features;
     }
 
     @Override
