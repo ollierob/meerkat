@@ -1,4 +1,4 @@
-package net.ollie.meerkat.numeric.interest.interpolation;
+package net.ollie.meerkat.utils.numeric.interpolation;
 
 import java.util.Map;
 import java.util.NavigableMap;

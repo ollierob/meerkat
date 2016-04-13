@@ -3,6 +3,7 @@ package net.ollie.meerkat.numeric.interest.interpolation;
 import java.math.BigDecimal;
 
 import net.ollie.meerkat.numeric.DecimalFraction;
+import net.ollie.meerkat.utils.numeric.interpolation.FirstOrderInterpolator;
 
 /**
  *
