@@ -42,7 +42,7 @@ public class LinearInterestRateInterpolator
             final LocalDate ceilingKey,
             final Percentage floorValue,
             final Percentage ceilingValue) {
-        final Fraction xf = new Fraction(dayCount.daysBetween(key, floorKey), dayCount.daysBetween(ceilingKey, floorKey));
+        final Fraction xf = new Fraction(dayCount.daysBetween(floorKey, key), dayCount.daysBetween(floorKey, ceilingKey));
         final Percentage yf = ceilingValue.minus(floorValue);
         return floorValue.plus(yf.times(xf));
     }
