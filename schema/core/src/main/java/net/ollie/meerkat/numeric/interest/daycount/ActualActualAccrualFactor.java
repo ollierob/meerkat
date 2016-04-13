@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.MonthDay;
 import java.time.Year;
-import java.time.temporal.ChronoUnit;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -16,17 +15,12 @@ import org.apache.commons.math3.fraction.Fraction;
  * @author Ollie
  */
 @XmlEnum
-public enum ActualActualAccrualFactor implements AccrualFactor {
+public enum ActualActualAccrualFactor implements AccrualFactor, ActualDayCount {
 
     @XmlEnumValue("ACT_ACT")
     ACT_ACT,
     @XmlEnumValue("ACT_ACT_ICMA")
     ACT_ACT_ICMA;
-
-    @Override
-    public int daysBetween(final LocalDate startInclusive, final LocalDate endInclusive) {
-        return Math.toIntExact(ChronoUnit.DAYS.between(startInclusive, endInclusive));
-    }
 
     private static final MonthDay JAN_1 = MonthDay.of(Month.JANUARY, 1);
     private static final MonthDay DEC_31 = MonthDay.of(Month.DECEMBER, 31);

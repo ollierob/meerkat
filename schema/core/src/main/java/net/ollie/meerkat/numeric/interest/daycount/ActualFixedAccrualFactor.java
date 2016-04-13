@@ -1,7 +1,6 @@
 package net.ollie.meerkat.numeric.interest.daycount;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
@@ -13,7 +12,7 @@ import org.apache.commons.math3.fraction.Fraction;
  * @author Ollie
  */
 @XmlEnum
-public enum ActualFixedAccrualFactor implements AccrualFactor {
+public enum ActualFixedAccrualFactor implements AccrualFactor, ActualDayCount {
 
     @XmlEnumValue("ACT_360")
     ACT_360(360),
@@ -26,11 +25,6 @@ public enum ActualFixedAccrualFactor implements AccrualFactor {
 
     private ActualFixedAccrualFactor(int daysPerYear) {
         this.daysPerYear = daysPerYear;
-    }
-
-    @Override
-    public int daysBetween(final LocalDate startInclusive, final LocalDate endExclusive) {
-        return Math.toIntExact(ChronoUnit.DAYS.between(startInclusive, endExclusive));
     }
 
     @Override
