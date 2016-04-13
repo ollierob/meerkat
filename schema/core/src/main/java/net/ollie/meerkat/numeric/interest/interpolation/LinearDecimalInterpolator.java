@@ -9,7 +9,7 @@ import net.ollie.meerkat.utils.numeric.interpolation.FirstOrderInterpolator;
  *
  * @author ollie
  */
-public abstract class LinearInterpolator<K, V>
+public abstract class LinearDecimalInterpolator<K, V>
         implements FirstOrderInterpolator<K, V>, DecimalInterpolator<K, V> {
 
     @Override

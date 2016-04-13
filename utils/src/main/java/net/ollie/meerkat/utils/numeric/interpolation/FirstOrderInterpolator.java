@@ -3,7 +3,8 @@ package net.ollie.meerkat.utils.numeric.interpolation;
 import java.util.Map;
 import java.util.NavigableMap;
 
-import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 
 /**
  *
@@ -12,6 +13,7 @@ import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
 public interface FirstOrderInterpolator<K, V> extends Interpolator<K, V> {
 
     @Override
+    @CheckForNull
     default V interpolate(final K key, final NavigableMap<K, V> map) {
         final Map.Entry<K, V> floorEntry = map.floorEntry(key);
         final Map.Entry<K, V> ceilingEntry = map.ceilingEntry(key);
@@ -26,14 +28,18 @@ public interface FirstOrderInterpolator<K, V> extends Interpolator<K, V> {
         }
     }
 
+    @CheckForNull
     default V defaultValue(final K key) {
         return null;
     }
 
+    @Nonnull
     V extrapolateLeft(K key, K ceilingKey, V ceilingValue);
 
+    @Nonnull
     V extrapolateRight(K key, K floorKey, V floorValue);
 
+    @Nonnull
     V interpolate(K key, K floorKey, K ceilingKey, V floorValue, V ceilingValue);
 
 }
