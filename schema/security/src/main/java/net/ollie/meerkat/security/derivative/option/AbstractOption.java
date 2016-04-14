@@ -3,6 +3,7 @@ package net.ollie.meerkat.security.derivative.option;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.numeric.quantity.Quantity;
 import net.ollie.meerkat.security.NamedSecurity;
@@ -31,6 +32,20 @@ public abstract class AbstractOption<S extends Security>
 
     @Deprecated
     protected AbstractOption() {
+    }
+
+    public AbstractOption(
+            final String name,
+            final SecurityIds identifiers,
+            final OptionExercise exercise,
+            final Money<?> premium,
+            final Money<?> strike,
+            final Quantity contractMultiplier) {
+        super(name, identifiers);
+        this.exercise = exercise;
+        this.premium = premium;
+        this.strike = strike;
+        this.contractMultiplier = contractMultiplier;
     }
 
     @Override

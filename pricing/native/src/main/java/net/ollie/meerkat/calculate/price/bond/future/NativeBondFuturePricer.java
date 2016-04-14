@@ -36,7 +36,7 @@ public class NativeBondFuturePricer<T extends Temporal>
     public <C extends CurrencyId> BondFuturePrice.Shiftable<C> price(final T temporal, final BondFuture bondFuture, final C currency) {
         try {
             final CheapestToDeliver<?> cheapestToDeliver = this.cheapestToDeliver(temporal, bondFuture);
-            final BondPrice.Shiftable<C> price = bondPricer.price(bondFuture.deliveryDates().earliest(), cheapestToDeliver.bond(), currency);
+            final BondPrice.Shiftable<C> price = bondPricer.price(bondFuture.dates().earliest(), cheapestToDeliver.bond(), currency);
             return new NativeBondFuturePrice<>(cheapestToDeliver.bond(), cheapestToDeliver.conversionFactor(), price, BondFutureShifts.none());
         } catch (final BondPriceException bex) {
             throw new BondFuturePriceException("Failed to price cheapest to deliver!", bex);

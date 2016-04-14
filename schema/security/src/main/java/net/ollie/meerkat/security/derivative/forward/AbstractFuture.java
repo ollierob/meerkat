@@ -13,6 +13,8 @@ public abstract class AbstractFuture<S extends Security>
         extends NamedSecurity
         implements Future<S>, HasFutureTicker {
 
+    private static final long serialVersionUID = 1L;
+
     @Deprecated
     protected AbstractFuture() {
     }

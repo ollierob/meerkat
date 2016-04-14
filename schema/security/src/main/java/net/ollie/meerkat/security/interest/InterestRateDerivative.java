@@ -1,7 +1,8 @@
 package net.ollie.meerkat.security.interest;
 
 import net.ollie.meerkat.security.SecurityDefinition;
-import net.ollie.meerkat.security.interest.future.ShortTermInterestRateFuture;
+import net.ollie.meerkat.security.interest.future.InterestRateFuture;
+import net.ollie.meerkat.security.interest.future.InterestRateFutureOption;
 import net.ollie.meerkat.security.interest.option.InterestRateOption;
 import net.ollie.meerkat.security.interest.option.Swaption;
 import net.ollie.meerkat.security.interest.swap.InterestRateSwap;
@@ -23,13 +24,15 @@ public interface InterestRateDerivative extends SecurityDefinition {
 
     interface Handler<R> extends SecurityDefinition.Handler<R> {
 
-        R handle(InterestRateSwap swap);
-
         R handle(InterestRateOption option);
 
-        R handle(Swaption swaption);
+        R handle(InterestRateFuture future);
 
-        R handle(ShortTermInterestRateFuture future);
+        R handle(InterestRateFutureOption futureOption);
+
+        R handle(InterestRateSwap swap);
+
+        R handle(Swaption swaption);
 
     }
 

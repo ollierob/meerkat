@@ -57,8 +57,8 @@ public class FixedRateCoupon<C extends CurrencyId>
         return rate.accrue(amount, this.paymentDate(), to);
     }
 
-    public YearCount yearCount() {
-        return rate.yearCount();
+    public YearCount accrual() {
+        return rate.accrual();
     }
 
 }

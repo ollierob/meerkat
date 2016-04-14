@@ -6,12 +6,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.apache.commons.math3.fraction.Fraction;
-
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.numeric.interest.daycount.YearCount;
+import net.ollie.meerkat.numeric.interest.daycount.AccrualFactor;
 import net.ollie.meerkat.numeric.money.Money;
+
+import org.apache.commons.math3.fraction.Fraction;
 
 /**
  *
@@ -24,7 +24,7 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
     private Percentage annualRate;
 
     @XmlElementRef(name = "year_count")
-    private YearCount yearCount;
+    private AccrualFactor accrual;
 
     @XmlAttribute(name = "frequency")
     private double yearlyFrequency;
@@ -33,9 +33,9 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
     CompoundFixedInterestRate() {
     }
 
-    public CompoundFixedInterestRate(final Percentage annualRate, final YearCount yearCount, final double yearlyFrequency) {
+    public CompoundFixedInterestRate(final Percentage annualRate, final AccrualFactor accrual, final double yearlyFrequency) {
         this.annualRate = annualRate;
-        this.yearCount = yearCount;
+        this.accrual = accrual;
         this.yearlyFrequency = yearlyFrequency;
     }
 
@@ -45,20 +45,20 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
     }
 
     @Override
-    public YearCount yearCount() {
-        return yearCount;
+    public AccrualFactor accrual() {
+        return  accrual;
     }
 
     @Override
     public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
-        final Fraction years = yearCount.yearsBetween(start, accrualDate);
+        final Fraction years = accrual.yearsBetween(start, accrualDate);
         final double multiplier = Math.pow(1. + annualRate.doubleValue() / yearlyFrequency, yearlyFrequency * years.doubleValue());
         return money.times(multiplier);
     }
 
     @Override
     public CompoundFixedInterestRate with(final Percentage rate) {
-        return new CompoundFixedInterestRate(rate, yearCount, yearlyFrequency);
+        return new CompoundFixedInterestRate(rate, accrual, yearlyFrequency);
     }
 
     @Override

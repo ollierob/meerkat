@@ -6,7 +6,6 @@ import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.curve.InterestRateCurve;
-import net.ollie.meerkat.numeric.interest.daycount.YearCount;
 
 /**
  *
@@ -16,9 +15,6 @@ public interface FixedInterestRate extends InterestRate, Comparable<FixedInteres
 
     @Nonnull
     Percentage annualRate();
-
-    @Nonnull
-    YearCount yearCount();
 
     default boolean isNegative() {
         return this.annualRate().isNegative();

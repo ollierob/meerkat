@@ -22,4 +22,8 @@ public interface FutureDeliveryDates {
         return this.dates().last();
     }
 
+    default LocalDate expiry() {
+        return this.latest();
+    }
+
 }

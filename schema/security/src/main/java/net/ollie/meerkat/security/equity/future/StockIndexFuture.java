@@ -28,7 +28,7 @@ public class StockIndexFuture
     }
 
     @Override
-    public FutureDeliveryDates deliveryDates() {
+    public FutureDeliveryDates dates() {
         throw new UnsupportedOperationException(); //TODO
     }
 

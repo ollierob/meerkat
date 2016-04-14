@@ -17,6 +17,8 @@ public class BondFuture
         extends AbstractFuture<BondFutureBasket>
         implements BondDerivative<BondFutureBasket> {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElement(name = "basket", required = true)
     private BondFutureBasket basket;
 
@@ -43,7 +45,7 @@ public class BondFuture
     }
 
     @Override
-    public FutureDeliveryDates deliveryDates() {
+    public FutureDeliveryDates dates() {
         return deliveryDates;
     }
 
