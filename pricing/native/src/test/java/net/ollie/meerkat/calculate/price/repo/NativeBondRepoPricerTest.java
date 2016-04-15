@@ -22,7 +22,7 @@ import net.ollie.meerkat.identifier.currency.USD;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.SimpleFixedInterestRate;
-import net.ollie.meerkat.numeric.interest.daycount.ActualFixedAccrualFactor;
+import net.ollie.meerkat.time.daycount.ActualFixedAccrualFactor;
 import net.ollie.meerkat.numeric.money.DecimalMoney;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.FixedCouponBond;

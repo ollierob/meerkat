@@ -1,5 +1,8 @@
 package net.ollie.meerkat.numeric.interest.daycount;
 
+import net.ollie.meerkat.time.daycount.FixedFixedAccrualFactor;
+import net.ollie.meerkat.time.daycount.DayCount;
+
 import java.time.LocalDate;
 import java.time.Month;
 

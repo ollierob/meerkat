@@ -1,5 +1,7 @@
 package net.ollie.meerkat.numeric.interest.daycount;
 
+import net.ollie.meerkat.time.daycount.ActualActualAccrualFactor;
+
 import java.time.LocalDate;
 
 import static org.hamcrest.CoreMatchers.is;

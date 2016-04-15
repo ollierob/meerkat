@@ -3,10 +3,13 @@ package net.ollie.meerkat.calculate.price.interest.future;
 import java.time.LocalDate;
 import java.util.function.BiFunction;
 
+import javax.annotation.Nonnull;
+
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
 import net.ollie.meerkat.security.interest.future.InterestRateFuture;
 
 import org.apache.commons.math3.fraction.Fraction;
@@ -40,15 +43,20 @@ public class DiscountingInterestRateFuturePricer implements InterestRateFuturePr
 
     static final class Price<F extends CurrencyId, C extends CurrencyId> implements InterestRateFuturePrice<C> {
 
-        private final Money<F> notional;
+        private LocalDate valuationDate;
+        private ExchangeRate<F, C> exchangeRate;
+        private Money<F> notional;
+        private InterestRate interestRate;
+        private InterestRateFutureShifts shifts;
 
-        Price(final Money<F> notional) {
-            this.notional = notional;
+        @Nonnull
+        Percentage impliedForwardRate() {
+            throw new UnsupportedOperationException(); //TODO 
         }
 
         @Override
         public Percentage price() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return this.impliedForwardRate().inverse();
         }
 
         @Override

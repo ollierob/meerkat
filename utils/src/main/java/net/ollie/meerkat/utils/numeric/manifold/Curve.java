@@ -1,6 +1,9 @@
 package net.ollie.meerkat.utils.numeric.manifold;
 
+import java.util.NavigableMap;
+
 import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
 
@@ -15,5 +18,8 @@ public interface Curve<X, Y> {
 
     @CheckForNull
     Y get(X x, Interpolator<X, Y> interpolator);
+
+    @Nonnull
+    NavigableMap<X, Y> toMap();
 
 }

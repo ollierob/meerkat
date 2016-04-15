@@ -12,7 +12,7 @@ import org.mockito.MockitoAnnotations;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.numeric.interest.daycount.AccrualFactor;
+import net.ollie.meerkat.time.daycount.AccrualFactor;
 import net.ollie.meerkat.numeric.money.DecimalMoney;
 import net.ollie.meerkat.numeric.money.Money;
 

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.numeric.interest.daycount.AccrualFactor;
+import net.ollie.meerkat.time.daycount.AccrualFactor;
 import net.ollie.meerkat.numeric.money.Money;
 
 import org.apache.commons.math3.fraction.Fraction;

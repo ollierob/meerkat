@@ -1,4 +1,4 @@
-package net.ollie.meerkat.numeric.interest.daycount;
+package net.ollie.meerkat.time.daycount;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

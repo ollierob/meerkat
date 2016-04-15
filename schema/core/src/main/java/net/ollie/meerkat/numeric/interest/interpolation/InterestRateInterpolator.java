@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.numeric.interest.daycount.AccrualFactor;
-import net.ollie.meerkat.numeric.interest.daycount.DayCount;
+import net.ollie.meerkat.time.daycount.AccrualFactor;
+import net.ollie.meerkat.time.daycount.DayCount;
 import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
 
 /**

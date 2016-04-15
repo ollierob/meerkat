@@ -1,14 +1,18 @@
 package net.ollie.meerkat.numeric.interest.curve;
 
+import com.google.common.collect.Maps;
+
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import net.ollie.goat.date.Dates;
-import net.ollie.meerkat.numeric.interest.daycount.ActualActualAccrualFactor;
-import net.ollie.meerkat.numeric.interest.daycount.YearCount;
+import net.ollie.meerkat.time.Years;
+import net.ollie.meerkat.time.daycount.ActualActualAccrualFactor;
+import net.ollie.meerkat.time.daycount.YearCount;
 import net.ollie.meerkat.utils.HasName;
 
 import org.apache.commons.math3.fraction.Fraction;
@@ -17,9 +21,24 @@ import org.apache.commons.math3.fraction.Fraction;
  *
  * @author Ollie
  */
-public class Tenor implements HasName {
+public class Tenor implements Years, HasName {
 
-    public static final Tenor SPOT = new Tenor("spot", Period.ZERO);
+    public static final Tenor SPOT = new Tenor("SPOT", Period.ZERO);
+
+    private static final Map<String, Tenor> cache = Maps.newConcurrentMap();
+
+    public static Tenor ofMonths(final int months) {
+        if (months % 12 == 0) {
+            return ofYears(months / 12);
+        }
+        return cache.computeIfAbsent(months + "M", n -> new Tenor(n, Period.ofMonths(months)));
+    }
+
+    public static Tenor ofYears(final int years) {
+        return years == 0
+                ? SPOT
+                : cache.computeIfAbsent(years + "Y", n -> new Tenor(n, Period.ofYears(years)));
+    }
 
     @XmlAttribute(name = "name")
     private String name;
@@ -46,6 +65,11 @@ public class Tenor implements HasName {
         return period;
     }
 
+    @Override
+    public double value() {
+        return this.yearFraction();
+    }
+
     @Nonnull
     public double yearFraction() {
         return Dates.approximateLength(this.period());
@@ -62,7 +86,8 @@ public class Tenor implements HasName {
         return yearCount.yearsBetween(start, end);
     }
 
-    public LocalDate outFrom(final LocalDate date) {
+    @Override
+    public LocalDate addTo(final LocalDate date) {
         return date.plus(period);
     }
 
