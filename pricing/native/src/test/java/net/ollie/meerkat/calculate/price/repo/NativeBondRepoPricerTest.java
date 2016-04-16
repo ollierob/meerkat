@@ -20,9 +20,8 @@ import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyIso;
 import net.ollie.meerkat.identifier.currency.USD;
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.DecimalPercentage;
 import net.ollie.meerkat.numeric.interest.SimpleFixedInterestRate;
-import net.ollie.meerkat.time.daycount.ActualFixedAccrualFactor;
 import net.ollie.meerkat.numeric.money.DecimalMoney;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
@@ -31,6 +30,7 @@ import net.ollie.meerkat.security.repo.dates.RepoDates;
 import net.ollie.meerkat.security.repo.dates.TermRepoDates;
 import net.ollie.meerkat.security.repo.rate.RepoInterestRate;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
+import net.ollie.meerkat.time.daycount.ActualFixedAccrualFactor;
 
 /**
  *
@@ -65,7 +65,7 @@ public class NativeBondRepoPricerTest {
         when(mockBondPrice.dirtyValue()).thenReturn(dirtyValue);
         when(mockBondPricer.price(priceDate, mockBond, usd, BondShifts.none())).thenReturn(mockBondPrice);
 
-        final RepoRate rate = new RepoInterestRate(new SimpleFixedInterestRate(new Percentage(0.885), ActualFixedAccrualFactor.ACT_360));
+        final RepoRate rate = new RepoInterestRate(new SimpleFixedInterestRate(new DecimalPercentage(0.885), ActualFixedAccrualFactor.ACT_360));
         final RepoDates dates = new TermRepoDates(nearDate.minusDays(1), nearDate, farDate);
         final BondRepo repo = new BondRepo("repo", mock(SecurityIds.class), rate, mockBond, dates, null);
 

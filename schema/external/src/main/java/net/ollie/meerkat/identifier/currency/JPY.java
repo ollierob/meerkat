@@ -2,7 +2,8 @@ package net.ollie.meerkat.identifier.currency;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.DecimalPercentage;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
@@ -20,7 +21,7 @@ public class JPY extends AbstractCurrencyIso {
 
     @Override
     public Percentage pip() {
-        return Percentage.ONE_PERCENT;
+        return DecimalPercentage.ONE_PERCENT;
     }
 
     @Override

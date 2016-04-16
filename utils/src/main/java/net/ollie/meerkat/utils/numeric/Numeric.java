@@ -29,6 +29,11 @@ public interface Numeric<T extends Numeric<T>>
     T times(@Nonnull Number that, RoundingMode rounding);
 
     @Nonnull
+    default T times(@Nonnull final Number that) {
+        return this.times(that, RoundingMode.HALF_EVEN);
+    }
+
+    @Nonnull
     default T over(@Nonnull final Number that, @Nonnull final MathContext context) {
         return this.times(BigDecimal.ONE.divide(toBigDecimal(that), context), context.getRoundingMode());
     }
@@ -47,6 +52,14 @@ public interface Numeric<T extends Numeric<T>>
     @Override
     default int compareTo(final T that) {
         return this.decimalValue().compareTo(that.decimalValue());
+    }
+
+    default boolean valuesEqual(@Nonnull final T that) {
+        return this.decimalValue().compareTo(that.decimalValue()) == 0;
+    }
+
+    default boolean valuesEqual(@Nonnull final T that, final double delta) {
+        return Math.abs(this.decimalValue().subtract(that.decimalValue()).doubleValue()) < delta;
     }
 
     interface Summable<T extends Summable<T>> extends Numeric<T> {

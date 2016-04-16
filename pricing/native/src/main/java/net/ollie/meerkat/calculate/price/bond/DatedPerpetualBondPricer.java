@@ -12,7 +12,7 @@ import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.PerpetualBond;

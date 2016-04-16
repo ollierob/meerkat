@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.function.Function;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.HasInterestRateId;
 import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.interest.InterestRateId;

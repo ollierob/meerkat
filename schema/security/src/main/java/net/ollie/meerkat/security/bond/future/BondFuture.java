@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
 import net.ollie.meerkat.security.derivative.forward.FutureDeliveryDates;

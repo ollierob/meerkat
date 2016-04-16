@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.time.daycount.YearCount;
 import net.ollie.meerkat.numeric.money.Money;

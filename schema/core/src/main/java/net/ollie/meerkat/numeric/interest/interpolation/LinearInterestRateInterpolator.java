@@ -5,11 +5,11 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.time.daycount.DayCount;
-import net.ollie.meerkat.utils.numeric.interpolation.FirstOrderInterpolator;
-
 import org.apache.commons.math3.fraction.Fraction;
+
+import net.ollie.meerkat.time.daycount.DayCount;
+import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.meerkat.utils.numeric.interpolation.FirstOrderInterpolator;
 
 /**
  *

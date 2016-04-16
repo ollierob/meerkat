@@ -5,11 +5,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.DecimalPercentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.repo.dates.RepoDates;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
@@ -48,13 +49,13 @@ public class BondRepo extends AbstractRepo<Bond> {
 
     @Override
     public Money<?> principal() {
-        return collateral.par().times(this.haircut().inverse());
+        return collateral.par().times(this.haircut().inverse().decimalValue());
     }
 
     @Nonnull
     public Percentage haircut() {
         return haircut == null
-                ? Percentage.ZERO_PERCENT
+                ? DecimalPercentage.ZERO_PERCENT
                 : haircut;
     }
 

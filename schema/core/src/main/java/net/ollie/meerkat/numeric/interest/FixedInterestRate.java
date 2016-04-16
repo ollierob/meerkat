@@ -3,43 +3,45 @@ package net.ollie.meerkat.numeric.interest;
 import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
+import javax.xml.bind.annotation.XmlTransient;
 
-import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.curve.InterestRateCurve;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
  * @author ollie
  */
-public interface FixedInterestRate extends InterestRate, Comparable<FixedInterestRate> {
+@XmlTransient
+public abstract class FixedInterestRate implements InterestRate, Comparable<FixedInterestRate> {
 
     @Nonnull
-    Percentage annualRate();
+    public abstract Percentage annualRate();
 
-    default boolean isNegative() {
+    public boolean isNegative() {
         return this.annualRate().isNegative();
     }
 
     @Override
     @Deprecated
-    default Percentage fixing(final LocalDate date) {
+    public Percentage fixing(final LocalDate date) {
         return this.annualRate();
     }
 
     @Override
-    default FixedInterestRate plus(final Percentage bump) {
+    public FixedInterestRate plus(final Percentage bump) {
         return this.with(this.annualRate().plus(bump));
     }
 
     @Override
-    default int compareTo(final FixedInterestRate that) {
+    public int compareTo(final FixedInterestRate that) {
         return this.annualRate().compareTo(that.annualRate());
     }
 
-    FixedInterestRate with(Percentage rate);
+    public abstract FixedInterestRate with(Percentage rate);
 
     @Nonnull
-    default InterestRateCurve toCurve() {
+    public InterestRateCurve toCurve() {
         return InterestRateCurve.flat(this.annualRate());
     }
 

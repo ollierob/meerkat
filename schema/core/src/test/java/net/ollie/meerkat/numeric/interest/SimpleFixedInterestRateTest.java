@@ -10,7 +10,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.DecimalPercentage;
 import net.ollie.meerkat.numeric.money.DecimalMoney;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.time.FractionalYears;
@@ -37,7 +37,7 @@ public class SimpleFixedInterestRateTest {
     @Test
     public void testAccrue() {
 
-        final SimpleFixedInterestRate rate = new SimpleFixedInterestRate(new Percentage(8), mockFactor);
+        final SimpleFixedInterestRate rate = new SimpleFixedInterestRate(new DecimalPercentage(8), mockFactor);
 
         final Money money = new DecimalMoney(mockCurrency, BigDecimal.ONE);
 

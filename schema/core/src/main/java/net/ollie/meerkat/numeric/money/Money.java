@@ -28,6 +28,7 @@ public interface Money<C extends CurrencyId>
     @Nonnull
     Number amount();
 
+    @Override
     Money<C> times(Number n);
 
     @Override

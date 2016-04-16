@@ -3,9 +3,10 @@ package net.ollie.meerkat.identifier.currency;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.identifier.country.HasCountryId;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.DecimalPercentage;
 import net.ollie.meerkat.security.Security;
 import net.ollie.meerkat.utils.HasName;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
@@ -13,7 +14,7 @@ import net.ollie.meerkat.utils.HasName;
  */
 public interface Currency extends HasCurrencyId, HasCountryId, HasName, Security {
 
-    Percentage STANDARD_PIP = Percentage.basisPoints(1);
+    Percentage STANDARD_PIP = DecimalPercentage.basisPoints(1);
 
     @Nonnull
     String symbol();

@@ -8,11 +8,11 @@ import org.junit.Test;
  *
  * @author ollie
  */
-public class PercentageTest {
+public class DecimalPercentageTest {
 
     @Test
     public void testInverse() {
-        assertThat(Percentage.ZERO_PERCENT.inverse(), is(Percentage.ONE_HUNDRED_PERCENT));
+        assertThat(DecimalPercentage.ZERO_PERCENT.inverse(), is(DecimalPercentage.ONE_HUNDRED_PERCENT));
     }
 
 }

@@ -11,10 +11,11 @@ import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.identifier.currency.HasCurrencyId;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.DecimalPercentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
 import net.ollie.meerkat.time.interim.Interval;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
@@ -31,7 +32,7 @@ public interface BondPrice<C extends CurrencyId>
 
     @Nonnull
     default Percentage clean() {
-        return new Percentage(this.parValue().amount().doubleValue() / this.cleanValue().amount().doubleValue());
+        return new DecimalPercentage(this.parValue().amount().doubleValue() / this.cleanValue().amount().doubleValue());
     }
 
     @Override
@@ -39,7 +40,7 @@ public interface BondPrice<C extends CurrencyId>
 
     @Nonnull
     default Percentage dirty() {
-        return new Percentage(this.parValue().amount().doubleValue() / this.dirtyValue().amount().doubleValue());
+        return new DecimalPercentage(this.parValue().amount().doubleValue() / this.dirtyValue().amount().doubleValue());
     }
 
     default boolean isPremium() {

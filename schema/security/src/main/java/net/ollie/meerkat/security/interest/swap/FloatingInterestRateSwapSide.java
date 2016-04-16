@@ -1,6 +1,6 @@
 package net.ollie.meerkat.security.interest.swap;
 
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.earning.FloatingInterestEarning;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.numeric.interest.InterestRateId;

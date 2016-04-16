@@ -9,30 +9,30 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Objects;
 
-import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
 import net.ollie.meerkat.utils.Accumulator;
 import net.ollie.meerkat.utils.numeric.Numbers;
 import net.ollie.meerkat.utils.numeric.Numeric;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class Percentage
-        extends Number
-        implements Numeric.Summable<Percentage>, Externalizable {
+public class DecimalPercentage
+        extends Percentage
+        implements Externalizable {
 
     private static final long serialVersionUID = 1L;
-    public static final Percentage ZERO_PERCENT = new Percentage(BigDecimal.ZERO);
-    public static final Percentage ONE_PERCENT = new Percentage(BigDecimal.ONE);
-    public static final Percentage ONE_HUNDRED_PERCENT = new Percentage(Numbers.ONE_HUNDRED);
+    public static final Percentage ZERO_PERCENT = new DecimalPercentage(BigDecimal.ZERO);
+    public static final Percentage ONE_PERCENT = new DecimalPercentage(BigDecimal.ONE);
+    public static final Percentage ONE_HUNDRED_PERCENT = new DecimalPercentage(Numbers.ONE_HUNDRED);
 
     public static Percentage basisPoints(final int amount) {
-        return new Percentage(BigDecimal.valueOf(amount).movePointLeft(2));
+        return new DecimalPercentage(BigDecimal.valueOf(amount).movePointLeft(2));
     }
 
     public static Accumulator.Homogeneous<Percentage> accumulator() {
@@ -43,24 +43,24 @@ public class Percentage
     private BigDecimal value;
 
     @Deprecated
-    Percentage() {
+    DecimalPercentage() {
     }
 
-    public Percentage(final int value) {
+    public DecimalPercentage(final int value) {
         this(BigDecimal.valueOf(value));
     }
 
-    public Percentage(final double value) {
+    public DecimalPercentage(final double value) {
         this(BigDecimal.valueOf(value));
     }
 
-    public Percentage(final BigDecimal value) {
+    public DecimalPercentage(final BigDecimal value) {
         this.value = value;
     }
 
     @Override
     public Percentage plus(final Percentage that) {
-        return new Percentage(value.add(that.value));
+        return new DecimalPercentage(value.add(that.decimalValue()));
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Percentage
     }
 
     public Percentage times(final Number that) {
-        return new Percentage(value.multiply(Numbers.toBigDecimal(that)));
+        return new DecimalPercentage(value.multiply(Numbers.toBigDecimal(that)));
     }
 
     public Percentage timesBy(final Numeric<?> that) {
@@ -96,23 +96,25 @@ public class Percentage
 
     @Override
     public int intValue() {
-        return this.decimalValue().intValue();
+        throw new UnsupportedOperationException(); //TODO
     }
 
     @Override
     public long longValue() {
-        return this.decimalValue().longValue();
+        throw new UnsupportedOperationException(); //TODO
     }
 
     @Override
     public float floatValue() {
-        return this.decimalValue().floatValue();
+        throw new UnsupportedOperationException(); //TODO
     }
 
+    @Override
     public boolean isNegative() {
         return value.signum() < 0;
     }
 
+    @Override
     public Percentage inverse() {
         return ONE_HUNDRED_PERCENT.minus(this);
     }
@@ -132,15 +134,7 @@ public class Percentage
     @Override
     public boolean equals(Object obj) {
         return obj instanceof Percentage
-                && this.equals((Percentage) obj);
-    }
-
-    public boolean equals(@Nonnull final Percentage that) {
-        return value.compareTo(that.value) == 0;
-    }
-
-    public boolean equals(@Nonnull final Percentage that, final double delta) {
-        return Math.abs(value.subtract(that.value).doubleValue()) < delta;
+                && this.valuesEqual((Percentage) obj);
     }
 
     @Override

@@ -10,7 +10,7 @@ import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.numeric.DecimalPercentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.repo.dates.RepoDates;
@@ -39,12 +39,12 @@ public class BondRepoTest {
 
         final SecurityIds mockIds = mock(SecurityIds.class);
         final BondRepo repo = new BondRepo("name", mockIds, mockRate, mockBond, mockDates, null);
-        assertThat(repo.haircut(), is(Percentage.ZERO_PERCENT));
+        assertThat(repo.haircut(), is(DecimalPercentage.ZERO_PERCENT));
 
         final Money mockPar = mock(Money.class);
         when(mockBond.par()).thenReturn(mockPar);
         
-        when(mockPar.times(Percentage.ONE_HUNDRED_PERCENT)).thenReturn(mockPar);
+        when(mockPar.times(DecimalPercentage.ONE_HUNDRED_PERCENT)).thenReturn(mockPar);
         
         assertThat(repo.principal(), is(mockPar));
 

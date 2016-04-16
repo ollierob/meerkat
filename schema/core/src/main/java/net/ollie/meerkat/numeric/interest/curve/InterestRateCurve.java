@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 
 import com.google.common.collect.Maps;
 
-import net.ollie.meerkat.numeric.Percentage;
+import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
 import net.ollie.meerkat.utils.numeric.manifold.Curve;
 

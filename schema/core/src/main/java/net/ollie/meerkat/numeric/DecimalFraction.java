@@ -173,10 +173,10 @@ public class DecimalFraction
     @Override
     public boolean equals(final Object obj) {
         return obj instanceof DecimalFraction
-                && this.equals((DecimalFraction) obj);
+                && this.valuesEqual((DecimalFraction) obj);
     }
 
-    public boolean equals(final DecimalFraction that) {
+    public boolean valuesEqual(final DecimalFraction that) {
         return this.minus(that).isZero();
     }
 

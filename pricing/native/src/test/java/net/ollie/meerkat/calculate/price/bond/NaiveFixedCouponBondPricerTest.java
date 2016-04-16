@@ -30,7 +30,7 @@ package net.ollie.meerkat.calculate.price.bond;
 //import net.ollie.meerkat.identifier.currency.CurrencyIso;
 //import net.ollie.meerkat.identifier.currency.USD;
 //import net.ollie.meerkat.identifier.security.SecurityIds;
-//import net.ollie.meerkat.numeric.Percentage;
+//import net.ollie.meerkat.utils.numeric.Percentage;
 //import net.ollie.meerkat.numeric.interest.CompoundFixedInterestRate;
 //import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 //import net.ollie.meerkat.numeric.interest.InterestRate;

@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
-import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.utils.Require;
+import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
 import net.ollie.meerkat.utils.numeric.manifold.Curve;
 import net.ollie.meerkat.utils.time.Years;

@@ -6,10 +6,10 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.time.daycount.AccrualFactor;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.Security;
+import net.ollie.meerkat.time.daycount.AccrualFactor;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
