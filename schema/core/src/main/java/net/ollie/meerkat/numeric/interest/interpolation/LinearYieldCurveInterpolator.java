@@ -14,7 +14,7 @@ public class LinearYieldCurveInterpolator extends LinearDecimalInterpolator<Teno
 
     @Override
     public BigDecimal numerical(final Tenor key) {
-        return BigDecimal.valueOf(key.yearFraction());
+        return key.decimalValue();
     }
 
     @Override

@@ -1,7 +1,5 @@
 package net.ollie.meerkat.numeric.interest.curve;
 
-import com.google.common.collect.Maps;
-
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Map;
@@ -10,6 +8,8 @@ import java.util.TreeMap;
 
 import javax.annotation.CheckReturnValue;
 import javax.xml.bind.annotation.XmlElementWrapper;
+
+import com.google.common.collect.Maps;
 
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
@@ -27,7 +27,7 @@ public class InterestRateCurve implements Curve<LocalDate, Percentage> {
         return new InterestRateCurve(Collections.singletonMap(SOME_TIME, percentage));
     }
 
-    public static InterestRateCurve of(final LocalDate fixing, final YieldCurve<?> yieldCurve) {
+    public static InterestRateCurve of(final LocalDate fixing, final YieldCurve yieldCurve) {
         final NavigableMap<LocalDate, Percentage> map = new TreeMap<>();
         yieldCurve.toMap().forEach((tenor, rate) -> map.put(tenor.addTo(fixing), rate));
         return new InterestRateCurve(map);

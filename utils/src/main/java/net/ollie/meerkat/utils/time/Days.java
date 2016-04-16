@@ -14,6 +14,8 @@ import net.ollie.meerkat.utils.numeric.Numeric;
  */
 public class Days implements Numeric.Summable<Days> {
 
+    private static final long serialVersionUID = 1L;
+
     private final int numDays;
 
     public Days(final int numDays) {

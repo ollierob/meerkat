@@ -1,27 +1,35 @@
 package net.ollie.meerkat.numeric.interest.curve;
 
-import com.google.common.collect.Maps;
-
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 
-import net.ollie.goat.date.Dates;
-import net.ollie.meerkat.time.Years;
-import net.ollie.meerkat.time.daycount.ActualActualAccrualFactor;
-import net.ollie.meerkat.time.daycount.YearCount;
-import net.ollie.meerkat.utils.HasName;
+import com.google.common.collect.Maps;
 
 import org.apache.commons.math3.fraction.Fraction;
+
+import net.ollie.goat.date.Dates;
+import net.ollie.meerkat.time.DoubleYears;
+import net.ollie.meerkat.time.daycount.ActualActualAccrualFactor;
+import net.ollie.meerkat.time.daycount.YearCount;
+import net.ollie.meerkat.utils.Classes;
+import net.ollie.meerkat.utils.HasName;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  *
  * @author Ollie
  */
 public class Tenor implements Years, HasName {
+
+    private static final long serialVersionUID = 1L;
 
     public static final Tenor SPOT = new Tenor("SPOT", Period.ZERO);
 
@@ -66,13 +74,30 @@ public class Tenor implements Years, HasName {
     }
 
     @Override
-    public double value() {
-        return this.yearFraction();
+    public BigDecimal decimalValue(final MathContext context) {
+        return BigDecimal.valueOf(this.doubleValue());
     }
 
-    @Nonnull
-    public double yearFraction() {
+    @Override
+    public double doubleValue() {
         return Dates.approximateLength(this.period());
+    }
+
+    @Override
+    public Years plus(final Years that) {
+        return Classes.cast(that, Tenor.class)
+                .flatMap(this::plus)
+                .map(t -> (Years) t)
+                .orElseGet(() -> new DoubleYears(this.doubleValue()).plus(that));
+    }
+
+    public Optional<Tenor> plus(final Tenor that) {
+        return Optional.empty(); //TODO
+    }
+
+    @Override
+    public Years times(final Number that, final RoundingMode rounding) {
+        throw new UnsupportedOperationException(); //TODO
     }
 
     @Nonnull

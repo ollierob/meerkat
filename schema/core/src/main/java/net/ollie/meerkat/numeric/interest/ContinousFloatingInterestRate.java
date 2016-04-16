@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.curve.InterestRateCurve;
-import net.ollie.meerkat.time.daycount.AccrualFactor;
 import net.ollie.meerkat.numeric.interest.interpolation.InterestRateInterpolator;
 import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.time.daycount.AccrualFactor;
 
 /**
  *
@@ -52,7 +52,7 @@ public class ContinousFloatingInterestRate implements InterestRate {
     }
 
     @Override
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, LocalDate accrualDate) {
+    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

@@ -74,4 +74,12 @@ public class Numbers {
         }
     }
 
+    @SuppressWarnings("unchecked")
+    public static int compare(final Number n1, final Number n2) {
+        if (n1 instanceof Comparable && n1.getClass().isAssignableFrom(n2.getClass())) {
+            return ((Comparable) n1).compareTo(n2);
+        }
+        return Double.compare(n1.doubleValue(), n2.doubleValue());
+    }
+
 }
