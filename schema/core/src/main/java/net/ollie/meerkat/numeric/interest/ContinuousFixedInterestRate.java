@@ -7,10 +7,9 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.time.daycount.AccrualFactor;
 import net.ollie.meerkat.numeric.money.Money;
-
-import org.apache.commons.math3.fraction.Fraction;
+import net.ollie.meerkat.time.daycount.AccrualFactor;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  *
@@ -45,7 +44,7 @@ public class ContinuousFixedInterestRate implements FixedInterestRate {
 
     @Override
     public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
-        final Fraction years = accrual.yearsBetween(start, accrualDate);
+        final Years years = accrual.yearsBetween(start, accrualDate);
         final double multiplier = Math.exp(annualRate.doubleValue() * years.doubleValue());
         return money.times(multiplier);
     }

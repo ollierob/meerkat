@@ -1,5 +1,6 @@
 package net.ollie.meerkat.numeric.interest;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -8,10 +9,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.time.daycount.AccrualFactor;
 import net.ollie.meerkat.numeric.money.Money;
-
-import org.apache.commons.math3.fraction.Fraction;
+import net.ollie.meerkat.time.daycount.AccrualFactor;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  *
@@ -47,12 +47,12 @@ public class SimpleFixedInterestRate implements FixedInterestRate {
 
     @Override
     public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
-        final Fraction years = accrual.yearsBetween(start, accrualDate);
+        final Years years = accrual.yearsBetween(start, accrualDate);
         return this.accrue(money, years);
     }
 
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final Fraction years) {
-        final double multiplier = 1 + (rate.doubleValue() * years.doubleValue());
+    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final Years years) {
+        final BigDecimal multiplier = BigDecimal.ONE.add(rate.decimalValue().multiply(years.decimalValue()));
         return money.times(multiplier);
     }
 

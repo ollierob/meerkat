@@ -10,6 +10,9 @@ import javax.xml.bind.annotation.XmlEnumValue;
 
 import org.apache.commons.math3.fraction.Fraction;
 
+import net.ollie.meerkat.time.FractionalYears;
+import net.ollie.meerkat.utils.time.Years;
+
 /**
  *
  * @author Ollie
@@ -26,7 +29,7 @@ public enum ActualActualAccrualFactor implements AccrualFactor, ActualDayCount {
     private static final MonthDay DEC_31 = MonthDay.of(Month.DECEMBER, 31);
 
     @Override
-    public Fraction yearsBetween(final LocalDate startInclusive, final LocalDate endExclusive) {
+    public Years yearsBetween(final LocalDate startInclusive, final LocalDate endExclusive) {
         Fraction fraction = Fraction.ZERO;
         for (int year = startInclusive.getYear(); year <= endExclusive.getYear(); year++) {
             final LocalDate start = latest(JAN_1.atYear(year), startInclusive);
@@ -35,7 +38,7 @@ public enum ActualActualAccrualFactor implements AccrualFactor, ActualDayCount {
             final int allDaysInYear = Year.isLeap(year) ? 366 : 365;
             fraction = fraction.add(new Fraction(periodDaysInYear, allDaysInYear));
         }
-        return fraction;
+        return new FractionalYears(fraction);
     }
 
     private static LocalDate earliest(final LocalDate d1, final LocalDate d2) {

@@ -66,6 +66,13 @@ public interface Money<C extends CurrencyId>
                 && Numbers.equals(left.amount(), right.amount());
     }
 
+    static int hashCode(final Money<?> money) {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(money.currencyId());
+        hash = 29 * hash + Double.hashCode(money.doubleValue());
+        return hash;
+    }
+
     static <C extends CurrencyId> Accumulator.Homogeneous<Money<C>> accumulator() {
         return Money::plus;
     }

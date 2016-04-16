@@ -13,8 +13,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 import com.google.common.collect.Maps;
 
-import org.apache.commons.math3.fraction.Fraction;
-
 import net.ollie.goat.date.Dates;
 import net.ollie.meerkat.time.DoubleYears;
 import net.ollie.meerkat.time.daycount.ActualActualAccrualFactor;
@@ -101,12 +99,12 @@ public class Tenor implements Years, HasName {
     }
 
     @Nonnull
-    public Fraction yearFraction(final LocalDate start) {
+    public Years yearFraction(final LocalDate start) {
         return this.yearFraction(start, ActualActualAccrualFactor.ACT_ACT);
     }
 
     @Nonnull
-    public Fraction yearFraction(final LocalDate start, final YearCount yearCount) {
+    public Years yearFraction(final LocalDate start, final YearCount yearCount) {
         final LocalDate end = start.plus(this.period());
         return yearCount.yearsBetween(start, end);
     }

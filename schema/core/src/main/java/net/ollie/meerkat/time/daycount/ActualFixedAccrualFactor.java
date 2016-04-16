@@ -5,7 +5,8 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlEnumValue;
 
-import org.apache.commons.math3.fraction.Fraction;
+import net.ollie.meerkat.time.FractionalYears;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  *
@@ -28,8 +29,8 @@ public enum ActualFixedAccrualFactor implements AccrualFactor, ActualDayCount {
     }
 
     @Override
-    public Fraction yearsBetween(final LocalDate startInclusive, final LocalDate endExclusive) {
-        return new Fraction(this.daysBetween(startInclusive, endExclusive), daysPerYear);
+    public Years yearsBetween(final LocalDate startInclusive, final LocalDate endExclusive) {
+        return FractionalYears.of(this.daysBetween(startInclusive, endExclusive), daysPerYear);
     }
 
 }

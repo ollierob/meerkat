@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.apache.commons.math3.fraction.Fraction;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  *
@@ -35,7 +35,7 @@ public class MixedAccrualFactor implements AccrualFactor {
     }
 
     @Override
-    public Fraction yearsBetween(LocalDate startInclusive, LocalDate endExclusive) {
+    public Years yearsBetween(LocalDate startInclusive, LocalDate endExclusive) {
         return yearCount.yearsBetween(startInclusive, endExclusive);
     }
 

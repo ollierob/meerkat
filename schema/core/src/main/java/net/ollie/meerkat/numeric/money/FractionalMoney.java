@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.DecimalFraction;
-import net.ollie.meerkat.security.Security;
 
 /**
  *
@@ -74,18 +73,8 @@ public class FractionalMoney<C extends CurrencyId>
     }
 
     @Override
-    public String name() {
-        throw new UnsupportedOperationException(); //TODO
-    }
-
-    @Override
-    public int compareTo(Money<C> o) {
-        throw new UnsupportedOperationException(); //TODO
-    }
-
-    @Override
-    public Security security() {
-        throw new UnsupportedOperationException(); //TODO
+    public String toString() {
+        return this.toString(MoneyFormat.SYMBOL_AMOUNT);
     }
 
     @Override

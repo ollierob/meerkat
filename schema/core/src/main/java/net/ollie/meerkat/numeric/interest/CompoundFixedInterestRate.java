@@ -8,10 +8,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.time.daycount.AccrualFactor;
 import net.ollie.meerkat.numeric.money.Money;
-
-import org.apache.commons.math3.fraction.Fraction;
+import net.ollie.meerkat.time.daycount.AccrualFactor;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  *
@@ -46,12 +45,12 @@ public class CompoundFixedInterestRate implements FixedInterestRate {
 
     @Override
     public AccrualFactor accrual() {
-        return  accrual;
+        return accrual;
     }
 
     @Override
     public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
-        final Fraction years = accrual.yearsBetween(start, accrualDate);
+        final Years years = accrual.yearsBetween(start, accrualDate);
         final double multiplier = Math.pow(1. + annualRate.doubleValue() / yearlyFrequency, yearlyFrequency * years.doubleValue());
         return money.times(multiplier);
     }

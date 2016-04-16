@@ -1,7 +1,5 @@
 package net.ollie.meerkat.calculate.price.bond;
 
-import com.google.common.collect.Maps;
-
 import java.time.LocalDate;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
@@ -9,6 +7,8 @@ import java.util.SortedMap;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import com.google.common.collect.Maps;
 
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
@@ -19,8 +19,7 @@ import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
-
-import org.apache.commons.math3.fraction.Fraction;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
@@ -119,9 +118,9 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
         @Override
         public Money<C> accruedInterest() {
             final FixedRateCoupon<Z> prior = coupons.prior(valuationDate);
-            final Fraction years = prior.accrual().yearsBetween(valuationDate, valuationDate);
+            final Years years = prior.accrual().yearsBetween(valuationDate, valuationDate);
             final Money<C> couponAmount = this.couponFxRate().convert(prior.amount());
-            return couponAmount.times(years);
+            return couponAmount.times(years.decimalValue());
         }
 
         @Override

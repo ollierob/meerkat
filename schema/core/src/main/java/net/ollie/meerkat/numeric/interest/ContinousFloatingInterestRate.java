@@ -11,6 +11,7 @@ import net.ollie.meerkat.numeric.interest.curve.InterestRateCurve;
 import net.ollie.meerkat.numeric.interest.interpolation.InterestRateInterpolator;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.time.daycount.AccrualFactor;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  *
@@ -51,8 +52,12 @@ public class ContinousFloatingInterestRate implements InterestRate {
         return curve.get(date, interpolator);
     }
 
+    /**
+     * Calculate and apply the implied rate over the period {@code end - start}.
+     */
     @Override
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
+    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate end) {
+        final Years years = accrual.yearsBetween(start, end);
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

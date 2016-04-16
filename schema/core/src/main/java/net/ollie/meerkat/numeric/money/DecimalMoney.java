@@ -7,7 +7,6 @@ import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
@@ -99,42 +98,24 @@ public class DecimalMoney<C extends CurrencyId>
     }
 
     @Override
+    public boolean equals(final Object obj) {
+        return obj instanceof Money
+                && Money.valuesEqual(this, (Money) obj);
+    }
+
+    @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.currency);
-        hash = 29 * hash + Objects.hashCode(this.amount);
-        return hash;
+        return Money.hashCode(this);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DecimalMoney<?> other = (DecimalMoney) obj;
-        if (!Objects.equals(this.currency, other.currency)) {
-            return false;
-        }
-        if (!Objects.equals(this.amount, other.amount)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
+    public void writeExternal(final ObjectOutput out) throws IOException {
         out.writeObject(currency);
         out.writeObject(amount);
     }
 
     @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
         currency = (C) in.readObject();
         amount = (BigDecimal) in.readObject();
     }
