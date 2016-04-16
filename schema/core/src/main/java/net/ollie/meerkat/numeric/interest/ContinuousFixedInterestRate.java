@@ -44,9 +44,13 @@ public class ContinuousFixedInterestRate implements FixedInterestRate {
 
     @Override
     public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
+        return accrueContinuously(money, annualRate, start, accrualDate, accrual);
+    }
+
+    public static <C extends CurrencyId> Money<C> accrueContinuously(final Money<C> amount, final Percentage annualRate, final LocalDate start, final LocalDate accrualDate, final AccrualFactor accrual) {
         final Years years = accrual.yearsBetween(start, accrualDate);
         final double multiplier = Math.exp(annualRate.doubleValue() * years.doubleValue());
-        return money.times(multiplier);
+        return amount.times(multiplier);
     }
 
     @Override

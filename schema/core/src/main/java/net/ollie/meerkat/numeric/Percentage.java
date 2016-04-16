@@ -72,10 +72,13 @@ public class Percentage
         return new Percentage(value.multiply(Numbers.toBigDecimal(that)));
     }
 
-    public <T extends Numeric<T>> T times(final T that, final RoundingMode rounding) {
-        return that.times(this.doubleValue(), rounding);
+    public Percentage timesBy(final Numeric<?> that) {
+        return this.times(that.decimalValue());
     }
 
+//    public <T extends Numeric<T>> T times(final T that, final RoundingMode rounding) {
+//        return that.times(this.doubleValue(), rounding);
+//    }
     @Override
     public BigDecimal decimalValue() {
         return value.movePointLeft(2);

@@ -22,7 +22,11 @@ public class Require {
         }
     }
 
-    public static boolean isTrue(final boolean b, final Supplier<String> message) {
+    public static boolean not(final boolean b, final Supplier<String> message) {
+        return that(!b, message);
+    }
+
+    public static boolean that(final boolean b, final Supplier<String> message) {
         if (!b) {
             throw new IllegalArgumentException(message.get());
         }
@@ -34,7 +38,7 @@ public class Require {
     }
 
     public static void argumentsEqual(final Object left, final Object right, final Supplier<String> message) {
-        isTrue(Objects.equals(left, right), message);
+        that(Objects.equals(left, right), message);
     }
 
 }

@@ -2,15 +2,16 @@ package net.ollie.meerkat.numeric.interest;
 
 import java.time.LocalDate;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.numeric.interest.curve.InterestRateCurve;
-import net.ollie.meerkat.numeric.interest.interpolation.InterestRateInterpolator;
+import net.ollie.meerkat.numeric.interest.curve.YieldCurve;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.time.daycount.AccrualFactor;
+import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
 import net.ollie.meerkat.utils.time.Years;
 
 /**
@@ -18,13 +19,16 @@ import net.ollie.meerkat.utils.time.Years;
  * @author ollie
  */
 @XmlRootElement
-public class ContinousFloatingInterestRate implements InterestRate {
+public class ContinousFloatingInterestRate implements FloatingInterestRate {
 
-    @XmlElementRef(name = "interpolator", required = true)
-    private InterestRateInterpolator interpolator;
+    @XmlAttribute(name = "spot")
+    private LocalDate spot;
 
     @XmlElementRef(name = "curve")
-    private InterestRateCurve curve;
+    private YieldCurve curve;
+
+    @XmlElementRef(name = "interpolator", required = true)
+    private Interpolator<Years, Percentage> interpolator;
 
     @XmlElementRef(name = "accrual")
     private AccrualFactor accrual;
@@ -34,9 +38,11 @@ public class ContinousFloatingInterestRate implements InterestRate {
     }
 
     public ContinousFloatingInterestRate(
-            final InterestRateInterpolator interpolator,
-            final InterestRateCurve curve,
-            final AccrualFactor accrual) {
+            final LocalDate spot,
+            final YieldCurve curve,
+            final AccrualFactor accrual,
+            final Interpolator<Years, Percentage> interpolator) {
+        this.spot = spot;
         this.interpolator = interpolator;
         this.curve = curve;
         this.accrual = accrual;
@@ -49,23 +55,30 @@ public class ContinousFloatingInterestRate implements InterestRate {
 
     @Override
     public Percentage fixing(final LocalDate date) {
-        return curve.get(date, interpolator);
+        final Years years = accrual.yearsBetween(spot, date);
+        return curve.get(years, interpolator);
     }
 
-    /**
-     * Calculate and apply the implied rate over the period {@code end - start}.
-     */
     @Override
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate end) {
-        final Years years = accrual.yearsBetween(start, end);
-        throw new UnsupportedOperationException("Not supported yet.");
+    public LocalDate spot() {
+        return spot;
+    }
+
+    @Override
+    public Percentage rateOver(final Years term) {
+        return curve.get(term, interpolator);
+    }
+
+    @Override
+    public <C extends CurrencyId> Money<C> accrue(Money<C> money, Percentage forwardRate, LocalDate start, LocalDate end) {
+        return new ContinuousFixedInterestRate(forwardRate, accrual).accrue(money, start, end);
     }
 
     @Override
     public ContinousFloatingInterestRate plus(final Percentage bump) {
         return bump.isZero()
                 ? this
-                : new ContinousFloatingInterestRate(interpolator, curve.plus(bump), accrual);
+                : new ContinousFloatingInterestRate(spot, curve.plus(bump), accrual, interpolator);
     }
 
 }

@@ -10,12 +10,14 @@ import java.util.TreeMap;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 import net.ollie.meerkat.numeric.Percentage;
-import net.ollie.meerkat.utils.time.Years;
+import net.ollie.meerkat.utils.Require;
 import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
 import net.ollie.meerkat.utils.numeric.manifold.Curve;
+import net.ollie.meerkat.utils.time.Years;
 
 /**
  *
@@ -33,6 +35,7 @@ public class YieldCurve
     }
 
     public YieldCurve(final Map<Years, Percentage> data) {
+        Require.not(data.isEmpty(), () -> "Cannot construct yield curve from no points!");
         this.data = new TreeMap<>(data);
     }
 
@@ -57,6 +60,10 @@ public class YieldCurve
 
     public InterestRateCurve relativeTo(final LocalDate date) {
         return InterestRateCurve.of(date, this);
+    }
+
+    public YieldCurve plus(final Percentage bump) {
+        return new YieldCurve(Maps.transformValues(data, rate -> rate.plus(bump)));
     }
 
     public YieldCurve plus(final YieldCurve that, final Interpolator<Years, Percentage> interpolator) {

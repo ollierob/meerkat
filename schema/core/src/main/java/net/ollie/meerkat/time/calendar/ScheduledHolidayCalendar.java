@@ -41,7 +41,7 @@ public class ScheduledHolidayCalendar implements BusinessDayCalendar {
         if (holidays.contains(to)) {
             return true;
         }
-        Require.isTrue(Dates.areOrdered(from, date, to), () -> "Date [" + date + "] is outside range");
+        Require.that(Dates.areOrdered(from, date, to), () -> "Date [" + date + "] is outside range");
         return false;
     }
 
