@@ -24,7 +24,13 @@ public interface BondFuturePrice<C extends CurrencyId>
 
     @Override
     default EvaluatedBondFuturePrice<C> evaluate() {
-        return new EvaluatedBondFuturePrice<>(this.cleanValue(), this.dirtyValue(), this.cheapestToDeliver());
+        return new EvaluatedBondFuturePrice<>(this.clean(), this.dirty(), this.cheapestToDeliver());
+    }
+
+    @Override
+    default ExplanationBuilder explain() {
+        return SecurityPrice.super.explain()
+                .put("cheapest to deliver", this.cheapestToDeliver());
     }
 
     interface Shiftable<C extends CurrencyId>

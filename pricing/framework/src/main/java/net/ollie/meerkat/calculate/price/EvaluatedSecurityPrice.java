@@ -30,18 +30,18 @@ public class EvaluatedSecurityPrice<C extends CurrencyId>
     protected EvaluatedSecurityPrice() {
     }
 
-    public EvaluatedSecurityPrice(Money<C> clean, Money<C> dirty) {
+    public EvaluatedSecurityPrice(final Money<C> clean, final Money<C> dirty) {
         this.clean = clean;
         this.dirty = dirty;
     }
 
     @Override
-    public Money<C> cleanValue() {
+    public Money<C> clean() {
         return clean;
     }
 
     @Override
-    public Money<C> dirtyValue() {
+    public Money<C> dirty() {
         return dirty;
     }
 

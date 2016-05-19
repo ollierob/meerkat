@@ -7,8 +7,8 @@ import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
@@ -29,13 +29,20 @@ public interface InterestRateFuturePrice<C extends CurrencyId>
     }
 
     @Override
-    default Money<C> cleanValue() {
+    default Money<C> clean() {
         return this.value();
     }
 
     @Override
-    default Money<C> dirtyValue() {
+    default Money<C> dirty() {
         return this.value();
+    }
+
+    @Override
+    default ExplanationBuilder explain() {
+        return SecurityPrice.super.explain()
+                .put("price", this.price())
+                .put("multiplier", this.multiplier());
     }
 
     interface Shiftable<C extends CurrencyId>

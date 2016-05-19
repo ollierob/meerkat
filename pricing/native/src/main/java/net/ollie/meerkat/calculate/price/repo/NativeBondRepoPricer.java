@@ -8,11 +8,11 @@ import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.repo.BondRepo;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
@@ -76,13 +76,13 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
 
         Money<C> dirtyBondPrice() {
             final BondShifts bondShifts = shifts.bondShifts(haircut);
-            return bondPrice.shift(bondShifts).dirtyValue();
+            return bondPrice.shift(bondShifts).dirty();
         }
 
         private final Lazy<Money<C>> cleanValue = Lazy.loadOnceNonnull(this::calculateCleanValue);
 
         @Override
-        public Money<C> cleanValue() {
+        public Money<C> clean() {
             return cleanValue.get();
         }
 
@@ -93,6 +93,17 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
         @Override
         public BondRepoPrice<C> shift(final RepoShifts shifts) {
             return new BondRepoPrice<>(repoRate, haircut, near, far, bondPrice, shifts);
+        }
+
+        @Override
+        public ExplanationBuilder explain() {
+            return RepoPrice.Shiftable.super.explain()
+                    .put("repo rate", repoRate)
+                    .put("bond price", bondPrice)
+                    .put("haircut", haircut)
+                    .put("near", near)
+                    .put("far", far)
+                    .put("shifts", shifts.explain());
         }
 
     }

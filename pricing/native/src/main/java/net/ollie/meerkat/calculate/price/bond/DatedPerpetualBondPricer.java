@@ -12,13 +12,13 @@ import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.numeric.interest.InterestRate;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.bond.PerpetualBond;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
 import net.ollie.meerkat.utils.collections.Lists;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
@@ -72,37 +72,37 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         }
 
         @Override
-        public Money<C> parValue() {
+        public Money<C> par() {
             return this.shift(bond.par(), shifts, currency, fxRates);
         }
 
-        Money<C> couponAmount() {
+        Money<C> shiftedCoupon() {
             return this.shift(bond.coupons().yearlyAmount(), shifts, currency, fxRates);
         }
 
-        Percentage annualRate() {
+        Percentage shiftedAnnualRate() {
             return this.shift(bond.coupons().yearlyRate(), shifts).annualRate();
         }
 
         private final Lazy<Money<C>> cleanValue = Lazy.loadOnceNonnull(this::calculateCleanValue);
 
         @Override
-        public Money<C> cleanValue() {
+        public Money<C> clean() {
             return cleanValue.get();
         }
 
         @Nonnull
         private Money<C> calculateCleanValue() {
-            return this.couponAmount().over(this.annualRate());
+            return this.shiftedCoupon().over(this.shiftedAnnualRate());
         }
 
-        private InterestRate discountRate() {
+        private InterestRate shiftedDiscountRate() {
             return this.shift(discountRate, shifts);
         }
 
         @Override
         public List<CashPayment<C>> cleanFlow(final LocalDate start, final LocalDate end) {
-            final InterestRate discountRate = PerpetualBondPrice.this.discountRate();
+            final InterestRate discountRate = PerpetualBondPrice.this.shiftedDiscountRate();
             final List<FixedRateCoupon<?>> coupons = bond.coupons().between(start, end);
             return Lists.lazy(coupons.size(), index -> {
                 final FixedRateCoupon<?> coupon = coupons.get(index);
@@ -120,15 +120,15 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         }
 
         @Override
-        public Money<C> dirtyValue() {
-            return this.cleanValue().plus(this.accruedInterest());
+        public Money<C> dirty() {
+            return this.clean().plus(this.accruedInterest());
         }
 
         @Nonnull
         private Money<C> calculateAccuredInterest() {
             final FixedRateCoupon<?> priorCoupon = bond.coupons().prior(date);
-            final Money<C> priorAmount = this.couponAmount();
-            return this.discountRate().accrue(priorAmount, priorCoupon.date(), date).minus(priorAmount);
+            final Money<C> priorAmount = this.shiftedCoupon();
+            return this.shiftedDiscountRate().accrue(priorAmount, priorCoupon.date(), date).minus(priorAmount);
         }
 
         @Override
@@ -141,6 +141,19 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         @Override
         public C currencyId() {
             return currency;
+        }
+
+        @Override
+        public ExplanationBuilder explain() {
+            return BondPrice.Shiftable.super.explain()
+                    .put("bond", bond)
+                    .put("date", date)
+                    .put("accrued interest", this.accruedInterest())
+                    .put("discount rate", discountRate)
+                    .put("shifts", shifts)
+                    .put("shifted discount rate", this.shiftedDiscountRate())
+                    .put("shifted annual rate", this.shiftedAnnualRate())
+                    .put("shifted coupon", this.shiftedCoupon());
         }
 
     }

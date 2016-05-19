@@ -1,6 +1,8 @@
 package net.ollie.meerkat.calculate.price.bond.future;
 
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 
@@ -65,6 +67,11 @@ public interface BondFutureShifts extends PriceShifts {
         @Override
         public BigDecimal shiftConversionFactor(final BigDecimal conversionFactor) {
             return conversionFactor;
+        }
+
+        @Override
+        public Map<String, Object> explain() {
+            return Collections.emptyMap();
         }
 
     }

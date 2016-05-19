@@ -10,7 +10,6 @@ import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.currency.HasCurrencyId;
 import net.ollie.meerkat.numeric.DecimalPercentage;
 import net.ollie.meerkat.numeric.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
@@ -22,39 +21,40 @@ import net.ollie.meerkat.utils.numeric.Percentage;
  * @author ollie
  */
 public interface BondPrice<C extends CurrencyId>
-        extends SecurityPrice<C>, HasCurrencyId {
+        extends SecurityPrice<C> {
 
     @Nonnull
-    Money<C> parValue();
+    Money<C> par();
 
     @Override
-    Money<C> cleanValue();
+    Money<C> clean();
 
     @Nonnull
-    default Percentage clean() {
-        return new DecimalPercentage(this.parValue().amount().doubleValue() / this.cleanValue().amount().doubleValue());
+    default Percentage cleanPercent() {
+        return new DecimalPercentage(this.par().amount().doubleValue() / this.clean().amount().doubleValue());
     }
 
     @Override
-    Money<C> dirtyValue();
+    Money<C> dirty();
 
     @Nonnull
-    default Percentage dirty() {
-        return new DecimalPercentage(this.parValue().amount().doubleValue() / this.dirtyValue().amount().doubleValue());
+    default Percentage dirtyPercent() {
+        return new DecimalPercentage(this.par().amount().doubleValue() / this.dirty().amount().doubleValue());
     }
 
     default boolean isPremium() {
-        return this.dirtyValue().compareTo(this.parValue()) > 0;
+        return this.dirty().compareTo(this.par()) > 0;
     }
 
     @Nonnull
     default Money<C> accruedInterest() {
-        return this.dirtyValue().minus(this.cleanValue());
+        return this.dirty().minus(this.clean());
     }
 
     @Override
-    default C currencyId() {
-        return this.cleanValue().currencyId();
+    public default ExplanationBuilder explain() {
+        return SecurityPrice.super.explain()
+                .put("par", this.par());
     }
 
     interface Shiftable<C extends CurrencyId>

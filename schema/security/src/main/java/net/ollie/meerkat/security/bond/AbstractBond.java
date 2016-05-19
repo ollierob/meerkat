@@ -17,6 +17,8 @@ public abstract class AbstractBond
         extends NamedSecurity
         implements Bond {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElementRef(name = "par")
     private Money<?> par;
 

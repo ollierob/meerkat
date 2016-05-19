@@ -36,8 +36,8 @@ public class NativeBondFuturePricer<T extends Temporal>
     public <C extends CurrencyId> BondFuturePrice.Shiftable<C> price(final T temporal, final BondFuture bondFuture, final C currency) {
         try {
             final CheapestToDeliver<?> cheapestToDeliver = this.cheapestToDeliver(temporal, bondFuture);
-            final BondPrice.Shiftable<C> price = bondPricer.price(bondFuture.dates().earliest(), cheapestToDeliver.bond(), currency);
-            return new NativeBondFuturePrice<>(cheapestToDeliver.bond(), cheapestToDeliver.conversionFactor(), price, BondFutureShifts.none());
+            final BondPrice.Shiftable<C> cheapestToDeliverPrice = bondPricer.price(bondFuture.dates().earliest(), cheapestToDeliver.bond(), currency);
+            return new NativeBondFuturePrice<>(cheapestToDeliver.bond(), cheapestToDeliver.conversionFactor(), cheapestToDeliverPrice, BondFutureShifts.none());
         } catch (final BondPriceException bex) {
             throw new BondFuturePriceException("Failed to price cheapest to deliver!", bex);
         }
@@ -54,17 +54,17 @@ public class NativeBondFuturePricer<T extends Temporal>
 
         private final Bond cheapestToDeliver;
         private final BigDecimal conversionFactor;
-        private final BondPrice.Shiftable<C> bondPrice;
+        private final BondPrice.Shiftable<C> cheapestToDeliverPrice;
         private final BondFutureShifts shifts;
 
         NativeBondFuturePrice(
                 final Bond cheapestToDeliver,
                 final BigDecimal conversionFactor,
-                final BondPrice.Shiftable<C> bondPrice,
+                final BondPrice.Shiftable<C> cheapestToDeliverPrice,
                 final BondFutureShifts shifts) {
             this.cheapestToDeliver = cheapestToDeliver;
             this.conversionFactor = conversionFactor;
-            this.bondPrice = bondPrice;
+            this.cheapestToDeliverPrice = cheapestToDeliverPrice;
             this.shifts = shifts;
         }
 
@@ -76,8 +76,8 @@ public class NativeBondFuturePricer<T extends Temporal>
         private final Lazy<BondPrice<C>> shiftedPrice = Lazy.loadOnceNonnull(() -> this.computeShiftedBondPrice());
 
         @Nonnull
-        BondPrice.Shiftable<C> computeShiftedBondPrice() {
-            return shifts.shift(bondPrice);
+        private BondPrice.Shiftable<C> computeShiftedBondPrice() {
+            return shifts.shift(cheapestToDeliverPrice);
         }
 
         @Nonnull
@@ -86,13 +86,13 @@ public class NativeBondFuturePricer<T extends Temporal>
         }
 
         @Override
-        public Money<C> cleanValue() {
-            return this.shiftedBondPrice().cleanValue().over(this.shiftedConversionFactor());
+        public Money<C> clean() {
+            return this.shiftedBondPrice().clean().over(this.shiftedConversionFactor());
         }
 
         @Override
-        public Money<C> dirtyValue() {
-            return this.shiftedBondPrice().dirtyValue().over(this.shiftedConversionFactor());
+        public Money<C> dirty() {
+            return this.shiftedBondPrice().dirty().over(this.shiftedConversionFactor());
         }
 
         @Override
@@ -119,7 +119,17 @@ public class NativeBondFuturePricer<T extends Temporal>
 
         @Override
         public BondFuturePrice.Shiftable<C> shift(final BondFutureShifts shifts) {
-            return new NativeBondFuturePrice<>(cheapestToDeliver, conversionFactor, bondPrice, shifts);
+            return new NativeBondFuturePrice<>(cheapestToDeliver, conversionFactor, cheapestToDeliverPrice, shifts);
+        }
+
+        @Override
+        public ExplanationBuilder explain() {
+            return BondFuturePrice.Shiftable.super.explain()
+                    .put("cheapest to deliver price", cheapestToDeliverPrice)
+                    .put("conversion factor", conversionFactor)
+                    .put("shifts", shifts)
+                    .put("shifted conversion factor", this.shiftedConversionFactor())
+                    .put("shifted cheapest to deliver price", this.shiftedBondPrice());
         }
 
     }

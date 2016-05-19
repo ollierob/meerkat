@@ -24,13 +24,13 @@ public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
     }
 
     @Override
-    public Money<C> parValue() {
-        return rate.convert(bondPrice.parValue());
+    public Money<C> par() {
+        return rate.convert(bondPrice.par());
     }
 
     @Override
-    public Money<C> cleanValue() {
-        return rate.convert(bondPrice.cleanValue());
+    public Money<C> clean() {
+        return rate.convert(bondPrice.clean());
     }
 
     @Override
@@ -44,8 +44,8 @@ public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
     }
 
     @Override
-    public Money<C> dirtyValue() {
-        return rate.convert(bondPrice.dirtyValue());
+    public Money<C> dirty() {
+        return rate.convert(bondPrice.dirty());
     }
 
     @Override

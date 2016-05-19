@@ -28,6 +28,62 @@ import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
@@ -99,12 +155,12 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
         }
 
         @Override
-        public Money<C> parValue() {
+        public Money<C> par() {
             return this.parFxRate().convert(par.amount());
         }
 
         @Override
-        public Money<C> cleanValue() {
+        public Money<C> clean() {
             final InterestRate discountRate = this.discountRate();
             final Money<C> presentParValue = this.presentParValue(discountRate);
             return this.cleanFlow(valuationDate, this.maturity(), discountRate)
@@ -132,8 +188,8 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
         }
 
         @Override
-        public Money<C> dirtyValue() {
-            return this.cleanValue().plus(this.accruedInterest());
+        public Money<C> dirty() {
+            return this.clean().plus(this.accruedInterest());
         }
 
         @Override
@@ -162,7 +218,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
         }
 
         Money<C> presentParValue(final InterestRate discountRate) {
-            return this.presentValue(this.parValue(), this.maturity(), discountRate);
+            return this.presentValue(this.par(), this.maturity(), discountRate);
         }
 
         SortedMap<LocalDate, Money<C>> cleanFlow(LocalDate startInclusive, LocalDate endExclusive, InterestRate discountRate) {

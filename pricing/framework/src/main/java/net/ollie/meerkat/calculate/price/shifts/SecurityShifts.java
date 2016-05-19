@@ -1,5 +1,6 @@
 package net.ollie.meerkat.calculate.price.shifts;
 
+import net.ollie.meerkat.Explainable;
 import net.ollie.meerkat.calculate.price.SecurityPrice.InvalidShiftTypeException;
 import net.ollie.meerkat.utils.Classes.Castable;
 
@@ -7,7 +8,7 @@ import net.ollie.meerkat.utils.Classes.Castable;
  *
  * @author ollie
  */
-public interface SecurityShifts extends Castable<SecurityShifts> {
+public interface SecurityShifts extends Castable<SecurityShifts>, Explainable {
 
     default <R extends SecurityShifts> R definiteCast(final Class<? extends R> clazz) throws InvalidShiftTypeException {
         return this.cast(clazz)

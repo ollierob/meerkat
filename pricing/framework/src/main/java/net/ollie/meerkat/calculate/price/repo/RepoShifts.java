@@ -1,14 +1,17 @@
 package net.ollie.meerkat.calculate.price.repo;
 
+import java.util.Collections;
+import java.util.Map;
+
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.utils.numeric.Percentage;
 import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
+import net.ollie.meerkat.utils.numeric.Percentage;
 
 /**
  *
@@ -37,6 +40,11 @@ public interface RepoShifts extends SecurityShifts, ExchangeRateShifts {
         @Override
         public BondShifts bondShifts(@Nonnull final Percentage haircut) {
             return BondShifts.relativePrice(haircut);
+        }
+
+        @Override
+        public Map<String, Object> explain() {
+            return Collections.emptyMap();
         }
 
     };

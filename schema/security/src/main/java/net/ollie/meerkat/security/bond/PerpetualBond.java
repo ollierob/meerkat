@@ -23,6 +23,8 @@ import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
 @XmlRootElement
 public class PerpetualBond extends AbstractBond {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlAttribute(name = "yearly_frequency")
     private int yearlyFrequency;
 

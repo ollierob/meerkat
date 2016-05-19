@@ -16,13 +16,13 @@ import net.ollie.meerkat.numeric.money.Money;
 public interface RepoPrice<C extends CurrencyId> extends SecurityPrice<C> {
 
     @Override
-    default Money<C> dirtyValue() {
-        return this.cleanValue();
+    default Money<C> dirty() {
+        return this.clean();
     }
 
     @Override
     default EvaluatedRepoPrice<C> evaluate() {
-        return new EvaluatedRepoPrice<>(this.cleanValue(), this.dirtyValue());
+        return new EvaluatedRepoPrice<>(this.clean(), this.dirty());
     }
 
     interface Shiftable<C extends CurrencyId> extends RepoPrice<C>, ShiftableSecurityPrice<C> {

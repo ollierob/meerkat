@@ -59,7 +59,7 @@ public class LocalHistoricPnlCalculator implements HistoricPnlCalculator {
         final Map<LocalDate, Callable<SecurityPrice<C>>> shifters = Maps.transformValues(shifts, shift -> () -> basePrice.shift(shift));
         final Map<LocalDate, Future<SecurityPrice<C>>> scenarios = Maps.transformValues(shifters, executor::submit);
         final Map<LocalDate, SecurityPrice<C>> securityPrices = Maps.transformValues(scenarios, this::complete);
-        final Map<LocalDate, Money<C>> dirtyPrices = Maps.transformValues(securityPrices, SecurityPrice::dirtyValue);
+        final Map<LocalDate, Money<C>> dirtyPrices = Maps.transformValues(securityPrices, SecurityPrice::dirty);
         return HistoricPnl.from(dirtyPrices);
     }
 

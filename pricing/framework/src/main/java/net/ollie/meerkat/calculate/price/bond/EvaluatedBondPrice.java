@@ -34,7 +34,7 @@ public class EvaluatedBondPrice<C extends CurrencyId>
     }
 
     @Override
-    public Money<C> parValue() {
+    public Money<C> par() {
         return par;
     }
 

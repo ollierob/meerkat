@@ -25,12 +25,13 @@ public abstract class FloatingInterestRate implements InterestRate {
     }
 
     public Percentage impliedForwardRate(final LocalDate start, final LocalDate end) {
-        if (Dates.equals(this.spot(), start)) {
+        final LocalDate spot = this.spot();
+        if (Dates.equals(spot, start)) {
             return this.fixing(end);
         }
-        final Years d1 = this.term(this.spot(), start);
+        final Years d1 = this.term(spot, start);
         final Percentage r1 = this.rateOver(d1);
-        final Years d2 = this.term(this.spot(), end);
+        final Years d2 = this.term(spot, end);
         final Percentage r2 = this.rateOver(d2);
         final Years term = this.term(start, end);
         return (r2.times(d2.decimalValue()).minus(r1.times(d2.decimalValue()))).over(term.decimalValue(), MathContext.DECIMAL128);

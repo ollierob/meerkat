@@ -28,10 +28,20 @@ public interface Bond extends SecurityDefinition, Callable<BondCall>, HasIsin {
     default boolean isZeroCoupon() {
         return this.coupons().isEmpty();
     }
-    
+
     default boolean isAmortizing() {
         return !this.dates().maturity().isPresent()
                 && this.coupons().count().isPresent();
+    }
+
+    @Override
+    default ExplanationBuilder explain() {
+        return new ExplanationBuilder()
+                .put("isin", this.isin())
+                .put("par", this.par())
+                .put("coupons", this.coupons())
+                .put("dates", this.dates())
+                .put("call", this.call());
     }
 
     @Override

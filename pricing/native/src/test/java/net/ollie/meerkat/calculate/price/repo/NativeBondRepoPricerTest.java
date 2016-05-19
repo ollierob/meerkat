@@ -62,7 +62,7 @@ public class NativeBondRepoPricerTest {
         final FixedCouponBond mockBond = mock(FixedCouponBond.class);
         final BondPrice.Shiftable<USD> mockBondPrice = mock(BondPrice.Shiftable.class);
         final Money<USD> dirtyValue = DecimalMoney.valueOf(usd, 12_157_315.07);
-        when(mockBondPrice.dirtyValue()).thenReturn(dirtyValue);
+        when(mockBondPrice.dirty()).thenReturn(dirtyValue);
         when(mockBondPricer.price(priceDate, mockBond, usd, BondShifts.none())).thenReturn(mockBondPrice);
 
         final RepoRate rate = new RepoInterestRate(new SimpleFixedInterestRate(new DecimalPercentage(0.885), ActualFixedAccrualFactor.ACT_360));
@@ -70,7 +70,7 @@ public class NativeBondRepoPricerTest {
         final BondRepo repo = new BondRepo("repo", mock(SecurityIds.class), rate, mockBond, dates, null);
 
         final RepoPrice<USD> repoPrice = testRepoPricer.price(priceDate, repo, usd);
-        assertThat(repoPrice.cleanValue().doubleValue(), Matchers.closeTo(12_166_579.96, 1e-2));
+        assertThat(repoPrice.clean().doubleValue(), Matchers.closeTo(12_166_579.96, 1e-2));
 
     }
 
