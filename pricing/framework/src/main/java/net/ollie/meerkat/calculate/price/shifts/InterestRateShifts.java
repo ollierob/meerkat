@@ -2,7 +2,7 @@ package net.ollie.meerkat.calculate.price.shifts;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.money.interest.InterestRate;
 
 /**

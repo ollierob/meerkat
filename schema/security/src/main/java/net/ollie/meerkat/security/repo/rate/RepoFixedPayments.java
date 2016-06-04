@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 
 /**
  *

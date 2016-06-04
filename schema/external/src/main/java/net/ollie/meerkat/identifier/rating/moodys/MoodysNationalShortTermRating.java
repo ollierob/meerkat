@@ -5,7 +5,7 @@ import java.util.Set;
 import net.ollie.meerkat.rating.CreditRating;
 import net.ollie.meerkat.rating.CreditRatingBand;
 import static net.ollie.meerkat.rating.CreditRatingBand.*;
-import net.ollie.meerkat.utils.collections.Sets;
+import net.ollie.goat.collections.Sets;
 
 /**
  *

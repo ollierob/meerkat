@@ -1,5 +1,7 @@
 package net.ollie.meerkat.numeric.interest;
 
+import net.ollie.goat.money.interest.fixed.CompoundFixedInterestRate;
+
 import java.time.LocalDate;
 
 import static org.hamcrest.Matchers.closeTo;

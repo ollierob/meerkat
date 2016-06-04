@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.money.interest.InterestRate;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.money.interest.InterestRateId;
+import net.ollie.meerkat.numeric.interest.InterestRateId;
 
 /**
  *

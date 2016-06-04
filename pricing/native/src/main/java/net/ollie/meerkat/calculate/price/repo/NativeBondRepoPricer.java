@@ -10,7 +10,7 @@ import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 import net.ollie.meerkat.security.repo.BondRepo;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
 

@@ -1,5 +1,7 @@
 package net.ollie.meerkat.numeric.interest;
 
+import net.ollie.goat.money.interest.fixed.SimpleFixedInterestRate;
+
 import java.math.BigDecimal;
 
 import static org.hamcrest.CoreMatchers.is;

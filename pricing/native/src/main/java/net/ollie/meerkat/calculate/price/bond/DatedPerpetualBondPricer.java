@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.collections.Lists;
 import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.interest.InterestRate;
@@ -18,7 +19,6 @@ import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateS
 import net.ollie.meerkat.security.bond.PerpetualBond;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
-import net.ollie.meerkat.utils.collections.Lists;
 
 /**
  *
@@ -104,7 +104,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         public List<CashPayment<C>> cleanFlow(final LocalDate start, final LocalDate end) {
             final InterestRate discountRate = PerpetualBondPrice.this.shiftedDiscountRate();
             final List<FixedRateCoupon<?>> coupons = bond.coupons().between(start, end);
-            return Lists.lazy(coupons.size(), index -> {
+            return Lists.lazilyComputed(coupons.size(), index -> {
                 final FixedRateCoupon<?> coupon = coupons.get(index);
                 final Money<C> couponAmount = PerpetualBondPrice.this.shift(coupon.amount(), shifts, currency, fxRates);
                 final Money<C> discountedAmount = discountRate.discount(couponAmount, date, coupon.date());

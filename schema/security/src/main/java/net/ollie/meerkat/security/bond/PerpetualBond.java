@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.ollie.goat.currency.Currency;
 import net.ollie.goat.currency.HasCurrency;
 import net.ollie.goat.money.Money;
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.bond.dates.PerpetualBondDates;

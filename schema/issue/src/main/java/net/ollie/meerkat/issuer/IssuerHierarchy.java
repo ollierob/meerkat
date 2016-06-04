@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.hierarchy.Hierarchy;
-import net.ollie.meerkat.utils.collections.Lists;
+import net.ollie.goat.collections.Lists;
 
 /**
  *

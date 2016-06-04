@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.goat.money.interest.InterestRateId;
+import net.ollie.meerkat.numeric.interest.InterestRateId;
 import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;

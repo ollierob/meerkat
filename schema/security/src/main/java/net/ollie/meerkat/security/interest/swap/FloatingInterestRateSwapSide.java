@@ -3,7 +3,7 @@ package net.ollie.meerkat.security.interest.swap;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.numeric.interest.earning.FloatingInterestEarning;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.money.interest.InterestRateId;
+import net.ollie.meerkat.numeric.interest.InterestRateId;
 
 /**
  *

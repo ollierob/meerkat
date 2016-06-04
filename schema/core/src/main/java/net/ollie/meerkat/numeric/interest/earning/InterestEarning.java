@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 
 import net.ollie.goat.money.interest.InterestRate;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.money.interest.InterestRateId;
+import net.ollie.meerkat.numeric.interest.InterestRateId;
 
 /**
  *

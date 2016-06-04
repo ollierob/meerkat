@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-import net.ollie.meerkat.utils.collections.Lists;
+import net.ollie.goat.collections.Lists;
 
 /**
  *
@@ -63,7 +63,7 @@ public interface FiniteSequence<T>
     }
 
     public static <T> FiniteSequence<T> lazy(final int size, final IntFunction<? extends T> create) {
-        return of(Lists.lazy(size, create));
+        return of(Lists.lazilyComputed(size, create));
     }
 
     public static <F, T> FiniteSequence<T> transformed(final Collection<F> list, final Function<? super F, ? extends T> transform) {

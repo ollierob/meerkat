@@ -21,7 +21,7 @@ import net.ollie.meerkat.identifier.currency.CurrencyIso;
 import net.ollie.meerkat.identifier.currency.USD;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
-import net.ollie.meerkat.numeric.interest.SimpleFixedInterestRate;
+import net.ollie.goat.money.interest.fixed.SimpleFixedInterestRate;
 import net.ollie.goat.money.DecimalMoney;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.FixedCouponBond;

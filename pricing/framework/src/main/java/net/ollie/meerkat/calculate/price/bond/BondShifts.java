@@ -13,7 +13,7 @@ import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.PriceShifts;
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 
 /**
  *

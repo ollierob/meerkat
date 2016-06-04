@@ -2,7 +2,7 @@ package net.ollie.meerkat.security.repo.rate;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 
 /**
  *

@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.money.interest.daycount.AccrualFactor;
 import net.ollie.goat.money.interest.daycount.DayCount;
-import net.ollie.meerkat.utils.numeric.interpolation.Interpolator;
+import net.ollie.goat.numeric.interpolation.Interpolator;
 
 /**
  *

@@ -1,5 +1,7 @@
 package net.ollie.meerkat.utils.collections;
 
+import net.ollie.goat.collections.Sets;
+
 import com.google.common.collect.Iterables;
 
 import java.util.Optional;
