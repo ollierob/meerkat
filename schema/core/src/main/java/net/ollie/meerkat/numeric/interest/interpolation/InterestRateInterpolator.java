@@ -5,9 +5,9 @@ import java.time.LocalDate;
 import javax.annotation.Nonnull;
 
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.count.AccrualFactor;
 import net.ollie.goat.temporal.date.count.DayCount;
 import net.ollie.goat.numeric.interpolation.Interpolator;
+import net.ollie.goat.temporal.date.count.DateArithmetic;
 
 /**
  *
@@ -18,7 +18,7 @@ public interface InterestRateInterpolator extends Interpolator<LocalDate, Percen
     @Nonnull
     DayCount dayCount();
 
-    InterestRateInterpolator LINEAR_ACT_365 = new LinearInterestRateInterpolator(AccrualFactor.ACT_365);
+    InterestRateInterpolator LINEAR_ACT_365 = new LinearInterestRateInterpolator(DateArithmetic.ACT_365);
     InterestRateInterpolator DEFAULT = LINEAR_ACT_365;
 
 }

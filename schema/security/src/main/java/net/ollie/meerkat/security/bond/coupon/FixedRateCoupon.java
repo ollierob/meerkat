@@ -58,7 +58,7 @@ public class FixedRateCoupon<C extends Currency>
     }
 
     public YearCount accrual() {
-        return rate.accrual();
+        return rate.dateArithmetic();
     }
 
 }

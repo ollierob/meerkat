@@ -15,8 +15,8 @@ import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.temporal.date.years.FractionalYears;
 import net.ollie.goat.money.DecimalMoney;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.temporal.date.count.AccrualFactor;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.temporal.date.count.DateArithmetic;
 
 /**
  *
@@ -29,7 +29,7 @@ public class SimpleFixedInterestRateTest {
     private Currency mockCurrency;
 
     @Mock
-    private AccrualFactor mockFactor;
+    private DateArithmetic mockFactor;
 
     @Before
     public void before() {
