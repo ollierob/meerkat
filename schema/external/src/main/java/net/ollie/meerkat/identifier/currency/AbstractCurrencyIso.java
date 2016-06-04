@@ -3,6 +3,7 @@ package net.ollie.meerkat.identifier.currency;
 import javax.xml.bind.annotation.XmlTransient;
 
 import net.ollie.goat.currency.Currency;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.utils.HasName;
 
 /**
@@ -27,6 +28,10 @@ abstract class AbstractCurrencyIso implements Currency, CurrencyIso, HasName {
     @Override
     public String toString() {
         return this.value();
+    }
+
+    public Percentage pip() {
+        return Percentage.oneBasisPoint();
     }
 
 }
