@@ -1,6 +1,6 @@
 package net.ollie.meerkat.numeric.interest.daycount;
 
-import net.ollie.goat.money.interest.daycount.ActualActualAccrualFactor;
+import net.ollie.goat.temporal.date.count.ActualActualAccrualFactor;
 
 import java.time.LocalDate;
 

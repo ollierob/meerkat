@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 
 import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.money.interest.daycount.YearCount;
+import net.ollie.goat.temporal.date.count.YearCount;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 import net.ollie.meerkat.security.fx.CashPayment;

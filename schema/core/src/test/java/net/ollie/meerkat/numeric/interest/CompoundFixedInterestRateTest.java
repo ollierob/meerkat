@@ -12,7 +12,7 @@ import static org.mockito.Mockito.mock;
 import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.DecimalMoney;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.money.interest.daycount.FixedFixedAccrualFactor;
+import net.ollie.goat.temporal.date.count.FixedFixedAccrualFactor;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 
 /**

@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.date.Dates;
-import net.ollie.goat.date.Interval;
+import net.ollie.goat.temporal.date.Dates;
+import net.ollie.goat.temporal.date.Interval;
 
 /**
  *

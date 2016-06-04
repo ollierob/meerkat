@@ -12,10 +12,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.date.years.FractionalYears;
+import net.ollie.goat.temporal.date.years.FractionalYears;
 import net.ollie.goat.money.DecimalMoney;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.money.interest.daycount.AccrualFactor;
+import net.ollie.goat.temporal.date.count.AccrualFactor;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 
 /**

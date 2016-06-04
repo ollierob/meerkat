@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import com.google.common.collect.Maps;
 
 import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.date.years.Years;
+import net.ollie.goat.temporal.date.years.Years;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.goat.money.interest.InterestRate;

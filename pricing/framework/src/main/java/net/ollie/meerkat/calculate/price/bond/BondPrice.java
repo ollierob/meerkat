@@ -7,7 +7,7 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.date.Interval;
+import net.ollie.goat.temporal.date.Interval;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;

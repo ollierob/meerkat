@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.date.Dates;
+import net.ollie.goat.temporal.date.Dates;
 
 /**
  *

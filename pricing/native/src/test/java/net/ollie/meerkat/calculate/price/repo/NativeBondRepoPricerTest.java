@@ -30,7 +30,7 @@ import net.ollie.meerkat.security.repo.dates.RepoDates;
 import net.ollie.meerkat.security.repo.dates.TermRepoDates;
 import net.ollie.meerkat.security.repo.rate.RepoInterestRate;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
-import net.ollie.goat.money.interest.daycount.ActualFixedAccrualFactor;
+import net.ollie.goat.temporal.date.count.ActualFixedAccrualFactor;
 
 /**
  *

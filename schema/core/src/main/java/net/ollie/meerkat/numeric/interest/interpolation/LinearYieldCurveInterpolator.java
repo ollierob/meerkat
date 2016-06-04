@@ -13,8 +13,8 @@ import net.ollie.meerkat.numeric.interest.curve.Tenor;
 public class LinearYieldCurveInterpolator extends LinearDecimalInterpolator<Tenor, Percentage> {
 
     @Override
-    public BigDecimal numerical(final Tenor key) {
-        return key.decimalValue();
+    public BigDecimal numerical(final Tenor tenor) {
+        return tenor.decimalValue();
     }
 
     @Override

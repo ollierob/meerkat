@@ -1,8 +1,6 @@
 package net.ollie.meerkat.numeric.interest.curve;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Map;
@@ -13,19 +11,17 @@ import javax.xml.bind.annotation.XmlAttribute;
 
 import com.google.common.collect.Maps;
 
-import net.ollie.goat.date.Dates;
-import net.ollie.goat.date.years.DoubleYears;
-import net.ollie.goat.money.interest.daycount.ActualActualAccrualFactor;
-import net.ollie.goat.money.interest.daycount.YearCount;
-import net.ollie.meerkat.utils.Classes;
+import net.ollie.goat.temporal.date.count.ActualActualAccrualFactor;
+import net.ollie.goat.temporal.date.count.YearCount;
+import net.ollie.goat.temporal.date.years.PeriodYears;
+import net.ollie.goat.temporal.date.years.Years;
 import net.ollie.meerkat.utils.HasName;
-import net.ollie.goat.date.years.Years;
 
 /**
  *
  * @author Ollie
  */
-public class Tenor implements Years, HasName {
+public class Tenor implements HasName {
 
     private static final long serialVersionUID = 1L;
 
@@ -71,31 +67,8 @@ public class Tenor implements Years, HasName {
         return period;
     }
 
-    @Override
-    public BigDecimal decimalValue(final MathContext context) {
-        return BigDecimal.valueOf(this.doubleValue());
-    }
-
-    @Override
-    public double doubleValue() {
-        return Dates.approximateLength(this.period());
-    }
-
-    @Override
-    public Years plus(final Years that) {
-        return Classes.cast(that, Tenor.class)
-                .flatMap(this::plus)
-                .map(t -> (Years) t)
-                .orElseGet(() -> new DoubleYears(this.doubleValue()).plus(that));
-    }
-
     public Optional<Tenor> plus(final Tenor that) {
         return Optional.empty(); //TODO
-    }
-
-    @Override
-    public Years times(final Number that, final RoundingMode rounding) {
-        throw new UnsupportedOperationException(); //TODO
     }
 
     @Nonnull
@@ -109,9 +82,12 @@ public class Tenor implements Years, HasName {
         return yearCount.yearsBetween(start, end);
     }
 
-    @Override
-    public LocalDate addTo(final LocalDate date) {
-        return date.plus(period);
+    public Years years() {
+        return new PeriodYears(period);
+    }
+
+    public BigDecimal decimalValue() {
+        return this.years().decimalValue();
     }
 
 }

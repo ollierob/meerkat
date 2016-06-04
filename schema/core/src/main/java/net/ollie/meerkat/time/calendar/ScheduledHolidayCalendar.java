@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.date.Dates;
+import net.ollie.goat.temporal.date.Dates;
 import net.ollie.meerkat.utils.Require;
 
 /**
