@@ -3,9 +3,9 @@ package net.ollie.meerkat.calculate.price;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.Explainable;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.currency.HasCurrencyId;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.money.Money;
 
 /**
  *

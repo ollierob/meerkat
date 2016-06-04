@@ -1,6 +1,6 @@
 package net.ollie.meerkat.calculate.sensitivity.greek;
 
-import net.ollie.meerkat.numeric.DecimalFraction;
+import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.ollie.meerkat.utils.Accumulator;
 
 /**
@@ -11,7 +11,7 @@ public class Delta implements Greek<DecimalFraction> {
 
     @Override
     public Accumulator.Homogeneous<DecimalFraction> accumulator() {
-        return DecimalFraction.accumulator();
+        return DecimalFraction::plus;
     }
 
 }

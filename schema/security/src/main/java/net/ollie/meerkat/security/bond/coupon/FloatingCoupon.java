@@ -6,11 +6,11 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.function.Function;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.numeric.interest.HasInterestRateId;
-import net.ollie.meerkat.numeric.interest.InterestRate;
-import net.ollie.meerkat.numeric.interest.InterestRateId;
+import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.goat.money.interest.InterestRateId;
 import net.ollie.meerkat.numeric.interest.feature.RateFeature;
 
 /**

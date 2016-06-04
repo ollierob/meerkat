@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.currency.HasCurrencyId;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.HasCurrencyId;
 import net.ollie.meerkat.security.bond.Bond;
 
 /**

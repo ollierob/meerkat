@@ -1,5 +1,7 @@
 package net.ollie.meerkat.numeric;
 
+import net.ollie.goat.numeric.fraction.DecimalFraction;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import org.junit.Test;

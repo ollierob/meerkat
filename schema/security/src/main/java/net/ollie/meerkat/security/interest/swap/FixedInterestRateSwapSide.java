@@ -2,7 +2,7 @@ package net.ollie.meerkat.security.interest.swap;
 
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.numeric.interest.earning.FixedInterestEarning;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.money.Money;
 
 /**
  *

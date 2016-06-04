@@ -8,8 +8,8 @@ import java.io.ObjectOutput;
 import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.money.Money;
 
 /**
  *

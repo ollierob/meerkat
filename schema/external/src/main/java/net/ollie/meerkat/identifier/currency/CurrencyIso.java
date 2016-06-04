@@ -2,6 +2,7 @@ package net.ollie.meerkat.identifier.currency;
 
 import java.io.Serializable;
 
+import net.ollie.goat.currency.CurrencyId;
 import net.ollie.meerkat.identifier.Iso;
 import net.ollie.meerkat.identifier.country.CountryIso;
 import net.ollie.meerkat.identifier.country.HasCountryId;
@@ -20,6 +21,7 @@ public interface CurrencyIso
     }
 
     @Override
+    @Deprecated
     default CurrencyIso currencyId() {
         return this;
     }

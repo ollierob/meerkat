@@ -3,7 +3,7 @@ package net.ollie.meerkat.security.bond;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.identifier.security.HasIsin;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.Callable;
 import net.ollie.meerkat.security.SecurityDefinition;
 import net.ollie.meerkat.security.bond.call.BondCall;

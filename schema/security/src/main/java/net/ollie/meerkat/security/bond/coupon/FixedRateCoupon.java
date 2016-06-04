@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.meerkat.time.daycount.YearCount;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.money.interest.daycount.YearCount;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
 
 /**

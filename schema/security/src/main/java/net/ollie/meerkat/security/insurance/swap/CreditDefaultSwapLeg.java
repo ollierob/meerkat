@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.derivative.swap.SwapLeg;
 
 /**

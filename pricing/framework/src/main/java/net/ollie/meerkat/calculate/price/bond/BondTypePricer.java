@@ -3,7 +3,7 @@ package net.ollie.meerkat.calculate.price.bond;
 import java.time.temporal.Temporal;
 
 import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.currency.CurrencyId;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.calculate.price.SecurityTypePriceCalculator;
 

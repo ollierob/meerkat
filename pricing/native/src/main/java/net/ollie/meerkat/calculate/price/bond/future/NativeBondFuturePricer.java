@@ -10,8 +10,8 @@ import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.bond.future.BondFuture;
 

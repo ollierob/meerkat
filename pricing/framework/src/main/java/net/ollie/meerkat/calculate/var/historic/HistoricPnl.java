@@ -16,9 +16,9 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.currency.HasCurrencyId;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.money.Money;
 
 import static java.util.Objects.requireNonNull;
 import static java.util.Objects.requireNonNull;

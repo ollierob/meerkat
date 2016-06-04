@@ -2,7 +2,7 @@ package net.ollie.meerkat.calculate.price.repo;
 
 import java.time.temporal.Temporal;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.currency.CurrencyId;
 import net.ollie.meerkat.security.repo.BondRepo;
 
 /**

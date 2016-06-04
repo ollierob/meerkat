@@ -11,14 +11,14 @@ import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.interest.InterestRate;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.PerpetualBond;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
 import net.ollie.meerkat.utils.collections.Lists;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

@@ -6,8 +6,8 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.derivative.swap.SwapLeg;
 import net.ollie.meerkat.security.fx.CashPayment;
 

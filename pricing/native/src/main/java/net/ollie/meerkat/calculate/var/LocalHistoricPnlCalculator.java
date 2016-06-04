@@ -16,9 +16,9 @@ import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnl;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnlCalculator;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.currency.CurrencyId;
 import net.ollie.meerkat.identifier.security.SecurityId;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.SecurityDefinition;
 import net.ollie.meerkat.calculate.price.SecurityPriceCalculator;
 

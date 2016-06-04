@@ -7,12 +7,12 @@ import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.repo.BondRepo;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

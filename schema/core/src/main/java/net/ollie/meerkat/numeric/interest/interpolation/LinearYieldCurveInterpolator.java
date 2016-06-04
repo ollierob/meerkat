@@ -2,8 +2,8 @@ package net.ollie.meerkat.numeric.interest.interpolation;
 
 import java.math.BigDecimal;
 
-import net.ollie.meerkat.numeric.DecimalFraction;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.numeric.interest.curve.Tenor;
 
 /**

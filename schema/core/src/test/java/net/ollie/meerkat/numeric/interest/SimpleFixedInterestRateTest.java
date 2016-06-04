@@ -9,12 +9,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.DecimalPercentage;
-import net.ollie.meerkat.numeric.money.DecimalMoney;
-import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.time.FractionalYears;
-import net.ollie.meerkat.time.daycount.AccrualFactor;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.money.DecimalMoney;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.date.years.FractionalYears;
+import net.ollie.goat.money.interest.daycount.AccrualFactor;
 
 /**
  *

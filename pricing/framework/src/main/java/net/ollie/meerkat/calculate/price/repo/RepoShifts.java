@@ -8,10 +8,10 @@ import javax.annotation.Nonnull;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

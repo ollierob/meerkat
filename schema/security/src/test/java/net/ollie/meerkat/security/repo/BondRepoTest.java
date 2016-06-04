@@ -10,8 +10,8 @@ import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.DecimalPercentage;
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.repo.dates.RepoDates;
 import net.ollie.meerkat.security.repo.rate.RepoRate;

@@ -1,12 +1,14 @@
 package net.ollie.meerkat.numeric.interest;
 
+import net.ollie.goat.money.interest.InterestRate;
+
 import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlTransient;
 
 import net.ollie.meerkat.numeric.interest.curve.InterestRateCurve;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

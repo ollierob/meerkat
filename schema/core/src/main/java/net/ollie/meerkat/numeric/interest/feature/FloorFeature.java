@@ -3,7 +3,7 @@ package net.ollie.meerkat.numeric.interest.feature;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.utils.comparators.Comparators;
 
 /**

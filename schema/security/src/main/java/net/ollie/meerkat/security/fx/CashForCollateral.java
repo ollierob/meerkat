@@ -2,7 +2,7 @@ package net.ollie.meerkat.security.fx;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.Security;
 
 /**

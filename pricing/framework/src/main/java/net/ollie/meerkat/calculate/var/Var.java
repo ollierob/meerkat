@@ -2,7 +2,7 @@ package net.ollie.meerkat.calculate.var;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.numeric.money.Money;
+import net.ollie.goat.money.Money;
 
 /**
  * Value at risk (VaR).

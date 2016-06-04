@@ -14,12 +14,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 import com.google.common.collect.Maps;
 
 import net.ollie.goat.date.Dates;
-import net.ollie.meerkat.time.DoubleYears;
-import net.ollie.meerkat.time.daycount.ActualActualAccrualFactor;
-import net.ollie.meerkat.time.daycount.YearCount;
+import net.ollie.goat.date.years.DoubleYears;
+import net.ollie.goat.money.interest.daycount.ActualActualAccrualFactor;
+import net.ollie.goat.money.interest.daycount.YearCount;
 import net.ollie.meerkat.utils.Classes;
 import net.ollie.meerkat.utils.HasName;
-import net.ollie.meerkat.utils.time.Years;
+import net.ollie.goat.date.years.Years;
 
 /**
  *

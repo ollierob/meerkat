@@ -1,15 +1,17 @@
 package net.ollie.meerkat.numeric.interest;
 
+import net.ollie.goat.money.interest.InterestRate;
+
 import java.math.MathContext;
 import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlTransient;
 
 import net.ollie.goat.date.Dates;
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.utils.numeric.Percentage;
-import net.ollie.meerkat.utils.time.Years;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.date.years.Years;
 
 /**
  *

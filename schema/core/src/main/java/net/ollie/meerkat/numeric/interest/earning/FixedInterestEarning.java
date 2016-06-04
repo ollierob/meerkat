@@ -5,9 +5,9 @@ import java.util.function.Function;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.meerkat.numeric.interest.InterestRate;
-import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.numeric.interest.InterestRateId;
+import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.money.interest.InterestRateId;
 
 /**
  *

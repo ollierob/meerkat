@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.currency.HasCurrencyId;
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.HasCurrencyId;
 import net.ollie.meerkat.identifier.market.HasMarketId;
 import net.ollie.meerkat.identifier.market.MarketId;
 import net.ollie.meerkat.identifier.security.HasSecurityId;
@@ -23,6 +23,8 @@ import net.ollie.meerkat.identifier.security.SecurityId;
 @XmlRootElement
 public class SecurityAndMarketId
         implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId, Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "security")
     private SecurityId security;

@@ -3,22 +3,22 @@ package net.ollie.meerkat.security.interest.future;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
-import net.ollie.meerkat.identifier.currency.HasCurrencyId;
-import net.ollie.meerkat.numeric.interest.InterestRate;
-import net.ollie.meerkat.numeric.money.Money;
+import org.apache.commons.math3.fraction.Fraction;
+
+import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.money.Money;
+import net.ollie.meerkat.numeric.interest.InterestRateSecurity;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
 import net.ollie.meerkat.security.derivative.forward.FutureDeliveryDates;
 import net.ollie.meerkat.security.interest.InterestRateDerivative;
-
-import org.apache.commons.math3.fraction.Fraction;
 
 /**
  *
  * @author Ollie
  */
 public class InterestRateFuture
-        extends AbstractFuture<InterestRate>
+        extends AbstractFuture<InterestRateSecurity>
         implements InterestRateDerivative, HasCurrencyId {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +27,7 @@ public class InterestRateFuture
     private Money<?> notional;
 
     @XmlElementRef(name = "underlying")
-    private InterestRate underlying;
+    private InterestRateSecurity underlying;
 
     @XmlElementRef(name = "dates")
     private FutureDeliveryDates dates;
@@ -58,7 +58,7 @@ public class InterestRateFuture
     }
 
     @Override
-    public InterestRate underlying() {
+    public InterestRateSecurity underlying() {
         return underlying;
     }
 

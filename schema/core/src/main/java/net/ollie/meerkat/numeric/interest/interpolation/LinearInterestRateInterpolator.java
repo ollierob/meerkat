@@ -7,8 +7,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import net.ollie.meerkat.time.daycount.DayCount;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.money.interest.daycount.DayCount;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.utils.numeric.interpolation.FirstOrderInterpolator;
 
 /**

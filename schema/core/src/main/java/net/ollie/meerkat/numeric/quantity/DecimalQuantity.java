@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
-import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
+import static net.ollie.goat.numeric.Numbers.toBigDecimal;
 
 /**
  *

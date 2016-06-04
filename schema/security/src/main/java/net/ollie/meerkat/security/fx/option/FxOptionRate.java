@@ -4,11 +4,11 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.currency.CurrencyId;
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.DecimalFraction;
-import net.ollie.meerkat.numeric.money.Money;
-import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
+import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.meerkat.security.NamedSecurity;
 
 /**

@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.currency.CurrencyIso;
-import net.ollie.meerkat.identifier.currency.HasCurrencyId;
+import net.ollie.goat.currency.HasCurrencyId;
 import net.ollie.meerkat.identifier.market.HasMarketId;
 import net.ollie.meerkat.identifier.market.Mic;
 import net.ollie.meerkat.identifier.security.HasSecurityId;

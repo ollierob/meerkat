@@ -1,12 +1,14 @@
 package net.ollie.meerkat.numeric.money;
 
+import net.ollie.goat.money.DecimalMoney;
+
 import java.math.BigDecimal;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import net.ollie.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.currency.CurrencyId;
 
 /**
  *

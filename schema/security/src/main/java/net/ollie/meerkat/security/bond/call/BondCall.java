@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

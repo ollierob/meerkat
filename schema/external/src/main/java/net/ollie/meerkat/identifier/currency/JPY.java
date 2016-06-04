@@ -2,8 +2,8 @@ package net.ollie.meerkat.identifier.currency;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.numeric.DecimalPercentage;
-import net.ollie.meerkat.utils.numeric.Percentage;
+import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

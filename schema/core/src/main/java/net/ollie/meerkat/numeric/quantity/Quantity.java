@@ -7,8 +7,8 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import net.ollie.meerkat.utils.Accumulator;
-import static net.ollie.meerkat.utils.numeric.Numbers.toBigDecimal;
-import net.ollie.meerkat.utils.numeric.Numeric;
+import static net.ollie.goat.numeric.Numbers.toBigDecimal;
+import net.ollie.goat.numeric.Numeric;
 import net.ollie.meerkat.utils.xml.ExtendingXmlAdapter;
 
 /**
