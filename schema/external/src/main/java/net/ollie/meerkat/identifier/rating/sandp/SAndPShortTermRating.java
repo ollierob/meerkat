@@ -3,7 +3,7 @@ package net.ollie.meerkat.identifier.rating.sandp;
 import java.util.Set;
 
 import net.ollie.meerkat.rating.CreditRatingBand;
-import net.ollie.goat.collections.Sets;
+import net.ollie.goat.collection.Sets;
 
 /**
  *

@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-import net.ollie.goat.collections.Lists;
+import net.ollie.goat.collection.list.Lists;
 
 /**
  *

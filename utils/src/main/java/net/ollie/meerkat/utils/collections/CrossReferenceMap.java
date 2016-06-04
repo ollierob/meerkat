@@ -1,6 +1,6 @@
 package net.ollie.meerkat.utils.collections;
 
-import net.ollie.goat.collections.Sets;
+import net.ollie.goat.collection.Sets;
 
 import com.google.common.collect.Iterables;
 

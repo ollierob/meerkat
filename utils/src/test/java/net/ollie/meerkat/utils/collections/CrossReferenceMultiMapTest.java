@@ -3,7 +3,7 @@ package net.ollie.meerkat.utils.collections;
 import static java.util.Collections.emptySet;
 import static java.util.Collections.singleton;
 
-import static net.ollie.goat.collections.Sets.asSet;
+import static net.ollie.goat.collection.Sets.asSet;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
