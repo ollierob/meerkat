@@ -6,9 +6,9 @@ import java.math.RoundingMode;
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
-import net.ollie.meerkat.utils.Accumulator;
-import static net.ollie.goat.numeric.Numbers.toBigDecimal;
+import net.ollie.goat.numeric.BigDecimals;
 import net.ollie.goat.numeric.Numeric;
+import net.ollie.meerkat.utils.Accumulator;
 import net.ollie.meerkat.utils.xml.ExtendingXmlAdapter;
 
 /**
@@ -26,7 +26,7 @@ public interface Quantity
     }
 
     default Quantity times(final Number number) {
-        return DecimalQuantity.valueOf(this.decimalValue().multiply(toBigDecimal(number)));
+        return DecimalQuantity.valueOf(this.decimalValue().multiply(BigDecimals.toBigDecimal(number)));
     }
 
     @Override

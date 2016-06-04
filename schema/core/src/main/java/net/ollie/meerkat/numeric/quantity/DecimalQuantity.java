@@ -12,7 +12,8 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 
-import static net.ollie.goat.numeric.Numbers.toBigDecimal;
+import net.ollie.goat.numeric.BigDecimals;
+import static net.ollie.goat.numeric.BigDecimals.toBigDecimal;
 
 /**
  *
@@ -29,7 +30,7 @@ public class DecimalQuantity
     public static final DecimalQuantity ONE = new DecimalQuantity(BigDecimal.ONE);
 
     public static DecimalQuantity valueOf(final Number number) {
-        return valueOf(toBigDecimal(number));
+        return valueOf(BigDecimals.toBigDecimal(number));
     }
 
     public static DecimalQuantity valueOf(@Nonnull final BigDecimal number) {
