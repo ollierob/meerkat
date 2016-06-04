@@ -5,14 +5,14 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
 
 /**
  *
  * @author ollie
  */
-public class DefaultCashPayment<C extends CurrencyId> implements CashPayment<C> {
+public class DefaultCashPayment<C extends Currency> implements CashPayment<C> {
 
     @XmlAttribute(name = "date")
     private LocalDate date;

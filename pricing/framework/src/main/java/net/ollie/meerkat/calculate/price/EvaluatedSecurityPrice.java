@@ -8,14 +8,14 @@ import java.io.ObjectOutput;
 import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
 
 /**
  *
  * @author ollie
  */
-public class EvaluatedSecurityPrice<C extends CurrencyId>
+public class EvaluatedSecurityPrice<C extends Currency>
         implements SecurityPrice<C>, Externalizable {
 
     private static final long serialVersionUID = 1L;

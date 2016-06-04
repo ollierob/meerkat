@@ -16,29 +16,21 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.goat.money.Money;
-
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
+public class HistoricPnl<C extends Currency> implements HasCurrency {
 
-    public static <C extends CurrencyId> HistoricPnl<C> from(final Map<LocalDate, Money<C>> values) {
+    public static <C extends Currency> HistoricPnl<C> from(final Map<LocalDate, Money<C>> values) {
         final Iterator<Map.Entry<LocalDate, Money<C>>> iterator = values.entrySet().iterator();
         Map.Entry<LocalDate, Money<C>> previous = iterator.next();
-        final C currency = previous.getValue().currencyId();
+        final C currency = previous.getValue().currency();
         final NavigableMap<LocalDate, BigDecimal> pnl = new TreeMap<>();
         while (iterator.hasNext()) {
             final Map.Entry<LocalDate, Money<C>> next = iterator.next();
@@ -65,7 +57,7 @@ public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
     }
 
     @Override
-    public C currencyId() {
+    public C currency() {
         return currency;
     }
 

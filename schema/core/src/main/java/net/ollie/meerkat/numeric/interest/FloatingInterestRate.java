@@ -1,17 +1,16 @@
 package net.ollie.meerkat.numeric.interest;
 
-import net.ollie.goat.money.interest.InterestRate;
-
 import java.math.MathContext;
 import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlTransient;
 
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.date.Dates;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.money.Money;
-import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.date.years.Years;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
@@ -21,7 +20,7 @@ import net.ollie.goat.date.years.Years;
 public abstract class FloatingInterestRate implements InterestRate {
 
     @Override
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate end) {
+    public <C extends Currency> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate end) {
         final Percentage impliedForwardRate = this.impliedForwardRate(start, end);
         return this.accrue(money, impliedForwardRate, start, end);
     }
@@ -41,7 +40,7 @@ public abstract class FloatingInterestRate implements InterestRate {
 
     public abstract LocalDate spot();
 
-    protected abstract <C extends CurrencyId> Money<C> accrue(Money<C> money, Percentage forwardRate, LocalDate start, LocalDate end);
+    protected abstract <C extends Currency> Money<C> accrue(Money<C> money, Percentage forwardRate, LocalDate start, LocalDate end);
 
     public abstract Percentage rateOver(Years term);
 

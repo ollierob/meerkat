@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.coupon.BondCoupon;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
@@ -85,8 +85,8 @@ public class ConvertibleBond extends AbstractBond {
         }
 
         @Override
-        public CurrencyId currencyId() {
-            return coupons.get(0).currencyId(); //FIXME
+        public Currency currency() {
+            return coupons.get(0).currency(); //FIXME
         }
 
     }

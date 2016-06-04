@@ -5,13 +5,13 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.fx.ExchangeRate;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.meerkat.security.repo.rate.RepoRate;
-import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
@@ -33,7 +33,7 @@ public interface RepoShifts extends SecurityShifts, ExchangeRateShifts {
         }
 
         @Override
-        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(final ExchangeRate<F, T> rate) {
+        public <F extends Currency, T extends Currency> ExchangeRate<F, T> shift(final ExchangeRate<F, T> rate) {
             return rate;
         }
 

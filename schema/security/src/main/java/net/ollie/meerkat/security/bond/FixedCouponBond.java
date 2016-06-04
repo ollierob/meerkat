@@ -8,10 +8,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.call.BondCall;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
@@ -82,7 +82,7 @@ public class FixedCouponBond extends StraightBond {
         return handler.handle(this);
     }
 
-    public class FixedCouponBondCoupons<C extends CurrencyId> extends StraightBondCoupons<FixedRateCoupon<C>> {
+    public class FixedCouponBondCoupons<C extends Currency> extends StraightBondCoupons<FixedRateCoupon<C>> {
 
         private final Money<C> couponAmount;
 
@@ -101,8 +101,8 @@ public class FixedCouponBond extends StraightBond {
         }
 
         @Override
-        public C currencyId() {
-            return couponAmount.currencyId();
+        public C currency() {
+            return couponAmount.currency();
         }
 
     }

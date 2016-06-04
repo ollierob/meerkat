@@ -2,11 +2,11 @@ package net.ollie.meerkat.calculate.price.repo;
 
 import java.time.temporal.Temporal;
 
+import net.ollie.goat.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPriceException;
-import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.meerkat.security.repo.Repo;
 import net.ollie.meerkat.calculate.price.SecurityTypePriceCalculator;
+import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
+import net.ollie.meerkat.security.repo.Repo;
 
 /**
  *
@@ -16,7 +16,7 @@ public interface RepoTypePricer<T extends Temporal, R extends Repo<?>>
         extends SecurityTypePriceCalculator<T, R>, ExchangeRateShifter {
 
     @Override
-    <C extends CurrencyId> RepoPrice.Shiftable<C> price(T valuation, R security, C currency)
+    <C extends Currency> RepoPrice.Shiftable<C> price(T valuation, R security, C currency)
             throws RepoPriceException;
 
     class RepoPriceException extends SecurityPriceException {

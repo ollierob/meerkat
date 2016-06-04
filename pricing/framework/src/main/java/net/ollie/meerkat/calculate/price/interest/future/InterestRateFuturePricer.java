@@ -4,7 +4,7 @@ import java.time.temporal.Temporal;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.meerkat.security.interest.future.InterestRateFuture;
 
 /**
@@ -14,6 +14,6 @@ import net.ollie.meerkat.security.interest.future.InterestRateFuture;
 public interface InterestRateFuturePricer<T extends Temporal> {
 
     @Nonnull
-    <C extends CurrencyId> InterestRateFuturePrice<C> price(T temporal, InterestRateFuture future, C currency);
+    <C extends Currency> InterestRateFuturePrice<C> price(T temporal, InterestRateFuture future, C currency);
 
 }

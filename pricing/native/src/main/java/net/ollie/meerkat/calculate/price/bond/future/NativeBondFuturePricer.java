@@ -6,12 +6,12 @@ import java.time.temporal.Temporal;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.Money;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.bond.future.BondFuture;
 
@@ -33,7 +33,7 @@ public class NativeBondFuturePricer<T extends Temporal>
     }
 
     @Override
-    public <C extends CurrencyId> BondFuturePrice.Shiftable<C> price(final T temporal, final BondFuture bondFuture, final C currency) {
+    public <C extends Currency> BondFuturePrice.Shiftable<C> price(final T temporal, final BondFuture bondFuture, final C currency) {
         try {
             final CheapestToDeliver<?> cheapestToDeliver = this.cheapestToDeliver(temporal, bondFuture);
             final BondPrice.Shiftable<C> cheapestToDeliverPrice = bondPricer.price(bondFuture.dates().earliest(), cheapestToDeliver.bond(), currency);
@@ -49,7 +49,7 @@ public class NativeBondFuturePricer<T extends Temporal>
                 .orElseThrow(() -> new BondFuturePriceException("Could not determine cheapest to deliver!"));
     }
 
-    private static final class NativeBondFuturePrice<C extends CurrencyId>
+    private static final class NativeBondFuturePrice<C extends Currency>
             implements BondFuturePrice.Shiftable<C> {
 
         private final Bond cheapestToDeliver;

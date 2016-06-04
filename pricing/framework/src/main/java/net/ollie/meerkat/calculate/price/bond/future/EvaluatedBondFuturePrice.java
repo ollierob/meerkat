@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
 
 /**
  *
  * @author ollie
  */
-public class EvaluatedBondFuturePrice<C extends CurrencyId>
+public class EvaluatedBondFuturePrice<C extends Currency>
         extends EvaluatedSecurityPrice<C>
         implements BondFuturePrice<C> {
 

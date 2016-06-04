@@ -5,15 +5,15 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.money.fx.ExchangeRate;
+import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.PriceShifts;
-import net.ollie.goat.currency.CurrencyId;
 import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-import net.ollie.goat.money.interest.InterestRate;
-import net.ollie.goat.money.Money;
-import net.ollie.goat.money.fx.ExchangeRate;
-import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
@@ -28,7 +28,7 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
      * @return shifted market price.
      */
     @Override
-    <C extends CurrencyId> Money<C> shift(Money<C> marketPrice);
+    <C extends Currency> Money<C> shift(Money<C> marketPrice);
 
     /**
      *
@@ -38,7 +38,7 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
      * @return shifted FX rate
      */
     @Override
-    <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate);
+    <F extends Currency, T extends Currency> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate);
 
     static BondShifts none() {
         return NoBondShifts.INSTANCE;
@@ -48,7 +48,7 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
         return percentage.isZero() ? none() : new NoBondShifts() {
 
             @Override
-            public <C extends CurrencyId> Money<C> shift(final Money<C> price) {
+            public <C extends Currency> Money<C> shift(final Money<C> price) {
                 return price.times(percentage);
             }
 
@@ -60,7 +60,7 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
         static final NoBondShifts INSTANCE = new NoBondShifts();
 
         @Override
-        public <C extends CurrencyId> Money<C> shift(final Money<C> price) {
+        public <C extends Currency> Money<C> shift(final Money<C> price) {
             return price;
         }
 
@@ -75,7 +75,7 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
         }
 
         @Override
-        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate) {
+        public <F extends Currency, T extends Currency> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate) {
             return rate;
         }
 

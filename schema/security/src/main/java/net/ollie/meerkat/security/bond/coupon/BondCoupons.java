@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.toList;
 
 import javax.annotation.CheckForNull;
 
-import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
 import net.ollie.meerkat.utils.collections.sequence.OrderedSequence;
 import net.ollie.meerkat.utils.collections.sequence.StartingSequence;
@@ -15,7 +15,7 @@ import net.ollie.meerkat.utils.collections.sequence.StartingSequence;
  * @author ollie
  */
 public interface BondCoupons<C extends BondCoupon>
-        extends OrderedSequence<LocalDate, C>, StartingSequence<C>, HasCurrencyId {
+        extends OrderedSequence<LocalDate, C>, StartingSequence<C>, HasCurrency {
 
     @Override
     FiniteSequence<C> between(LocalDate startInclusive, LocalDate endExclusive);

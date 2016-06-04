@@ -2,9 +2,9 @@ package net.ollie.meerkat.calculate.fx;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.money.fx.ExchangeRate;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.goat.money.fx.ExchangeRate;
 
 /**
  *
@@ -12,21 +12,21 @@ import net.ollie.goat.money.Money;
  */
 public interface ExchangeRateCalculator {
 
-    <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> rate(F from, T to);
+    <F extends Currency, T extends Currency> ExchangeRate<F, T> rate(F from, T to);
 
     @Nonnull
-    default <F extends CurrencyId, T extends CurrencyId> Money<T> convert(@Nonnull final Money<F> money, @Nonnull final T into) {
-        return this.rate(money.currencyId(), into).convert(money);
+    default <F extends Currency, T extends Currency> Money<T> convert(@Nonnull final Money<F> money, @Nonnull final T into) {
+        return this.rate(money.currency(), into).convert(money);
     }
 
     @Nonnull
-    default <F extends CurrencyId, T extends CurrencyId> Money<F> add(final Money<F> left, final Money<T> right) {
-        return left.plus(this.convert(right, left.currencyId()));
+    default <F extends Currency, T extends Currency> Money<F> add(final Money<F> left, final Money<T> right) {
+        return left.plus(this.convert(right, left.currency()));
     }
 
     @Nonnull
-    default <F extends CurrencyId, T extends CurrencyId> Money<F> subtract(final Money<F> minuend, final Money<T> subtrahend) {
-        return minuend.minus(this.convert(subtrahend, minuend.currencyId()));
+    default <F extends Currency, T extends Currency> Money<F> subtract(final Money<F> minuend, final Money<T> subtrahend) {
+        return minuend.minus(this.convert(subtrahend, minuend.currency()));
     }
 
 }

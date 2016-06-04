@@ -5,11 +5,11 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.date.years.Years;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.interest.daycount.AccrualFactor;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.date.years.Years;
 
 /**
  *
@@ -43,11 +43,11 @@ public class ContinuousFixedInterestRate extends FixedInterestRate {
     }
 
     @Override
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
+    public <C extends Currency> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
         return accrueContinuously(money, annualRate, start, accrualDate, accrual);
     }
 
-    public static <C extends CurrencyId> Money<C> accrueContinuously(final Money<C> amount, final Percentage annualRate, final LocalDate start, final LocalDate accrualDate, final AccrualFactor accrual) {
+    public static <C extends Currency> Money<C> accrueContinuously(final Money<C> amount, final Percentage annualRate, final LocalDate start, final LocalDate accrualDate, final AccrualFactor accrual) {
         final Years years = accrual.yearsBetween(start, accrualDate);
         final double multiplier = Math.exp(annualRate.doubleValue() * years.doubleValue());
         return amount.times(multiplier);

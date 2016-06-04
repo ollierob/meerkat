@@ -4,7 +4,7 @@ import java.time.temporal.Temporal;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.meerkat.security.repo.Repo;
 
 /**
@@ -14,7 +14,7 @@ import net.ollie.meerkat.security.repo.Repo;
 public interface RepoPricer<T extends Temporal> {
 
     @Nonnull
-    default <C extends CurrencyId> RepoPrice.Shiftable<C> price(
+    default <C extends Currency> RepoPrice.Shiftable<C> price(
             final T temporal,
             final Repo<?> repo,
             final C currency) {
@@ -22,7 +22,7 @@ public interface RepoPricer<T extends Temporal> {
     }
 
     @Nonnull
-    default <C extends CurrencyId> RepoPrice<C> price(
+    default <C extends Currency> RepoPrice<C> price(
             final T temporal,
             final Repo<?> repo,
             final C currency,
@@ -30,9 +30,9 @@ public interface RepoPricer<T extends Temporal> {
         return this.price(temporal, repo, currency).shift(shifts);
     }
 
-    <C extends CurrencyId> RepoPriceContext<C> priceContext(T date, C currency);
+    <C extends Currency> RepoPriceContext<C> priceContext(T date, C currency);
 
-    interface RepoPriceContext<C extends CurrencyId> extends Repo.Handler<RepoPrice.Shiftable<C>> {
+    interface RepoPriceContext<C extends Currency> extends Repo.Handler<RepoPrice.Shiftable<C>> {
 
     }
 

@@ -4,16 +4,16 @@ import java.math.BigDecimal;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.currency.HasCurrencyId;
 import net.ollie.meerkat.security.bond.Bond;
 
 /**
  *
  * @author Ollie
  */
-public interface CheapestToDeliver<C extends CurrencyId> extends HasCurrencyId {
+public interface CheapestToDeliver<C extends Currency> extends HasCurrency {
 
     @Nonnull
     BigDecimal conversionFactor();
@@ -25,8 +25,8 @@ public interface CheapestToDeliver<C extends CurrencyId> extends HasCurrencyId {
     BondPrice<C> price();
 
     @Override
-    default C currencyId() {
-        return this.price().currencyId();
+    default C currency() {
+        return this.price().currency();
     }
 
 }

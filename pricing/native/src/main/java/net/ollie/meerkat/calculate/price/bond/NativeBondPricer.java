@@ -2,7 +2,7 @@ package net.ollie.meerkat.calculate.price.bond;
 
 import java.time.temporal.Temporal;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.meerkat.security.bond.ConvertibleBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FloatingRateNote;
@@ -31,7 +31,7 @@ public class NativeBondPricer<T extends Temporal> implements BondPricer<T> {
     }
 
     @Override
-    public <C extends CurrencyId> BondPriceContext<C> priceContext(
+    public <C extends Currency> BondPriceContext<C> priceContext(
             final T temporal,
             final C currency) {
 

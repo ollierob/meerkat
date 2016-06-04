@@ -7,18 +7,18 @@ import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.money.interest.InterestRate;
-import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.PerpetualBond;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
 import net.ollie.meerkat.utils.collections.Lists;
-import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
@@ -27,17 +27,17 @@ import net.ollie.goat.numeric.percentage.Percentage;
 public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, PerpetualBond> {
 
     private final Function<? super LocalDate, ? extends ExchangeRateCalculator> getExchangeRates;
-    private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates;
+    private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRates;
 
     public DatedPerpetualBondPricer(
             final Function<? super LocalDate, ? extends ExchangeRateCalculator> getExchangeRates,
-            final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates) {
+            final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRates) {
         this.getExchangeRates = getExchangeRates;
         this.getDiscountRates = getDiscountRates;
     }
 
     @Override
-    public <C extends CurrencyId> BondPrice.Shiftable<C> price(
+    public <C extends Currency> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final PerpetualBond bond,
             final C currency) {
@@ -46,7 +46,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, BondShifts.none());
     }
 
-    private static final class PerpetualBondPrice<C extends CurrencyId>
+    private static final class PerpetualBondPrice<C extends Currency>
             implements BondPrice.Shiftable<C>, ExchangeRateShifter, InterestRateShifter {
 
         private final PerpetualBond bond;
@@ -139,7 +139,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         }
 
         @Override
-        public C currencyId() {
+        public C currency() {
             return currency;
         }
 

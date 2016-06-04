@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.meerkat.identifier.market.HasMarketId;
 import net.ollie.meerkat.identifier.market.MarketId;
 import net.ollie.meerkat.identifier.security.HasSecurityId;
@@ -22,7 +22,7 @@ import net.ollie.meerkat.identifier.security.SecurityId;
  */
 @XmlRootElement
 public class SecurityAndMarketId
-        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId, Externalizable {
+        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrency, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,13 +33,13 @@ public class SecurityAndMarketId
     private MarketId market;
 
     @XmlAttribute(name = "currency")
-    private CurrencyId currency;
+    private Currency currency;
 
     @Deprecated
     SecurityAndMarketId() {
     }
 
-    public SecurityAndMarketId(final SecurityId security, final CurrencyId currency, final MarketId market) {
+    public SecurityAndMarketId(final SecurityId security, final Currency currency, final MarketId market) {
         this.security = security;
         this.currency = currency;
         this.market = market;
@@ -51,7 +51,7 @@ public class SecurityAndMarketId
     }
 
     @Override
-    public CurrencyId currencyId() {
+    public Currency currency() {
         return currency;
     }
 
@@ -71,7 +71,7 @@ public class SecurityAndMarketId
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         security = (SecurityId) in.readObject();
         market = (MarketId) in.readObject();
-        currency = (CurrencyId) in.readObject();
+        currency = (Currency) in.readObject();
     }
 
 }

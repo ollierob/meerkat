@@ -11,16 +11,16 @@ import java.util.function.Function;
 
 import com.google.common.collect.Maps;
 
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
+import net.ollie.meerkat.calculate.price.SecurityPriceCalculator;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnl;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnlCalculator;
-import net.ollie.goat.currency.CurrencyId;
 import net.ollie.meerkat.identifier.security.SecurityId;
-import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.SecurityDefinition;
-import net.ollie.meerkat.calculate.price.SecurityPriceCalculator;
 
 /**
  *
@@ -42,7 +42,7 @@ public class LocalHistoricPnlCalculator implements HistoricPnlCalculator {
     }
 
     @Override
-    public <C extends CurrencyId> HistoricPnl<C> pnl(
+    public <C extends Currency> HistoricPnl<C> pnl(
             final SecurityId securityId,
             final C currency,
             final LocalDate valuation,
@@ -53,7 +53,7 @@ public class LocalHistoricPnlCalculator implements HistoricPnlCalculator {
         return this.complete(future);
     }
 
-    private <C extends CurrencyId> HistoricPnl<C> pnl(
+    private <C extends Currency> HistoricPnl<C> pnl(
             final ShiftableSecurityPrice<C> basePrice,
             final Map<LocalDate, SecurityShifts> shifts) {
         final Map<LocalDate, Callable<SecurityPrice<C>>> shifters = Maps.transformValues(shifts, shift -> () -> basePrice.shift(shift));

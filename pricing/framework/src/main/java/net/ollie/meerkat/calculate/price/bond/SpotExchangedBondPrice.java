@@ -3,7 +3,7 @@ package net.ollie.meerkat.calculate.price.bond;
 import java.time.LocalDate;
 import java.util.List;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.meerkat.security.fx.CashPayment;
@@ -12,7 +12,7 @@ import net.ollie.meerkat.security.fx.CashPayment;
  *
  * @author ollie
  */
-public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
+public class SpotExchangedBondPrice<F extends Currency, C extends Currency>
         implements BondPrice.Shiftable<C> {
 
     private final BondPrice.Shiftable<F> bondPrice;

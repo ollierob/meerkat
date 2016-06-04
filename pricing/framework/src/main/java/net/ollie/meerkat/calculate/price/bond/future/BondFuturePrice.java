@@ -3,16 +3,16 @@ package net.ollie.meerkat.calculate.price.bond.future;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.ollie.goat.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
-public interface BondFuturePrice<C extends CurrencyId>
+public interface BondFuturePrice<C extends Currency>
         extends SecurityPrice<C> {
 
     /**
@@ -33,7 +33,7 @@ public interface BondFuturePrice<C extends CurrencyId>
                 .put("cheapest to deliver", this.cheapestToDeliver());
     }
 
-    interface Shiftable<C extends CurrencyId>
+    interface Shiftable<C extends Currency>
             extends BondFuturePrice<C>, ShiftableSecurityPrice<C> {
 
         @Override

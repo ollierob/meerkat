@@ -7,11 +7,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.date.years.Years;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.interest.daycount.AccrualFactor;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.date.years.Years;
 
 /**
  *
@@ -46,12 +46,12 @@ public class SimpleFixedInterestRate extends FixedInterestRate {
     }
 
     @Override
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
+    public <C extends Currency> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate accrualDate) {
         final Years years = accrual.yearsBetween(start, accrualDate);
         return this.accrue(money, years);
     }
 
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final Years years) {
+    public <C extends Currency> Money<C> accrue(final Money<C> money, final Years years) {
         final BigDecimal multiplier = BigDecimal.ONE.add(rate.decimalValue().multiply(years.decimalValue()));
         return money.times(multiplier);
     }

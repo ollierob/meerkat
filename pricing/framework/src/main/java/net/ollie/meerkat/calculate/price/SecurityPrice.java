@@ -2,16 +2,16 @@ package net.ollie.meerkat.calculate.price;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.Explainable;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.goat.money.Money;
+import net.ollie.meerkat.Explainable;
 
 /**
  *
  * @author ollie
  */
-public interface SecurityPrice<C extends CurrencyId> extends HasCurrencyId, Explainable {
+public interface SecurityPrice<C extends Currency> extends HasCurrency, Explainable {
 
     @Nonnull
     Money<C> clean();
@@ -20,8 +20,8 @@ public interface SecurityPrice<C extends CurrencyId> extends HasCurrencyId, Expl
     Money<C> dirty();
 
     @Override
-    default C currencyId() {
-        return this.clean().currencyId();
+    default C currency() {
+        return this.clean().currency();
     }
 
     @Nonnull

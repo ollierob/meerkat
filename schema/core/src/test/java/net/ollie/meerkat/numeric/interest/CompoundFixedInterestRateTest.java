@@ -7,11 +7,11 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.DecimalMoney;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.interest.daycount.FixedFixedAccrualFactor;
+import net.ollie.goat.numeric.percentage.DecimalPercentage;
 
 /**
  *
@@ -20,7 +20,7 @@ import net.ollie.goat.money.interest.daycount.FixedFixedAccrualFactor;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class CompoundFixedInterestRateTest {
 
-    static final CurrencyId currency = mock(CurrencyId.class);
+    static final Currency currency = mock(Currency.class);
 
     @Test
     public void shouldAccrue() {

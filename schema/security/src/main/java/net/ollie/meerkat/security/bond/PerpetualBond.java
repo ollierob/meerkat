@@ -7,10 +7,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.currency.HasCurrencyId;
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.goat.money.Money;
+import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 import net.ollie.meerkat.security.bond.coupon.BondCoupons;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.bond.dates.PerpetualBondDates;
@@ -58,8 +58,8 @@ public class PerpetualBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    public class PerpetualBondCoupons<C extends CurrencyId>
-            implements BondCoupons<FixedRateCoupon<?>>, HasCurrencyId {
+    public class PerpetualBondCoupons<C extends Currency>
+            implements BondCoupons<FixedRateCoupon<?>>, HasCurrency {
 
         private final Money<C> coupon;
 
@@ -115,8 +115,8 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public C currencyId() {
-            return coupon.currencyId();
+        public C currency() {
+            return coupon.currency();
         }
 
     }

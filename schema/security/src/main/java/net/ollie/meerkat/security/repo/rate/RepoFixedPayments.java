@@ -2,15 +2,15 @@ package net.ollie.meerkat.security.repo.rate;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.meerkat.numeric.interest.FixedInterestRate;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.meerkat.numeric.interest.FixedInterestRate;
 
 /**
  *
  * @author ollie
  */
-public class RepoFixedPayments<C extends CurrencyId> implements RepoRate {
+public class RepoFixedPayments<C extends Currency> implements RepoRate {
 
     @XmlElementRef(name = "spot")
     private Money<C> spot;

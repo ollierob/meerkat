@@ -6,15 +6,15 @@ import java.io.ObjectOutput;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
 
 /**
  *
  * @author ollie
  */
-public class EvaluatedBondPrice<C extends CurrencyId>
+public class EvaluatedBondPrice<C extends Currency>
         extends EvaluatedSecurityPrice<C>
         implements BondPrice<C> {
 

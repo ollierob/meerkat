@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.goat.money.Money;
 
 /**
  *
  * @author ollie
  */
-public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
+public interface CashPayment<C extends Currency> extends HasCurrency {
 
     @Nonnull
     LocalDate date();
@@ -21,11 +21,11 @@ public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
     Money<C> amount();
 
     @Override
-    default C currencyId() {
-        return this.amount().currencyId();
+    default C currency() {
+        return this.amount().currency();
     }
 
-    static <C extends CurrencyId> CashPayment<C> of(final LocalDate date, final Money<C> amount) {
+    static <C extends Currency> CashPayment<C> of(final LocalDate date, final Money<C> amount) {
         return new DefaultCashPayment<>(date, amount);
     }
 

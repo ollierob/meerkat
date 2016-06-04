@@ -6,21 +6,21 @@ import java.util.List;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.date.Interval;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.numeric.percentage.DecimalPercentage;
-import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.fx.CashPayment;
-import net.ollie.goat.date.Interval;
-import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
  * @author ollie
  */
-public interface BondPrice<C extends CurrencyId>
+public interface BondPrice<C extends Currency>
         extends SecurityPrice<C> {
 
     @Nonnull
@@ -57,7 +57,7 @@ public interface BondPrice<C extends CurrencyId>
                 .put("par", this.par());
     }
 
-    interface Shiftable<C extends CurrencyId>
+    interface Shiftable<C extends Currency>
             extends BondPrice<C>, ShiftableSecurityPrice<C> {
 
         @Override

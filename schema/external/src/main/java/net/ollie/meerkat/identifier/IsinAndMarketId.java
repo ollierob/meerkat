@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.meerkat.identifier.currency.CurrencyIso;
-import net.ollie.goat.currency.HasCurrencyId;
 import net.ollie.meerkat.identifier.market.HasMarketId;
 import net.ollie.meerkat.identifier.market.Mic;
 import net.ollie.meerkat.identifier.security.HasSecurityId;
@@ -22,7 +22,7 @@ import net.ollie.meerkat.identifier.security.Isin;
  */
 @XmlRootElement
 public class IsinAndMarketId
-        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrencyId, Externalizable {
+        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrency, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -56,7 +56,7 @@ public class IsinAndMarketId
     }
 
     @Override
-    public CurrencyIso currencyId() {
+    public CurrencyIso currency() {
         return currency;
     }
 

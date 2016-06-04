@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.currency.CurrencyId;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.derivative.swap.SwapLeg;
 import net.ollie.meerkat.security.fx.CashPayment;
@@ -68,7 +68,7 @@ public class FxSwapLeg implements SwapLeg {
         return new FxSwapLeg(date, receive, pay);
     }
 
-    public class FxSwapSide<C extends CurrencyId> implements CashPayment<C> {
+    public class FxSwapSide<C extends Currency> implements CashPayment<C> {
 
         private final Money<C> amount;
 

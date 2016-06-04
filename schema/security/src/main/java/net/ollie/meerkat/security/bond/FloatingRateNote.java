@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.interest.InterestRateId;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.numeric.interest.feature.RateFeature;
 import net.ollie.meerkat.security.bond.coupon.FloatingCoupon;
 
@@ -25,7 +25,7 @@ public class FloatingRateNote extends StraightBond {
     private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "coupon_currency")
-    private CurrencyId couponCurrency;
+    private Currency couponCurrency;
 
     @XmlAttribute(name = "spread")
     private Percentage spread;
@@ -53,7 +53,7 @@ public class FloatingRateNote extends StraightBond {
         return handler.handle(this);
     }
 
-    public class FloatingRateNoteCoupons<C extends CurrencyId>
+    public class FloatingRateNoteCoupons<C extends Currency>
             extends StraightBondCoupons<FloatingCoupon> {
 
         private final C currency;
@@ -78,7 +78,7 @@ public class FloatingRateNote extends StraightBond {
         }
 
         @Override
-        public C currencyId() {
+        public C currency() {
             return currency;
         }
 

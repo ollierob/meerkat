@@ -9,12 +9,12 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.date.years.FractionalYears;
 import net.ollie.goat.money.DecimalMoney;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.date.years.FractionalYears;
 import net.ollie.goat.money.interest.daycount.AccrualFactor;
+import net.ollie.goat.numeric.percentage.DecimalPercentage;
 
 /**
  *
@@ -24,7 +24,7 @@ import net.ollie.goat.money.interest.daycount.AccrualFactor;
 public class SimpleFixedInterestRateTest {
 
     @Mock
-    private CurrencyId mockCurrency;
+    private Currency mockCurrency;
 
     @Mock
     private AccrualFactor mockFactor;

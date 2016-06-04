@@ -6,11 +6,11 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.Money;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.PriceShifts;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.money.Money;
 
 /**
  *
@@ -33,7 +33,7 @@ public interface BondFutureShifts extends PriceShifts {
      * @return
      */
     @Override
-    <C extends CurrencyId> Money<C> shift(Money<C> bondPrice);
+    <C extends Currency> Money<C> shift(Money<C> bondPrice);
 
     /**
      *
@@ -42,7 +42,7 @@ public interface BondFutureShifts extends PriceShifts {
     @Nonnull
     BondShifts bondShifts();
 
-    default <C extends CurrencyId> BondPrice.Shiftable<C> shift(final BondPrice.Shiftable<C> price) {
+    default <C extends Currency> BondPrice.Shiftable<C> shift(final BondPrice.Shiftable<C> price) {
         return price.shift(this.bondShifts());
     }
 
@@ -60,7 +60,7 @@ public interface BondFutureShifts extends PriceShifts {
         }
 
         @Override
-        public <C extends CurrencyId> Money<C> shift(final Money<C> price) {
+        public <C extends Currency> Money<C> shift(final Money<C> price) {
             return price;
         }
 

@@ -5,8 +5,8 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.currency.HasCurrencyId;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.currency.HasCurrency;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.numeric.interest.InterestRateSecurity;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
@@ -19,7 +19,7 @@ import net.ollie.meerkat.security.interest.InterestRateDerivative;
  */
 public class InterestRateFuture
         extends AbstractFuture<InterestRateSecurity>
-        implements InterestRateDerivative, HasCurrencyId {
+        implements InterestRateDerivative, HasCurrency {
 
     private static final long serialVersionUID = 1L;
 
@@ -53,8 +53,8 @@ public class InterestRateFuture
     }
 
     @Override
-    public CurrencyId currencyId() {
-        return notional.currencyId();
+    public Currency currency() {
+        return notional.currency();
     }
 
     @Override

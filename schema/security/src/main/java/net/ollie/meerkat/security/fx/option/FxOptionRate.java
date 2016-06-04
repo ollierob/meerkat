@@ -4,11 +4,11 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.fx.ExchangeRate;
+import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 
 /**
@@ -16,9 +16,11 @@ import net.ollie.meerkat.security.NamedSecurity;
  * @author Ollie
  */
 @XmlRootElement
-public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
+public class FxOptionRate<C extends Currency, P extends Currency>
         extends NamedSecurity
         implements ExchangeRate<C, P> {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "call", required = true)
     private Money<C> call;
@@ -47,7 +49,7 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
 
     @Override
     public C from() {
-        return call.currencyId();
+        return call.currency();
     }
 
     @Nonnull
@@ -57,7 +59,7 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
 
     @Override
     public P to() {
-        return put.currencyId();
+        return put.currency();
     }
 
     @Override

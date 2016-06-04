@@ -10,80 +10,16 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.Maps;
 
-import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
-import net.ollie.goat.currency.CurrencyId;
-import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.goat.currency.Currency;
+import net.ollie.goat.date.years.Years;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.fx.ExchangeRate;
+import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
-import net.ollie.goat.date.years.Years;
-
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
@@ -93,32 +29,32 @@ import static java.util.Objects.requireNonNull;
 public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate, FixedCouponBond> {
 
     private final Function<? super LocalDate, ? extends ExchangeRateCalculator> getFxRates;
-    private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRate;
+    private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRate;
 
     public ZeroSpreadFixedCouponBondPricer(
             final Function<LocalDate, ExchangeRateCalculator> exchangeRates,
-            final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates) {
+            final BiFunction<LocalDate, Currency, InterestRate> discountRates) {
         this.getFxRates = exchangeRates;
         this.getDiscountRate = discountRates;
     }
 
     @Override
-    public <C extends CurrencyId> BondPrice.Shiftable<C> price(
+    public <C extends Currency> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final FixedCouponBond bond,
             final C currency) {
         return this.price(date, bond.nominal(), bond.coupons(), currency);
     }
 
-    public <P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId> BondPrice.Shiftable<C> price(
+    public <P extends Currency, Z extends Currency, C extends Currency> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final CashPayment<P> par,
             final FixedCouponBondCoupons<Z> coupons,
             final C currency) {
 
         final ExchangeRateCalculator fxRates = requireNonNull(getFxRates.apply(date));
-        final ExchangeRate<P, C> parFxRate = fxRates.rate(par.currencyId(), currency);
-        final ExchangeRate<Z, C> couponFxRate = fxRates.rate(coupons.currencyId(), currency);
+        final ExchangeRate<P, C> parFxRate = fxRates.rate(par.currency(), currency);
+        final ExchangeRate<Z, C> couponFxRate = fxRates.rate(coupons.currency(), currency);
 
         final InterestRate discountRate = requireNonNull(getDiscountRate.apply(date, currency));
 
@@ -126,7 +62,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
 
     }
 
-    private static final class ZeroSpreadFixedCouponBondPrice<P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId>
+    private static final class ZeroSpreadFixedCouponBondPrice<P extends Currency, Z extends Currency, C extends Currency>
             implements BondPrice.Shiftable<C> {
 
         private final LocalDate valuationDate;
