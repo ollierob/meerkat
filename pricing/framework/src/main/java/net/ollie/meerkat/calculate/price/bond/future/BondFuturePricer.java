@@ -2,7 +2,7 @@ package net.ollie.meerkat.calculate.price.bond.future;
 
 import java.time.temporal.Temporal;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPriceException;
 import net.ollie.meerkat.calculate.price.SecurityTypePriceCalculator;
 import net.ollie.meerkat.security.bond.future.BondFuture;

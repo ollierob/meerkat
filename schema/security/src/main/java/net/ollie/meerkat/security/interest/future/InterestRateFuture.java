@@ -5,8 +5,8 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import net.ollie.goat.currency.Currency;
-import net.ollie.goat.currency.HasCurrency;
+import net.ollie.goat.money.currency.Currency;
+import net.ollie.goat.money.currency.HasCurrency;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.numeric.interest.InterestRateSecurity;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;

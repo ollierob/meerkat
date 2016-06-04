@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.date.years.FractionalYears;
 import net.ollie.goat.money.DecimalMoney;
 import net.ollie.goat.money.Money;

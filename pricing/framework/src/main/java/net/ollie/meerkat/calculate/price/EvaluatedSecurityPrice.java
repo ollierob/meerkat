@@ -8,7 +8,7 @@ import java.io.ObjectOutput;
 import javax.annotation.OverridingMethodsMustInvokeSuper;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 
 /**

@@ -1,6 +1,6 @@
 package net.ollie.meerkat.calculate.var.historic;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.var.Var;

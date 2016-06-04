@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.goat.money.interest.fixed.FixedInterestRate;

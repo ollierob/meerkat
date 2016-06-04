@@ -2,7 +2,7 @@ package net.ollie.meerkat.calculate.price.repo;
 
 import java.time.LocalDate;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;

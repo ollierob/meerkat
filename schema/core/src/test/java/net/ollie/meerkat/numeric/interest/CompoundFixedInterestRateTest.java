@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.DecimalMoney;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.interest.daycount.FixedFixedAccrualFactor;

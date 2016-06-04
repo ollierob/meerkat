@@ -2,7 +2,7 @@ package net.ollie.meerkat.identifier.currency;
 
 import java.io.Serializable;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.identifier.Iso;
 import net.ollie.meerkat.identifier.country.CountryIso;
 import net.ollie.meerkat.identifier.country.HasCountryId;

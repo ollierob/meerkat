@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.goat.money.interest.InterestRate;

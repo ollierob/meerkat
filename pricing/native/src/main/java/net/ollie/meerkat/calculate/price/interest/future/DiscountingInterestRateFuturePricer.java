@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.goat.money.interest.InterestRate;

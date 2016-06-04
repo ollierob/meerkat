@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.interest.daycount.YearCount;
 import net.ollie.goat.numeric.percentage.Percentage;

@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.function.Function;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.interest.InterestRate;
 import net.ollie.meerkat.numeric.interest.InterestRateId;
 import net.ollie.goat.numeric.percentage.Percentage;

@@ -2,7 +2,7 @@ package net.ollie.meerkat.security.repo.rate;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 

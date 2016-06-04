@@ -5,7 +5,7 @@ import static java.util.stream.Collectors.toList;
 
 import javax.annotation.CheckForNull;
 
-import net.ollie.goat.currency.HasCurrency;
+import net.ollie.goat.money.currency.HasCurrency;
 import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
 import net.ollie.meerkat.utils.collections.sequence.OrderedSequence;
 import net.ollie.meerkat.utils.collections.sequence.StartingSequence;

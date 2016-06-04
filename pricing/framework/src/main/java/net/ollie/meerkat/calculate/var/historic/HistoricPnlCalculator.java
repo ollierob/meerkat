@@ -3,7 +3,7 @@ package net.ollie.meerkat.calculate.var.historic;
 import java.time.LocalDate;
 import java.util.Map;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPrice.InvalidShiftTypeException;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.identifier.security.SecurityId;

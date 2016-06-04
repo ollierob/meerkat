@@ -3,7 +3,7 @@ package net.ollie.meerkat.calculate.price.bond.future;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;

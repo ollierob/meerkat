@@ -4,7 +4,7 @@ import java.time.temporal.Temporal;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.security.repo.Repo;
 
 /**

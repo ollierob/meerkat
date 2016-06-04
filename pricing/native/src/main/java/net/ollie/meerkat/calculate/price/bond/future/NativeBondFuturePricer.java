@@ -6,7 +6,7 @@ import java.time.temporal.Temporal;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.currency.Currency;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
