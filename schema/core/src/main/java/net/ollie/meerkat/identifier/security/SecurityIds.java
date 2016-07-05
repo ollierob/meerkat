@@ -7,6 +7,7 @@ import java.io.ObjectOutput;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
@@ -21,7 +22,7 @@ public class SecurityIds implements Externalizable {
 
     private static final long serialVersionUID = 1L;
 
-    public static SecurityIds singleton(final SecurityId id) {
+    public static SecurityIds of(final SecurityId id) {
         return new SecurityIds(Collections.singleton(id));
     }
 
@@ -34,6 +35,11 @@ public class SecurityIds implements Externalizable {
 
     public SecurityIds(final Set<SecurityId> ids) {
         this.ids = ids;
+    }
+
+    @Nonnull
+    public void accept(final Consumer<SecurityId> consumer) {
+        ids.forEach(consumer);
     }
 
     public boolean contains(final SecurityId id) {

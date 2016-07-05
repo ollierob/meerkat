@@ -14,7 +14,7 @@ public interface HasSecurityId extends HasSecurityIds {
     @Override
     @Deprecated
     default SecurityIds securityIds() {
-        return SecurityIds.singleton(this.securityId());
+        return SecurityIds.of(this.securityId());
     }
 
 }

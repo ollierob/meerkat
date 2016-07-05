@@ -41,7 +41,7 @@ public class NamedSecurity
     public SecurityIds securityIds() {
         return identifiers;
     }
-
+    
     @Override
     public String name() {
         return name;
