@@ -6,11 +6,12 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.PriceShifts;
+import net.ollie.meerkat.security.repo.rate.RepoRate;
 
 /**
  *
@@ -42,6 +43,9 @@ public interface BondFutureShifts extends PriceShifts {
     @Nonnull
     BondShifts bondShifts();
 
+    @Nonnull
+    RepoRate shift(RepoRate rate);
+
     default <C extends Currency> BondPrice.Shiftable<C> shift(final BondPrice.Shiftable<C> price) {
         return price.shift(this.bondShifts());
     }
@@ -67,6 +71,11 @@ public interface BondFutureShifts extends PriceShifts {
         @Override
         public BigDecimal shiftConversionFactor(final BigDecimal conversionFactor) {
             return conversionFactor;
+        }
+
+        @Override
+        public RepoRate shift(final RepoRate rate) {
+            return rate;
         }
 
         @Override

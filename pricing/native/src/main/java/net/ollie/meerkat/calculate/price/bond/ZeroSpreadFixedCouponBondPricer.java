@@ -1,5 +1,7 @@
 package net.ollie.meerkat.calculate.price.bond;
 
+import com.google.common.collect.Maps;
+
 import java.time.LocalDate;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
@@ -8,26 +10,17 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.google.common.collect.Maps;
-
-import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.temporal.date.years.Years;
 import net.ollie.goat.money.Money;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.temporal.date.years.Years;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.fx.CashPayment;
-
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
-import static java.util.Objects.requireNonNull;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
@@ -174,6 +167,11 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
                 flow.compute(coupon.date(), (d, c) -> c == null ? money : money.plus(c));
             }
             return flow;
+        }
+
+        @Override
+        public Percentage yieldToMaturity() {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
 
     }

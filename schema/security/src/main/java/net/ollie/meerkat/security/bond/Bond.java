@@ -2,7 +2,6 @@ package net.ollie.meerkat.security.bond;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.identifier.security.HasIsin;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.Callable;
 import net.ollie.meerkat.security.SecurityDefinition;
@@ -14,7 +13,7 @@ import net.ollie.meerkat.security.bond.dates.BondDates;
  *
  * @author Ollie
  */
-public interface Bond extends SecurityDefinition, Callable<BondCall>, HasIsin {
+public interface Bond extends SecurityDefinition, Callable<BondCall> {
 
     @Nonnull
     Money<?> par();
@@ -37,7 +36,6 @@ public interface Bond extends SecurityDefinition, Callable<BondCall>, HasIsin {
     @Override
     default ExplanationBuilder explain() {
         return new ExplanationBuilder()
-                .put("isin", this.isin())
                 .put("par", this.par())
                 .put("coupons", this.coupons())
                 .put("dates", this.dates())

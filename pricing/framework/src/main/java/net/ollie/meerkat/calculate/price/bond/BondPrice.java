@@ -6,11 +6,11 @@ import java.util.List;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.temporal.date.Interval;
 import net.ollie.goat.money.Money;
-import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.money.currency.Currency;
+import net.ollie.goat.numeric.percentage.FractionalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
@@ -31,7 +31,7 @@ public interface BondPrice<C extends Currency>
 
     @Nonnull
     default Percentage cleanPercent() {
-        return new DecimalPercentage(this.par().amount().doubleValue() / this.clean().amount().doubleValue());
+        return FractionalPercentage.of(this.par().amount(), this.clean().amount());
     }
 
     @Override
@@ -39,7 +39,7 @@ public interface BondPrice<C extends Currency>
 
     @Nonnull
     default Percentage dirtyPercent() {
-        return new DecimalPercentage(this.par().amount().doubleValue() / this.dirty().amount().doubleValue());
+        return FractionalPercentage.of(this.par().amount(), this.dirty().amount());
     }
 
     default boolean isPremium() {
@@ -50,6 +50,9 @@ public interface BondPrice<C extends Currency>
     default Money<C> accruedInterest() {
         return this.dirty().minus(this.clean());
     }
+    
+    @Nonnull
+    Percentage yieldToMaturity();
 
     @Override
     public default ExplanationBuilder explain() {
@@ -61,6 +64,7 @@ public interface BondPrice<C extends Currency>
             extends BondPrice<C>, ShiftableSecurityPrice<C> {
 
         @Override
+        @Deprecated
         default BondPrice.Shiftable<C> shift(final SecurityShifts shifts) {
             return this.shift(shifts.definiteCast(BondShifts.class));
         }
@@ -69,7 +73,7 @@ public interface BondPrice<C extends Currency>
         BondPrice.Shiftable<C> shift(BondShifts shifts);
 
         @Nonnull
-        default List<CashPayment<C>> cleanFlow(final Interval interval) {
+        default List<CashPayment<C>> cleanFlow(final CompleteInterval interval) {
             return this.cleanFlow(interval.startInclusive(), interval.endExclusive());
         }
 

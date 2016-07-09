@@ -29,7 +29,7 @@ public class BondFuture
     private BondFutureContract contract;
 
     @XmlElementWrapper(name = "basket")
-    @XmlElement(name = "eligible", required = true)
+    @XmlElement(name = "bond", required = true)
     private Set<SecurityIds> basket;
 
     @XmlElementRef(name = "delivery", required = true)

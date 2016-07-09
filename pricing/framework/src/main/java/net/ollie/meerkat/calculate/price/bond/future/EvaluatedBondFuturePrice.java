@@ -4,14 +4,16 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
+import net.ollie.meerkat.security.repo.rate.RepoRate;
 
 /**
  *
  * @author ollie
  */
+//TODO XML
 public class EvaluatedBondFuturePrice<C extends Currency>
         extends EvaluatedSecurityPrice<C>
         implements BondFuturePrice<C> {
@@ -20,18 +22,31 @@ public class EvaluatedBondFuturePrice<C extends Currency>
 
     private CheapestToDeliver<C> cheapestToDeliver;
 
+    private RepoRate repoRate;
+
     @Deprecated
     protected EvaluatedBondFuturePrice() {
     }
 
-    public EvaluatedBondFuturePrice(final Money<C> clean, final Money<C> dirty, final CheapestToDeliver<C> cheapestToDeliver) {
-        super(clean, dirty);
+    public EvaluatedBondFuturePrice(final Money<C> price, final RepoRate repoRate, final CheapestToDeliver<C> cheapestToDeliver) {
+        super(price, price);
         this.cheapestToDeliver = cheapestToDeliver;
+        this.repoRate = repoRate;
+    }
+
+    @Override
+    public Money<C> price() {
+        return super.clean();
     }
 
     @Override
     public CheapestToDeliver<C> cheapestToDeliver() {
         return cheapestToDeliver;
+    }
+
+    @Override
+    public RepoRate repoRate() {
+        return repoRate;
     }
 
     @Override

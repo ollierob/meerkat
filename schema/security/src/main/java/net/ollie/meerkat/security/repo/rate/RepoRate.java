@@ -3,6 +3,7 @@ package net.ollie.meerkat.security.repo.rate;
 import javax.annotation.Nonnull;
 
 import net.ollie.goat.money.interest.fixed.FixedInterestRate;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
@@ -12,6 +13,11 @@ public interface RepoRate {
 
     @Nonnull
     FixedInterestRate rate();
+
+    @Nonnull
+    default Percentage annualRate() {
+        return this.rate().annualRate();
+    }
 
     default boolean isSpecial() {
         return this.rate().isNegative();

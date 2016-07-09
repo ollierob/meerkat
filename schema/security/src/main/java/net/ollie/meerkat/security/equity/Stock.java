@@ -3,8 +3,6 @@ package net.ollie.meerkat.security.equity;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.identifier.security.HasIsin;
-import net.ollie.meerkat.identifier.security.HasStockTicker;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 
@@ -15,7 +13,9 @@ import net.ollie.meerkat.security.NamedSecurity;
 @XmlRootElement
 public class Stock
         extends NamedSecurity
-        implements Equity, HasIsin, HasStockTicker {
+        implements Equity {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlAttribute(name = "preferred")
     private boolean preferred;

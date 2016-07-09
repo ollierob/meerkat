@@ -1,13 +1,13 @@
 package net.ollie.meerkat.security.bond.future;
 
-import java.math.BigDecimal;
 import java.time.Period;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.money.interest.fixed.FixedInterestRate;
+import net.ollie.meerkat.numeric.interest.InterestRateSecurity;
 import net.ollie.meerkat.security.Security;
 
 /**
@@ -15,10 +15,14 @@ import net.ollie.meerkat.security.Security;
  * @author ollie
  */
 @XmlRootElement
-public class BondFutureContract implements Security {
+public class BondFutureContract
+        implements Security, InterestRateSecurity {
 
-    @XmlElementRef(name = "reference_yield")
-    private Percentage referenceYield;
+    @XmlElementRef(name = "face_value")
+    private Money<?> faceValue;
+
+    @XmlElementRef(name = "reference_rate")
+    private FixedInterestRate referenceRate;
 
     @XmlElementRef(name = "min_maturity")
     private Period minimumMaturity;
@@ -26,26 +30,28 @@ public class BondFutureContract implements Security {
     @XmlElementRef(name = "max_maturity")
     private Period maximumMaturity;
 
-    @XmlAttribute(name = "nominal")
-    private BigDecimal nominal;
-
     @Deprecated
     BondFutureContract() {
     }
 
     public BondFutureContract(
-            final Percentage referenceYield,
+            final Money<?> faceValue,
+            final FixedInterestRate referenceRate,
             final Period minimumMaturity,
-            final Period maximumMaturity,
-            final BigDecimal nominal) {
-        this.referenceYield = referenceYield;
+            final Period maximumMaturity) {
+        this.faceValue = faceValue;
+        this.referenceRate = referenceRate;
         this.minimumMaturity = minimumMaturity;
         this.maximumMaturity = maximumMaturity;
-        this.nominal = nominal;
     }
 
-    public Percentage referenceYield() {
-        return referenceYield;
+    public Money<?> faceValue() {
+        return faceValue;
+    }
+
+    @Override
+    public FixedInterestRate interestRate() {
+        return referenceRate;
     }
 
     public Period minimumMaturity() {
@@ -54,10 +60,6 @@ public class BondFutureContract implements Security {
 
     public Period maximumMaturity() {
         return maximumMaturity;
-    }
-
-    public BigDecimal nominal() {
-        return nominal;
     }
 
 }

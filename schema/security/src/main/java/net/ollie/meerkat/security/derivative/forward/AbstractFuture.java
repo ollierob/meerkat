@@ -1,6 +1,5 @@
 package net.ollie.meerkat.security.derivative.forward;
 
-import net.ollie.meerkat.identifier.security.HasFutureTicker;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 import net.ollie.meerkat.security.Security;
@@ -11,7 +10,7 @@ import net.ollie.meerkat.security.Security;
  */
 public abstract class AbstractFuture<S extends Security>
         extends NamedSecurity
-        implements Future<S>, HasFutureTicker {
+        implements Future<S> {
 
     private static final long serialVersionUID = 1L;
 

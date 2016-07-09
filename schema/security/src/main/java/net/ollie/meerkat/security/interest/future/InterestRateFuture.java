@@ -1,14 +1,10 @@
 package net.ollie.meerkat.security.interest.future;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
-
-import org.apache.commons.math3.fraction.Fraction;
 
 import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.currency.HasCurrency;
-import net.ollie.goat.money.Money;
-import net.ollie.meerkat.numeric.interest.InterestRateSecurity;
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
 import net.ollie.meerkat.security.derivative.forward.FutureDeliveryDates;
 import net.ollie.meerkat.security.interest.InterestRateDerivative;
@@ -18,25 +14,29 @@ import net.ollie.meerkat.security.interest.InterestRateDerivative;
  * @author Ollie
  */
 public class InterestRateFuture
-        extends AbstractFuture<InterestRateSecurity>
+        extends AbstractFuture<InterestRateFutureContract>
         implements InterestRateDerivative, HasCurrency {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "notional")
-    private Money<?> notional;
-
-    @XmlElementRef(name = "underlying")
-    private InterestRateSecurity underlying;
+    @XmlElementRef(name = "contract")
+    private InterestRateFutureContract contract;
 
     @XmlElementRef(name = "dates")
     private FutureDeliveryDates dates;
 
-    @XmlAttribute(name = "yearly_frequency")
-    private int yearlyFrequency;
-
     @Deprecated
-    InterestRateFuture() {
+    protected InterestRateFuture() {
+    }
+
+    public InterestRateFuture(
+            final String name,
+            final SecurityIds identifiers,
+            final InterestRateFutureContract contract,
+            final FutureDeliveryDates dates) {
+        super(name, identifiers);
+        this.contract = contract;
+        this.dates = dates;
     }
 
     @Override
@@ -44,22 +44,14 @@ public class InterestRateFuture
         return dates;
     }
 
-    public Money<?> notional() {
-        return notional;
-    }
-
-    public Fraction accrualFactor() {
-        return new Fraction(yearlyFrequency, 12);
-    }
-
     @Override
     public Currency currency() {
-        return notional.currency();
+        return contract.currency();
     }
 
     @Override
-    public InterestRateSecurity underlying() {
-        return underlying;
+    public InterestRateFutureContract underlying() {
+        return contract;
     }
 
     @Override

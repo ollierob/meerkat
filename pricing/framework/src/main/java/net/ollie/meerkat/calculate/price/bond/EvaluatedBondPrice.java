@@ -6,8 +6,9 @@ import java.io.ObjectOutput;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.goat.money.currency.Currency;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
 
 /**
@@ -23,19 +24,31 @@ public class EvaluatedBondPrice<C extends Currency>
     @XmlElementRef(name = "par")
     private Money<C> par;
 
+    @XmlElementRef(name = "yield_to_maturity")
+    private Percentage yieldToMaturity;
+
     @Deprecated
     protected EvaluatedBondPrice() {
     }
 
-    public EvaluatedBondPrice(final Money<C> clean, final Money<C> dirty,
-            final Money<C> par) {
+    public EvaluatedBondPrice(
+            final Money<C> clean,
+            final Money<C> dirty,
+            final Money<C> par,
+            final Percentage yieldToMaturity) {
         super(clean, dirty);
         this.par = par;
+        this.yieldToMaturity = yieldToMaturity;
     }
 
     @Override
     public Money<C> par() {
         return par;
+    }
+
+    @Override
+    public Percentage yieldToMaturity() {
+        return yieldToMaturity;
     }
 
     @Override

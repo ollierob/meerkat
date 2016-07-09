@@ -28,6 +28,11 @@
             <artifactId>meerkat-schema-issue</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>meerkat-schema-security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     
 </project>

@@ -8,10 +8,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.interest.fixed.FixedInterestRate;
+import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.ollie.meerkat.numeric.interest.InterestRateSecurity;
 import net.ollie.meerkat.security.bond.call.BondCall;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
@@ -22,7 +23,9 @@ import net.ollie.meerkat.security.fx.CashPayment;
  * @author ollie
  */
 @XmlRootElement
-public class FixedCouponBond extends StraightBond {
+public class FixedCouponBond
+        extends StraightBond
+        implements InterestRateSecurity {
 
     private static final long serialVersionUID = 1L;
 
@@ -60,6 +63,11 @@ public class FixedCouponBond extends StraightBond {
 
     @Nonnull
     public FixedInterestRate couponRate() {
+        return couponRate;
+    }
+
+    @Override
+    public FixedInterestRate interestRate() {
         return couponRate;
     }
 

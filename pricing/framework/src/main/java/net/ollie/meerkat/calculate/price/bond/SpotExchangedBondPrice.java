@@ -3,9 +3,10 @@ package net.ollie.meerkat.calculate.price.bond;
 import java.time.LocalDate;
 import java.util.List;
 
-import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.fx.ExchangeRate;
+import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.security.fx.CashPayment;
 
 /**
@@ -46,6 +47,11 @@ public class SpotExchangedBondPrice<F extends Currency, C extends Currency>
     @Override
     public Money<C> dirty() {
         return rate.convert(bondPrice.dirty());
+    }
+
+    @Override
+    public Percentage yieldToMaturity() {
+        return bondPrice.yieldToMaturity();
     }
 
     @Override

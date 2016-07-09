@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 
 import net.ollie.goat.temporal.date.Dates;
-import net.ollie.goat.temporal.date.Interval;
+import net.ollie.goat.temporal.date.interim.CompleteInterval;
 
 /**
  *
@@ -58,7 +58,7 @@ public interface BusinessDayCalendar {
     }
 
     @Nonnull
-    default NavigableSet<LocalDate> holidaysIn(final Interval interval) {
+    default NavigableSet<LocalDate> holidaysIn(final CompleteInterval interval) {
         return interval.stream()
                 .filter(this::isBusinessDay)
                 .collect(Collectors.toCollection(TreeSet::new));
