@@ -36,6 +36,10 @@ public interface Explainable {
             return this;
         }
 
+        public ExplanationBuilder putIf(final boolean predicate, final String key, final Object value) {
+            return predicate ? this.put(key, value) : this;
+        }
+
         @Override
         public Map<String, Object> explain() {
             return Collections.unmodifiableMap(explanation);

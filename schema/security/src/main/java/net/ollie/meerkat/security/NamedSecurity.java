@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.Explainable;
 import net.ollie.meerkat.identifier.security.HasSecurityIds;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.utils.HasName;
@@ -20,7 +21,7 @@ import net.ollie.meerkat.utils.HasName;
  */
 @XmlRootElement
 public class NamedSecurity
-        implements Security, HasSecurityIds, HasName, Externalizable {
+        implements Security, HasSecurityIds, HasName, Externalizable, Explainable {
 
     private static final long serialVersionUID = 1L;
 
@@ -52,6 +53,15 @@ public class NamedSecurity
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + ": " + name;
+    }
+
+    @Override
+    @OverridingMethodsMustInvokeSuper
+    public ExplanationBuilder explain() {
+        return new ExplanationBuilder()
+                .put("name", name)
+                .put("id", identifiers)
+                .put("type", this.getClass().getSimpleName());
     }
 
     @Override

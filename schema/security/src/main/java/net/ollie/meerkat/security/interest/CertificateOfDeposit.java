@@ -13,6 +13,7 @@ import net.ollie.goat.money.currency.HasCurrency;
 import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.temporal.date.Dates;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
+import net.ollie.meerkat.Explainable;
 import net.ollie.meerkat.numeric.interest.earning.InterestEarning;
 import net.ollie.meerkat.security.Issued;
 import net.ollie.meerkat.security.NamedSecurity;
@@ -25,15 +26,15 @@ import net.ollie.meerkat.security.NamedSecurity;
 @XmlRootElement
 public class CertificateOfDeposit
         extends NamedSecurity
-        implements MoneyMarketSecurity, HasCurrency, Issued, InterestEarning.Fixed {
+        implements MoneyMarketSecurity, HasCurrency, Issued, InterestEarning.Fixed, Explainable {
 
     private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "rate")
     private FixedInterestRate rate;
 
-    @XmlElementRef(name = "principal")
-    private Money<?> principal;
+    @XmlElementRef(name = "notional")
+    private Money<?> notional;
 
     @XmlAttribute(name = "issued")
     private LocalDate issued;
@@ -46,7 +47,7 @@ public class CertificateOfDeposit
 
     @Override
     public Money<?> notional() {
-        return principal;
+        return notional;
     }
 
     @Override
@@ -69,7 +70,7 @@ public class CertificateOfDeposit
 
     @Override
     public Currency currency() {
-        return principal.currency();
+        return notional.currency();
     }
 
     public Money<?> accrueFrom(final LocalDate date) {
@@ -86,6 +87,16 @@ public class CertificateOfDeposit
     @Override
     public <R> R handleWith(final MoneyMarketSecurity.Handler<R> handler) {
         return handler.handle(this);
+    }
+
+    @Override
+    public ExplanationBuilder explain() {
+        return super.explain()
+                .put("interest rate", rate)
+                .put("notional", notional)
+                .put("issued", issued)
+                .put("start", term.first())
+                .put("maturity", term.last());
     }
 
 }
