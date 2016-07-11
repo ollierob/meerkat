@@ -1,4 +1,4 @@
-package net.ollie.meerkat.calculate.price.repo;
+package net.ollie.meerkat.calculate.price.interest.repo;
 
 import net.ollie.meerkat.calculate.price.interest.repo.RepoPrice;
 import net.ollie.meerkat.calculate.price.interest.repo.RepoShifts;
