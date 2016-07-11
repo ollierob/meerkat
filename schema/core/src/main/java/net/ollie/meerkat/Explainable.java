@@ -30,7 +30,7 @@ public interface Explainable {
             } else if (value instanceof Optional) {
                 newValue = ((Optional<?>) value).orElse(null);
             } else {
-                newValue = value;
+                newValue = value == null ? null : value.toString();
             }
             explanation.put(key, newValue);
             return this;

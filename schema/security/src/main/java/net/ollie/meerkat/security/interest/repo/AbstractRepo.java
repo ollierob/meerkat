@@ -53,13 +53,10 @@ public abstract class AbstractRepo<C extends Security>
     }
 
     @Override
-    public String toString() {
-        return this.getClass().getSimpleName()
-                + ": principal [" + this.principal()
-                + "] collateral [" + this.collateral()
-                + "] rate [" + rate
-                + "] dates [" + dates
-                + "] ";
+    public ExplanationBuilder explain() {
+        return super.explain()
+                .put("dates", dates)
+                .put("rate", rate);
     }
 
     @Override

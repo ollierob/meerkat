@@ -7,7 +7,7 @@ import net.ollie.goat.money.Money;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.quantity.Quantity;
 import net.ollie.meerkat.security.bond.BondDerivative;
-import net.ollie.meerkat.security.bond.future.BondFuture;
+import net.ollie.meerkat.security.interest.future.BondFuture;
 import net.ollie.meerkat.security.derivative.option.AbstractOption;
 import net.ollie.meerkat.security.derivative.option.exercise.OptionExercise;
 

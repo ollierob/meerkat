@@ -59,4 +59,11 @@ public class InterestRateFuture
         return handler.handle(this);
     }
 
+    @Override
+    public ExplanationBuilder explain() {
+        return super.explain()
+                .put("dates", dates)
+                .put("contract", contract);
+    }
+
 }

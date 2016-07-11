@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.bond.future;
+package net.ollie.meerkat.security.interest.future;
 
 import java.time.Period;
 

@@ -2,7 +2,6 @@ package net.ollie.meerkat.security.bond;
 
 import net.ollie.meerkat.security.Security;
 import net.ollie.meerkat.security.SecurityDefinition;
-import net.ollie.meerkat.security.bond.future.BondFuture;
 import net.ollie.meerkat.security.bond.option.BondFutureOption;
 import net.ollie.meerkat.security.bond.option.BondOption;
 import net.ollie.meerkat.security.bond.swap.BondAssetSwap;
@@ -24,8 +23,6 @@ public interface BondDerivative<B extends Security> extends SecurityDefinition, 
     <R> R handleWith(BondDerivative.Handler<R> handler);
 
     interface Handler<R> extends SecurityDefinition.Handler<R> {
-
-        R handle(BondFuture future);
 
         R handle(BondOption option);
 

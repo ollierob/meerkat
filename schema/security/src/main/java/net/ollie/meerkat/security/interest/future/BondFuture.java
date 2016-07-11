@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.bond.future;
+package net.ollie.meerkat.security.interest.future;
 
 import com.google.common.collect.Iterables;
 
@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 
 import net.ollie.meerkat.identifier.security.SecurityId;
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.security.bond.BondDerivative;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
 import net.ollie.meerkat.security.derivative.forward.FutureDeliveryDates;
+import net.ollie.meerkat.security.interest.InterestRateDerivative;
 
 /**
  *
@@ -21,7 +21,7 @@ import net.ollie.meerkat.security.derivative.forward.FutureDeliveryDates;
  */
 public class BondFuture
         extends AbstractFuture<BondFutureContract>
-        implements BondDerivative<BondFutureContract> {
+        implements InterestRateDerivative {
 
     private static final long serialVersionUID = 1L;
 
@@ -70,8 +70,16 @@ public class BondFuture
     }
 
     @Override
-    public <R> R handleWith(final BondDerivative.Handler<R> handler) {
+    public <R> R handleWith(final InterestRateDerivative.Handler<R> handler) {
         return handler.handle(this);
+    }
+
+    @Override
+    public ExplanationBuilder explain() {
+        return super.explain()
+                .put("basket", basket)
+                .put("contract", contract)
+                .put("dates", deliveryDates);
     }
 
 }
