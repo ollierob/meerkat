@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.Explainable;
 import net.ollie.meerkat.identifier.country.CountryIso;
 import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
 
@@ -20,7 +21,8 @@ import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
  * @author Ollie
  */
 @XmlRootElement
-public class Isin implements SecurityId, HasCheckDigit, HasNsin, Externalizable {
+public class Isin
+        implements SecurityId, HasCheckDigit, HasNsin, Explainable, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -130,6 +132,14 @@ public class Isin implements SecurityId, HasCheckDigit, HasNsin, Externalizable 
         country = (CountryIso) in.readObject();
         nsin = (Nsin) in.readObject();
         checkDigit = in.readChar();
+    }
+
+    @Override
+    public ExplanationBuilder explain() {
+        return new ExplanationBuilder()
+                .put("country", country)
+                .put("nsin", nsin)
+                .put("check digit", checkDigit);
     }
 
 }

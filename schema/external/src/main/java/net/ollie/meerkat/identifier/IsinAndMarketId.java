@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.money.currency.HasCurrency;
+import net.ollie.meerkat.Explainable;
 import net.ollie.meerkat.identifier.currency.CurrencyIso;
 import net.ollie.meerkat.identifier.market.HasMarketId;
 import net.ollie.meerkat.identifier.market.Mic;
@@ -22,7 +23,7 @@ import net.ollie.meerkat.identifier.security.Isin;
  */
 @XmlRootElement
 public class IsinAndMarketId
-        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrency, Externalizable {
+        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrency, Explainable, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -61,17 +62,25 @@ public class IsinAndMarketId
     }
 
     @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
+    public void writeExternal(final ObjectOutput out) throws IOException {
         out.writeObject(isin);
         out.writeObject(market);
         out.writeObject(currency);
     }
 
     @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
         isin = (Isin) in.readObject();
         market = (Mic) in.readObject();
         currency = (CurrencyIso) in.readObject();
+    }
+
+    @Override
+    public ExplanationBuilder explain() {
+        return new ExplanationBuilder()
+                .put("isin", isin)
+                .put("market", market)
+                .put("currency", currency);
     }
 
 }
