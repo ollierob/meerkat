@@ -1,4 +1,4 @@
-package net.ollie.meerkat.calculate.price.repo;
+package net.ollie.meerkat.calculate.price.interest.repo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

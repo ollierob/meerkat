@@ -1,5 +1,9 @@
 package net.ollie.meerkat.calculate.price.repo;
 
+import net.ollie.meerkat.calculate.price.interest.repo.RepoPrice;
+import net.ollie.meerkat.calculate.price.interest.repo.RepoShifts;
+import net.ollie.meerkat.calculate.price.interest.repo.RepoTypePricer;
+
 import java.time.LocalDate;
 
 import net.ollie.goat.money.currency.Currency;

@@ -72,8 +72,8 @@ public class CertificateOfDeposit
         return principal.currency();
     }
 
-    public Money<?> accrue(final LocalDate until) {
-        return this.accrue(this.start(), until);
+    public Money<?> accrueFrom(final LocalDate date) {
+        return this.accrue(Dates.max(this.start(), date), this.maturity());
     }
 
     @Override
