@@ -22,6 +22,8 @@ import net.ollie.meerkat.utils.HasName;
 public class NamedSecurity
         implements Security, HasSecurityIds, HasName, Externalizable {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElement(name = "ids", required = true)
     private SecurityIds identifiers;
 
@@ -41,7 +43,7 @@ public class NamedSecurity
     public SecurityIds securityIds() {
         return identifiers;
     }
-    
+
     @Override
     public String name() {
         return name;

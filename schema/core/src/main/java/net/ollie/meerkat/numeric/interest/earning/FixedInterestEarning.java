@@ -1,22 +1,18 @@
 package net.ollie.meerkat.numeric.interest.earning;
 
-import java.util.function.Function;
-
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.money.interest.fixed.FixedInterestRate;
-import net.ollie.goat.money.interest.InterestRate;
 import net.ollie.goat.money.Money;
-import net.ollie.meerkat.numeric.interest.InterestRateId;
+import net.ollie.goat.money.interest.fixed.FixedInterestRate;
 
 /**
  *
  * @author ollie
  */
-public class FixedInterestEarning implements InterestEarning {
+public class FixedInterestEarning implements InterestEarning.Fixed {
 
     @XmlElementRef(name = "notional")
-    private Money notional;
+    private Money<?> notional;
 
     @XmlElementRef(name = "rate")
     private FixedInterestRate rate;
@@ -25,24 +21,19 @@ public class FixedInterestEarning implements InterestEarning {
     protected FixedInterestEarning() {
     }
 
-    protected FixedInterestEarning(final Money notional, final FixedInterestRate rate) {
+    protected FixedInterestEarning(final Money<?> notional, final FixedInterestRate rate) {
         this.notional = notional;
         this.rate = rate;
     }
 
     @Override
-    public Money notional() {
+    public Money<?> notional() {
         return notional;
     }
 
+    @Override
     public FixedInterestRate rate() {
         return rate;
-    }
-
-    @Override
-    @Deprecated
-    public InterestRate rate(Function<? super InterestRateId, ? extends InterestRate> getRate) {
-        return this.rate();
     }
 
 }

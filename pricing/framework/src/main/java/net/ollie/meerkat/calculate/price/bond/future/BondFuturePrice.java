@@ -8,7 +8,7 @@ import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.ollie.meerkat.security.repo.rate.RepoRate;
+import net.ollie.meerkat.security.moneymarket.repo.rate.RepoRate;
 
 /**
  *

@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.repo.rate;
+package net.ollie.meerkat.security.moneymarket.repo.rate;
 
 import static java.util.Objects.requireNonNull;
 

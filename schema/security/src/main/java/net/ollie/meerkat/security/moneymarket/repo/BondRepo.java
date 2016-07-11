@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.repo;
+package net.ollie.meerkat.security.moneymarket.repo;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -8,8 +8,8 @@ import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
-import net.ollie.meerkat.security.repo.dates.RepoDates;
-import net.ollie.meerkat.security.repo.rate.RepoRate;
+import net.ollie.meerkat.security.moneymarket.repo.dates.RepoDates;
+import net.ollie.meerkat.security.moneymarket.repo.rate.RepoRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**

@@ -15,7 +15,7 @@ import net.ollie.meerkat.calculate.price.bond.BondPricer;
 import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
 import net.ollie.meerkat.security.bond.Bond;
 import net.ollie.meerkat.security.bond.future.BondFuture;
-import net.ollie.meerkat.security.repo.rate.RepoRate;
+import net.ollie.meerkat.security.moneymarket.repo.rate.RepoRate;
 
 /**
  *
