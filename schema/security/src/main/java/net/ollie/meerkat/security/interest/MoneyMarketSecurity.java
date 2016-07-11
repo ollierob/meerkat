@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.moneymarket;
+package net.ollie.meerkat.security.interest;
 
 import net.ollie.meerkat.security.SecurityDefinition;
 

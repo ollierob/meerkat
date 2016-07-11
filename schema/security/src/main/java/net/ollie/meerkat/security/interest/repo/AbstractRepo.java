@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.moneymarket.repo;
+package net.ollie.meerkat.security.interest.repo;
 
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlElementRef;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 import net.ollie.meerkat.security.Security;
-import net.ollie.meerkat.security.moneymarket.repo.dates.RepoDates;
-import net.ollie.meerkat.security.moneymarket.repo.rate.RepoRate;
+import net.ollie.meerkat.security.interest.repo.dates.RepoDates;
+import net.ollie.meerkat.security.interest.repo.rate.RepoRate;
 
 /**
  *

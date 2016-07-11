@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.moneymarket.repo.dates;
+package net.ollie.meerkat.security.interest.repo.dates;
 
 import java.time.LocalDate;
 import java.util.Objects;

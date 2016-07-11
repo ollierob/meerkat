@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.moneymarket.repo.rate;
+package net.ollie.meerkat.security.interest.repo.rate;
 
 import javax.xml.bind.annotation.XmlElementRef;
 

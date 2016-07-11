@@ -9,7 +9,7 @@ import net.ollie.goat.money.fx.ExchangeRate;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.ollie.meerkat.security.moneymarket.CertificateOfDeposit;
+import net.ollie.meerkat.security.interest.CertificateOfDeposit;
 
 /**
  *

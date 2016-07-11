@@ -6,7 +6,7 @@ import net.ollie.meerkat.calculate.price.interest.repo.RepoPricer;
 import java.time.temporal.Temporal;
 
 import net.ollie.goat.money.currency.Currency;
-import net.ollie.meerkat.security.moneymarket.repo.BondRepo;
+import net.ollie.meerkat.security.interest.repo.BondRepo;
 
 /**
  *

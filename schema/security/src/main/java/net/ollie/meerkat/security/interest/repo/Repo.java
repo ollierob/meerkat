@@ -1,4 +1,4 @@
-package net.ollie.meerkat.security.moneymarket.repo;
+package net.ollie.meerkat.security.interest.repo;
 
 import javax.annotation.Nonnull;
 
@@ -6,9 +6,9 @@ import net.ollie.meerkat.security.Security;
 import net.ollie.meerkat.security.SecurityDefinition;
 import net.ollie.meerkat.security.derivative.Derivative;
 import net.ollie.meerkat.security.fx.CashForCollateral;
-import net.ollie.meerkat.security.moneymarket.MoneyMarketSecurity;
-import net.ollie.meerkat.security.moneymarket.repo.dates.RepoDates;
-import net.ollie.meerkat.security.moneymarket.repo.rate.RepoRate;
+import net.ollie.meerkat.security.interest.MoneyMarketSecurity;
+import net.ollie.meerkat.security.interest.repo.dates.RepoDates;
+import net.ollie.meerkat.security.interest.repo.rate.RepoRate;
 
 /**
  *

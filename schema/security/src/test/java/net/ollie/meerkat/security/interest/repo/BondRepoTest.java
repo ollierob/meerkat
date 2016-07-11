@@ -1,6 +1,6 @@
-package net.ollie.meerkat.security.repo;
+package net.ollie.meerkat.security.interest.repo;
 
-import net.ollie.meerkat.security.moneymarket.repo.BondRepo;
+import net.ollie.meerkat.security.interest.repo.BondRepo;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -15,8 +15,8 @@ import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.money.Money;
 import net.ollie.meerkat.security.bond.Bond;
-import net.ollie.meerkat.security.moneymarket.repo.dates.RepoDates;
-import net.ollie.meerkat.security.moneymarket.repo.rate.RepoRate;
+import net.ollie.meerkat.security.interest.repo.dates.RepoDates;
+import net.ollie.meerkat.security.interest.repo.rate.RepoRate;
 
 /**
  *
