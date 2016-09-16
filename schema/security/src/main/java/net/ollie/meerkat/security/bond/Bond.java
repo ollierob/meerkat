@@ -62,6 +62,8 @@ public interface Bond extends SecurityDefinition, Callable<BondCall> {
 
         R handle(ConvertibleBond bond);
 
+        R handle(VariableRateBond bond);
+
         @Override
         @Deprecated
         default R handle(final SecurityDefinition security) {

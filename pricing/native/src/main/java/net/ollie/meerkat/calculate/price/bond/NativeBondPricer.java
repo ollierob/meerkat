@@ -7,6 +7,7 @@ import net.ollie.meerkat.security.bond.ConvertibleBond;
 import net.ollie.meerkat.security.bond.FixedCouponBond;
 import net.ollie.meerkat.security.bond.FloatingRateNote;
 import net.ollie.meerkat.security.bond.PerpetualBond;
+import net.ollie.meerkat.security.bond.VariableRateBond;
 
 /**
  *
@@ -18,16 +19,19 @@ public class NativeBondPricer<T extends Temporal> implements BondPricer<T> {
     private final BondTypePricer<T, FixedCouponBond> fixedCouponPricer;
     private final BondTypePricer<T, FloatingRateNote> floatingNotePricer;
     private final BondTypePricer<T, ConvertibleBond> convertiblePricer;
+    private final BondTypePricer<T, VariableRateBond> variablePricer;
 
     public NativeBondPricer(
             final BondTypePricer<T, PerpetualBond> perpetualPricer,
             final BondTypePricer<T, FixedCouponBond> fixedCouponPricer,
             final BondTypePricer<T, FloatingRateNote> floatingNotePricer,
-            final BondTypePricer<T, ConvertibleBond> convertiblePricer) {
+            final BondTypePricer<T, ConvertibleBond> convertiblePricer,
+            final BondTypePricer<T, VariableRateBond> variablePricer) {
         this.perpetualPricer = perpetualPricer;
         this.fixedCouponPricer = fixedCouponPricer;
         this.floatingNotePricer = floatingNotePricer;
         this.convertiblePricer = convertiblePricer;
+        this.variablePricer = variablePricer;
     }
 
     @Override
@@ -55,6 +59,11 @@ public class NativeBondPricer<T extends Temporal> implements BondPricer<T> {
             @Override
             public BondPrice.Shiftable<C> handle(final ConvertibleBond bond) {
                 return convertiblePricer.price(temporal, bond, currency);
+            }
+
+            @Override
+            public BondPrice.Shiftable<C> handle(final VariableRateBond bond) {
+                return variablePricer.price(temporal, bond, currency);
             }
 
         };

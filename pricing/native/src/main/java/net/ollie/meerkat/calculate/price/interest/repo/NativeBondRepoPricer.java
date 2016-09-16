@@ -79,7 +79,7 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
             return bondPrice.shift(bondShifts).dirty();
         }
 
-        private final Lazy<Money<C>> cleanValue = Lazy.loadOnceNonnull(this::calculateCleanValue);
+        private final Lazy<Money<C>> cleanValue = Lazy.loadOnceNonNull(this::calculateCleanValue);
 
         @Override
         public Money<C> clean() {

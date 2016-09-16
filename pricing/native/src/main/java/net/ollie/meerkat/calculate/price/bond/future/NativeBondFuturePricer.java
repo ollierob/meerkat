@@ -106,7 +106,7 @@ public abstract class NativeBondFuturePricer
             return shiftedCtdPrice.get();
         }
 
-        private final Lazy<BondPrice.Shiftable<C>> shiftedCtdPrice = Lazy.loadOnceNonnull(() -> this.computeShiftedCtdPrice());
+        private final Lazy<BondPrice.Shiftable<C>> shiftedCtdPrice = Lazy.loadOnceNonNull(() -> this.computeShiftedCtdPrice());
 
         @Nonnull
         private BondPrice.Shiftable<C> computeShiftedCtdPrice() {

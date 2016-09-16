@@ -84,7 +84,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
             return this.shift(bond.coupons().yearlyRate(), shifts).annualRate();
         }
 
-        private final Lazy<Money<C>> cleanValue = Lazy.loadOnceNonnull(this::calculateCleanValue);
+        private final Lazy<Money<C>> cleanValue = Lazy.loadOnceNonNull(this::calculateCleanValue);
 
         @Override
         public Money<C> clean() {
@@ -112,7 +112,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
             });
         }
 
-        private final Lazy<Money<C>> accruedInterest = Lazy.loadOnceNonnull(this::calculateAccuredInterest);
+        private final Lazy<Money<C>> accruedInterest = Lazy.loadOnceNonNull(this::calculateAccuredInterest);
 
         @Override
         public Money<C> accruedInterest() {

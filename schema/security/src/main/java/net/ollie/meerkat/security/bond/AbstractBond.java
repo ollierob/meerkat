@@ -3,9 +3,10 @@ package net.ollie.meerkat.security.bond;
 import java.util.Optional;
 
 import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
-import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.goat.money.Money;
+import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 import net.ollie.meerkat.security.bond.call.BondCall;
 
@@ -13,6 +14,7 @@ import net.ollie.meerkat.security.bond.call.BondCall;
  *
  * @author Ollie
  */
+@XmlSeeAlso({ConvertibleBond.class, StraightBond.class, PerpetualBond.class})
 public abstract class AbstractBond
         extends NamedSecurity
         implements Bond {

@@ -26,12 +26,12 @@ public interface SecurityDefinition extends Security, HasSecurityIds, HasName, E
     }
 
     @CheckForNull
-    <R> R handleWith(@Nonnull Handler<R> handler);
+    <R> R handleWith(@Nonnull SecurityDefinition.Handler<R> handler);
 
     interface Handler<R> {
 
         default R handle(final SecurityDefinition security) {
-            return null;
+            return security.handleWith(this);
         }
 
     }
