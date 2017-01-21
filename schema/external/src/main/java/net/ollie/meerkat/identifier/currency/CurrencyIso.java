@@ -45,6 +45,7 @@ public interface CurrencyIso
     CHF CHF = new CHF();
     CNH CNH = new CNH();
     CNY CNY = new CNY();
+    CZK CZK = new CZK();
     DKK DKK = new DKK();
     EUR EUR = new EUR();
     GBP GBP = new GBP();
