@@ -1,11 +1,11 @@
 package net.ollie.meerkat.identifier.currency;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.identifier.Iso;
 import net.ollie.meerkat.identifier.country.CountryIso;
-import net.ollie.meerkat.identifier.country.HasCountryId;
 import net.ollie.meerkat.identifier.security.SecurityId;
 
 /**
@@ -14,7 +14,7 @@ import net.ollie.meerkat.identifier.security.SecurityId;
  * @author Ollie
  */
 public interface CurrencyIso
-        extends Iso, Currency, HasCountryId, SecurityId, Serializable {
+        extends Iso, Currency, SecurityId, Serializable {
 
     default boolean isReserved() {
         return this.first() == 'X';
@@ -31,9 +31,10 @@ public interface CurrencyIso
         return this;
     }
 
-    @Override
-    default CountryIso countryId() {
-        return CountryIso.valueOf(this.value().substring(0, 2));
+    default Optional<CountryIso> countryId() {
+        return this.isReserved()
+                ? Optional.empty()
+                : Optional.of(CountryIso.valueOf(this.value().substring(0, 2)));
     }
 
     @Override
