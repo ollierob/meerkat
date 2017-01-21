@@ -24,4 +24,9 @@ public class EUR extends NationalCurrencyIso {
         return "Euro";
     }
 
+    @Override
+    public String uniqueSymbol() {
+        return "EUR";
+    }
+
 }

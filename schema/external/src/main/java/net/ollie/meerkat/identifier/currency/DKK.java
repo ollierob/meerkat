@@ -2,28 +2,23 @@ package net.ollie.meerkat.identifier.currency;
 
 /**
  *
- * @author Ollie
+ * @author ollie
  */
-public class CHF extends NationalCurrencyIso {
+public class DKK extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
-    CHF() {
+    DKK() {
     }
 
     @Override
     public String symbol() {
-        return "Fr";
+        return "kr";
     }
 
     @Override
     public String name() {
-        return "Swiss franc";
-    }
-
-    @Override
-    public String uniqueSymbol() {
-        return "CHF";
+        return "Danish krone";
     }
 
 }

@@ -37,12 +37,14 @@ public interface CurrencyIso
     AUD AUD = new AUD();
     CAD CAD = new CAD();
     CHF CHF = new CHF();
-    CNY CNY = new CNY();
     CNH CNH = new CNH();
+    CNY CNY = new CNY();
+    DKK DKK = new DKK();
     EUR EUR = new EUR();
     GBP GBP = new GBP();
     INR INR = new INR();
     JPY JPY = new JPY();
+    MXN MXN = new MXN();
     NOK NOK = new NOK();
     NZD NZD = new NZD();
     RUB RUB = new RUB();

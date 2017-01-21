@@ -21,4 +21,9 @@ public class NOK extends NationalCurrencyIso {
         return "Norwegian krone";
     }
 
+    @Override
+    public String uniqueSymbol() {
+        return "NOK";
+    }
+
 }

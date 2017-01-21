@@ -2,28 +2,28 @@ package net.ollie.meerkat.identifier.currency;
 
 /**
  *
- * @author Ollie
+ * @author ollie
  */
-public class CHF extends NationalCurrencyIso {
+public class MXN extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
-    CHF() {
+    MXN() {
     }
 
     @Override
     public String symbol() {
-        return "Fr";
+        return "$";
     }
 
     @Override
     public String name() {
-        return "Swiss franc";
+        return "Mexican peso";
     }
 
     @Override
     public String uniqueSymbol() {
-        return "CHF";
+        return "Mex$";
     }
 
 }
