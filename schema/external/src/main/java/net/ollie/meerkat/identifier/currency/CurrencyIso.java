@@ -52,6 +52,7 @@ public interface CurrencyIso
     JPY JPY = new JPY();
     NOK NOK = new NOK();
     NZD NZD = new NZD();
+    RUB RUB = new RUB();
     THB THB = new THB();
     TWD TWD = new TWD();
     USD USD = new USD();
