@@ -4,7 +4,7 @@ package net.ollie.meerkat.identifier.currency;
  *
  * @author Ollie
  */
-public class AUD extends AbstractCurrencyIso {
+public class AUD extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 

@@ -7,9 +7,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Ollie
  */
 @XmlRootElement
-public class USD extends AbstractCurrencyIso {
+public class USD extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
+
+    USD() {
+    }
 
     @Override
     public String symbol() {

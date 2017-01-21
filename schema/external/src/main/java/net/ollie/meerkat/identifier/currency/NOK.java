@@ -4,9 +4,12 @@ package net.ollie.meerkat.identifier.currency;
  *
  * @author ollie
  */
-public class NOK extends AbstractCurrencyIso {
+public class NOK extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
+
+    NOK() {
+    }
 
     @Override
     public String symbol() {

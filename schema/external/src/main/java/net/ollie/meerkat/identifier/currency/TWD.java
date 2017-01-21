@@ -4,7 +4,7 @@ package net.ollie.meerkat.identifier.currency;
  *
  * @author ollie
  */
-public class TWD extends AbstractCurrencyIso {
+public class TWD extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 

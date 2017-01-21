@@ -4,7 +4,7 @@ package net.ollie.meerkat.identifier.currency;
  *
  * @author ollie
  */
-public class GBX extends AbstractCurrencyIso {
+public class GBX extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 

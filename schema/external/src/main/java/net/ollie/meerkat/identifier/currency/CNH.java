@@ -4,7 +4,7 @@ package net.ollie.meerkat.identifier.currency;
  *
  * @author ollie
  */
-public class CNH extends AbstractCurrencyIso {
+public class CNH extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Ollie
  */
 @XmlRootElement
-public class EUR extends AbstractCurrencyIso {
+public class EUR extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 

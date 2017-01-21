@@ -1,11 +1,9 @@
 package net.ollie.meerkat.identifier.currency;
 
 import java.io.Serializable;
-import java.util.Optional;
 
 import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.identifier.Iso;
-import net.ollie.meerkat.identifier.country.CountryIso;
 import net.ollie.meerkat.identifier.security.SecurityId;
 
 /**
@@ -29,12 +27,6 @@ public interface CurrencyIso
     @Deprecated
     default CurrencyIso currency() {
         return this;
-    }
-
-    default Optional<CountryIso> countryId() {
-        return this.isReserved()
-                ? Optional.empty()
-                : Optional.of(CountryIso.valueOf(this.value().substring(0, 2)));
     }
 
     @Override

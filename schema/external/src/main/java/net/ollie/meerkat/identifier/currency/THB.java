@@ -4,7 +4,9 @@ package net.ollie.meerkat.identifier.currency;
  *
  * @author ollie
  */
-public class THB extends AbstractCurrencyIso {
+public class THB extends NationalCurrencyIso {
+
+    private static final long serialVersionUID = 1L;
 
     THB() {
     }
