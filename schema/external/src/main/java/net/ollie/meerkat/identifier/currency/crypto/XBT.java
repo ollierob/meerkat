@@ -6,7 +6,7 @@ import net.ollie.meerkat.identifier.currency.AbstractCurrencyIso;
  *
  * @author ollie
  */
-public class XBT extends AbstractCurrencyIso implements CryptoCurrency {
+public class XBT extends AbstractCurrencyIso implements CryptoCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 

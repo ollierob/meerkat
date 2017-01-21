@@ -6,7 +6,7 @@ import net.ollie.meerkat.identifier.currency.CurrencyIso;
  *
  * @author ollie
  */
-public interface CryptoCurrency extends CurrencyIso {
+public interface CryptoCurrencyIso extends CurrencyIso {
 
     XBT Bitcoin = new XBT();
 
