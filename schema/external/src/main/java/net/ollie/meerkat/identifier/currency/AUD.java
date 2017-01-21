@@ -8,6 +8,9 @@ public class AUD extends AbstractCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
+    AUD() {
+    }
+
     @Override
     public String symbol() {
         return "$";

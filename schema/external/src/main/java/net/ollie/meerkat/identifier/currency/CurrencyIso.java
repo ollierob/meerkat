@@ -21,6 +21,11 @@ public interface CurrencyIso
     }
 
     @Override
+    default String uniqueSymbol() {
+        return this.value() + '.' + this.symbol();
+    }
+
+    @Override
     @Deprecated
     default CurrencyIso currency() {
         return this;

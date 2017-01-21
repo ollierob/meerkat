@@ -11,6 +11,9 @@ public class EUR extends AbstractCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
+    EUR() {
+    }
+
     @Override
     public String symbol() {
         return "€";

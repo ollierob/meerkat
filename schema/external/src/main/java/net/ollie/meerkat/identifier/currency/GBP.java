@@ -11,6 +11,9 @@ public class GBP extends AbstractCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
+    GBP() {
+    }
+
     @Override
     public String symbol() {
         return "£";
@@ -18,7 +21,7 @@ public class GBP extends AbstractCurrencyIso {
 
     @Override
     public String name() {
-        return "British Pound";
+        return "Pound Sterling";
     }
 
 }

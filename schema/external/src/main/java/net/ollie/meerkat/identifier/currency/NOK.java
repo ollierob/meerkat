@@ -1,27 +1,21 @@
 package net.ollie.meerkat.identifier.currency;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
- * @author Ollie
+ * @author ollie
  */
-@XmlRootElement
-public class CNY extends AbstractCurrencyIso {
+public class NOK extends AbstractCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
-    CNY() {
-    }
-
     @Override
     public String symbol() {
-        return "¥";
+        return "kr";
     }
 
     @Override
     public String name() {
-        return "Renminbi";
+        return "Norwegian krone";
     }
 
 }

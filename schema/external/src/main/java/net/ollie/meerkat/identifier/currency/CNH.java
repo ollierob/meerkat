@@ -1,17 +1,14 @@
 package net.ollie.meerkat.identifier.currency;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
- * @author Ollie
+ * @author ollie
  */
-@XmlRootElement
-public class CNY extends AbstractCurrencyIso {
+public class CNH extends AbstractCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
-    CNY() {
+    CNH() {
     }
 
     @Override
@@ -21,7 +18,7 @@ public class CNY extends AbstractCurrencyIso {
 
     @Override
     public String name() {
-        return "Renminbi";
+        return "Chinese Offshore Yuan";
     }
 
 }
