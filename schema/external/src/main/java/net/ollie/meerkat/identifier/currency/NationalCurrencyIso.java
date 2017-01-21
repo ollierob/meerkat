@@ -10,7 +10,9 @@ import net.ollie.meerkat.identifier.country.HasCountryId;
  * @author ollie
  */
 @XmlTransient
-public abstract class NationalCurrencyIso extends AbstractCurrencyIso implements HasCountryId {
+public abstract class NationalCurrencyIso
+        extends AbstractCurrencyIso
+        implements HasCountryId {
 
     private static final long serialVersionUID = 1L;
 
