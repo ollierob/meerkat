@@ -2,6 +2,7 @@ package net.ollie.meerkat.calculate.price.bond;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
@@ -50,7 +51,7 @@ public interface BondPrice<C extends Currency>
     default Money<C> accruedInterest() {
         return this.dirty().minus(this.clean());
     }
-    
+
     @Nonnull
     Percentage yieldToMaturity();
 
@@ -65,8 +66,8 @@ public interface BondPrice<C extends Currency>
 
         @Override
         @Deprecated
-        default BondPrice.Shiftable<C> shift(final SecurityShifts shifts) {
-            return this.shift(shifts.definiteCast(BondShifts.class));
+        default Optional<BondPrice.Shiftable<C>> shift(final SecurityShifts shifts) {
+            return shifts.cast(BondShifts.class).map(this::shift);
         }
 
         @CheckReturnValue

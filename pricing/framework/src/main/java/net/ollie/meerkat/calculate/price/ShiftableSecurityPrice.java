@@ -1,5 +1,7 @@
 package net.ollie.meerkat.calculate.price;
 
+import java.util.Optional;
+
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
@@ -14,6 +16,6 @@ public interface ShiftableSecurityPrice<C extends Currency> extends SecurityPric
 
     @Nonnull
     @CheckReturnValue
-    ShiftableSecurityPrice<C> shift(@Nonnull SecurityShifts shifts) throws SecurityPrice.InvalidShiftTypeException;
+    Optional<? extends ShiftableSecurityPrice<C>> shift(@Nonnull SecurityShifts shifts);
 
 }

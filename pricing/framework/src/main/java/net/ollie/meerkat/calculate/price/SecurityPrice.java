@@ -2,9 +2,9 @@ package net.ollie.meerkat.calculate.price;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.money.Money;
 import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.currency.HasCurrency;
-import net.ollie.goat.money.Money;
 import net.ollie.meerkat.Explainable;
 
 /**
@@ -34,16 +34,6 @@ public interface SecurityPrice<C extends Currency> extends HasCurrency, Explaina
         return new ExplanationBuilder()
                 .put("clean", this.clean())
                 .put("dirty", this.dirty());
-    }
-
-    class InvalidShiftTypeException extends RuntimeException {
-
-        private static final long serialVersionUID = 1L;
-
-        public InvalidShiftTypeException(final String message) {
-            super(message);
-        }
-
     }
 
 }

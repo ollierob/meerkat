@@ -1,10 +1,12 @@
 package net.ollie.meerkat.calculate.price.interest.future;
 
+import java.util.Optional;
+
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
+import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
@@ -48,14 +50,14 @@ public interface InterestRateFuturePrice<C extends Currency>
     interface Shiftable<C extends Currency>
             extends InterestRateFuturePrice<C>, ShiftableSecurityPrice<C> {
 
-        @CheckReturnValue
-        Shiftable<C> shift(InterestRateFutureShifts shifts);
-
         @Override
         @Deprecated
-        default ShiftableSecurityPrice<C> shift(final SecurityShifts shifts) throws InvalidShiftTypeException {
-            return this.shift(shifts.definiteCast(InterestRateFutureShifts.class));
+        default Optional<ShiftableSecurityPrice<C>> shift(final SecurityShifts shifts) {
+            return shifts.cast(InterestRateFutureShifts.class).map(this::shift);
         }
+
+        @CheckReturnValue
+        Shiftable<C> shift(InterestRateFutureShifts shifts);
 
     }
 

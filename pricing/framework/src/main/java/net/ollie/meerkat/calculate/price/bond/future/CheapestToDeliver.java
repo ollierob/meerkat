@@ -41,12 +41,4 @@ public interface CheapestToDeliver<C extends Currency>
                 .explain();
     }
 
-    interface Shiftable<C extends Currency>
-            extends CheapestToDeliver<C> {
-
-        @Override
-        BondPrice.Shiftable<C> price();
-
-    }
-
 }

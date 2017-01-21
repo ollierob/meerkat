@@ -3,7 +3,7 @@ package net.ollie.meerkat.calculate.price.shifts;
 import net.ollie.goat.money.currency.Currency;
 import net.ollie.goat.money.Money;
 import net.ollie.goat.money.fx.ExchangeRate;
-import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
+import net.ollie.meerkat.calculate.fx.ExchangeRates;
 
 /**
  *
@@ -15,7 +15,7 @@ public interface ExchangeRateShifts extends SecurityShifts {
 
     interface ExchangeRateShifter {
 
-        default <C extends Currency, R extends Currency> Money<C> shift(final Money<R> amount, final ExchangeRateShifts shifts, final C reportingCurrency, final ExchangeRateCalculator exchangeRates) {
+        default <C extends Currency, R extends Currency> Money<C> shift(final Money<R> amount, final ExchangeRateShifts shifts, final C reportingCurrency, final ExchangeRates exchangeRates) {
             final ExchangeRate<R, C> baseRate = exchangeRates.rate(amount.currency(), reportingCurrency);
             final ExchangeRate<R, C> shiftedRate = shifts.shift(baseRate);
             return shiftedRate.convert(amount);
