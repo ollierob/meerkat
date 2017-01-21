@@ -54,6 +54,7 @@ public interface CurrencyIso
     MXN MXN = new MXN();
     NOK NOK = new NOK();
     NZD NZD = new NZD();
+    PLN PLN = new PLN();
     QAR QAR = new QAR();
     RUB RUB = new RUB();
     THB THB = new THB();
