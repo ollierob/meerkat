@@ -22,7 +22,7 @@ public interface CurrencyIso
 
     @Override
     default String uniqueSymbol() {
-        return this.value() + '.' + this.symbol();
+        return this.value() + this.symbol();
     }
 
     @Override
@@ -45,12 +45,24 @@ public interface CurrencyIso
     CAD CAD = new CAD();
     CHF CHF = new CHF();
     CNY CNY = new CNY();
+    CNH CNH = new CNH();
     EUR EUR = new EUR();
     GBP GBP = new GBP();
-    JPY JPY = new JPY();
     INR INR = new INR();
+    JPY JPY = new JPY();
+    NOK NOK = new NOK();
     NZD NZD = new NZD();
+    THB THB = new THB();
+    TWD TWD = new TWD();
     USD USD = new USD();
+    VND VND = new VND();
     ZAR ZAR = new ZAR();
+
+    GBX GBX = new GBX();
+
+    XAG XAG = new XAG();
+    XAU XAU = new XAU();
+
+    XTS XTS = new XTS();
 
 }

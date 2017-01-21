@@ -1,5 +1,7 @@
 package net.ollie.meerkat.calculate.fx;
 
+import java.util.Optional;
+
 import javax.annotation.Nonnull;
 
 import net.ollie.goat.money.Money;
@@ -14,7 +16,12 @@ import net.ollie.goat.money.fx.ExchangeRate;
  */
 public interface ExchangeRates {
 
-    <F extends Currency, T extends Currency> ExchangeRate<F, T> rate(F from, T to);
+    default <F extends Currency, T extends Currency> ExchangeRate<F, T> rate(final F from, final T to)
+            throws UnavailableExchangeRate {
+        return this.maybeRate(from, to).orElseThrow(() -> new UnavailableExchangeRate(from, to));
+    }
+
+    <F extends Currency, T extends Currency> Optional<ExchangeRate<F, T>> maybeRate(F from, T to);
 
     @Nonnull
     default <F extends Currency, T extends Currency> Money<T> convert(
@@ -37,13 +44,25 @@ public interface ExchangeRates {
     }
 
     @Nonnull
-    default <F extends Currency, T extends Currency> ExchangeRate<F, T> baseRate(final CurrencyPair<F, T> pair) {
+    default <F extends Currency, T extends Currency> ExchangeRate<F, T> baseRate(final CurrencyPair<F, T> pair)
+            throws UnavailableExchangeRate {
         return this.rate(pair.base(), pair.counter());
     }
 
     @Nonnull
-    default <F extends Currency, T extends Currency> ExchangeRate<T, F> counterRate(final CurrencyPair<F, T> pair) {
+    default <F extends Currency, T extends Currency> ExchangeRate<T, F> counterRate(final CurrencyPair<F, T> pair)
+            throws UnavailableExchangeRate {
         return this.rate(pair.counter(), pair.base());
+    }
+
+    class UnavailableExchangeRate extends RuntimeException {
+
+        private static final long serialVersionUID = 1L;
+
+        public UnavailableExchangeRate(final Currency from, final Currency to) {
+            super("Not available from " + from + " -> " + to);
+        }
+
     }
 
 }

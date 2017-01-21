@@ -1,0 +1,24 @@
+package net.ollie.meerkat.identifier.currency;
+
+/**
+ *
+ * @author ollie
+ */
+public class TWD extends AbstractCurrencyIso {
+
+    private static final long serialVersionUID = 1L;
+
+    TWD() {
+    }
+
+    @Override
+    public String symbol() {
+        return "NT$";
+    }
+
+    @Override
+    public String name() {
+        return "New Taiwan dollar";
+    }
+
+}
