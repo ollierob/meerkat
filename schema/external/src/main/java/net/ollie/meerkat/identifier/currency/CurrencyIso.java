@@ -62,9 +62,4 @@ public interface CurrencyIso
 
     GBX GBX = new GBX();
 
-    XAG XAG = new XAG();
-    XAU XAU = new XAU();
-
-    XTS XTS = new XTS();
-
 }
