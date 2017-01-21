@@ -2,6 +2,7 @@ package net.ollie.meerkat.identifier.currency;
 
 import java.io.Serializable;
 
+import net.ollie.goat.money.MoneyFormat;
 import net.ollie.goat.money.currency.Currency;
 import net.ollie.meerkat.identifier.Iso;
 import net.ollie.meerkat.identifier.security.SecurityId;
@@ -34,6 +35,11 @@ public interface CurrencyIso
         return "4217";
     }
 
+    @Override
+    default MoneyFormat format() {
+        return money -> this.value() + ' ' + money.amount();
+    }
+
     AUD AUD = new AUD();
     CAD CAD = new CAD();
     CHF CHF = new CHF();
@@ -47,6 +53,7 @@ public interface CurrencyIso
     MXN MXN = new MXN();
     NOK NOK = new NOK();
     NZD NZD = new NZD();
+    QAR QAR = new QAR();
     RUB RUB = new RUB();
     THB THB = new THB();
     TWD TWD = new TWD();
