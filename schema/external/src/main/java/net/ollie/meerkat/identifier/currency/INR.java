@@ -18,7 +18,7 @@ public class INR extends AbstractCurrencyIso {
 
     @Override
     public String name() {
-        return "Indian Rupee";
+        return "Indian rupee";
     }
 
 }
