@@ -66,7 +66,7 @@ public class CountryIso
 
     @CheckReturnValue
     public CountrySubdivisionIso subdivision(final String subdivision) {
-        return new CountrySubdivisionIso(this.value(), subdivision);
+        return new CountrySubdivisionIso(this, subdivision);
     }
 
     public boolean isUserAssigned() {

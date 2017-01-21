@@ -23,8 +23,8 @@ public class CountrySubdivisionIso extends CountryIso {
     CountrySubdivisionIso() {
     }
 
-    public CountrySubdivisionIso(final String country, final String subdivision) {
-        super(country);
+    public CountrySubdivisionIso(final CountryIso country, final String subdivision) {
+        super(country.value());
         this.subdivision = subdivision;
     }
 
