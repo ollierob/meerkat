@@ -57,6 +57,7 @@ public interface CurrencyIso
     QAR QAR = new QAR();
     RUB RUB = new RUB();
     THB THB = new THB();
+    TRY TRY = new TRY();
     TWD TWD = new TWD();
     USD USD = new USD();
     VND VND = new VND();
