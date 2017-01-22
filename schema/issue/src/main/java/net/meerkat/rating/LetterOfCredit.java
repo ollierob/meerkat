@@ -16,6 +16,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class LetterOfCredit implements CreditRating, Externalizable {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElementRef(name = "underlying")
     private CreditRating underlying;
 

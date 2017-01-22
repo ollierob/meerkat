@@ -30,6 +30,7 @@ public enum CreditRatingBand implements CreditRating {
         this.description = description;
     }
 
+    @Override
     public String description() {
         return description;
     }
