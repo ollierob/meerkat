@@ -1,5 +1,7 @@
 package net.ollie.meerkat.calculate.price;
 
+import java.util.Optional;
+
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
@@ -40,8 +42,8 @@ public class InterestAccruedPrice<F extends Currency, C extends Currency>
     }
 
     @Override
-    public ShiftableSecurityPrice<C> shift(final SecurityShifts shifts) throws InvalidShiftTypeException {
-        return new InterestAccruedPrice<>(security, notional, interestRate, fxRate, period, shifts);
+    public Optional<ShiftableSecurityPrice<C>> shift(final SecurityShifts shifts) {
+        return Optional.of(new InterestAccruedPrice<>(security, notional, interestRate, fxRate, period, shifts));
     }
 
     InterestRate interestRate() {

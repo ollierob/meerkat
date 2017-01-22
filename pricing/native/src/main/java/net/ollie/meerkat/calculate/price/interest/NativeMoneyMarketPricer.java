@@ -1,18 +1,18 @@
 package net.ollie.meerkat.calculate.price.interest;
 
 import java.time.LocalDate;
-import java.util.function.Function;
 
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.InterestAccruedPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.meerkat.security.interest.CertificateOfDeposit;
 import net.meerkat.security.interest.MoneyMarketSecurity;
+import net.ollie.meerkat.calculate.fx.ExchangeRates;
+import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
 
 /**
  *
@@ -21,10 +21,10 @@ import net.meerkat.security.interest.MoneyMarketSecurity;
 public class NativeMoneyMarketPricer
         implements MoneyMarketPricer {
 
-    private final Function<? super LocalDate, ? extends ExchangeRateCalculator> getExchangeRates;
+    private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
 
-    public NativeMoneyMarketPricer(Function<? super LocalDate, ? extends ExchangeRateCalculator> getExchangeRates) {
-        this.getExchangeRates = getExchangeRates;
+    public NativeMoneyMarketPricer(final ExchangeRatesProvider<LocalDate> exchangeRatesProvider) {
+        this.exchangeRatesProvider = exchangeRatesProvider;
     }
 
     @Override
@@ -42,8 +42,8 @@ public class NativeMoneyMarketPricer
             this.date = date;
         }
 
-        ExchangeRateCalculator fxRates() {
-            return getExchangeRates.apply(date);
+        ExchangeRates fxRates() {
+            return exchangeRatesProvider.get(date);
         }
 
         @Override

@@ -1,26 +1,25 @@
 package net.ollie.meerkat.calculate.price.bond;
 
-import com.google.common.collect.Maps;
-
 import java.time.LocalDate;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.years.Years;
-import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.meerkat.security.bond.FixedCouponBond;
 import net.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.meerkat.security.fx.CashPayment;
+import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.temporal.date.years.Years;
+import net.ollie.meerkat.calculate.fx.ExchangeRates;
+import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
@@ -29,13 +28,13 @@ import net.meerkat.security.fx.CashPayment;
  */
 public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate, FixedCouponBond> {
 
-    private final Function<? super LocalDate, ? extends ExchangeRateCalculator> getFxRates;
+    private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRate;
 
     public ZeroSpreadFixedCouponBondPricer(
-            final Function<LocalDate, ExchangeRateCalculator> exchangeRates,
+            final ExchangeRatesProvider<LocalDate> exchangeRatesProvider,
             final BiFunction<LocalDate, Currency, InterestRate> discountRates) {
-        this.getFxRates = exchangeRates;
+        this.exchangeRatesProvider = exchangeRatesProvider;
         this.getDiscountRate = discountRates;
     }
 
@@ -53,7 +52,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
             final FixedCouponBondCoupons<Z> coupons,
             final C currency) {
 
-        final ExchangeRateCalculator fxRates = requireNonNull(getFxRates.apply(date));
+        final ExchangeRates fxRates = exchangeRatesProvider.require(date);
         final ExchangeRate<P, C> parFxRate = fxRates.rate(par.currency(), currency);
         final ExchangeRate<Z, C> couponFxRate = fxRates.rate(coupons.currency(), currency);
 
@@ -161,7 +160,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
         SortedMap<LocalDate, Money<C>> cleanFlow(LocalDate startInclusive, LocalDate endExclusive, InterestRate discountRate) {
             final ExchangeRate<Z, C> fxRate = this.couponFxRate();
             final List<FixedRateCoupon<Z>> coupons = this.coupons.between(startInclusive, endExclusive);
-            final SortedMap<LocalDate, Money<C>> flow = Maps.newTreeMap();
+            final SortedMap<LocalDate, Money<C>> flow = new TreeMap<>();
             for (final FixedRateCoupon<Z> coupon : coupons) {
                 final Money<C> money = fxRate.convert(coupon.amount());
                 flow.compute(coupon.date(), (d, c) -> c == null ? money : money.plus(c));

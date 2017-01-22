@@ -3,22 +3,22 @@ package net.ollie.meerkat.calculate.price.bond;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.collection.list.Lists;
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.InterestRate;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.suppliers.lazy.Lazy;
-import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
-import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
-import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
 import net.meerkat.security.bond.PerpetualBond;
 import net.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.meerkat.security.fx.CashPayment;
+import net.ollie.goat.collection.list.Lists;
+import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.suppliers.lazy.Lazy;
+import net.ollie.meerkat.calculate.fx.ExchangeRates;
+import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
+import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
+import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
 
 /**
  *
@@ -26,13 +26,13 @@ import net.meerkat.security.fx.CashPayment;
  */
 public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, PerpetualBond> {
 
-    private final Function<? super LocalDate, ? extends ExchangeRateCalculator> getExchangeRates;
+    private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRates;
 
     public DatedPerpetualBondPricer(
-            final Function<? super LocalDate, ? extends ExchangeRateCalculator> getExchangeRates,
+            final ExchangeRatesProvider<LocalDate> getExchangeRates,
             final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRates) {
-        this.getExchangeRates = getExchangeRates;
+        this.exchangeRatesProvider = getExchangeRates;
         this.getDiscountRates = getDiscountRates;
     }
 
@@ -41,7 +41,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
             final LocalDate date,
             final PerpetualBond bond,
             final C currency) {
-        final ExchangeRateCalculator exchangeRates = getExchangeRates.apply(date);
+        final ExchangeRates exchangeRates = exchangeRatesProvider.require(date);
         final InterestRate discountRate = getDiscountRates.apply(date, currency);
         return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, BondShifts.none());
     }
@@ -52,7 +52,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         private final PerpetualBond bond;
         private final C currency;
         private final LocalDate date;
-        private final ExchangeRateCalculator fxRates;
+        private final ExchangeRates fxRates;
         private final InterestRate discountRate;
         private final BondShifts shifts;
 
@@ -60,7 +60,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
                 final PerpetualBond bond,
                 final C currency,
                 final LocalDate date,
-                final ExchangeRateCalculator fxRates,
+                final ExchangeRates fxRates,
                 final InterestRate discountRate,
                 final BondShifts shifts) {
             this.currency = currency;
