@@ -10,10 +10,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.Explainable;
-import net.ollie.meerkat.identifier.security.HasSecurityIds;
-import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.security.Security;
+import net.meerkat.Explainable;
+import net.meerkat.identifier.security.HasSecurityIds;
+import net.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.utils.HasName;
 
 /**

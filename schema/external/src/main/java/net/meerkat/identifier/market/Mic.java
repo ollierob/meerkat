@@ -2,9 +2,8 @@ package net.meerkat.identifier.market;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.StringWrapper;
+import net.meerkat.StringWrapper;
 import net.meerkat.identifier.Iso;
-import net.ollie.meerkat.identifier.market.MarketId;
 
 /**
  * Market Identifier Code.

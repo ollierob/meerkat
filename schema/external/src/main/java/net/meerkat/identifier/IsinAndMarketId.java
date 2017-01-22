@@ -9,13 +9,12 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.money.currency.HasCurrency;
-import net.ollie.meerkat.Explainable;
-import net.ollie.meerkat.identifier.SecurityInMarketId;
+import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyIso;
-import net.ollie.meerkat.identifier.market.HasMarketId;
+import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
-import net.ollie.meerkat.identifier.security.HasSecurityId;
+import net.meerkat.identifier.security.HasSecurityId;
 import net.meerkat.identifier.security.Isin;
 
 /**

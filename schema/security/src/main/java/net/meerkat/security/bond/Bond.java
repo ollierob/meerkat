@@ -2,7 +2,7 @@ package net.meerkat.security.bond;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.money.Money;
+import net.meerkat.money.Money;
 import net.meerkat.security.Callable;
 import net.meerkat.security.SecurityDefinition;
 import net.meerkat.security.bond.call.BondCall;

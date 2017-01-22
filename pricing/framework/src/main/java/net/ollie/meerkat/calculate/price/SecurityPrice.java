@@ -2,10 +2,10 @@ package net.ollie.meerkat.calculate.price;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.currency.HasCurrency;
-import net.ollie.meerkat.Explainable;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.Explainable;
 
 /**
  *

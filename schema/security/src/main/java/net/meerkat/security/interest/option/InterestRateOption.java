@@ -2,7 +2,7 @@ package net.meerkat.security.interest.option;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.numeric.interest.InterestRateSecurity;
+import net.meerkat.numeric.interest.InterestRateSecurity;
 import net.meerkat.security.derivative.option.AbstractOption;
 import net.meerkat.security.interest.InterestRateDerivative;
 

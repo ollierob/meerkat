@@ -2,9 +2,9 @@ package net.ollie.meerkat.calculate.price.interest.repo;
 
 import java.time.LocalDate;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;

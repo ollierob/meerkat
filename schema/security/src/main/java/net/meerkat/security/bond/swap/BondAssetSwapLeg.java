@@ -6,8 +6,8 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlTransient;
 
 import net.ollie.goat.temporal.date.HasDate;
-import net.ollie.meerkat.numeric.interest.HasInterestRateId;
-import net.ollie.meerkat.numeric.interest.InterestRateId;
+import net.meerkat.numeric.interest.HasInterestRateId;
+import net.meerkat.numeric.interest.InterestRateId;
 import net.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.meerkat.security.derivative.swap.SwapLeg;
 

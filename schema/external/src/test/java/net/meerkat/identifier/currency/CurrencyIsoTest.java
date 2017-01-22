@@ -2,7 +2,7 @@ package net.meerkat.identifier.currency;
 
 import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.country.CountryIso;
-import net.ollie.meerkat.identifier.country.HasCountryId;
+import net.meerkat.identifier.country.HasCountryId;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;

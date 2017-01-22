@@ -2,8 +2,8 @@ package net.ollie.meerkat.calculate.price;
 
 import java.time.temporal.Temporal;
 
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.security.Security;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.security.Security;
 
 /**
  *

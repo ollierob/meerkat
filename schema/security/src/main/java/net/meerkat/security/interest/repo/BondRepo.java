@@ -4,10 +4,10 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.money.Money;
+import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.security.SecurityIds;
 import net.meerkat.security.bond.Bond;
 import net.meerkat.security.interest.repo.dates.RepoDates;
 import net.meerkat.security.interest.repo.rate.RepoRate;

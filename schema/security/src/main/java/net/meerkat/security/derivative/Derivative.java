@@ -1,6 +1,6 @@
 package net.meerkat.security.derivative;
 
-import net.ollie.meerkat.security.Security;
+import net.meerkat.security.Security;
 
 import javax.annotation.Nonnull;
 

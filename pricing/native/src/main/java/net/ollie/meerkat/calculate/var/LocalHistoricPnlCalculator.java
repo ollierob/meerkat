@@ -9,18 +9,17 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.function.Function;
 
-import com.google.common.collect.Maps;
-
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.Money;
+import net.meerkat.identifier.security.SecurityId;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.security.SecurityDefinition;
+import net.ollie.goat.collection.Maps;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.SecurityPriceCalculator;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnl;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnlCalculator;
-import net.ollie.meerkat.identifier.security.SecurityId;
-import net.meerkat.security.SecurityDefinition;
 
 /**
  *

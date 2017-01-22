@@ -8,11 +8,10 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.StringWrapper;
-import net.ollie.meerkat.identifier.SecurityInMarketId;
-import net.ollie.meerkat.identifier.market.HasMarketId;
+import net.meerkat.StringWrapper;
+import net.meerkat.identifier.SecurityInMarketId;
+import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
-import net.ollie.meerkat.identifier.security.SecurityId;
 
 /**
  *

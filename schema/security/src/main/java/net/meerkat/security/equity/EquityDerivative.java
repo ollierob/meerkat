@@ -1,6 +1,6 @@
 package net.meerkat.security.equity;
 
-import net.ollie.meerkat.security.Security;
+import net.meerkat.security.Security;
 import net.meerkat.security.SecurityDefinition;
 import net.meerkat.security.derivative.Derivative;
 import net.meerkat.security.equity.future.StockIndexFuture;

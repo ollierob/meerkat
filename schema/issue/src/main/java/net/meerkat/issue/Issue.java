@@ -7,8 +7,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.identifier.security.SecurityId;
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.security.SecurityId;
+import net.meerkat.identifier.security.SecurityIds;
 import net.meerkat.organization.OrganizationId;
 import net.meerkat.rating.CreditRating;
 import net.meerkat.rating.HasCreditRating;

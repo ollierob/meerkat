@@ -5,9 +5,9 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.currency.HasCurrency;
-import net.ollie.meerkat.Explainable;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.Explainable;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.meerkat.security.bond.Bond;
 

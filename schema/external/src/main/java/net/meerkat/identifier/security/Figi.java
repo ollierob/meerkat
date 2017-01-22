@@ -1,7 +1,6 @@
 package net.meerkat.identifier.security;
 
-import net.ollie.meerkat.StringWrapper;
-import net.ollie.meerkat.identifier.security.SecurityId;
+import net.meerkat.StringWrapper;
 
 /**
  * Fixed Instrument Global Identifier.

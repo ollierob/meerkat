@@ -2,8 +2,7 @@ package net.meerkat.identifier.trade;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-import net.ollie.meerkat.StringWrapper;
-import net.ollie.meerkat.identifier.trade.TradeId;
+import net.meerkat.StringWrapper;
 
 /**
  *

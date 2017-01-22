@@ -1,6 +1,6 @@
 package net.ollie.meerkat.calculate.fx;
 
-import net.ollie.meerkat.Provider;
+import net.meerkat.Provider;
 
 /**
  *

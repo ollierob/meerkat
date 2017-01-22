@@ -5,11 +5,11 @@ import java.util.Map;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.currency.HasCurrency;
-import net.ollie.meerkat.Explainable;
-import net.ollie.meerkat.security.Security;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.Explainable;
+import net.meerkat.security.Security;
 
 import org.apache.commons.math3.fraction.Fraction;
 

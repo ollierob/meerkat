@@ -6,9 +6,9 @@ import java.io.ObjectOutput;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.security.SecurityIds;
 import net.meerkat.security.NamedSecurity;
-import net.ollie.meerkat.security.Security;
+import net.meerkat.security.Security;
 import net.meerkat.security.interest.repo.dates.RepoDates;
 import net.meerkat.security.interest.repo.rate.RepoRate;
 

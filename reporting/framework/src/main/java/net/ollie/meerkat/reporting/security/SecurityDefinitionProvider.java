@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.identifier.SecurityInMarketId;
-import net.ollie.meerkat.identifier.security.SecurityId;
+import net.meerkat.identifier.SecurityInMarketId;
+import net.meerkat.identifier.security.SecurityId;
 import net.ollie.meerkat.reporting.Provider;
 import net.meerkat.security.SecurityDefinition;
 

@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
 
 /**
  *

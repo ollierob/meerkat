@@ -1,14 +1,14 @@
 package net.ollie.meerkat.calculate.price;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.fx.ExchangeRate;
-import net.ollie.meerkat.money.interest.InterestRate;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.interest.InterestRate;
+import net.meerkat.security.SecurityDefinition;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.meerkat.security.SecurityDefinition;
 
 /**
  *

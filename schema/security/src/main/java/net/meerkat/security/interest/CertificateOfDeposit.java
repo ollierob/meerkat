@@ -7,14 +7,14 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.currency.HasCurrency;
-import net.ollie.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.temporal.date.Dates;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.ollie.meerkat.Explainable;
-import net.ollie.meerkat.numeric.interest.earning.InterestEarning;
+import net.meerkat.Explainable;
+import net.meerkat.numeric.interest.earning.InterestEarning;
 import net.meerkat.security.Issued;
 import net.meerkat.security.NamedSecurity;
 

@@ -2,9 +2,8 @@ package net.meerkat.identifier.security;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.StringWrapper;
+import net.meerkat.StringWrapper;
 import net.meerkat.identifier.country.CountryIso;
-import net.ollie.meerkat.identifier.security.SecurityId;
 
 /**
  * National Securities Identifying Number.

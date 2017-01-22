@@ -3,9 +3,9 @@ package net.meerkat.security.bond.option;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.quantity.Quantity;
+import net.meerkat.money.Money;
+import net.meerkat.identifier.security.SecurityIds;
+import net.meerkat.numeric.quantity.Quantity;
 import net.meerkat.security.bond.BondDerivative;
 import net.meerkat.security.interest.future.BondFuture;
 import net.meerkat.security.derivative.option.AbstractOption;

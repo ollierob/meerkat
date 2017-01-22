@@ -1,6 +1,6 @@
 package net.meerkat.identifier.currency.crypto;
 
-import net.ollie.meerkat.money.MoneyFormat;
+import net.meerkat.money.MoneyFormat;
 import net.meerkat.identifier.currency.CurrencyIso;
 
 /**

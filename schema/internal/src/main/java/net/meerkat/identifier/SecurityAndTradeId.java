@@ -7,10 +7,10 @@ import java.io.ObjectOutput;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.identifier.security.HasSecurityId;
-import net.ollie.meerkat.identifier.security.SecurityId;
-import net.ollie.meerkat.identifier.trade.HasTradeId;
-import net.ollie.meerkat.identifier.trade.TradeId;
+import net.meerkat.identifier.security.HasSecurityId;
+import net.meerkat.identifier.security.SecurityId;
+import net.meerkat.identifier.trade.HasTradeId;
+import net.meerkat.identifier.trade.TradeId;
 
 /**
  *

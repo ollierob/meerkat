@@ -3,7 +3,6 @@ package net.meerkat.identifier.security;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import net.meerkat.identifier.Iso;
-import net.ollie.meerkat.identifier.security.SecurityId;
 
 /**
  * Financial Instrument Short Name.

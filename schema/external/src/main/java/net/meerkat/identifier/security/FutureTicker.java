@@ -11,7 +11,6 @@ import java.util.function.Function;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.identifier.security.SecurityId;
 
 /**
  *

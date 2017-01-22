@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.currency.HasCurrency;
-import net.ollie.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.money.Money;
 
 /**
  *

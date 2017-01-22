@@ -7,9 +7,8 @@ import java.util.regex.Pattern;
 import javax.annotation.CheckReturnValue;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.StringWrapper;
+import net.meerkat.StringWrapper;
 import net.meerkat.identifier.Iso;
-import net.ollie.meerkat.identifier.country.CountryId;
 
 /**
  *

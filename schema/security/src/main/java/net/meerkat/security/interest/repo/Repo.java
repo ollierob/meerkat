@@ -2,7 +2,7 @@ package net.meerkat.security.interest.repo;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.security.Security;
+import net.meerkat.security.Security;
 import net.meerkat.security.SecurityDefinition;
 import net.meerkat.security.derivative.Derivative;
 import net.meerkat.security.fx.CashForCollateral;

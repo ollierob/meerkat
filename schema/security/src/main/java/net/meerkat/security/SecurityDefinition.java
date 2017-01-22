@@ -6,9 +6,8 @@ import java.util.Map;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.Explainable;
-import net.ollie.meerkat.identifier.security.HasSecurityIds;
-import net.ollie.meerkat.security.Security;
+import net.meerkat.Explainable;
+import net.meerkat.identifier.security.HasSecurityIds;
 import net.ollie.meerkat.utils.HasName;
 
 /**

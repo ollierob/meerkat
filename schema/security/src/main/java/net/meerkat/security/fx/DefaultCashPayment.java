@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.Money;
 
 /**
  *

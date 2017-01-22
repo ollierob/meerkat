@@ -3,7 +3,7 @@ package net.meerkat.security.fx.swap;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.security.SecurityIds;
 import net.meerkat.security.derivative.swap.AbstractSwap;
 import net.meerkat.security.fx.FxDerivative;
 import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;

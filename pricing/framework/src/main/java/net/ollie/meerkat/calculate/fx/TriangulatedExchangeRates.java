@@ -4,8 +4,8 @@ import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 import net.ollie.goat.optionals.Optionals;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.fx.ExchangeRate;
 
 /**
  *

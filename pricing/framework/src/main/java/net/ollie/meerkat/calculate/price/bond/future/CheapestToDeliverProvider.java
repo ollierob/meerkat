@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.security.SecurityIds;
 
 /**
  *

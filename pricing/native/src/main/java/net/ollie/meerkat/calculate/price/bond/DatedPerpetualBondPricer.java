@@ -8,9 +8,9 @@ import java.util.function.Function;
 import javax.annotation.Nonnull;
 
 import net.ollie.goat.collection.list.Lists;
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.interest.InterestRate;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;

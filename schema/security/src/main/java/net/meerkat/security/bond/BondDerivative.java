@@ -1,6 +1,6 @@
 package net.meerkat.security.bond;
 
-import net.ollie.meerkat.security.Security;
+import net.meerkat.security.Security;
 import net.meerkat.security.SecurityDefinition;
 import net.meerkat.security.bond.option.BondFutureOption;
 import net.meerkat.security.bond.option.BondOption;

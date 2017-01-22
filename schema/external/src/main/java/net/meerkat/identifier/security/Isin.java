@@ -12,9 +12,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.Explainable;
+import net.meerkat.Explainable;
 import net.meerkat.identifier.country.CountryIso;
-import net.ollie.meerkat.identifier.security.SecurityId;
 import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
 
 /**

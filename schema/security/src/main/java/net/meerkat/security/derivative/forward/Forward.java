@@ -1,6 +1,6 @@
 package net.meerkat.security.derivative.forward;
 
-import net.ollie.meerkat.security.Security;
+import net.meerkat.security.Security;
 import net.meerkat.security.derivative.Derivative;
 
 /**

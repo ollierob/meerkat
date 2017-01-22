@@ -1,6 +1,6 @@
 package net.ollie.meerkat.calculate.price.shifts;
 
-import net.ollie.meerkat.Explainable;
+import net.meerkat.Explainable;
 import net.ollie.meerkat.utils.Classes.Castable;
 
 /**

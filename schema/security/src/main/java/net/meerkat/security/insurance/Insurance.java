@@ -1,6 +1,6 @@
 package net.meerkat.security.insurance;
 
-import net.ollie.meerkat.security.Security;
+import net.meerkat.security.Security;
 
 /**
  *

@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.currency.CurrencyPair;
-import net.ollie.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.CurrencyPair;
+import net.meerkat.money.fx.ExchangeRate;
 
 /**
  * Snapshot of FX rates at a particular time.

@@ -5,7 +5,7 @@ import java.util.Optional;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 
 /**

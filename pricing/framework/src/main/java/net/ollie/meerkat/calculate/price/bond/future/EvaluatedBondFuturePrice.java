@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
 import net.meerkat.security.interest.repo.rate.RepoRate;
 

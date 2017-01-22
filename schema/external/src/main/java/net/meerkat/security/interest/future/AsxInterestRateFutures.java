@@ -5,10 +5,10 @@ import net.meerkat.security.interest.future.InterestRateFutureContract;
 
 import java.time.YearMonth;
 
-import net.ollie.meerkat.money.Money;
+import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.identifier.currency.CurrencyIso;
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.security.SecurityIds;
 
 import org.apache.commons.math3.fraction.Fraction;
 

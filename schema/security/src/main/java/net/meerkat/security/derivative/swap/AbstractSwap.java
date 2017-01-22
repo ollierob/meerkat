@@ -1,6 +1,6 @@
 package net.meerkat.security.derivative.swap;
 
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.security.SecurityIds;
 import net.meerkat.security.NamedSecurity;
 
 /**

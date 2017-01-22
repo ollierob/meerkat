@@ -8,11 +8,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.interest.fixed.FixedInterestRate;
-import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.interest.InterestRateSecurity;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.identifier.security.SecurityIds;
+import net.meerkat.numeric.interest.InterestRateSecurity;
 import net.meerkat.security.bond.call.BondCall;
 import net.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.meerkat.security.bond.dates.MaturingBondDates;

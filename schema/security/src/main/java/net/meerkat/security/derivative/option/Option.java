@@ -3,9 +3,9 @@ package net.meerkat.security.derivative.option;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.numeric.quantity.Quantity;
-import net.ollie.meerkat.security.Security;
+import net.meerkat.money.Money;
+import net.meerkat.numeric.quantity.Quantity;
+import net.meerkat.security.Security;
 import net.meerkat.security.derivative.Derivative;
 import net.meerkat.security.derivative.option.exercise.OptionExercise;
 

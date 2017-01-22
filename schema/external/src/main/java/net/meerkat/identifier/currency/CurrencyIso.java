@@ -2,10 +2,10 @@ package net.meerkat.identifier.currency;
 
 import java.io.Serializable;
 
-import net.ollie.meerkat.money.MoneyFormat;
-import net.ollie.meerkat.money.currency.Currency;
+import net.meerkat.money.MoneyFormat;
+import net.meerkat.money.currency.Currency;
 import net.meerkat.identifier.Iso;
-import net.ollie.meerkat.identifier.security.SecurityId;
+import net.meerkat.identifier.security.SecurityId;
 
 /**
  * ISO 4217 currency code.

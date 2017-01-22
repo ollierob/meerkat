@@ -5,8 +5,8 @@ import java.util.AbstractList;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.numeric.interest.InterestRateId;
+import net.meerkat.identifier.security.SecurityIds;
+import net.meerkat.numeric.interest.InterestRateId;
 import net.meerkat.security.bond.BondDerivative;
 import net.meerkat.security.bond.FixedCouponBond;
 import net.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;

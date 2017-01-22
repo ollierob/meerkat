@@ -2,9 +2,9 @@ package net.meerkat.security.interest.future;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.money.currency.HasCurrency;
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.identifier.security.SecurityIds;
 import net.meerkat.security.derivative.forward.AbstractFuture;
 import net.meerkat.security.derivative.forward.FutureDeliveryDates;
 import net.meerkat.security.interest.InterestRateDerivative;

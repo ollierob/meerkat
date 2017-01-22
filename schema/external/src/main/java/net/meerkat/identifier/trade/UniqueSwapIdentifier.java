@@ -7,8 +7,7 @@ import java.io.ObjectOutput;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.StringWrapper;
-import net.ollie.meerkat.identifier.trade.TradeId;
+import net.meerkat.StringWrapper;
 
 /**
  * Unique swap identifier.

@@ -2,7 +2,6 @@ package net.meerkat.identifier.security;
 
 import java.util.Optional;
 
-import net.ollie.meerkat.identifier.security.HasSecurityIds;
 
 /**
  *

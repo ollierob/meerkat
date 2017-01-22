@@ -2,8 +2,8 @@ package net.ollie.meerkat.calculate.price.shifts;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.money.interest.fixed.FixedInterestRate;
-import net.ollie.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.money.interest.InterestRate;
 
 /**
  *

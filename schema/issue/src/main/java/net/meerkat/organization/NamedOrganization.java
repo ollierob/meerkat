@@ -1,6 +1,6 @@
 package net.meerkat.organization;
 
-import net.ollie.meerkat.StringWrapper;
+import net.meerkat.StringWrapper;
 
 /**
  *

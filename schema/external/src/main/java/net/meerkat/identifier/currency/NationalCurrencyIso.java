@@ -3,7 +3,7 @@ package net.meerkat.identifier.currency;
 import javax.xml.bind.annotation.XmlTransient;
 
 import net.meerkat.identifier.country.CountryIso;
-import net.ollie.meerkat.identifier.country.HasCountryId;
+import net.meerkat.identifier.country.HasCountryId;
 
 /**
  *

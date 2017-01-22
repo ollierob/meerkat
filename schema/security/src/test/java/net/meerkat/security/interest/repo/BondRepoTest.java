@@ -1,9 +1,9 @@
 package net.meerkat.security.interest.repo;
 
 import net.meerkat.security.interest.repo.BondRepo;
-import net.ollie.meerkat.money.Money;
+import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
-import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.security.SecurityIds;
 import net.meerkat.security.bond.Bond;
 import net.meerkat.security.interest.repo.dates.RepoDates;
 import net.meerkat.security.interest.repo.rate.RepoRate;

@@ -1,6 +1,6 @@
 package net.meerkat.security.interest.swap;
 
-import net.ollie.meerkat.numeric.interest.earning.InterestEarning;
+import net.meerkat.numeric.interest.earning.InterestEarning;
 
 /**
  *

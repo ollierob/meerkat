@@ -1,7 +1,7 @@
 package net.meerkat.security.bond;
 
-import net.ollie.meerkat.Provider;
-import net.ollie.meerkat.identifier.security.SecurityId;
+import net.meerkat.Provider;
+import net.meerkat.identifier.security.SecurityId;
 
 /**
  *
