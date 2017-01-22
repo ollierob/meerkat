@@ -1,11 +1,11 @@
-package net.ollie.meerkat.issuer;
+package net.meerkat.issuer;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.meerkat.organization.Organization;
-import net.ollie.meerkat.rating.CreditRating;
-import net.ollie.meerkat.rating.HasCreditRating;
+import net.meerkat.organization.Organization;
+import net.meerkat.rating.CreditRating;
+import net.meerkat.rating.HasCreditRating;
 
 /**
  *

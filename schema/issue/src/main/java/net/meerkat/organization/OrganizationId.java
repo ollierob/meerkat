@@ -1,4 +1,4 @@
-package net.ollie.meerkat.organization;
+package net.meerkat.organization;
 
 /**
  *

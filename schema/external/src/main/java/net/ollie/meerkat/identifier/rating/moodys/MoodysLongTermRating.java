@@ -6,9 +6,9 @@ import java.util.Set;
 import javax.xml.bind.annotation.XmlEnum;
 
 import static net.ollie.meerkat.identifier.rating.moodys.MoodysGlobalShortTermRating.*;
-import net.ollie.meerkat.rating.CreditRating;
-import net.ollie.meerkat.rating.CreditRatingBand;
-import static net.ollie.meerkat.rating.CreditRatingBand.*;
+import net.meerkat.rating.CreditRating;
+import net.meerkat.rating.CreditRatingBand;
+import static net.meerkat.rating.CreditRatingBand.*;
 
 /**
  *

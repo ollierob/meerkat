@@ -1,4 +1,4 @@
-package net.ollie.meerkat.issue;
+package net.meerkat.issue;
 
 import java.util.Optional;
 
@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.meerkat.identifier.security.SecurityId;
 import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.meerkat.organization.OrganizationId;
-import net.ollie.meerkat.rating.CreditRating;
-import net.ollie.meerkat.rating.HasCreditRating;
+import net.meerkat.organization.OrganizationId;
+import net.meerkat.rating.CreditRating;
+import net.meerkat.rating.HasCreditRating;
 
 /**
  *

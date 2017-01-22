@@ -12,7 +12,6 @@
         <module>utils</module>
         <module>pricing</module>
         <module>reporting</module>
-        <module>risk</module>
     </modules>
     
     <properties>

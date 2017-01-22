@@ -1,4 +1,4 @@
-package net.ollie.meerkat.issuer;
+package net.meerkat.issuer;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.annotation.CheckForNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.hierarchy.Hierarchy;
+import net.meerkat.hierarchy.Hierarchy;
 import net.ollie.goat.collection.list.Lists;
 
 /**

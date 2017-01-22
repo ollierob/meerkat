@@ -1,4 +1,4 @@
-package net.ollie.meerkat.rating;
+package net.meerkat.rating;
 
 import java.io.Externalizable;
 import java.io.IOException;

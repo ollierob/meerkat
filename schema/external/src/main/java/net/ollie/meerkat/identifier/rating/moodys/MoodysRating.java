@@ -1,6 +1,6 @@
 package net.ollie.meerkat.identifier.rating.moodys;
 
-import net.ollie.meerkat.rating.CreditRating;
+import net.meerkat.rating.CreditRating;
 
 /**
  *

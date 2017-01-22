@@ -1,7 +1,7 @@
 package net.ollie.meerkat.reporting.organization;
 
-import net.ollie.meerkat.issuer.Issuer;
-import net.ollie.meerkat.organization.OrganizationId;
+import net.meerkat.issuer.Issuer;
+import net.meerkat.organization.OrganizationId;
 import net.ollie.meerkat.reporting.Provider;
 
 /**

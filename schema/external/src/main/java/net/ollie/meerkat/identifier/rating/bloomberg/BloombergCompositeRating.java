@@ -2,7 +2,7 @@ package net.ollie.meerkat.identifier.rating.bloomberg;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.meerkat.rating.CreditRatings;
+import net.meerkat.rating.CreditRatings;
 
 /**
  *

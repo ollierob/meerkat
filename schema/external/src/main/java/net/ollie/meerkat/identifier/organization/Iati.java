@@ -8,7 +8,7 @@ import java.io.ObjectOutput;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import net.ollie.meerkat.Explainable;
-import net.ollie.meerkat.organization.OrganizationId;
+import net.meerkat.organization.OrganizationId;
 
 /**
  *

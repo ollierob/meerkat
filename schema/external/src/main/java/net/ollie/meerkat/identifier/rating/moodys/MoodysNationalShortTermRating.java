@@ -2,9 +2,9 @@ package net.ollie.meerkat.identifier.rating.moodys;
 
 import java.util.Set;
 
-import net.ollie.meerkat.rating.CreditRating;
-import net.ollie.meerkat.rating.CreditRatingBand;
-import static net.ollie.meerkat.rating.CreditRatingBand.*;
+import net.meerkat.rating.CreditRating;
+import net.meerkat.rating.CreditRatingBand;
+import static net.meerkat.rating.CreditRatingBand.*;
 import net.ollie.goat.collection.Sets;
 
 /**
