@@ -18,4 +18,8 @@ public interface BondTypePricer<T extends Temporal, B extends Bond>
     <C extends Currency> BondPrice.Shiftable<C> price(T temporal, B bond, C currency)
             throws BondPriceException;
 
+    default <C extends Currency> BondPrice.Shiftable<C> price(final T temporal, final B bond, final C currency, final BondShifts shifts) {
+        return this.price(temporal, bond, currency).shift(shifts);
+    }
+
 }

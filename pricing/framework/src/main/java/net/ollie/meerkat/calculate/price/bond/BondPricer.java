@@ -12,25 +12,15 @@ import net.meerkat.security.bond.Bond;
  *
  * @author Ollie
  */
-public interface BondPricer<T extends Temporal> {
+public interface BondPricer<T extends Temporal> extends BondTypePricer<T, Bond> {
 
-    @Nonnull
+    @Override
     default <C extends Currency> BondPrice.Shiftable<C> price(
             final T valuation,
             final Bond bond,
             final C currency)
             throws BondPriceException {
         return bond.handleWith(this.priceContext(valuation, currency));
-    }
-
-    @Nonnull
-    default <C extends Currency> BondPrice.Shiftable<C> price(
-            final T valuation,
-            final Bond bond,
-            final C currency,
-            final BondShifts shifts)
-            throws BondPriceException {
-        return this.price(valuation, bond, currency).shift(shifts);
     }
 
     <C extends Currency> BondPriceContext<C> priceContext(T valuation, C currency)
