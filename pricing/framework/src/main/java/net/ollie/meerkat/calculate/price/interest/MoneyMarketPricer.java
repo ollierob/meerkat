@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
-import net.ollie.meerkat.security.interest.CertificateOfDeposit;
-import net.ollie.meerkat.security.interest.MoneyMarketSecurity;
+import net.meerkat.security.interest.CertificateOfDeposit;
+import net.meerkat.security.interest.MoneyMarketSecurity;
 
 /**
  *

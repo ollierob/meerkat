@@ -20,7 +20,7 @@ import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnl;
 import net.ollie.meerkat.calculate.var.historic.HistoricPnlCalculator;
 import net.ollie.meerkat.identifier.security.SecurityId;
-import net.ollie.meerkat.security.SecurityDefinition;
+import net.meerkat.security.SecurityDefinition;
 
 /**
  *

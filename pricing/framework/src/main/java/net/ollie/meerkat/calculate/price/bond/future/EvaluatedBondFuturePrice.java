@@ -7,7 +7,7 @@ import java.io.ObjectOutput;
 import net.ollie.meerkat.money.Money;
 import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
-import net.ollie.meerkat.security.interest.repo.rate.RepoRate;
+import net.meerkat.security.interest.repo.rate.RepoRate;
 
 /**
  *

@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
 import net.ollie.meerkat.identifier.SecurityInMarketId;
 import net.ollie.meerkat.identifier.security.SecurityId;
 import net.ollie.meerkat.reporting.Provider;
-import net.ollie.meerkat.security.SecurityDefinition;
+import net.meerkat.security.SecurityDefinition;
 
 /**
  *

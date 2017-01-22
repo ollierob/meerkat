@@ -16,9 +16,9 @@ import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
-import net.ollie.meerkat.security.bond.PerpetualBond;
-import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
-import net.ollie.meerkat.security.fx.CashPayment;
+import net.meerkat.security.bond.PerpetualBond;
+import net.meerkat.security.bond.coupon.FixedRateCoupon;
+import net.meerkat.security.fx.CashPayment;
 
 /**
  *

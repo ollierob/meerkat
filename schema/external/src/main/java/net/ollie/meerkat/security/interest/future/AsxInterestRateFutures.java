@@ -1,5 +1,8 @@
 package net.ollie.meerkat.security.interest.future;
 
+import net.meerkat.security.interest.future.InterestRateFuture;
+import net.meerkat.security.interest.future.InterestRateFutureContract;
+
 import java.time.YearMonth;
 
 import net.ollie.meerkat.money.Money;

@@ -7,7 +7,7 @@ import net.ollie.meerkat.money.Money;
 import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.meerkat.security.fx.CashPayment;
+import net.meerkat.security.fx.CashPayment;
 
 /**
  *

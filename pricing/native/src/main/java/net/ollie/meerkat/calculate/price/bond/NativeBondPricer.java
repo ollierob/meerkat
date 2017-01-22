@@ -3,11 +3,11 @@ package net.ollie.meerkat.calculate.price.bond;
 import java.time.temporal.Temporal;
 
 import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.security.bond.ConvertibleBond;
-import net.ollie.meerkat.security.bond.FixedCouponBond;
-import net.ollie.meerkat.security.bond.FloatingRateNote;
-import net.ollie.meerkat.security.bond.PerpetualBond;
-import net.ollie.meerkat.security.bond.VariableRateBond;
+import net.meerkat.security.bond.ConvertibleBond;
+import net.meerkat.security.bond.FixedCouponBond;
+import net.meerkat.security.bond.FloatingRateNote;
+import net.meerkat.security.bond.PerpetualBond;
+import net.meerkat.security.bond.VariableRateBond;
 
 /**
  *

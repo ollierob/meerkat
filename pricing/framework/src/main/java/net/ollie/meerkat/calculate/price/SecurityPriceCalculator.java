@@ -5,7 +5,7 @@ import java.time.temporal.Temporal;
 import javax.annotation.Nonnull;
 
 import net.ollie.meerkat.money.currency.Currency;
-import net.ollie.meerkat.security.SecurityDefinition;
+import net.meerkat.security.SecurityDefinition;
 
 /**
  *

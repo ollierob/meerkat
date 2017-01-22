@@ -9,7 +9,7 @@ import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.money.currency.HasCurrency;
 import net.ollie.meerkat.Explainable;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.security.bond.Bond;
+import net.meerkat.security.bond.Bond;
 
 /**
  *

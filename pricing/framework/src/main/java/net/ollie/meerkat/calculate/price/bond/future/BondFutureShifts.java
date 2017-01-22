@@ -11,7 +11,7 @@ import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.PriceShifts;
-import net.ollie.meerkat.security.interest.repo.rate.RepoRate;
+import net.meerkat.security.interest.repo.rate.RepoRate;
 
 /**
  *

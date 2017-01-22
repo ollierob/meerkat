@@ -5,7 +5,7 @@ import java.time.temporal.Temporal;
 import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPriceException;
 import net.ollie.meerkat.calculate.price.SecurityTypePriceCalculator;
-import net.ollie.meerkat.security.interest.future.BondFuture;
+import net.meerkat.security.interest.future.BondFuture;
 
 /**
  *

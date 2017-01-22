@@ -6,7 +6,7 @@ import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPriceException;
 import net.ollie.meerkat.calculate.price.SecurityTypePriceCalculator;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
-import net.ollie.meerkat.security.interest.repo.Repo;
+import net.meerkat.security.interest.repo.Repo;
 
 /**
  *

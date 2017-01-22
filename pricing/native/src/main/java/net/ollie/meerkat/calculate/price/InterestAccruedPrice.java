@@ -8,7 +8,7 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.ollie.meerkat.security.SecurityDefinition;
+import net.meerkat.security.SecurityDefinition;
 
 /**
  *

@@ -17,10 +17,10 @@ import net.ollie.meerkat.money.interest.InterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
-import net.ollie.meerkat.security.bond.FixedCouponBond;
-import net.ollie.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
-import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
-import net.ollie.meerkat.security.fx.CashPayment;
+import net.meerkat.security.bond.FixedCouponBond;
+import net.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
+import net.meerkat.security.bond.coupon.FixedRateCoupon;
+import net.meerkat.security.fx.CashPayment;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
