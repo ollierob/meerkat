@@ -1,4 +1,4 @@
-package net.ollie.meerkat.reporting.security;
+package net.meerkat.reporting.security;
 
 import java.util.Objects;
 import java.util.Set;

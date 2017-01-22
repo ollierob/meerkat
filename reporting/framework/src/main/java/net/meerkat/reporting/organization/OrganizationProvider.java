@@ -1,4 +1,4 @@
-package net.ollie.meerkat.reporting.organization;
+package net.meerkat.reporting.organization;
 
 import net.meerkat.Provider;
 import net.meerkat.organization.Organization;
