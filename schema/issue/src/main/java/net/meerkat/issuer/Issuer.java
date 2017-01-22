@@ -18,6 +18,8 @@ import net.meerkat.rating.HasCreditRating;
  */
 public class Issuer implements HasCreditRating, HasIssuerId, Externalizable {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElementRef(name = "id")
     private IssuerId id;
 
