@@ -26,7 +26,7 @@ import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
  *
  * @author ollie
  */
-public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate, FixedCouponBond> {
+public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponBond> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRate;

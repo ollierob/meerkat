@@ -24,7 +24,7 @@ import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateS
  *
  * @author Ollie
  */
-public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, PerpetualBond> {
+public class DatedPerpetualBondPricer implements BondPricer<LocalDate, PerpetualBond> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRates;

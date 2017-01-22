@@ -13,20 +13,20 @@ import net.meerkat.security.bond.VariableRateBond;
  *
  * @author ollie
  */
-public class NativeBondPricer<T extends Temporal> implements BondPricer<T> {
+public class NativeBondPricer<T extends Temporal> implements GenericBondPricer<T> {
 
-    private final BondTypePricer<T, PerpetualBond> perpetualPricer;
-    private final BondTypePricer<T, FixedCouponBond> fixedCouponPricer;
-    private final BondTypePricer<T, FloatingRateNote> floatingNotePricer;
-    private final BondTypePricer<T, ConvertibleBond> convertiblePricer;
-    private final BondTypePricer<T, VariableRateBond> variablePricer;
+    private final BondPricer<T, PerpetualBond> perpetualPricer;
+    private final BondPricer<T, FixedCouponBond> fixedCouponPricer;
+    private final BondPricer<T, FloatingRateNote> floatingNotePricer;
+    private final BondPricer<T, ConvertibleBond> convertiblePricer;
+    private final BondPricer<T, VariableRateBond> variablePricer;
 
     public NativeBondPricer(
-            final BondTypePricer<T, PerpetualBond> perpetualPricer,
-            final BondTypePricer<T, FixedCouponBond> fixedCouponPricer,
-            final BondTypePricer<T, FloatingRateNote> floatingNotePricer,
-            final BondTypePricer<T, ConvertibleBond> convertiblePricer,
-            final BondTypePricer<T, VariableRateBond> variablePricer) {
+            final BondPricer<T, PerpetualBond> perpetualPricer,
+            final BondPricer<T, FixedCouponBond> fixedCouponPricer,
+            final BondPricer<T, FloatingRateNote> floatingNotePricer,
+            final BondPricer<T, ConvertibleBond> convertiblePricer,
+            final BondPricer<T, VariableRateBond> variablePricer) {
         this.perpetualPricer = perpetualPricer;
         this.fixedCouponPricer = fixedCouponPricer;
         this.floatingNotePricer = floatingNotePricer;

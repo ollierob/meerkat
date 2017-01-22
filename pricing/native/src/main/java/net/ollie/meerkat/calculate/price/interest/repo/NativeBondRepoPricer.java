@@ -8,11 +8,11 @@ import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondPricer;
-import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
+import net.ollie.meerkat.calculate.price.bond.GenericBondPricer.BondPriceException;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.meerkat.security.interest.repo.BondRepo;
 import net.meerkat.security.interest.repo.rate.RepoRate;
+import net.ollie.meerkat.calculate.price.bond.GenericBondPricer;
 
 /**
  *
@@ -20,9 +20,9 @@ import net.meerkat.security.interest.repo.rate.RepoRate;
  */
 public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo> {
 
-    private final BondPricer<LocalDate> bondPricer;
+    private final GenericBondPricer<LocalDate> bondPricer;
 
-    public NativeBondRepoPricer(final BondPricer<LocalDate> bondPricer) {
+    public NativeBondRepoPricer(final GenericBondPricer<LocalDate> bondPricer) {
         this.bondPricer = bondPricer;
     }
 
