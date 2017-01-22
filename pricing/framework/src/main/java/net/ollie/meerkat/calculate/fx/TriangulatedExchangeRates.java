@@ -1,5 +1,7 @@
 package net.ollie.meerkat.calculate.fx;
 
+import net.meerkat.money.fx.ExchangeRates;
+
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 

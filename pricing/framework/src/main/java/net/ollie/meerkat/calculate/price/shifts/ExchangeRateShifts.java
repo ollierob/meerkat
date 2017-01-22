@@ -3,7 +3,7 @@ package net.ollie.meerkat.calculate.price.shifts;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.ollie.meerkat.calculate.fx.ExchangeRates;
+import net.meerkat.money.fx.ExchangeRates;
 
 /**
  *

@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrency;
-import net.ollie.meerkat.calculate.fx.ExchangeRates;
+import net.meerkat.money.fx.ExchangeRates;
 
 /**
  * Value at risk (VaR).

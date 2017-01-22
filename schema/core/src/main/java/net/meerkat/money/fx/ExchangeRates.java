@@ -1,4 +1,4 @@
-package net.ollie.meerkat.calculate.fx;
+package net.meerkat.money.fx;
 
 import java.util.Optional;
 
@@ -7,7 +7,6 @@ import javax.annotation.Nonnull;
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.CurrencyPair;
-import net.meerkat.money.fx.ExchangeRate;
 
 /**
  * Snapshot of FX rates at a particular time.

@@ -1,6 +1,7 @@
 package net.ollie.meerkat.calculate.fx;
 
 import net.meerkat.Provider;
+import net.meerkat.money.fx.ExchangeRates;
 
 /**
  *
