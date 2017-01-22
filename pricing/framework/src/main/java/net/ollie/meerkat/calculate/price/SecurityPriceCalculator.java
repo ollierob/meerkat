@@ -17,10 +17,10 @@ public interface SecurityPriceCalculator<T extends Temporal> {
             @Nonnull final T valuation,
             @Nonnull final SecurityDefinition security,
             @Nonnull final C currency) {
-        return security.handleWith(this.priceContext(valuation, currency));
+        return security.handleWith(this.pricingContext(valuation, currency));
     }
 
-    <C extends Currency> SecurityPriceContext<C> priceContext(T valuation, C currency);
+    <C extends Currency> SecurityPriceContext<C> pricingContext(T valuation, C currency);
 
     interface SecurityPriceContext<C extends Currency> extends SecurityDefinition.Handler<ShiftableSecurityPrice<C>> {
 

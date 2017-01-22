@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 
 import net.meerkat.security.SecurityDefinition;
+import net.meerkat.security.UnsupportedSecurityException;
 
 /**
  *
@@ -14,7 +15,7 @@ import net.meerkat.security.SecurityDefinition;
 public interface SensitivityCalculator<T extends Temporal> {
 
     @Nonnull
-    SensitivityMap allSensitivities(T temporal, SecurityDefinition security);
+    SensitivityMap allSensitivities(T temporal, SecurityDefinition security) throws UnsupportedSecurityException;
 
     @Nonnull
     <T> Optional<T> sensitivity(T temporal, SecurityDefinition security, Sensitivity<T> sensitivity);

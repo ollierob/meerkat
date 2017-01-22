@@ -1,13 +1,10 @@
-package net.ollie.meerkat.calculate.fx;
-
-import net.meerkat.money.fx.ExchangeRates;
+package net.meerkat.money.fx;
 
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
-import net.ollie.goat.optionals.Optionals;
 import net.meerkat.money.currency.Currency;
-import net.meerkat.money.fx.ExchangeRate;
+import net.ollie.goat.optionals.Optionals;
 
 /**
  *

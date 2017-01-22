@@ -4,7 +4,7 @@ package net.ollie.meerkat.calculate.price;
  *
  * @author Ollie
  */
-public class SecurityPriceException extends RuntimeException {
+public class SecurityPriceException extends SecurityException {
 
     private static final long serialVersionUID = 1L;
 
