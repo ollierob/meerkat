@@ -1,7 +1,7 @@
 package net.ollie.meerkat.calculate.sensitivity;
 
 import net.ollie.meerkat.money.Money;
-import net.ollie.meerkat.identifier.currency.USD;
+import net.meerkat.identifier.currency.USD;
 import net.ollie.meerkat.utils.Accumulator;
 
 /**
