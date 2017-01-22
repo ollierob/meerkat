@@ -1,6 +1,6 @@
 package net.ollie.meerkat.numeric.interest;
 
-import net.ollie.goat.money.currency.HasCurrency;
+import net.ollie.meerkat.money.currency.HasCurrency;
 
 /**
  *

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.collection.Iterables;
-import net.ollie.goat.money.currency.Currency;
+import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.security.bond.coupon.BondCoupon;
 import net.ollie.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.ollie.meerkat.security.bond.coupon.FloatingCoupon;

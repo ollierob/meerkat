@@ -4,9 +4,9 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.money.Money;
-import net.ollie.goat.money.fx.ExchangeRate;
+import net.ollie.meerkat.money.currency.Currency;
+import net.ollie.meerkat.money.Money;
+import net.ollie.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;

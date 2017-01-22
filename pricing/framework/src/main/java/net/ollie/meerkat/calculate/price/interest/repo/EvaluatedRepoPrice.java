@@ -2,8 +2,8 @@ package net.ollie.meerkat.calculate.price.interest.repo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.money.Money;
+import net.ollie.meerkat.money.currency.Currency;
+import net.ollie.meerkat.money.Money;
 import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
 
 /**

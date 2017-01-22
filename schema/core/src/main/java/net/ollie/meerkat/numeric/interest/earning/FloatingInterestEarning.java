@@ -6,8 +6,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.money.interest.InterestRate;
-import net.ollie.goat.money.Money;
+import net.ollie.meerkat.money.interest.InterestRate;
+import net.ollie.meerkat.money.Money;
 import net.ollie.meerkat.numeric.interest.InterestRateId;
 
 /**

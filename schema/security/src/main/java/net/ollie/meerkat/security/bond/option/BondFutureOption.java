@@ -3,7 +3,7 @@ package net.ollie.meerkat.security.bond.option;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.money.Money;
+import net.ollie.meerkat.money.Money;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.numeric.quantity.Quantity;
 import net.ollie.meerkat.security.bond.BondDerivative;

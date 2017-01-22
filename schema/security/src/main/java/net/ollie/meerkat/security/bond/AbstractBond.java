@@ -5,7 +5,7 @@ import java.util.Optional;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-import net.ollie.goat.money.Money;
+import net.ollie.meerkat.money.Money;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.NamedSecurity;
 import net.ollie.meerkat.security.bond.call.BondCall;

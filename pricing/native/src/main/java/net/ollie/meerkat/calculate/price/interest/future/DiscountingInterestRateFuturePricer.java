@@ -5,10 +5,10 @@ import java.util.function.BiFunction;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.money.Money;
-import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.money.fx.ExchangeRate;
-import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.meerkat.money.Money;
+import net.ollie.meerkat.money.currency.Currency;
+import net.ollie.meerkat.money.fx.ExchangeRate;
+import net.ollie.meerkat.money.interest.InterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.security.interest.future.InterestRateFuture;
 

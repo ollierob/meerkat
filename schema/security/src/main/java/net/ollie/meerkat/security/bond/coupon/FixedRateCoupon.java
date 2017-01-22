@@ -6,9 +6,9 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.money.Money;
-import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.money.interest.fixed.FixedInterestRate;
+import net.ollie.meerkat.money.Money;
+import net.ollie.meerkat.money.currency.Currency;
+import net.ollie.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.YearCount;
 import net.ollie.meerkat.security.fx.CashPayment;

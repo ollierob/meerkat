@@ -1,6 +1,6 @@
 package net.ollie.meerkat.security.interest.repo;
 
-import net.ollie.goat.money.Money;
+import net.ollie.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.bond.Bond;

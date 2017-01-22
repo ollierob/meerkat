@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.money.currency.HasCurrency;
+import net.ollie.meerkat.money.currency.HasCurrency;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**

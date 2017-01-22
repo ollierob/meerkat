@@ -2,8 +2,8 @@ package net.ollie.meerkat.identifier.currency;
 
 import java.io.Serializable;
 
-import net.ollie.goat.money.MoneyFormat;
-import net.ollie.goat.money.currency.Currency;
+import net.ollie.meerkat.money.MoneyFormat;
+import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.identifier.Iso;
 import net.ollie.meerkat.identifier.security.SecurityId;
 

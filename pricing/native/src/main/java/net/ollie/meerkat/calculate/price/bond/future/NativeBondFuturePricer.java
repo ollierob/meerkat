@@ -6,8 +6,8 @@ import java.time.Period;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.money.Money;
-import net.ollie.goat.money.currency.Currency;
+import net.ollie.meerkat.money.Money;
+import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;

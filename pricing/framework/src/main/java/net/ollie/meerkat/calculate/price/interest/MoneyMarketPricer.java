@@ -2,7 +2,7 @@ package net.ollie.meerkat.calculate.price.interest;
 
 import java.time.LocalDate;
 
-import net.ollie.goat.money.currency.Currency;
+import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.security.interest.CertificateOfDeposit;
 import net.ollie.meerkat.security.interest.MoneyMarketSecurity;

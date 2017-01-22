@@ -5,8 +5,8 @@ import java.util.Optional;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.money.Money;
-import net.ollie.goat.money.currency.Currency;
+import net.ollie.meerkat.money.Money;
+import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;

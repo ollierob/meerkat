@@ -1,6 +1,6 @@
 package net.ollie.meerkat.numeric.interest;
 
-import net.ollie.goat.money.interest.fixed.SimpleFixedInterestRate;
+import net.ollie.meerkat.money.interest.fixed.SimpleFixedInterestRate;
 
 import java.math.BigDecimal;
 
@@ -11,10 +11,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import net.ollie.goat.money.currency.Currency;
+import net.ollie.meerkat.money.currency.Currency;
 import net.ollie.goat.temporal.date.years.FractionalYears;
-import net.ollie.goat.money.DecimalMoney;
-import net.ollie.goat.money.Money;
+import net.ollie.meerkat.money.DecimalMoney;
+import net.ollie.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 

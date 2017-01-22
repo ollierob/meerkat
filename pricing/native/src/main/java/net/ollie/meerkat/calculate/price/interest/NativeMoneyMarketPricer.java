@@ -3,10 +3,10 @@ package net.ollie.meerkat.calculate.price.interest;
 import java.time.LocalDate;
 import java.util.function.Function;
 
-import net.ollie.goat.money.Money;
-import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.money.fx.ExchangeRate;
-import net.ollie.goat.money.interest.InterestRate;
+import net.ollie.meerkat.money.Money;
+import net.ollie.meerkat.money.currency.Currency;
+import net.ollie.meerkat.money.fx.ExchangeRate;
+import net.ollie.meerkat.money.interest.InterestRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
 import net.ollie.meerkat.calculate.price.InterestAccruedPrice;

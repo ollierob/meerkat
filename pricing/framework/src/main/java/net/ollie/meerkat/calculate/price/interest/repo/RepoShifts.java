@@ -5,8 +5,8 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.goat.money.currency.Currency;
-import net.ollie.goat.money.fx.ExchangeRate;
+import net.ollie.meerkat.money.currency.Currency;
+import net.ollie.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
