@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.security.SecurityId;
 import net.meerkat.identifier.security.SecurityIds;
-import net.meerkat.organization.OrganizationId;
+import net.meerkat.issuer.IssuerId;
 import net.meerkat.rating.CreditRating;
 import net.meerkat.rating.HasCreditRating;
 
@@ -21,7 +21,7 @@ import net.meerkat.rating.HasCreditRating;
 public class Issue implements HasCreditRating {
 
     @XmlElementRef(name = "issuer")
-    private OrganizationId issuerId;
+    private IssuerId issuerId;
 
     @XmlElement(name = "ids")
     private SecurityIds identifiers;
@@ -39,7 +39,7 @@ public class Issue implements HasCreditRating {
         return identifiers.id(clazz);
     }
 
-    public OrganizationId issuerId() {
+    public IssuerId issuerId() {
         return issuerId;
     }
 

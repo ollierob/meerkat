@@ -11,7 +11,10 @@ import net.meerkat.rating.HasCreditRating;
  *
  * @author ollie
  */
-public class Issuer implements HasCreditRating {
+public class Issuer implements HasCreditRating, HasIssuerId {
+
+    @XmlElementRef(name = "id")
+    private IssuerId id;
 
     @XmlElementRef(name = "organization", required = false)
     private Organization organization;
@@ -27,6 +30,11 @@ public class Issuer implements HasCreditRating {
     @Override
     public CreditRating creditRating() {
         return rating;
+    }
+
+    @Override
+    public IssuerId issuerId() {
+        return id;
     }
 
 }
