@@ -15,7 +15,7 @@ import net.meerkat.money.interest.InterestRate;
 import net.meerkat.security.bond.FixedCouponBond;
 import net.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.meerkat.security.bond.coupon.FixedRateCoupon;
-import net.meerkat.security.fx.CashPayment;
+import net.meerkat.security.CashPayment;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
 import net.meerkat.money.fx.ExchangeRates;

@@ -1,9 +1,8 @@
-package net.meerkat.security.fx;
+package net.meerkat.security;
 
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.security.Security;
 
 /**
  *

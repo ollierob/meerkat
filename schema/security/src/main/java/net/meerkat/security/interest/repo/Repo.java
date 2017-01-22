@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import net.meerkat.security.Security;
 import net.meerkat.security.SecurityDefinition;
 import net.meerkat.security.derivative.Derivative;
-import net.meerkat.security.fx.CashForCollateral;
+import net.meerkat.security.CashForCollateral;
 import net.meerkat.security.interest.MoneyMarketSecurity;
 import net.meerkat.security.interest.repo.dates.RepoDates;
 import net.meerkat.security.interest.repo.rate.RepoRate;

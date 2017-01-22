@@ -16,7 +16,7 @@ import net.meerkat.numeric.interest.InterestRateSecurity;
 import net.meerkat.security.bond.call.BondCall;
 import net.meerkat.security.bond.coupon.FixedRateCoupon;
 import net.meerkat.security.bond.dates.MaturingBondDates;
-import net.meerkat.security.fx.CashPayment;
+import net.meerkat.security.CashPayment;
 
 /**
  *

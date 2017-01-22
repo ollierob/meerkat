@@ -1,5 +1,7 @@
 package net.meerkat.security.derivative.forward;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import net.meerkat.identifier.security.SecurityIds;
 import net.meerkat.security.NamedSecurity;
 import net.meerkat.security.Security;
@@ -8,6 +10,7 @@ import net.meerkat.security.Security;
  *
  * @author Ollie
  */
+@XmlTransient
 public abstract class AbstractFuture<S extends Security>
         extends NamedSecurity
         implements Future<S> {

@@ -18,6 +18,8 @@ public abstract class AbstractOption<S extends Security>
         extends NamedSecurity
         implements Option<S> {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElementRef(name = "exercise")
     private OptionExercise exercise;
 

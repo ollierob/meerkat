@@ -1,4 +1,4 @@
-package net.meerkat.security.fx;
+package net.meerkat.security;
 
 import java.time.LocalDate;
 
