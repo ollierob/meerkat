@@ -15,6 +15,8 @@ public class FxOption
         extends AbstractOption<FxOptionRate<?, ?>>
         implements FxDerivative {
 
+    private static final long serialVersionUID = 1L;
+
     @XmlElement(name = "rate")
     private FxOptionRate<?, ?> rate;
 

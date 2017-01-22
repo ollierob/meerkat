@@ -56,4 +56,8 @@ public interface ExchangeRate<F extends Currency, T extends Currency>
         return currencies;
     }
 
+    static <F extends Currency, T extends Currency> ExchangeRate<F, T> between(final Money<F> from, final Money<T> to) {
+        return new RatioExchangeRate<>(from, to);
+    }
+
 }

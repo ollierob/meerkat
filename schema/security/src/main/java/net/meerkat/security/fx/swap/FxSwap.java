@@ -17,11 +17,13 @@ public class FxSwap
         extends AbstractSwap
         implements FxDerivative {
 
-    @XmlElement(name = "spot")
-    private FxSwapLeg spot;
+    private static final long serialVersionUID = 1L;
 
-    @XmlElement(name = "forward")
-    private FxSwapLeg forward;
+    @XmlElement(name = "near")
+    private FxSwapLeg near;
+
+    @XmlElement(name = "far")
+    private FxSwapLeg far;
 
     @Deprecated
     FxSwap() {
@@ -30,16 +32,16 @@ public class FxSwap
     public FxSwap(
             final String name,
             final SecurityIds identifiers,
-            final FxSwapLeg spot,
-            final FxSwapLeg forward) {
+            final FxSwapLeg near,
+            final FxSwapLeg far) {
         super(name, identifiers);
-        this.spot = spot;
-        this.forward = forward;
+        this.near = near;
+        this.far = far;
     }
 
     @Override
     public FiniteSequence<FxSwapLeg> legs() {
-        return FiniteSequence.of(spot, forward);
+        return FiniteSequence.of(near, far);
     }
 
     @Override

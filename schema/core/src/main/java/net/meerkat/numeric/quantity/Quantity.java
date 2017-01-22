@@ -25,6 +25,7 @@ public interface Quantity
         return DecimalQuantity.valueOf(this.decimalValue().add(number.decimalValue()));
     }
 
+    @Override
     default Quantity times(final Number number) {
         return DecimalQuantity.valueOf(this.decimalValue().multiply(BigDecimals.toBigDecimal(number)));
     }
