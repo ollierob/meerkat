@@ -1,8 +1,5 @@
 package net.ollie.meerkat.numeric.interest;
 
-import net.ollie.meerkat.numeric.interest.InterestRateId;
-import net.ollie.goat.money.interest.InterestRate;
-
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
