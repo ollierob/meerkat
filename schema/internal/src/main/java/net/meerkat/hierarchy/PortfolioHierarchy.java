@@ -1,6 +1,6 @@
-package net.ollie.meerkat.hierarchy;
+package net.meerkat.hierarchy;
 
-import net.ollie.meerkat.portfolio.Portfolio;
+import net.meerkat.portfolio.Portfolio;
 
 /**
  *

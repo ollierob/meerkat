@@ -1,4 +1,4 @@
-package net.ollie.meerkat.hierarchy;
+package net.meerkat.hierarchy;
 
 import javax.annotation.Nonnull;
 

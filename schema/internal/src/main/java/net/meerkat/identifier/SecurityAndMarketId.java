@@ -1,4 +1,4 @@
-package net.ollie.meerkat.identifier;
+package net.meerkat.identifier;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.ollie.meerkat.identifier.SecurityInMarketId;
 import net.ollie.meerkat.identifier.market.HasMarketId;
 import net.ollie.meerkat.identifier.market.MarketId;
 import net.ollie.meerkat.identifier.security.HasSecurityId;

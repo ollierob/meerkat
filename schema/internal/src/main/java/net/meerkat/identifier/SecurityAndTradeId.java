@@ -1,4 +1,4 @@
-package net.ollie.meerkat.identifier;
+package net.meerkat.identifier;
 
 import java.io.Externalizable;
 import java.io.IOException;

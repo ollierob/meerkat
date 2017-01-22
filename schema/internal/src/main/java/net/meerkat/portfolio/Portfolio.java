@@ -1,4 +1,4 @@
-package net.ollie.meerkat.portfolio;
+package net.meerkat.portfolio;
 
 import java.util.HashMap;
 import java.util.Map;
