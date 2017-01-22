@@ -18,6 +18,8 @@ import net.ollie.goat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 
+import static org.mockito.Mockito.when;
+
 /**
  *
  * @author ollie
@@ -34,6 +36,7 @@ public class SimpleFixedInterestRateTest {
     @Before
     public void before() {
         MockitoAnnotations.initMocks(this);
+        when(mockCurrency.format()).thenReturn(money -> "$" + money.amount());
     }
 
     @Test

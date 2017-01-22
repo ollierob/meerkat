@@ -1,14 +1,10 @@
 package net.ollie.meerkat.security.interest.future;
 
-import com.google.common.collect.Iterables;
-
-import java.util.Collections;
-import java.util.Set;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
+import net.coljate.set.Set;
 import net.ollie.meerkat.identifier.security.SecurityId;
 import net.ollie.meerkat.identifier.security.SecurityIds;
 import net.ollie.meerkat.security.derivative.forward.AbstractFuture;
@@ -60,13 +56,13 @@ public class BondFuture
     }
 
     public Set<SecurityIds> basket() {
-        return basket == null || basket.isEmpty()
-                ? Collections.emptySet()
-                : Collections.unmodifiableSet(basket);
+        return basket == null
+                ? Set.of()
+                : basket.immutableCopy();
     }
 
     public boolean isInBasket(final SecurityId id) {
-        return Iterables.any(basket, ids -> ids.contains(id));
+        return basket.anyMatch(ids -> ids.contains(id));
     }
 
     @Override

@@ -1,22 +1,21 @@
 package net.ollie.meerkat.security.interest.repo;
 
-import net.ollie.meerkat.security.interest.repo.BondRepo;
+import net.ollie.goat.money.Money;
+import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.meerkat.identifier.security.SecurityIds;
+import net.ollie.meerkat.security.bond.Bond;
+import net.ollie.meerkat.security.interest.repo.dates.RepoDates;
+import net.ollie.meerkat.security.interest.repo.rate.RepoRate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-
-import net.ollie.meerkat.identifier.security.SecurityIds;
-import net.ollie.goat.numeric.percentage.DecimalPercentage;
-import net.ollie.goat.money.Money;
-import net.ollie.meerkat.security.bond.Bond;
-import net.ollie.meerkat.security.interest.repo.dates.RepoDates;
-import net.ollie.meerkat.security.interest.repo.rate.RepoRate;
 
 /**
  *
@@ -37,6 +36,7 @@ public class BondRepoTest {
     }
 
     @Test
+    @Ignore
     public void testHaircut_Null() {
 
         final SecurityIds mockIds = mock(SecurityIds.class);

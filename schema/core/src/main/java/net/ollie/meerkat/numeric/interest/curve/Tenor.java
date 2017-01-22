@@ -3,14 +3,13 @@ package net.ollie.meerkat.numeric.interest.curve;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
 
-import com.google.common.collect.Maps;
-
+import net.coljate.map.ConcurrentMap;
 import net.ollie.goat.temporal.date.count.ActualActualAccrualFactor;
 import net.ollie.goat.temporal.date.count.YearCount;
 import net.ollie.goat.temporal.date.years.PeriodYears;
@@ -21,13 +20,12 @@ import net.ollie.meerkat.utils.HasName;
  *
  * @author Ollie
  */
+@XmlType
 public class Tenor implements HasName {
-
-    private static final long serialVersionUID = 1L;
 
     public static final Tenor SPOT = new Tenor("SPOT", Period.ZERO);
 
-    private static final Map<String, Tenor> cache = Maps.newConcurrentMap();
+    private static final ConcurrentMap<String, Tenor> cache = ConcurrentMap.createHashMap();
 
     public static Tenor ofMonths(final int months) {
         if (months % 12 == 0) {
