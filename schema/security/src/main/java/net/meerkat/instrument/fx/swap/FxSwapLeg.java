@@ -1,21 +1,23 @@
 package net.meerkat.instrument.fx.swap;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.meerkat.money.currency.Currency;
-import net.meerkat.money.Money;
-import net.meerkat.instrument.derivative.swap.SwapLeg;
+import net.meerkat.Explainable;
 import net.meerkat.instrument.cash.CashPayment;
+import net.meerkat.instrument.derivative.swap.SwapLeg;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
 
 /**
  *
  * @author ollie
  */
-public class FxSwapLeg implements SwapLeg {
+public class FxSwapLeg implements SwapLeg, Explainable {
 
     @XmlAttribute(name = "date")
     private LocalDate date;
@@ -66,6 +68,14 @@ public class FxSwapLeg implements SwapLeg {
 
     public FxSwapLeg inverse(final LocalDate date) {
         return new FxSwapLeg(date, receive, pay);
+    }
+
+    @Override
+    public Map<String, Object> explain() {
+        return new ExplanationBuilder()
+                .put("date", date)
+                .put("pay", pay)
+                .put("receive", receive);
     }
 
     public class FxSwapSide<C extends Currency> implements CashPayment<C> {

@@ -51,4 +51,11 @@ public class FxSwap
         return handler.handle(this);
     }
 
+    @Override
+    public ExplanationBuilder explain() {
+        return super.explain()
+                .put("nearLeg", near)
+                .put("farLeg", far);
+    }
+
 }

@@ -9,7 +9,9 @@ import net.meerkat.issuer.IssuerId;
  *
  * @author ollie
  */
-public class IssuedSecurity extends NamedInstrument implements Security {
+public class IssuedSecurity
+        extends NamedInstrument
+        implements Security {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,7 +29,12 @@ public class IssuedSecurity extends NamedInstrument implements Security {
 
     @Override
     public IssuerId issuerId() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return issuer;
+    }
+
+    @Override
+    public ExplanationBuilder explain() {
+        return super.explain().put("issuer", issuer);
     }
 
 }

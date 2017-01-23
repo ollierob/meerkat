@@ -72,4 +72,13 @@ public abstract class AbstractOption<S extends Instrument>
         return contractMultiplier;
     }
 
+    @Override
+    public ExplanationBuilder explain() {
+        return super.explain()
+                .put("exercise", exercise)
+                .put("premium", premium)
+                .put("strike", strike)
+                .put("multiplier", contractMultiplier);
+    }
+
 }
