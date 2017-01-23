@@ -1,4 +1,4 @@
-package net.ollie.meerkat.utils;
+package net.meerkat.utils;
 
 import java.util.Objects;
 import java.util.function.Supplier;

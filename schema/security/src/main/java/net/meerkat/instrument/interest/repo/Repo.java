@@ -3,7 +3,7 @@ package net.meerkat.instrument.interest.repo;
 import javax.annotation.Nonnull;
 
 import net.meerkat.instrument.derivative.Derivative;
-import net.meerkat.instrument.CashForCollateral;
+import net.meerkat.instrument.cash.CashForCollateral;
 import net.meerkat.instrument.interest.MoneyMarketSecurity;
 import net.meerkat.instrument.interest.repo.dates.RepoDates;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;

@@ -11,6 +11,6 @@ import javax.annotation.Nonnull;
 public interface Issued {
 
     @Nonnull
-    LocalDate issued();
-    
+    LocalDate issueDate();
+
 }

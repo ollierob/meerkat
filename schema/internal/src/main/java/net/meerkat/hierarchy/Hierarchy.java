@@ -2,7 +2,7 @@ package net.meerkat.hierarchy;
 
 import javax.annotation.Nonnull;
 
-import net.ollie.meerkat.utils.time.Timestampable;
+import net.meerkat.utils.time.Timestampable;
 
 /**
  *

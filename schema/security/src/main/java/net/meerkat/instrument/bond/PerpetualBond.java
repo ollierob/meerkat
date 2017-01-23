@@ -14,7 +14,7 @@ import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.bond.dates.PerpetualBondDates;
-import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
+import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *

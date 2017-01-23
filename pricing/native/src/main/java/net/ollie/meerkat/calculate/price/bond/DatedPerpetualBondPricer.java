@@ -11,7 +11,7 @@ import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
-import net.meerkat.instrument.CashPayment;
+import net.meerkat.instrument.cash.CashPayment;
 import net.ollie.goat.collection.list.Lists;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;

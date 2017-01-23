@@ -11,6 +11,6 @@ import javax.annotation.Nonnull;
 public interface Matures {
 
     @Nonnull
-    LocalDate matures();
+    LocalDate maturityDate();
 
 }

@@ -1,4 +1,4 @@
-package net.ollie.meerkat.utils.algorithm;
+package net.meerkat.utils.algorithm;
 
 /**
  *

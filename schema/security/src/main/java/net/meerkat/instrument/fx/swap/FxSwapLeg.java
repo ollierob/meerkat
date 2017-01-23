@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.Money;
 import net.meerkat.instrument.derivative.swap.SwapLeg;
-import net.meerkat.instrument.CashPayment;
+import net.meerkat.instrument.cash.CashPayment;
 
 /**
  *

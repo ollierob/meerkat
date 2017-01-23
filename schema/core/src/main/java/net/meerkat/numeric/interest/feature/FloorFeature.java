@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.meerkat.utils.comparators.Comparators;
+import net.meerkat.utils.comparators.Comparators;
 
 /**
  *

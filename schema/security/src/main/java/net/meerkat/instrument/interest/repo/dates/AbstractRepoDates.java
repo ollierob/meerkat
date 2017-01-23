@@ -33,7 +33,7 @@ public abstract class AbstractRepoDates implements RepoDates {
 
     @Override
     @Deprecated
-    public LocalDate issued() {
+    public LocalDate issueDate() {
         return this.deal();
     }
 

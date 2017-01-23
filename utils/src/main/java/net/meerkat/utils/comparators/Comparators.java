@@ -1,4 +1,4 @@
-package net.ollie.meerkat.utils.comparators;
+package net.meerkat.utils.comparators;
 
 /**
  *

@@ -24,7 +24,7 @@ public abstract class IssuedBondDates implements BondDates {
     }
 
     @Override
-    public LocalDate issued() {
+    public LocalDate issueDate() {
         return issued;
     }
 

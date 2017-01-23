@@ -15,7 +15,7 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.meerkat.instrument.CashPayment;
+import net.meerkat.instrument.cash.CashPayment;
 
 /**
  *

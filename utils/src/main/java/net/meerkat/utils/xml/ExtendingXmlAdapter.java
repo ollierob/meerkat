@@ -1,4 +1,4 @@
-package net.ollie.meerkat.utils.xml;
+package net.meerkat.utils.xml;
 
 import java.util.function.Function;
 

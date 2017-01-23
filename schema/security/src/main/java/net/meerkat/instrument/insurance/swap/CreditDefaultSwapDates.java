@@ -28,7 +28,7 @@ public class CreditDefaultSwapDates implements Matures {
     private LocalDate maturity;
 
     @Override
-    public LocalDate matures() {
+    public LocalDate maturityDate() {
         return maturity;
     }
 

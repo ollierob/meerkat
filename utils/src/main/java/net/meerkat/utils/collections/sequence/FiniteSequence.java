@@ -1,4 +1,4 @@
-package net.ollie.meerkat.utils.collections.sequence;
+package net.meerkat.utils.collections.sequence;
 
 import java.util.AbstractList;
 import java.util.Arrays;

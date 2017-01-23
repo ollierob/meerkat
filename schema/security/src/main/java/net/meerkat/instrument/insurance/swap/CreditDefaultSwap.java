@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.instrument.derivative.swap.AbstractSwap;
 import net.meerkat.instrument.insurance.Insurance;
-import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
+import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *

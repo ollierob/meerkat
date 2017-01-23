@@ -11,7 +11,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.swap.AbstractSwap;
 import net.meerkat.instrument.interest.InterestRateDerivative;
 import net.meerkat.issuer.IssuerId;
-import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
+import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *

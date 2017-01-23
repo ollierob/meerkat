@@ -3,7 +3,7 @@ package net.meerkat.identifier.country;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.currency.Currency;
-import net.ollie.meerkat.utils.HasName;
+import net.meerkat.utils.HasName;
 
 /**
  *

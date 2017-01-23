@@ -1,7 +1,7 @@
 package net.ollie.meerkat.calculate.sensitivity.greek;
 
 import net.ollie.goat.numeric.fraction.DecimalFraction;
-import net.ollie.meerkat.utils.Accumulator;
+import net.meerkat.utils.Accumulator;
 
 /**
  *

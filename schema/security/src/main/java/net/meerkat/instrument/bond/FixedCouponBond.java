@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.CashPayment;
+import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.bond.dates.MaturingBondDates;
@@ -79,7 +79,7 @@ public class FixedCouponBond
     }
 
     public LocalDate maturity() {
-        return this.dates().matures();
+        return this.dates().maturityDate();
     }
 
     @Override

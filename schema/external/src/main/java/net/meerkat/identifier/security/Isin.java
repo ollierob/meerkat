@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.country.CountryIso;
 import net.meerkat.identifier.instrument.InstrumentId;
-import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
+import net.meerkat.utils.algorithm.LuhnAlgorithm;
 
 /**
  *

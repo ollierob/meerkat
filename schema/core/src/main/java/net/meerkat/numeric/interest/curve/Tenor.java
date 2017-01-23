@@ -14,7 +14,7 @@ import net.ollie.goat.temporal.date.count.ActualActualAccrualFactor;
 import net.ollie.goat.temporal.date.count.YearCount;
 import net.ollie.goat.temporal.date.years.PeriodYears;
 import net.ollie.goat.temporal.date.years.Years;
-import net.ollie.meerkat.utils.HasName;
+import net.meerkat.utils.HasName;
 
 /**
  *

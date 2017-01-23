@@ -51,7 +51,7 @@ public class CertificateOfDeposit
     }
 
     @Override
-    public LocalDate issued() {
+    public LocalDate issueDate() {
         return issued;
     }
 

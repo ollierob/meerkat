@@ -30,7 +30,7 @@ public class TermRepoDates extends AbstractRepoDates implements Termed {
 
     @Override
     @Deprecated
-    public LocalDate matures() {
+    public LocalDate maturityDate() {
         return far;
     }
 

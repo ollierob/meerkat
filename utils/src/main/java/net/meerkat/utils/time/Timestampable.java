@@ -1,8 +1,8 @@
-package net.ollie.meerkat.utils.time;
+package net.meerkat.utils.time;
 
 import java.time.Instant;
 
-import net.ollie.meerkat.utils.SelfTyped;
+import net.meerkat.utils.SelfTyped;
 
 /**
  *

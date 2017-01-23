@@ -13,7 +13,7 @@ import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.derivative.swap.AbstractSwap;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.numeric.interest.InterestRateId;
-import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
+import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *

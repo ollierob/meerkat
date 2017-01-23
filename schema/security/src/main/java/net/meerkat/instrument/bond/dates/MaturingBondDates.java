@@ -28,7 +28,7 @@ public class MaturingBondDates extends IssuedBondDates implements Termed {
     }
 
     @Override
-    public LocalDate matures() {
+    public LocalDate maturityDate() {
         return matures;
     }
 

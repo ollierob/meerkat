@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.numeric.quantity.Quantity;
 import net.meerkat.identifier.position.PositionId;
-import net.ollie.meerkat.utils.HasName;
+import net.meerkat.utils.HasName;
 
 /**
  *

@@ -12,7 +12,7 @@ public interface Termed extends Issued, Matures {
 
     @Nonnull
     default Period term() {
-        return Period.between(this.issued(), this.matures());
+        return Period.between(this.issueDate(), this.maturityDate());
     }
 
 }

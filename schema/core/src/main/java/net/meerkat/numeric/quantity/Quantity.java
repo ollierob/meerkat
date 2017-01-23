@@ -8,8 +8,8 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 import net.ollie.goat.numeric.BigDecimals;
 import net.ollie.goat.numeric.Numeric;
-import net.ollie.meerkat.utils.Accumulator;
-import net.ollie.meerkat.utils.xml.ExtendingXmlAdapter;
+import net.meerkat.utils.Accumulator;
+import net.meerkat.utils.xml.ExtendingXmlAdapter;
 
 /**
  *

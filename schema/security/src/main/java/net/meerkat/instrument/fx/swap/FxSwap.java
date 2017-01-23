@@ -7,7 +7,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.swap.AbstractSwap;
 import net.meerkat.instrument.fx.FxDerivative;
 import net.meerkat.issuer.IssuerId;
-import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
+import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *

@@ -3,7 +3,7 @@ package net.meerkat.instrument.derivative.swap;
 import javax.annotation.Nonnull;
 
 import net.meerkat.instrument.Security;
-import net.ollie.meerkat.utils.collections.sequence.Sequence;
+import net.meerkat.utils.collections.sequence.Sequence;
 
 /**
  *

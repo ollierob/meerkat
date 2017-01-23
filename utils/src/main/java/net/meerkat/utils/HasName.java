@@ -1,4 +1,4 @@
-package net.ollie.meerkat.utils;
+package net.meerkat.utils;
 
 import javax.annotation.Nonnull;
 

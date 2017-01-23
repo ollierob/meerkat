@@ -1,4 +1,4 @@
-package net.ollie.meerkat.utils.time;
+package net.meerkat.utils.time;
 
 import java.time.Instant;
 
