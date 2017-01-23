@@ -18,9 +18,17 @@ public interface Explainable {
     @Nonnull
     Map<String, Object> explain();
 
+    default ExplanationBuilder explanationBuilder() {
+        return new ExplanationBuilder(this.getClass());
+    }
+
     class ExplanationBuilder extends AbstractMap<String, Object> implements Explainable {
 
         private final Map<String, Object> explanation = new HashMap<>();
+
+        public ExplanationBuilder(final Class<?> clazz) {
+            explanation.put("class", clazz);
+        }
 
         @Override
         public ExplanationBuilder put(final String key, final Object value) {

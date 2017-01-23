@@ -7,11 +7,11 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.rating.CreditRating;
 import net.meerkat.rating.HasCreditRating;
-import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  *
@@ -20,7 +20,10 @@ import net.meerkat.identifier.instrument.InstrumentId;
 @XmlRootElement
 public class Issue implements HasCreditRating {
 
-    @XmlElementRef(name = "issuer")
+    @XmlElementRef(name = "issueId")
+    private IssueId issueId;
+
+    @XmlElementRef(name = "issuerId")
     private IssuerId issuerId;
 
     @XmlElement(name = "ids")
@@ -37,6 +40,10 @@ public class Issue implements HasCreditRating {
     @Nonnull
     public <S extends InstrumentId> Optional<S> id(final Class<S> clazz) {
         return identifiers.id(clazz);
+    }
+
+    public IssueId issueId() {
+        return issueId;
     }
 
     public IssuerId issuerId() {

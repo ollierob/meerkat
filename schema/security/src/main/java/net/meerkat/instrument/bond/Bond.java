@@ -4,11 +4,11 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.instrument.Callable;
 import net.meerkat.instrument.InstrumentDefinition;
+import net.meerkat.instrument.Security;
 import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.BondDates;
 import net.meerkat.money.Money;
-import net.meerkat.instrument.Security;
 
 /**
  *
@@ -36,7 +36,7 @@ public interface Bond extends Security, InstrumentDefinition, Callable<BondCall>
 
     @Override
     default ExplanationBuilder explain() {
-        return new ExplanationBuilder()
+        return this.explanationBuilder()
                 .put("par", this.par())
                 .put("coupons", this.coupons())
                 .put("dates", this.dates())

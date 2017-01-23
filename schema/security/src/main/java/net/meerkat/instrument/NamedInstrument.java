@@ -58,7 +58,7 @@ public class NamedInstrument
     @Override
     @OverridingMethodsMustInvokeSuper
     public ExplanationBuilder explain() {
-        return new ExplanationBuilder()
+        return this.explanationBuilder()
                 .put("name", name)
                 .put("id", identifiers)
                 .put("type", this.getClass().getSimpleName());

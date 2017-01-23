@@ -6,19 +6,19 @@ import java.util.function.BiFunction;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.Money;
-import net.meerkat.money.interest.InterestRate;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.cash.CashPayment;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.fx.ExchangeRates;
+import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.collection.list.Lists;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
-import net.meerkat.money.fx.ExchangeRates;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
-import net.meerkat.money.currency.CurrencyId;
 
 /**
  *

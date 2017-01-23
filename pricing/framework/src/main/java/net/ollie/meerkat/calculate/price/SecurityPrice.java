@@ -2,10 +2,10 @@ package net.ollie.meerkat.calculate.price;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.Money;
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.Explainable;
+import net.meerkat.money.Money;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.HasCurrency;
 
 /**
  *
@@ -31,7 +31,7 @@ public interface SecurityPrice<C extends CurrencyId> extends HasCurrency, Explai
 
     @Override
     default ExplanationBuilder explain() {
-        return new ExplanationBuilder()
+        return this.explanationBuilder()
                 .put("clean", this.clean())
                 .put("dirty", this.dirty());
     }

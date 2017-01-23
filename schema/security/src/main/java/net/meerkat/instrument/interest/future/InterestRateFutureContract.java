@@ -5,14 +5,13 @@ import java.util.Map;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.money.Money;
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.Explainable;
+import net.meerkat.instrument.Instrument;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.HasCurrency;
 
 import org.apache.commons.math3.fraction.Fraction;
-
-import net.meerkat.instrument.Instrument;
-import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -52,7 +51,7 @@ public class InterestRateFutureContract
 
     @Override
     public Map<String, Object> explain() {
-        return new ExplanationBuilder()
+        return this.explanationBuilder()
                 .put("notional", notional)
                 .put("years", accrual);
     }

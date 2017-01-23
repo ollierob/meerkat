@@ -72,7 +72,7 @@ public class FxSwapLeg implements SwapLeg, Explainable {
 
     @Override
     public Map<String, Object> explain() {
-        return new ExplanationBuilder()
+        return this.explanationBuilder()
                 .put("date", date)
                 .put("pay", pay)
                 .put("receive", receive);

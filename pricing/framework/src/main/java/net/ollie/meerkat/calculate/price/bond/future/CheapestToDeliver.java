@@ -5,11 +5,11 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.Explainable;
-import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.HasCurrency;
+import net.ollie.meerkat.calculate.price.bond.BondPrice;
 
 /**
  *
@@ -34,7 +34,7 @@ public interface CheapestToDeliver<C extends CurrencyId>
 
     @Override
     default Map<String, Object> explain() {
-        return new ExplanationBuilder()
+        return this.explanationBuilder()
                 .put("bond", this.bond())
                 .put("price", this.price())
                 .put("conversion factor", this.conversionFactor())

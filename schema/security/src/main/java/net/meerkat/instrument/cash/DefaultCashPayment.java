@@ -47,7 +47,7 @@ public class DefaultCashPayment<C extends CurrencyId> implements CashPayment<C>,
 
     @Override
     public ExplanationBuilder explain() {
-        return new ExplanationBuilder()
+        return this.explanationBuilder()
                 .put("date", date)
                 .put("amount", amount);
     }

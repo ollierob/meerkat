@@ -137,7 +137,7 @@ public class Isin
 
     @Override
     public ExplanationBuilder explain() {
-        return new ExplanationBuilder()
+        return new ExplanationBuilder(this.getClass())
                 .put("country", country)
                 .put("nsin", nsin)
                 .put("check digit", checkDigit);
