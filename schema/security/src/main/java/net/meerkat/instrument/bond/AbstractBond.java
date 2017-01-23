@@ -5,10 +5,11 @@ import java.util.Optional;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
-import net.meerkat.money.Money;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.bond.call.BondCall;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
 
 /**
  *
@@ -27,14 +28,23 @@ public abstract class AbstractBond
     @XmlElementRef(name = "call")
     private BondCall call;
 
+    @XmlElementRef(name = "issuer")
+    private IssuerId issuer;
+
     @Deprecated
     protected AbstractBond() {
     }
 
-    protected AbstractBond(final String name, final InstrumentIds identifiers, final Money<?> par, final BondCall call) {
+    protected AbstractBond(
+            final String name,
+            final InstrumentIds identifiers,
+            final Money<?> par,
+            final BondCall call,
+            final IssuerId issuer) {
         super(name, identifiers);
         this.par = par;
         this.call = call;
+        this.issuer = issuer;
     }
 
     @Override
@@ -45,6 +55,11 @@ public abstract class AbstractBond
     @Override
     public Optional<BondCall> call() {
         return Optional.ofNullable(call);
+    }
+
+    @Override
+    public IssuerId issuerId() {
+        return issuer;
     }
 
 }

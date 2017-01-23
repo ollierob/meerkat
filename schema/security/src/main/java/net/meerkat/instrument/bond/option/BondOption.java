@@ -1,6 +1,6 @@
 package net.meerkat.instrument.bond.option;
 
-import net.meerkat.instrument.NamedInstrument;
+import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.instrument.bond.BondDerivative;
 
@@ -9,7 +9,7 @@ import net.meerkat.instrument.bond.BondDerivative;
  * @author Ollie
  */
 public class BondOption
-        extends NamedInstrument
+        extends IssuedSecurity
         implements BondDerivative<Bond> {
 
     @Deprecated

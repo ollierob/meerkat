@@ -2,14 +2,14 @@ package net.meerkat.instrument.derivative.swap;
 
 import javax.annotation.Nonnull;
 
+import net.meerkat.instrument.Security;
 import net.ollie.meerkat.utils.collections.sequence.Sequence;
-import net.meerkat.security.Instrument;
 
 /**
  *
  * @author Ollie
  */
-public interface Swap extends Instrument {
+public interface Swap extends Security {
 
     @Nonnull
     Sequence<? extends SwapLeg> legs();

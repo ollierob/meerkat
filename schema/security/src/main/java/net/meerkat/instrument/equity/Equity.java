@@ -1,12 +1,13 @@
 package net.meerkat.instrument.equity;
 
 import net.meerkat.instrument.InstrumentDefinition;
+import net.meerkat.instrument.Security;
 
 /**
  *
  * @author Ollie
  */
-public interface Equity extends InstrumentDefinition {
+public interface Equity extends InstrumentDefinition, Security {
 
     @Override
     @Deprecated

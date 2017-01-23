@@ -5,11 +5,12 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
 import net.coljate.set.Set;
+import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.derivative.forward.FutureDeliveryDates;
 import net.meerkat.instrument.interest.InterestRateDerivative;
-import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *
@@ -39,8 +40,9 @@ public class BondFuture
             final String name,
             final InstrumentIds identifiers,
             final Set<InstrumentIds> basket,
-            final FutureDeliveryDates deliveryDates) {
-        super(name, identifiers);
+            final FutureDeliveryDates deliveryDates,
+            final IssuerId issuer) {
+        super(name, identifiers, issuer);
         this.basket = basket;
         this.deliveryDates = deliveryDates;
     }

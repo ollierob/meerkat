@@ -17,7 +17,7 @@ import net.meerkat.instrument.InstrumentDefinition;
  * @author Ollie
  */
 @XmlRootElement
-public class FxForward extends NamedInstrument implements FxSecurity {
+public class FxForward extends NamedInstrument implements FxInstrument {
 
     private static final long serialVersionUID = 1L;
 
@@ -63,7 +63,7 @@ public class FxForward extends NamedInstrument implements FxSecurity {
     }
 
     @Override
-    public <R> R handleWith(final FxSecurity.Handler<R> handler) {
+    public <R> R handleWith(final FxInstrument.Handler<R> handler) {
         return handler.handle(this);
     }
 

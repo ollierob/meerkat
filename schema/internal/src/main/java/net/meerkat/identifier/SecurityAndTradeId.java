@@ -7,10 +7,10 @@ import java.io.ObjectOutput;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.meerkat.identifier.trade.HasTradeId;
-import net.meerkat.identifier.trade.TradeId;
 import net.meerkat.identifier.instrument.HasInstrumentId;
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.identifier.trade.HasTradeId;
+import net.meerkat.identifier.trade.TradeId;
 
 /**
  *
@@ -18,6 +18,8 @@ import net.meerkat.identifier.instrument.InstrumentId;
  */
 public class SecurityAndTradeId
         implements HasInstrumentId, HasTradeId, Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "security")
     private InstrumentId securityId;

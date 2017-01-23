@@ -19,6 +19,11 @@
             <artifactId>meerkat-schema-internal</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>meerkat-schema-issue</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     
 </project>

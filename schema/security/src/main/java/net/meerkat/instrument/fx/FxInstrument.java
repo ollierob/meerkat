@@ -16,7 +16,7 @@ import net.meerkat.instrument.InstrumentDefinition;
  *
  * @author Ollie
  */
-public interface FxSecurity extends InstrumentDefinition, HasCurrencies {
+public interface FxInstrument extends InstrumentDefinition, HasCurrencies {
 
     Money<?> base();
 
@@ -34,18 +34,18 @@ public interface FxSecurity extends InstrumentDefinition, HasCurrencies {
     }
 
     @Deprecated
-    default FxSecurity instrument() {
+    default FxInstrument instrument() {
         return this;
     }
 
     @Override
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
-        return handler instanceof FxSecurity.Handler
-                ? this.handleWith((FxSecurity.Handler<R>) handler)
+        return handler instanceof FxInstrument.Handler
+                ? this.handleWith((FxInstrument.Handler<R>) handler)
                 : handler.handle(this);
     }
 
-    <R> R handleWith(FxSecurity.Handler<R> handler);
+    <R> R handleWith(FxInstrument.Handler<R> handler);
 
     interface Handler<R>
             extends InstrumentDefinition.Handler<R> {

@@ -10,13 +10,13 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.organization.Organization;
 import net.meerkat.rating.CreditRating;
-import net.meerkat.rating.HasCreditRating;
 
 /**
  *
  * @author ollie
+ * @see CreditRating
  */
-public class Issuer implements HasCreditRating, HasIssuerId, Externalizable {
+public class Issuer implements HasIssuerId, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,17 +26,9 @@ public class Issuer implements HasCreditRating, HasIssuerId, Externalizable {
     @XmlElementRef(name = "organization", required = false)
     private Organization organization;
 
-    @XmlElementRef(name = "rating")
-    private CreditRating rating;
-
     @Nonnull
     public Organization organization() {
         return organization;
-    }
-
-    @Override
-    public CreditRating creditRating() {
-        return rating;
     }
 
     @Override
@@ -48,14 +40,12 @@ public class Issuer implements HasCreditRating, HasIssuerId, Externalizable {
     public void writeExternal(final ObjectOutput out) throws IOException {
         out.writeObject(id);
         out.writeObject(organization);
-        out.writeObject(rating);
     }
 
     @Override
     public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
         this.id = (IssuerId) in.readObject();
         this.organization = (Organization) in.readObject();
-        this.rating = (CreditRating) in.readObject();
     }
 
 }

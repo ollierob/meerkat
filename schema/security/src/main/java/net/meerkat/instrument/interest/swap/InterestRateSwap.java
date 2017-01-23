@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.swap.AbstractSwap;
 import net.meerkat.instrument.interest.InterestRateDerivative;
+import net.meerkat.issuer.IssuerId;
 import net.ollie.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
@@ -34,8 +35,9 @@ public class InterestRateSwap
     public InterestRateSwap(
             final String name,
             final InstrumentIds identifiers,
+            final IssuerId issuer,
             final LocalDate tradeDate) {
-        super(name, identifiers);
+        super(name, identifiers, issuer);
         this.tradeDate = tradeDate;
     }
 

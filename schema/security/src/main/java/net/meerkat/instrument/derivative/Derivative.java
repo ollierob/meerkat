@@ -1,15 +1,15 @@
 package net.meerkat.instrument.derivative;
 
-
 import javax.annotation.Nonnull;
 
+import net.meerkat.instrument.Security;
 import net.meerkat.security.Instrument;
 
 /**
  *
  * @author ollie
  */
-public interface Derivative<S extends Instrument> extends Instrument {
+public interface Derivative<S extends Instrument> extends Security {
 
     @Nonnull
     S underlying();

@@ -8,15 +8,16 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
-import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.numeric.interest.InterestRateSecurity;
+import net.meerkat.instrument.CashPayment;
 import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.bond.dates.MaturingBondDates;
-import net.meerkat.instrument.CashPayment;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.numeric.interest.InterestRateSecurity;
 
 /**
  *
@@ -50,8 +51,9 @@ public class FixedCouponBond
             final Money<?> couponAmount,
             final FixedInterestRate couponRate,
             final List<LocalDate> couponDates,
-            final BondCall call) {
-        super(name, identifiers, par, dates, call);
+            final BondCall call,
+            final IssuerId issuer) {
+        super(name, identifiers, par, dates, call, issuer);
         this.couponRate = couponRate;
         this.couponAmount = couponAmount;
         this.couponDates = couponDates;

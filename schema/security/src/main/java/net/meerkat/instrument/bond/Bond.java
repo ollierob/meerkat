@@ -2,18 +2,19 @@ package net.meerkat.instrument.bond;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.Money;
 import net.meerkat.instrument.Callable;
+import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.BondDates;
-import net.meerkat.instrument.InstrumentDefinition;
+import net.meerkat.money.Money;
+import net.meerkat.instrument.Security;
 
 /**
  *
  * @author Ollie
  */
-public interface Bond extends InstrumentDefinition, Callable<BondCall> {
+public interface Bond extends Security, InstrumentDefinition, Callable<BondCall> {
 
     @Nonnull
     Money<?> par();
@@ -40,6 +41,11 @@ public interface Bond extends InstrumentDefinition, Callable<BondCall> {
                 .put("coupons", this.coupons())
                 .put("dates", this.dates())
                 .put("call", this.call());
+    }
+
+    @Override
+    default Bond instrument() {
+        return this;
     }
 
     @Override

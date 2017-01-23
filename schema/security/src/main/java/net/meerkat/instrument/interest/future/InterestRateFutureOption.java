@@ -21,7 +21,7 @@ public class InterestRateFutureOption
     @Deprecated
     InterestRateFutureOption() {
     }
-
+    
     @Override
     public InterestRateFuture underlying() {
         return underlying;

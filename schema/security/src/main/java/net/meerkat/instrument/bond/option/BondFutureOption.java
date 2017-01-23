@@ -3,13 +3,14 @@ package net.meerkat.instrument.bond.option;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.money.Money;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.numeric.quantity.Quantity;
 import net.meerkat.instrument.bond.BondDerivative;
-import net.meerkat.instrument.interest.future.BondFuture;
 import net.meerkat.instrument.derivative.option.AbstractOption;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
+import net.meerkat.instrument.interest.future.BondFuture;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
+import net.meerkat.numeric.quantity.Quantity;
 
 /**
  *
@@ -32,12 +33,13 @@ public class BondFutureOption
     public BondFutureOption(
             final String name,
             final InstrumentIds identifiers,
+            final IssuerId issuer,
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
             final Quantity contractMultiplier,
             final BondFuture future) {
-        super(name, identifiers, exercise, premium, strike, contractMultiplier);
+        super(name, identifiers, issuer, exercise, premium, strike, contractMultiplier);
         this.future = future;
     }
 

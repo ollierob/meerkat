@@ -2,12 +2,13 @@ package net.meerkat.instrument.interest.future;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.meerkat.money.currency.Currency;
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.derivative.forward.FutureDeliveryDates;
 import net.meerkat.instrument.interest.InterestRateDerivative;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.HasCurrency;
 
 /**
  *
@@ -33,8 +34,9 @@ public class InterestRateFuture
             final String name,
             final InstrumentIds identifiers,
             final InterestRateFutureContract contract,
-            final FutureDeliveryDates dates) {
-        super(name, identifiers);
+            final FutureDeliveryDates dates,
+            final IssuerId issuer) {
+        super(name, identifiers, issuer);
         this.contract = contract;
         this.dates = dates;
     }
