@@ -7,7 +7,7 @@ import net.meerkat.instrument.cash.CashForCollateral;
 import net.meerkat.instrument.interest.MoneyMarketSecurity;
 import net.meerkat.instrument.interest.repo.dates.RepoDates;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.InstrumentDefinition;
 
 /**

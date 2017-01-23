@@ -4,7 +4,7 @@ import net.meerkat.instrument.bond.option.BondFutureOption;
 import net.meerkat.instrument.bond.option.BondOption;
 import net.meerkat.instrument.bond.swap.BondAssetSwap;
 import net.meerkat.instrument.derivative.Derivative;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.InstrumentDefinition;
 
 /**

@@ -2,7 +2,7 @@ package net.ollie.meerkat.calculate.price;
 
 import java.time.temporal.Temporal;
 
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 import net.meerkat.money.currency.CurrencyId;
 
 /**

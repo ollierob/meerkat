@@ -7,7 +7,7 @@ import net.meerkat.money.Money;
 import net.meerkat.numeric.quantity.Quantity;
 import net.meerkat.instrument.derivative.Derivative;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 
 /**
  *

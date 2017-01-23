@@ -8,7 +8,6 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.Explainable;
 import net.meerkat.utils.HasName;
-import net.meerkat.security.Instrument;
 import net.meerkat.identifier.instrument.HasInstrumentIds;
 
 /**

@@ -1,4 +1,4 @@
-package net.meerkat.security;
+package net.meerkat.instrument;
 
 import javax.annotation.Nonnull;
 

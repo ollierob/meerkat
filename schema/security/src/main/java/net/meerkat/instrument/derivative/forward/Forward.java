@@ -1,7 +1,7 @@
 package net.meerkat.instrument.derivative.forward;
 
 import net.meerkat.instrument.derivative.Derivative;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 
 /**
  *

@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.instrument.HasInstrumentIds;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.security.Instrument;
 import net.meerkat.utils.HasName;
 
 /**

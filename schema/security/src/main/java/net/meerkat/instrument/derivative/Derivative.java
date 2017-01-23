@@ -3,7 +3,7 @@ package net.meerkat.instrument.derivative;
 import javax.annotation.Nonnull;
 
 import net.meerkat.instrument.Security;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 
 /**
  *

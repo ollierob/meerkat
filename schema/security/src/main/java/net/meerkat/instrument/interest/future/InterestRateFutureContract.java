@@ -11,7 +11,7 @@ import net.meerkat.Explainable;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 import net.meerkat.money.currency.CurrencyId;
 
 /**

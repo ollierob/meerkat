@@ -1,6 +1,6 @@
 package net.meerkat.instrument.insurance;
 
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 
 /**
  *

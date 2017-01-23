@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.issuer.IssuerId;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 
 /**
  *

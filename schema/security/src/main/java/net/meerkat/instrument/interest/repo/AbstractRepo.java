@@ -11,7 +11,7 @@ import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.instrument.interest.repo.dates.RepoDates;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
 import net.meerkat.issuer.IssuerId;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 
 /**
  *

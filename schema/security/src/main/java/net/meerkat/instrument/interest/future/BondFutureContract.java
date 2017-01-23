@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.numeric.interest.InterestRateSecurity;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 
 /**
  *

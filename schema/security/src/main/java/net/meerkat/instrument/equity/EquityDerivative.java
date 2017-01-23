@@ -4,7 +4,7 @@ import net.meerkat.instrument.derivative.Derivative;
 import net.meerkat.instrument.equity.future.StockIndexFuture;
 import net.meerkat.instrument.equity.option.StockIndexOption;
 import net.meerkat.instrument.equity.option.Warrant;
-import net.meerkat.security.Instrument;
+import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.InstrumentDefinition;
 
 /**
