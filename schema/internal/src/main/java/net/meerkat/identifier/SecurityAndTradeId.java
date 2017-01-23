@@ -7,27 +7,27 @@ import java.io.ObjectOutput;
 
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.meerkat.identifier.security.HasSecurityId;
-import net.meerkat.identifier.security.SecurityId;
 import net.meerkat.identifier.trade.HasTradeId;
 import net.meerkat.identifier.trade.TradeId;
+import net.meerkat.identifier.instrument.HasInstrumentId;
+import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  *
  * @author ollie
  */
 public class SecurityAndTradeId
-        implements HasSecurityId, HasTradeId, Externalizable {
+        implements HasInstrumentId, HasTradeId, Externalizable {
 
     @XmlElementRef(name = "security")
-    private SecurityId securityId;
+    private InstrumentId securityId;
 
     @XmlElementRef(name = "trade")
     private TradeId tradeId;
 
     @Override
-    public SecurityId securityId() {
-        return securityId.securityId();
+    public InstrumentId instrumentId() {
+        return securityId.instrumentId();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class SecurityAndTradeId
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        securityId = (SecurityId) in.readObject();
+        securityId = (InstrumentId) in.readObject();
         tradeId = (TradeId) in.readObject();
     }
 

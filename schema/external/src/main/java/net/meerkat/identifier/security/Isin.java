@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.Explainable;
 import net.meerkat.identifier.country.CountryIso;
+import net.meerkat.identifier.instrument.InstrumentId;
 import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
 
 /**
@@ -22,7 +23,7 @@ import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
  */
 @XmlRootElement
 public class Isin
-        implements SecurityId, HasCheckDigit, HasNsin, Explainable, Externalizable {
+        implements InstrumentId, HasCheckDigit, HasNsin, Explainable, Externalizable {
 
     private static final long serialVersionUID = 1L;
 

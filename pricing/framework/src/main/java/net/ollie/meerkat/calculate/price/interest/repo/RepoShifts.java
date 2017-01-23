@@ -11,7 +11,7 @@ import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.meerkat.security.interest.repo.rate.RepoRate;
+import net.meerkat.instrument.interest.repo.rate.RepoRate;
 
 /**
  *

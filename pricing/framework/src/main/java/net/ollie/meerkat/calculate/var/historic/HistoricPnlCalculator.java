@@ -5,7 +5,7 @@ import java.util.Map;
 
 import net.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.meerkat.identifier.security.SecurityId;
+import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  *
@@ -14,7 +14,7 @@ import net.meerkat.identifier.security.SecurityId;
 public interface HistoricPnlCalculator {
 
     <C extends Currency> HistoricPnl<C> pnl(
-            SecurityId security,
+            InstrumentId security,
             C currency,
             LocalDate valuation,
             Map<LocalDate, SecurityShifts> shifts);

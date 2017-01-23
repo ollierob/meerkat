@@ -11,10 +11,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.MarketId;
-import net.meerkat.identifier.security.HasSecurityId;
-import net.meerkat.identifier.security.SecurityId;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.identifier.instrument.HasInstrumentId;
+import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  *
@@ -22,12 +22,12 @@ import net.meerkat.money.currency.HasCurrency;
  */
 @XmlRootElement
 public class SecurityAndMarketId
-        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrency, Externalizable {
+        implements SecurityInMarketId, HasInstrumentId, HasMarketId, HasCurrency, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "security")
-    private SecurityId security;
+    private InstrumentId security;
 
     @XmlElementRef(name = "market")
     private MarketId market;
@@ -39,14 +39,14 @@ public class SecurityAndMarketId
     SecurityAndMarketId() {
     }
 
-    public SecurityAndMarketId(final SecurityId security, final Currency currency, final MarketId market) {
+    public SecurityAndMarketId(final InstrumentId security, final Currency currency, final MarketId market) {
         this.security = security;
         this.currency = currency;
         this.market = market;
     }
 
     @Override
-    public SecurityId securityId() {
+    public InstrumentId instrumentId() {
         return security;
     }
 
@@ -69,7 +69,7 @@ public class SecurityAndMarketId
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        security = (SecurityId) in.readObject();
+        security = (InstrumentId) in.readObject();
         market = (MarketId) in.readObject();
         currency = (Currency) in.readObject();
     }

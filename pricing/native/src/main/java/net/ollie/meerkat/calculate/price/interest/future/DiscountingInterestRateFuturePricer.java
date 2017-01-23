@@ -10,7 +10,7 @@ import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.security.interest.future.InterestRateFuture;
+import net.meerkat.instrument.interest.future.InterestRateFuture;
 
 import org.apache.commons.math3.fraction.Fraction;
 

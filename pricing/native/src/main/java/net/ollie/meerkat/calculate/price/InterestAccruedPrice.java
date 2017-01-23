@@ -6,11 +6,11 @@ import net.meerkat.money.Money;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.security.SecurityDefinition;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
+import net.meerkat.instrument.InstrumentDefinition;
 
 /**
  *
@@ -19,7 +19,7 @@ import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 public class InterestAccruedPrice<F extends Currency, C extends Currency>
         implements ShiftableSecurityPrice<C> {
 
-    private final SecurityDefinition security;
+    private final InstrumentDefinition security;
     private final Money<F> notional;
     private final InterestRate interestRate;
     private final ExchangeRate<F, C> fxRate;
@@ -27,7 +27,7 @@ public class InterestAccruedPrice<F extends Currency, C extends Currency>
     private final SecurityShifts shifts;
 
     public InterestAccruedPrice(
-            final SecurityDefinition security,
+            final InstrumentDefinition security,
             final Money<F> notional,
             final InterestRate interestRate,
             final ExchangeRate<F, C> fxRate,

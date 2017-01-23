@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.identifier.security.SecurityIds;
+import net.meerkat.identifier.instrument.InstrumentIds;
 
 /**
  *
@@ -14,6 +14,6 @@ import net.meerkat.identifier.security.SecurityIds;
 public interface CheapestToDeliverProvider<T extends Temporal> {
 
     @Nonnull
-    Optional<CheapestToDeliver<?>> get(T temporal, SecurityIds bondFutureId);
+    Optional<CheapestToDeliver<?>> get(T temporal, InstrumentIds bondFutureId);
 
 }

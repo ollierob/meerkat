@@ -1,12 +1,12 @@
 package net.meerkat.security.interest.repo;
 
-import net.meerkat.security.interest.repo.BondRepo;
+import net.meerkat.instrument.interest.repo.BondRepo;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
-import net.meerkat.identifier.security.SecurityIds;
-import net.meerkat.security.bond.Bond;
-import net.meerkat.security.interest.repo.dates.RepoDates;
-import net.meerkat.security.interest.repo.rate.RepoRate;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.bond.Bond;
+import net.meerkat.instrument.interest.repo.dates.RepoDates;
+import net.meerkat.instrument.interest.repo.rate.RepoRate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -40,7 +40,7 @@ public class BondRepoTest {
     @Ignore
     public void testHaircut_Null() {
 
-        final SecurityIds mockIds = mock(SecurityIds.class);
+        final InstrumentIds mockIds = mock(InstrumentIds.class);
         final BondRepo repo = new BondRepo("name", mockIds, mockRate, mockBond, mockDates, null);
         assertThat(repo.haircut(), is(DecimalPercentage.ZERO_PERCENT));
 

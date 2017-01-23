@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     
-    <name>schema-security</name>
+    <name>schema-instrument</name>
     <artifactId>meerkat-schema-security</artifactId>
     <packaging>jar</packaging>
     

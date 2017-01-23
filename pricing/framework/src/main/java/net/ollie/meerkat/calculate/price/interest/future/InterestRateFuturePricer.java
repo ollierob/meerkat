@@ -5,7 +5,7 @@ import java.time.temporal.Temporal;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.currency.Currency;
-import net.meerkat.security.interest.future.InterestRateFuture;
+import net.meerkat.instrument.interest.future.InterestRateFuture;
 
 /**
  *

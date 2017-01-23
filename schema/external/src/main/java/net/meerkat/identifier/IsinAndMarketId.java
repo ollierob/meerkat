@@ -14,8 +14,8 @@ import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
-import net.meerkat.identifier.security.HasSecurityId;
 import net.meerkat.identifier.security.Isin;
+import net.meerkat.identifier.instrument.HasInstrumentId;
 
 /**
  *
@@ -23,7 +23,7 @@ import net.meerkat.identifier.security.Isin;
  */
 @XmlRootElement
 public class IsinAndMarketId
-        implements SecurityInMarketId, HasSecurityId, HasMarketId, HasCurrency, Explainable, Externalizable {
+        implements SecurityInMarketId, HasInstrumentId, HasMarketId, HasCurrency, Explainable, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -47,7 +47,7 @@ public class IsinAndMarketId
     }
 
     @Override
-    public Isin securityId() {
+    public Isin instrumentId() {
         return isin;
     }
 

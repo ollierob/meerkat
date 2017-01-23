@@ -8,17 +8,17 @@ import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
+import net.meerkat.instrument.CashPayment;
+import net.meerkat.instrument.bond.FixedCouponBond;
+import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
+import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.security.bond.FixedCouponBond;
-import net.meerkat.security.bond.FixedCouponBond.FixedCouponBondCoupons;
-import net.meerkat.security.bond.coupon.FixedRateCoupon;
-import net.meerkat.security.CashPayment;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
-import net.meerkat.money.fx.ExchangeRates;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
 
 /**

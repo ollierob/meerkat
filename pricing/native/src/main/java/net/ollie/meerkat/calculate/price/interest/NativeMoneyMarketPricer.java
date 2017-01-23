@@ -9,8 +9,8 @@ import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.price.InterestAccruedPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
-import net.meerkat.security.interest.CertificateOfDeposit;
-import net.meerkat.security.interest.MoneyMarketSecurity;
+import net.meerkat.instrument.interest.CertificateOfDeposit;
+import net.meerkat.instrument.interest.MoneyMarketSecurity;
 import net.meerkat.money.fx.ExchangeRates;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
 
