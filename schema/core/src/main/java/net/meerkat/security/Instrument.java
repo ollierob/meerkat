@@ -7,7 +7,7 @@ package net.meerkat.security;
 public interface Instrument extends HasInstrument {
 
     @Override
-    default Instrument security() {
+    default Instrument instrument() {
         return this;
     }
 

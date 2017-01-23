@@ -34,7 +34,7 @@ public interface FxSecurity extends InstrumentDefinition, HasCurrencies {
     }
 
     @Deprecated
-    default FxSecurity security() {
+    default FxSecurity instrument() {
         return this;
     }
 

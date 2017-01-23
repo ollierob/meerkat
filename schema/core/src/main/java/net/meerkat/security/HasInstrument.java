@@ -9,6 +9,6 @@ import javax.annotation.Nonnull;
 public interface HasInstrument {
 
     @Nonnull
-    Instrument security();
+    Instrument instrument();
 
 }
