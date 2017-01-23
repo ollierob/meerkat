@@ -1,9 +1,9 @@
 package net.meerkat.money.interest.accrual;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -17,7 +17,7 @@ public class ContinuousInterestAccrual implements InterestAccrual {
     }
 
     @Override
-    public <C extends Currency> Money<C> accrue(final Money<C> money, final Percentage annualRate, final Years term) {
+    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final Percentage annualRate, final Years term) {
         final double multiplier = Math.exp(annualRate.doubleValue() * term.doubleValue());
         return money.times(multiplier);
     }

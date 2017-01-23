@@ -8,15 +8,15 @@ import java.io.ObjectOutput;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class InverseExchangeRate<T extends Currency, F extends Currency>
+public class InverseExchangeRate<T extends CurrencyId, F extends CurrencyId>
         implements ExchangeRate<T, F>, Externalizable {
 
     private static final long serialVersionUID = 1L;

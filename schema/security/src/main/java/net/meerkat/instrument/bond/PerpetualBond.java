@@ -8,13 +8,13 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.bond.dates.PerpetualBondDates;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -64,7 +64,7 @@ public class PerpetualBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    public class PerpetualBondCoupons<C extends Currency>
+    public class PerpetualBondCoupons<C extends CurrencyId>
             implements BondCoupons<FixedRateCoupon<?>>, HasCurrency {
 
         private final Money<C> coupon;

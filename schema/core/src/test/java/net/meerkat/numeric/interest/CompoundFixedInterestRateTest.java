@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import net.meerkat.money.DecimalMoney;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.fixed.CompoundFixedInterestRate;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.temporal.date.count.FixedFixedAccrualFactor;
@@ -14,6 +13,8 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
 
+import net.meerkat.money.currency.CurrencyId;
+
 /**
  *
  * @author ollie
@@ -21,7 +22,7 @@ import static org.mockito.Mockito.mock;
 @SuppressWarnings({"unchecked", "rawtypes"})
 public class CompoundFixedInterestRateTest {
 
-    static final Currency currency = mock(Currency.class);
+    static final CurrencyId currency = mock(CurrencyId.class);
 
     @Test
     public void shouldAccrue() {

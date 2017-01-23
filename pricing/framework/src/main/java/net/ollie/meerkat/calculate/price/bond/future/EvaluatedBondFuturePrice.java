@@ -5,16 +5,16 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
 //TODO XML
-public class EvaluatedBondFuturePrice<C extends Currency>
+public class EvaluatedBondFuturePrice<C extends CurrencyId>
         extends EvaluatedSecurityPrice<C>
         implements BondFuturePrice<C> {
 

@@ -2,12 +2,12 @@ package net.ollie.meerkat.calculate.price.bond;
 
 import java.time.temporal.Temporal;
 
-import net.meerkat.money.currency.Currency;
 import net.meerkat.instrument.bond.ConvertibleBond;
 import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FloatingRateNote;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.VariableRateBond;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -35,7 +35,7 @@ public class NativeBondPricer<T extends Temporal> implements GenericBondPricer<T
     }
 
     @Override
-    public <C extends Currency> BondPriceContext<C> priceContext(
+    public <C extends CurrencyId> BondPriceContext<C> priceContext(
             final T temporal,
             final C currency) {
 

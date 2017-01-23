@@ -4,16 +4,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.instrument.cash.CashPayment;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
-public class SpotExchangedBondPrice<F extends Currency, C extends Currency>
+public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
         implements BondPrice.Shiftable<C> {
 
     private final BondPrice.Shiftable<F> bondPrice;

@@ -15,9 +15,9 @@ import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.bond.dates.MaturingBondDates;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.numeric.interest.InterestRateSecurity;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -92,7 +92,7 @@ public class FixedCouponBond
         return handler.handle(this);
     }
 
-    public class FixedCouponBondCoupons<C extends Currency> extends StraightBondCoupons<FixedRateCoupon<C>> {
+    public class FixedCouponBondCoupons<C extends CurrencyId> extends StraightBondCoupons<FixedRateCoupon<C>> {
 
         private final Money<C> couponAmount;
 

@@ -12,24 +12,24 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.BigDecimals;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class DecimalMoney<C extends Currency>
+public class DecimalMoney<C extends CurrencyId>
         implements Money<C>, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
-    public static <C extends Currency> DecimalMoney<C> valueOf(final C currency, final Number amount) {
+    public static <C extends CurrencyId> DecimalMoney<C> valueOf(final C currency, final Number amount) {
         return new DecimalMoney<>(currency, BigDecimals.toBigDecimal(amount));
     }
 
-    public static <C extends Currency> DecimalMoney<C> valueOf(final C currency, final double amount) {
+    public static <C extends CurrencyId> DecimalMoney<C> valueOf(final C currency, final double amount) {
         return new DecimalMoney<>(currency, BigDecimal.valueOf(amount));
     }
 

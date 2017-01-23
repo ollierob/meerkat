@@ -10,14 +10,14 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
 @XmlRootElement
-public class EvaluatedSecurityPrice<C extends Currency>
+public class EvaluatedSecurityPrice<C extends CurrencyId>
         implements SecurityPrice<C>, Externalizable {
 
     private static final long serialVersionUID = 1L;

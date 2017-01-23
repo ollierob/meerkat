@@ -9,13 +9,14 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyIso;
+import net.meerkat.identifier.instrument.HasInstrumentId;
+import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
 import net.meerkat.identifier.security.Isin;
-import net.meerkat.identifier.instrument.HasInstrumentId;
+import net.meerkat.money.currency.HasCurrency;
 
 /**
  *
@@ -23,7 +24,7 @@ import net.meerkat.identifier.instrument.HasInstrumentId;
  */
 @XmlRootElement
 public class IsinAndMarketId
-        implements SecurityInMarketId, HasInstrumentId, HasMarketId, HasCurrency, Explainable, Externalizable {
+        implements InstrumentInMarketId, HasInstrumentId, HasMarketId, HasCurrency, Explainable, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,6 +50,11 @@ public class IsinAndMarketId
     @Override
     public Isin instrumentId() {
         return isin;
+    }
+
+    @Override
+    public InstrumentIds instrumentIds() {
+        return HasInstrumentId.super.instrumentIds();
     }
 
     @Override

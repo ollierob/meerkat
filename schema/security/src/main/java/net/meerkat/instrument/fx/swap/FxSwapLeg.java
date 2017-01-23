@@ -11,7 +11,7 @@ import net.meerkat.Explainable;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.derivative.swap.SwapLeg;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -78,7 +78,7 @@ public class FxSwapLeg implements SwapLeg, Explainable {
                 .put("receive", receive);
     }
 
-    public class FxSwapSide<C extends Currency> implements CashPayment<C> {
+    public class FxSwapSide<C extends CurrencyId> implements CashPayment<C> {
 
         private final Money<C> amount;
 

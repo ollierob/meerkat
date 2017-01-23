@@ -5,14 +5,14 @@ import java.util.Optional;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
-public interface ShiftableSecurityPrice<C extends Currency> extends SecurityPrice<C> {
+public interface ShiftableSecurityPrice<C extends CurrencyId> extends SecurityPrice<C> {
 
     @Nonnull
     @CheckReturnValue

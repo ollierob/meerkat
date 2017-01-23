@@ -7,15 +7,15 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.money.FractionalMoney;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrencies;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
-public interface ExchangeRate<F extends Currency, T extends Currency>
+public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
         extends Comparable<ExchangeRate<F, T>>, HasCurrencies {
 
     @Nonnull
@@ -39,7 +39,7 @@ public interface ExchangeRate<F extends Currency, T extends Currency>
         return new InverseExchangeRate<>(this);
     }
 
-    default <X extends Currency> ExchangeRate<F, X> triangulate(final ExchangeRate<T, X> that) {
+    default <X extends CurrencyId> ExchangeRate<F, X> triangulate(final ExchangeRate<T, X> that) {
         return new TriangulatedExchangeRate<>(this, that);
     }
 
@@ -49,14 +49,14 @@ public interface ExchangeRate<F extends Currency, T extends Currency>
     }
 
     @Override
-    default Set<? extends Currency> currencies() {
-        final Set<Currency> currencies = new HashSet<>(2);
+    default Set<? extends CurrencyId> currencies() {
+        final Set<CurrencyId> currencies = new HashSet<>(2);
         currencies.add(this.from());
         currencies.add(this.to());
         return currencies;
     }
 
-    static <F extends Currency, T extends Currency> ExchangeRate<F, T> between(final Money<F> from, final Money<T> to) {
+    static <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> between(final Money<F> from, final Money<T> to) {
         return new RatioExchangeRate<>(from, to);
     }
 

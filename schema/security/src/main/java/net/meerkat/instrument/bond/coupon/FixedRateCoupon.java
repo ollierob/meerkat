@@ -7,18 +7,18 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.YearCount;
 import net.meerkat.instrument.cash.CashPayment;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class FixedRateCoupon<C extends Currency>
+public class FixedRateCoupon<C extends CurrencyId>
         extends AbstractBondCoupon
         implements CashPayment<C> {
 

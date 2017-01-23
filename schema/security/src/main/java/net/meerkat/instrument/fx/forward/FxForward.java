@@ -10,10 +10,10 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.fx.FxInstrument;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.meerkat.utils.Require;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -57,7 +57,7 @@ public class FxForward
     }
 
     @Override
-    public Currency base() {
+    public CurrencyId base() {
         return base.currency();
     }
 
@@ -66,7 +66,7 @@ public class FxForward
     }
 
     @Override
-    public Currency counter() {
+    public CurrencyId counter() {
         return counter.currency();
     }
 

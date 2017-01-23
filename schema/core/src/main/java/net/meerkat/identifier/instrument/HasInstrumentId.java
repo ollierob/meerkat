@@ -12,7 +12,6 @@ public interface HasInstrumentId extends HasInstrumentIds {
     InstrumentId instrumentId();
 
     @Override
-    @Deprecated
     default InstrumentIds instrumentIds() {
         return InstrumentIds.of(this.instrumentId());
     }

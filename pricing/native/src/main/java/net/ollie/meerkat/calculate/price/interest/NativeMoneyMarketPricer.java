@@ -3,7 +3,6 @@ package net.ollie.meerkat.calculate.price.interest;
 import java.time.LocalDate;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
@@ -13,6 +12,7 @@ import net.meerkat.instrument.interest.CertificateOfDeposit;
 import net.meerkat.instrument.interest.MoneyMarketSecurity;
 import net.meerkat.money.fx.ExchangeRates;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -28,11 +28,11 @@ public class NativeMoneyMarketPricer
     }
 
     @Override
-    public <C extends Currency> MoneyMarketPriceContext<C> priceContext(final LocalDate date, final C currency) {
+    public <C extends CurrencyId> MoneyMarketPriceContext<C> priceContext(final LocalDate date, final C currency) {
         return new NativeMoneyMarketPriceContext<>(currency, date);
     }
 
-    private final class NativeMoneyMarketPriceContext<C extends Currency> implements MoneyMarketPriceContext<C> {
+    private final class NativeMoneyMarketPriceContext<C extends CurrencyId> implements MoneyMarketPriceContext<C> {
 
         private final C currency;
         private final LocalDate date;
@@ -51,7 +51,7 @@ public class NativeMoneyMarketPricer
             return this.price(cd, cd.notional(), cd.rate(), cd.maturity());
         }
 
-        private <F extends Currency> InterestAccruedPrice<F, C> price(
+        private <F extends CurrencyId> InterestAccruedPrice<F, C> price(
                 final MoneyMarketSecurity security,
                 final Money<F> notional,
                 final InterestRate interestRate,

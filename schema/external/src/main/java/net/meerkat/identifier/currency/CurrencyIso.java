@@ -2,10 +2,10 @@ package net.meerkat.identifier.currency;
 
 import java.io.Serializable;
 
-import net.meerkat.money.MoneyFormat;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.identifier.Iso;
-import net.meerkat.identifier.security.SecurityId;
+import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.money.MoneyFormat;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  * ISO 4217 currency code.
@@ -13,7 +13,7 @@ import net.meerkat.identifier.security.SecurityId;
  * @author Ollie
  */
 public interface CurrencyIso
-        extends Iso, Currency, SecurityId, Serializable {
+        extends Iso, CurrencyId, InstrumentId, Serializable {
 
     default boolean isReserved() {
         return this.first() == 'X';

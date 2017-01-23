@@ -2,16 +2,16 @@ package net.meerkat.identifier.position;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.identifier.HasSecurityInMarketId;
-import net.meerkat.identifier.SecurityInMarketId;
 import net.meerkat.identifier.portfolio.HasPortfolioId;
 import net.meerkat.identifier.portfolio.PortfolioId;
+import net.meerkat.identifier.HasInstrumentInMarketId;
+import net.meerkat.identifier.InstrumentInMarketId;
 
 /**
  *
  * @author Ollie
  */
-public interface HasPositionId extends HasSecurityInMarketId, HasPortfolioId {
+public interface HasPositionId extends HasInstrumentInMarketId, HasPortfolioId {
 
     @Nonnull
     PositionId positionId();
@@ -22,8 +22,8 @@ public interface HasPositionId extends HasSecurityInMarketId, HasPortfolioId {
     }
 
     @Override
-    default SecurityInMarketId securityInMarketId() {
-        return this.positionId().securityInMarketId();
+    default InstrumentInMarketId instrumentInMarketId() {
+        return this.positionId().instrumentInMarketId();
     }
 
 }

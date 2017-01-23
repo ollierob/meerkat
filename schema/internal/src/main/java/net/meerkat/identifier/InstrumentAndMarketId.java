@@ -9,49 +9,56 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.identifier.market.HasMarketId;
-import net.meerkat.identifier.market.MarketId;
-import net.meerkat.money.currency.Currency;
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.identifier.instrument.HasInstrumentId;
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.identifier.market.HasMarketId;
+import net.meerkat.identifier.market.MarketId;
+import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.HasCurrency;
 
 /**
+ * A particular instrument in a particular market in a particular currency.
  *
  * @author Ollie
  */
 @XmlRootElement
-public class SecurityAndMarketId
-        implements SecurityInMarketId, HasInstrumentId, HasMarketId, HasCurrency, Externalizable {
+public class InstrumentAndMarketId
+        implements InstrumentInMarketId, HasInstrumentId, HasMarketId, HasCurrency, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "security")
-    private InstrumentId security;
+    @XmlElementRef(name = "instrument")
+    private InstrumentId instrumntId;
 
     @XmlElementRef(name = "market")
     private MarketId market;
 
     @XmlAttribute(name = "currency")
-    private Currency currency;
+    private CurrencyId currency;
 
     @Deprecated
-    SecurityAndMarketId() {
+    InstrumentAndMarketId() {
     }
 
-    public SecurityAndMarketId(final InstrumentId security, final Currency currency, final MarketId market) {
-        this.security = security;
+    public InstrumentAndMarketId(final InstrumentId security, final CurrencyId currency, final MarketId market) {
+        this.instrumntId = security;
         this.currency = currency;
         this.market = market;
     }
 
     @Override
     public InstrumentId instrumentId() {
-        return security;
+        return instrumntId;
     }
 
     @Override
-    public Currency currency() {
+    public InstrumentIds instrumentIds() {
+        return HasInstrumentId.super.instrumentIds();
+    }
+
+    @Override
+    public CurrencyId currency() {
         return currency;
     }
 
@@ -62,16 +69,16 @@ public class SecurityAndMarketId
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(security);
+        out.writeObject(instrumntId);
         out.writeObject(market);
         out.writeObject(currency);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        security = (InstrumentId) in.readObject();
+        instrumntId = (InstrumentId) in.readObject();
         market = (MarketId) in.readObject();
-        currency = (Currency) in.readObject();
+        currency = (CurrencyId) in.readObject();
     }
 
 }

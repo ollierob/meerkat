@@ -7,10 +7,10 @@ import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.collection.Iterables;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.bond.coupon.FloatingCoupon;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  * A bond with fixed and floating elements.
@@ -34,7 +34,7 @@ public class VariableRateBond extends StraightBond {
 
     @Override
     public StraightBondCoupons<?> coupons() {
-        final Currency commonCurrency = Iterables.requireCommonElement(coupons, BondCoupon::currency);
+        final CurrencyId commonCurrency = Iterables.requireCommonElement(coupons, BondCoupon::currency);
         return new VariableRateBondCoupons<>(commonCurrency);
     }
 
@@ -48,7 +48,7 @@ public class VariableRateBond extends StraightBond {
         return super.explain();
     }
 
-    public class VariableRateBondCoupons<C extends Currency>
+    public class VariableRateBondCoupons<C extends CurrencyId>
             extends StraightBondCoupons<BondCoupon> {
 
         private final C commonCurrency;

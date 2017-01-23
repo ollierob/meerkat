@@ -11,14 +11,14 @@ import java.math.RoundingMode;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
-public class FractionalMoney<C extends Currency>
+public class FractionalMoney<C extends CurrencyId>
         implements Money<C>, Externalizable {
 
     private static final long serialVersionUID = 1L;

@@ -6,7 +6,6 @@ import java.util.function.BiFunction;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
@@ -14,21 +13,23 @@ import net.meerkat.instrument.interest.future.InterestRateFuture;
 
 import org.apache.commons.math3.fraction.Fraction;
 
+import net.meerkat.money.currency.CurrencyId;
+
 /**
  *
  * @author ollie
  */
 public class DiscountingInterestRateFuturePricer implements InterestRateFuturePricer<LocalDate> {
 
-    private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getInterestRate;
+    private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getInterestRate;
 
     public DiscountingInterestRateFuturePricer(
-            final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getInterestRate) {
+            final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getInterestRate) {
         this.getInterestRate = getInterestRate;
     }
 
     @Override
-    public <C extends Currency> InterestRateFuturePrice<C> price(
+    public <C extends CurrencyId> InterestRateFuturePrice<C> price(
             final LocalDate date,
             final InterestRateFuture future,
             final C currency) {
@@ -40,7 +41,7 @@ public class DiscountingInterestRateFuturePricer implements InterestRateFuturePr
 
     }
 
-    static final class Price<F extends Currency, C extends Currency> implements InterestRateFuturePrice<C> {
+    static final class Price<F extends CurrencyId, C extends CurrencyId> implements InterestRateFuturePrice<C> {
 
         private LocalDate valuationDate;
         private ExchangeRate<F, C> exchangeRate;

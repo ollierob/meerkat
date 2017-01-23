@@ -1,11 +1,11 @@
 package net.meerkat.money.interest.fixed;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.accrual.InterestAccrual;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -22,7 +22,7 @@ public class ContinuousFixedInterestRate extends FixedInterestRate {
     }
 
     @Override
-    public <C extends Currency> Money<C> accrue(final Money<C> money, final Years years) {
+    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final Years years) {
         return InterestAccrual.continuous().accrue(money, this.annualRate(), years);
     }
 

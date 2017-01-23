@@ -1,7 +1,7 @@
 package net.meerkat.identifier.position;
 
-import net.meerkat.identifier.SecurityInMarketId;
 import net.meerkat.identifier.portfolio.PortfolioId;
+import net.meerkat.identifier.InstrumentInMarketId;
 
 /**
  *
@@ -18,6 +18,6 @@ public interface PositionId extends HasPositionId {
     PortfolioId portfolioId();
 
     @Override
-    SecurityInMarketId securityInMarketId();
+    InstrumentInMarketId instrumentInMarketId();
 
 }

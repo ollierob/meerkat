@@ -6,10 +6,10 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -34,20 +34,20 @@ public interface InterestRate {
     Percentage forward(LocalDate start, LocalDate end);
 
     @Nonnull
-    <C extends Currency> Money<C> accrue(Money<C> money, LocalDate from, LocalDate until);
+    <C extends CurrencyId> Money<C> accrue(Money<C> money, LocalDate from, LocalDate until);
 
     @Nonnull
-    default <C extends Currency> Money<C> accrue(final Money<C> money, final CompleteInterval interval) {
+    default <C extends CurrencyId> Money<C> accrue(final Money<C> money, final CompleteInterval interval) {
         return this.accrue(money, interval.first(), interval.last());
     }
 
     @Nonnull
-    default <C extends Currency> Money<C> accrued(final Money<C> money, final LocalDate earlier, final LocalDate later) {
+    default <C extends CurrencyId> Money<C> accrued(final Money<C> money, final LocalDate earlier, final LocalDate later) {
         return this.accrue(money, earlier, later).minus(money);
     }
 
     @Nonnull
-    default <C extends Currency> Money<C> discount(final Money<C> money, final LocalDate earlier, final LocalDate later) {
+    default <C extends CurrencyId> Money<C> discount(final Money<C> money, final LocalDate earlier, final LocalDate later) {
         return this.accrue(money, later, earlier);
     }
 

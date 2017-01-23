@@ -13,13 +13,13 @@ import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
@@ -29,24 +29,24 @@ import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
 public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponBond> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
-    private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRate;
+    private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRate;
 
     public ZeroSpreadFixedCouponBondPricer(
             final ExchangeRatesProvider<LocalDate> exchangeRatesProvider,
-            final BiFunction<LocalDate, Currency, InterestRate> discountRates) {
+            final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates) {
         this.exchangeRatesProvider = exchangeRatesProvider;
         this.getDiscountRate = discountRates;
     }
 
     @Override
-    public <C extends Currency> BondPrice.Shiftable<C> price(
+    public <C extends CurrencyId> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final FixedCouponBond bond,
             final C currency) {
         return this.price(date, bond.nominal(), bond.coupons(), currency);
     }
 
-    public <P extends Currency, Z extends Currency, C extends Currency> BondPrice.Shiftable<C> price(
+    public <P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final CashPayment<P> par,
             final FixedCouponBondCoupons<Z> coupons,
@@ -62,7 +62,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
     }
 
-    private static final class ZeroSpreadFixedCouponBondPrice<P extends Currency, Z extends Currency, C extends Currency>
+    private static final class ZeroSpreadFixedCouponBondPrice<P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId>
             implements BondPrice.Shiftable<C> {
 
         private final LocalDate valuationDate;

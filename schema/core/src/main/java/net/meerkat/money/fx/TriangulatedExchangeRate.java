@@ -2,15 +2,15 @@ package net.meerkat.money.fx;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
 @XmlRootElement
-public class TriangulatedExchangeRate<F extends Currency, X extends Currency, T extends Currency>
+public class TriangulatedExchangeRate<F extends CurrencyId, X extends CurrencyId, T extends CurrencyId>
         implements ExchangeRate<F, T> {
 
     private ExchangeRate<F, X> first;

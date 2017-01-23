@@ -11,6 +11,6 @@ import javax.annotation.Nonnull;
 public interface HasCurrencies {
 
     @Nonnull
-    Set<? extends Currency> currencies();
+    Set<? extends CurrencyId> currencies();
 
 }

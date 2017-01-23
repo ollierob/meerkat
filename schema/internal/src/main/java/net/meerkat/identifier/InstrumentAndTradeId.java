@@ -13,39 +13,40 @@ import net.meerkat.identifier.trade.HasTradeId;
 import net.meerkat.identifier.trade.TradeId;
 
 /**
+ * A particular trade for a particular instrument.
  *
  * @author ollie
  */
-public class SecurityAndTradeId
+public class InstrumentAndTradeId
         implements HasInstrumentId, HasTradeId, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "security")
-    private InstrumentId securityId;
+    @XmlElementRef(name = "instrumnt")
+    private InstrumentId instrument;
 
     @XmlElementRef(name = "trade")
     private TradeId tradeId;
 
     @Override
     public InstrumentId instrumentId() {
-        return securityId.instrumentId();
+        return instrument;
     }
 
     @Override
     public TradeId tradeId() {
-        return tradeId.tradeId();
+        return tradeId;
     }
 
     @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(securityId);
+    public void writeExternal(final ObjectOutput out) throws IOException {
+        out.writeObject(instrument);
         out.writeObject(tradeId);
     }
 
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        securityId = (InstrumentId) in.readObject();
+        instrument = (InstrumentId) in.readObject();
         tradeId = (TradeId) in.readObject();
     }
 

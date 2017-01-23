@@ -9,15 +9,15 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class RatioExchangeRate<F extends Currency, T extends Currency>
+public class RatioExchangeRate<F extends CurrencyId, T extends CurrencyId>
         implements ExchangeRate<F, T>, Externalizable {
 
     private static final long serialVersionUID = 1L;

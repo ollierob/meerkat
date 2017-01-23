@@ -4,8 +4,8 @@ import java.time.temporal.Temporal;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.currency.Currency;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -14,6 +14,6 @@ import net.meerkat.instrument.interest.future.InterestRateFuture;
 public interface InterestRateFuturePricer<T extends Temporal> {
 
     @Nonnull
-    <C extends Currency> InterestRateFuturePrice<C> price(T temporal, InterestRateFuture future, C currency);
+    <C extends CurrencyId> InterestRateFuturePrice<C> price(T temporal, InterestRateFuture future, C currency);
 
 }

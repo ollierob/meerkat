@@ -11,12 +11,12 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.Money;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.ConvertibleBondDates;
 import net.meerkat.instrument.equity.Stock;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -85,7 +85,7 @@ public class ConvertibleBond extends AbstractBond {
         }
 
         @Override
-        public Currency currency() {
+        public CurrencyId currency() {
             return coupons.get(0).currency(); //FIXME
         }
 

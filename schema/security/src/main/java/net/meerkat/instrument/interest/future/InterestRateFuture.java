@@ -7,8 +7,8 @@ import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.derivative.forward.FutureDeliveryDates;
 import net.meerkat.instrument.interest.InterestRateDerivative;
 import net.meerkat.issuer.IssuerId;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -47,7 +47,7 @@ public class InterestRateFuture
     }
 
     @Override
-    public Currency currency() {
+    public CurrencyId currency() {
         return contract.currency();
     }
 

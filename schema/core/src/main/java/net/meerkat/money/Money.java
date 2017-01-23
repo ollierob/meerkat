@@ -6,18 +6,18 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.Numbers;
 import net.ollie.goat.numeric.Numeric;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
-public interface Money<C extends Currency>
+public interface Money<C extends CurrencyId>
         extends HasCurrency, Numeric.Summable<Money<C>>, Serializable {
 
     @Override
@@ -32,7 +32,7 @@ public interface Money<C extends Currency>
     @Override
     Money<C> plus(@Nonnull Money<C> that);
 
-    default <T extends Currency> Money<T> convert(final ExchangeRate<C, T> rate) {
+    default <T extends CurrencyId> Money<T> convert(final ExchangeRate<C, T> rate) {
         return rate.convert(this);
     }
 
@@ -55,11 +55,11 @@ public interface Money<C extends Currency>
         return convention.toString(this);
     }
 
-    static <C extends Currency> DecimalMoney<C> zero(final C currency) {
+    static <C extends CurrencyId> DecimalMoney<C> zero(final C currency) {
         return new DecimalMoney<>(currency, BigDecimal.ZERO);
     }
 
-    static <C extends Currency> DecimalMoney<C> of(final long amount, final C currency) {
+    static <C extends CurrencyId> DecimalMoney<C> of(final long amount, final C currency) {
         return amount == 0
                 ? zero(currency)
                 : new DecimalMoney<>(currency, BigDecimal.valueOf(amount));

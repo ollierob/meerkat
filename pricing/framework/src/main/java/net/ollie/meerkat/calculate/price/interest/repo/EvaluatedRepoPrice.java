@@ -2,16 +2,16 @@ package net.ollie.meerkat.calculate.price.interest.repo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.Money;
 import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
 @XmlRootElement
-public class EvaluatedRepoPrice<C extends Currency>
+public class EvaluatedRepoPrice<C extends CurrencyId>
         extends EvaluatedSecurityPrice<C>
         implements RepoPrice<C> {
 

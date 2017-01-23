@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.function.Function;
 
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.numeric.interest.InterestRateId;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.numeric.interest.HasInterestRateId;
 import net.meerkat.numeric.interest.feature.RateFeature;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -63,7 +63,7 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
     }
 
     @Override
-    public Currency currency() {
+    public CurrencyId currency() {
         return key.currency();
     }
 

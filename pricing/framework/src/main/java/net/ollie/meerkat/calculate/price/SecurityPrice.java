@@ -3,15 +3,15 @@ package net.ollie.meerkat.calculate.price;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.Explainable;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
-public interface SecurityPrice<C extends Currency> extends HasCurrency, Explainable {
+public interface SecurityPrice<C extends CurrencyId> extends HasCurrency, Explainable {
 
     @Nonnull
     Money<C> clean();

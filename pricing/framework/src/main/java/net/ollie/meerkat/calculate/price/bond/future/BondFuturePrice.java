@@ -6,18 +6,18 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
-public interface BondFuturePrice<C extends Currency>
+public interface BondFuturePrice<C extends CurrencyId>
         extends SecurityPrice<C> {
 
     @Nonnull
@@ -56,7 +56,7 @@ public interface BondFuturePrice<C extends Currency>
                 .put("repo rate", this.repoRate());
     }
 
-    interface Shiftable<C extends Currency>
+    interface Shiftable<C extends CurrencyId>
             extends BondFuturePrice<C>, ShiftableSecurityPrice<C> {
 
         @Override

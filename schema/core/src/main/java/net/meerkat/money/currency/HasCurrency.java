@@ -12,10 +12,10 @@ import javax.annotation.Nonnull;
 public interface HasCurrency extends HasCurrencies {
 
     @Nonnull
-    Currency currency();
+    CurrencyId currency();
 
     @Override
-    default Set<? extends Currency> currencies() {
+    default Set<? extends CurrencyId> currencies() {
         return Collections.singleton(this.currency());
     }
 

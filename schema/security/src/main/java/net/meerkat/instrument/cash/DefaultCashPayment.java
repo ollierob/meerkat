@@ -7,13 +7,13 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.Explainable;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
-public class DefaultCashPayment<C extends Currency> implements CashPayment<C>, Explainable {
+public class DefaultCashPayment<C extends CurrencyId> implements CashPayment<C>, Explainable {
 
     @XmlAttribute(name = "date")
     private LocalDate date;

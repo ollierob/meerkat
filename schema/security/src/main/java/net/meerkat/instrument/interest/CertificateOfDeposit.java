@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.temporal.date.Dates;
@@ -17,6 +16,7 @@ import net.meerkat.Explainable;
 import net.meerkat.numeric.interest.earning.InterestEarning;
 import net.meerkat.instrument.Issued;
 import net.meerkat.instrument.NamedInstrument;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -69,7 +69,7 @@ public class CertificateOfDeposit
     }
 
     @Override
-    public Currency currency() {
+    public CurrencyId currency() {
         return notional.currency();
     }
 

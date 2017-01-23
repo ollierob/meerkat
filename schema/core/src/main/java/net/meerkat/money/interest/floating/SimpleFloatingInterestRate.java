@@ -5,13 +5,13 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.accrual.InterestAccrual;
 import net.meerkat.money.interest.curve.YieldCurve;
 import net.ollie.goat.numeric.interpolation.Interpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -55,7 +55,7 @@ public class SimpleFloatingInterestRate extends FloatingInterestRate {
     }
 
     @Override
-    protected <C extends Currency> Money<C> accrue(final Money<C> money, final Percentage forwardRate, final LocalDate start, final LocalDate end) {
+    protected <C extends CurrencyId> Money<C> accrue(final Money<C> money, final Percentage forwardRate, final LocalDate start, final LocalDate end) {
         return InterestAccrual.simple().accrue(money, forwardRate, this.dateArithmetic().yearsBetween(start, end));
     }
 

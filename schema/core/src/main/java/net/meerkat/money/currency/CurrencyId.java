@@ -9,7 +9,7 @@ import net.meerkat.money.MoneyFormat;
  *
  * @author Ollie
  */
-public interface Currency extends HasCurrency {
+public interface CurrencyId extends HasCurrency {
 
     /**
      * @return the character(s) that are used, for example {@code $} for US dollars.
@@ -25,7 +25,7 @@ public interface Currency extends HasCurrency {
 
     @Override
     @Deprecated
-    default Currency currency() {
+    default CurrencyId currency() {
         return this;
     }
 

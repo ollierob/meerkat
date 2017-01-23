@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.curve.YieldCurve;
 import net.meerkat.money.interest.fixed.ContinuousFixedInterestRate;
 import net.ollie.goat.numeric.interpolation.Interpolator;
@@ -15,6 +14,7 @@ import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.Dates;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -68,7 +68,7 @@ public class ContinousFloatingInterestRate extends FloatingInterestRate {
     }
 
     @Override
-    public <C extends Currency> Money<C> accrue(Money<C> money, Percentage forwardRate, LocalDate start, LocalDate end) {
+    public <C extends CurrencyId> Money<C> accrue(Money<C> money, Percentage forwardRate, LocalDate start, LocalDate end) {
         return new ContinuousFixedInterestRate(forwardRate, this.dateArithmetic()).accrue(money, start, end);
     }
 

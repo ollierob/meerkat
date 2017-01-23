@@ -10,7 +10,7 @@ import net.ollie.goat.collection.Sets;
  *
  * @author ollie
  */
-public interface CurrencyPair<B extends Currency, C extends Currency> extends HasCurrencies {
+public interface CurrencyPair<B extends CurrencyId, C extends CurrencyId> extends HasCurrencies {
 
     @Nonnull
     B base();
@@ -19,11 +19,11 @@ public interface CurrencyPair<B extends Currency, C extends Currency> extends Ha
     C counter();
 
     @Override
-    default Set<? extends Currency> currencies() {
+    default Set<? extends CurrencyId> currencies() {
         return Sets.asSet(this.base(), this.counter());
     }
 
-    interface Untyped extends CurrencyPair<Currency, Currency> {
+    interface Untyped extends CurrencyPair<CurrencyId, CurrencyId> {
 
     }
 

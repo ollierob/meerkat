@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import net.meerkat.instrument.interest.repo.BondRepo;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
@@ -13,6 +12,7 @@ import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.bond.GenericBondPricer;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -27,7 +27,7 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
     }
 
     @Override
-    public <C extends Currency> RepoPrice.Shiftable<C> price(
+    public <C extends CurrencyId> RepoPrice.Shiftable<C> price(
             final LocalDate valuationDate,
             final BondRepo repo,
             final C currency)
@@ -46,7 +46,7 @@ public class NativeBondRepoPricer implements RepoTypePricer<LocalDate, BondRepo>
 
     }
 
-    private static final class BondRepoPrice<C extends Currency>
+    private static final class BondRepoPrice<C extends CurrencyId>
             implements RepoPrice.Shiftable<C> {
 
         private final RepoRate repoRate;

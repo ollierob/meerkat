@@ -3,8 +3,8 @@ package net.meerkat.money.fx;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.optionals.Optionals;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -13,21 +13,21 @@ import net.ollie.goat.optionals.Optionals;
 public class TriangulatedExchangeRates implements ExchangeRates {
 
     private final ExchangeRates baseRates;
-    private final UnaryOperator<Currency> triangulation;
+    private final UnaryOperator<CurrencyId> triangulation;
 
-    public TriangulatedExchangeRates(final ExchangeRates baseRates, final UnaryOperator<Currency> triangulation) {
+    public TriangulatedExchangeRates(final ExchangeRates baseRates, final UnaryOperator<CurrencyId> triangulation) {
         this.baseRates = baseRates;
         this.triangulation = triangulation;
     }
 
     @Override
-    public <F extends Currency, T extends Currency> Optional<ExchangeRate<F, T>> maybeRate(final F from, final T to) {
+    public <F extends CurrencyId, T extends CurrencyId> Optional<ExchangeRate<F, T>> maybeRate(final F from, final T to) {
         return Optionals.firstPresent(
                 baseRates.maybeRate(from, to),
                 () -> this.triangulate(from, triangulation.apply(from), to));
     }
 
-    private <F extends Currency, X extends Currency, T extends Currency> Optional<ExchangeRate<F, T>> triangulate(
+    private <F extends CurrencyId, X extends CurrencyId, T extends CurrencyId> Optional<ExchangeRate<F, T>> triangulate(
             final F from,
             final X triangulate,
             final T to) {

@@ -1,15 +1,15 @@
 package net.ollie.meerkat.calculate.var.historic;
 
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.var.ValueAtRisk;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
-public class HistoricValueAtRisk<C extends Currency> implements ValueAtRisk {
+public class HistoricValueAtRisk<C extends CurrencyId> implements ValueAtRisk {
 
     private final Percentage percentile;
     private final Money<C> atRisk;

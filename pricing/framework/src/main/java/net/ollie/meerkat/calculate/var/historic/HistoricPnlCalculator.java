@@ -3,9 +3,9 @@ package net.ollie.meerkat.calculate.var.historic;
 import java.time.LocalDate;
 import java.util.Map;
 
-import net.meerkat.money.currency.Currency;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -13,7 +13,7 @@ import net.meerkat.identifier.instrument.InstrumentId;
  */
 public interface HistoricPnlCalculator {
 
-    <C extends Currency> HistoricPnl<C> pnl(
+    <C extends CurrencyId> HistoricPnl<C> pnl(
             InstrumentId security,
             C currency,
             LocalDate valuation,

@@ -7,7 +7,6 @@ import java.util.function.BiFunction;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
@@ -19,6 +18,7 @@ import net.meerkat.money.fx.ExchangeRates;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -27,17 +27,17 @@ import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateS
 public class DatedPerpetualBondPricer implements BondPricer<LocalDate, PerpetualBond> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
-    private final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRates;
+    private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates;
 
     public DatedPerpetualBondPricer(
             final ExchangeRatesProvider<LocalDate> getExchangeRates,
-            final BiFunction<? super LocalDate, ? super Currency, ? extends InterestRate> getDiscountRates) {
+            final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates) {
         this.exchangeRatesProvider = getExchangeRates;
         this.getDiscountRates = getDiscountRates;
     }
 
     @Override
-    public <C extends Currency> BondPrice.Shiftable<C> price(
+    public <C extends CurrencyId> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final PerpetualBond bond,
             final C currency) {
@@ -46,7 +46,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
         return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, BondShifts.none());
     }
 
-    private static final class PerpetualBondPrice<C extends Currency>
+    private static final class PerpetualBondPrice<C extends CurrencyId>
             implements BondPrice.Shiftable<C>, ExchangeRateShifter, InterestRateShifter {
 
         private final PerpetualBond bond;

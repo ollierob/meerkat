@@ -5,8 +5,8 @@ import net.ollie.meerkat.calculate.price.interest.repo.RepoPricer;
 
 import java.time.temporal.Temporal;
 
-import net.meerkat.money.currency.Currency;
 import net.meerkat.instrument.interest.repo.BondRepo;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -21,7 +21,7 @@ public class NativeRepoPricer<T extends Temporal> implements RepoPricer<T> {
     }
 
     @Override
-    public <C extends Currency> RepoPriceContext<C> priceContext(
+    public <C extends CurrencyId> RepoPriceContext<C> priceContext(
             final T temporal,
             final C currency) {
         return repo -> bondRepoPricer.price(temporal, repo, currency);

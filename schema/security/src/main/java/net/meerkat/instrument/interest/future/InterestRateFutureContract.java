@@ -6,13 +6,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.Explainable;
 
 import org.apache.commons.math3.fraction.Fraction;
 
 import net.meerkat.security.Instrument;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -42,7 +42,7 @@ public class InterestRateFutureContract
     }
 
     @Override
-    public Currency currency() {
+    public CurrencyId currency() {
         return notional.currency();
     }
 

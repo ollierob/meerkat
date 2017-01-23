@@ -3,7 +3,6 @@ package net.ollie.meerkat.calculate.price;
 import java.util.Optional;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
@@ -11,12 +10,13 @@ import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.instrument.InstrumentDefinition;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
-public class InterestAccruedPrice<F extends Currency, C extends Currency>
+public class InterestAccruedPrice<F extends CurrencyId, C extends CurrencyId>
         implements ShiftableSecurityPrice<C> {
 
     private final InstrumentDefinition security;

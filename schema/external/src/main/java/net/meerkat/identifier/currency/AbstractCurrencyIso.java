@@ -2,8 +2,8 @@ package net.meerkat.identifier.currency;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-import net.meerkat.money.currency.Currency;
-import net.ollie.meerkat.utils.HasName;
+import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.utils.HasName;
 
 /**
  *
@@ -11,7 +11,7 @@ import net.ollie.meerkat.utils.HasName;
  */
 @XmlTransient
 public abstract class AbstractCurrencyIso
-        implements Currency, CurrencyIso, HasName {
+        implements CurrencyId, CurrencyIso, HasName {
 
     private static final long serialVersionUID = 1L;
 

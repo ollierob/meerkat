@@ -6,17 +6,17 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.SecurityPrice;
 import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
+import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
-public interface InterestRateFuturePrice<C extends Currency>
+public interface InterestRateFuturePrice<C extends CurrencyId>
         extends SecurityPrice<C> {
 
     @Nonnull
@@ -47,7 +47,7 @@ public interface InterestRateFuturePrice<C extends Currency>
                 .put("multiplier", this.multiplier());
     }
 
-    interface Shiftable<C extends Currency>
+    interface Shiftable<C extends CurrencyId>
             extends InterestRateFuturePrice<C>, ShiftableSecurityPrice<C> {
 
         @Override

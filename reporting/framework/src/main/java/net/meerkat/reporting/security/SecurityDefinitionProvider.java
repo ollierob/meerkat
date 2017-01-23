@@ -7,18 +7,18 @@ import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 
 import net.meerkat.Provider;
-import net.meerkat.identifier.SecurityInMarketId;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.identifier.InstrumentInMarketId;
 
 /**
  *
  * @author Ollie
  */
-public interface SecurityDefinitionProvider extends Provider<SecurityInMarketId, InstrumentDefinition> {
+public interface SecurityDefinitionProvider extends Provider<InstrumentInMarketId, InstrumentDefinition> {
 
     @Nonnull
-    Set<SecurityInMarketId> getSecurityInMarketIds(@Nonnull InstrumentId SecurityId);
+    Set<InstrumentInMarketId> getSecurityInMarketIds(@Nonnull InstrumentId SecurityId);
 
     @Nonnull
     default Set<InstrumentDefinition> getAll(@Nonnull final InstrumentId securityId) {
