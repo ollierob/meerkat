@@ -1,26 +1,24 @@
 package net.meerkat.utils.time;
 
-import java.time.Instant;
-
 /**
  *
  * @author Ollie
  */
-public class Timestamped<T> {
+public class Timestamped<T, V> {
 
-    private final Instant timestamp;
-    private final T value;
+    private final T timestamp;
+    private final V value;
 
-    public Timestamped(final Instant timestamp, final T value) {
+    public Timestamped(final T timestamp, final V value) {
         this.timestamp = timestamp;
         this.value = value;
     }
 
-    public Instant timestamp() {
+    public T timestamp() {
         return timestamp;
     }
 
-    public T value() {
+    public V value() {
         return value;
     }
 
