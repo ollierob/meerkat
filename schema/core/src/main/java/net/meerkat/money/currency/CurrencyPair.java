@@ -1,6 +1,10 @@
 package net.meerkat.money.currency;
 
+import java.util.Set;
+
 import javax.annotation.Nonnull;
+
+import net.ollie.goat.collection.Sets;
 
 /**
  *
@@ -13,6 +17,11 @@ public interface CurrencyPair<B extends Currency, C extends Currency> extends Ha
 
     @Nonnull
     C counter();
+
+    @Override
+    default Set<? extends Currency> currencies() {
+        return Sets.asSet(this.base(), this.counter());
+    }
 
     interface Untyped extends CurrencyPair<Currency, Currency> {
 

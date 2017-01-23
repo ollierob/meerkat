@@ -1,9 +1,11 @@
 package net.meerkat.instrument;
 
 import net.meerkat.issuer.HasIssuerId;
+import net.meerkat.issuer.Issuer;
 import net.meerkat.security.Instrument;
 
 /**
+ * A tradeable financial asset that has been {@link Issuer issued} by some entity.
  *
  * @author ollie
  */

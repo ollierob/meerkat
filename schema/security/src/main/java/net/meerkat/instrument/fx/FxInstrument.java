@@ -1,37 +1,25 @@
 package net.meerkat.instrument.fx;
 
-import java.util.Set;
-
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.Money;
-import net.meerkat.money.currency.Currency;
-import net.meerkat.money.currency.HasCurrencies;
-import net.meerkat.money.fx.ExchangeRate;
-import net.ollie.goat.collection.Sets;
-import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.meerkat.instrument.InstrumentDefinition;
+import net.meerkat.instrument.OtcInstrument;
+import net.meerkat.instrument.fx.forward.FxForward;
+import net.meerkat.money.currency.CurrencyPair;
+import net.meerkat.money.fx.ExchangeRate;
+import net.ollie.goat.temporal.date.interim.CompleteInterval;
 
 /**
  *
  * @author Ollie
  */
-public interface FxInstrument extends InstrumentDefinition, HasCurrencies {
-
-    Money<?> base();
-
-    Money<?> counter();
+public interface FxInstrument extends OtcInstrument, InstrumentDefinition, CurrencyPair.Untyped {
 
     @Nonnull
     ExchangeRate<?, ?> exchangeRate();
 
     @Nonnull
-    CompleteInterval settlement();
-
-    @Override
-    default Set<? extends Currency> currencies() {
-        return Sets.asSet(this.base().currency(), this.counter().currency());
-    }
+    CompleteInterval settlementDate();
 
     @Deprecated
     default FxInstrument instrument() {

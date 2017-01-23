@@ -1,8 +1,8 @@
 package net.meerkat.instrument.fx;
 
+import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.fx.option.FxOption;
 import net.meerkat.instrument.fx.swap.FxSwap;
-import net.meerkat.instrument.InstrumentDefinition;
 
 /**
  *
