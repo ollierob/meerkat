@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.numeric.BigDecimals;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

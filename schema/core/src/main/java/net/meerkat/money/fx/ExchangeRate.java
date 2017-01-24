@@ -4,9 +4,9 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.money.FractionalMoney;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.CurrencyIds;
-import net.meerkat.money.currency.HasCurrencyIds;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyIds;
+import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 
 /**

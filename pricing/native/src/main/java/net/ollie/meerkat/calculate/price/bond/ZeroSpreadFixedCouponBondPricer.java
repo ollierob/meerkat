@@ -13,7 +13,7 @@ import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRate;

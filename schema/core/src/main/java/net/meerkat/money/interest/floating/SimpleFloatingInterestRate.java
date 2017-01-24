@@ -11,7 +11,7 @@ import net.ollie.goat.numeric.interpolation.Interpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

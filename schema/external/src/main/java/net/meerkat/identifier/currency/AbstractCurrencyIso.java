@@ -2,7 +2,6 @@ package net.meerkat.identifier.currency;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-import net.meerkat.money.currency.CurrencyId;
 import net.meerkat.utils.HasName;
 
 /**

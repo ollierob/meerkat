@@ -7,7 +7,7 @@ import net.meerkat.instrument.OtcInstrument;
 import net.meerkat.instrument.fx.forward.FxForward;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.meerkat.money.currency.CurrencyIdPair;
+import net.meerkat.identifier.currency.CurrencyIdPair;
 
 /**
  *

@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 import net.ollie.goat.optionals.Optionals;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

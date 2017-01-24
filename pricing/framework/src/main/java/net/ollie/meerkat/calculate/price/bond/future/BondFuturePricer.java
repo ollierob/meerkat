@@ -4,7 +4,7 @@ import java.time.temporal.Temporal;
 
 import net.ollie.meerkat.calculate.price.InstrumentPriceException;
 import net.meerkat.instrument.interest.future.BondFuture;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.calculate.price.InstrumentTypePricer;
 
 /**

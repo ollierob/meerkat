@@ -7,8 +7,8 @@ import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.derivative.forward.FutureDeliveryDates;
 import net.meerkat.instrument.interest.InterestRateDerivative;
 import net.meerkat.issuer.IssuerId;
-import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *

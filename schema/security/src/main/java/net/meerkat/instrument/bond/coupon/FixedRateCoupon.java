@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;

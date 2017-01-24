@@ -5,8 +5,8 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.CurrencyIdPair;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyIdPair;
 
 /**
  * Snapshot of FX rates at a particular time.

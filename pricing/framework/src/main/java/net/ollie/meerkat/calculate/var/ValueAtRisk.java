@@ -4,8 +4,8 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
-import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  * Value at risk (VaR).

@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

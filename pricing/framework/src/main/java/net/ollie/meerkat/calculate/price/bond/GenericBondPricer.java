@@ -3,7 +3,7 @@ package net.ollie.meerkat.calculate.price.bond;
 import java.time.temporal.Temporal;
 
 import net.meerkat.instrument.bond.Bond;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  * Tries to price any type of bond by considering the coupon payments.

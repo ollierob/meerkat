@@ -13,7 +13,7 @@ import net.meerkat.instrument.interest.future.InterestRateFuture;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

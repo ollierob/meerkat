@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
 import net.ollie.meerkat.calculate.price.EvaluatedInstrumentPrice;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

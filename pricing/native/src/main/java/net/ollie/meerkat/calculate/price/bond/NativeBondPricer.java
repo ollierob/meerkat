@@ -7,7 +7,7 @@ import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FloatingRateNote;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.VariableRateBond;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

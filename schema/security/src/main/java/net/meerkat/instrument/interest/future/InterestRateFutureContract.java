@@ -8,11 +8,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.Explainable;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import net.meerkat.money.currency.HasCurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *

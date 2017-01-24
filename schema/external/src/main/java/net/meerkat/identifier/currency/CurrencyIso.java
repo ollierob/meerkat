@@ -5,7 +5,6 @@ import java.io.Serializable;
 import net.meerkat.identifier.Iso;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.money.MoneyFormat;
-import net.meerkat.money.currency.CurrencyId;
 
 /**
  * ISO 4217 currency code.

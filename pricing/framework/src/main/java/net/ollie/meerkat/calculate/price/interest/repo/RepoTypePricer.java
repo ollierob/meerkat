@@ -5,7 +5,7 @@ import java.time.temporal.Temporal;
 import net.ollie.meerkat.calculate.price.InstrumentPriceException;
 import net.ollie.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.meerkat.instrument.interest.repo.Repo;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.calculate.price.InstrumentTypePricer;
 
 /**

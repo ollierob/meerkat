@@ -7,9 +7,9 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.Explainable;
 import net.meerkat.instrument.bond.Bond;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.meerkat.money.currency.HasCurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *

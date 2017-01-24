@@ -13,8 +13,8 @@ import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.bond.dates.PerpetualBondDates;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
-import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *

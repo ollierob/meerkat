@@ -9,7 +9,7 @@ import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

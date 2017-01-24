@@ -10,7 +10,7 @@ import net.ollie.goat.collection.Iterables;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.bond.coupon.FloatingCoupon;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  * A bond with fixed and floating elements.

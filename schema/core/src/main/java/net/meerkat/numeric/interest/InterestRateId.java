@@ -1,6 +1,6 @@
 package net.meerkat.numeric.interest;
 
-import net.meerkat.money.currency.HasCurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *

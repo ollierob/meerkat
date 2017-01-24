@@ -8,7 +8,7 @@ import javax.annotation.CheckForNull;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
 import net.meerkat.utils.collections.sequence.OrderedSequence;
 import net.meerkat.utils.collections.sequence.StartingSequence;
-import net.meerkat.money.currency.HasCurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *

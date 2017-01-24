@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.EvaluatedInstrumentPrice;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

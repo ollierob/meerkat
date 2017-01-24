@@ -11,7 +11,7 @@ import net.meerkat.instrument.interest.CertificateOfDeposit;
 import net.meerkat.instrument.interest.MoneyMarketSecurity;
 import net.meerkat.money.fx.ExchangeRates;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 
 /**

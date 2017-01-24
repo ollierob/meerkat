@@ -2,7 +2,7 @@ package net.meerkat.identifier.country;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

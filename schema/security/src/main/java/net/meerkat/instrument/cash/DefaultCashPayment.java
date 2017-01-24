@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.Explainable;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 
 /**

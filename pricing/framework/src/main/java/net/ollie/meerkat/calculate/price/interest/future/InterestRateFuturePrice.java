@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.calculate.price.InstrumentPrice;
 import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 

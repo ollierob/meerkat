@@ -15,8 +15,8 @@ import net.meerkat.Explainable;
 import net.meerkat.numeric.interest.earning.InterestEarning;
 import net.meerkat.instrument.Issued;
 import net.meerkat.instrument.NamedInstrument;
-import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *

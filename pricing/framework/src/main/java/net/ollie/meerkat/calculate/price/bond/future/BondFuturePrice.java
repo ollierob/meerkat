@@ -9,7 +9,7 @@ import net.meerkat.money.Money;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.calculate.price.InstrumentPrice;
 import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 

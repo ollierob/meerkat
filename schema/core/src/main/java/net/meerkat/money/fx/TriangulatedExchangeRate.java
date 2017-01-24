@@ -3,7 +3,7 @@ package net.meerkat.money.fx;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.numeric.fraction.DecimalFraction;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

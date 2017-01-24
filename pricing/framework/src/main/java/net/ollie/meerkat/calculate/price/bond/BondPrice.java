@@ -13,7 +13,7 @@ import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.instrument.cash.CashPayment;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.ollie.meerkat.calculate.price.InstrumentPrice;
 import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 

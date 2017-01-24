@@ -5,7 +5,7 @@ import java.util.Map;
 
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.identifier.instrument.InstrumentId;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

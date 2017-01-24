@@ -1,4 +1,4 @@
-package net.meerkat.money.currency;
+package net.meerkat.identifier.currency;
 
 import java.util.Collections;
 import java.util.Set;

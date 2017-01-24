@@ -11,7 +11,7 @@ import net.meerkat.Explainable;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.derivative.swap.SwapLeg;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 
 /**
