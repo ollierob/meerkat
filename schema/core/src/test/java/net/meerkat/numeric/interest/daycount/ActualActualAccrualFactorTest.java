@@ -1,6 +1,6 @@
 package net.meerkat.numeric.interest.daycount;
 
-import net.ollie.goat.temporal.date.count.ActualActualAccrualFactor;
+import net.ollie.goat.temporal.date.count.ActualActualDateArithmetic;
 
 import java.time.LocalDate;
 
@@ -16,7 +16,7 @@ public class ActualActualAccrualFactorTest {
 
     @Test
     public void testActAct() {
-        final ActualActualAccrualFactor testFactor = ActualActualAccrualFactor.ACT_ACT;
+        final ActualActualDateArithmetic testFactor = ActualActualDateArithmetic.ACT_ACT;
         final LocalDate date = LocalDate.now();
         assertThat(testFactor.daysBetween(date.minusDays(1), date), is(1));
         assertThat(testFactor.daysBetween(date, date), is(0));

@@ -1,6 +1,7 @@
 package net.meerkat.instrument.derivative.forward;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.SortedSet;
 
 import javax.annotation.Nonnull;
@@ -24,6 +25,10 @@ public interface FutureDeliveryDates {
 
     default LocalDate expiry() {
         return this.latest();
+    }
+
+    static FutureDeliveryDates any(final YearMonth month) {
+        return new YearMonthFutureDeliveryDates(month);
     }
 
 }

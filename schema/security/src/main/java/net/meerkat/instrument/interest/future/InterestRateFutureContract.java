@@ -11,8 +11,8 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
+import net.ollie.goat.temporal.date.count.DayCount;
 
-import org.apache.commons.math3.fraction.Fraction;
 
 /**
  *
@@ -26,7 +26,7 @@ public class InterestRateFutureContract
     private static final long serialVersionUID = 1L;
 
     @XmlElement(name = "accrual")
-    private Fraction accrual;
+    private DayCount accrual;
 
     @XmlElement(name = "notional")
     private Money<?> notional;
@@ -38,14 +38,14 @@ public class InterestRateFutureContract
     public InterestRateFutureContract(
             final String name,
             final InstrumentIds instrumentIds,
-            final Fraction accrual,
+            final DayCount accrual,
             final Money<?> notional) {
         super(name, instrumentIds);
         this.accrual = accrual;
         this.notional = notional;
     }
 
-    public Fraction accrual() {
+    public DayCount accrual() {
         return accrual;
     }
 

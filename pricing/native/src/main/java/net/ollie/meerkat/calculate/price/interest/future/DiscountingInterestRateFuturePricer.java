@@ -5,15 +5,13 @@ import java.util.function.BiFunction;
 
 import javax.annotation.Nonnull;
 
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.instrument.interest.future.InterestRateFuture;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.instrument.interest.future.InterestRateFuture;
-
-import org.apache.commons.math3.fraction.Fraction;
-
-import net.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.temporal.date.count.DayCount;
 
 /**
  *
@@ -34,7 +32,7 @@ public class DiscountingInterestRateFuturePricer implements InterestRateFuturePr
             final InterestRateFuture future,
             final C currency) {
 
-        final Fraction accrual = future.underlying().accrual();
+        final DayCount accrual = future.underlying().accrual();
         final LocalDate expiryDate = future.dates().expiry();
 
         throw new UnsupportedOperationException("Not supported yet.");

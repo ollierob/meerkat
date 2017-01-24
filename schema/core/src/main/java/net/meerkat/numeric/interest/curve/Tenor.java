@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
 import net.coljate.map.ConcurrentMap;
-import net.ollie.goat.temporal.date.count.ActualActualAccrualFactor;
+import net.ollie.goat.temporal.date.count.ActualActualDateArithmetic;
 import net.ollie.goat.temporal.date.count.YearCount;
 import net.ollie.goat.temporal.date.years.PeriodYears;
 import net.ollie.goat.temporal.date.years.Years;
@@ -71,7 +71,7 @@ public class Tenor implements HasName {
 
     @Nonnull
     public Years yearFraction(final LocalDate start) {
-        return this.yearFraction(start, ActualActualAccrualFactor.ACT_ACT);
+        return this.yearFraction(start, ActualActualDateArithmetic.ACT_ACT);
     }
 
     @Nonnull
