@@ -1,8 +1,9 @@
 package net.meerkat.identifier.country;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElementRef;
 
-import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyIds;
 
 /**
  *
@@ -10,25 +11,28 @@ import net.meerkat.identifier.currency.CurrencyId;
  */
 public class DefaultCountry implements Country {
 
-    @XmlAttribute(name = "id")
+    @XmlElementRef(name = "id")
     private CountryId id;
 
     @XmlAttribute(name = "name", required = true)
     private String name;
 
+    @XmlElementRef(name = "currencies")
+    private CurrencyIds currencyIds;
+
     @Override
     public CountryId countryId() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return id;
     }
 
     @Override
-    public CurrencyId currency() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public CurrencyIds currencyIds() {
+        return currencyIds;
     }
 
     @Override
     public String name() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return name;
     }
 
 }

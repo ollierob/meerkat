@@ -1,17 +1,12 @@
 package net.meerkat.identifier.country;
 
-import javax.annotation.Nonnull;
-
+import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.utils.HasName;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
-public interface Country extends HasName, HasCountryId {
-
-    @Nonnull
-    CurrencyId currency();
+public interface Country extends HasName, HasCountryId, HasCurrencyIds {
 
 }

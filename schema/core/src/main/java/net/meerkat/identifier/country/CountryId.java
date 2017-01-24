@@ -1,5 +1,6 @@
 package net.meerkat.identifier.country;
 
+
 import net.meerkat.utils.Classes.Castable;
 
 /**
@@ -12,5 +13,5 @@ public interface CountryId extends HasCountryId, Castable {
     default CountryId countryId() {
         return this;
     }
-
+    
 }
