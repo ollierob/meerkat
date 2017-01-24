@@ -1,4 +1,4 @@
-package net.meerkat.numeric.interest.feature;
+package net.meerkat.money.interest.feature;
 
 import java.util.Arrays;
 import java.util.List;

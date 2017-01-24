@@ -3,12 +3,13 @@ package net.meerkat.money.interest.fixed;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.accrual.InterestAccrual;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -24,8 +25,12 @@ public class CompoundFixedInterestRate extends FixedInterestRate {
     CompoundFixedInterestRate() {
     }
 
-    public CompoundFixedInterestRate(final Percentage annualRate, final DateArithmetic accrual, final double yearlyFrequency) {
-        super(annualRate, accrual);
+    public CompoundFixedInterestRate(
+            final InterestRateId id,
+            final Percentage annualRate,
+            final DateArithmetic accrual,
+            final double yearlyFrequency) {
+        super(id, annualRate, accrual);
         this.yearlyFrequency = yearlyFrequency;
     }
 
@@ -36,7 +41,7 @@ public class CompoundFixedInterestRate extends FixedInterestRate {
 
     @Override
     public CompoundFixedInterestRate with(final Percentage rate) {
-        return new CompoundFixedInterestRate(rate, this.dateArithmetic(), yearlyFrequency);
+        return new CompoundFixedInterestRate(this.interestRateId(), rate, this.dateArithmetic(), yearlyFrequency);
     }
 
     @Override

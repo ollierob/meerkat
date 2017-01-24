@@ -1,4 +1,4 @@
-package net.meerkat.numeric.interest;
+package net.meerkat.money.interest;
 
 import javax.annotation.Nonnull;
 

@@ -16,7 +16,7 @@ import net.meerkat.instrument.bond.dates.MaturingBondDates;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.meerkat.numeric.interest.InterestRateSecurity;
+import net.meerkat.money.interest.InterestRateSecurity;
 import net.meerkat.identifier.currency.CurrencyId;
 
 /**

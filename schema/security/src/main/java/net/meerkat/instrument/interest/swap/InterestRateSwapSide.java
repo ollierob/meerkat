@@ -1,6 +1,6 @@
 package net.meerkat.instrument.interest.swap;
 
-import net.meerkat.numeric.interest.earning.InterestEarning;
+import net.meerkat.money.interest.earning.InterestEarning;
 
 /**
  *

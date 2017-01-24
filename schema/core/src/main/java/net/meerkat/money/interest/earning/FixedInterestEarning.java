@@ -1,4 +1,4 @@
-package net.meerkat.numeric.interest.earning;
+package net.meerkat.money.interest.earning;
 
 import javax.xml.bind.annotation.XmlElementRef;
 

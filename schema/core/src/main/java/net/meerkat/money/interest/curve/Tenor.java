@@ -1,4 +1,4 @@
-package net.meerkat.numeric.interest.curve;
+package net.meerkat.money.interest.curve;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

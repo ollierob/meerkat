@@ -1,4 +1,4 @@
-package net.meerkat.numeric.interest.feature;
+package net.meerkat.money.interest.feature;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -11,22 +11,22 @@ import net.meerkat.utils.comparators.Comparators;
  * @author ollie
  */
 @XmlRootElement
-public class CappedFeature implements RateFeature {
+public class FloorFeature implements RateFeature {
 
-    @XmlAttribute(name = "max")
-    private Percentage maxRate;
+    @XmlAttribute(name = "min")
+    private Percentage minRate;
 
     @Deprecated
-    CappedFeature() {
+    FloorFeature() {
     }
 
-    public CappedFeature(final Percentage maxRate) {
-        this.maxRate = maxRate;
+    public FloorFeature(final Percentage minRate) {
+        this.minRate = minRate;
     }
 
     @Override
     public Percentage apply(final Percentage rate) {
-        return Comparators.min(maxRate, rate);
+        return Comparators.max(minRate, rate);
     }
 
 }

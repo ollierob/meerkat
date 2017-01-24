@@ -9,9 +9,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.numeric.interest.InterestRateId;
+import net.meerkat.money.interest.InterestRateId;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.numeric.interest.feature.RateFeature;
+import net.meerkat.money.interest.feature.RateFeature;
 import net.meerkat.instrument.bond.coupon.FloatingCoupon;
 import net.meerkat.identifier.currency.CurrencyId;
 

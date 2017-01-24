@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.instrument.derivative.option.AbstractOption;
 import net.meerkat.instrument.interest.InterestRateDerivative;
-import net.meerkat.numeric.interest.InterestRateSecurity;
+import net.meerkat.money.interest.InterestRateSecurity;
 
 /**
  *

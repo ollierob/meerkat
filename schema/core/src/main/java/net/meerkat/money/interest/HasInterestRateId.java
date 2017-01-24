@@ -1,10 +1,8 @@
-package net.meerkat.numeric.interest;
+package net.meerkat.money.interest;
 
 import java.util.function.Function;
 
 import javax.annotation.Nonnull;
-
-import net.meerkat.money.interest.InterestRate;
 
 /**
  *

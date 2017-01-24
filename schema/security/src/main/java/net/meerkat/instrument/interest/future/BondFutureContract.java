@@ -10,7 +10,7 @@ import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.meerkat.numeric.interest.InterestRateSecurity;
+import net.meerkat.money.interest.InterestRateSecurity;
 
 /**
  *

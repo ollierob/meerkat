@@ -2,12 +2,13 @@ package net.meerkat.money.interest.fixed;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.accrual.InterestAccrual;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -20,13 +21,16 @@ public class SimpleFixedInterestRate extends FixedInterestRate {
     SimpleFixedInterestRate() {
     }
 
-    public SimpleFixedInterestRate(final Percentage rate, final DateArithmetic accrual) {
-        super(rate, accrual);
+    public SimpleFixedInterestRate(
+            final InterestRateId id,
+            final Percentage rate,
+            final DateArithmetic accrual) {
+        super(id, rate, accrual);
     }
 
     @Override
     public SimpleFixedInterestRate with(final Percentage rate) {
-        return new SimpleFixedInterestRate(rate, this.dateArithmetic());
+        return new SimpleFixedInterestRate(this.interestRateId(), rate, this.dateArithmetic());
     }
 
     @Override

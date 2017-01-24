@@ -1,4 +1,4 @@
-package net.meerkat.numeric.interest.interpolation;
+package net.meerkat.money.interest.interpolation;
 
 import java.time.LocalDate;
 

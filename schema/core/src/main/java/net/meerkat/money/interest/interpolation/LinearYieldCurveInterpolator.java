@@ -1,10 +1,10 @@
-package net.meerkat.numeric.interest.interpolation;
+package net.meerkat.money.interest.interpolation;
 
 import java.math.BigDecimal;
 
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.numeric.interest.curve.Tenor;
+import net.meerkat.money.interest.curve.Tenor;
 
 /**
  *

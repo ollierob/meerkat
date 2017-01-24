@@ -5,17 +5,17 @@ import java.time.LocalDate;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
  * @author Ollie
  */
-public interface InterestRate {
+public interface InterestRate extends HasInterestRateId {
 
     @Nonnull
     DateArithmetic dateArithmetic();

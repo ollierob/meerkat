@@ -1,4 +1,4 @@
-package net.meerkat.numeric.interest.earning;
+package net.meerkat.money.interest.earning;
 
 import java.util.function.Function;
 
@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.Money;
-import net.meerkat.numeric.interest.InterestRateId;
+import net.meerkat.money.interest.InterestRateId;
 
 /**
  *

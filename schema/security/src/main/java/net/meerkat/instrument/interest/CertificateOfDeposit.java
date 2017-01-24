@@ -12,7 +12,7 @@ import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.temporal.date.Dates;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.meerkat.Explainable;
-import net.meerkat.numeric.interest.earning.InterestEarning;
+import net.meerkat.money.interest.earning.InterestEarning;
 import net.meerkat.instrument.Issued;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.identifier.currency.CurrencyId;

@@ -1,9 +1,9 @@
 package net.meerkat.instrument.interest.swap;
 
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.numeric.interest.earning.FloatingInterestEarning;
+import net.meerkat.money.interest.earning.FloatingInterestEarning;
 import net.meerkat.money.Money;
-import net.meerkat.numeric.interest.InterestRateId;
+import net.meerkat.money.interest.InterestRateId;
 
 /**
  *

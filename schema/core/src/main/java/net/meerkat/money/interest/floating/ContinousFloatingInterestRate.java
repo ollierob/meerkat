@@ -6,7 +6,9 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.curve.YieldCurve;
 import net.meerkat.money.interest.fixed.ContinuousFixedInterestRate;
 import net.ollie.goat.numeric.interpolation.Interpolator;
@@ -14,7 +16,6 @@ import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.Dates;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -34,11 +35,12 @@ public class ContinousFloatingInterestRate extends FloatingInterestRate {
     }
 
     public ContinousFloatingInterestRate(
+            final InterestRateId id,
             final LocalDate referenceDate,
             final YieldCurve<Years> curve,
             final DateArithmetic dates,
             final Interpolator<Years, Percentage> interpolator) {
-        super(referenceDate, dates);
+        super(id, referenceDate, dates);
         this.interpolator = interpolator;
         this.curve = curve;
     }
@@ -69,14 +71,14 @@ public class ContinousFloatingInterestRate extends FloatingInterestRate {
 
     @Override
     public <C extends CurrencyId> Money<C> accrue(Money<C> money, Percentage forwardRate, LocalDate start, LocalDate end) {
-        return new ContinuousFixedInterestRate(forwardRate, this.dateArithmetic()).accrue(money, start, end);
+        return new ContinuousFixedInterestRate(this.interestRateId(), forwardRate, this.dateArithmetic()).accrue(money, start, end);
     }
 
     @Override
     public ContinousFloatingInterestRate plus(final Percentage bump) {
         return bump.isZero()
                 ? this
-                : new ContinousFloatingInterestRate(this.referenceDate(), curve.plus(bump), this.dateArithmetic(), interpolator);
+                : new ContinousFloatingInterestRate(this.interestRateId(), this.referenceDate(), curve.plus(bump), this.dateArithmetic(), interpolator);
     }
 
 }

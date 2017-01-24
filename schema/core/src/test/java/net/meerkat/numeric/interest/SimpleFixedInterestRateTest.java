@@ -2,8 +2,10 @@ package net.meerkat.numeric.interest;
 
 import java.math.BigDecimal;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.DecimalMoney;
 import net.meerkat.money.Money;
+import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
@@ -16,8 +18,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
-
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -41,7 +41,10 @@ public class SimpleFixedInterestRateTest {
     @Test
     public void testAccrue() {
 
-        final SimpleFixedInterestRate rate = new SimpleFixedInterestRate(new DecimalPercentage(8), mockFactor);
+        final SimpleFixedInterestRate rate = new SimpleFixedInterestRate(
+                InterestRateId.named("simple@8%"),
+                new DecimalPercentage(8),
+                mockFactor);
 
         final Money money = new DecimalMoney(mockCurrency, BigDecimal.ONE);
 
