@@ -12,10 +12,10 @@ import net.meerkat.money.currency.CurrencyId;
  *
  * @author ollie
  */
-public interface ShiftableSecurityPrice<C extends CurrencyId> extends SecurityPrice<C> {
+public interface ShiftableInstrumentPrice<C extends CurrencyId> extends InstrumentPrice<C> {
 
     @Nonnull
     @CheckReturnValue
-    Optional<? extends ShiftableSecurityPrice<C>> shift(@Nonnull SecurityShifts shifts);
+    Optional<? extends ShiftableInstrumentPrice<C>> shift(@Nonnull SecurityShifts shifts);
 
 }

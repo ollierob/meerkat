@@ -3,7 +3,7 @@ package net.ollie.meerkat.calculate.price.interest.repo;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
+import net.ollie.meerkat.calculate.price.EvaluatedInstrumentPrice;
 import net.meerkat.money.currency.CurrencyId;
 
 /**
@@ -12,7 +12,7 @@ import net.meerkat.money.currency.CurrencyId;
  */
 @XmlRootElement
 public class EvaluatedRepoPrice<C extends CurrencyId>
-        extends EvaluatedSecurityPrice<C>
+        extends EvaluatedInstrumentPrice<C>
         implements RepoPrice<C> {
 
     private static final long serialVersionUID = 1L;

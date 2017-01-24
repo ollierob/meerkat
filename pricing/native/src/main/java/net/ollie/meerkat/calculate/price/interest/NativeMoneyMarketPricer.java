@@ -7,12 +7,12 @@ import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.ollie.meerkat.calculate.price.InterestAccruedPrice;
-import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.meerkat.instrument.interest.CertificateOfDeposit;
 import net.meerkat.instrument.interest.MoneyMarketSecurity;
 import net.meerkat.money.fx.ExchangeRates;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.meerkat.money.currency.CurrencyId;
+import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 
 /**
  *
@@ -47,7 +47,7 @@ public class NativeMoneyMarketPricer
         }
 
         @Override
-        public ShiftableSecurityPrice<C> handle(final CertificateOfDeposit cd) {
+        public ShiftableInstrumentPrice<C> handle(final CertificateOfDeposit cd) {
             return this.price(cd, cd.notional(), cd.rate(), cd.maturity());
         }
 

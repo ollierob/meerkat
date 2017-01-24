@@ -12,6 +12,7 @@ import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.derivative.swap.SwapLeg;
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.fx.ExchangeRate;
 
 /**
  *
@@ -94,6 +95,11 @@ public class FxSwapLeg implements SwapLeg, Explainable {
         @Override
         public Money<C> amount() {
             return amount;
+        }
+
+        @Override
+        public <T extends CurrencyId> CashPayment<T> convert(final ExchangeRate<C, T> exchangeRate) {
+            return new FxSwapSide<>(amount.convert(exchangeRate));
         }
 
     }

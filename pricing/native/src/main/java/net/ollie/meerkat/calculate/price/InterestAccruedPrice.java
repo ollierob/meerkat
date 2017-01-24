@@ -17,7 +17,7 @@ import net.meerkat.money.currency.CurrencyId;
  * @author ollie
  */
 public class InterestAccruedPrice<F extends CurrencyId, C extends CurrencyId>
-        implements ShiftableSecurityPrice<C> {
+        implements ShiftableInstrumentPrice<C> {
 
     private final InstrumentDefinition security;
     private final Money<F> notional;
@@ -42,7 +42,7 @@ public class InterestAccruedPrice<F extends CurrencyId, C extends CurrencyId>
     }
 
     @Override
-    public Optional<ShiftableSecurityPrice<C>> shift(final SecurityShifts shifts) {
+    public Optional<ShiftableInstrumentPrice<C>> shift(final SecurityShifts shifts) {
         return Optional.of(new InterestAccruedPrice<>(security, notional, interestRate, fxRate, period, shifts));
     }
 
@@ -71,7 +71,7 @@ public class InterestAccruedPrice<F extends CurrencyId, C extends CurrencyId>
 
     @Override
     public ExplanationBuilder explain() {
-        return ShiftableSecurityPrice.super.explain()
+        return ShiftableInstrumentPrice.super.explain()
                 .put("security", security)
                 .put("shifts", shifts)
                 .put("base interest rate", interestRate)

@@ -11,18 +11,18 @@ import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.FractionalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.ollie.meerkat.calculate.price.SecurityPrice;
-import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.currency.CurrencyId;
+import net.ollie.meerkat.calculate.price.InstrumentPrice;
+import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 
 /**
  *
  * @author ollie
  */
 public interface BondPrice<C extends CurrencyId>
-        extends SecurityPrice<C> {
+        extends InstrumentPrice<C> {
 
     @Nonnull
     Money<C> par();
@@ -57,12 +57,12 @@ public interface BondPrice<C extends CurrencyId>
 
     @Override
     public default ExplanationBuilder explain() {
-        return SecurityPrice.super.explain()
+        return InstrumentPrice.super.explain()
                 .put("par", this.par());
     }
 
     interface Shiftable<C extends CurrencyId>
-            extends BondPrice<C>, ShiftableSecurityPrice<C> {
+            extends BondPrice<C>, ShiftableInstrumentPrice<C> {
 
         @Override
         @Deprecated

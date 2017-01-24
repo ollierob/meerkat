@@ -13,6 +13,8 @@ import java.util.function.Function;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.instrument.InstrumentId;
+
 
 /**
  *
@@ -21,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * symbol</a>
  */
 @XmlRootElement
-public class OptionSymbol implements SecurityId, Externalizable {
+public class OptionSymbol implements InstrumentId, Externalizable {
 
     private static final long serialVersionUID = 1L;
 

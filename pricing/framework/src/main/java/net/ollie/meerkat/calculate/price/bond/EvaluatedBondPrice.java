@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
+import net.ollie.meerkat.calculate.price.EvaluatedInstrumentPrice;
 import net.meerkat.money.currency.CurrencyId;
 
 /**
@@ -16,7 +16,7 @@ import net.meerkat.money.currency.CurrencyId;
  * @author ollie
  */
 public class EvaluatedBondPrice<C extends CurrencyId>
-        extends EvaluatedSecurityPrice<C>
+        extends EvaluatedInstrumentPrice<C>
         implements BondPrice<C> {
 
     private static final long serialVersionUID = 1L;

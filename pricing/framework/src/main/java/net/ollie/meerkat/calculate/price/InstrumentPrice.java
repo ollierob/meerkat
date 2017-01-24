@@ -11,7 +11,8 @@ import net.meerkat.money.currency.HasCurrency;
  *
  * @author ollie
  */
-public interface SecurityPrice<C extends CurrencyId> extends HasCurrency, Explainable {
+public interface InstrumentPrice<C extends CurrencyId>
+        extends HasCurrency, Explainable {
 
     @Nonnull
     Money<C> clean();
@@ -25,8 +26,8 @@ public interface SecurityPrice<C extends CurrencyId> extends HasCurrency, Explai
     }
 
     @Nonnull
-    default EvaluatedSecurityPrice<C> evaluate() {
-        return new EvaluatedSecurityPrice<>(this.clean(), this.dirty());
+    default EvaluatedInstrumentPrice<C> evaluate() {
+        return new EvaluatedInstrumentPrice<>(this.clean(), this.dirty());
     }
 
     @Override

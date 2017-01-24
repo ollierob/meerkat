@@ -17,8 +17,8 @@ import net.meerkat.money.currency.CurrencyId;
  * @author ollie
  */
 @XmlRootElement
-public class EvaluatedSecurityPrice<C extends CurrencyId>
-        implements SecurityPrice<C>, Externalizable {
+public class EvaluatedInstrumentPrice<C extends CurrencyId>
+        implements InstrumentPrice<C>, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,10 +29,10 @@ public class EvaluatedSecurityPrice<C extends CurrencyId>
     private Money<C> dirty;
 
     @Deprecated
-    protected EvaluatedSecurityPrice() {
+    protected EvaluatedInstrumentPrice() {
     }
 
-    public EvaluatedSecurityPrice(final Money<C> clean, final Money<C> dirty) {
+    public EvaluatedInstrumentPrice(final Money<C> clean, final Money<C> dirty) {
         this.clean = clean;
         this.dirty = dirty;
     }
@@ -49,7 +49,7 @@ public class EvaluatedSecurityPrice<C extends CurrencyId>
 
     @Override
     @Deprecated
-    public EvaluatedSecurityPrice<C> evaluate() {
+    public EvaluatedInstrumentPrice<C> evaluate() {
         return this;
     }
 

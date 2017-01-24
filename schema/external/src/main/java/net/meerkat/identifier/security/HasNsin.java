@@ -4,16 +4,18 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
+import net.meerkat.identifier.instrument.HasInstrumentIds;
+
 
 /**
  *
  * @author Ollie
  */
-public interface HasNsin extends HasSecurityIds {
+public interface HasNsin extends HasInstrumentIds {
 
     @Nonnull
     default Optional<Nsin> nsin() {
-        return this.securityIds().id(Nsin.class);
+        return this.instrumentId(Nsin.class);
     }
 
     @Nonnull

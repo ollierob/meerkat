@@ -24,7 +24,7 @@ import net.ollie.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateS
  *
  * @author Ollie
  */
-public class DatedPerpetualBondPricer implements BondPricer<LocalDate, PerpetualBond> {
+public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, PerpetualBond> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates;
@@ -34,6 +34,11 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
             final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates) {
         this.exchangeRatesProvider = getExchangeRates;
         this.getDiscountRates = getDiscountRates;
+    }
+
+    @Override
+    public <C extends CurrencyId> BondPriceContext<C> priceContext(LocalDate valuation, C currency) throws BondPriceException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

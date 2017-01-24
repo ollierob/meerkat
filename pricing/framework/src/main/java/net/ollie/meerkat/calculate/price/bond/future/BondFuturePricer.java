@@ -2,23 +2,23 @@ package net.ollie.meerkat.calculate.price.bond.future;
 
 import java.time.temporal.Temporal;
 
-import net.ollie.meerkat.calculate.price.SecurityPriceException;
-import net.ollie.meerkat.calculate.price.SecurityTypePriceCalculator;
+import net.ollie.meerkat.calculate.price.InstrumentPriceException;
 import net.meerkat.instrument.interest.future.BondFuture;
 import net.meerkat.money.currency.CurrencyId;
+import net.ollie.meerkat.calculate.price.InstrumentTypePricer;
 
 /**
  *
  * @author Ollie
  */
 public interface BondFuturePricer<T extends Temporal>
-        extends SecurityTypePriceCalculator<T, BondFuture> {
+        extends InstrumentTypePricer<T, BondFuture> {
 
     @Override
     <C extends CurrencyId> BondFuturePrice.Shiftable<C> price(T temporal, BondFuture future, C currency)
             throws BondFuturePriceException;
 
-    class BondFuturePriceException extends SecurityPriceException {
+    class BondFuturePriceException extends InstrumentPriceException {
 
         private static final long serialVersionUID = 1L;
 

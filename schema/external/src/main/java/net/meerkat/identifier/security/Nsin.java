@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.StringWrapper;
 import net.meerkat.identifier.country.CountryIso;
+import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  * National Securities Identifying Number.
@@ -14,7 +15,7 @@ import net.meerkat.identifier.country.CountryIso;
 @XmlRootElement
 public class Nsin
         extends StringWrapper
-        implements SecurityId {
+        implements InstrumentId {
 
     private static final long serialVersionUID = 1L;
 

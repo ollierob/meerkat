@@ -1,6 +1,7 @@
 package net.meerkat.identifier.security;
 
 import net.meerkat.StringWrapper;
+import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  * Fixed Instrument Global Identifier.
@@ -11,7 +12,7 @@ import net.meerkat.StringWrapper;
  */
 public class Figi
         extends StringWrapper
-        implements HasCheckDigit, SecurityId {
+        implements HasCheckDigit, InstrumentId {
 
     private static final long serialVersionUID = 1L;
 

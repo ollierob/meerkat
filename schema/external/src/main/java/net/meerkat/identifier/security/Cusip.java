@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.country.CountryIso;
-import net.ollie.meerkat.utils.algorithm.LuhnAlgorithm;
+import net.meerkat.utils.algorithm.LuhnAlgorithm;
 
 /**
  *

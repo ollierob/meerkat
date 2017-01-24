@@ -2,10 +2,10 @@ package net.ollie.meerkat.calculate.price.interest;
 
 import java.time.LocalDate;
 
-import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.meerkat.instrument.interest.CertificateOfDeposit;
 import net.meerkat.instrument.interest.MoneyMarketSecurity;
 import net.meerkat.money.currency.CurrencyId;
+import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 
 /**
  *
@@ -13,7 +13,7 @@ import net.meerkat.money.currency.CurrencyId;
  */
 public interface MoneyMarketPricer {
 
-    default <C extends CurrencyId> ShiftableSecurityPrice<C> price(
+    default <C extends CurrencyId> ShiftableInstrumentPrice<C> price(
             LocalDate date,
             CertificateOfDeposit certificateOfDeposit,
             C currency) {
@@ -22,7 +22,7 @@ public interface MoneyMarketPricer {
 
     <C extends CurrencyId> MoneyMarketPriceContext<C> priceContext(LocalDate date, C currency);
 
-    interface MoneyMarketPriceContext<C extends CurrencyId> extends MoneyMarketSecurity.Handler<ShiftableSecurityPrice<C>> {
+    interface MoneyMarketPriceContext<C extends CurrencyId> extends MoneyMarketSecurity.Handler<ShiftableInstrumentPrice<C>> {
 
     }
 

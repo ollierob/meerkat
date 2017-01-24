@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import net.meerkat.Explainable;
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.fx.ExchangeRate;
 
 /**
  *
@@ -38,6 +39,11 @@ public class DefaultCashPayment<C extends CurrencyId> implements CashPayment<C>,
     @Override
     public Money<C> amount() {
         return amount;
+    }
+
+    @Override
+    public <T extends CurrencyId> DefaultCashPayment<T> convert(final ExchangeRate<C, T> exchangeRate) {
+        return new DefaultCashPayment<>(date, amount.convert(exchangeRate));
     }
 
     @Override

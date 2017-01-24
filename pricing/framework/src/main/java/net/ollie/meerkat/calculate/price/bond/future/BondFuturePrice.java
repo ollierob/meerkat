@@ -6,19 +6,19 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.ollie.meerkat.calculate.price.SecurityPrice;
-import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
 import net.meerkat.money.currency.CurrencyId;
+import net.ollie.meerkat.calculate.price.InstrumentPrice;
+import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 
 /**
  *
  * @author ollie
  */
 public interface BondFuturePrice<C extends CurrencyId>
-        extends SecurityPrice<C> {
+        extends InstrumentPrice<C> {
 
     @Nonnull
     Money<C> price();
@@ -51,13 +51,13 @@ public interface BondFuturePrice<C extends CurrencyId>
 
     @Override
     default ExplanationBuilder explain() {
-        return SecurityPrice.super.explain()
+        return InstrumentPrice.super.explain()
                 .put("cheapest to deliver", this.cheapestToDeliver())
                 .put("repo rate", this.repoRate());
     }
 
     interface Shiftable<C extends CurrencyId>
-            extends BondFuturePrice<C>, ShiftableSecurityPrice<C> {
+            extends BondFuturePrice<C>, ShiftableInstrumentPrice<C> {
 
         @Override
         CheapestToDeliver<C> cheapestToDeliver();

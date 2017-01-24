@@ -8,25 +8,25 @@ import java.util.TreeMap;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
+import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
+import net.meerkat.money.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
 import net.ollie.meerkat.calculate.fx.ExchangeRatesProvider;
-import net.meerkat.money.currency.CurrencyId;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
  *
  * @author ollie
  */
-public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponBond> {
+public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate, FixedCouponBond> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRate;
@@ -36,6 +36,11 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
             final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates) {
         this.exchangeRatesProvider = exchangeRatesProvider;
         this.getDiscountRate = discountRates;
+    }
+
+    @Override
+    public <C extends CurrencyId> BondPriceContext<C> priceContext(LocalDate valuation, C currency) throws BondPriceException {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

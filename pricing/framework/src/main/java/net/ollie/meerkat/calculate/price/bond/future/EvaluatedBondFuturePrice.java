@@ -5,7 +5,7 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
 import net.meerkat.money.Money;
-import net.ollie.meerkat.calculate.price.EvaluatedSecurityPrice;
+import net.ollie.meerkat.calculate.price.EvaluatedInstrumentPrice;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
 import net.meerkat.money.currency.CurrencyId;
 
@@ -15,7 +15,7 @@ import net.meerkat.money.currency.CurrencyId;
  */
 //TODO XML
 public class EvaluatedBondFuturePrice<C extends CurrencyId>
-        extends EvaluatedSecurityPrice<C>
+        extends EvaluatedInstrumentPrice<C>
         implements BondFuturePrice<C> {
 
     private static final long serialVersionUID = 1L;

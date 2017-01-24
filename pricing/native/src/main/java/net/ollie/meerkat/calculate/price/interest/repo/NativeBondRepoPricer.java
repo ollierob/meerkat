@@ -9,7 +9,7 @@ import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
-import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
+import net.ollie.meerkat.calculate.price.bond.BondTypePricer.BondPriceException;
 import net.ollie.meerkat.calculate.price.bond.BondShifts;
 import net.ollie.meerkat.calculate.price.bond.GenericBondPricer;
 import net.meerkat.money.currency.CurrencyId;

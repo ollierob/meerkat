@@ -3,13 +3,14 @@ package net.meerkat.identifier.security;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import net.meerkat.identifier.Iso;
+import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  * Financial Instrument Short Name.
  *
  * @author Ollie
  */
-public class Fisn implements Iso, SecurityId {
+public class Fisn implements Iso, InstrumentId {
 
     @XmlAttribute(name = "issuer")
     private String issuerName;

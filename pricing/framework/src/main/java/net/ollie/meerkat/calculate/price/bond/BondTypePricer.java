@@ -2,10 +2,10 @@ package net.ollie.meerkat.calculate.price.bond;
 
 import java.time.temporal.Temporal;
 
-import net.ollie.meerkat.calculate.price.SecurityTypePriceCalculator;
 import net.meerkat.instrument.bond.Bond;
-import net.ollie.meerkat.calculate.price.SecurityPriceException;
+import net.ollie.meerkat.calculate.price.InstrumentPriceException;
 import net.meerkat.money.currency.CurrencyId;
+import net.ollie.meerkat.calculate.price.InstrumentTypePricer;
 
 /**
  * Prices particular types of bond.
@@ -13,8 +13,8 @@ import net.meerkat.money.currency.CurrencyId;
  * @author ollie
  * @see GenericBondPricer
  */
-public interface BondPricer<T extends Temporal, B extends Bond>
-        extends SecurityTypePriceCalculator<T, B> {
+public interface BondTypePricer<T extends Temporal, B extends Bond>
+        extends InstrumentTypePricer<T, B> {
 
     @Override
     default <C extends CurrencyId> BondPrice.Shiftable<C> price(T temporal, B bond, C currency) throws BondPriceException {
@@ -32,7 +32,7 @@ public interface BondPricer<T extends Temporal, B extends Bond>
 
     }
 
-    class BondPriceException extends SecurityPriceException {
+    class BondPriceException extends InstrumentPriceException {
 
         private static final long serialVersionUID = 1L;
 

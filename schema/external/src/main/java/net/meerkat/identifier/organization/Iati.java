@@ -54,7 +54,7 @@ public class Iati
 
     @Override
     public ExplanationBuilder explain() {
-        return new ExplanationBuilder()
+        return this.explanationBuilder()
                 .put("namespace", namespace)
                 .put("base", base);
     }

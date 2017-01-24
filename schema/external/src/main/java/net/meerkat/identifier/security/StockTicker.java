@@ -9,7 +9,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.StringWrapper;
-import net.meerkat.identifier.SecurityInMarketId;
+import net.meerkat.identifier.InstrumentInMarketId;
+import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
 
@@ -20,7 +22,7 @@ import net.meerkat.identifier.market.Mic;
 @XmlRootElement
 public class StockTicker
         extends StringWrapper
-        implements SecurityInMarketId, SecurityId, HasMarketId {
+        implements InstrumentInMarketId, InstrumentId, HasMarketId {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,6 +46,12 @@ public class StockTicker
     @Nonnull
     public String ticker() {
         return super.value();
+    }
+
+    @Override
+    @Deprecated
+    public InstrumentIds instrumentIds() {
+        return InstrumentId.super.instrumentIds();
     }
 
     @Override

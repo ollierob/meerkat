@@ -10,7 +10,7 @@ import net.meerkat.money.currency.CurrencyId;
  *
  * @author Ollie
  */
-public interface GenericBondPricer<T extends Temporal> extends BondPricer<T, Bond> {
+public interface GenericBondPricer<T extends Temporal> extends BondTypePricer<T, Bond> {
 
     @Override
     default <C extends CurrencyId> BondPrice.Shiftable<C> price(

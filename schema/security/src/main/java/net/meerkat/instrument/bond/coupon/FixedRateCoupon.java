@@ -6,12 +6,13 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
+import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.YearCount;
-import net.meerkat.instrument.cash.CashPayment;
-import net.meerkat.money.currency.CurrencyId;
 
 /**
  *
@@ -69,6 +70,11 @@ public class FixedRateCoupon<C extends CurrencyId>
 
     public YearCount accrual() {
         return rate.dateArithmetic();
+    }
+
+    @Override
+    public <T extends CurrencyId> CashPayment<T> convert(final ExchangeRate<C, T> exchangeRate) {
+        return new FixedRateCoupon<>(this.paymentDate(), amount.convert(exchangeRate), rate);
     }
 
 }

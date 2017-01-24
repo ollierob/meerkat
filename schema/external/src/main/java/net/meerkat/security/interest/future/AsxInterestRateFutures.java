@@ -1,14 +1,13 @@
 package net.meerkat.security.interest.future;
 
-import net.meerkat.security.interest.future.InterestRateFuture;
-import net.meerkat.security.interest.future.InterestRateFutureContract;
-
 import java.time.YearMonth;
 
+import net.meerkat.identifier.currency.CurrencyIso;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.interest.future.InterestRateFuture;
+import net.meerkat.instrument.interest.future.InterestRateFutureContract;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.identifier.currency.CurrencyIso;
-import net.meerkat.identifier.security.SecurityIds;
 
 import org.apache.commons.math3.fraction.Fraction;
 
@@ -17,10 +16,10 @@ import org.apache.commons.math3.fraction.Fraction;
  * @author ollie
  */
 public class AsxInterestRateFutures {
-    
+
     public static InterestRateFuture thirtyDayInterbankCash(
             final String name,
-            final SecurityIds identifiers,
+            final InstrumentIds identifiers,
             final YearMonth deliveryMonth,
             final Percentage yieldToMaturity) {
         final InterestRateFutureContract contract = new InterestRateFutureContract(

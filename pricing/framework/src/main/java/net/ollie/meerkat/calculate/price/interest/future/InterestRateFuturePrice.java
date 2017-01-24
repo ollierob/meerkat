@@ -7,17 +7,17 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.meerkat.calculate.price.SecurityPrice;
-import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
 import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.money.currency.CurrencyId;
+import net.ollie.meerkat.calculate.price.InstrumentPrice;
+import net.ollie.meerkat.calculate.price.ShiftableInstrumentPrice;
 
 /**
  *
  * @author ollie
  */
 public interface InterestRateFuturePrice<C extends CurrencyId>
-        extends SecurityPrice<C> {
+        extends InstrumentPrice<C> {
 
     @Nonnull
     Percentage price();
@@ -42,17 +42,17 @@ public interface InterestRateFuturePrice<C extends CurrencyId>
 
     @Override
     default ExplanationBuilder explain() {
-        return SecurityPrice.super.explain()
+        return InstrumentPrice.super.explain()
                 .put("price", this.price())
                 .put("multiplier", this.multiplier());
     }
 
     interface Shiftable<C extends CurrencyId>
-            extends InterestRateFuturePrice<C>, ShiftableSecurityPrice<C> {
+            extends InterestRateFuturePrice<C>, ShiftableInstrumentPrice<C> {
 
         @Override
         @Deprecated
-        default Optional<ShiftableSecurityPrice<C>> shift(final SecurityShifts shifts) {
+        default Optional<ShiftableInstrumentPrice<C>> shift(final SecurityShifts shifts) {
             return shifts.cast(InterestRateFutureShifts.class).map(this::shift);
         }
 

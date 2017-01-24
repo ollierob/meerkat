@@ -11,13 +11,15 @@ import java.util.function.Function;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.instrument.InstrumentId;
+
 
 /**
  *
  * @author ollie
  */
 @XmlRootElement
-public class FutureTicker implements SecurityId, Externalizable {
+public class FutureTicker implements InstrumentId, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
