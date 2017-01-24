@@ -11,9 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.Explainable;
 import net.meerkat.Named;
-import net.meerkat.identifier.instrument.HasInstrumentIds;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.utils.HasName;
 
 /**
  *
@@ -22,25 +20,25 @@ import net.meerkat.utils.HasName;
 @XmlRootElement
 public class NamedInstrument
         extends Named
-        implements Instrument, HasInstrumentIds, HasName, Externalizable, Explainable {
+        implements Instrument, Externalizable, Explainable {
 
     private static final long serialVersionUID = 1L;
 
     @XmlElement(name = "ids", required = true)
-    private InstrumentIds identifiers;
+    private InstrumentIds ids;
 
     @Deprecated
     protected NamedInstrument() {
     }
 
-    public NamedInstrument(final String name, final InstrumentIds identifiers) {
+    public NamedInstrument(final String name, final InstrumentIds ids) {
         super(name);
-        this.identifiers = identifiers;
+        this.ids = ids;
     }
 
     @Override
     public InstrumentIds instrumentIds() {
-        return identifiers;
+        return ids;
     }
 
     @Override
@@ -53,22 +51,21 @@ public class NamedInstrument
     public ExplanationBuilder explain() {
         return this.explanationBuilder()
                 .put("name", this.name())
-                .put("id", identifiers)
-                .put("type", this.getClass().getSimpleName());
+                .put("ids", ids);
     }
 
     @Override
     @OverridingMethodsMustInvokeSuper
     public void writeExternal(final ObjectOutput out) throws IOException {
         super.writeExternal(out);
-        out.writeObject(identifiers);
+        out.writeObject(ids);
     }
 
     @Override
     @OverridingMethodsMustInvokeSuper
     public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
         super.readExternal(in);
-        identifiers = (InstrumentIds) in.readObject();
+        ids = (InstrumentIds) in.readObject();
     }
 
 }

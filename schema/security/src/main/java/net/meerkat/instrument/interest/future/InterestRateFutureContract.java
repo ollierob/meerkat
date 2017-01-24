@@ -1,18 +1,18 @@
 package net.meerkat.instrument.interest.future;
 
-import java.util.Map;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.Explainable;
-import net.meerkat.instrument.Instrument;
-import net.meerkat.money.Money;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.Instrument;
+import net.meerkat.instrument.NamedInstrument;
+import net.meerkat.money.Money;
 
 import org.apache.commons.math3.fraction.Fraction;
-
-import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *
@@ -20,7 +20,10 @@ import net.meerkat.identifier.currency.HasCurrencyId;
  */
 @XmlRootElement
 public class InterestRateFutureContract
+        extends NamedInstrument
         implements Instrument, HasCurrencyId, Explainable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElement(name = "accrual")
     private Fraction accrual;
@@ -32,7 +35,12 @@ public class InterestRateFutureContract
     InterestRateFutureContract() {
     }
 
-    public InterestRateFutureContract(final Fraction accrual, final Money<?> notional) {
+    public InterestRateFutureContract(
+            final String name,
+            final InstrumentIds instrumentIds,
+            final Fraction accrual,
+            final Money<?> notional) {
+        super(name, instrumentIds);
         this.accrual = accrual;
         this.notional = notional;
     }
@@ -51,8 +59,8 @@ public class InterestRateFutureContract
     }
 
     @Override
-    public Map<String, Object> explain() {
-        return this.explanationBuilder()
+    public ExplanationBuilder explain() {
+        return super.explain()
                 .put("notional", notional)
                 .put("years", accrual);
     }

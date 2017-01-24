@@ -2,6 +2,8 @@ package net.meerkat.instrument;
 
 import java.security.Security;
 
+import net.meerkat.identifier.instrument.InstrumentIds;
+
 /**
  *
  * @author Ollie
@@ -13,5 +15,8 @@ public interface Instrument extends HasInstrument {
     default Instrument instrument() {
         return this;
     }
+
+    @Override
+    InstrumentIds instrumentIds();
 
 }
