@@ -6,6 +6,6 @@ import net.meerkat.utils.HasName;
  *
  * @author ollie
  */
-public interface Organization extends HasName {
+public interface Organization extends HasName, HasOrganizationId {
 
 }

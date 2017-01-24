@@ -1,28 +1,34 @@
 package net.meerkat.organization;
 
-import net.meerkat.StringWrapper;
+import javax.xml.bind.annotation.XmlElementRef;
+
+import net.meerkat.Named;
 
 /**
  *
  * @author ollie
  */
 public class NamedOrganization
-        extends StringWrapper
+        extends Named
         implements Organization {
 
     private static final long serialVersionUID = 1L;
+
+    @XmlElementRef(name = "id")
+    private OrganizationId id;
 
     @Deprecated
     protected NamedOrganization() {
     }
 
-    public NamedOrganization(final String name) {
+    public NamedOrganization(final String name, final OrganizationId id) {
         super(name);
+        this.id = id;
     }
 
     @Override
-    public String name() {
-        return this.value();
+    public OrganizationId organizationId() {
+        return id;
     }
 
 }
