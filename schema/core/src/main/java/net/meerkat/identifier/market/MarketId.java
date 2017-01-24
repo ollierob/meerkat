@@ -13,8 +13,4 @@ public interface MarketId extends HasMarketId, Castable {
         return this;
     }
 
-    default MarketIds toMarketIds() {
-        return MarketIds.of(this);
-    }
-
 }
