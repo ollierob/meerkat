@@ -49,7 +49,7 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
 
     @Override
     public C from() {
-        return call.currency();
+        return call.currencyId();
     }
 
     @Nonnull
@@ -59,7 +59,7 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
 
     @Override
     public P to() {
-        return put.currency();
+        return put.currencyId();
     }
 
     @Override

@@ -1,22 +1,20 @@
 package net.meerkat.money.fx;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.FractionalMoney;
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.HasCurrencies;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.CurrencyIds;
+import net.meerkat.money.currency.HasCurrencyIds;
+import net.ollie.goat.numeric.fraction.DecimalFraction;
 
 /**
  *
  * @author Ollie
  */
 public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
-        extends Comparable<ExchangeRate<F, T>>, HasCurrencies {
+        extends Comparable<ExchangeRate<F, T>>, HasCurrencyIds {
 
     @Nonnull
     F from();
@@ -49,11 +47,8 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
     }
 
     @Override
-    default Set<? extends CurrencyId> currencies() {
-        final Set<CurrencyId> currencies = new HashSet<>(2);
-        currencies.add(this.from());
-        currencies.add(this.to());
-        return currencies;
+    default CurrencyIds currencyIds() {
+        return CurrencyIds.of(this.from(), this.to());
     }
 
     static <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> between(final Money<F> from, final Money<T> to) {

@@ -63,8 +63,8 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
     }
 
     @Override
-    public CurrencyId currency() {
-        return key.currency();
+    public CurrencyId currencyId() {
+        return key.currencyId();
     }
 
 }

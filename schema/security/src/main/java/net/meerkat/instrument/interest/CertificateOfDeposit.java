@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.temporal.date.Dates;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
@@ -17,6 +16,7 @@ import net.meerkat.numeric.interest.earning.InterestEarning;
 import net.meerkat.instrument.Issued;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
@@ -26,7 +26,7 @@ import net.meerkat.money.currency.CurrencyId;
 @XmlRootElement
 public class CertificateOfDeposit
         extends NamedInstrument
-        implements MoneyMarketSecurity, HasCurrency, Issued, InterestEarning.Fixed, Explainable {
+        implements MoneyMarketSecurity, HasCurrencyId, Issued, InterestEarning.Fixed, Explainable {
 
     private static final long serialVersionUID = 1L;
 
@@ -69,8 +69,8 @@ public class CertificateOfDeposit
     }
 
     @Override
-    public CurrencyId currency() {
-        return notional.currency();
+    public CurrencyId currencyId() {
+        return notional.currencyId();
     }
 
     public Money<?> accrueFrom(final LocalDate date) {

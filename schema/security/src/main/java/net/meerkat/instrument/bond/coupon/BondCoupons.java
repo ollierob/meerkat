@@ -5,17 +5,17 @@ import static java.util.stream.Collectors.toList;
 
 import javax.annotation.CheckForNull;
 
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
 import net.meerkat.utils.collections.sequence.OrderedSequence;
 import net.meerkat.utils.collections.sequence.StartingSequence;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
  * @author ollie
  */
 public interface BondCoupons<C extends BondCoupon>
-        extends OrderedSequence<LocalDate, C>, StartingSequence<C>, HasCurrency {
+        extends OrderedSequence<LocalDate, C>, StartingSequence<C>, HasCurrencyId {
 
     @Override
     FiniteSequence<C> between(LocalDate startInclusive, LocalDate endExclusive);

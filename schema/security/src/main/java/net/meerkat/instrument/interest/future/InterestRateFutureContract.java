@@ -9,9 +9,10 @@ import net.meerkat.Explainable;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrency;
 
 import org.apache.commons.math3.fraction.Fraction;
+
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
@@ -19,7 +20,7 @@ import org.apache.commons.math3.fraction.Fraction;
  */
 @XmlRootElement
 public class InterestRateFutureContract
-        implements Instrument, HasCurrency, Explainable {
+        implements Instrument, HasCurrencyId, Explainable {
 
     @XmlElement(name = "accrual")
     private Fraction accrual;
@@ -41,8 +42,8 @@ public class InterestRateFutureContract
     }
 
     @Override
-    public CurrencyId currency() {
-        return notional.currency();
+    public CurrencyId currencyId() {
+        return notional.currencyId();
     }
 
     public Money<?> notional() {

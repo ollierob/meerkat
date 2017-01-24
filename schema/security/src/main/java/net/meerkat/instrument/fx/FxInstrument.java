@@ -5,15 +5,15 @@ import javax.annotation.Nonnull;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.OtcInstrument;
 import net.meerkat.instrument.fx.forward.FxForward;
-import net.meerkat.money.currency.CurrencyPair;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
+import net.meerkat.money.currency.CurrencyIdPair;
 
 /**
  *
  * @author Ollie
  */
-public interface FxInstrument extends OtcInstrument, InstrumentDefinition, CurrencyPair.Untyped {
+public interface FxInstrument extends OtcInstrument, InstrumentDefinition, CurrencyIdPair.Untyped {
 
     @Nonnull
     ExchangeRate<?, ?> exchangeRate();

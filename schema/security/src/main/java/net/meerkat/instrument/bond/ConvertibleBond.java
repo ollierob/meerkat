@@ -85,8 +85,8 @@ public class ConvertibleBond extends AbstractBond {
         }
 
         @Override
-        public CurrencyId currency() {
-            return coupons.get(0).currency(); //FIXME
+        public CurrencyId currencyId() {
+            return coupons.get(0).currencyId(); //FIXME
         }
 
     }

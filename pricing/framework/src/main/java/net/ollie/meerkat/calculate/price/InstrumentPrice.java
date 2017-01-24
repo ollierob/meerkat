@@ -5,14 +5,14 @@ import javax.annotation.Nonnull;
 import net.meerkat.Explainable;
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
  * @author ollie
  */
 public interface InstrumentPrice<C extends CurrencyId>
-        extends HasCurrency, Explainable {
+        extends HasCurrencyId, Explainable {
 
     @Nonnull
     Money<C> clean();
@@ -21,8 +21,8 @@ public interface InstrumentPrice<C extends CurrencyId>
     Money<C> dirty();
 
     @Override
-    default C currency() {
-        return this.clean().currency();
+    default C currencyId() {
+        return this.clean().currencyId();
     }
 
     @Nonnull

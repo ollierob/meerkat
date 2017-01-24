@@ -7,14 +7,14 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
 import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
  * @author ollie
  */
-public interface CashPayment<C extends CurrencyId> extends HasCurrency {
+public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
 
     @Nonnull
     LocalDate date();
@@ -23,8 +23,8 @@ public interface CashPayment<C extends CurrencyId> extends HasCurrency {
     Money<C> amount();
 
     @Override
-    default C currency() {
-        return this.amount().currency();
+    default C currencyId() {
+        return this.amount().currencyId();
     }
 
     @CheckReturnValue

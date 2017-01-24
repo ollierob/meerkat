@@ -39,12 +39,12 @@ public class RatioExchangeRate<F extends CurrencyId, T extends CurrencyId>
 
     @Override
     public F from() {
-        return from.currency();
+        return from.currencyId();
     }
 
     @Override
     public T to() {
-        return to.currency();
+        return to.currencyId();
     }
 
     @Override

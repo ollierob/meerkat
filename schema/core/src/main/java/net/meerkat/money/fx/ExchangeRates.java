@@ -5,8 +5,8 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.CurrencyPair;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.CurrencyIdPair;
 
 /**
  * Snapshot of FX rates at a particular time.
@@ -26,7 +26,7 @@ public interface ExchangeRates {
     default <F extends CurrencyId, T extends CurrencyId> Money<T> convert(
             @Nonnull final Money<F> money,
             @Nonnull final T to) {
-        final F from = money.currency();
+        final F from = money.currencyId();
         return from == to
                 ? (Money<T>) money
                 : this.rate(from, to).convert(money);
@@ -34,22 +34,22 @@ public interface ExchangeRates {
 
     @Nonnull
     default <F extends CurrencyId, T extends CurrencyId> Money<F> add(final Money<F> left, final Money<T> right) {
-        return left.plus(this.convert(right, left.currency()));
+        return left.plus(this.convert(right, left.currencyId()));
     }
 
     @Nonnull
     default <F extends CurrencyId, T extends CurrencyId> Money<F> subtract(final Money<F> minuend, final Money<T> subtrahend) {
-        return minuend.minus(this.convert(subtrahend, minuend.currency()));
+        return minuend.minus(this.convert(subtrahend, minuend.currencyId()));
     }
 
     @Nonnull
-    default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> baseRate(final CurrencyPair<F, T> pair)
+    default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> baseRate(final CurrencyIdPair<F, T> pair)
             throws UnavailableExchangeRate {
         return this.rate(pair.base(), pair.counter());
     }
 
     @Nonnull
-    default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<T, F> counterRate(final CurrencyPair<F, T> pair)
+    default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<T, F> counterRate(final CurrencyIdPair<F, T> pair)
             throws UnavailableExchangeRate {
         return this.rate(pair.counter(), pair.base());
     }

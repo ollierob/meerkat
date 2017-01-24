@@ -15,7 +15,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.MarketId;
 import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrency;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  * A particular instrument in a particular market in a particular currency.
@@ -24,7 +24,7 @@ import net.meerkat.money.currency.HasCurrency;
  */
 @XmlRootElement
 public class InstrumentAndMarketId
-        implements InstrumentInMarketId, HasInstrumentId, HasMarketId, HasCurrency, Externalizable {
+        implements InstrumentInMarketId, HasInstrumentId, HasMarketId, HasCurrencyId, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -58,7 +58,7 @@ public class InstrumentAndMarketId
     }
 
     @Override
-    public CurrencyId currency() {
+    public CurrencyId currencyId() {
         return currency;
     }
 

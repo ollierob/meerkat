@@ -17,20 +17,20 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class HistoricPnl<C extends CurrencyId> implements HasCurrency {
+public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
 
     public static <C extends CurrencyId> HistoricPnl<C> from(final Map<LocalDate, Money<C>> values) {
         final Iterator<Map.Entry<LocalDate, Money<C>>> iterator = values.entrySet().iterator();
         Map.Entry<LocalDate, Money<C>> previous = iterator.next();
-        final C currency = previous.getValue().currency();
+        final C currency = previous.getValue().currencyId();
         final NavigableMap<LocalDate, BigDecimal> pnl = new TreeMap<>();
         while (iterator.hasNext()) {
             final Map.Entry<LocalDate, Money<C>> next = iterator.next();
@@ -57,7 +57,7 @@ public class HistoricPnl<C extends CurrencyId> implements HasCurrency {
     }
 
     @Override
-    public C currency() {
+    public C currencyId() {
         return currency;
     }
 

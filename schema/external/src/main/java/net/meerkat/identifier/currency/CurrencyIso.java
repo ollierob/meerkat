@@ -26,7 +26,7 @@ public interface CurrencyIso
 
     @Override
     @Deprecated
-    default CurrencyIso currency() {
+    default CurrencyIso currencyId() {
         return this;
     }
 

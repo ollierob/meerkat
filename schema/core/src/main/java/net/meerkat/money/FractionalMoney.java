@@ -42,7 +42,7 @@ public class FractionalMoney<C extends CurrencyId>
     }
 
     @Override
-    public C currency() {
+    public C currencyId() {
         return currency;
     }
 

@@ -56,7 +56,7 @@ public class NativeMoneyMarketPricer
                 final Money<F> notional,
                 final InterestRate interestRate,
                 final LocalDate maturity) {
-            final ExchangeRate<F, C> fxRate = this.fxRates().rate(notional.currency(), currency);
+            final ExchangeRate<F, C> fxRate = this.fxRates().rate(notional.currencyId(), currency);
             final CompleteInterval period = new CompleteInterval(date, maturity);
             return new InterestAccruedPrice<>(security, notional, interestRate, fxRate, period, null);
         }

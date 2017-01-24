@@ -58,8 +58,8 @@ public class ZeroSpreadFixedCouponBondPricer implements BondTypePricer<LocalDate
             final C currency) {
 
         final ExchangeRates fxRates = exchangeRatesProvider.require(date);
-        final ExchangeRate<P, C> parFxRate = fxRates.rate(par.currency(), currency);
-        final ExchangeRate<Z, C> couponFxRate = fxRates.rate(coupons.currency(), currency);
+        final ExchangeRate<P, C> parFxRate = fxRates.rate(par.currencyId(), currency);
+        final ExchangeRate<Z, C> couponFxRate = fxRates.rate(coupons.currencyId(), currency);
 
         final InterestRate discountRate = requireNonNull(getDiscountRate.apply(date, currency));
 

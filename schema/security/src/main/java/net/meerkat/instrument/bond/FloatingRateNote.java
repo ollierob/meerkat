@@ -78,7 +78,7 @@ public class FloatingRateNote extends StraightBond {
         }
 
         @Override
-        public C currency() {
+        public C currencyId() {
             return currency;
         }
 

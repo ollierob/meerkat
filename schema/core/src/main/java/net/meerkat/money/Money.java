@@ -6,22 +6,22 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.Numbers;
 import net.ollie.goat.numeric.Numeric;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
  * @author Ollie
  */
 public interface Money<C extends CurrencyId>
-        extends HasCurrency, Numeric.Summable<Money<C>>, Serializable {
+        extends HasCurrencyId, Numeric.Summable<Money<C>>, Serializable {
 
     @Override
-    C currency();
+    C currencyId();
 
     @Nonnull
     Number amount();
@@ -43,12 +43,12 @@ public interface Money<C extends CurrencyId>
 
     @Nonnull
     default DecimalMoney<C> toDecimal() {
-        return DecimalMoney.valueOf(this.currency(), this.amount());
+        return DecimalMoney.valueOf(this.currencyId(), this.amount());
     }
 
     @Nonnull
     default Money<C> over(final Number number) {
-        return new FractionalMoney<>(this.currency(), DecimalFraction.of(this.amount(), number));
+        return new FractionalMoney<>(this.currencyId(), DecimalFraction.of(this.amount(), number));
     }
 
     default String toString(@Nonnull final MoneyFormat convention) {
@@ -66,13 +66,13 @@ public interface Money<C extends CurrencyId>
     }
 
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {
-        return Objects.equals(left.currency(), right.currency())
+        return Objects.equals(left.currencyId(), right.currencyId())
                 && Numbers.equals(left.amount(), right.amount());
     }
 
     static int hashCode(final Money<?> money) {
         int hash = 5;
-        hash = 29 * hash + Objects.hashCode(money.currency());
+        hash = 29 * hash + Objects.hashCode(money.currencyId());
         hash = 29 * hash + Double.hashCode(money.doubleValue());
         return hash;
     }

@@ -34,7 +34,7 @@ public class VariableRateBond extends StraightBond {
 
     @Override
     public StraightBondCoupons<?> coupons() {
-        final CurrencyId commonCurrency = Iterables.requireCommonElement(coupons, BondCoupon::currency);
+        final CurrencyId commonCurrency = Iterables.requireCommonElement(coupons, BondCoupon::currencyId);
         return new VariableRateBondCoupons<>(commonCurrency);
     }
 
@@ -73,7 +73,7 @@ public class VariableRateBond extends StraightBond {
         }
 
         @Override
-        public C currency() {
+        public C currencyId() {
             return commonCurrency;
         }
 

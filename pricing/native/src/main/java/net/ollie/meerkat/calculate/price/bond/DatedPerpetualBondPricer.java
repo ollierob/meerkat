@@ -144,7 +144,7 @@ public class DatedPerpetualBondPricer implements BondTypePricer<LocalDate, Perpe
         }
 
         @Override
-        public C currency() {
+        public C currencyId() {
             return currency;
         }
 

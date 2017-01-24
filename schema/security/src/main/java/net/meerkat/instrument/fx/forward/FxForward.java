@@ -46,7 +46,7 @@ public class FxForward
             final Money<?> counter,
             final CompleteInterval settlement) {
         super(name, identifiers);
-        Require.that(base.currency() != counter.currency(), () -> "Cannot have a forward using [" + base + "] == [" + counter + "]!");
+        Require.that(base.currencyId() != counter.currencyId(), () -> "Cannot have a forward using [" + base + "] == [" + counter + "]!");
         this.base = base;
         this.counter = counter;
         this.settlement = settlement;
@@ -58,7 +58,7 @@ public class FxForward
 
     @Override
     public CurrencyId base() {
-        return base.currency();
+        return base.currencyId();
     }
 
     public Money<?> counterAmount() {
@@ -67,7 +67,7 @@ public class FxForward
 
     @Override
     public CurrencyId counter() {
-        return counter.currency();
+        return counter.currencyId();
     }
 
     @Override

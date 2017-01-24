@@ -6,7 +6,7 @@ import net.meerkat.utils.Classes.Castable;
  *
  * @author Ollie
  */
-public interface InstrumentId extends HasInstrumentId, Castable<InstrumentId> {
+public interface InstrumentId extends HasInstrumentId, Castable {
 
     @Override
     @Deprecated

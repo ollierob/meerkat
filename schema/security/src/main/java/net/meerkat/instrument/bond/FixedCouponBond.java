@@ -111,8 +111,8 @@ public class FixedCouponBond
         }
 
         @Override
-        public C currency() {
-            return couponAmount.currency();
+        public C currencyId() {
+            return couponAmount.currencyId();
         }
 
     }

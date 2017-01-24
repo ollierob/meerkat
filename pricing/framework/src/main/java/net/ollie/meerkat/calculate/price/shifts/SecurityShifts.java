@@ -7,6 +7,6 @@ import net.meerkat.utils.Classes.Castable;
  *
  * @author ollie
  */
-public interface SecurityShifts extends Castable<SecurityShifts>, Explainable {
+public interface SecurityShifts extends Castable, Explainable {
 
 }

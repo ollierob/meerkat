@@ -3,16 +3,16 @@ package net.ollie.meerkat.calculate.var;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.currency.HasCurrency;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.currency.CurrencyId;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  * Value at risk (VaR).
  *
  * @author Ollie
  */
-public interface ValueAtRisk extends HasCurrency {
+public interface ValueAtRisk extends HasCurrencyId {
 
     @Nonnull
     Money<?> atRisk();
@@ -23,8 +23,8 @@ public interface ValueAtRisk extends HasCurrency {
     }
 
     @Override
-    default CurrencyId currency() {
-        return this.atRisk().currency();
+    default CurrencyId currencyId() {
+        return this.atRisk().currencyId();
     }
 
 }

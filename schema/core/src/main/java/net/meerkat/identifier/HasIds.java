@@ -18,7 +18,9 @@ import net.meerkat.utils.Classes.Castable;
  *
  * @author ollie
  */
-public abstract class HasIds<T extends Castable<? super T>> implements Externalizable {
+public abstract class HasIds<T extends Castable> implements Externalizable {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElement(name = "id")
     private Set<T> ids;

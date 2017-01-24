@@ -4,14 +4,14 @@ import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.currency.HasCurrency;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
  * @author Ollie
  */
-public interface BondCoupon extends HasCurrency {
+public interface BondCoupon extends HasCurrencyId {
 
     @Nonnull
     LocalDate paymentDate();

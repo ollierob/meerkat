@@ -8,15 +8,15 @@ import javax.annotation.Nonnull;
 import net.meerkat.Explainable;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.money.currency.CurrencyId;
-import net.meerkat.money.currency.HasCurrency;
 import net.ollie.meerkat.calculate.price.bond.BondPrice;
+import net.meerkat.money.currency.HasCurrencyId;
 
 /**
  *
  * @author Ollie
  */
 public interface CheapestToDeliver<C extends CurrencyId>
-        extends HasCurrency, Explainable {
+        extends HasCurrencyId, Explainable {
 
     @Nonnull
     BigDecimal conversionFactor();
@@ -28,8 +28,8 @@ public interface CheapestToDeliver<C extends CurrencyId>
     BondPrice<C> price();
 
     @Override
-    default C currency() {
-        return this.price().currency();
+    default C currencyId() {
+        return this.price().currencyId();
     }
 
     @Override
