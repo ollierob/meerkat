@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.InterestRateId;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
@@ -21,9 +20,6 @@ import net.ollie.goat.temporal.date.years.Years;
  */
 @XmlRootElement
 public abstract class FixedInterestRate implements InterestRate, Comparable<FixedInterestRate> {
-
-    @XmlElementRef(name = "id")
-    private InterestRateId id;
 
     @XmlAttribute(name = "annual_rate")
     private Percentage annualRate;
@@ -36,10 +32,8 @@ public abstract class FixedInterestRate implements InterestRate, Comparable<Fixe
     }
 
     protected FixedInterestRate(
-            final InterestRateId id,
             final Percentage annualRate,
             final DateArithmetic dates) {
-        this.id = id;
         this.annualRate = annualRate;
         this.dates = dates;
     }
@@ -52,11 +46,6 @@ public abstract class FixedInterestRate implements InterestRate, Comparable<Fixe
     @Override
     public DateArithmetic dateArithmetic() {
         return dates;
-    }
-
-    @Override
-    public InterestRateId interestRateId() {
-        return id;
     }
 
     public boolean isNegative() {

@@ -1,6 +1,9 @@
 package net.meerkat.money.interest;
 
+import javax.xml.bind.annotation.XmlElementRef;
+
 import net.meerkat.Named;
+import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -12,12 +15,21 @@ public class NamedInterestRateId
 
     private static final long serialVersionUID = 1L;
 
+    @XmlElementRef(name = "currency")
+    private CurrencyId currencyId;
+
     @Deprecated
     NamedInterestRateId() {
     }
 
-    public NamedInterestRateId(final String value) {
+    public NamedInterestRateId(final String value, final CurrencyId currencyId) {
         super(value);
+        this.currencyId = currencyId;
+    }
+
+    @Override
+    public CurrencyId currencyId() {
+        return currencyId;
     }
 
 }

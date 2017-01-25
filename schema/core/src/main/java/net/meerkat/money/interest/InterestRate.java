@@ -15,14 +15,13 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
  *
  * @author Ollie
  */
-public interface InterestRate extends HasInterestRateId {
+public interface InterestRate {
 
     @Nonnull
     DateArithmetic dateArithmetic();
 
     /**
-     * @return the interest rate given for a period from now until the given
-     * date.
+     * @return the interest rate given for a period from now until the given date.
      */
     @Nonnull
     Percentage spot(LocalDate end);

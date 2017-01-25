@@ -2,7 +2,6 @@ package net.meerkat.money.interest.fixed;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.accrual.InterestAccrual;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
@@ -19,10 +18,9 @@ public class ContinuousFixedInterestRate extends FixedInterestRate {
     }
 
     public ContinuousFixedInterestRate(
-            final InterestRateId interestRateId,
             final Percentage rate,
             final DateArithmetic accrual) {
-        super(interestRateId, rate, accrual);
+        super(rate, accrual);
     }
 
     @Override
@@ -32,7 +30,7 @@ public class ContinuousFixedInterestRate extends FixedInterestRate {
 
     @Override
     public ContinuousFixedInterestRate with(final Percentage rate) {
-        return new ContinuousFixedInterestRate(this.interestRateId(), rate, this.dateArithmetic());
+        return new ContinuousFixedInterestRate(rate, this.dateArithmetic());
     }
 
     @Override

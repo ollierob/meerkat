@@ -5,8 +5,6 @@ import java.time.LocalDate;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.DecimalMoney;
 import net.meerkat.money.Money;
-import net.meerkat.money.interest.InterestRateId;
-import net.meerkat.money.interest.NamedInterestRateId;
 import net.meerkat.money.interest.fixed.CompoundFixedInterestRate;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.temporal.date.count.FixedFixedDateArithmetic;
@@ -32,7 +30,6 @@ public class CompoundFixedInterestRateTest {
     @Test
     public void shouldDiscount_Annual() {
         final CompoundFixedInterestRate rate = new CompoundFixedInterestRate(
-                new NamedInterestRateId("compoundedYearly@5%"),
                 new DecimalPercentage(5),
                 FixedFixedDateArithmetic.THIRTY_360,
                 1);
@@ -45,7 +42,6 @@ public class CompoundFixedInterestRateTest {
     @Test
     public void shouldDiscount_Quarterly() {
         final CompoundFixedInterestRate rate = new CompoundFixedInterestRate(
-                InterestRateId.named("compoundedQuarterly@5%"),
                 new DecimalPercentage(5),
                 FixedFixedDateArithmetic.THIRTY_360,
                 4);

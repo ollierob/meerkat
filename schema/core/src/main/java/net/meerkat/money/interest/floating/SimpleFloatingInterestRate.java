@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.accrual.InterestAccrual;
 import net.meerkat.money.interest.curve.YieldCurve;
 import net.ollie.goat.numeric.interpolation.Interpolator;
@@ -31,17 +30,16 @@ public class SimpleFloatingInterestRate extends FloatingInterestRate {
     }
 
     public SimpleFloatingInterestRate(
-            final InterestRateId id,
             final LocalDate spot,
             final YieldCurve<LocalDate> curve,
             final DateArithmetic accrual) {
-        super(id, spot, accrual);
+        super(spot, accrual);
         this.curve = curve;
     }
 
     @Override
     public SimpleFloatingInterestRate plus(final Percentage bump) {
-        return new SimpleFloatingInterestRate(this.interestRateId(), this.referenceDate(), curve.plus(bump), this.dateArithmetic());
+        return new SimpleFloatingInterestRate(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
     }
 
     @Override

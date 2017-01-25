@@ -10,7 +10,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.InterestRateId;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
@@ -21,9 +20,6 @@ import net.ollie.goat.temporal.date.years.Years;
  */
 @XmlRootElement
 public abstract class FloatingInterestRate implements InterestRate {
-
-    @XmlElementRef(name = "id")
-    private InterestRateId id;
 
     @XmlAttribute(name = "date", required = true)
     private LocalDate referenceDate;
@@ -36,10 +32,8 @@ public abstract class FloatingInterestRate implements InterestRate {
     }
 
     protected FloatingInterestRate(
-            final InterestRateId id,
             final LocalDate referenceDate,
             final DateArithmetic dates) {
-        this.id = id;
         this.referenceDate = referenceDate;
         this.dates = dates;
     }
@@ -52,11 +46,6 @@ public abstract class FloatingInterestRate implements InterestRate {
     @Override
     public InterestRate plus(Percentage bump) {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public InterestRateId interestRateId() {
-        return id;
     }
 
     @Nonnull
