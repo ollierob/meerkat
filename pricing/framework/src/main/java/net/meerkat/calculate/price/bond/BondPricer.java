@@ -3,9 +3,9 @@ package net.meerkat.calculate.price.bond;
 import java.time.temporal.Temporal;
 
 import net.meerkat.calculate.price.InstrumentPriceException;
-import net.meerkat.calculate.price.InstrumentTypePricer;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.Bond;
+import net.meerkat.calculate.price.InstrumentPricer;
 
 /**
  * Prices particular types of bond.
@@ -15,7 +15,7 @@ import net.meerkat.instrument.bond.Bond;
  * @param <B> bond type
  */
 public interface BondPricer<T extends Temporal, B extends Bond>
-        extends InstrumentTypePricer<T, B> {
+        extends InstrumentPricer<T, B> {
 
     @Override
     <C extends CurrencyId> BondPrice.Shiftable<C> price(T temporal, B bond, C currency) throws BondPriceException;

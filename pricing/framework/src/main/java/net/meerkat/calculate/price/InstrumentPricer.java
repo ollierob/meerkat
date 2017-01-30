@@ -2,28 +2,17 @@ package net.meerkat.calculate.price;
 
 import java.time.temporal.Temporal;
 
-import javax.annotation.Nonnull;
-
-import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.instrument.Instrument;
+import net.meerkat.instrument.InstrumentException;
 
 /**
  *
  * @author ollie
  */
-public interface InstrumentPricer<T extends Temporal> {
+public interface InstrumentPricer<T extends Temporal, I extends Instrument> {
 
-    default <C extends CurrencyId> ShiftableInstrumentPrice<C> price(
-            @Nonnull final T valuation,
-            @Nonnull final InstrumentDefinition security,
-            @Nonnull final C currency) {
-        return security.handleWith(this.pricingContext(valuation, currency));
-    }
-
-    <C extends CurrencyId> SecurityPriceContext<C> pricingContext(T valuation, C currency);
-
-    interface SecurityPriceContext<C extends CurrencyId> extends InstrumentDefinition.Handler<ShiftableInstrumentPrice<C>> {
-
-    }
+    <C extends CurrencyId> InstrumentPrice<C> price(T temporal, I instrument, C currency)
+            throws InstrumentException, InstrumentPriceException;
 
 }

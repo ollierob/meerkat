@@ -6,14 +6,14 @@ import net.meerkat.calculate.price.InstrumentPriceException;
 import net.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
 import net.meerkat.instrument.interest.repo.Repo;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.calculate.price.InstrumentTypePricer;
+import net.meerkat.calculate.price.InstrumentPricer;
 
 /**
  *
  * @author ollie
  */
 public interface RepoTypePricer<T extends Temporal, R extends Repo<?>>
-        extends InstrumentTypePricer<T, R>, ExchangeRateShifter {
+        extends InstrumentPricer<T, R>, ExchangeRateShifter {
 
     @Override
     <C extends CurrencyId> RepoPrice.Shiftable<C> price(T valuation, R security, C currency)

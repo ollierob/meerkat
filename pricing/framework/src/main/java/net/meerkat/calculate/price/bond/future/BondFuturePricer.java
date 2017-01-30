@@ -5,14 +5,14 @@ import java.time.temporal.Temporal;
 import net.meerkat.calculate.price.InstrumentPriceException;
 import net.meerkat.instrument.interest.future.BondFuture;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.calculate.price.InstrumentTypePricer;
+import net.meerkat.calculate.price.InstrumentPricer;
 
 /**
  *
  * @author Ollie
  */
 public interface BondFuturePricer<T extends Temporal>
-        extends InstrumentTypePricer<T, BondFuture> {
+        extends InstrumentPricer<T, BondFuture> {
 
     @Override
     <C extends CurrencyId> BondFuturePrice.Shiftable<C> price(T temporal, BondFuture future, C currency)
