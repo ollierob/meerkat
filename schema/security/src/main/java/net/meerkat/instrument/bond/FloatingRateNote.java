@@ -64,7 +64,7 @@ public class FloatingRateNote extends StraightBond {
 
         @Override
         public FloatingCoupon get(final int index) {
-            return new FloatingCoupon(couponDates.get(index), spread, referenceRate, features);
+            return new FloatingCoupon(currency, couponDates.get(index), spread, referenceRate, features);
         }
 
         @Override

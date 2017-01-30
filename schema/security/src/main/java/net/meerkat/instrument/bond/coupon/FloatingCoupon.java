@@ -19,16 +19,19 @@ import net.meerkat.identifier.currency.CurrencyId;
  */
 public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRateId {
 
+    private final CurrencyId currency;
     private final InterestRateId key;
     private final Percentage spread;
     private final Set<? extends RateFeature> features;
 
     public FloatingCoupon(
+            final CurrencyId currency,
             final LocalDate paymentDate,
             final Percentage spread,
             final InterestRateId key,
             final Set<? extends RateFeature> features) {
         super(paymentDate);
+        this.currency = currency;
         this.key = key;
         this.spread = spread;
         this.features = features;
@@ -64,7 +67,7 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
 
     @Override
     public CurrencyId currencyId() {
-        return key.currencyId();
+        return currency;
     }
 
 }
