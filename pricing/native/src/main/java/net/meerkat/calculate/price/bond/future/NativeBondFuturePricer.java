@@ -1,6 +1,6 @@
 package net.meerkat.calculate.price.bond.future;
 
-//package net.ollie.meerkat.calculate.price.bond.future;
+//package net.meerkat.calculate.price.bond.future;
 //
 //import java.math.BigDecimal;
 //import java.time.LocalDate;
@@ -15,9 +15,9 @@ package net.meerkat.calculate.price.bond.future;
 //import net.meerkat.security.interest.repo.rate.RepoRate;
 //import net.ollie.goat.numeric.percentage.Percentage;
 //import net.ollie.goat.suppliers.lazy.Lazy;
-//import net.ollie.meerkat.calculate.price.bond.BondPrice;
-//import net.ollie.meerkat.calculate.price.bond.BondPricer;
-//import net.ollie.meerkat.calculate.price.bond.BondPricer.BondPriceException;
+//import net.meerkat.calculate.price.bond.BondPrice;
+//import net.meerkat.calculate.price.bond.BondPricer;
+//import net.meerkat.calculate.price.bond.BondPricer.BondPriceException;
 //
 ///**
 // *

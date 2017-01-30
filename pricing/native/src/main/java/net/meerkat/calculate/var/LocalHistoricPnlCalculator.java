@@ -1,6 +1,6 @@
 package net.meerkat.calculate.var;
 
-//package net.ollie.meerkat.calculate.var;
+//package net.meerkat.calculate.var;
 //
 //import java.time.LocalDate;
 //import java.util.Map;
@@ -16,12 +16,12 @@ package net.meerkat.calculate.var;
 //import net.meerkat.money.currency.Currency;
 //import net.meerkat.security.SecurityDefinition;
 //import net.ollie.goat.collection.Maps;
-//import net.ollie.meerkat.calculate.price.SecurityPrice;
-//import net.ollie.meerkat.calculate.price.SecurityPriceCalculator;
-//import net.ollie.meerkat.calculate.price.ShiftableSecurityPrice;
-//import net.ollie.meerkat.calculate.price.shifts.SecurityShifts;
-//import net.ollie.meerkat.calculate.var.historic.HistoricPnl;
-//import net.ollie.meerkat.calculate.var.historic.HistoricPnlCalculator;
+//import net.meerkat.calculate.price.SecurityPrice;
+//import net.meerkat.calculate.price.SecurityPriceCalculator;
+//import net.meerkat.calculate.price.ShiftableSecurityPrice;
+//import net.meerkat.calculate.price.shifts.SecurityShifts;
+//import net.meerkat.calculate.var.historic.HistoricPnl;
+//import net.meerkat.calculate.var.historic.HistoricPnlCalculator;
 //
 ///**
 // *

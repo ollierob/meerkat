@@ -1,9 +1,9 @@
 package net.meerkat.calculate.price.repo;
 
-//package net.ollie.meerkat.calculate.price.repo;
+//package net.meerkat.calculate.price.repo;
 //
-//import net.ollie.meerkat.calculate.price.interest.repo.NativeBondRepoPricer;
-//import net.ollie.meerkat.calculate.price.interest.repo.RepoPrice;
+//import net.meerkat.calculate.price.interest.repo.NativeBondRepoPricer;
+//import net.meerkat.calculate.price.interest.repo.RepoPrice;
 //
 //import java.time.LocalDate;
 //import java.time.Month;
@@ -18,10 +18,10 @@ package net.meerkat.calculate.price.repo;
 //import static org.mockito.Mockito.when;
 //import org.mockito.MockitoAnnotations;
 //
-//import net.ollie.meerkat.IntegrationTest;
-//import net.ollie.meerkat.calculate.price.bond.BondPrice;
-//import net.ollie.meerkat.calculate.price.bond.BondPricer;
-//import net.ollie.meerkat.calculate.price.bond.BondShifts;
+//import net.meerkat.IntegrationTest;
+//import net.meerkat.calculate.price.bond.BondPrice;
+//import net.meerkat.calculate.price.bond.BondPricer;
+//import net.meerkat.calculate.price.bond.BondShifts;
 //import net.meerkat.identifier.currency.CurrencyIso;
 //import net.meerkat.identifier.currency.USD;
 //import net.meerkat.identifier.security.SecurityIds;

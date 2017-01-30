@@ -1,6 +1,6 @@
 package net.meerkat.calculate.price.bond;
 
-//package net.ollie.meerkat.pricing.bond;
+//package net.meerkat.pricing.bond;
 //
 //import java.time.LocalDate;
 //import java.time.Month;
@@ -23,27 +23,27 @@ package net.meerkat.calculate.price.bond;
 //import static org.mockito.Mockito.when;
 //import org.mockito.MockitoAnnotations;
 //
-//import net.ollie.meerkat.IntegrationTest;
-//import net.ollie.meerkat.calculate.fx.ExchangeRateCalculator;
-//import net.ollie.meerkat.calculate.price.bond.BondPrice;
-//import net.ollie.meerkat.identifier.currency.CurrencyId;
-//import net.ollie.meerkat.identifier.currency.CurrencyIso;
-//import net.ollie.meerkat.identifier.currency.USD;
-//import net.ollie.meerkat.identifier.security.SecurityIds;
-//import net.ollie.meerkat.utils.numeric.Percentage;
-//import net.ollie.meerkat.numeric.interest.CompoundFixedInterestRate;
-//import net.ollie.meerkat.numeric.interest.FixedInterestRate;
-//import net.ollie.meerkat.numeric.interest.InterestRate;
-//import net.ollie.meerkat.numeric.interest.SimpleFixedInterestRate;
-//import net.ollie.meerkat.numeric.interest.daycount.ActualFixedAccrualFactor;
-//import net.ollie.meerkat.numeric.interest.daycount.FixedFixedAccrualFactor;
-//import net.ollie.meerkat.numeric.money.DecimalMoney;
-//import net.ollie.meerkat.numeric.money.Money;
-//import net.ollie.meerkat.numeric.money.fx.ExchangeRate;
-//import net.ollie.meerkat.security.bond.FixedCouponBond;
-//import net.ollie.meerkat.security.bond.call.BondCall;
-//import net.ollie.meerkat.security.bond.dates.MaturingBondDates;
-//import net.ollie.meerkat.time.interim.Interval;
+//import net.meerkat.IntegrationTest;
+//import net.meerkat.calculate.fx.ExchangeRateCalculator;
+//import net.meerkat.calculate.price.bond.BondPrice;
+//import net.meerkat.identifier.currency.CurrencyId;
+//import net.meerkat.identifier.currency.CurrencyIso;
+//import net.meerkat.identifier.currency.USD;
+//import net.meerkat.identifier.security.SecurityIds;
+//import net.meerkat.utils.numeric.Percentage;
+//import net.meerkat.numeric.interest.CompoundFixedInterestRate;
+//import net.meerkat.numeric.interest.FixedInterestRate;
+//import net.meerkat.numeric.interest.InterestRate;
+//import net.meerkat.numeric.interest.SimpleFixedInterestRate;
+//import net.meerkat.numeric.interest.daycount.ActualFixedAccrualFactor;
+//import net.meerkat.numeric.interest.daycount.FixedFixedAccrualFactor;
+//import net.meerkat.numeric.money.DecimalMoney;
+//import net.meerkat.numeric.money.Money;
+//import net.meerkat.numeric.money.fx.ExchangeRate;
+//import net.meerkat.security.bond.FixedCouponBond;
+//import net.meerkat.security.bond.call.BondCall;
+//import net.meerkat.security.bond.dates.MaturingBondDates;
+//import net.meerkat.time.interim.Interval;
 //
 ///**
 // *
