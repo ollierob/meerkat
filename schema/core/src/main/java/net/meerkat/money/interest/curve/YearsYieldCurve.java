@@ -20,7 +20,7 @@ import net.ollie.goat.temporal.date.years.Years;
  * @author Ollie
  */
 @XmlRootElement
-public class YearsYieldCurve extends AbstractYieldCurve<Years> {
+public class YearsYieldCurve extends AbstractYieldCurve<Years, YearsYieldCurve> {
 
     @Deprecated
     YearsYieldCurve() {

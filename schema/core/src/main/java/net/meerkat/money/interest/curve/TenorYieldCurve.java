@@ -13,7 +13,7 @@ import net.ollie.goat.temporal.date.Dates;
  * @author ollie
  */
 @XmlRootElement
-public class TenorYieldCurve extends AbstractYieldCurve<Period> {
+public class TenorYieldCurve extends AbstractYieldCurve<Period, TenorYieldCurve> {
 
     public TenorYieldCurve(final Map<Period, Percentage> curve) {
         super(curve, Dates.APPROXIMATE_PERIOD_COMPARATOR);

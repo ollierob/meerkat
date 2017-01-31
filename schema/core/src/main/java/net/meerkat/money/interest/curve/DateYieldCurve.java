@@ -18,7 +18,7 @@ import net.ollie.goat.numeric.percentage.Percentage;
  * @author ollie
  */
 @XmlRootElement
-public class DateYieldCurve extends AbstractYieldCurve<LocalDate> {
+public class DateYieldCurve extends AbstractYieldCurve<LocalDate, DateYieldCurve> {
 
     public static DateYieldCurve flat(final LocalDate spot, final Percentage percentage) {
         return new DateYieldCurve(spot, Collections.singletonMap(spot, percentage));
