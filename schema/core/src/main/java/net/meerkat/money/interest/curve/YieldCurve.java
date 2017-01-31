@@ -29,10 +29,10 @@ public interface YieldCurve<K> extends Curve<K, Percentage> {
         return Iterables.isIncreasing(this.yAxis());
     }
 
-    Entry<K, Percentage> at(Period tenor, Interpolator<K, Percentage> interpolation);
+    Entry<K, Percentage> interpolate(Period tenor, Interpolator<K, Percentage> interpolation);
 
-    default Percentage rateAt(final Period tenor, final Interpolator<K, Percentage> interpolation) {
-        return this.at(tenor, interpolation).getValue();
+    default Percentage interpolateRate(final Period tenor, final Interpolator<K, Percentage> interpolation) {
+        return this.interpolate(tenor, interpolation).getValue();
     }
 
 }

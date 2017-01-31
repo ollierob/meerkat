@@ -3,67 +3,48 @@ package net.meerkat.money.interest.curve;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
-import java.util.NavigableMap;
-import java.util.TreeMap;
 
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.collection.Maps;
 import net.ollie.goat.numeric.interpolation.Interpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
+ * Yield curve whose x-axis is dates.
  *
  * @author ollie
  */
-public class DateYieldCurve implements YieldCurve<LocalDate> {
+@XmlRootElement
+public class DateYieldCurve extends AbstractYieldCurve<LocalDate> {
 
-    private static final LocalDate SOME_TIME = LocalDate.now();
-
-    public static DateYieldCurve flat(final Percentage percentage) {
-        return new DateYieldCurve(Collections.singletonMap(SOME_TIME, percentage));
+    public static DateYieldCurve flat(final LocalDate spot, final Percentage percentage) {
+        return new DateYieldCurve(spot, Collections.singletonMap(spot, percentage));
     }
 
     @XmlAttribute(name = "spot")
-    private LocalDate spotDate;
+    private LocalDate spot;
 
-    @XmlElementWrapper
-    private NavigableMap<LocalDate, Percentage> data;
-
-    public DateYieldCurve(final Map<LocalDate, Percentage> data) {
-        this(new TreeMap<>(data));
+    @Deprecated
+    DateYieldCurve() {
     }
 
-    private DateYieldCurve(final NavigableMap<LocalDate, Percentage> data) {
-        this.data = data;
-    }
-
-    @Override
-    public NavigableMap<LocalDate, Percentage> toMap() {
-        return Collections.unmodifiableNavigableMap(data);
+    public DateYieldCurve(final LocalDate spot, final Map<LocalDate, Percentage> curve) {
+        super(curve, Comparator.naturalOrder());
+        this.spot = spot;
     }
 
     @Override
-    public Percentage at(final LocalDate date) {
-        return data.get(date);
+    public Map.Entry<LocalDate, Percentage> interpolate(final Period tenor, final Interpolator<LocalDate, Percentage> interpolator) {
+        final LocalDate date = spot.plus(tenor);
+        return this.interpolate(date, interpolator);
     }
 
     @Override
-    public Percentage get(final LocalDate date, final Interpolator<LocalDate, Percentage> interpolator) {
-        return interpolator.interpolate(date, data);
-    }
-
-    @Override
-    public DateYieldCurve plus(final Percentage bump) {
-        return new DateYieldCurve(Maps.eagerlyTransformValues(data, d -> d.plus(bump)));
-    }
-
-    @Override
-    public Map.Entry<LocalDate, Percentage> at(final Period tenor, final Interpolator<LocalDate, Percentage> interpolator) {
-        final LocalDate extended = spotDate.plus(tenor);
-        return interpolator.interpolateEntry(extended, data);
+    protected DateYieldCurve copy(final Map<LocalDate, Percentage> curve) {
+        return new DateYieldCurve(spot, curve);
     }
 
 }
