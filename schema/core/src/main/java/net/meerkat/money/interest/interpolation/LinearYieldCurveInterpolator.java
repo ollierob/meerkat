@@ -1,20 +1,21 @@
 package net.meerkat.money.interest.interpolation;
 
 import java.math.BigDecimal;
+import java.time.Period;
 
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.money.interest.curve.Tenor;
+import net.ollie.goat.temporal.date.Dates;
 
 /**
  *
  * @author ollie
  */
-public class LinearYieldCurveInterpolator extends LinearDecimalInterpolator<Tenor, Percentage> {
+public class LinearYieldCurveInterpolator extends LinearDecimalInterpolator<Period, Percentage> {
 
     @Override
-    public BigDecimal numerical(final Tenor tenor) {
-        return tenor.decimalValue();
+    public BigDecimal numerical(final Period tenor) {
+        return BigDecimal.valueOf(Dates.approximateLength(tenor));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package net.meerkat.money.interest.curve;
 
+import java.time.Period;
 import java.util.Collections;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -77,8 +78,8 @@ public class YearsYieldCurve
     }
 
     @Override
-    public Map.Entry<Years, Percentage> at(final Tenor tenor, final Interpolator<Years, Percentage> interpolator) {
-        final Years years = Years.of(tenor.period());
+    public Map.Entry<Years, Percentage> at(final Period tenor, final Interpolator<Years, Percentage> interpolator) {
+        final Years years = Years.of(tenor);
         return interpolator.interpolateEntry(years, data);
     }
 

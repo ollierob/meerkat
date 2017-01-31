@@ -1,6 +1,7 @@
 package net.meerkat.money.interest.curve;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Collections;
 import java.util.Map;
 import java.util.NavigableMap;
@@ -60,8 +61,8 @@ public class DateYieldCurve implements YieldCurve<LocalDate> {
     }
 
     @Override
-    public Map.Entry<LocalDate, Percentage> at(final Tenor tenor, final Interpolator<LocalDate, Percentage> interpolator) {
-        final LocalDate extended = spotDate.plus(tenor.period());
+    public Map.Entry<LocalDate, Percentage> at(final Period tenor, final Interpolator<LocalDate, Percentage> interpolator) {
+        final LocalDate extended = spotDate.plus(tenor);
         return interpolator.interpolateEntry(extended, data);
     }
 

@@ -1,5 +1,6 @@
 package net.meerkat.money.interest.curve;
 
+import java.time.Period;
 import java.util.Map.Entry;
 
 import javax.annotation.CheckReturnValue;
@@ -28,9 +29,9 @@ public interface YieldCurve<K> extends Curve<K, Percentage> {
         return Iterables.isIncreasing(this.yAxis());
     }
 
-    Entry<K, Percentage> at(Tenor tenor, Interpolator<K, Percentage> interpolation);
+    Entry<K, Percentage> at(Period tenor, Interpolator<K, Percentage> interpolation);
 
-    default Percentage rateAt(final Tenor tenor, final Interpolator<K, Percentage> interpolation) {
+    default Percentage rateAt(final Period tenor, final Interpolator<K, Percentage> interpolation) {
         return this.at(tenor, interpolation).getValue();
     }
 
