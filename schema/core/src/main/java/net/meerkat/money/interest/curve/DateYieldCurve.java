@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
 import net.ollie.goat.collection.Maps;
@@ -23,6 +24,9 @@ public class DateYieldCurve implements YieldCurve<LocalDate> {
     public static DateYieldCurve flat(final Percentage percentage) {
         return new DateYieldCurve(Collections.singletonMap(SOME_TIME, percentage));
     }
+
+    @XmlAttribute(name = "spot")
+    private LocalDate spotDate;
 
     @XmlElementWrapper
     private NavigableMap<LocalDate, Percentage> data;
@@ -53,6 +57,12 @@ public class DateYieldCurve implements YieldCurve<LocalDate> {
     @Override
     public DateYieldCurve plus(final Percentage bump) {
         return new DateYieldCurve(Maps.eagerlyTransformValues(data, d -> d.plus(bump)));
+    }
+
+    @Override
+    public Map.Entry<LocalDate, Percentage> at(final Tenor tenor, final Interpolator<LocalDate, Percentage> interpolator) {
+        final LocalDate extended = spotDate.plus(tenor.period());
+        return interpolator.interpolateEntry(extended, data);
     }
 
 }

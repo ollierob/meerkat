@@ -71,8 +71,15 @@ public class YearsYieldCurve
         return new YearsYieldCurve(data);
     }
 
+    @Override
     public boolean isFlat() {
-        return data.size() == 1; //TODO or all values equal
+        return data.size() == 1 || YieldCurve.super.isFlat();
+    }
+
+    @Override
+    public Map.Entry<Years, Percentage> at(final Tenor tenor, final Interpolator<Years, Percentage> interpolator) {
+        final Years years = Years.of(tenor.period());
+        return interpolator.interpolateEntry(years, data);
     }
 
 }
