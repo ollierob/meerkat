@@ -43,7 +43,7 @@ public class DateYieldCurve extends AbstractYieldCurve<LocalDate, DateYieldCurve
     }
 
     @Override
-    protected DateYieldCurve copy(final Map<LocalDate, Percentage> curve) {
+    protected DateYieldCurve toCurve(final Map<LocalDate, Percentage> curve) {
         return new DateYieldCurve(spot, curve);
     }
 

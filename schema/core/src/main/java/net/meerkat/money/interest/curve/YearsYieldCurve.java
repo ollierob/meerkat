@@ -31,7 +31,7 @@ public class YearsYieldCurve extends AbstractYieldCurve<Years, YearsYieldCurve> 
     }
 
     @Override
-    protected YearsYieldCurve copy(final Map<Years, Percentage> curve) {
+    protected YearsYieldCurve toCurve(final Map<Years, Percentage> curve) {
         return new YearsYieldCurve(curve);
     }
 

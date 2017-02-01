@@ -20,7 +20,7 @@ public class TenorYieldCurve extends AbstractYieldCurve<Period, TenorYieldCurve>
     }
 
     @Override
-    protected TenorYieldCurve copy(final Map<Period, Percentage> curve) {
+    protected TenorYieldCurve toCurve(final Map<Period, Percentage> curve) {
         return new TenorYieldCurve(curve);
     }
 

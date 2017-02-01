@@ -38,16 +38,6 @@ public abstract class FloatingInterestRate implements InterestRate {
         this.dates = dates;
     }
 
-    @Override
-    public Percentage forward(LocalDate start, LocalDate end) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public InterestRate plus(Percentage bump) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     @Nonnull
     public LocalDate referenceDate() {
         return referenceDate;
@@ -63,13 +53,13 @@ public abstract class FloatingInterestRate implements InterestRate {
     }
 
     @Override
-    public Percentage spot(final LocalDate end) {
-        return this.forward(this.referenceDate(), end);
+    public Percentage spotRate(final LocalDate end) {
+        return this.forwardRate(this.referenceDate(), end);
     }
 
     @Override
     public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate start, final LocalDate end) {
-        final Percentage impliedForwardRate = this.forward(start, end);
+        final Percentage impliedForwardRate = this.forwardRate(start, end);
         return this.accrue(money, impliedForwardRate, start, end);
     }
 

@@ -20,6 +20,12 @@ import net.ollie.goat.temporal.date.years.Years;
  */
 public interface YieldCurve<K> extends Curve<K, Percentage> {
 
+    Entry<K, Percentage> interpolate(Period tenor, Interpolator<K, Percentage> interpolation);
+
+    default Percentage interpolateRate(final Period tenor, final Interpolator<K, Percentage> interpolation) {
+        return this.interpolate(tenor, interpolation).getValue();
+    }
+
     @Nonnull
     @CheckReturnValue
     YieldCurve<K> plus(@Nonnull Percentage bump);
@@ -30,12 +36,6 @@ public interface YieldCurve<K> extends Curve<K, Percentage> {
 
     default boolean isNormal() {
         return Iterables.isIncreasing(this.yAxis());
-    }
-
-    Entry<K, Percentage> interpolate(Period tenor, Interpolator<K, Percentage> interpolation);
-
-    default Percentage interpolateRate(final Period tenor, final Interpolator<K, Percentage> interpolation) {
-        return this.interpolate(tenor, interpolation).getValue();
     }
 
     static DateYieldCurve ofDates(final LocalDate spot, final Map<LocalDate, Percentage> curve) {

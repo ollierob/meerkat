@@ -43,14 +43,14 @@ public class SimpleFloatingInterestRate extends FloatingInterestRate {
     }
 
     @Override
-    public Percentage spot(final LocalDate end) {
+    public Percentage spotRate(final LocalDate end) {
         return curve.get(end, interpolator);
     }
 
     @Override
-    public Percentage forward(final LocalDate start, final LocalDate end) {
-        final Percentage r1 = this.spot(start);
-        final Percentage r2 = this.spot(end);
+    public Percentage forwardRate(final LocalDate start, final LocalDate end) {
+        final Percentage r1 = this.spotRate(start);
+        final Percentage r2 = this.spotRate(end);
         final Years d1 = this.yearsUntil(start);
         final Years d2 = this.yearsUntil(end);
         //([(1+r2d2)/(1+r1d1)]-1)/(d2-d1)

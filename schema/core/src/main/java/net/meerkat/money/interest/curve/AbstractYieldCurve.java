@@ -11,6 +11,7 @@ import java.util.TreeMap;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
+import net.meerkat.utils.SelfTyped;
 import net.ollie.goat.collection.Maps;
 import net.ollie.goat.collection.Sets;
 import net.ollie.goat.numeric.interpolation.Interpolator;
@@ -22,7 +23,8 @@ import net.ollie.goat.numeric.percentage.Percentage;
  * @author ollie
  */
 @XmlSeeAlso({DateYieldCurve.class, TenorYieldCurve.class, YearsYieldCurve.class})
-public abstract class AbstractYieldCurve<K, T extends AbstractYieldCurve<K, T>> implements YieldCurve<K> {
+public abstract class AbstractYieldCurve<K, T extends AbstractYieldCurve<K, T>>
+        implements YieldCurve<K>, SelfTyped<T> {
 
     @XmlElementWrapper
     private NavigableMap<K, Percentage> map;
@@ -60,11 +62,11 @@ public abstract class AbstractYieldCurve<K, T extends AbstractYieldCurve<K, T>> 
         return Collections.unmodifiableNavigableMap(map);
     }
 
-    protected abstract T copy(Map<K, Percentage> curve);
+    protected abstract T toCurve(Map<K, Percentage> curve);
 
     @Override
     public YieldCurve<K> plus(final Percentage bump) {
-        return this.copy(Maps.lazilyTransformValues(map, p -> p.plus(bump)));
+        return this.toCurve(Maps.lazilyTransformValues(map, p -> p.plus(bump)));
     }
 
     @Override
@@ -74,7 +76,7 @@ public abstract class AbstractYieldCurve<K, T extends AbstractYieldCurve<K, T>> 
         final Map<K, Percentage> interpolatedCurve = Maps.lazilyGenerateValues(
                 combinedAxis,
                 x -> interpolator.interpolate(x, map).plus(interpolator.interpolate(x, thatMap)));
-        return this.copy(interpolatedCurve);
+        return this.toCurve(interpolatedCurve);
     }
 
 }
