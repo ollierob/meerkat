@@ -58,19 +58,19 @@ public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
         if (Dates.equals(spot, start)) {
             return this.spotRate(end);
         }
-        final Years d1 = this.term(spot, start);
+        final Years d1 = this.yearsBetween(spot, start);
         final Percentage r1 = this.spotRate(d1);
-        final Years d2 = this.term(spot, end);
+        final Years d2 = this.yearsBetween(spot, end);
         final Percentage r2 = this.spotRate(d2);
-        final Years term = this.term(start, end);
+        final Years term = this.yearsBetween(start, end);
         //(r2*d2 - r1*d1) / (t2-t1)
         return (r2.times(d2.decimalValue()).minus(r1.times(d1.decimalValue())))
                 .over(term.decimalValue(), MathContext.DECIMAL128);
     }
 
     @Override
-    public <C extends CurrencyId> Money<C> accrue(Money<C> money, Percentage forwardRate, LocalDate start, LocalDate end) {
-        return new ContinuousFixedInterestRate(forwardRate, this.dateArithmetic()).accrue(money, start, end);
+    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final Percentage forwardRate, final LocalDate start, final LocalDate end) {
+        return ContinuousFixedInterestRate.accrue(money, forwardRate, this.yearsBetween(start, end));
     }
 
     @Override

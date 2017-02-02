@@ -20,18 +20,6 @@ public interface InterestRate {
     @Nonnull
     DateArithmetic dateArithmetic();
 
-    /**
-     * @return the interest rate given for a period from now until the given date.
-     */
-    @Nonnull
-    Percentage spotRate(LocalDate end);
-
-    /**
-     * @return the interest rate between the start and end dates.
-     */
-    @Nonnull
-    Percentage forwardRate(LocalDate start, LocalDate end);
-
     @Nonnull
     <C extends CurrencyId> Money<C> accrue(Money<C> money, LocalDate from, LocalDate until);
 

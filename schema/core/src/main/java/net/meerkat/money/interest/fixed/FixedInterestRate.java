@@ -53,18 +53,6 @@ public abstract class FixedInterestRate implements InterestRate, Comparable<Fixe
     }
 
     @Override
-    @Deprecated
-    public Percentage spotRate(final LocalDate date) {
-        return this.annualRate();
-    }
-
-    @Override
-    @Deprecated
-    public Percentage forwardRate(final LocalDate fixing, final LocalDate out) {
-        return this.annualRate();
-    }
-
-    @Override
     public FixedInterestRate plus(final Percentage bump) {
         return this.with(this.annualRate().plus(bump));
     }
@@ -74,13 +62,13 @@ public abstract class FixedInterestRate implements InterestRate, Comparable<Fixe
         return this.annualRate().compareTo(that.annualRate());
     }
 
-    public abstract FixedInterestRate with(Percentage rate);
+    public abstract FixedInterestRate with(Percentage annualRate);
+
+    public abstract <C extends CurrencyId> Money<C> accrue(Money<C> money, Years term);
 
     @Override
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate since, final LocalDate until) {
-        return this.accrue(money, this.dateArithmetic().yearsBetween(since, until));
+    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate from, final LocalDate until) {
+        return this.accrue(money, dates.yearsBetween(from, until));
     }
-
-    public abstract <C extends CurrencyId> Money<C> accrue(Money<C> money, Years yearsBetween);
 
 }

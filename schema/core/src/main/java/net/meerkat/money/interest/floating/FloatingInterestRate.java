@@ -48,11 +48,6 @@ public abstract class FloatingInterestRate implements InterestRate {
         return dates;
     }
 
-    protected Years yearsUntil(final LocalDate date) {
-        return dates.yearsBetween(referenceDate, date);
-    }
-
-    @Override
     public Percentage spotRate(final LocalDate end) {
         return this.forwardRate(this.referenceDate(), end);
     }
@@ -63,10 +58,16 @@ public abstract class FloatingInterestRate implements InterestRate {
         return this.accrue(money, impliedForwardRate, start, end);
     }
 
+    public abstract Percentage forwardRate(LocalDate start, LocalDate end);
+
     protected abstract <C extends CurrencyId> Money<C> accrue(Money<C> money, Percentage forwardRate, LocalDate start, LocalDate end);
 
-    protected final Years term(final LocalDate start, final LocalDate end) {
-        return this.dateArithmetic().yearsBetween(start, end);
+    protected Years yearsUntil(final LocalDate date) {
+        return this.yearsBetween(referenceDate, date);
+    }
+
+    protected final Years yearsBetween(final LocalDate start, final LocalDate end) {
+        return dates.yearsBetween(start, end);
     }
 
 }
