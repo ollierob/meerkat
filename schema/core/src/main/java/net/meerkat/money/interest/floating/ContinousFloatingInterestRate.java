@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.money.interest.curve.YieldCurve;
+import net.meerkat.money.interest.curve.DateYieldCurve;
 import net.meerkat.money.interest.fixed.ContinuousFixedInterestRate;
-import net.ollie.goat.numeric.interpolation.Interpolator;
+import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.Dates;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
@@ -24,10 +24,7 @@ import net.ollie.goat.temporal.date.years.Years;
 public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
 
     @XmlElementRef(name = "curve", required = true)
-    private YieldCurve<K> curve;
-
-    @XmlElementRef(name = "interpolator", required = true)
-    private Interpolator<K, Percentage> interpolator;
+    private DateYieldCurve curve;
 
     @Deprecated
     ContinousFloatingInterestRate() {
@@ -35,33 +32,31 @@ public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
 
     public ContinousFloatingInterestRate(
             final LocalDate referenceDate,
-            final YieldCurve<K> curve,
-            final DateArithmetic dates,
-            final Interpolator<K, Percentage> interpolator) {
+            final DateYieldCurve curve,
+            final DateArithmetic dates) {
         super(referenceDate, dates);
-        this.interpolator = interpolator;
         this.curve = curve;
     }
 
     @Override
-    public Percentage spotRate(final LocalDate date) {
-        return this.spotRate(this.yearsUntil(date));
+    public Percentage spotRate(final LocalDate date, final InterestRateInterpolator interpolator) {
+        return this.spotRate(this.yearsUntil(date), interpolator);
     }
 
-    public Percentage spotRate(final Years term) {
+    public Percentage spotRate(final Years term, final InterestRateInterpolator interpolator) {
         return curve.interpolateRate(term.period(), interpolator);
     }
 
     @Override
-    public Percentage forwardRate(final LocalDate start, final LocalDate end) {
+    public Percentage forwardRate(final LocalDate start, final LocalDate end, final InterestRateInterpolator interpolator) {
         final LocalDate spot = this.referenceDate();
         if (Dates.equals(spot, start)) {
-            return this.spotRate(end);
+            return this.spotRate(end, interpolator);
         }
         final Years d1 = this.yearsBetween(spot, start);
-        final Percentage r1 = this.spotRate(d1);
+        final Percentage r1 = this.spotRate(d1, interpolator);
         final Years d2 = this.yearsBetween(spot, end);
-        final Percentage r2 = this.spotRate(d2);
+        final Percentage r2 = this.spotRate(d2, interpolator);
         final Years term = this.yearsBetween(start, end);
         //(r2*d2 - r1*d1) / (t2-t1)
         return (r2.times(d2.decimalValue()).minus(r1.times(d1.decimalValue())))
@@ -77,7 +72,7 @@ public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
     public ContinousFloatingInterestRate<K> plus(final Percentage bump) {
         return bump.isZero()
                 ? this
-                : new ContinousFloatingInterestRate<>(this.referenceDate(), curve.plus(bump), this.dateArithmetic(), interpolator);
+                : new ContinousFloatingInterestRate<>(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
     }
 
 }

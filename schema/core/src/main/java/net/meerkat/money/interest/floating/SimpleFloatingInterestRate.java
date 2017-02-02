@@ -6,9 +6,9 @@ import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.money.interest.curve.YieldCurve;
+import net.meerkat.money.interest.curve.DateYieldCurve;
 import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
-import net.ollie.goat.numeric.interpolation.Interpolator;
+import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
@@ -20,10 +20,7 @@ import net.ollie.goat.temporal.date.years.Years;
 public class SimpleFloatingInterestRate extends FloatingInterestRate {
 
     @XmlElementRef(name = "curve")
-    private YieldCurve<LocalDate> curve;
-
-    @XmlElementRef(name = "interpolator", required = true)
-    private Interpolator<LocalDate, Percentage> interpolator;
+    private DateYieldCurve curve;
 
     @Deprecated
     SimpleFloatingInterestRate() {
@@ -31,7 +28,7 @@ public class SimpleFloatingInterestRate extends FloatingInterestRate {
 
     public SimpleFloatingInterestRate(
             final LocalDate spot,
-            final YieldCurve<LocalDate> curve,
+            final DateYieldCurve curve,
             final DateArithmetic accrual) {
         super(spot, accrual);
         this.curve = curve;
@@ -39,18 +36,20 @@ public class SimpleFloatingInterestRate extends FloatingInterestRate {
 
     @Override
     public SimpleFloatingInterestRate plus(final Percentage bump) {
-        return new SimpleFloatingInterestRate(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
+        return bump.isZero()
+                ? this
+                : new SimpleFloatingInterestRate(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
     }
 
     @Override
-    public Percentage spotRate(final LocalDate end) {
+    public Percentage spotRate(final LocalDate end, final InterestRateInterpolator interpolator) {
         return curve.get(end, interpolator);
     }
 
     @Override
-    public Percentage forwardRate(final LocalDate start, final LocalDate end) {
-        final Percentage r1 = this.spotRate(start);
-        final Percentage r2 = this.spotRate(end);
+    public Percentage forwardRate(final LocalDate start, final LocalDate end, final InterestRateInterpolator interpolator) {
+        final Percentage r1 = this.spotRate(start, interpolator);
+        final Percentage r2 = this.spotRate(end, interpolator);
         final Years d1 = this.yearsUntil(start);
         final Years d2 = this.yearsUntil(end);
         //([(1+r2d2)/(1+r1d1)]-1)/(d2-d1)

@@ -3,6 +3,8 @@ package net.meerkat.money.interest.interpolation;
 import java.math.BigDecimal;
 import java.time.Period;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.Dates;
@@ -11,6 +13,7 @@ import net.ollie.goat.temporal.date.Dates;
  *
  * @author ollie
  */
+@XmlRootElement
 public class LinearYieldCurveInterpolator extends LinearDecimalInterpolator<Period, Percentage> {
 
     @Override

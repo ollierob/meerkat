@@ -65,7 +65,7 @@ public abstract class AbstractYieldCurve<K, T extends AbstractYieldCurve<K, T>>
     protected abstract T toCurve(Map<K, Percentage> curve);
 
     @Override
-    public YieldCurve<K> plus(final Percentage bump) {
+    public T plus(final Percentage bump) {
         return this.toCurve(Maps.lazilyTransformValues(map, p -> p.plus(bump)));
     }
 

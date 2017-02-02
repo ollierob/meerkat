@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
@@ -67,8 +68,37 @@ public abstract class FixedInterestRate implements InterestRate, Comparable<Fixe
     public abstract <C extends CurrencyId> Money<C> accrue(Money<C> money, Years term);
 
     @Override
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> money, final LocalDate from, final LocalDate until) {
+    @Deprecated
+    public <C extends CurrencyId> Money<C> accrue(
+            final Money<C> money,
+            final LocalDate from,
+            final LocalDate until,
+            final InterestRateInterpolator interpolator) {
+        return this.accrue(money, from, until);
+    }
+
+    public <C extends CurrencyId> Money<C> accrue(
+            final Money<C> money,
+            final LocalDate from,
+            final LocalDate until) {
         return this.accrue(money, dates.yearsBetween(from, until));
+    }
+
+    @Override
+    @Deprecated
+    public <C extends CurrencyId> Money<C> discount(
+            final Money<C> money,
+            final LocalDate earlier,
+            final LocalDate later,
+            final InterestRateInterpolator interpolator) {
+        return this.discount(money, earlier, later);
+    }
+
+    public <C extends CurrencyId> Money<C> discount(
+            final Money<C> money,
+            final LocalDate earlier,
+            final LocalDate later) {
+        return this.accrue(money, later, earlier);
     }
 
 }
