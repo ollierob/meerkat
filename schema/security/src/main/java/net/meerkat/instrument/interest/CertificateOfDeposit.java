@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.Explainable;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.instrument.Issued;
+import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
+import net.meerkat.money.interest.earning.FixedInterestEarning;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.temporal.date.Dates;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.meerkat.Explainable;
-import net.meerkat.money.interest.earning.InterestEarning;
-import net.meerkat.instrument.Issued;
-import net.meerkat.instrument.NamedInstrument;
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *
@@ -26,7 +26,7 @@ import net.meerkat.identifier.currency.HasCurrencyId;
 @XmlRootElement
 public class CertificateOfDeposit
         extends NamedInstrument
-        implements MoneyMarketSecurity, HasCurrencyId, Issued, InterestEarning.Fixed, Explainable {
+        implements MoneyMarketSecurity, HasCurrencyId, Issued, FixedInterestEarning, Explainable {
 
     private static final long serialVersionUID = 1L;
 
@@ -79,7 +79,7 @@ public class CertificateOfDeposit
 
     @Override
     public Money<?> accrue(final LocalDate since, final LocalDate until) {
-        return Fixed.super.accrue(
+        return FixedInterestEarning.super.accrue(
                 Dates.max(this.start(), since),
                 Dates.min(this.maturity(), until));
     }

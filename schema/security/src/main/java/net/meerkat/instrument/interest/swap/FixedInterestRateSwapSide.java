@@ -1,14 +1,14 @@
 package net.meerkat.instrument.interest.swap;
 
 import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.meerkat.money.interest.earning.FixedInterestEarning;
+import net.meerkat.money.interest.earning.DefaultFixedInterestEarning;
 import net.meerkat.money.Money;
 
 /**
  *
  * @author ollie
  */
-public class FixedInterestRateSwapSide extends FixedInterestEarning implements InterestRateSwapSide {
+public class FixedInterestRateSwapSide extends DefaultFixedInterestEarning implements InterestRateSwapSide {
 
     @Deprecated
     FixedInterestRateSwapSide() {
