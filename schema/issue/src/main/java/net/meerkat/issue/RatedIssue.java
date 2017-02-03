@@ -3,6 +3,7 @@ package net.meerkat.issue;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.issuer.IssuerId;
 import net.meerkat.rating.CreditRating;
 import net.meerkat.rating.HasCreditRating;
 
@@ -15,6 +16,15 @@ public class RatedIssue extends SimpleIssue implements HasCreditRating {
 
     @XmlElement(name = "rating")
     private CreditRating rating;
+
+    @Deprecated
+    protected RatedIssue() {
+    }
+
+    public RatedIssue(final IssuerId issuer, final CreditRating rating) {
+        super(issuer);
+        this.rating = rating;
+    }
 
     @Override
     public CreditRating creditRating() {

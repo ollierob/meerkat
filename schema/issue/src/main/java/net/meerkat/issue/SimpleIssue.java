@@ -14,6 +14,14 @@ public class SimpleIssue implements Issue, Explainable {
     @XmlElementRef(name = "issuerId")
     private IssuerId issuer;
 
+    @Deprecated
+    protected SimpleIssue() {
+    }
+
+    public SimpleIssue(final IssuerId issuer) {
+        this.issuer = issuer;
+    }
+
     @Override
     public IssuerId issuerId() {
         return issuer;
