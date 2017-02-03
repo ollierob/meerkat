@@ -3,7 +3,8 @@ package net.meerkat.instrument;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.issue.HasIssue;
+import net.meerkat.issue.Issue;
 
 /**
  *
@@ -11,30 +12,31 @@ import net.meerkat.issuer.IssuerId;
  */
 public class IssuedSecurity
         extends NamedInstrument
-        implements Security {
+        implements Security, HasIssue {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "issuer")
-    private IssuerId issuer;
+    @XmlElementRef(name = "issue")
+    private Issue issue;
 
     @Deprecated
     protected IssuedSecurity() {
     }
 
-    public IssuedSecurity(final String name, final InstrumentIds identifiers, final IssuerId issuer) {
+    public IssuedSecurity(final String name, final InstrumentIds identifiers, final Issue issue) {
         super(name, identifiers);
-        this.issuer = issuer;
+        this.issue = issue;
     }
 
     @Override
-    public IssuerId issuerId() {
-        return issuer;
+    public Issue issue() {
+        return issue;
     }
 
     @Override
     public ExplanationBuilder explain() {
-        return super.explain().put("issuer", issuer);
+        return super.explain()
+                .put("issue", issue);
     }
 
 }

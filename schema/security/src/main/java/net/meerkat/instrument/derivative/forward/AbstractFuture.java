@@ -3,9 +3,9 @@ package net.meerkat.instrument.derivative.forward;
 import javax.xml.bind.annotation.XmlTransient;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.IssuedSecurity;
-import net.meerkat.issuer.IssuerId;
 import net.meerkat.instrument.Instrument;
+import net.meerkat.instrument.IssuedSecurity;
+import net.meerkat.issue.Issue;
 
 /**
  *
@@ -22,8 +22,8 @@ public abstract class AbstractFuture<S extends Instrument>
     protected AbstractFuture() {
     }
 
-    public AbstractFuture(final String name, final InstrumentIds identifiers, final IssuerId issuer) {
-        super(name, identifiers, issuer);
+    public AbstractFuture(final String name, final InstrumentIds identifiers, final Issue issue) {
+        super(name, identifiers, issue);
     }
 
 }

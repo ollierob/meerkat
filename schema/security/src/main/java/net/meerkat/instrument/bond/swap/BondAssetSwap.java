@@ -11,7 +11,7 @@ import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
 import net.meerkat.instrument.derivative.swap.AbstractSwap;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.issue.Issue;
 import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
 
@@ -37,10 +37,10 @@ public class BondAssetSwap
     public BondAssetSwap(
             final String name,
             final InstrumentIds identifiers,
-            final IssuerId issuer,
+            final Issue issue,
             final FixedCouponBond underlying,
             final InterestRateId referenceRate) {
-        super(name, identifiers, issuer);
+        super(name, identifiers, issue);
         this.underlying = underlying;
         this.referenceRate = referenceRate;
     }

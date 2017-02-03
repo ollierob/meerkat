@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.swap.AbstractSwap;
 import net.meerkat.instrument.fx.FxDerivative;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.issue.Issue;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
@@ -33,10 +33,10 @@ public class FxSwap
     public FxSwap(
             final String name,
             final InstrumentIds identifiers,
-            final IssuerId issuer,
+            final Issue issue,
             final FxSwapLeg near,
             final FxSwapLeg far) {
-        super(name, identifiers, issuer);
+        super(name, identifiers, issue);
         this.near = near;
         this.far = far;
     }

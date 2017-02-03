@@ -5,11 +5,13 @@ import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
+import net.meerkat.instrument.Issued;
+
 /**
  *
  * @author ollie
  */
-public abstract class AbstractRepoDates implements RepoDates {
+public abstract class AbstractRepoDates implements Issued, RepoDates {
 
     @XmlAttribute(name = "deal")
     private LocalDate deal;

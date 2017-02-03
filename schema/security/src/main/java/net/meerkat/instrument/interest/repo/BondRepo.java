@@ -8,7 +8,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.instrument.interest.repo.dates.RepoDates;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.issue.Issue;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
@@ -34,12 +34,12 @@ public class BondRepo extends AbstractRepo<Bond> {
     public BondRepo(
             final String name,
             final InstrumentIds identifiers,
-            final IssuerId issuer,
+            final Issue issue,
             final RepoRate rate,
             final Bond collateral,
             final RepoDates dates,
             final Percentage haircut) {
-        super(name, identifiers, issuer, rate, dates);
+        super(name, identifiers, issue, rate, dates);
         this.collateral = collateral;
         this.haircut = haircut;
     }

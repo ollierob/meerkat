@@ -4,12 +4,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.issue.Issue;
 import net.meerkat.money.Money;
 import net.meerkat.numeric.quantity.Quantity;
-import net.meerkat.instrument.Instrument;
 
 /**
  *
@@ -40,12 +40,12 @@ public abstract class AbstractOption<S extends Instrument>
     public AbstractOption(
             final String name,
             final InstrumentIds identifiers,
-            final IssuerId issuer,
+            final Issue issue,
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
             final Quantity contractMultiplier) {
-        super(name, identifiers, issuer);
+        super(name, identifiers, issue);
         this.exercise = exercise;
         this.premium = premium;
         this.strike = strike;

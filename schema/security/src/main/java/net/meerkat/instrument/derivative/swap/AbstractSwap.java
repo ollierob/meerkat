@@ -2,7 +2,7 @@ package net.meerkat.instrument.derivative.swap;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.IssuedSecurity;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.issue.Issue;
 
 /**
  *
@@ -18,8 +18,8 @@ public abstract class AbstractSwap
     protected AbstractSwap() {
     }
 
-    protected AbstractSwap(final String name, final InstrumentIds identifiers, final IssuerId issuer) {
-        super(name, identifiers, issuer);
+    protected AbstractSwap(final String name, final InstrumentIds identifiers, final Issue issue) {
+        super(name, identifiers, issue);
     }
 
 }

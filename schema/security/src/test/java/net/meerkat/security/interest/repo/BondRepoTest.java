@@ -5,7 +5,7 @@ import net.meerkat.instrument.bond.Bond;
 import net.meerkat.instrument.interest.repo.BondRepo;
 import net.meerkat.instrument.interest.repo.dates.RepoDates;
 import net.meerkat.instrument.interest.repo.rate.RepoRate;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.issue.Issue;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.DecimalPercentage;
 
@@ -26,7 +26,7 @@ import org.mockito.MockitoAnnotations;
 public class BondRepoTest {
 
     @Mock
-    private IssuerId mockIssuer;
+    private Issue mockIssue;
     @Mock
     private RepoRate mockRate;
     @Mock
@@ -44,7 +44,7 @@ public class BondRepoTest {
     public void testHaircut_Null() {
 
         final InstrumentIds mockIds = mock(InstrumentIds.class);
-        final BondRepo repo = new BondRepo("name", mockIds, mockIssuer, mockRate, mockBond, mockDates, null);
+        final BondRepo repo = new BondRepo("name", mockIds, mockIssue, mockRate, mockBond, mockDates, null);
         assertThat(repo.haircut(), is(DecimalPercentage.ZERO_PERCENT));
 
         final Money mockPar = mock(Money.class);

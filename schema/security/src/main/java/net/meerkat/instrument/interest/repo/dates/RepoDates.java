@@ -5,13 +5,12 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.instrument.Issued;
 
 /**
  *
  * @author ollie
  */
-public interface RepoDates extends Issued {
+public interface RepoDates {
 
     @Nonnull
     LocalDate deal();

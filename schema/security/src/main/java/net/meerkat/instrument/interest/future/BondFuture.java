@@ -10,7 +10,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.derivative.forward.FutureDeliveryDates;
 import net.meerkat.instrument.interest.InterestRateDerivative;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.issue.Issue;
 
 /**
  *
@@ -41,8 +41,8 @@ public class BondFuture
             final InstrumentIds identifiers,
             final Set<InstrumentIds> basket,
             final FutureDeliveryDates deliveryDates,
-            final IssuerId issuer) {
-        super(name, identifiers, issuer);
+            final Issue issue) {
+        super(name, identifiers, issue);
         this.basket = basket;
         this.deliveryDates = deliveryDates;
     }
