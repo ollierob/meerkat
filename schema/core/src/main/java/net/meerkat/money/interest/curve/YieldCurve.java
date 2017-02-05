@@ -1,7 +1,6 @@
 package net.meerkat.money.interest.curve;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,9 +19,9 @@ import net.ollie.goat.temporal.date.years.Years;
  */
 public interface YieldCurve<K> extends Curve<K, Percentage> {
 
-    Entry<K, Percentage> interpolate(Period tenor, Interpolator<K, Percentage> interpolation);
+    Entry<K, Percentage> interpolate(Tenor tenor, Interpolator<K, Percentage> interpolation);
 
-    default Percentage interpolateRate(final Period tenor, final Interpolator<K, Percentage> interpolation) {
+    default Percentage interpolateRate(final Tenor tenor, final Interpolator<K, Percentage> interpolation) {
         return this.interpolate(tenor, interpolation).getValue();
     }
 
@@ -46,7 +45,7 @@ public interface YieldCurve<K> extends Curve<K, Percentage> {
         return new YearsYieldCurve(curve);
     }
 
-    static TenorYieldCurve ofTenors(final Map<Period, Percentage> curve) {
+    static TenorYieldCurve ofTenors(final Map<Tenor, Percentage> curve) {
         return new TenorYieldCurve(curve);
     }
 

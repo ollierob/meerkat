@@ -44,7 +44,7 @@ public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
     }
 
     public Percentage spotRate(final Years term, final InterestRateInterpolator interpolator) {
-        return curve.interpolateRate(term.period(), interpolator);
+        return curve.interpolateRate(term, interpolator);
     }
 
     @Override

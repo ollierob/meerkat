@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.Dates;
+import net.ollie.goat.temporal.date.Periods;
 
 /**
  *
@@ -18,7 +18,7 @@ public class LinearYieldCurveInterpolator extends LinearDecimalInterpolator<Peri
 
     @Override
     public BigDecimal numerical(final Period tenor) {
-        return BigDecimal.valueOf(Dates.approximateLength(tenor));
+        return BigDecimal.valueOf(Periods.approximateLength(tenor));
     }
 
     @Override

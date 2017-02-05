@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.numeric.interpolation.Interpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.temporal.date.years.Years;
 
 /**
  * Yield curve whose x-axis is dates.
@@ -37,8 +38,21 @@ public class DateYieldCurve extends AbstractYieldCurve<LocalDate, DateYieldCurve
     }
 
     @Override
-    public Map.Entry<LocalDate, Percentage> interpolate(final Period tenor, final Interpolator<LocalDate, Percentage> interpolator) {
-        final LocalDate date = spot.plus(tenor);
+    public Map.Entry<LocalDate, Percentage> interpolate(final Tenor tenor, final Interpolator<LocalDate, Percentage> interpolator) {
+        final LocalDate date = spot.plus(tenor.period());
+        return this.interpolate(date, interpolator);
+    }
+
+    public Map.Entry<LocalDate, Percentage> interpolate(final Years years, final Interpolator<LocalDate, Percentage> interpolator) {
+        return this.interpolate(years.period(), interpolator);
+    }
+
+    public Percentage interpolateRate(final Years years, final Interpolator<LocalDate, Percentage> interpolator) {
+        return this.interpolate(years, interpolator).getValue();
+    }
+
+    public Map.Entry<LocalDate, Percentage> interpolate(final Period period, final Interpolator<LocalDate, Percentage> interpolator) {
+        final LocalDate date = spot.plus(period);
         return this.interpolate(date, interpolator);
     }
 
