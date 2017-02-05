@@ -9,16 +9,16 @@ import net.meerkat.issuer.IssuerId;
  *
  * @author ollie
  */
-public class SimpleIssue implements Issue, Explainable {
+public class MinimalIssue implements Issue, Explainable {
 
     @XmlElementRef(name = "issuerId")
     private IssuerId issuer;
 
     @Deprecated
-    protected SimpleIssue() {
+    protected MinimalIssue() {
     }
 
-    public SimpleIssue(final IssuerId issuer) {
+    public MinimalIssue(final IssuerId issuer) {
         this.issuer = issuer;
     }
 

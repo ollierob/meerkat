@@ -1,18 +1,17 @@
 package net.meerkat.calculate.price;
 
-import net.meerkat.calculate.price.ShiftableInstrumentPrice;
-
 import java.util.Optional;
 
-import net.meerkat.money.Money;
-import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.interest.InterestRate;
-import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.meerkat.calculate.price.shifts.SecurityShifts;
-import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.instrument.InstrumentDefinition;
+import net.meerkat.money.Money;
+import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
+import net.ollie.goat.temporal.date.interim.CompleteInterval;
 
 /**
  *
@@ -26,6 +25,7 @@ public class InterestAccruedPrice<F extends CurrencyId, C extends CurrencyId>
     private final InterestRate interestRate;
     private final ExchangeRate<F, C> fxRate;
     private final CompleteInterval period;
+    private final InterestRateInterpolator interestRateInterpolator;
     private final SecurityShifts shifts;
 
     public InterestAccruedPrice(
@@ -34,6 +34,7 @@ public class InterestAccruedPrice<F extends CurrencyId, C extends CurrencyId>
             final InterestRate interestRate,
             final ExchangeRate<F, C> fxRate,
             final CompleteInterval period,
+            final InterestRateInterpolator interestRateInterpolator,
             final SecurityShifts shifts) {
         this.security = security;
         this.notional = notional;
@@ -41,11 +42,12 @@ public class InterestAccruedPrice<F extends CurrencyId, C extends CurrencyId>
         this.fxRate = fxRate;
         this.period = period;
         this.shifts = shifts;
+        this.interestRateInterpolator = interestRateInterpolator;
     }
 
     @Override
     public Optional<ShiftableInstrumentPrice<C>> shift(final SecurityShifts shifts) {
-        return Optional.of(new InterestAccruedPrice<>(security, notional, interestRate, fxRate, period, shifts));
+        return Optional.of(new InterestAccruedPrice<>(security, notional, interestRate, fxRate, period, interestRateInterpolator, shifts));
     }
 
     InterestRate interestRate() {
@@ -67,7 +69,7 @@ public class InterestAccruedPrice<F extends CurrencyId, C extends CurrencyId>
 
     @Override
     public Money<C> dirty() {
-        final Money<F> accrued = this.interestRate().accrue(notional, period);
+        final Money<F> accrued = this.interestRate().accrue(notional, period, interestRateInterpolator);
         return this.fxRate().convert(accrued);
     }
 

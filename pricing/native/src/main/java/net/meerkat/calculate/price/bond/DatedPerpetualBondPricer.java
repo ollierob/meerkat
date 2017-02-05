@@ -16,6 +16,7 @@ import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.ollie.goat.collection.list.Lists;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
@@ -28,12 +29,15 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates;
+    private final InterestRateInterpolator interestRateInterpolator;
 
     public DatedPerpetualBondPricer(
             final ExchangeRatesProvider<LocalDate> getExchangeRates,
-            final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates) {
+            final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates,
+            final InterestRateInterpolator interestRateInterpolator) {
         this.exchangeRatesProvider = getExchangeRates;
         this.getDiscountRates = getDiscountRates;
+        this.interestRateInterpolator = interestRateInterpolator;
     }
 
     @Override
@@ -43,7 +47,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
             final C currency) {
         final ExchangeRates exchangeRates = exchangeRatesProvider.require(date);
         final InterestRate discountRate = getDiscountRates.apply(date, currency);
-        return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, BondShifts.none());
+        return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, interestRateInterpolator, BondShifts.none());
     }
 
     private static final class PerpetualBondPrice<C extends CurrencyId>
@@ -54,6 +58,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
         private final LocalDate date;
         private final ExchangeRates fxRates;
         private final InterestRate discountRate;
+        private final InterestRateInterpolator interestRateInterpolator;
         private final BondShifts shifts;
 
         PerpetualBondPrice(
@@ -62,6 +67,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
                 final LocalDate date,
                 final ExchangeRates fxRates,
                 final InterestRate discountRate,
+                final InterestRateInterpolator interestRateInterpolator,
                 final BondShifts shifts) {
             this.currency = currency;
             this.shifts = shifts;
@@ -69,6 +75,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
             this.fxRates = fxRates;
             this.discountRate = discountRate;
             this.bond = bond;
+            this.interestRateInterpolator = interestRateInterpolator;
         }
 
         @Override
@@ -107,7 +114,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
             return Lists.lazilyComputed(coupons.size(), index -> {
                 final FixedRateCoupon<?> coupon = coupons.get(index);
                 final Money<C> couponAmount = PerpetualBondPrice.this.shift(coupon.amount(), shifts, currency, fxRates);
-                final Money<C> discountedAmount = discountRate.discount(couponAmount, date, coupon.date());
+                final Money<C> discountedAmount = discountRate.discount(couponAmount, date, coupon.date(), interestRateInterpolator);
                 return CashPayment.of(coupon.date(), discountedAmount);
             });
         }
@@ -128,14 +135,14 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
         private Money<C> calculateAccuredInterest() {
             final FixedRateCoupon<?> priorCoupon = bond.coupons().prior(date);
             final Money<C> priorAmount = this.shiftedCoupon();
-            return this.shiftedDiscountRate().accrue(priorAmount, priorCoupon.date(), date).minus(priorAmount);
+            return this.shiftedDiscountRate().accrue(priorAmount, priorCoupon.date(), date, interestRateInterpolator).minus(priorAmount);
         }
 
         @Override
         public BondPrice.Shiftable<C> shift(final BondShifts shifts) {
             return shifts == this.shifts
                     ? this
-                    : new PerpetualBondPrice<>(bond, currency, date, fxRates, discountRate, shifts);
+                    : new PerpetualBondPrice<>(bond, currency, date, fxRates, discountRate, interestRateInterpolator, shifts);
         }
 
         @Override

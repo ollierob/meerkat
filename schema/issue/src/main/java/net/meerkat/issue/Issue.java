@@ -13,7 +13,7 @@ import net.meerkat.issuer.IssuerId;
 public interface Issue extends HasIssuerId {
 
     static Issue of(final IssuerId id) {
-        return new SimpleIssue(id);
+        return new MinimalIssue(id);
     }
 
 }

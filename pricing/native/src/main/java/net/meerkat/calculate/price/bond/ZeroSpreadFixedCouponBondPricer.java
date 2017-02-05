@@ -18,6 +18,7 @@ import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
 
@@ -30,12 +31,15 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRate;
+    private final InterestRateInterpolator interestRateInterpolator;
 
     public ZeroSpreadFixedCouponBondPricer(
             final ExchangeRatesProvider<LocalDate> exchangeRatesProvider,
-            final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates) {
+            final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates,
+            final InterestRateInterpolator interestRateInterpolator) {
         this.exchangeRatesProvider = exchangeRatesProvider;
         this.getDiscountRate = discountRates;
+        this.interestRateInterpolator = interestRateInterpolator;
     }
 
     @Override
@@ -58,7 +62,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
         final InterestRate discountRate = requireNonNull(getDiscountRate.apply(date, currency));
 
-        return new ZeroSpreadFixedCouponBondPrice<>(date, par, coupons, parFxRate, couponFxRate, discountRate, BondShifts.none());
+        return new ZeroSpreadFixedCouponBondPrice<>(date, par, coupons, parFxRate, couponFxRate, discountRate, interestRateInterpolator, BondShifts.none());
 
     }
 
@@ -71,6 +75,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
         private final ExchangeRate<P, C> parFxRate;
         private final ExchangeRate<Z, C> couponFxRate;
         private final InterestRate discountRate;
+        private final InterestRateInterpolator interestRateInterpolator;
         private final BondShifts shifts;
 
         ZeroSpreadFixedCouponBondPrice(
@@ -80,6 +85,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
                 final ExchangeRate<P, C> parFxRate,
                 final ExchangeRate<Z, C> couponFxRate,
                 final InterestRate discountRate,
+                final InterestRateInterpolator interestRateInterpolator,
                 final BondShifts shifts) {
             this.valuationDate = valuationDate;
             this.par = par;
@@ -88,6 +94,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
             this.parFxRate = parFxRate;
             this.couponFxRate = couponFxRate;
             this.discountRate = discountRate;
+            this.interestRateInterpolator = interestRateInterpolator;
         }
 
         @Override
@@ -130,7 +137,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
         @Override
         public BondPrice.Shiftable<C> shift(final BondShifts shifts) {
-            return new ZeroSpreadFixedCouponBondPrice<>(valuationDate, par, coupons, parFxRate, couponFxRate, discountRate, shifts);
+            return new ZeroSpreadFixedCouponBondPrice<>(valuationDate, par, coupons, parFxRate, couponFxRate, discountRate, interestRateInterpolator, shifts);
         }
 
         ExchangeRate<P, C> parFxRate() {
@@ -150,7 +157,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
         }
 
         Money<C> presentValue(final Money<C> amount, final LocalDate outDate, final InterestRate discountRate) {
-            return discountRate.discount(amount, valuationDate, outDate);
+            return discountRate.discount(amount, valuationDate, outDate, interestRateInterpolator);
         }
 
         Money<C> presentParValue(final InterestRate discountRate) {

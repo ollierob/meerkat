@@ -12,7 +12,7 @@ import net.meerkat.rating.HasCreditRating;
  * @author ollie
  */
 @XmlRootElement
-public class RatedIssue extends SimpleIssue implements HasCreditRating {
+public class RatedIssue extends MinimalIssue implements HasCreditRating {
 
     @XmlElement(name = "rating")
     private CreditRating rating;
