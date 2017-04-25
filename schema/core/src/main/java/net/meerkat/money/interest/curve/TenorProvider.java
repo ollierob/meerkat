@@ -51,6 +51,7 @@ public interface TenorProvider<T extends Tenor> extends Provider<String, T> {
         return this.require(Periods.THREE_MONTHS);
     }
 
+    @Nonnull
     default T oneYear() {
         return this.require(Periods.ONE_YEAR);
     }

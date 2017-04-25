@@ -1,7 +1,5 @@
 package net.meerkat.calculate.price.bond;
 
-import net.meerkat.calculate.price.bond.GenericBondPricer;
-import net.meerkat.calculate.price.bond.BondPrice;
 
 import java.time.temporal.Temporal;
 
@@ -11,7 +9,6 @@ import net.meerkat.instrument.bond.FloatingRateNote;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.VariableRateBond;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.calculate.price.bond.BondPricer;
 
 /**
  *

@@ -15,7 +15,7 @@
     
     <modules>
         <module>framework</module>
-        <module>native</module>
+        <module>pricing-bonds</module>
     </modules>
     <dependencies>
         <dependency>

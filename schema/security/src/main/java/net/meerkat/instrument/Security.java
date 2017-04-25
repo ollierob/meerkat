@@ -7,6 +7,7 @@ import net.meerkat.issuer.Issuer;
  * A tradeable financial asset that has been {@link Issuer issued} by some entity.
  *
  * @author ollie
+ * @see Instrument
  */
 public interface Security extends Instrument, HasIssuerId {
 
