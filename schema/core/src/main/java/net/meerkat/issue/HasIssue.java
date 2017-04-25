@@ -1,6 +1,5 @@
 package net.meerkat.issue;
 
-
 import net.meerkat.issuer.HasIssuerId;
 import net.meerkat.issuer.IssuerId;
 

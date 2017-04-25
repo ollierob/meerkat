@@ -1,6 +1,7 @@
 package net.meerkat.identifier.market;
 
 import net.meerkat.Named;
+import net.meerkat.identifier.market.MarketId;
 
 /**
  *

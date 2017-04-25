@@ -14,9 +14,7 @@
     <modules>
         <module>core</module>
         <module>security</module>
-        <module>issue</module>
         <module>external</module>
-        <module>internal</module>
     </modules>
     
 </project>
