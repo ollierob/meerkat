@@ -4,18 +4,18 @@
     
     <parent>
         <groupId>net.meerkat</groupId>
-        <artifactId>meerkat</artifactId>
+        <artifactId>root</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     
     <name>pricing</name>
-    <artifactId>meerkat-pricing</artifactId>
+    <artifactId>pricing</artifactId>
     <packaging>pom</packaging>
     
     <modules>
         <module>framework</module>
-        <module>pricing-bonds</module>
+        <module>bonds</module>
     </modules>
     <dependencies>
         <dependency>
