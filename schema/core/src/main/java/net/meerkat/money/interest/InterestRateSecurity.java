@@ -2,7 +2,6 @@ package net.meerkat.money.interest;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.interest.InterestRate;
 import net.meerkat.instrument.Instrument;
 
 /**
