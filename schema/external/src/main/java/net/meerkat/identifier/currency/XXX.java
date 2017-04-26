@@ -4,26 +4,21 @@ package net.meerkat.identifier.currency;
  *
  * @author ollie
  */
-public class GBX extends NationalCurrencyIso {
+public class XXX extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
-    GBX() {
+    XXX() {
     }
 
     @Override
     public String symbol() {
-        return "p";
-    }
-
-    @Override
-    public String uniqueSymbol() {
-        return "GBp";
+        return "x";
     }
 
     @Override
     public String name() {
-        return "Penny Sterling";
+        return "No currency";
     }
 
 }

@@ -25,6 +25,7 @@ public class CountryIso
     private static final Pattern PATTERN = Pattern.compile("[A-Z]{2}");
 
     public static final CountryIso AU = valueOf("AU");
+    public static final CountryIso EU = valueOf("EU");
     public static final CountryIso JP = valueOf("JP");
     public static final CountryIso GB = valueOf("GB");
     public static final CountryIso US = valueOf("US");

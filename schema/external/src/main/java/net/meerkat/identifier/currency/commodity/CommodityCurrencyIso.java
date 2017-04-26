@@ -20,5 +20,7 @@ public interface CommodityCurrencyIso extends CurrencyIso {
 
     XAU XAU = new XAU();
     XAG XAG = new XAG();
+    XPD XPD = new XPD();
+    XPT XPT = new XPT();
 
 }

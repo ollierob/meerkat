@@ -13,7 +13,7 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
  *
  * @author Ollie
  */
-public interface FxInstrument
+public interface FxInstrumentDefinition
         extends OtcInstrument, InstrumentDefinition, CurrencyIdPair.Untyped {
 
     @Nonnull
@@ -23,18 +23,18 @@ public interface FxInstrument
     CompleteInterval settlementDate();
 
     @Deprecated
-    default FxInstrument instrument() {
+    default FxInstrumentDefinition instrument() {
         return this;
     }
 
     @Override
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
-        return handler instanceof FxInstrument.Handler
-                ? this.handleWith((FxInstrument.Handler<R>) handler)
+        return handler instanceof FxInstrumentDefinition.Handler
+                ? this.handleWith((FxInstrumentDefinition.Handler<R>) handler)
                 : handler.handle(this);
     }
 
-    <R> R handleWith(FxInstrument.Handler<R> handler);
+    <R> R handleWith(FxInstrumentDefinition.Handler<R> handler);
 
     interface Handler<R>
             extends InstrumentDefinition.Handler<R> {

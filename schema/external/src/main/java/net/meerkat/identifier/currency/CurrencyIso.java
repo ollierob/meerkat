@@ -36,7 +36,7 @@ public interface CurrencyIso
 
     @Override
     default MoneyFormat format() {
-        return money -> this.value() + ' ' + money.amount();
+        return MoneyFormat.CURRENCY_AMOUNT;
     }
 
     AUD AUD = new AUD();
@@ -56,6 +56,7 @@ public interface CurrencyIso
     PLN PLN = new PLN();
     QAR QAR = new QAR();
     RUB RUB = new RUB();
+    SEK SEK = new SEK();
     THB THB = new THB();
     TRY TRY = new TRY();
     TWD TWD = new TWD();
@@ -64,5 +65,7 @@ public interface CurrencyIso
     ZAR ZAR = new ZAR();
 
     GBX GBX = new GBX();
+
+    XXX XXX = new XXX();
 
 }

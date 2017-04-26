@@ -10,7 +10,7 @@ import net.meerkat.utils.HasName;
  */
 @XmlTransient
 public abstract class AbstractCurrencyIso
-        implements CurrencyId, CurrencyIso, HasName {
+        implements CurrencyIso, HasName {
 
     private static final long serialVersionUID = 1L;
 

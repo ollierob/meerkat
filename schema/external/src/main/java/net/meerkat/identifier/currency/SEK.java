@@ -1,29 +1,27 @@
 package net.meerkat.identifier.currency;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
- * @author ollie
+ * @author Ollie
  */
-public class GBX extends NationalCurrencyIso {
+@XmlRootElement
+public class SEK extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
-    GBX() {
+    SEK() {
     }
 
     @Override
     public String symbol() {
-        return "p";
-    }
-
-    @Override
-    public String uniqueSymbol() {
-        return "GBp";
+        return "kr";
     }
 
     @Override
     public String name() {
-        return "Penny Sterling";
+        return "Swedish krona";
     }
 
 }
