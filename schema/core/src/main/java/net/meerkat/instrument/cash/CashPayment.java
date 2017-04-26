@@ -5,10 +5,11 @@ import java.time.LocalDate;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.Money;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.money.Money;
+import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.fx.ExchangeRates;
 
 /**
  *
@@ -29,6 +30,10 @@ public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
 
     @CheckReturnValue
     <T extends CurrencyId> CashPayment<T> convert(ExchangeRate<C, T> exchangeRate);
+
+    default <T extends CurrencyId> CashPayment<T> convert(final T toCurrency, final ExchangeRates exchangeRates) {
+        return this.convert(exchangeRates.rate(this.currencyId(), toCurrency));
+    }
 
     static <C extends CurrencyId> CashPayment<C> of(final LocalDate date, final Money<C> amount) {
         return new DefaultCashPayment<>(date, amount);

@@ -1,6 +1,7 @@
 package net.meerkat.utils;
 
 import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 /**
@@ -43,7 +44,7 @@ public class Require {
         }
         return b;
     }
-
+    
     public static void argumentsEqual(final Object left, final Object right) {
         argumentsEqual(left, right, () -> "Objects were not equal: [" + left + "} != [" + right + "]");
     }
@@ -51,5 +52,11 @@ public class Require {
     public static void argumentsEqual(final Object left, final Object right, final Supplier<String> message) {
         that(Objects.equals(left, right), message);
     }
+    
+    public static void argumentsNotEqual(final Object left, final Object right, final BiFunction<Object, Object, String> message) {
+        if(Objects.equals(left, right)) {
+            throw new IllegalArgumentException(message.apply(left, right));
+        }
+F    }
 
 }
