@@ -8,73 +8,81 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.Explainable;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.CurrencyIds;
+import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.derivative.swap.SwapLeg;
 import net.meerkat.money.Money;
-import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 
 /**
  *
  * @author ollie
  */
-public class FxSwapLeg implements SwapLeg, Explainable {
+public class FxSwapLeg<P extends CurrencyId, R extends CurrencyId>
+        implements SwapLeg, HasCurrencyIds, Explainable {
 
-    @XmlAttribute(name = "date")
-    private LocalDate date;
+    @XmlAttribute(name = "valueDate")
+    private LocalDate valueDate;
 
     @XmlElementRef(name = "pay")
-    private Money<?> pay;
+    private Money<P> pay;
 
     @XmlElementRef(name = "receive")
-    private Money<?> receive;
+    private Money<R> receive;
 
     @Deprecated
     FxSwapLeg() {
     }
 
     public FxSwapLeg(
-            final LocalDate date,
-            final Money<?> pay,
-            final Money<?> receive) {
-        this.date = date;
+            final LocalDate valueDate,
+            final Money<P> pay,
+            final Money<R> receive) {
+        this.valueDate = valueDate;
         this.pay = pay;
         this.receive = receive;
     }
 
     @Nonnull
-    public LocalDate date() {
-        return date;
+    public LocalDate valueDate() {
+        return valueDate;
     }
 
     @Nonnull
-    public Money<?> pay() {
+    public Money<P> pay() {
         return pay;
     }
 
     @Nonnull
-    public FxSwapSide<?> paySide() {
+    public FxSwapSide<P> paySide() {
         return new FxSwapSide<>(pay);
     }
 
     @Nonnull
-    public Money<?> receive() {
+    public Money<R> receive() {
         return receive;
     }
 
     @Nonnull
-    public FxSwapSide<?> receiveSide() {
+    public FxSwapSide<R> receiveSide() {
         return new FxSwapSide<>(receive);
     }
 
-    public FxSwapLeg inverse(final LocalDate date) {
-        return new FxSwapLeg(date, receive, pay);
+    public FxSwapLeg<R, P> inverse(final LocalDate date) {
+        return new FxSwapLeg<>(date, receive, pay);
+    }
+
+    @Override
+    public CurrencyIds currencyIds() {
+        return CurrencyIds.of(pay.currencyId(), receive.currencyId());
     }
 
     @Override
     public Map<String, Object> explain() {
         return this.explanationBuilder()
-                .put("date", date)
+                .put("value date", valueDate)
                 .put("pay", pay)
                 .put("receive", receive);
     }
@@ -83,13 +91,13 @@ public class FxSwapLeg implements SwapLeg, Explainable {
 
         private final Money<C> amount;
 
-        public FxSwapSide(final Money<C> amount) {
+        private FxSwapSide(final Money<C> amount) {
             this.amount = amount;
         }
 
         @Override
         public LocalDate date() {
-            return date;
+            return valueDate;
         }
 
         @Override

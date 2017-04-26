@@ -10,10 +10,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
+import net.meerkat.instrument.fx.FxInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.utils.Require;
-import net.meerkat.instrument.fx.FxInstrument;
 
 /**
  *
@@ -26,10 +26,10 @@ public class FxForward<B extends CurrencyId, C extends CurrencyId>
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "base")
+    @XmlElementRef(name = "base", required = true)
     private Money<B> base;
 
-    @XmlElementRef(name = "counter")
+    @XmlElementRef(name = "counter", required = true)
     private Money<C> counter;
 
     @XmlElement(name = "settlementDate")
@@ -50,14 +50,14 @@ public class FxForward<B extends CurrencyId, C extends CurrencyId>
             final LocalDate settlementDate,
             final LocalDate tradeDate) {
         super(name, identifiers);
-        Require.that(base.currencyId() != counter.currencyId(), () -> "Cannot have a forward using [" + base + "] == [" + counter + "]!");
+        Require.argumentsNotEqual(base.currencyId(), counter.currencyId(), (b, c) -> "Cannot have a forward with base [" + b + "] == counter [" + c + "] currencies!");
         this.base = base;
         this.counter = counter;
         this.settlementDate = settlementDate;
         this.tradeDate = tradeDate;
     }
 
-    public Money<?> baseAmount() {
+    public Money<B> baseAmount() {
         return base;
     }
 
