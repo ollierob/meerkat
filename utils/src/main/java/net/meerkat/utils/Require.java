@@ -26,6 +26,17 @@ public class Require {
         return that(!b, message);
     }
 
+    public static boolean not(final boolean b, final String message) {
+        return that(!b, message);
+    }
+
+    public static boolean that(final boolean b, final String message) {
+        if (!b) {
+            throw new IllegalArgumentException(message);
+        }
+        return b;
+    }
+
     public static boolean that(final boolean b, final Supplier<String> message) {
         if (!b) {
             throw new IllegalArgumentException(message.get());

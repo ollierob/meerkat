@@ -16,10 +16,10 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
  */
 public interface BusinessDayCalendar {
 
-    boolean isHoliday(@Nonnull LocalDate date);
+    boolean isBusinessDay(@Nonnull LocalDate date);
 
-    default boolean isBusinessDay(@Nonnull final LocalDate date) {
-        return !this.isHoliday(date);
+    default boolean isHoliday(@Nonnull final LocalDate date) {
+        return !this.isBusinessDay(date);
     }
 
     default int countBusinessDays(final LocalDate start, final LocalDate end) {
@@ -32,6 +32,13 @@ public interface BusinessDayCalendar {
         return count;
     }
 
+    /**
+     *
+     * @param date
+     * @param n
+     * @return the business date {@code n} days after (or before, if negative) the given date. If {@code n == 0} the
+     * given date is returned, even if it is not a business day.
+     */
     default LocalDate nthBusinessDay(final LocalDate date, final int n) {
         final int signum = n > 0 ? +1 : -1;
         int c = 0;
@@ -43,6 +50,24 @@ public interface BusinessDayCalendar {
             }
         }
         return current;
+    }
+
+    /**
+     *
+     * @param date
+     * @return the next business date strictly after the given date.
+     */
+    default LocalDate nextBusinessDay(final LocalDate date) {
+        return this.nthBusinessDay(date, 1);
+    }
+
+    /**
+     *
+     * @param date
+     * @return the previous business date strictly before the given date.
+     */
+    default LocalDate previousBusinessDay(final LocalDate date) {
+        return this.nthBusinessDay(date, -1);
     }
 
     @Nonnull

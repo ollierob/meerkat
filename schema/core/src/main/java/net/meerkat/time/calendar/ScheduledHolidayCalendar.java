@@ -7,8 +7,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.temporal.date.Dates;
 import net.meerkat.utils.Require;
+import net.ollie.goat.temporal.date.Dates;
 
 /**
  *
@@ -17,11 +17,11 @@ import net.meerkat.utils.Require;
 @XmlRootElement
 public class ScheduledHolidayCalendar implements BusinessDayCalendar {
 
-    @XmlAttribute(name = "from")
-    private LocalDate from;
+    @XmlAttribute(name = "validFrom")
+    private LocalDate validFrom;
 
-    @XmlAttribute(name = "to")
-    private LocalDate to;
+    @XmlAttribute(name = "validTo")
+    private LocalDate validTo;
 
     @XmlElement(name = "holiday")
     private Set<LocalDate> holidays;
@@ -30,18 +30,23 @@ public class ScheduledHolidayCalendar implements BusinessDayCalendar {
     ScheduledHolidayCalendar() {
     }
 
-    public ScheduledHolidayCalendar(final LocalDate from, final LocalDate to, final Set<LocalDate> holidays) {
-        this.from = from;
-        this.to = to;
+    public ScheduledHolidayCalendar(final LocalDate validFrom, final LocalDate validTo, final Set<LocalDate> holidays) {
+        this.validFrom = validFrom;
+        this.validTo = validTo;
         this.holidays = holidays;
     }
 
     @Override
+    public boolean isBusinessDay(final LocalDate date) {
+        return !this.isHoliday(date);
+    }
+
+    @Override
     public boolean isHoliday(final LocalDate date) {
-        if (holidays.contains(to)) {
+        if (holidays.contains(validTo)) {
             return true;
         }
-        Require.that(Dates.areOrdered(from, date, to), () -> "Date [" + date + "] is outside range");
+        Require.that(Dates.areOrdered(validFrom, date, validTo), () -> "Date [" + date + "] is outside range");
         return false;
     }
 

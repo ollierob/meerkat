@@ -3,7 +3,7 @@ package net.meerkat.instrument.bond.dates;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import net.meerkat.instrument.Issued;
+import net.meerkat.instrument.dates.Issued;
 
 /**
  *

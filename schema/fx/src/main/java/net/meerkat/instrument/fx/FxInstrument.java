@@ -1,13 +1,12 @@
 package net.meerkat.instrument.fx;
 
-import java.time.LocalDate;
-
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIdPair;
 import net.meerkat.instrument.InstrumentDefinition;
-import net.meerkat.instrument.OtcInstrument;
+import net.meerkat.instrument.dates.Settled;
+import net.meerkat.instrument.dates.Traded;
 import net.meerkat.instrument.fx.forward.FxForward;
 import net.meerkat.instrument.fx.forward.FxSpot;
 import net.meerkat.money.fx.ExchangeRate;
@@ -17,18 +16,10 @@ import net.meerkat.money.fx.ExchangeRate;
  * @author Ollie
  */
 public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
-        extends OtcInstrument, InstrumentDefinition, CurrencyIdPair<B, C> {
+        extends InstrumentDefinition, CurrencyIdPair<B, C>, Traded, Settled {
 
     @Nonnull
     ExchangeRate<B, C> exchangeRate();
-
-    @Nonnull
-    LocalDate settlementDate();
-
-    @Deprecated
-    default FxInstrument<B, C> instrument() {
-        return this;
-    }
 
     @Override
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {

@@ -6,7 +6,7 @@ import java.util.Optional;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.instrument.Termed;
+import net.meerkat.instrument.dates.Termed;
 
 /**
  *
