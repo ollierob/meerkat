@@ -6,7 +6,8 @@ import javax.annotation.Nonnull;
  *
  * @author ollie
  */
-public interface CurrencyIdPair<B extends CurrencyId, C extends CurrencyId> extends HasCurrencyIds {
+public interface CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
+        extends HasCurrencyIds {
 
     @Nonnull
     B base();

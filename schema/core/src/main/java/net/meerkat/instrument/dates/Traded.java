@@ -1,15 +1,14 @@
-package net.meerkat.instrument;
+package net.meerkat.instrument.dates;
 
 import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-
 /**
  *
  * @author ollie
  */
-public interface OtcInstrument extends Instrument {
+public interface Traded {
 
     @Nonnull
     LocalDate tradeDate();

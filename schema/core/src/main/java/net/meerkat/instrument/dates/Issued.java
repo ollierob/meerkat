@@ -1,4 +1,4 @@
-package net.meerkat.instrument;
+package net.meerkat.instrument.dates;
 
 import java.time.LocalDate;
 
