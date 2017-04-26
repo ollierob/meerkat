@@ -3,37 +3,40 @@ package net.meerkat.instrument.fx.forward;
 import java.time.LocalDate;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.ollie.goat.temporal.date.interim.CompleteInterval;
 import net.meerkat.utils.Require;
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.fx.FxInstrumentDefinition;
+import net.meerkat.instrument.fx.FxInstrument;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class FxForward
+public class FxForward<B extends CurrencyId, C extends CurrencyId>
         extends NamedInstrument
-        implements FxInstrumentDefinition {
+        implements FxInstrument<B, C> {
 
     private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "base")
-    private Money<?> base;
+    private Money<B> base;
 
     @XmlElementRef(name = "counter")
-    private Money<?> counter;
+    private Money<C> counter;
 
-    @XmlAttribute(name = "settlement")
-    private CompleteInterval settlement;
+    @XmlElement(name = "settlementDate")
+    private LocalDate settlementDate;
+
+    @XmlAttribute(name = "tradeDate")
+    private LocalDate tradeDate;
 
     @Deprecated
     FxForward() {
@@ -42,14 +45,16 @@ public class FxForward
     public FxForward(
             final String name,
             final InstrumentIds identifiers,
-            final Money<?> base,
-            final Money<?> counter,
-            final CompleteInterval settlement) {
+            final Money<B> base,
+            final Money<C> counter,
+            final LocalDate settlementDate,
+            final LocalDate tradeDate) {
         super(name, identifiers);
         Require.that(base.currencyId() != counter.currencyId(), () -> "Cannot have a forward using [" + base + "] == [" + counter + "]!");
         this.base = base;
         this.counter = counter;
-        this.settlement = settlement;
+        this.settlementDate = settlementDate;
+        this.tradeDate = tradeDate;
     }
 
     public Money<?> baseAmount() {
@@ -57,36 +62,36 @@ public class FxForward
     }
 
     @Override
-    public CurrencyId base() {
+    public B base() {
         return base.currencyId();
     }
 
-    public Money<?> counterAmount() {
+    public Money<C> counterAmount() {
         return counter;
     }
 
     @Override
-    public CurrencyId counter() {
+    public C counter() {
         return counter.currencyId();
     }
 
     @Override
-    public ExchangeRate<?, ?> exchangeRate() {
+    public ExchangeRate<B, C> exchangeRate() {
         return ExchangeRate.between(base, counter);
     }
 
     @Override
-    public CompleteInterval settlementDate() {
-        return settlement;
+    public LocalDate settlementDate() {
+        return settlementDate;
     }
 
     @Override
     public LocalDate tradeDate() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return tradeDate;
     }
 
     @Override
-    public <R> R handleWith(final FxInstrumentDefinition.Handler<R> handler) {
+    public <R> R handleWith(final FxInstrument.Handler<R> handler) {
         return handler.handle(this);
     }
 
