@@ -5,10 +5,10 @@ import static java.util.stream.Collectors.toList;
 
 import javax.annotation.CheckForNull;
 
+import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
 import net.meerkat.utils.collections.sequence.OrderedSequence;
 import net.meerkat.utils.collections.sequence.StartingSequence;
-import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *
