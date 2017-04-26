@@ -3,21 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.meerkat</groupId>
-        <artifactId>meerkat-reporting</artifactId>
+        <artifactId>reporting</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>meerkat-reporting-framework</artifactId>
+    <artifactId>reporting-framework</artifactId>
     <packaging>jar</packaging>
     <name>reporting-framework</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-schema-security</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-schema-issue</artifactId>
+            <artifactId>schema-core</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

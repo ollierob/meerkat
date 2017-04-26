@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-pricing-framework</artifactId>
+            <artifactId>pricing-framework</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

@@ -10,28 +10,13 @@
     </parent>
     
     <name>schema-external</name>
-    <artifactId>meerkat-schema-external</artifactId>
+    <artifactId>schema-external</artifactId>
     <packaging>jar</packaging>
     
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-utils</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-schema-core</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-schema-issue</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-schema-security</artifactId>
+            <artifactId>schema-core</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

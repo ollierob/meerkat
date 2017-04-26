@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>meerkat-schema-core</artifactId>
+            <artifactId>schema-core</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
