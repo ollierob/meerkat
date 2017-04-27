@@ -16,10 +16,10 @@
             <actionName>CUSTOM-skip tests</actionName>
             <displayName>skip tests</displayName>
             <goals>
-                <goal>clean</goal>
                 <goal>install</goal>
-                <goal>-T</goal>
-                <goal>2</goal>
+                <goal>-T2C</goal>
+                
+                
             </goals>
             <properties>
                 <skipTests>true</skipTests>

@@ -21,7 +21,7 @@ import net.meerkat.money.fx.ExchangeRate;
  * @author ollie
  */
 public class FxSwapLeg<P extends CurrencyId, R extends CurrencyId>
-        implements SwapLeg, HasCurrencyIds, Explainable {
+        implements SwapLeg<P, R>, HasCurrencyIds, Explainable {
 
     @XmlAttribute(name = "valueDate")
     private LocalDate valueDate;
@@ -48,6 +48,16 @@ public class FxSwapLeg<P extends CurrencyId, R extends CurrencyId>
     @Nonnull
     public LocalDate valueDate() {
         return valueDate;
+    }
+
+    @Override
+    public P payCurrency() {
+        return pay.currencyId();
+    }
+
+    @Override
+    public R receiveCurrency() {
+        return receive.currencyId();
     }
 
     @Nonnull

@@ -42,8 +42,8 @@ public class CompoundFixedInterestRate extends FixedInterestRate {
     }
 
     @Override
-    public String toString() {
-        return "compound@" + this.annualRate();
+    protected String type() {
+        return "compound";
     }
 
     public static <C extends CurrencyId> Money<C> accrue(

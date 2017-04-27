@@ -3,28 +3,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.meerkat</groupId>
-        <artifactId>root</artifactId>
+        <artifactId>schema</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     
-    <name>schema</name>
-    <artifactId>schema</artifactId>
-    <packaging>pom</packaging>
-    
-    <modules>
-        <module>core</module>
-        <module>external</module>
-        <module>equity</module>
-        <module>fx</module>
-        <module>bonds</module>
-        <module>ir-derivative</module>
-    </modules>
-    
+    <name>schema-ir-derivative</name>
+    <artifactId>ir-derivative</artifactId>
+    <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>utils</artifactId>
+            <artifactId>schema-core</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

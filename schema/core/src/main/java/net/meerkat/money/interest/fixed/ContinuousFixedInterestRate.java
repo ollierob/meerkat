@@ -33,8 +33,8 @@ public class ContinuousFixedInterestRate extends FixedInterestRate {
     }
 
     @Override
-    public String toString() {
-        return "continuous@" + this.annualRate();
+    protected String type() {
+        return "continuous";
     }
 
     public static <C extends CurrencyId> Money<C> accrue(

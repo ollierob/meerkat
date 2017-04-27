@@ -16,8 +16,8 @@ import net.meerkat.instrument.bond.dates.MaturingBondDates;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.meerkat.money.interest.InterestRateSecurity;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.money.interest.InterestRateInstrument;
 
 /**
  *
@@ -26,7 +26,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 @XmlRootElement
 public class FixedCouponBond
         extends StraightBond
-        implements InterestRateSecurity {
+        implements InterestRateInstrument {
 
     private static final long serialVersionUID = 1L;
 

@@ -8,7 +8,7 @@ import net.meerkat.instrument.Instrument;
  *
  * @author Ollie
  */
-public interface InterestRateSecurity extends Instrument {
+public interface InterestRateInstrument extends Instrument {
 
     @Nonnull
     InterestRate interestRate();

@@ -38,8 +38,8 @@ public class SimpleFixedInterestRate extends FixedInterestRate {
     }
 
     @Override
-    public String toString() {
-        return "simple@" + this.annualRate();
+    protected String type() {
+        return "simple";
     }
 
     public static <C extends CurrencyId> Money<C> accrue(
