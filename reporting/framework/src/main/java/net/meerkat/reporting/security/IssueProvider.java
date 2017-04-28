@@ -1,6 +1,6 @@
 package net.meerkat.reporting.security;
 
-import net.meerkat.Provider;
+import net.ollie.goat.data.Provider;
 import net.meerkat.issue.Issue;
 import net.meerkat.identifier.InstrumentInMarketId;
 

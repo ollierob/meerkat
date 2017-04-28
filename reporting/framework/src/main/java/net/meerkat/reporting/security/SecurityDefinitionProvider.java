@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.Provider;
+import net.ollie.goat.data.Provider;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.InstrumentInMarketId;

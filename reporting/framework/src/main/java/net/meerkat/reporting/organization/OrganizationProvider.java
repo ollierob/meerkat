@@ -1,6 +1,6 @@
 package net.meerkat.reporting.organization;
 
-import net.meerkat.Provider;
+import net.ollie.goat.data.Provider;
 import net.meerkat.organization.Organization;
 import net.meerkat.organization.OrganizationId;
 

@@ -42,5 +42,5 @@ public class CurrencyIds
     public CurrencyIds currencyIds() {
         return this;
     }
-
+    
 }

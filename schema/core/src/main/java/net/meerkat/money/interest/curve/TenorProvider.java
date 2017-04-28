@@ -5,7 +5,7 @@ import java.time.Period;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
-import net.meerkat.Provider;
+import net.ollie.goat.data.Provider;
 import net.ollie.goat.temporal.date.Periods;
 
 /**
