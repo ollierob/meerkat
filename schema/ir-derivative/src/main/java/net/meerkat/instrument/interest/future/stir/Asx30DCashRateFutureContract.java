@@ -13,14 +13,14 @@ import net.meerkat.money.Money;
  *
  * @author ollie
  */
-public class Asx30DCashRateContract
+public class Asx30DCashRateFutureContract
         extends NamedInstrument
         implements InterestRateFutureContract<AUD> {
 
     private static final long serialVersionUID = 1L;
     private static final Money<AUD> NOTIONAL = Money.of(3_000_000, AUD.AUD);
 
-    public Asx30DCashRateContract(final String name, final InstrumentIds ids) {
+    public Asx30DCashRateFutureContract(final String name, final InstrumentIds ids) {
         super(name, ids);
     }
 

@@ -4,7 +4,7 @@ import java.time.Month;
 import java.time.Period;
 import java.util.Set;
 
-import net.meerkat.identifier.currency.USD;
+import net.meerkat.identifier.currency.GBP;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
@@ -14,19 +14,24 @@ import net.ollie.goat.temporal.date.Periods;
  *
  * @author ollie
  */
-public class Eurodollar3MContract
+public class ShortSterlingFutureContract
         extends NamedInstrument
-        implements InterestRateFutureContract<USD> {
+        implements InterestRateFutureContract<GBP> {
 
     private static final long serialVersionUID = 1L;
+    private static final Money<GBP> NOTIONAL = Money.of(500_000, GBP.GBP);
 
-    public Eurodollar3MContract(final String name, final InstrumentIds ids) {
+    public ShortSterlingFutureContract(final InstrumentIds ids) {
+        this("Short Sterling", ids);
+    }
+
+    public ShortSterlingFutureContract(final String name, final InstrumentIds ids) {
         super(name, ids);
     }
 
     @Override
-    public Money<USD> notional() {
-        return USD.ONE_MILLION;
+    public Money<GBP> notional() {
+        return NOTIONAL;
     }
 
     @Override
