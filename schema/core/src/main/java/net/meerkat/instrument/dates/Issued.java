@@ -4,13 +4,11 @@ import java.time.LocalDate;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.issuer.HasIssuerId;
-
 /**
  *
  * @author ollie
  */
-public interface Issued extends HasIssuerId {
+public interface Issued {
 
     @Nonnull
     LocalDate issueDate();

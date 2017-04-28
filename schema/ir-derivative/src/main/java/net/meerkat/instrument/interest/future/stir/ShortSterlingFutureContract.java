@@ -1,14 +1,13 @@
 package net.meerkat.instrument.interest.future.stir;
 
-import java.time.Month;
 import java.time.Period;
-import java.util.Set;
 
 import net.meerkat.identifier.currency.GBP;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
 import net.ollie.goat.temporal.date.Periods;
+import net.ollie.goat.temporal.date.months.Months;
 
 /**
  *
@@ -16,7 +15,7 @@ import net.ollie.goat.temporal.date.Periods;
  */
 public class ShortSterlingFutureContract
         extends NamedInstrument
-        implements InterestRateFutureContract<GBP> {
+        implements ShortTermInterestRateFutureContract<GBP> {
 
     private static final long serialVersionUID = 1L;
     private static final Money<GBP> NOTIONAL = Money.of(500_000, GBP.GBP);
@@ -40,7 +39,7 @@ public class ShortSterlingFutureContract
     }
 
     @Override
-    public Set<Month> deliveryMonths() {
+    public Months deliveryMonths() {
         return MAR_JUN_SEP_DEC;
     }
 

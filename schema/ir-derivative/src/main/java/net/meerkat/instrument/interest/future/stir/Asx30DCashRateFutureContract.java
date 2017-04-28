@@ -1,13 +1,12 @@
 package net.meerkat.instrument.interest.future.stir;
 
-import java.time.Month;
 import java.time.Period;
-import java.util.Set;
 
 import net.meerkat.identifier.currency.AUD;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
+import net.ollie.goat.temporal.date.months.Months;
 
 /**
  *
@@ -15,7 +14,7 @@ import net.meerkat.money.Money;
  */
 public class Asx30DCashRateFutureContract
         extends NamedInstrument
-        implements InterestRateFutureContract<AUD> {
+        implements ShortTermInterestRateFutureContract<AUD> {
 
     private static final long serialVersionUID = 1L;
     private static final Money<AUD> NOTIONAL = Money.of(3_000_000, AUD.AUD);
@@ -35,7 +34,7 @@ public class Asx30DCashRateFutureContract
     }
 
     @Override
-    public Set<Month> deliveryMonths() {
+    public Months deliveryMonths() {
         return ALL_MONTHS;
     }
 

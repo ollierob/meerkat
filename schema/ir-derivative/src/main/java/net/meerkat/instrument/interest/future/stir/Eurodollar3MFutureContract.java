@@ -1,14 +1,13 @@
 package net.meerkat.instrument.interest.future.stir;
 
-import java.time.Month;
 import java.time.Period;
-import java.util.Set;
 
 import net.meerkat.identifier.currency.USD;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
 import net.ollie.goat.temporal.date.Periods;
+import net.ollie.goat.temporal.date.months.Months;
 
 /**
  *
@@ -16,7 +15,7 @@ import net.ollie.goat.temporal.date.Periods;
  */
 public class Eurodollar3MFutureContract
         extends NamedInstrument
-        implements InterestRateFutureContract<USD> {
+        implements ShortTermInterestRateFutureContract<USD> {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,7 +34,7 @@ public class Eurodollar3MFutureContract
     }
 
     @Override
-    public Set<Month> deliveryMonths() {
+    public Months deliveryMonths() {
         return MAR_JUN_SEP_DEC;
     }
 

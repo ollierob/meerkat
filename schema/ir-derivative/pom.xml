@@ -13,12 +13,12 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>schema-core</artifactId>
+            <artifactId>schema-external</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>schema-external</artifactId>
+            <artifactId>schema-bond</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

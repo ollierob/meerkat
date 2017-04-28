@@ -20,5 +20,10 @@
             <artifactId>schema-equity</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>net.ollie.goat</groupId>
+            <artifactId>goat-data</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

@@ -1,7 +1,5 @@
 package net.meerkat.instrument.dates;
 
-import net.meerkat.instrument.dates.Issued;
-
 import java.time.Period;
 
 import javax.annotation.Nonnull;
