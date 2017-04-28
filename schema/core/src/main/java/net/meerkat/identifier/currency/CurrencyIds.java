@@ -1,6 +1,8 @@
 package net.meerkat.identifier.currency;
 
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import net.meerkat.identifier.HasIds;
@@ -18,6 +20,10 @@ public class CurrencyIds
 
     public static CurrencyIds of(final CurrencyId id) {
         return new CurrencyIds(Collections.singleton(id));
+    }
+
+    public static CurrencyIds of(final Collection<CurrencyId> ids) {
+        return new CurrencyIds(new HashSet<>(ids));
     }
 
     public static CurrencyIds of(final CurrencyId... ids) {

@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.curve.DateYieldCurve;
 import net.meerkat.money.interest.fixed.ContinuousFixedInterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
@@ -31,10 +32,11 @@ public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
     }
 
     public ContinousFloatingInterestRate(
+            final InterestRateId id,
             final LocalDate referenceDate,
             final DateYieldCurve curve,
             final DateArithmetic dates) {
-        super(referenceDate, dates);
+        super(id, referenceDate, dates);
         this.curve = curve;
     }
 
@@ -72,7 +74,7 @@ public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
     public ContinousFloatingInterestRate<K> plus(final Percentage bump) {
         return bump.isZero()
                 ? this
-                : new ContinousFloatingInterestRate<>(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
+                : new ContinousFloatingInterestRate<>(new FloatingPlusSpreadInterestRateId(this.interestRateId(), bump), this.referenceDate(), curve.plus(bump), this.dateArithmetic());
     }
 
 }

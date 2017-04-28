@@ -1,5 +1,6 @@
 package net.meerkat.utils.collections.sequence;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -31,6 +32,10 @@ public interface Sequence<T> {
 
     default <R> Sequence<R> transform(Function<? super T, ? extends R> function) {
         throw new UnsupportedOperationException(); //TODO
+    }
+
+    static <T> FiniteSequence<T> of(final List<T> list) {
+        return FiniteSequence.of(list);
     }
 
 }

@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.money.interest.HasInterestRateId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
@@ -25,7 +24,7 @@ import net.ollie.goat.temporal.date.years.Years;
  */
 @XmlRootElement
 public abstract class FixedInterestRate
-        implements InterestRate, HasInterestRateId, Explainable, Comparable<FixedInterestRate> {
+        implements InterestRate, Explainable, Comparable<FixedInterestRate> {
 
     @XmlAttribute(name = "annual_rate")
     private Percentage annualRate;

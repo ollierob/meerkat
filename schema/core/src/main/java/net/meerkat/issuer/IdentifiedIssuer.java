@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.Explainable;
+import net.meerkat.Named;
 import net.meerkat.rating.CreditRating;
 
 /**
@@ -17,7 +18,9 @@ import net.meerkat.rating.CreditRating;
  * @see CreditRating
  */
 @XmlRootElement
-public class MinimalIssuer implements Issuer, Explainable, Externalizable {
+public class IdentifiedIssuer 
+        extends Named
+        implements Issuer, Explainable, Externalizable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,10 +28,11 @@ public class MinimalIssuer implements Issuer, Explainable, Externalizable {
     private IssuerId id;
 
     @Deprecated
-    protected MinimalIssuer() {
+    protected IdentifiedIssuer() {
     }
 
-    public MinimalIssuer(final IssuerId id) {
+    public IdentifiedIssuer(final IssuerId id, final String name) {
+        super(name);
         this.id = id;
     }
 

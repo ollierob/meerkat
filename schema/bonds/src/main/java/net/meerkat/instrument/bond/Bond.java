@@ -44,6 +44,7 @@ public interface Bond extends Security, InstrumentDefinition, Callable<BondCall>
     }
 
     @Override
+    @Deprecated
     default Bond instrument() {
         return this;
     }
