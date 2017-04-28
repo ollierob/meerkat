@@ -49,7 +49,7 @@ public abstract class AbstractYieldCurve<K, T extends AbstractYieldCurve<K, T>>
     }
 
     @Override
-    public Percentage get(final K x, Interpolator<K, Percentage> interpolator) {
+    public Percentage get(final K x, final Interpolator<K, Percentage> interpolator) {
         return interpolator.interpolate(x, map);
     }
 

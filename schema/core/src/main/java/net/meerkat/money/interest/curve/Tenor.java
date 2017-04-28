@@ -4,14 +4,17 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
+import java.time.LocalDate;
 import java.time.Period;
 
 import javax.annotation.Nonnull;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.Explainable;
 import net.ollie.goat.temporal.date.Periods;
+import net.ollie.goat.temporal.date.count.DayCount;
 import net.ollie.goat.temporal.date.years.Years;
 
 /**
@@ -33,6 +36,10 @@ public class Tenor implements Explainable, Externalizable, Comparable<Tenor> {
 
     public Tenor(@Nonnull final Period period) {
         this.period = period.normalized();
+    }
+
+    void afterUnmarshal(final Unmarshaller unmarshaller, final Object parent) {
+        period = period.normalized();
     }
 
     public Period period() {
@@ -62,6 +69,10 @@ public class Tenor implements Explainable, Externalizable, Comparable<Tenor> {
     @Override
     public int compareTo(final Tenor that) {
         return Periods.APPROXIMATE_PERIOD_COMPARATOR.compare(this.period, that.period);
+    }
+
+    public int numDays(final DayCount dayCount, final LocalDate start) {
+        return dayCount.daysIn(period, start);
     }
 
 }
