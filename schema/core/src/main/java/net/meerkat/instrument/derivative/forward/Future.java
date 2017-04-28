@@ -8,7 +8,7 @@ import net.meerkat.instrument.Instrument;
  *
  * @author ollie
  */
-public interface Future<S extends Instrument> extends Forward<S> {
+public interface Future<U extends Instrument> extends Forward<U> {
 
     @Nonnull
     FutureDeliveryDates dates();

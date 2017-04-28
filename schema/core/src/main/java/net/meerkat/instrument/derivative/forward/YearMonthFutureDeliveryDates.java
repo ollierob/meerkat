@@ -39,7 +39,7 @@ public class YearMonthFutureDeliveryDates implements FutureDeliveryDates {
 
     @Override
     public CompleteInterval dates() {
-        return Interim.all(yearMonth);
+        return Interim.allOf(yearMonth);
     }
 
 }

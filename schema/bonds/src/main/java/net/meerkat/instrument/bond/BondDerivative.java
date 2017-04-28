@@ -3,7 +3,6 @@ package net.meerkat.instrument.bond;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.bond.option.BondFutureOption;
-import net.meerkat.instrument.bond.option.BondOption;
 import net.meerkat.instrument.bond.swap.BondAssetSwap;
 import net.meerkat.instrument.derivative.Derivative;
 
@@ -24,8 +23,6 @@ public interface BondDerivative<B extends Instrument>
     <R> R handleWith(BondDerivative.Handler<R> handler);
 
     interface Handler<R> extends InstrumentDefinition.Handler<R> {
-
-        R handle(BondOption option);
 
         R handle(BondAssetSwap swap);
 

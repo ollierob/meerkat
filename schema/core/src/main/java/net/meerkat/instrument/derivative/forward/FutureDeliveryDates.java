@@ -2,9 +2,10 @@ package net.meerkat.instrument.derivative.forward;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.SortedSet;
 
 import javax.annotation.Nonnull;
+
+import net.ollie.goat.temporal.date.interim.CompleteInterval;
 
 /**
  *
@@ -13,7 +14,7 @@ import javax.annotation.Nonnull;
 public interface FutureDeliveryDates {
 
     @Nonnull
-    SortedSet<LocalDate> dates();
+    CompleteInterval dates();
 
     default LocalDate earliest() {
         return this.dates().first();

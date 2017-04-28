@@ -12,9 +12,9 @@ import net.meerkat.issue.Issue;
  * @author Ollie
  */
 @XmlTransient
-public abstract class AbstractFuture<S extends Instrument>
+public abstract class AbstractFuture<U extends Instrument>
         extends IssuedSecurity
-        implements Future<S> {
+        implements Future<U> {
 
     private static final long serialVersionUID = 1L;
 
