@@ -6,12 +6,12 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.Numbers;
 import net.ollie.goat.numeric.Numeric;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.identifier.currency.HasCurrencyId;
 
 /**
  *
@@ -63,6 +63,13 @@ public interface Money<C extends CurrencyId>
         return amount == 0
                 ? zero(currency)
                 : new DecimalMoney<>(currency, BigDecimal.valueOf(amount));
+    }
+
+    static <C extends CurrencyId> DecimalMoney<C> of(final BigDecimal amount, final C currency) {
+        return amount.signum() == 0
+                ? zero(currency)
+                : new DecimalMoney<>(currency, amount);
+
     }
 
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {

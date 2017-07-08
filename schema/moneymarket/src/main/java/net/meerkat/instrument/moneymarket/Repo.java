@@ -14,6 +14,6 @@ public interface Repo<C extends CurrencyId>
         extends FixedInterestSecurity<C> {
 
     @Nonnull
-    InstrumentIds securityId();
+    InstrumentIds collateralId();
 
 }
