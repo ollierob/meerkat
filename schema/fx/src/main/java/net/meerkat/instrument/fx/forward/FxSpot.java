@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.money.Money;
 import net.meerkat.instrument.fx.FxInstrument;
+import net.meerkat.money.Money;
 
 /**
  *
@@ -20,8 +20,13 @@ public class FxSpot<B extends CurrencyId, C extends CurrencyId>
     FxSpot() {
     }
 
-    public FxSpot(String name, InstrumentIds identifiers, Money<B> base, Money<C> counter, LocalDate settlementDate, LocalDate tradeDate) {
-        super(name, identifiers, base, counter, settlementDate, tradeDate);
+    public FxSpot(
+            final String name,
+            final InstrumentIds identifiers,
+            final Money<B> base,
+            final Money<C> counter,
+            final LocalDate settlementDate) {
+        super(name, identifiers, base, counter, settlementDate);
     }
 
     @Override

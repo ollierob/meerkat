@@ -6,7 +6,6 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIdPair;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.dates.Settled;
-import net.meerkat.instrument.dates.Traded;
 import net.meerkat.instrument.fx.forward.FxForward;
 import net.meerkat.instrument.fx.forward.FxSpot;
 import net.meerkat.money.fx.ExchangeRate;
@@ -16,7 +15,7 @@ import net.meerkat.money.fx.ExchangeRate;
  * @author Ollie
  */
 public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
-        extends InstrumentDefinition, CurrencyIdPair<B, C>, Traded, Settled {
+        extends InstrumentDefinition, CurrencyIdPair<B, C>, Settled {
 
     @Nonnull
     ExchangeRate<B, C> exchangeRate();

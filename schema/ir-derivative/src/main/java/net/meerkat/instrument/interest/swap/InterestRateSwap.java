@@ -9,7 +9,6 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.instrument.dates.Issued;
-import net.meerkat.instrument.dates.Traded;
 import net.meerkat.instrument.derivative.swap.Swap;
 import net.meerkat.instrument.interest.InterestRateDerivative;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
@@ -19,7 +18,7 @@ import net.meerkat.utils.collections.sequence.FiniteSequence;
  * @author ollie
  */
 public interface InterestRateSwap
-        extends InterestRateDerivative, Swap, Issued, Traded, HasCurrencyIds, Explainable {
+        extends InterestRateDerivative, Swap, Issued, HasCurrencyIds, Explainable {
 
     @Override
     FiniteSequence<InterestRateSwapLeg<?, ?>> legs();
@@ -41,7 +40,7 @@ public interface InterestRateSwap
     @Override
     @Deprecated
     default LocalDate issueDate() {
-        return this.tradeDate();
+        throw new UnsupportedOperationException();
     }
 
 }

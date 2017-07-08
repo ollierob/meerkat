@@ -2,7 +2,6 @@ package net.meerkat.instrument.fx.forward;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,9 +34,6 @@ public class FxForward<B extends CurrencyId, C extends CurrencyId>
     @XmlElement(name = "settlementDate")
     private LocalDate settlementDate;
 
-    @XmlAttribute(name = "tradeDate")
-    private LocalDate tradeDate;
-
     @Deprecated
     FxForward() {
     }
@@ -47,14 +43,12 @@ public class FxForward<B extends CurrencyId, C extends CurrencyId>
             final InstrumentIds identifiers,
             final Money<B> base,
             final Money<C> counter,
-            final LocalDate settlementDate,
-            final LocalDate tradeDate) {
+            final LocalDate settlementDate) {
         super(name, identifiers);
         Require.argumentsNotEqual(base.currencyId(), counter.currencyId(), (b, c) -> "Cannot have a forward with base [" + b + "] == counter [" + c + "] currencies!");
         this.base = base;
         this.counter = counter;
         this.settlementDate = settlementDate;
-        this.tradeDate = tradeDate;
     }
 
     public Money<B> baseAmount() {
@@ -83,11 +77,6 @@ public class FxForward<B extends CurrencyId, C extends CurrencyId>
     @Override
     public LocalDate settlementDate() {
         return settlementDate;
-    }
-
-    @Override
-    public LocalDate tradeDate() {
-        return tradeDate;
     }
 
     @Override

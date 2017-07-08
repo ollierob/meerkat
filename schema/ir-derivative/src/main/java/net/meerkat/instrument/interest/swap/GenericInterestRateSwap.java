@@ -1,9 +1,7 @@
 package net.meerkat.instrument.interest.swap;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
@@ -25,9 +23,6 @@ public class GenericInterestRateSwap
     @XmlElementRef(name = "leg")
     private List<InterestRateSwapLeg<?, ?>> legs;
 
-    @XmlAttribute(name = "tradeDate")
-    private LocalDate tradeDate;
-
     @XmlElementRef(name = "issuer")
     private IssuerId issuerId;
 
@@ -35,11 +30,9 @@ public class GenericInterestRateSwap
             final String name,
             final InstrumentIds ids,
             final List<InterestRateSwapLeg<?, ?>> legs,
-            final LocalDate tradeDate,
             final IssuerId issuerId) {
         super(name, ids);
         this.legs = legs;
-        this.tradeDate = tradeDate;
         this.issuerId = issuerId;
     }
 
@@ -54,14 +47,8 @@ public class GenericInterestRateSwap
     }
 
     @Override
-    public LocalDate tradeDate() {
-        return tradeDate;
-    }
-
-    @Override
     public ExplanationBuilder explain() {
         return super.explain()
-                .put("tradeDate", tradeDate)
                 .put("issuer", issuerId)
                 .put("legs", legs);
     }
