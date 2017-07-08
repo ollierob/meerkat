@@ -18,7 +18,7 @@ public interface Sequence<T> {
 
     @Nonnull
     default boolean isFinite() {
-        return !this.count().isPresent();
+        return this.count().isPresent();
     }
 
     default boolean isEmpty() {

@@ -7,15 +7,15 @@ import java.util.Optional;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
+import net.meerkat.calculate.price.InstrumentPrice;
+import net.meerkat.calculate.price.ShiftableInstrumentPrice;
+import net.meerkat.calculate.price.shifts.SecurityShifts;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.FractionalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.meerkat.calculate.price.shifts.SecurityShifts;
-import net.meerkat.instrument.cash.CashPayment;
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.calculate.price.InstrumentPrice;
-import net.meerkat.calculate.price.ShiftableInstrumentPrice;
 
 /**
  *
@@ -30,13 +30,13 @@ public interface BondPrice<C extends CurrencyId>
     @Override
     Money<C> clean();
 
+    @Override
+    Money<C> dirty();
+
     @Nonnull
     default Percentage cleanPercent() {
         return FractionalPercentage.of(this.par().amount(), this.clean().amount());
     }
-
-    @Override
-    Money<C> dirty();
 
     @Nonnull
     default Percentage dirtyPercent() {

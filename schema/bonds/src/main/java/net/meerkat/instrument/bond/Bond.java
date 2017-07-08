@@ -31,7 +31,7 @@ public interface Bond extends Security, InstrumentDefinition, Callable<BondCall>
 
     default boolean isAmortizing() {
         return !this.dates().maturity().isPresent()
-                && this.coupons().count().isPresent();
+                && this.coupons().isFinite();
     }
 
     @Override
@@ -40,7 +40,7 @@ public interface Bond extends Security, InstrumentDefinition, Callable<BondCall>
                 .put("par", this.par())
                 .put("coupons", this.coupons())
                 .put("dates", this.dates())
-                .put("call", this.call());
+                .put("call", this.call().orElse(null));
     }
 
     @Override

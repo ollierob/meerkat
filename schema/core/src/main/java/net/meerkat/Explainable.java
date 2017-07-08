@@ -14,22 +14,22 @@ import javax.annotation.Nonnull;
  * @author Ollie
  */
 public interface Explainable {
-
+    
     @Nonnull
     Map<String, Object> explain();
-
+    
     default ExplanationBuilder explanationBuilder() {
         return new ExplanationBuilder(this.getClass());
     }
-
+    
     class ExplanationBuilder extends AbstractMap<String, Object> implements Explainable {
-
+        
         private final Map<String, Object> explanation = new HashMap<>();
-
+        
         public ExplanationBuilder(final Class<?> clazz) {
             explanation.put("class", clazz);
         }
-
+        
         @Override
         public ExplanationBuilder put(final String key, final Object value) {
             final Object newValue;
@@ -43,25 +43,25 @@ public interface Explainable {
             explanation.put(key, newValue);
             return this;
         }
-
+        
         public ExplanationBuilder putIfNonNull(final String key, final Object value) {
             return this.putIf(value != null, key, value);
         }
-
+        
         public ExplanationBuilder putIf(final boolean predicate, final String key, final Object value) {
             return predicate ? this.put(key, value) : this;
         }
-
+        
         @Override
         public Map<String, Object> explain() {
             return Collections.unmodifiableMap(explanation);
         }
-
+        
         @Override
         public Set<Entry<String, Object>> entrySet() {
             return explanation.entrySet();
         }
-
+        
     }
-
+    
 }
