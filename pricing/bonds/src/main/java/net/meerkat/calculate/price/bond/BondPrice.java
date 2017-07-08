@@ -7,8 +7,9 @@ import java.util.Optional;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.meerkat.calculate.price.InstrumentPrice;
-import net.meerkat.calculate.price.ShiftableInstrumentPrice;
+import net.meerkat.Explainable.ExplanationBuilder;
+import net.meerkat.calculate.price.Price;
+import net.meerkat.calculate.price.ShiftablePrice;
 import net.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.cash.CashPayment;
@@ -22,16 +23,21 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
  * @author ollie
  */
 public interface BondPrice<C extends CurrencyId>
-        extends InstrumentPrice<C> {
+        extends Price<C> {
 
     @Nonnull
     Money<C> par();
 
-    @Override
+    @Nonnull
     Money<C> clean();
 
-    @Override
+    @Nonnull
     Money<C> dirty();
+
+    @Override
+    default CurrencyId currencyId() {
+        return this.clean().currencyId();
+    }
 
     @Nonnull
     default Percentage cleanPercent() {
@@ -57,12 +63,14 @@ public interface BondPrice<C extends CurrencyId>
 
     @Override
     public default ExplanationBuilder explain() {
-        return InstrumentPrice.super.explain()
+        return this.explanationBuilder()
+                .put("clean", this.clean())
+                .put("dirty", this.dirty())
                 .put("par", this.par());
     }
 
     interface Shiftable<C extends CurrencyId>
-            extends BondPrice<C>, ShiftableInstrumentPrice<C> {
+            extends BondPrice<C>, ShiftablePrice<C> {
 
         @Override
         @Deprecated

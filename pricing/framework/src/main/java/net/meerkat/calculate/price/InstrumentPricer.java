@@ -10,7 +10,7 @@ import net.meerkat.instrument.InstrumentException;
  */
 public interface InstrumentPricer<T, I extends Instrument> {
 
-    <C extends CurrencyId> InstrumentPrice<C> price(T temporal, I instrument, C currency)
+    <C extends CurrencyId> Price<C> price(T temporal, I instrument, C currency)
             throws InstrumentException, InstrumentPriceException;
 
 }

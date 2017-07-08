@@ -15,7 +15,7 @@ public interface GenericInstrumentPricer<T extends Temporal>
         extends InstrumentPricer<T, InstrumentDefinition> {
 
     @Override
-    default <C extends CurrencyId> ShiftableInstrumentPrice<C> price(
+    default <C extends CurrencyId> ShiftablePrice<C> price(
             @Nonnull final T valuation,
             @Nonnull final InstrumentDefinition instrument,
             @Nonnull final C currency) {
@@ -24,7 +24,7 @@ public interface GenericInstrumentPricer<T extends Temporal>
 
     <C extends CurrencyId> SecurityPriceContext<C> pricingContext(T valuation, C currency);
 
-    interface SecurityPriceContext<C extends CurrencyId> extends InstrumentDefinition.Handler<ShiftableInstrumentPrice<C>> {
+    interface SecurityPriceContext<C extends CurrencyId> extends InstrumentDefinition.Handler<ShiftablePrice<C>> {
 
     }
 

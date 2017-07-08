@@ -1,28 +1,26 @@
 package net.meerkat.calculate.price.bond;
 
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-
 import javax.xml.bind.annotation.XmlElementRef;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.calculate.price.EvaluatedInstrumentPrice;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
  * @author ollie
  */
 public class EvaluatedBondPrice<C extends CurrencyId>
-        extends EvaluatedInstrumentPrice<C>
         implements BondPrice<C> {
 
     private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "par")
     private Money<C> par;
+
+    private Money<C> clean;
+
+    private Money<C> dirty;
 
     @XmlElementRef(name = "yield_to_maturity")
     private Percentage yieldToMaturity;
@@ -36,9 +34,25 @@ public class EvaluatedBondPrice<C extends CurrencyId>
             final Money<C> dirty,
             final Money<C> par,
             final Percentage yieldToMaturity) {
-        super(clean, dirty);
+        this.clean = clean;
+        this.dirty = dirty;
         this.par = par;
         this.yieldToMaturity = yieldToMaturity;
+    }
+
+    @Override
+    public Money<C> clean() {
+        return clean;
+    }
+
+    @Override
+    public Money<C> dirty() {
+        return dirty;
+    }
+
+    @Override
+    public CurrencyId currencyId() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -49,19 +63,6 @@ public class EvaluatedBondPrice<C extends CurrencyId>
     @Override
     public Percentage yieldToMaturity() {
         return yieldToMaturity;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        super.writeExternal(out);
-        out.writeObject(par);
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        super.readExternal(in);
-        par = (Money<C>) in.readObject();
     }
 
 }
