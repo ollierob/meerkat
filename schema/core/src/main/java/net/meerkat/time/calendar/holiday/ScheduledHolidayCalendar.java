@@ -1,4 +1,4 @@
-package net.meerkat.time.calendar;
+package net.meerkat.time.calendar.holiday;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.meerkat.utils.Require;
 import net.ollie.goat.temporal.date.Dates;
 
 /**
@@ -15,7 +14,7 @@ import net.ollie.goat.temporal.date.Dates;
  * @author Ollie
  */
 @XmlRootElement
-public class ScheduledHolidayCalendar implements BusinessDayCalendar {
+public class ScheduledHolidayCalendar implements HolidayCalendar {
 
     @XmlAttribute(name = "validFrom")
     private LocalDate validFrom;
@@ -37,17 +36,16 @@ public class ScheduledHolidayCalendar implements BusinessDayCalendar {
     }
 
     @Override
-    public boolean isBusinessDay(final LocalDate date) {
-        return !this.isHoliday(date);
+    public boolean isHoliday(final LocalDate date) {
+        if (!this.isSupported(date)) {
+            throw new UnsupportedDateException(date);
+        }
+        return holidays.contains(date);
     }
 
     @Override
-    public boolean isHoliday(final LocalDate date) {
-        if (holidays.contains(validTo)) {
-            return true;
-        }
-        Require.that(Dates.areOrdered(validFrom, date, validTo), () -> "Date [" + date + "] is outside range");
-        return false;
+    public boolean isSupported(final LocalDate date) {
+        return Dates.areOrdered(validFrom, date, validTo);
     }
 
 }

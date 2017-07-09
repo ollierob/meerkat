@@ -1,4 +1,4 @@
-package net.meerkat.time.calendar;
+package net.meerkat.time.calendar.holiday;
 
 import java.time.LocalDate;
 
@@ -9,11 +9,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Ollie
  */
 @XmlRootElement
-public class WeekendHolidayCalendar implements BusinessDayCalendar {
+public class WeekendHolidayCalendar implements HolidayCalendar {
 
     @Override
-    public boolean isBusinessDay(LocalDate date) {
-        return !this.isHoliday(date);
+    public boolean isSupported(final LocalDate date) {
+        return true;
     }
 
     @Override
