@@ -1,8 +1,5 @@
 package net.meerkat.money.interest.fixed;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
@@ -13,15 +10,9 @@ import net.ollie.goat.temporal.date.years.Years;
  *
  * @author ollie
  */
-@XmlRootElement
 public class CompoundFixedInterestRate extends FixedInterestRate {
 
-    @XmlAttribute(name = "frequency")
-    private double yearlyFrequency;
-
-    @Deprecated
-    CompoundFixedInterestRate() {
-    }
+    private final double yearlyFrequency;
 
     public CompoundFixedInterestRate(
             final Percentage annualRate,

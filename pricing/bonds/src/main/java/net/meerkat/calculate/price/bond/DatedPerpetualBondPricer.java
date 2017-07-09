@@ -11,7 +11,7 @@ import net.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter
 import net.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.PerpetualBond;
-import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
+import net.meerkat.instrument.bond.coupon.FixedCoupon;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
@@ -110,9 +110,9 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
         @Override
         public List<CashPayment<C>> cleanFlow(final LocalDate start, final LocalDate end) {
             final InterestRate discountRate = PerpetualBondPrice.this.shiftedDiscountRate();
-            final List<FixedRateCoupon<?>> coupons = bond.coupons().between(start, end);
+            final List<FixedCoupon<?>> coupons = bond.coupons().between(start, end);
             return Lists.lazilyComputed(coupons.size(), index -> {
-                final FixedRateCoupon<?> coupon = coupons.get(index);
+                final FixedCoupon<?> coupon = coupons.get(index);
                 final Money<C> couponAmount = PerpetualBondPrice.this.shift(coupon.amount(), shifts, currency, fxRates);
                 final Money<C> discountedAmount = discountRate.discount(couponAmount, date, coupon.date(), interestRateInterpolator);
                 return CashPayment.of(coupon.date(), discountedAmount);
@@ -133,7 +133,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
 
         @Nonnull
         private Money<C> calculateAccuredInterest() {
-            final FixedRateCoupon<?> priorCoupon = bond.coupons().prior(date);
+            final FixedCoupon<?> priorCoupon = bond.coupons().prior(date);
             final Money<C> priorAmount = this.shiftedCoupon();
             return this.shiftedDiscountRate().accrue(priorAmount, priorCoupon.date(), date, interestRateInterpolator).minus(priorAmount);
         }

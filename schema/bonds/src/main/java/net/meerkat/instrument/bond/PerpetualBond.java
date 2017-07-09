@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
-import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
+import net.meerkat.instrument.bond.coupon.FixedCoupon;
 import net.meerkat.instrument.bond.dates.PerpetualBondDates;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
 import net.meerkat.identifier.currency.CurrencyId;
@@ -65,7 +65,7 @@ public class PerpetualBond extends AbstractBond {
     }
 
     public class PerpetualBondCoupons<C extends CurrencyId>
-            implements BondCoupons<FixedRateCoupon<?>>, HasCurrencyId {
+            implements BondCoupons<FixedCoupon<?>>, HasCurrencyId {
 
         private final Money<C> coupon;
 
@@ -91,7 +91,7 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public FixedRateCoupon<?> first() {
+        public FixedCoupon<?> first() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
@@ -107,12 +107,12 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public FiniteSequence<FixedRateCoupon<?>> between(LocalDate startInclusive, LocalDate endExclusive) {
+        public FiniteSequence<FixedCoupon<?>> between(LocalDate startInclusive, LocalDate endExclusive) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
-        public FixedRateCoupon<?> prior(final LocalDate current) {
+        public FixedCoupon<?> prior(final LocalDate current) {
             throw new UnsupportedOperationException(); //TODO
         }
 

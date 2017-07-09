@@ -16,7 +16,7 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
  *
  * @author Ollie
  */
-public interface InterestRate extends HasInterestRateId {
+public interface InterestRate extends InterestRateOrId {
 
     @Nonnull
     DateArithmetic dateArithmetic();
@@ -51,6 +51,12 @@ public interface InterestRate extends HasInterestRateId {
     @CheckReturnValue
     default InterestRate minus(@Nonnull final Percentage bump) {
         return this.plus(bump.negate());
+    }
+
+    @Override
+    @Deprecated
+    default InterestRate resolve(final InterestRateProvider provider) {
+        return this;
     }
 
 }

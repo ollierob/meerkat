@@ -2,34 +2,36 @@ package net.meerkat.instrument.bond;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import net.ollie.goat.collection.Iterables;
-import net.meerkat.instrument.bond.coupon.BondCoupon;
-import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
-import net.meerkat.instrument.bond.coupon.FloatingCoupon;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.bond.call.BondCall;
+import net.meerkat.instrument.bond.coupon.BondCoupon;
+import net.meerkat.instrument.bond.dates.MaturingBondDates;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
+import net.ollie.goat.collection.Iterables;
 
 /**
  * A bond with fixed and floating elements.
  *
  * @author Ollie
  */
-@XmlRootElement
 public class VariableRateBond extends StraightBond {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElements({
-        @XmlElement(name = "fixed", type = FixedRateCoupon.class),
-        @XmlElement(name = "floating", type = FloatingCoupon.class)
-    })
-    private List<BondCoupon> coupons;
+    private final List<BondCoupon> coupons;
 
-    @Deprecated
-    protected VariableRateBond() {
+    public VariableRateBond(
+            final String name,
+            final InstrumentIds identifiers,
+            final Money<?> par,
+            final MaturingBondDates dates,
+            final BondCall call,
+            final IssuerId issuer,
+            final List<BondCoupon> coupons) {
+        super(name, identifiers, par, dates, call, issuer);
+        this.coupons = coupons;
     }
 
     @Override

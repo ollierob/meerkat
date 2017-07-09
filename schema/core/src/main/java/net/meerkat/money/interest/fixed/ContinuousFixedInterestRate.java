@@ -12,10 +12,6 @@ import net.ollie.goat.temporal.date.years.Years;
  */
 public class ContinuousFixedInterestRate extends FixedInterestRate {
 
-    @Deprecated
-    ContinuousFixedInterestRate() {
-    }
-
     public ContinuousFixedInterestRate(
             final Percentage rate,
             final DateArithmetic accrual) {

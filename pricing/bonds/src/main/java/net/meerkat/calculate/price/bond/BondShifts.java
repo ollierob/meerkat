@@ -5,40 +5,21 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.Money;
-import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.interest.InterestRate;
-import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.meerkat.calculate.price.shifts.PriceShifts;
-import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.money.Money;
+import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
  * @author ollie
  */
 public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRateShifts {
-
-    /**
-     *
-     * @param <C> currency
-     * @param marketPrice
-     * @return shifted market price.
-     */
-    @Override
-    <C extends CurrencyId> Money<C> shift(Money<C> marketPrice);
-
-    /**
-     *
-     * @param <F> source currency
-     * @param <T> target currency
-     * @param rate
-     * @return shifted FX rate
-     */
-    @Override
-    <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate);
 
     static BondShifts none() {
         return NoBondShifts.INSTANCE;

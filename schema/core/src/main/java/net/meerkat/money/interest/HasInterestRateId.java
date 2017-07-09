@@ -1,7 +1,6 @@
 package net.meerkat.money.interest;
 
-import java.util.function.Function;
-
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 /**
@@ -13,8 +12,9 @@ public interface HasInterestRateId {
     @Nonnull
     InterestRateId interestRateId();
 
-    default InterestRate interestRate(final Function<? super InterestRateId, ? extends InterestRate> toRate) {
-        return toRate.apply(this.interestRateId());
+    @CheckForNull
+    default InterestRate resolve(final InterestRateProvider provider) {
+        return this.interestRateId().resolve(provider);
     }
 
 }

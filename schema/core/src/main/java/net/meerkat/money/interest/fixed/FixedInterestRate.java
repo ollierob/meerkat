@@ -4,15 +4,11 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
@@ -22,19 +18,11 @@ import net.ollie.goat.temporal.date.years.Years;
  *
  * @author ollie
  */
-@XmlRootElement
 public abstract class FixedInterestRate
         implements InterestRate, Explainable, Comparable<FixedInterestRate> {
 
-    @XmlAttribute(name = "annual_rate")
-    private Percentage annualRate;
-
-    @XmlElementRef(name = "year_count")
-    private DateArithmetic dates;
-
-    @Deprecated
-    protected FixedInterestRate() {
-    }
+    private final Percentage annualRate;
+    private final DateArithmetic dates;
 
     protected FixedInterestRate(
             final Percentage annualRate,
@@ -114,11 +102,6 @@ public abstract class FixedInterestRate
     }
 
     protected abstract String type();
-
-    @Override
-    public InterestRateId interestRateId() {
-        return InterestRateId.named(this.toString());
-    }
 
     @Override
     public String toString() {

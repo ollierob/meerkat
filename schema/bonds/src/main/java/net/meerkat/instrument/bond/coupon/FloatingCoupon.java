@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
-import java.util.function.Function;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.interest.HasInterestRateId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
+import net.meerkat.money.interest.InterestRateOrId;
+import net.meerkat.money.interest.InterestRateProvider;
 import net.meerkat.money.interest.feature.RateFeature;
 import net.ollie.goat.numeric.percentage.Percentage;
 
@@ -20,7 +21,7 @@ import net.ollie.goat.numeric.percentage.Percentage;
 public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRateId {
 
     private final CurrencyId currency;
-    private final InterestRateId key;
+    private final InterestRateId rateId;
     private final Percentage spread;
     private final Set<? extends RateFeature> features;
 
@@ -32,7 +33,7 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
             final Set<? extends RateFeature> features) {
         super(paymentDate);
         this.currency = currency;
-        this.key = key;
+        this.rateId = key;
         this.spread = spread;
         this.features = features;
     }
@@ -52,17 +53,26 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
     }
 
     @Override
-    public InterestRateId interestRateId() {
-        return key;
+    public InterestRateOrId rate() {
+        return rateId;
     }
 
     @Override
-    public InterestRate interestRate(final Function<? super InterestRateId, ? extends InterestRate> getRate) {
+    public InterestRateId interestRateId() {
+        return rateId;
+    }
+
+    @Override
+    public InterestRate resolve(final InterestRateProvider provider) {
+        final InterestRate rate = super.rate(provider);
+        if (rate == null) {
+            return null;
+        }
         Percentage spread = this.spread();
         for (final RateFeature feature : this.features) {
             spread = feature.apply(spread);
         }
-        return getRate.apply(key).plus(spread);
+        return rate.plus(spread);
     }
 
     @Override

@@ -12,7 +12,7 @@ import net.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
-import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
+import net.meerkat.instrument.bond.coupon.FixedCoupon;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
@@ -124,7 +124,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
         @Override
         public Money<C> accruedInterest() {
-            final FixedRateCoupon<Z> prior = coupons.prior(valuationDate);
+            final FixedCoupon<Z> prior = coupons.prior(valuationDate);
             final Years years = prior.accrual().yearsBetween(valuationDate, valuationDate);
             final Money<C> couponAmount = this.couponFxRate().convert(prior.amount());
             return couponAmount.times(years.decimalValue());
@@ -166,9 +166,9 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
         SortedMap<LocalDate, Money<C>> cleanFlow(LocalDate startInclusive, LocalDate endExclusive, InterestRate discountRate) {
             final ExchangeRate<Z, C> fxRate = this.couponFxRate();
-            final List<FixedRateCoupon<Z>> coupons = this.coupons.between(startInclusive, endExclusive);
+            final List<FixedCoupon<Z>> coupons = this.coupons.between(startInclusive, endExclusive);
             final SortedMap<LocalDate, Money<C>> flow = new TreeMap<>();
-            for (final FixedRateCoupon<Z> coupon : coupons) {
+            for (final FixedCoupon<Z> coupon : coupons) {
                 final Money<C> money = fxRate.convert(coupon.amount());
                 flow.compute(coupon.date(), (d, c) -> c == null ? money : money.plus(c));
             }

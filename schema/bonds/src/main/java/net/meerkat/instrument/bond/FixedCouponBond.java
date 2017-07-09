@@ -8,16 +8,16 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.bond.call.BondCall;
-import net.meerkat.instrument.bond.coupon.FixedRateCoupon;
+import net.meerkat.instrument.bond.coupon.FixedCoupon;
 import net.meerkat.instrument.bond.dates.MaturingBondDates;
+import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
-import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.interest.InterestRateInstrument;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
 
 /**
  *
@@ -92,7 +92,7 @@ public class FixedCouponBond
         return handler.handle(this);
     }
 
-    public class FixedCouponBondCoupons<C extends CurrencyId> extends StraightBondCoupons<FixedRateCoupon<C>> {
+    public class FixedCouponBondCoupons<C extends CurrencyId> extends StraightBondCoupons<FixedCoupon<C>> {
 
         private final Money<C> couponAmount;
 
@@ -101,8 +101,8 @@ public class FixedCouponBond
         }
 
         @Override
-        public FixedRateCoupon<C> get(final int index) {
-            return new FixedRateCoupon<>(couponDates.get(index), couponAmount, couponRate);
+        public FixedCoupon<C> get(final int index) {
+            return new FixedCoupon<>(couponDates.get(index), couponAmount, couponRate);
         }
 
         @Override
