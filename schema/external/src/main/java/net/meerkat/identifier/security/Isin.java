@@ -1,16 +1,9 @@
 package net.meerkat.identifier.security;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.util.Objects;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.Explainable;
 import net.meerkat.identifier.country.CountryIso;
@@ -21,9 +14,7 @@ import net.meerkat.utils.algorithm.LuhnAlgorithm;
  *
  * @author Ollie
  */
-@XmlRootElement
-public class Isin
-        implements InstrumentId, HasCheckDigit, HasNsin, Explainable, Externalizable {
+public class Isin implements InstrumentId, HasCheckDigit, HasNsin, Explainable {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,18 +31,9 @@ public class Isin
         return new Isin(country, nsin, checkDigit);
     }
 
-    @XmlAttribute(name = "country")
-    private CountryIso country;
-
-    @XmlElementRef(name = "nsin")
-    private Nsin nsin;
-
-    @XmlAttribute(name = "check")
-    private char checkDigit;
-
-    @Deprecated
-    Isin() {
-    }
+    private final CountryIso country;
+    private final Nsin nsin;
+    private final char checkDigit;
 
     public Isin(final CountryIso country, final Nsin nsin, char checkDigit) {
         this.country = country;
@@ -122,22 +104,8 @@ public class Isin
     }
 
     @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(country);
-        out.writeObject(nsin);
-        out.writeChar(checkDigit);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        country = (CountryIso) in.readObject();
-        nsin = (Nsin) in.readObject();
-        checkDigit = in.readChar();
-    }
-
-    @Override
     public ExplanationBuilder explain() {
-        return new ExplanationBuilder(this.getClass())
+        return this.explanationBuilder()
                 .put("country", country)
                 .put("nsin", nsin)
                 .put("check digit", checkDigit);
