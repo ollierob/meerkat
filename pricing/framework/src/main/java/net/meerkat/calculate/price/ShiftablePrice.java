@@ -1,7 +1,5 @@
 package net.meerkat.calculate.price;
 
-import java.util.Optional;
-
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
@@ -17,6 +15,6 @@ public interface ShiftablePrice<C extends CurrencyId>
 
     @Nonnull
     @CheckReturnValue
-    Optional<? extends ShiftablePrice<C>> shift(@Nonnull SecurityShifts shifts);
+    ShiftablePrice<C> shift(@Nonnull SecurityShifts shifts);
 
 }

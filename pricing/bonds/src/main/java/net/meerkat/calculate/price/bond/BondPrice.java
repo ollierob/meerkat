@@ -2,7 +2,6 @@ package net.meerkat.calculate.price.bond;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
@@ -74,8 +73,8 @@ public interface BondPrice<C extends CurrencyId>
 
         @Override
         @Deprecated
-        default Optional<BondPrice.Shiftable<C>> shift(final SecurityShifts shifts) {
-            return shifts.cast(BondShifts.class).map(this::shift);
+        default BondPrice.Shiftable<C> shift(final SecurityShifts shifts) {
+            return this.shift(BondShifts.cast(shifts));
         }
 
         @CheckReturnValue

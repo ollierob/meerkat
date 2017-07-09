@@ -8,11 +8,11 @@ import javax.annotation.Nonnull;
 import net.meerkat.calculate.price.shifts.ExchangeRateShifts;
 import net.meerkat.calculate.price.shifts.InterestRateShifts;
 import net.meerkat.calculate.price.shifts.PriceShifts;
+import net.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
@@ -36,6 +36,12 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
         };
     }
 
+    static BondShifts cast(final SecurityShifts shifts) {
+        return shifts instanceof BondShifts
+                ? ((BondShifts) shifts)
+                : new BridgedBondShifts(shifts);
+    }
+
     class NoBondShifts implements BondShifts {
 
         static final NoBondShifts INSTANCE = new NoBondShifts();
@@ -43,11 +49,6 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
         @Override
         public <C extends CurrencyId> Money<C> shift(final Money<C> price) {
             return price;
-        }
-
-        @Override
-        public FixedInterestRate shift(final FixedInterestRate rate) {
-            return rate;
         }
 
         @Override
@@ -63,6 +64,42 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
         @Override
         public Map<String, Object> explain() {
             return Collections.emptyMap();
+        }
+
+    }
+
+    class BridgedBondShifts implements BondShifts {
+
+        private final SecurityShifts shifts;
+
+        public BridgedBondShifts(final SecurityShifts shifts) {
+            this.shifts = shifts;
+        }
+
+        @Override
+        public <C extends CurrencyId> Money<C> shift(final Money<C> price) {
+            return shifts instanceof PriceShifts
+                    ? ((PriceShifts) shifts).shift(price)
+                    : price;
+        }
+
+        @Override
+        public InterestRate shift(final InterestRate rate) {
+            return shifts instanceof InterestRateShifts
+                    ? ((InterestRateShifts) shifts).shift(rate)
+                    : rate;
+        }
+
+        @Override
+        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate) {
+            return shifts instanceof ExchangeRateShifts
+                    ? ((ExchangeRateShifts) shifts).shift(rate)
+                    : rate;
+        }
+
+        @Override
+        public Map<String, Object> explain() {
+            return shifts.explain();
         }
 
     }

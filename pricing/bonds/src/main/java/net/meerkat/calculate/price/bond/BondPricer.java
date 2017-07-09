@@ -9,7 +9,7 @@ import net.meerkat.instrument.bond.Bond;
  * Prices particular types of bond.
  *
  * @author ollie
- * @see GenericBondPricer
+ * @see GenericBondPricer for pricing any type of bond.
  * @param <B> bond type
  */
 public interface BondPricer<T, B extends Bond>

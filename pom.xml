@@ -11,7 +11,6 @@
         <module>schema</module>
         <module>utils</module>
         <module>pricing</module>
-        <module>reporting</module>
     </modules>
     
     <properties>

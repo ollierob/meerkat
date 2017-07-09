@@ -2,8 +2,8 @@ package net.meerkat.calculate.price.shifts;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
 
 /**
  *
@@ -12,20 +12,16 @@ import net.meerkat.money.interest.InterestRate;
 public interface InterestRateShifts extends SecurityShifts {
 
     @Nonnull
-    FixedInterestRate shift(@Nonnull FixedInterestRate rate);
-
-    @Nonnull
-    @Deprecated //TODO
     InterestRate shift(@Nonnull InterestRate rate);
 
     interface InterestRateShifter {
 
-        default FixedInterestRate shift(final FixedInterestRate rate, final InterestRateShifts shifts) {
+        default InterestRate shift(final InterestRate rate, final InterestRateShifts shifts) {
             return shifts.shift(rate);
         }
 
-        default InterestRate shift(final InterestRate rate, final InterestRateShifts shifts) {
-            return shifts.shift(rate);
+        default FixedInterestRate shift(final FixedInterestRate rate, final InterestRateShifts shifts) {
+            return (FixedInterestRate) shifts.shift(rate);
         }
 
     }
