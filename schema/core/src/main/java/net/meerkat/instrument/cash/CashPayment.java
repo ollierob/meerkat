@@ -29,7 +29,9 @@ public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
     }
 
     @CheckReturnValue
-    <T extends CurrencyId> CashPayment<T> convert(ExchangeRate<C, T> exchangeRate);
+    default <T extends CurrencyId> CashPayment<T> convert(final ExchangeRate<C, T> exchangeRate) {
+        return of(this.date(), exchangeRate.convert(this.amount()));
+    }
 
     default <T extends CurrencyId> CashPayment<T> convert(final T toCurrency, final ExchangeRates exchangeRates) {
         return this.convert(exchangeRates.rate(this.currencyId(), toCurrency));

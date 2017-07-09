@@ -1,29 +1,29 @@
 package net.meerkat.money;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.Objects;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.annotation.Nonnull;
 
-import net.ollie.goat.numeric.BigDecimals;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.numeric.BigDecimals;
 
 /**
  *
  * @author Ollie
  */
-@XmlRootElement
 public class DecimalMoney<C extends CurrencyId>
-        implements Money<C>, Externalizable {
+        implements Money<C> {
 
     private static final long serialVersionUID = 1L;
+
+    public static <C extends CurrencyId> DecimalMoney<C> valueOf(final Money<C> money) {
+        return money instanceof DecimalMoney
+                ? (DecimalMoney<C>) money
+                : valueOf(money.currencyId(), money.amount());
+    }
 
     public static <C extends CurrencyId> DecimalMoney<C> valueOf(final C currency, final Number amount) {
         return new DecimalMoney<>(currency, BigDecimals.toBigDecimal(amount));
@@ -33,19 +33,12 @@ public class DecimalMoney<C extends CurrencyId>
         return new DecimalMoney<>(currency, BigDecimal.valueOf(amount));
     }
 
-    @XmlElementRef(name = "currency")
-    private C currency;
+    private final C currency;
+    private final BigDecimal amount;
 
-    @XmlAttribute(name = "amount")
-    private BigDecimal amount;
-
-    @Deprecated
-    DecimalMoney() {
-    }
-
-    public DecimalMoney(final C currency, final BigDecimal amount) {
-        this.currency = currency;
-        this.amount = amount;
+    public DecimalMoney(@Nonnull final C currency, @Nonnull final BigDecimal amount) {
+        this.currency = Objects.requireNonNull(currency, "currency");
+        this.amount = Objects.requireNonNull(amount, "amount");
     }
 
     @Override
@@ -105,18 +98,6 @@ public class DecimalMoney<C extends CurrencyId>
     @Override
     public int hashCode() {
         return Money.hashCode(this);
-    }
-
-    @Override
-    public void writeExternal(final ObjectOutput out) throws IOException {
-        out.writeObject(currency);
-        out.writeObject(amount);
-    }
-
-    @Override
-    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
-        currency = (C) in.readObject();
-        amount = (BigDecimal) in.readObject();
     }
 
 }

@@ -2,9 +2,6 @@ package net.meerkat.calculate.price;
 
 import java.math.BigDecimal;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 
@@ -14,19 +11,13 @@ import net.meerkat.money.Money;
  */
 public class DecimalTwoWayPrice<C extends CurrencyId> implements TwoWayPrice<C> {
 
-    @XmlElementRef(name = "currency")
-    private C currency;
+    private final C currency;
+    private final BigDecimal bid;
+    private final BigDecimal offer;
+    private transient Money<C> bidMoney;
+    private transient Money<C> offerMoney;
 
-    @XmlAttribute(name = "bid")
-    private BigDecimal bid;
-
-    @XmlAttribute(name = "offer")
-    private BigDecimal offer;
-
-    DecimalTwoWayPrice() {
-    }
-
-    public DecimalTwoWayPrice(C currency, BigDecimal bid, BigDecimal offer) {
+    public DecimalTwoWayPrice(final C currency, final BigDecimal bid, final BigDecimal offer) {
         this.currency = currency;
         this.bid = bid;
         this.offer = offer;
@@ -34,12 +25,16 @@ public class DecimalTwoWayPrice<C extends CurrencyId> implements TwoWayPrice<C> 
 
     @Override
     public Money<C> bid() {
-        return Money.of(bid, currency);
+        return bidMoney == null
+                ? bidMoney = Money.of(bid, currency)
+                : bidMoney;
     }
 
     @Override
     public Money<C> offer() {
-        return Money.of(offer, currency);
+        return offerMoney == null
+                ? offerMoney = Money.of(offer, currency)
+                : offerMoney;
     }
 
 }

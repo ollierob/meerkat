@@ -1,15 +1,8 @@
 package net.meerkat.money;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.identifier.currency.CurrencyId;
 
@@ -18,17 +11,10 @@ import net.meerkat.identifier.currency.CurrencyId;
  * @author ollie
  */
 public class DoubleMoney<C extends CurrencyId>
-        implements Money<C>, Externalizable {
+        implements Money<C> {
 
-    @XmlAttribute(name = "amount")
-    private double amount;
-
-    @XmlElementRef(name = "currency")
-    private C currency;
-
-    @Deprecated
-    DoubleMoney() {
-    }
+    private final double amount;
+    private final C currency;
 
     public DoubleMoney(double amount, C currency) {
         this.amount = amount;
@@ -68,17 +54,6 @@ public class DoubleMoney<C extends CurrencyId>
     @Override
     public BigDecimal decimalValue(final MathContext context) {
         return BigDecimal.valueOf(amount).round(context);
-    }
-
-    @Override
-    public void writeExternal(final ObjectOutput out) throws IOException {
-        out.writeDouble(amount);
-        out.writeObject(currency);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

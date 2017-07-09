@@ -2,13 +2,9 @@ package net.meerkat.instrument.cash;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.Explainable;
-import net.meerkat.money.Money;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.Money;
 
 /**
  *
@@ -16,15 +12,8 @@ import net.meerkat.money.fx.ExchangeRate;
  */
 public class DefaultCashPayment<C extends CurrencyId> implements CashPayment<C>, Explainable {
 
-    @XmlAttribute(name = "date")
-    private LocalDate date;
-
-    @XmlElementRef(name = "amount")
-    private Money<C> amount;
-
-    @Deprecated
-    DefaultCashPayment() {
-    }
+    private final LocalDate date;
+    private final Money<C> amount;
 
     public DefaultCashPayment(final LocalDate date, final Money<C> amount) {
         this.date = date;
@@ -39,11 +28,6 @@ public class DefaultCashPayment<C extends CurrencyId> implements CashPayment<C>,
     @Override
     public Money<C> amount() {
         return amount;
-    }
-
-    @Override
-    public <T extends CurrencyId> DefaultCashPayment<T> convert(final ExchangeRate<C, T> exchangeRate) {
-        return new DefaultCashPayment<>(date, amount.convert(exchangeRate));
     }
 
     @Override

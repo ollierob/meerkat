@@ -43,7 +43,7 @@ public interface Money<C extends CurrencyId>
 
     @Nonnull
     default DecimalMoney<C> toDecimal() {
-        return DecimalMoney.valueOf(this.currencyId(), this.amount());
+        return DecimalMoney.valueOf(this);
     }
 
     @Nonnull
