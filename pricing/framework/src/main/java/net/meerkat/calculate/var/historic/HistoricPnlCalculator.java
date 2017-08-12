@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import net.meerkat.calculate.price.shifts.SecurityShifts;
-import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  *

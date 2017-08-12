@@ -9,6 +9,7 @@ import javax.annotation.Nonnull;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.utils.Require;
 import net.ollie.goat.numeric.Numbers;
 import net.ollie.goat.numeric.Numeric;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
@@ -53,6 +54,12 @@ public interface Money<C extends CurrencyId>
 
     default String toString(@Nonnull final MoneyFormat convention) {
         return convention.toString(this);
+    }
+
+    @Override
+    default int compareTo(final Money<C> that) {
+        Require.argumentsEqual(this.currencyId(), that.currencyId());
+        return Numeric.Summable.super.compareTo(that);
     }
 
     static <C extends CurrencyId> DecimalMoney<C> zero(final C currency) {
