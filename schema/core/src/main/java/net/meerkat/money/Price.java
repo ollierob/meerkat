@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price;
+package net.meerkat.money;
 
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;

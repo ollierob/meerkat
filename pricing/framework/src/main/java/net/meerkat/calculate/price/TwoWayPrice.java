@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.meerkat.money.Price;
 
 /**
  *

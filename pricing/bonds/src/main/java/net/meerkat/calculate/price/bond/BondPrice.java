@@ -7,12 +7,12 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.Explainable.ExplanationBuilder;
-import net.meerkat.calculate.price.Price;
 import net.meerkat.calculate.price.ShiftablePrice;
 import net.meerkat.calculate.price.shifts.SecurityShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
+import net.meerkat.money.Price;
 import net.ollie.goat.numeric.percentage.FractionalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
