@@ -3,7 +3,7 @@ package net.meerkat.calculate.var.historic;
 import java.time.LocalDate;
 import java.util.Map;
 
-import net.meerkat.calculate.price.shifts.SecurityShifts;
+import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.position.PositionId;
 

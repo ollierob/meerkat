@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price.bond;
+package net.meerkat.pricing.bond;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.function.BiFunction;
 import javax.annotation.Nonnull;
 
 import net.meerkat.calculate.fx.ExchangeRatesProvider;
-import net.meerkat.calculate.price.shifts.ExchangeRateShifts.ExchangeRateShifter;
-import net.meerkat.calculate.price.shifts.InterestRateShifts.InterestRateShifter;
+import net.meerkat.pricing.shifts.ExchangeRateShifts.ExchangeRateShifter;
+import net.meerkat.pricing.shifts.InterestRateShifts.InterestRateShifter;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.coupon.FixedCoupon;

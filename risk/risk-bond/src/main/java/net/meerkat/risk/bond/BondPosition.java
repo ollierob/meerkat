@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.calculate.price.bond.BondPrice;
+import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.Price;

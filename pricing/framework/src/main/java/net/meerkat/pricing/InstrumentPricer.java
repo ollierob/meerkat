@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price;
+package net.meerkat.pricing;
 
 import net.meerkat.instrument.Instrument;
 

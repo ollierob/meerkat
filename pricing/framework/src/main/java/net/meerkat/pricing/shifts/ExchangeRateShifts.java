@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price.shifts;
+package net.meerkat.pricing.shifts;
 
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;

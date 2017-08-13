@@ -1,9 +1,9 @@
-package net.meerkat.calculate.price.bond;
+package net.meerkat.pricing.bond;
 
-import net.meerkat.calculate.price.InstrumentPriceException;
-import net.meerkat.calculate.price.InstrumentPricer;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.Bond;
+import net.meerkat.pricing.InstrumentPriceException;
+import net.meerkat.pricing.InstrumentPricer;
 
 /**
  * Prices particular types of bond.

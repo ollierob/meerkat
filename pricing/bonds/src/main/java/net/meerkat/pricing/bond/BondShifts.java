@@ -1,14 +1,14 @@
-package net.meerkat.calculate.price.bond;
+package net.meerkat.pricing.bond;
 
 import java.util.Collections;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.calculate.price.shifts.ExchangeRateShifts;
-import net.meerkat.calculate.price.shifts.InterestRateShifts;
-import net.meerkat.calculate.price.shifts.PriceShifts;
-import net.meerkat.calculate.price.shifts.SecurityShifts;
+import net.meerkat.pricing.shifts.ExchangeRateShifts;
+import net.meerkat.pricing.shifts.InterestRateShifts;
+import net.meerkat.pricing.shifts.PriceShifts;
+import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;

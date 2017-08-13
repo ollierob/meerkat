@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price.bond;
+package net.meerkat.pricing.bond;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -7,8 +7,8 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.Explainable.ExplanationBuilder;
-import net.meerkat.calculate.price.ShiftablePrice;
-import net.meerkat.calculate.price.shifts.SecurityShifts;
+import net.meerkat.pricing.ShiftablePrice;
+import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;

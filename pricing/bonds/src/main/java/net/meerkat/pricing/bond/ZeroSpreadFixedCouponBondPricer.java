@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price.bond;
+package net.meerkat.pricing.bond;
 
 import java.time.LocalDate;
 import java.util.List;

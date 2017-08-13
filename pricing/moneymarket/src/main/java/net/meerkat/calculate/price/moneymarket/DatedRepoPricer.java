@@ -3,7 +3,7 @@ package net.meerkat.calculate.price.moneymarket;
 import java.time.LocalDate;
 import java.util.Map;
 
-import net.meerkat.calculate.price.InstrumentPriceException;
+import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.InstrumentException;
 import net.meerkat.instrument.moneymarket.Repo;

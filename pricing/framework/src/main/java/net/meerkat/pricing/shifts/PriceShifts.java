@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price.shifts;
+package net.meerkat.pricing.shifts;
 
 import javax.annotation.Nonnull;
 

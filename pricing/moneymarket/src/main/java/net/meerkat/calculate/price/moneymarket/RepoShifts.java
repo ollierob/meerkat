@@ -2,8 +2,8 @@ package net.meerkat.calculate.price.moneymarket;
 
 import java.util.Map;
 
-import net.meerkat.calculate.price.shifts.ExchangeRateShifts;
-import net.meerkat.calculate.price.shifts.SecurityShifts;
+import net.meerkat.pricing.shifts.ExchangeRateShifts;
+import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 

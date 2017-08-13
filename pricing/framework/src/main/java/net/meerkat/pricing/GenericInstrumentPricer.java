@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price;
+package net.meerkat.pricing;
 
 import java.time.temporal.Temporal;
 
