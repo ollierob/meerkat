@@ -52,6 +52,11 @@ public class DecimalMoney<C extends CurrencyId>
     }
 
     @Override
+    public boolean isZero() {
+        return amount.signum() == 0;
+    }
+
+    @Override
     public Money<C> plus(final Money<C> that) {
         return that.isZero()
                 ? this

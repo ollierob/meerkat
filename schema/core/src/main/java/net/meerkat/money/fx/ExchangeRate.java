@@ -1,5 +1,6 @@
 package net.meerkat.money.fx;
 
+
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;

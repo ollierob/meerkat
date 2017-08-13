@@ -1,4 +1,4 @@
-package net.meerkat.pricing;
+package net.meerkat.money.price;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -7,7 +7,6 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.money.Price;
 
 /**
  *
@@ -22,16 +21,20 @@ public interface TwoWayPrice<C extends CurrencyId> extends Price<C> {
     Money<C> offer();
 
     default Money<C> spread() {
-        return offer().minus(bid());
+        return this.offer().minus(this.bid());
     }
 
     default Money<C> mid() {
-        return bid().plus(offer()).over(2);
+        return this.bid().plus(this.offer()).over(2);
     }
 
     @Override
     default C currencyId() {
         return this.bid().currencyId();
+    }
+
+    default boolean hasSpread() {
+        return !this.mid().isZero();
     }
 
     @Override

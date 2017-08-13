@@ -1,10 +1,11 @@
-package net.meerkat.money;
+package net.meerkat.money.price;
 
 import javax.annotation.Nonnull;
 
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.money.Money;
 
 /**
  *

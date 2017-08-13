@@ -2,7 +2,7 @@ package net.meerkat.pricing;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.InstrumentException;
-import net.meerkat.money.Price;
+import net.meerkat.money.price.Price;
 
 /**
  *

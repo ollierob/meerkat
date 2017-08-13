@@ -6,7 +6,7 @@ import net.meerkat.pricing.ShiftablePrice;
 import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.money.Price;
+import net.meerkat.money.price.Price;
 
 /**
  *

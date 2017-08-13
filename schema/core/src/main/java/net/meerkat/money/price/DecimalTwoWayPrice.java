@@ -1,9 +1,11 @@
-package net.meerkat.pricing;
+package net.meerkat.money.price;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.ollie.goat.numeric.BigDecimals;
 
 /**
  *
@@ -35,6 +37,11 @@ public class DecimalTwoWayPrice<C extends CurrencyId> implements TwoWayPrice<C> 
         return offerMoney == null
                 ? offerMoney = Money.of(offer, currency)
                 : offerMoney;
+    }
+
+    @Override
+    public Money<C> mid() {
+        return Money.of(bid.add(offer).divide(BigDecimals.TWO, MathContext.DECIMAL128), currency); //TODO use decimal fraction
     }
 
 }
