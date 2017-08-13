@@ -8,12 +8,14 @@ import net.meerkat.instrument.InstrumentException;
 import net.meerkat.instrument.fx.forward.FxForward;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateProvider;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.InstrumentPricer;
 import net.meerkat.pricing.shifts.InterestRateShifts;
 import net.meerkat.pricing.shifts.InterestRateShifts.InterestRateShifter;
+import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
@@ -43,11 +45,14 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward
         private final FxForward<B, C> forward;
         private final X currency;
         private final ExchangeRate<B, C> spotFxRate;
-        private final InterestRate baseRate;
-        private final InterestRate counterRate;
+        private final FixedInterestRate baseRate;
+        private final FixedInterestRate counterRate;
         private final InterestRateShifts shifts;
 
-        Price(LocalDate date, FxForward<B, C> forward, X currency, ExchangeRate<B, C> spotFxRate, InterestRate baseRate, InterestRate counterRate, InterestRateShifts shifts) {
+        Price(LocalDate date, FxForward<B, C> forward, X currency, ExchangeRate<B, C> spotFxRate,
+                final FixedInterestRate baseRate,
+                final FixedInterestRate counterRate,
+                final InterestRateShifts shifts) {
             this.date = date;
             this.forward = forward;
             this.currency = currency;
@@ -57,11 +62,11 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward
             this.shifts = shifts;
         }
 
-        InterestRate baseRate() {
+        FixedInterestRate baseRate() {
             return this.shift(baseRate, shifts);
         }
 
-        InterestRate counterRate() {
+        FixedInterestRate counterRate() {
             return this.shift(counterRate, shifts);
         }
 
@@ -72,7 +77,11 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward
         }
 
         private ExchangeRate<B, C> calculateForwardRate() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            final DecimalFraction spot = spotFxRate.rate();
+            final Percentage multiplier = this.counterRate().annualRate().plus(Percentage.oneHundred());
+            final Percentage divisor = this.baseRate().annualRate().plus(Percentage.oneHundred());
+            final DecimalFraction forward = spot.times(multiplier).over(divisor);
+            return ExchangeRate.between(spotFxRate.from(), spotFxRate.to(), forward);
         }
 
         @Override
@@ -94,6 +103,8 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward
                     .put("forward", forward)
                     .put("base rate", baseRate)
                     .put("counter rate", counterRate)
+                    .put("shifted base rate", this.baseRate())
+                    .put("shifted counter rate", this.counterRate())
                     .put("shifts", shifts);
         }
 

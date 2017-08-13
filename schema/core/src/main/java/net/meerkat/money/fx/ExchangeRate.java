@@ -2,11 +2,11 @@ package net.meerkat.money.fx;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.FractionalMoney;
-import net.meerkat.money.Money;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
+import net.meerkat.money.FractionalMoney;
+import net.meerkat.money.Money;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 
 /**
@@ -53,6 +53,10 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
 
     static <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> between(final Money<F> from, final Money<T> to) {
         return new RatioExchangeRate<>(from, to);
+    }
+
+    static <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> between(final F from, final T to, final Number rate) {
+        return new ReferenceExchangeRate<>(from, to, DecimalFraction.of(rate));
     }
 
 }
