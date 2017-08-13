@@ -1,13 +1,14 @@
-package net.meerkat.calculate.price.bond;
+package net.meerkat.risk.bond;
 
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
+import net.meerkat.calculate.price.bond.BondPrice;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.identifier.position.PositionWithQuantity;
 import net.meerkat.money.Money;
 import net.meerkat.money.Price;
+import net.meerkat.risk.PositionWithQuantity;
 
 /**
  *
@@ -25,7 +26,7 @@ public interface BondPosition extends PositionWithQuantity {
 
     @Nonnull
     default <C extends CurrencyId> Money<C> marketValue(@Nonnull final BondPrice<C> price) {
-        return price.dirty().times(this.quantity());
+        return price.marketValue(this.quantity());
     }
 
 }

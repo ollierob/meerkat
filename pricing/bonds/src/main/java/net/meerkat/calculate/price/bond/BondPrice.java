@@ -60,6 +60,11 @@ public interface BondPrice<C extends CurrencyId>
     @Nonnull
     Percentage yieldToMaturity();
 
+    @Nonnull
+    default Money<C> marketValue(final Number quantity) {
+        return this.dirty().times(quantity);
+    }
+
     @Override
     public default ExplanationBuilder explain() {
         return this.explanationBuilder()

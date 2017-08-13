@@ -11,6 +11,7 @@
         <module>schema</module>
         <module>utils</module>
         <module>pricing</module>
+        <module>risk</module>
     </modules>
     
     <properties>

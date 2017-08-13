@@ -1,10 +1,11 @@
-package net.meerkat.identifier.position;
+package net.meerkat.risk;
 
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.position.HasPositionId;
 import net.meerkat.money.Money;
 import net.meerkat.money.Price;
 
