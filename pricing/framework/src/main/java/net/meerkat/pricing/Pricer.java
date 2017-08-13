@@ -10,7 +10,7 @@ import net.meerkat.money.Price;
  */
 public interface Pricer<T, R> {
 
-    <C extends CurrencyId> Price<C> price(T temporal, R toPrice, C currency)
+    <C extends CurrencyId> Price<C> price(T temporal, R priced, C currency)
             throws InstrumentException, InstrumentPriceException;
 
 }

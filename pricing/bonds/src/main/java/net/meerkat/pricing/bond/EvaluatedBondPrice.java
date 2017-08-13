@@ -51,7 +51,7 @@ public class EvaluatedBondPrice<C extends CurrencyId>
     }
 
     @Override
-    public CurrencyId currencyId() {
+    public C currencyId() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

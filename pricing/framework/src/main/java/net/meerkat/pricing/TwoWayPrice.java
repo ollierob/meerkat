@@ -30,7 +30,7 @@ public interface TwoWayPrice<C extends CurrencyId> extends Price<C> {
     }
 
     @Override
-    default CurrencyId currencyId() {
+    default C currencyId() {
         return this.bid().currencyId();
     }
 

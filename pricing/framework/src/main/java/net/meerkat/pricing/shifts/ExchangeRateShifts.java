@@ -1,9 +1,11 @@
 package net.meerkat.pricing.shifts;
 
+import java.util.Map;
+
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -22,5 +24,19 @@ public interface ExchangeRateShifts extends SecurityShifts {
         }
 
     }
+    
+    ExchangeRateShifts NONE = new ExchangeRateShifts() {
+
+        @Override
+        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(final ExchangeRate<F, T> rate) {
+            return rate;
+        }
+
+        @Override
+        public Map<String, Object> explain() {
+            return this.explanationBuilder();
+        }
+
+    };
 
 }
