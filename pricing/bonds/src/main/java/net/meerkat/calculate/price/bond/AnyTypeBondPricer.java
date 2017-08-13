@@ -14,7 +14,7 @@ import net.meerkat.identifier.currency.CurrencyId;
  *
  * @author ollie
  */
-public class NativeBondPricer<T extends Temporal> implements GenericBondPricer<T> {
+public class AnyTypeBondPricer<T extends Temporal> implements GenericBondPricer<T> {
 
     private final BondPricer<T, PerpetualBond> perpetualPricer;
     private final BondPricer<T, FixedCouponBond> fixedCouponPricer;
@@ -22,7 +22,7 @@ public class NativeBondPricer<T extends Temporal> implements GenericBondPricer<T
     private final BondPricer<T, ConvertibleBond> convertiblePricer;
     private final BondPricer<T, VariableRateBond> variablePricer;
 
-    public NativeBondPricer(
+    public AnyTypeBondPricer(
             final BondPricer<T, PerpetualBond> perpetualPricer,
             final BondPricer<T, FixedCouponBond> fixedCouponPricer,
             final BondPricer<T, FloatingRateNote> floatingNotePricer,
