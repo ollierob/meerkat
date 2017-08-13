@@ -1,86 +1,44 @@
 package net.meerkat.instrument.fx.forward;
 
-import java.time.LocalDate;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
+import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.fx.FxInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.utils.Require;
 
 /**
  *
  * @author Ollie
  */
 @XmlRootElement
-public class FxForward<B extends CurrencyId, C extends CurrencyId>
-        extends NamedInstrument
-        implements FxInstrument<B, C> {
+public interface FxForward<B extends CurrencyId, C extends CurrencyId>
+        extends FxInstrument<B, C> {
 
-    private static final long serialVersionUID = 1L;
+    @Nonnull
+    Money<B> baseAmount();
 
-    @XmlElementRef(name = "base", required = true)
-    private Money<B> base;
-
-    @XmlElementRef(name = "counter", required = true)
-    private Money<C> counter;
-
-    @XmlElement(name = "settlementDate")
-    private LocalDate settlementDate;
-
-    @Deprecated
-    FxForward() {
+    @Override
+    default B base() {
+        return this.baseAmount().currencyId();
     }
 
-    public FxForward(
-            final String name,
-            final InstrumentIds identifiers,
-            final Money<B> base,
-            final Money<C> counter,
-            final LocalDate settlementDate) {
-        super(name, identifiers);
-        Require.argumentsNotEqual(base.currencyId(), counter.currencyId(), (b, c) -> "Cannot have a forward with base [" + b + "] == counter [" + c + "] currencies!");
-        this.base = base;
-        this.counter = counter;
-        this.settlementDate = settlementDate;
-    }
+    @Nonnull
+    Money<C> counterAmount();
 
-    public Money<B> baseAmount() {
-        return base;
+    @Override
+    default C counter() {
+        return this.counterAmount().currencyId();
     }
 
     @Override
-    public B base() {
-        return base.currencyId();
-    }
-
-    public Money<C> counterAmount() {
-        return counter;
+    default ExchangeRate<B, C> exchangeRate() {
+        return ExchangeRate.between(this.baseAmount(), this.counterAmount());
     }
 
     @Override
-    public C counter() {
-        return counter.currencyId();
-    }
-
-    @Override
-    public ExchangeRate<B, C> exchangeRate() {
-        return ExchangeRate.between(base, counter);
-    }
-
-    @Override
-    public LocalDate settlementDate() {
-        return settlementDate;
-    }
-
-    @Override
-    public <R> R handleWith(final FxInstrument.Handler<R> handler) {
+    default <R> R handleWith(final FxInstrument.Handler<R> handler) {
         return handler.handle(this);
     }
 

@@ -1,12 +1,13 @@
 package net.meerkat.money.fx;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.money.Money;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIdPair;
+import net.meerkat.money.Money;
 
 /**
  * Snapshot of FX rates at a particular time.
@@ -27,7 +28,7 @@ public interface ExchangeRates {
             @Nonnull final Money<F> money,
             @Nonnull final T to) {
         final F from = money.currencyId();
-        return from == to
+        return Objects.equals(from, to)
                 ? (Money<T>) money
                 : this.rate(from, to).convert(money);
     }
