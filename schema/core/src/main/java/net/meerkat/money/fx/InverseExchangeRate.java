@@ -8,8 +8,8 @@ import java.io.ObjectOutput;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.numeric.fraction.DecimalFraction;
 
 /**
  *
@@ -43,8 +43,13 @@ public class InverseExchangeRate<T extends CurrencyId, F extends CurrencyId>
     }
 
     @Override
-    public DecimalFraction rate() {
-        return inverse.rate().inverse();
+    public DecimalFraction bidRate() {
+        return inverse.bidRate().inverse();
+    }
+
+    @Override
+    public DecimalFraction offerRate() {
+        return inverse.offerRate().inverse();
     }
 
     @Override

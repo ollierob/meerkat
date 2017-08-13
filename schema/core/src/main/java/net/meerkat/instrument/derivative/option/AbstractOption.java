@@ -9,7 +9,6 @@ import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
 import net.meerkat.issue.Issue;
 import net.meerkat.money.Money;
-import net.meerkat.numeric.quantity.Quantity;
 
 /**
  *
@@ -31,7 +30,7 @@ public abstract class AbstractOption<S extends Instrument>
     private Money<?> strike;
 
     @XmlElementRef(name = "multiplier")
-    private Quantity contractMultiplier;
+    private Number contractMultiplier;
 
     @Deprecated
     protected AbstractOption() {
@@ -44,7 +43,7 @@ public abstract class AbstractOption<S extends Instrument>
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
-            final Quantity contractMultiplier) {
+            final Number contractMultiplier) {
         super(name, identifiers, issue);
         this.exercise = exercise;
         this.premium = premium;
@@ -68,7 +67,7 @@ public abstract class AbstractOption<S extends Instrument>
     }
 
     @Override
-    public Quantity contractMultiplier() {
+    public Number contractMultiplier() {
         return contractMultiplier;
     }
 

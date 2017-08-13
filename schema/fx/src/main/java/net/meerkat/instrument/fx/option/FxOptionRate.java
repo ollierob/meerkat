@@ -4,12 +4,12 @@ import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
-import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.NamedInstrument;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -63,8 +63,13 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
     }
 
     @Override
-    public DecimalFraction rate() {
+    public DecimalFraction bidRate() {
         return DecimalFraction.of(put.amount(), call.amount());
+    }
+
+    @Override
+    public DecimalFraction offerRate() {
+        throw new UnsupportedOperationException("Not supported yet."); //TODO
     }
 
 }

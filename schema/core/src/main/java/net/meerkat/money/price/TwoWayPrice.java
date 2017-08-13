@@ -1,12 +1,12 @@
 package net.meerkat.money.price;
 
-import java.math.BigDecimal;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.ollie.goat.numeric.Decimal;
 
 /**
  *
@@ -44,7 +44,7 @@ public interface TwoWayPrice<C extends CurrencyId> extends Price<C> {
                 .put("offer", this.offer());
     }
 
-    static <C extends CurrencyId> TwoWayPrice<C> of(final C currency, final BigDecimal bid, final BigDecimal offer) {
+    static <C extends CurrencyId> TwoWayPrice<C> of(final C currency, final Decimal bid, final Decimal offer) {
         return new DecimalTwoWayPrice<>(currency, bid, offer);
     }
 

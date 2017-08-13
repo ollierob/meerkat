@@ -1,6 +1,7 @@
 package net.meerkat.money.fx;
 
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.utils.Require;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 
 /**
@@ -10,14 +11,22 @@ import net.ollie.goat.numeric.fraction.DecimalFraction;
 public class ReferenceExchangeRate<F extends CurrencyId, T extends CurrencyId>
         implements ExchangeRate<F, T> {
 
+    public static <F extends CurrencyId, T extends CurrencyId> ReferenceExchangeRate<F, T> ofMid(final F from, final T to, final Number midRate) {
+        final DecimalFraction mid = DecimalFraction.of(midRate);
+        return new ReferenceExchangeRate<>(from, to, mid, mid);
+    }
+
     private final F from;
     private final T to;
-    private final DecimalFraction rate;
+    private final DecimalFraction bidRate;
+    private final DecimalFraction offerRate;
 
-    public ReferenceExchangeRate(F from, T to, DecimalFraction rate) {
+    protected ReferenceExchangeRate(final F from, final T to, final DecimalFraction bidRate, final DecimalFraction offerRate) {
+        Require.that(bidRate.isPositive(), "Must have a positive bid rate!");
         this.from = from;
         this.to = to;
-        this.rate = rate;
+        this.bidRate = bidRate;
+        this.offerRate = offerRate;
     }
 
     @Override
@@ -31,8 +40,13 @@ public class ReferenceExchangeRate<F extends CurrencyId, T extends CurrencyId>
     }
 
     @Override
-    public DecimalFraction rate() {
-        return rate;
+    public DecimalFraction bidRate() {
+        return bidRate;
+    }
+
+    @Override
+    public DecimalFraction offerRate() {
+        return offerRate;
     }
 
 }

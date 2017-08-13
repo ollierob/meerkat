@@ -11,7 +11,7 @@ import net.meerkat.money.Money;
 @XmlRootElement
 public class USD extends NationalCurrencyIso {
 
-    public static final Money<USD> ONE_MILLION = Money.of(1_000_000, USD);
+    public static final Money<USD> ONE_MILLION = Money.of(USD, 1_000_000);
 
     private static final long serialVersionUID = 1L;
 

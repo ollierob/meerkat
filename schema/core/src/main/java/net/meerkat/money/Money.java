@@ -10,6 +10,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.utils.Require;
+import net.ollie.goat.numeric.BigDecimals;
 import net.ollie.goat.numeric.Numbers;
 import net.ollie.goat.numeric.Numeric;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
@@ -32,6 +33,11 @@ public interface Money<C extends CurrencyId>
 
     @Override
     Money<C> plus(@Nonnull Money<C> that);
+
+    @Override
+    default Money<C> inverse() {
+        return Money.of(this.currencyId(), DecimalFraction.of(1, this.amount()));
+    }
 
     default <T extends CurrencyId> Money<T> convert(final ExchangeRate<C, T> rate) {
         return rate.convert(this);
@@ -66,17 +72,21 @@ public interface Money<C extends CurrencyId>
         return new DecimalMoney<>(currency, BigDecimal.ZERO);
     }
 
-    static <C extends CurrencyId> DecimalMoney<C> of(final long amount, final C currency) {
+    static <C extends CurrencyId> DecimalMoney<C> of(final C currency, final long amount) {
         return amount == 0
                 ? zero(currency)
                 : new DecimalMoney<>(currency, BigDecimal.valueOf(amount));
     }
 
-    static <C extends CurrencyId> DecimalMoney<C> of(final BigDecimal amount, final C currency) {
+    static <C extends CurrencyId> DecimalMoney<C> of(final C currency, final BigDecimal amount) {
         return amount.signum() == 0
                 ? zero(currency)
                 : new DecimalMoney<>(currency, amount);
 
+    }
+
+    static <C extends CurrencyId> DecimalMoney<C> of(final C currency, final Number amount) {
+        return of(currency, BigDecimals.toBigDecimal(amount));
     }
 
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {

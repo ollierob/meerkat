@@ -1,11 +1,11 @@
 package net.meerkat.hierarchy;
 
-import net.meerkat.portfolio.Portfolio;
+import net.meerkat.identifier.portfolio.PortfolioId;
 
 /**
  *
  * @author Ollie
  */
-public interface PortfolioHierarchy extends Hierarchy<Portfolio> {
+public interface PortfolioHierarchy extends Hierarchy<PortfolioId> {
 
 }

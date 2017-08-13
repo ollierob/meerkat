@@ -18,7 +18,7 @@ public class ShortSterlingFutureContract
         implements ShortTermInterestRateFutureContract<GBP> {
 
     private static final long serialVersionUID = 1L;
-    private static final Money<GBP> NOTIONAL = Money.of(500_000, GBP.GBP);
+    private static final Money<GBP> NOTIONAL = Money.of(GBP.GBP, 500_000);
 
     public ShortSterlingFutureContract(final InstrumentIds ids) {
         this("Short Sterling", ids);

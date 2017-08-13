@@ -1,7 +1,7 @@
 package net.meerkat.pricing.fx;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.money.price.Price;
+import net.meerkat.money.price.TwoWayPrice;
 import net.meerkat.pricing.ShiftablePrice;
 import net.meerkat.pricing.shifts.InterestRateShifts;
 import net.meerkat.pricing.shifts.SecurityShifts;
@@ -10,7 +10,7 @@ import net.meerkat.pricing.shifts.SecurityShifts;
  *
  * @author ollie
  */
-public interface FxPrice<C extends CurrencyId> extends Price.Valued<C> {
+public interface FxPrice<C extends CurrencyId> extends TwoWayPrice<C> {
 
     interface Shiftable<C extends CurrencyId> extends FxPrice<C>, ShiftablePrice<C> {
 

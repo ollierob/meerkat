@@ -13,7 +13,7 @@ public class GBP extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
 
-    public static final Money<GBP> ONE_HUNDRED_THOUSAND = Money.of(100_000, GBP);
+    public static final Money<GBP> ONE_HUNDRED_THOUSAND = Money.of(GBP, 100_000);
 
     GBP() {
     }

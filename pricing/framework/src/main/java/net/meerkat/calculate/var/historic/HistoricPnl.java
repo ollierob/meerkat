@@ -67,7 +67,7 @@ public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
 
     @Nonnull
     public List<Money<C>> values() {
-        return Lists.eagerlyTransform(pnl.values(), bd -> Money.of(bd, currency));
+        return Lists.eagerlyTransform(pnl.values(), bd -> Money.of(currency, bd));
     }
 
     @Nonnull

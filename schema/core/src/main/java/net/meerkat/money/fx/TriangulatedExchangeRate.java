@@ -1,20 +1,17 @@
 package net.meerkat.money.fx;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-import net.ollie.goat.numeric.fraction.DecimalFraction;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.numeric.fraction.DecimalFraction;
 
 /**
  *
  * @author ollie
  */
-@XmlRootElement
 public class TriangulatedExchangeRate<F extends CurrencyId, X extends CurrencyId, T extends CurrencyId>
         implements ExchangeRate<F, T> {
 
-    private ExchangeRate<F, X> first;
-    private ExchangeRate<X, T> second;
+    private final ExchangeRate<F, X> first;
+    private final ExchangeRate<X, T> second;
 
     public TriangulatedExchangeRate(ExchangeRate<F, X> first, ExchangeRate<X, T> second) {
         this.first = first;
@@ -32,8 +29,13 @@ public class TriangulatedExchangeRate<F extends CurrencyId, X extends CurrencyId
     }
 
     @Override
-    public DecimalFraction rate() {
-        return first.rate().times(second.rate());
+    public DecimalFraction bidRate() {
+        return first.bidRate().times(second.bidRate());
+    }
+
+    @Override
+    public DecimalFraction offerRate() {
+        return first.offerRate().times(second.offerRate());
     }
 
 }

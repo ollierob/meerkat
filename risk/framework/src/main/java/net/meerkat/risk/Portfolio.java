@@ -1,4 +1,4 @@
-package net.meerkat.portfolio;
+package net.meerkat.risk;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.numeric.quantity.Quantity;
 import net.meerkat.identifier.position.PositionId;
 import net.meerkat.utils.HasName;
 
@@ -20,11 +19,11 @@ public interface Portfolio extends HasName {
     Set<? extends Portfolio> children();
 
     @Nonnull
-    Map<PositionId, ? extends Quantity> ownPositions();
+    Map<PositionId, ? extends Position> ownPositions();
 
     @Nonnull
-    default Map<PositionId, ? extends Quantity> allPositions() {
-        final Map<PositionId, Quantity> positions = new HashMap<>(this.ownPositions());
+    default Map<PositionId, ? extends Position> allPositions() {
+        final Map<PositionId, Position> positions = new HashMap<>(this.ownPositions());
         this.children().forEach(portfolio -> positions.putAll(portfolio.allPositions()));
         return positions;
     }

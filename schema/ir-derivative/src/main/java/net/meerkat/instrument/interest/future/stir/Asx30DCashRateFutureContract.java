@@ -17,7 +17,7 @@ public class Asx30DCashRateFutureContract
         implements ShortTermInterestRateFutureContract<AUD> {
 
     private static final long serialVersionUID = 1L;
-    private static final Money<AUD> NOTIONAL = Money.of(3_000_000, AUD.AUD);
+    private static final Money<AUD> NOTIONAL = Money.of(AUD.AUD, 3_000_000);
 
     public Asx30DCashRateFutureContract(final String name, final InstrumentIds ids) {
         super(name, ids);

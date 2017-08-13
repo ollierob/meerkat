@@ -71,23 +71,34 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward
         }
 
         @Override
-        public Money<X> value() {
-            final ExchangeRate<B, C> impliedForwardRate = forward.exchangeRate();
+        public Money<X> bid() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
-        private ExchangeRate<B, C> calculateForwardRate() {
-            final DecimalFraction spot = spotFxRate.rate();
+        @Override
+        public Money<X> offer() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        private ExchangeRate<B, C> calculateForwardRate(final DecimalFraction spotRate) {
             final Percentage multiplier = this.counterRate().annualRate().plus(Percentage.oneHundred());
             final Percentage divisor = this.baseRate().annualRate().plus(Percentage.oneHundred());
-            final DecimalFraction forward = spot.times(multiplier).over(divisor);
+            final DecimalFraction forward = spotRate.times(multiplier).over(divisor);
             return ExchangeRate.between(spotFxRate.from(), spotFxRate.to(), forward);
         }
 
         @Override
-        public Number forwardPoints() {
-            final ExchangeRate<B, C> calculatedForwardRate = this.calculateForwardRate();
-            return calculatedForwardRate.rate().minus(spotFxRate.rate());
+        public Number bidForwardPoints() {
+            final DecimalFraction spotRate = spotFxRate.bidRate();
+            final ExchangeRate<B, C> calculatedForwardRate = this.calculateForwardRate(spotRate);
+            return calculatedForwardRate.bidRate().minus(spotRate);
+        }
+
+        @Override
+        public Number offerForwardPoints() {
+            final DecimalFraction offer = spotFxRate.offerRate();
+            final ExchangeRate<B, C> calculatedForwardRate = this.calculateForwardRate(offer);
+            return calculatedForwardRate.offerRate().minus(offer);
         }
 
         @Override

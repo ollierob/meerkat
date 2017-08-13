@@ -1,9 +1,9 @@
 package net.meerkat.identifier.currency;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import net.meerkat.Named;
 import net.meerkat.identifier.country.CountryId;
 
 /**
@@ -11,13 +11,12 @@ import net.meerkat.identifier.country.CountryId;
  * @author ollie
  */
 @XmlRootElement
-public class DefaultCurrency implements Currency {
+public class DefaultCurrency extends Named implements Currency {
+
+    private static final long serialVersionUID = 1L;
 
     @XmlElementRef(name = "ids")
     private CurrencyIds currencyIds;
-
-    @XmlAttribute(name = "name")
-    private String name;
 
     @XmlElementRef(name = "issuer")
     private CountryId issuer;
@@ -30,8 +29,8 @@ public class DefaultCurrency implements Currency {
             final CurrencyIds currencyIds,
             final String name,
             final CountryId issuingCountry) {
+        super(name);
         this.currencyIds = currencyIds;
-        this.name = name;
         this.issuer = issuingCountry;
     }
 
@@ -43,11 +42,6 @@ public class DefaultCurrency implements Currency {
     @Override
     public CountryId countryId() {
         return issuer;
-    }
-
-    @Override
-    public String name() {
-        return name;
     }
 
 }

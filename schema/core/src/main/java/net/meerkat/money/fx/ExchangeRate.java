@@ -1,12 +1,10 @@
 package net.meerkat.money.fx;
 
-
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
-import net.meerkat.money.FractionalMoney;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 
@@ -24,14 +22,25 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
     T to();
 
     @Nonnull
-    DecimalFraction rate();
+    DecimalFraction bidRate();
+
+    @Nonnull
+    DecimalFraction offerRate();
+
+    default DecimalFraction spread() {
+        return this.offerRate().minus(this.bidRate());
+    }
+
+    default DecimalFraction midRate() {
+        return this.bidRate().plus(this.offerRate()).over(2);
+    }
 
     default Money<T> convert(final Money<F> from) {
-        return new FractionalMoney<>(this.to(), this.rate().times(from.amount()));
+        return Money.of(this.to(), this.midRate().times(from.amount()));
     }
 
     default Money<F> convertFrom(final Money<T> from) {
-        return new FractionalMoney<>(this.from(), this.rate().over(from.amount()));
+        return Money.of(this.from(), this.midRate().over(from.amount()));
     }
 
     default ExchangeRate<T, F> inverse() {
@@ -44,7 +53,7 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
 
     @Override
     default int compareTo(final ExchangeRate<F, T> that) {
-        return this.rate().compareTo(that.rate());
+        return this.midRate().compareTo(that.midRate());
     }
 
     @Override
@@ -56,8 +65,8 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
         return new RatioExchangeRate<>(from, to);
     }
 
-    static <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> between(final F from, final T to, final Number rate) {
-        return new ReferenceExchangeRate<>(from, to, DecimalFraction.of(rate));
+    static <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> between(final F from, final T to, final Number midRate) {
+        return ReferenceExchangeRate.ofMid(from, to, DecimalFraction.of(midRate));
     }
 
 }
