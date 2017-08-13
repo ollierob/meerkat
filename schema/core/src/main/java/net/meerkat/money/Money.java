@@ -29,10 +29,10 @@ public interface Money<C extends CurrencyId>
     Number amount();
 
     @Override
-    Money<C> times(Number n);
+    Money<C> plus(@Nonnull Money<C> that);
 
     @Override
-    Money<C> plus(@Nonnull Money<C> that);
+    Money<C> times(Number n);
 
     @Override
     default Money<C> inverse() {

@@ -6,6 +6,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.money.Money;
+import net.meerkat.money.price.TwoWayPrice;
 import net.ollie.goat.numeric.fraction.DecimalFraction;
 
 /**
@@ -33,6 +34,12 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
 
     default DecimalFraction midRate() {
         return this.bidRate().plus(this.offerRate()).over(2);
+    }
+
+    default TwoWayPrice<T> convert(final TwoWayPrice<F> from) {
+        final Money<T> bid = Money.of(this.to(), this.bidRate().times(from.bid().amount())); //TODO extract method
+        final Money<T> offer = Money.of(this.to(), this.offerRate().times(from.offer().amount()));
+        return TwoWayPrice.of(bid, offer);
     }
 
     default Money<T> convert(final Money<F> from) {
