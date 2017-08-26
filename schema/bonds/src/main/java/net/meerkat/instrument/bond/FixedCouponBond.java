@@ -4,9 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
@@ -23,7 +20,6 @@ import net.meerkat.money.interest.fixed.FixedInterestRate;
  *
  * @author ollie
  */
-@XmlRootElement
 public class FixedCouponBond
         extends StraightBond
         implements InterestRateInstrument {

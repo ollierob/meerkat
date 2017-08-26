@@ -5,21 +5,16 @@ import java.util.AbstractList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
-import net.meerkat.money.Money;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.ConvertibleBondDates;
 import net.meerkat.instrument.equity.Stock;
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
 
 /**
  *
@@ -67,7 +62,6 @@ public class ConvertibleBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    @XmlTransient
     public class ConvertibleBondCoupons
             extends AbstractList<BondCoupon>
             implements BondCoupons.Finite<BondCoupon> {

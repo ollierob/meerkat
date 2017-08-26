@@ -3,21 +3,17 @@ package net.meerkat.instrument.bond;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import net.meerkat.money.Money;
-import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.meerkat.instrument.bond.coupon.BondCoupons;
-import net.meerkat.instrument.bond.coupon.FixedCoupon;
-import net.meerkat.instrument.bond.dates.PerpetualBondDates;
-import net.meerkat.utils.collections.sequence.FiniteSequence;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
+import net.meerkat.instrument.bond.coupon.BondCoupons;
+import net.meerkat.instrument.bond.coupon.FixedCoupon;
+import net.meerkat.instrument.bond.dates.PerpetualBondDates;
 import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *
