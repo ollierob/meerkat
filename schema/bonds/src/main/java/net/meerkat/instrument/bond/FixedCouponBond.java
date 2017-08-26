@@ -30,18 +30,9 @@ public class FixedCouponBond
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "coupon_rate")
-    private FixedInterestRate couponRate;
-
-    @XmlElementRef(name = "coupon_amount")
-    private Money<?> couponAmount;
-
-    @XmlElement(name = "coupon_date")
-    private List<LocalDate> couponDates;
-
-    @Deprecated
-    FixedCouponBond() {
-    }
+    private final FixedInterestRate couponRate;
+    private final Money<?> couponAmount;
+    private final List<LocalDate> couponDates;
 
     public FixedCouponBond(
             final String name,

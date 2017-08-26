@@ -17,17 +17,11 @@ import net.meerkat.money.Money;
  *
  * @author Ollie
  */
-@XmlSeeAlso({FloatingRateNote.class, FixedCouponBond.class, VariableRateBond.class})
 public abstract class StraightBond extends AbstractBond {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "dates")
-    private MaturingBondDates dates;
-
-    @Deprecated
-    StraightBond() {
-    }
+    private final MaturingBondDates dates;
 
     public StraightBond(
             final String name,

@@ -15,25 +15,15 @@ import net.meerkat.money.Money;
  *
  * @author Ollie
  */
-@XmlSeeAlso({ConvertibleBond.class, StraightBond.class, PerpetualBond.class})
 public abstract class AbstractBond
         extends NamedInstrument
         implements Bond {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "par")
-    private Money<?> par;
-
-    @XmlElementRef(name = "call")
-    private BondCall call;
-
-    @XmlElementRef(name = "issuer")
-    private IssuerId issuer;
-
-    @Deprecated
-    protected AbstractBond() {
-    }
+    private final Money<?> par;
+    private final BondCall call;
+    private final IssuerId issuer;
 
     protected AbstractBond(
             final String name,

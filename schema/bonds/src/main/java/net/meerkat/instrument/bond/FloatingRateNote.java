@@ -10,7 +10,12 @@ import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.FloatingCoupon;
+import net.meerkat.instrument.bond.dates.MaturingBondDates;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.feature.RateFeature;
 import net.ollie.goat.numeric.percentage.Percentage;
@@ -19,28 +24,23 @@ import net.ollie.goat.numeric.percentage.Percentage;
  *
  * @author ollie
  */
-@XmlRootElement
 public class FloatingRateNote extends StraightBond {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "coupon_currency")
-    private CurrencyId couponCurrency;
+    private final CurrencyId couponCurrency;
+    private final Percentage spread;
+    private final InterestRateId referenceRate;
+    private final List<LocalDate> couponDates;
+    private final Set<? extends RateFeature> features;
 
-    @XmlAttribute(name = "spread")
-    private Percentage spread;
-
-    @XmlElementRef(name = "reference_rate")
-    private InterestRateId referenceRate;
-
-    @XmlElement(name = "coupon_date")
-    private List<LocalDate> couponDates;
-
-    @XmlElementRef(name = "coupon_feature")
-    private Set<? extends RateFeature> features;
-
-    @Deprecated
-    FloatingRateNote() {
+    public FloatingRateNote(CurrencyId couponCurrency, Percentage spread, InterestRateId referenceRate, List<LocalDate> couponDates, Set<? extends RateFeature> features, String name, InstrumentIds identifiers, Money<?> par, MaturingBondDates dates, BondCall call, IssuerId issuer) {
+        super(name, identifiers, par, dates, call, issuer);
+        this.couponCurrency = couponCurrency;
+        this.spread = spread;
+        this.referenceRate = referenceRate;
+        this.couponDates = couponDates;
+        this.features = features;
     }
 
     @Override

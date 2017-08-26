@@ -15,33 +15,32 @@ import net.meerkat.instrument.bond.dates.PerpetualBondDates;
 import net.meerkat.utils.collections.sequence.FiniteSequence;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.bond.call.BondCall;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *
  * @author ollie
  */
-@XmlRootElement
 public class PerpetualBond extends AbstractBond {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlAttribute(name = "yearly_frequency")
-    private int yearlyFrequency;
-
-    @XmlElementRef(name = "coupon_amount")
-    private Money<?> couponAmount;
-
-    @XmlElementRef(name = "coupon_rate")
-    private FixedInterestRate couponRate;
-
-    @XmlElementRef(name = "dates")
-    private PerpetualBondDates dates;
-
-    @Deprecated
-    PerpetualBond() {
-    }
+    private final int yearlyFrequency;
+    private final Money<?> couponAmount;
+    private final FixedInterestRate couponRate;
+    private final PerpetualBondDates dates;
 
     private transient PerpetualBondCoupons<?> coupons;
+
+    public PerpetualBond(int yearlyFrequency, Money<?> couponAmount, FixedInterestRate couponRate, PerpetualBondDates dates, String name, InstrumentIds identifiers, Money<?> par, BondCall call, IssuerId issuer) {
+        super(name, identifiers, par, call, issuer);
+        this.yearlyFrequency = yearlyFrequency;
+        this.couponAmount = couponAmount;
+        this.couponRate = couponRate;
+        this.dates = dates;
+    }
 
     @Override
     public PerpetualBondCoupons<?> coupons() {
