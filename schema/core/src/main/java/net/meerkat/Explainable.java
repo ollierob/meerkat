@@ -9,6 +9,8 @@ import java.util.Set;
 
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.collection.Arrays;
+
 /**
  *
  * @author Ollie
@@ -35,7 +37,7 @@ public interface Explainable {
 
         private final Map<String, Object> explanation = new HashMap<>();
 
-        public ExplanationBuilder(final Class<?> clazz) {
+        public ExplanationBuilder(@Nonnull final Class<?> clazz) {
             explanation.put("class", clazz);
         }
 
@@ -46,6 +48,8 @@ public interface Explainable {
                 newValue = ((Explainable) value).explain();
             } else if (value instanceof Optional) {
                 newValue = ((Optional<?>) value).orElse(null);
+            } else if (value != null && value.getClass().isArray()) {
+                newValue = Arrays.toString(value);
             } else {
                 newValue = value == null ? null : value.toString();
             }
@@ -68,7 +72,7 @@ public interface Explainable {
 
         @Override
         public Set<Entry<String, Object>> entrySet() {
-            return explanation.entrySet();
+            return Collections.unmodifiableSet(explanation.entrySet());
         }
 
     }
