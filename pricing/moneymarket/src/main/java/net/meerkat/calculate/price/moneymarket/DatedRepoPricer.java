@@ -3,11 +3,11 @@ package net.meerkat.calculate.price.moneymarket;
 import java.time.LocalDate;
 import java.util.Map;
 
-import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.InstrumentException;
 import net.meerkat.instrument.moneymarket.Repo;
 import net.meerkat.money.Money;
+import net.meerkat.pricing.InstrumentPriceException;
 
 /**
  *
@@ -57,7 +57,7 @@ public class DatedRepoPricer implements RepoPricer<LocalDate> {
         }
 
         @Override
-        public Money<T> price() {
+        public Money<T> value() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 

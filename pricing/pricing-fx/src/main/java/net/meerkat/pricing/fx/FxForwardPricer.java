@@ -14,7 +14,7 @@ import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.InstrumentPricer;
 import net.meerkat.pricing.shifts.InterestRateShifts;
 import net.meerkat.pricing.shifts.InterestRateShifts.InterestRateShifter;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
@@ -80,23 +80,23 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
-        private ExchangeRate<B, C> calculateForwardRate(final DecimalFraction spotRate) {
+        private ExchangeRate<B, C> calculateForwardRate(final BigDecimalFraction spotRate) {
             final Percentage multiplier = this.counterRate().annualRate().plus(Percentage.oneHundred());
             final Percentage divisor = this.baseRate().annualRate().plus(Percentage.oneHundred());
-            final DecimalFraction forward = spotRate.times(multiplier).over(divisor);
+            final BigDecimalFraction forward = spotRate.times(multiplier).over(divisor);
             return ExchangeRate.between(spotFxRate.from(), spotFxRate.to(), forward);
         }
 
         @Override
         public Number bidForwardPoints() {
-            final DecimalFraction spotRate = spotFxRate.bidRate();
+            final BigDecimalFraction spotRate = spotFxRate.bidRate();
             final ExchangeRate<B, C> calculatedForwardRate = this.calculateForwardRate(spotRate);
             return calculatedForwardRate.bidRate().minus(spotRate);
         }
 
         @Override
         public Number offerForwardPoints() {
-            final DecimalFraction offer = spotFxRate.offerRate();
+            final BigDecimalFraction offer = spotFxRate.offerRate();
             final ExchangeRate<B, C> calculatedForwardRate = this.calculateForwardRate(offer);
             return calculatedForwardRate.offerRate().minus(offer);
         }

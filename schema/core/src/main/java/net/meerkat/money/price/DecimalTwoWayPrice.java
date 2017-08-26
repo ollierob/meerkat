@@ -40,5 +40,11 @@ public class DecimalTwoWayPrice<C extends CurrencyId> implements TwoWayPrice<C> 
     public Money<C> mid() {
         return Money.of(currency, bid.plus(offer).over(2));
     }
+    
+    @Override
+    @Deprecated
+    public DecimalTwoWayPrice<C> evaluate() {
+        return this;
+    }
 
 }

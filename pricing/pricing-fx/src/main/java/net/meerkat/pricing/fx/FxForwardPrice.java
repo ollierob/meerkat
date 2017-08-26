@@ -16,6 +16,11 @@ public interface FxForwardPrice<C extends CurrencyId> extends FxPrice<C> {
     @Nonnull
     Number offerForwardPoints();
 
+    @Override
+    default EvaluatedFxForwardPrice<C> evaluate() {
+        throw new UnsupportedOperationException();
+    }
+
     interface Shiftable<C extends CurrencyId> extends FxForwardPrice<C>, FxPrice.Shiftable<C> {
 
     }

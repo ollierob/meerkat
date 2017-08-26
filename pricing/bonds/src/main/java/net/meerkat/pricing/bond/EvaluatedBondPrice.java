@@ -1,7 +1,5 @@
 package net.meerkat.pricing.bond;
 
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.ollie.goat.numeric.percentage.Percentage;
@@ -13,21 +11,10 @@ import net.ollie.goat.numeric.percentage.Percentage;
 public class EvaluatedBondPrice<C extends CurrencyId>
         implements BondPrice<C> {
 
-    private static final long serialVersionUID = 1L;
-
-    @XmlElementRef(name = "par")
-    private Money<C> par;
-
-    private Money<C> clean;
-
-    private Money<C> dirty;
-
-    @XmlElementRef(name = "yield_to_maturity")
-    private Percentage yieldToMaturity;
-
-    @Deprecated
-    protected EvaluatedBondPrice() {
-    }
+    private final Money<C> par;
+    private final Money<C> clean;
+    private final Money<C> dirty;
+    private final Percentage yieldToMaturity;
 
     public EvaluatedBondPrice(
             final Money<C> clean,
@@ -52,7 +39,7 @@ public class EvaluatedBondPrice<C extends CurrencyId>
 
     @Override
     public C currencyId() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return par.currencyId();
     }
 
     @Override
@@ -63,6 +50,12 @@ public class EvaluatedBondPrice<C extends CurrencyId>
     @Override
     public Percentage yieldToMaturity() {
         return yieldToMaturity;
+    }
+
+    @Override
+    @Deprecated
+    public EvaluatedBondPrice<C> evaluate() {
+        return this;
     }
 
 }

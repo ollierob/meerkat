@@ -7,8 +7,6 @@ import java.util.function.BiFunction;
 import javax.annotation.Nonnull;
 
 import net.meerkat.calculate.fx.ExchangeRatesProvider;
-import net.meerkat.pricing.shifts.ExchangeRateShifts.ExchangeRateShifter;
-import net.meerkat.pricing.shifts.InterestRateShifts.InterestRateShifter;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.coupon.FixedCoupon;
@@ -17,6 +15,8 @@ import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
+import net.meerkat.pricing.shifts.ExchangeRateShifts.ExchangeRateShifter;
+import net.meerkat.pricing.shifts.InterestRateShifts.InterestRateShifter;
 import net.ollie.goat.collection.list.Lists;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
@@ -113,7 +113,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
             final List<FixedCoupon<?>> coupons = bond.coupons().between(start, end);
             return Lists.lazilyComputed(coupons.size(), index -> {
                 final FixedCoupon<?> coupon = coupons.get(index);
-                final Money<C> couponAmount = PerpetualBondPrice.this.shift(coupon.amount(), shifts, currency, fxRates);
+                final Money<C> couponAmount = this.shift(coupon.amount(), shifts, currency, fxRates);
                 final Money<C> discountedAmount = discountRate.discount(couponAmount, date, coupon.date(), interestRateInterpolator);
                 return CashPayment.of(coupon.date(), discountedAmount);
             });

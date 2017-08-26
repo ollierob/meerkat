@@ -66,7 +66,12 @@ public interface BondPrice<C extends CurrencyId>
     }
 
     @Override
-    public default ExplanationBuilder explain() {
+    default EvaluatedBondPrice<C> evaluate() {
+        return new EvaluatedBondPrice<>(this.clean(), this.dirty(), this.par(), this.yieldToMaturity());
+    }
+
+    @Override
+    default ExplanationBuilder explain() {
         return this.explanationBuilder()
                 .put("clean", this.clean())
                 .put("dirty", this.dirty())

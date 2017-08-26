@@ -1,22 +1,21 @@
 package net.meerkat.calculate.price.moneymarket;
 
-import javax.annotation.Nonnull;
-
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.money.price.Price;
 import net.meerkat.pricing.ShiftablePrice;
 import net.meerkat.pricing.shifts.SecurityShifts;
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.money.Money;
-import net.meerkat.money.price.Price;
 
 /**
  *
  * @author ollie
  */
 public interface RepoPrice<C extends CurrencyId>
-        extends Price<C> {
+        extends Price.Valued<C> {
 
-    @Nonnull
-    Money<C> price();
+    @Override
+    default EvaluatedRepoPrice<C> evaluate() {
+        return new EvaluatedRepoPrice<>(this.value());
+    }
 
     interface Shiftable<C extends CurrencyId>
             extends RepoPrice<C>, ShiftablePrice<C> {

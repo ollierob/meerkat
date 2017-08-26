@@ -16,6 +16,9 @@ public interface Price<C extends CurrencyId> extends HasCurrencyId, Explainable 
     @Override
     C currencyId();
 
+    @Nonnull
+    Price<C> evaluate();
+
     interface Valued<C extends CurrencyId> extends Price<C> {
 
         @Nonnull
