@@ -10,7 +10,8 @@ public interface MoneyFormat {
     @Nonnull
     String toString(@Nonnull Money<?> money);
 
-    MoneyFormat SYMBOL_AMOUNT = money -> money.currencyId().uniqueSymbol() + " " + money.amount();
+    MoneyFormat PER_CURRENCY = money -> money.currencyId().format().toString(money);
+    MoneyFormat SYMBOL_AMOUNT = money -> money.currencyId().uniqueSymbol() + ' ' + money.amount();
     MoneyFormat AMOUNT_SYMBOL = money -> money.amount() + " " + money.currencyId().uniqueSymbol();
     MoneyFormat CURRENCY_AMOUNT = money -> money.currencyId() + " " + money.amount();
     MoneyFormat AMOUNT_CURRENCY = money -> money.amount() + " " + money.currencyId();

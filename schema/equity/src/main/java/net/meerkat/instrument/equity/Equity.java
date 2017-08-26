@@ -21,7 +21,7 @@ public interface Equity extends InstrumentDefinition, Security {
 
     interface Handler<R> extends InstrumentDefinition.Handler<R> {
 
-        R handle(Stock stock);
+        R handle(CommonStock stock);
 
     }
 

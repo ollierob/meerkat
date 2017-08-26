@@ -105,4 +105,5 @@ public class BigDecimalMoney<C extends CurrencyId>
         return Money.hashCode(this);
     }
 
+
 }

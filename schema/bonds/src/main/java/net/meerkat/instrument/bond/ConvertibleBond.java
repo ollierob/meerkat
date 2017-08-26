@@ -12,7 +12,7 @@ import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.ConvertibleBondDates;
-import net.meerkat.instrument.equity.Stock;
+import net.meerkat.instrument.equity.CommonStock;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 
@@ -26,10 +26,10 @@ public class ConvertibleBond extends AbstractBond {
 
     private final ConvertibleBondDates dates;
     private final List<BondCoupon> coupons;
-    private final Stock stock;
+    private final CommonStock stock;
     private final BigDecimal conversionRatio;
 
-    public ConvertibleBond(ConvertibleBondDates dates, List<BondCoupon> coupons, Stock stock, BigDecimal conversionRatio, String name, InstrumentIds identifiers, Money<?> par, BondCall call, IssuerId issuer) {
+    public ConvertibleBond(ConvertibleBondDates dates, List<BondCoupon> coupons, CommonStock stock, BigDecimal conversionRatio, String name, InstrumentIds identifiers, Money<?> par, BondCall call, IssuerId issuer) {
         super(name, identifiers, par, call, issuer);
         this.dates = dates;
         this.coupons = coupons;

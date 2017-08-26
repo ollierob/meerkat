@@ -4,7 +4,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.option.AbstractOption;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
 import net.meerkat.instrument.equity.EquityDerivative;
-import net.meerkat.instrument.equity.Stock;
+import net.meerkat.instrument.equity.CommonStock;
 import net.meerkat.issue.Issue;
 import net.meerkat.money.Money;
 
@@ -13,20 +13,20 @@ import net.meerkat.money.Money;
  * @author ollie
  */
 public class Warrant
-        extends AbstractOption<Stock>
-        implements EquityDerivative<Stock> {
+        extends AbstractOption<CommonStock>
+        implements EquityDerivative<CommonStock> {
 
     private static final long serialVersionUID = 1L;
 
-    private final Stock underlying;
+    private final CommonStock underlying;
 
-    public Warrant(final String name, InstrumentIds identifiers, Issue issue, OptionExercise exercise, Money<?> premium, Money<?> strike, Number contractMultiplier, final Stock underlying) {
+    public Warrant(final String name, InstrumentIds identifiers, Issue issue, OptionExercise exercise, Money<?> premium, Money<?> strike, Number contractMultiplier, final CommonStock underlying) {
         super(name, identifiers, issue, exercise, premium, strike, contractMultiplier);
         this.underlying = underlying;
     }
 
     @Override
-    public Stock underlying() {
+    public CommonStock underlying() {
         return underlying;
     }
 
