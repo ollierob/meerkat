@@ -2,21 +2,21 @@ package net.meerkat.identifier.currency.crypto;
 
 /**
  *
- * @author ollie
+ * @author Ollie
  */
-public class XBT implements CryptoCurrencyId {
+public class ETH implements CryptoCurrencyId {
 
-    XBT() {
+    ETH() {
     }
 
     @Override
     public String symbol() {
-        return "Ƀ";
+        return "Ξ";
     }
 
     @Override
     public String name() {
-        return "Bitcoin";
+        return "Ethereum";
     }
 
 }
