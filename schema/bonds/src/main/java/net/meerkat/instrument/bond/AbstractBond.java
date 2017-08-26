@@ -2,9 +2,6 @@ package net.meerkat.instrument.bond;
 
 import java.util.Optional;
 
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlSeeAlso;
-
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.bond.call.BondCall;

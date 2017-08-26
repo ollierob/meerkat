@@ -3,24 +3,15 @@ package net.meerkat.instrument.bond.dates;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import net.meerkat.instrument.dates.Termed;
 
 /**
  *
  * @author ollie
  */
-@XmlRootElement
 public class MaturingBondDates extends IssuedBondDates implements Termed {
 
-    @XmlAttribute(name = "matures")
-    private LocalDate matures;
-
-    @Deprecated
-    MaturingBondDates() {
-    }
+    private final LocalDate matures;
 
     public MaturingBondDates(final LocalDate issued, final LocalDate matures) {
         super(issued);

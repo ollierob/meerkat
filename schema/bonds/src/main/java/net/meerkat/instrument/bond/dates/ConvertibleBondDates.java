@@ -2,20 +2,13 @@ package net.meerkat.instrument.bond.dates;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 /**
  *
  * @author ollie
  */
 public class ConvertibleBondDates extends MaturingBondDates {
 
-    @XmlAttribute(name = "final_conversion")
-    private LocalDate finalConversion;
-
-    @Deprecated
-    ConvertibleBondDates() {
-    }
+    private final LocalDate finalConversion;
 
     public ConvertibleBondDates(
             final LocalDate issued,

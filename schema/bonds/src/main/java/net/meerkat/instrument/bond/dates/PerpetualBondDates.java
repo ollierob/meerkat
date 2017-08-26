@@ -3,18 +3,11 @@ package net.meerkat.instrument.bond.dates;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  *
  * @author ollie
  */
-@XmlRootElement
 public class PerpetualBondDates extends IssuedBondDates {
-
-    @Deprecated
-    PerpetualBondDates() {
-    }
 
     public PerpetualBondDates(final LocalDate issued) {
         super(issued);
