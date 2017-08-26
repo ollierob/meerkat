@@ -6,7 +6,7 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
 /**
  *
@@ -48,7 +48,7 @@ public interface TwoWayPrice<C extends CurrencyId> extends Price<C> {
         throw new UnsupportedOperationException();
     }
 
-    static <C extends CurrencyId> TwoWayPrice<C> of(final C currency, final DecimalFraction bid, final DecimalFraction offer) {
+    static <C extends CurrencyId> TwoWayPrice<C> of(final C currency, final BigDecimalFraction bid, final BigDecimalFraction offer) {
         return new DecimalTwoWayPrice<>(currency, bid, offer);
     }
 

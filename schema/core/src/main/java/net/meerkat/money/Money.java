@@ -13,7 +13,7 @@ import net.meerkat.utils.Require;
 import net.ollie.goat.numeric.BigDecimals;
 import net.ollie.goat.numeric.Numbers;
 import net.ollie.goat.numeric.Numeric;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
 /**
  *
@@ -36,7 +36,7 @@ public interface Money<C extends CurrencyId>
 
     @Override
     default Money<C> reciprocal() {
-        return Money.of(this.currencyId(), DecimalFraction.of(1, this.amount()));
+        return Money.of(this.currencyId(), BigDecimalFraction.of(1, this.amount()));
     }
 
     default <T extends CurrencyId> Money<T> convert(final ExchangeRate<C, T> rate) {
@@ -49,13 +49,13 @@ public interface Money<C extends CurrencyId>
     }
 
     @Nonnull
-    default DecimalMoney<C> toDecimal() {
-        return DecimalMoney.valueOf(this);
+    default BigDecimalMoney<C> toDecimal() {
+        return BigDecimalMoney.valueOf(this);
     }
 
     @Nonnull
     default Money<C> over(final Number number) {
-        return new FractionalMoney<>(this.currencyId(), DecimalFraction.of(this.amount(), number));
+        return new FractionalMoney<>(this.currencyId(), BigDecimalFraction.of(this.amount(), number));
     }
 
     default String toString(@Nonnull final MoneyFormat convention) {
@@ -68,24 +68,24 @@ public interface Money<C extends CurrencyId>
         return Numeric.Summable.super.compareTo(that);
     }
 
-    static <C extends CurrencyId> DecimalMoney<C> zero(final C currency) {
-        return new DecimalMoney<>(currency, BigDecimal.ZERO);
+    static <C extends CurrencyId> BigDecimalMoney<C> zero(final C currency) {
+        return new BigDecimalMoney<>(currency, BigDecimal.ZERO);
     }
 
-    static <C extends CurrencyId> DecimalMoney<C> of(final C currency, final long amount) {
+    static <C extends CurrencyId> BigDecimalMoney<C> of(final C currency, final long amount) {
         return amount == 0
                 ? zero(currency)
-                : new DecimalMoney<>(currency, BigDecimal.valueOf(amount));
+                : new BigDecimalMoney<>(currency, BigDecimal.valueOf(amount));
     }
 
-    static <C extends CurrencyId> DecimalMoney<C> of(final C currency, final BigDecimal amount) {
+    static <C extends CurrencyId> BigDecimalMoney<C> of(final C currency, final BigDecimal amount) {
         return amount.signum() == 0
                 ? zero(currency)
-                : new DecimalMoney<>(currency, amount);
+                : new BigDecimalMoney<>(currency, amount);
 
     }
 
-    static <C extends CurrencyId> DecimalMoney<C> of(final C currency, final Number amount) {
+    static <C extends CurrencyId> BigDecimalMoney<C> of(final C currency, final Number amount) {
         return of(currency, BigDecimals.toBigDecimal(amount));
     }
 

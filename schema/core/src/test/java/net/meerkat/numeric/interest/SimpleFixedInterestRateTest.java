@@ -3,10 +3,10 @@ package net.meerkat.numeric.interest;
 import java.math.BigDecimal;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.money.DecimalMoney;
+import net.meerkat.money.BigDecimalMoney;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
-import net.ollie.goat.numeric.percentage.DecimalPercentage;
+import net.ollie.goat.numeric.percentage.BigDecimalPercentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.FractionalYears;
 
@@ -41,24 +41,24 @@ public class SimpleFixedInterestRateTest {
     public void testAccrue() {
 
         final SimpleFixedInterestRate rate = new SimpleFixedInterestRate(
-                new DecimalPercentage(8),
+                new BigDecimalPercentage(8),
                 mockFactor);
 
-        final Money money = new DecimalMoney(mockCurrency, BigDecimal.ONE);
+        final Money money = new BigDecimalMoney(mockCurrency, BigDecimal.ONE);
 
         {
             final Money accrued = rate.accrue(money, FractionalYears.ONE);
-            assertThat(accrued, is(new DecimalMoney(mockCurrency, new BigDecimal("1.08"))));
+            assertThat(accrued, is(new BigDecimalMoney(mockCurrency, new BigDecimal("1.08"))));
         }
 
         {
             final Money accrued = rate.accrue(money, FractionalYears.of(3, 2));
-            assertThat(accrued, is(new DecimalMoney(mockCurrency, new BigDecimal("1.12"))));
+            assertThat(accrued, is(new BigDecimalMoney(mockCurrency, new BigDecimal("1.12"))));
         }
 
         {
             final Money accrued = rate.accrue(money, FractionalYears.of(2, 1));
-            assertThat(accrued, is(new DecimalMoney(mockCurrency, new BigDecimal("1.16"))));
+            assertThat(accrued, is(new BigDecimalMoney(mockCurrency, new BigDecimal("1.16"))));
         }
 
     }

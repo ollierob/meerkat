@@ -11,7 +11,7 @@ import java.math.RoundingMode;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementRef;
 
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.meerkat.identifier.currency.CurrencyId;
 
 /**
@@ -27,17 +27,17 @@ public class FractionalMoney<C extends CurrencyId>
     private C currency;
 
     @XmlElement(name = "fraction")
-    private DecimalFraction fraction;
+    private BigDecimalFraction fraction;
 
     FractionalMoney() {
     }
 
-    public FractionalMoney(final C currency, final DecimalFraction fraction) {
+    public FractionalMoney(final C currency, final BigDecimalFraction fraction) {
         this.currency = currency;
         this.fraction = fraction;
     }
 
-    public FractionalMoney<C> with(final DecimalFraction fraction) {
+    public FractionalMoney<C> with(final BigDecimalFraction fraction) {
         return new FractionalMoney<>(currency, fraction);
     }
 
@@ -47,7 +47,7 @@ public class FractionalMoney<C extends CurrencyId>
     }
 
     @Override
-    public DecimalFraction amount() {
+    public BigDecimalFraction amount() {
         return fraction;
     }
 
@@ -86,7 +86,7 @@ public class FractionalMoney<C extends CurrencyId>
     @Override
     public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
         currency = (C) in.readObject();
-        fraction = (DecimalFraction) in.readObject();
+        fraction = (BigDecimalFraction) in.readObject();
     }
 
 }

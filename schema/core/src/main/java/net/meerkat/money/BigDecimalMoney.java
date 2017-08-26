@@ -14,29 +14,29 @@ import net.ollie.goat.numeric.BigDecimals;
  *
  * @author Ollie
  */
-public class DecimalMoney<C extends CurrencyId>
+public class BigDecimalMoney<C extends CurrencyId>
         implements Money<C> {
 
     private static final long serialVersionUID = 1L;
 
-    public static <C extends CurrencyId> DecimalMoney<C> valueOf(final Money<C> money) {
-        return money instanceof DecimalMoney
-                ? (DecimalMoney<C>) money
+    public static <C extends CurrencyId> BigDecimalMoney<C> valueOf(final Money<C> money) {
+        return money instanceof BigDecimalMoney
+                ? (BigDecimalMoney<C>) money
                 : valueOf(money.currencyId(), money.amount());
     }
 
-    public static <C extends CurrencyId> DecimalMoney<C> valueOf(final C currency, final Number amount) {
-        return new DecimalMoney<>(currency, BigDecimals.toBigDecimal(amount));
+    public static <C extends CurrencyId> BigDecimalMoney<C> valueOf(final C currency, final Number amount) {
+        return new BigDecimalMoney<>(currency, BigDecimals.toBigDecimal(amount));
     }
 
-    public static <C extends CurrencyId> DecimalMoney<C> valueOf(final C currency, final double amount) {
-        return new DecimalMoney<>(currency, BigDecimal.valueOf(amount));
+    public static <C extends CurrencyId> BigDecimalMoney<C> valueOf(final C currency, final double amount) {
+        return new BigDecimalMoney<>(currency, BigDecimal.valueOf(amount));
     }
 
     private final C currency;
     private final BigDecimal amount;
 
-    public DecimalMoney(@Nonnull final C currency, @Nonnull final BigDecimal amount) {
+    public BigDecimalMoney(@Nonnull final C currency, @Nonnull final BigDecimal amount) {
         this.currency = Objects.requireNonNull(currency, "currency");
         this.amount = Objects.requireNonNull(amount, "amount");
     }
@@ -60,12 +60,12 @@ public class DecimalMoney<C extends CurrencyId>
     public Money<C> plus(final Money<C> that) {
         return that.isZero()
                 ? this
-                : new DecimalMoney<>(currency, amount.add(that.decimalValue()));
+                : new BigDecimalMoney<>(currency, amount.add(that.decimalValue()));
     }
 
     @Override
-    public DecimalMoney<C> times(final Number n) {
-        return new DecimalMoney<>(currency, amount.multiply(BigDecimals.toBigDecimal(n)));
+    public BigDecimalMoney<C> times(final Number n) {
+        return new BigDecimalMoney<>(currency, amount.multiply(BigDecimals.toBigDecimal(n)));
     }
 
     @Override
@@ -75,8 +75,8 @@ public class DecimalMoney<C extends CurrencyId>
     }
 
     @Override
-    public DecimalMoney<C> negate() {
-        return new DecimalMoney<>(currency, amount.negate());
+    public BigDecimalMoney<C> negate() {
+        return new BigDecimalMoney<>(currency, amount.negate());
     }
 
     @Override
@@ -85,7 +85,7 @@ public class DecimalMoney<C extends CurrencyId>
     }
 
     @Override
-    public DecimalMoney<C> toDecimal() {
+    public BigDecimalMoney<C> toDecimal() {
         return this;
     }
 

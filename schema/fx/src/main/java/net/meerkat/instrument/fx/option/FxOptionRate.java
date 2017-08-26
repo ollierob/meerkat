@@ -9,7 +9,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
 /**
  *
@@ -63,12 +63,12 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
     }
 
     @Override
-    public DecimalFraction bidRate() {
-        return DecimalFraction.of(put.amount(), call.amount());
+    public BigDecimalFraction bidRate() {
+        return BigDecimalFraction.of(put.amount(), call.amount());
     }
 
     @Override
-    public DecimalFraction offerRate() {
+    public BigDecimalFraction offerRate() {
         throw new UnsupportedOperationException("Not supported yet."); //TODO
     }
 

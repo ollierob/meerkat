@@ -5,7 +5,7 @@ import java.time.Period;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.Periods;
 
@@ -22,7 +22,7 @@ public class LinearYieldCurveInterpolator extends LinearDecimalInterpolator<Peri
     }
 
     @Override
-    public Percentage multiply(final Percentage value, final DecimalFraction multiplier) {
+    public Percentage multiply(final Percentage value, final BigDecimalFraction multiplier) {
         return value.times(multiplier);
     }
 

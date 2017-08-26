@@ -1,7 +1,7 @@
 package net.meerkat.money.fx;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
 /**
  *
@@ -29,12 +29,12 @@ public class TriangulatedExchangeRate<F extends CurrencyId, X extends CurrencyId
     }
 
     @Override
-    public DecimalFraction bidRate() {
+    public BigDecimalFraction bidRate() {
         return first.bidRate().times(second.bidRate());
     }
 
     @Override
-    public DecimalFraction offerRate() {
+    public BigDecimalFraction offerRate() {
         return first.offerRate().times(second.offerRate());
     }
 

@@ -7,7 +7,7 @@ import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.TwoWayPrice;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
 /**
  *
@@ -23,16 +23,16 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
     T to();
 
     @Nonnull
-    DecimalFraction bidRate();
+    BigDecimalFraction bidRate();
 
     @Nonnull
-    DecimalFraction offerRate();
+    BigDecimalFraction offerRate();
 
-    default DecimalFraction spread() {
+    default BigDecimalFraction spread() {
         return this.offerRate().minus(this.bidRate());
     }
 
-    default DecimalFraction midRate() {
+    default BigDecimalFraction midRate() {
         return this.bidRate().plus(this.offerRate()).over(2);
     }
 
@@ -73,7 +73,7 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
     }
 
     static <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> between(final F from, final T to, final Number midRate) {
-        return ReferenceExchangeRate.ofMid(from, to, DecimalFraction.of(midRate));
+        return ReferenceExchangeRate.ofMid(from, to, BigDecimalFraction.of(midRate));
     }
 
 }

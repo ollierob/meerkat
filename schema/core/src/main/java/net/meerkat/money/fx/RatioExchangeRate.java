@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
 /**
  *
@@ -48,18 +48,18 @@ public class RatioExchangeRate<F extends CurrencyId, T extends CurrencyId>
     }
 
     @Override
-    public DecimalFraction bidRate() {
+    public BigDecimalFraction bidRate() {
         return this.midRate();
     }
 
     @Override
-    public DecimalFraction offerRate() {
+    public BigDecimalFraction offerRate() {
         return this.midRate();
     }
 
     @Override
-    public DecimalFraction midRate() {
-        return DecimalFraction.of(to.amount(), from.amount());
+    public BigDecimalFraction midRate() {
+        return BigDecimalFraction.of(to.amount(), from.amount());
     }
 
     @Override

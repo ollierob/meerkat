@@ -2,7 +2,7 @@ package net.meerkat.money.interest.interpolation;
 
 import java.math.BigDecimal;
 
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.interpolation.Interpolator;
 
 /**
@@ -13,7 +13,7 @@ public interface DecimalInterpolator<K, V> extends Interpolator<K, V> {
 
     BigDecimal numerical(K key);
 
-    V multiply(V value, DecimalFraction multiplier);
+    V multiply(V value, BigDecimalFraction multiplier);
 
     V add(V left, V right);
 
@@ -22,7 +22,7 @@ public interface DecimalInterpolator<K, V> extends Interpolator<K, V> {
     }
 
     default V negate(final V value) {
-        return this.multiply(value, DecimalFraction.MINUS_ONE);
+        return this.multiply(value, BigDecimalFraction.MINUS_ONE);
     }
 
 }

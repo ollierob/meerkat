@@ -2,7 +2,7 @@ package net.meerkat.money.price;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
 /**
  *
@@ -11,12 +11,12 @@ import net.ollie.goat.numeric.fraction.DecimalFraction;
 public class DecimalTwoWayPrice<C extends CurrencyId> implements TwoWayPrice<C> {
 
     private final C currency;
-    private final DecimalFraction bid;
-    private final DecimalFraction offer;
+    private final BigDecimalFraction bid;
+    private final BigDecimalFraction offer;
     private transient Money<C> bidMoney;
     private transient Money<C> offerMoney;
 
-    public DecimalTwoWayPrice(final C currency, final DecimalFraction bid, final DecimalFraction offer) {
+    public DecimalTwoWayPrice(final C currency, final BigDecimalFraction bid, final BigDecimalFraction offer) {
         this.currency = currency;
         this.bid = bid;
         this.offer = offer;

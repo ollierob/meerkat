@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import javax.xml.bind.annotation.XmlTransient;
 
-import net.ollie.goat.numeric.fraction.DecimalFraction;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.interpolation.FirstOrderInterpolator;
 
 /**
@@ -20,7 +20,7 @@ public abstract class LinearDecimalInterpolator<K, V>
         final BigDecimal x = this.numerical(k);
         final BigDecimal x0 = this.numerical(k0);
         final BigDecimal x1 = this.numerical(k1);
-        final V right = this.multiply(this.subtract(y1, y0), DecimalFraction.of(x.subtract(x0), x1.subtract(x0)));
+        final V right = this.multiply(this.subtract(y1, y0), BigDecimalFraction.of(x.subtract(x0), x1.subtract(x0)));
         return this.add(y0, right);
     }
 
