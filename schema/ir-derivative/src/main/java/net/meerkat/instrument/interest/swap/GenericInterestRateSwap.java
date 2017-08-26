@@ -1,14 +1,9 @@
 package net.meerkat.instrument.interest.swap;
 
-import java.util.List;
-
-import javax.xml.bind.annotation.XmlElementRef;
-
+import net.coljate.list.List;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.issuer.IssuerId;
-import net.meerkat.utils.collections.sequence.FiniteSequence;
-import net.meerkat.utils.collections.sequence.Sequence;
 
 /**
  *
@@ -20,11 +15,8 @@ public class GenericInterestRateSwap
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "leg")
-    private List<InterestRateSwapLeg<?, ?>> legs;
-
-    @XmlElementRef(name = "issuer")
-    private IssuerId issuerId;
+    private final List<InterestRateSwapLeg<?, ?>> legs;
+    private final IssuerId issuerId;
 
     public GenericInterestRateSwap(
             final String name,
@@ -37,8 +29,8 @@ public class GenericInterestRateSwap
     }
 
     @Override
-    public FiniteSequence<InterestRateSwapLeg<?, ?>> legs() {
-        return Sequence.of(legs);
+    public List<InterestRateSwapLeg<?, ?>> legs() {
+        return legs;
     }
 
     @Override

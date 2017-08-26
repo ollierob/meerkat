@@ -1,8 +1,9 @@
 package net.meerkat.instrument.bond;
 
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.function.Predicate;
 
+import net.coljate.list.List;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
@@ -13,24 +14,26 @@ import net.meerkat.instrument.bond.dates.PerpetualBondDates;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *
  * @author ollie
  */
-public class PerpetualBond extends AbstractBond {
+public class PerpetualBond<C extends CurrencyId> extends AbstractBond {
 
     private static final long serialVersionUID = 1L;
 
     private final int yearlyFrequency;
-    private final Money<?> couponAmount;
+    private final Money<C> couponAmount;
     private final FixedInterestRate couponRate;
     private final PerpetualBondDates dates;
 
-    private transient PerpetualBondCoupons<?> coupons;
+    private transient PerpetualBondCoupons coupons;
 
-    public PerpetualBond(int yearlyFrequency, Money<?> couponAmount, FixedInterestRate couponRate, PerpetualBondDates dates, String name, InstrumentIds identifiers, Money<?> par, BondCall call, IssuerId issuer) {
+    public PerpetualBond(
+            final String name, InstrumentIds identifiers, Money<?> par, BondCall call, IssuerId issuer,
+            final int yearlyFrequency,
+            final Money<C> couponAmount, FixedInterestRate couponRate, PerpetualBondDates dates) {
         super(name, identifiers, par, call, issuer);
         this.yearlyFrequency = yearlyFrequency;
         this.couponAmount = couponAmount;
@@ -39,8 +42,8 @@ public class PerpetualBond extends AbstractBond {
     }
 
     @Override
-    public PerpetualBondCoupons<?> coupons() {
-        return coupons == null ? (coupons = new PerpetualBondCoupons<>(couponAmount)) : coupons;
+    public PerpetualBondCoupons coupons() {
+        return coupons == null ? (coupons = new PerpetualBondCoupons(couponAmount)) : coupons;
     }
 
     @Override
@@ -59,7 +62,7 @@ public class PerpetualBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    public class PerpetualBondCoupons<C extends CurrencyId>
+    public class PerpetualBondCoupons
             implements BondCoupons<FixedCoupon<?>>, HasCurrencyId {
 
         private final Money<C> coupon;
@@ -72,7 +75,7 @@ public class PerpetualBond extends AbstractBond {
             return couponRate;
         }
 
-        public Money<?> yearlyAmount() {
+        public Money<C> yearlyAmount() {
             return couponAmount;
         }
 
@@ -86,24 +89,9 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public FixedCoupon<?> first() {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
         @Deprecated
         public boolean isEmpty() {
             return false;
-        }
-
-        @Override
-        public PerpetualBondCoupons<C> onOrAfter(final LocalDate time) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public FiniteSequence<FixedCoupon<?>> between(LocalDate startInclusive, LocalDate endExclusive) {
-            throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
@@ -112,13 +100,38 @@ public class PerpetualBond extends AbstractBond {
         }
 
         @Override
-        public Optional<Long> count() {
-            return Optional.empty();
+        public C currencyId() {
+            return coupon.currencyId();
         }
 
         @Override
-        public C currencyId() {
-            return coupon.currencyId();
+        public BondCoupons<FixedCoupon<?>> filter(Predicate<? super FixedCoupon<?>> predicate) {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public boolean isFinite() {
+            return false;
+        }
+
+        @Override
+        public FixedCoupon<?> getIfPresent(final Object key) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public boolean contains(final Object object) {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public List<FixedCoupon<?>> between(LocalDate startInclusive, LocalDate endExclusive) {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public BondCoupons<FixedCoupon<?>> onOrAfter(LocalDate start) {
+            throw new UnsupportedOperationException(); //TODO
         }
 
     }

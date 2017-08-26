@@ -1,13 +1,12 @@
 package net.meerkat.pricing.bond;
 
 import java.time.LocalDate;
-import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.SortedMap;
 import java.util.TreeMap;
 import java.util.function.BiFunction;
-import java.util.stream.Collectors;
 
+import net.coljate.list.List;
 import net.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.FixedCouponBond;
@@ -119,7 +118,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
                     .entrySet()
                     .stream()
                     .map(entry -> CashPayment.of(entry.getKey(), entry.getValue()))
-                    .collect(Collectors.toList());
+                    .collect(List.collector());
         }
 
         @Override

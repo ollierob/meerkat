@@ -1,10 +1,12 @@
 package net.meerkat.instrument.bond;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.function.Predicate;
 
 import javax.annotation.Nonnull;
 
+import net.coljate.list.List;
+import net.coljate.list.ListIterator;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
@@ -88,18 +90,23 @@ public class FixedCouponBond
         }
 
         @Override
-        public FixedCoupon<C> get(final int index) {
-            return new FixedCoupon<>(couponDates.get(index), couponAmount, couponRate);
-        }
-
-        @Override
-        public int size() {
-            return couponDates.size();
-        }
-
-        @Override
         public C currencyId() {
             return couponAmount.currencyId();
+        }
+
+        @Override
+        public FixedCouponBondCoupons<C> filter(final Predicate<? super FixedCoupon<C>> predicate) {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public ListIterator<FixedCoupon<C>> iterator() {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public FixedCoupon<C> last() {
+            throw new UnsupportedOperationException(); //TODO
         }
 
     }

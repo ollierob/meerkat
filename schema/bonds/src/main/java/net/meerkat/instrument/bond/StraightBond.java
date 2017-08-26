@@ -1,10 +1,5 @@
 package net.meerkat.instrument.bond;
 
-import java.util.AbstractList;
-
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlSeeAlso;
-
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
@@ -48,9 +43,7 @@ public abstract class StraightBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    public abstract class StraightBondCoupons<C extends BondCoupon>
-            extends AbstractList<C>
-            implements BondCoupons.Finite<C> {
+    public abstract class StraightBondCoupons<C extends BondCoupon> implements BondCoupons.Finite<C> {
 
     }
 

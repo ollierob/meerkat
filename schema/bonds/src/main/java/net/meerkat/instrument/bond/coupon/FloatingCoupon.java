@@ -1,10 +1,9 @@
 package net.meerkat.instrument.bond.coupon;
 
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
 
+import net.coljate.collection.Collection;
+import net.coljate.set.Set;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.interest.HasInterestRateId;
 import net.meerkat.money.interest.InterestRate;
@@ -44,7 +43,7 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
     }
 
     public Collection<? extends RateFeature> features() {
-        return Collections.unmodifiableCollection(features);
+        return features;
     }
 
     @Override

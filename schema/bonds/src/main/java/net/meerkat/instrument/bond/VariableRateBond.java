@@ -1,7 +1,9 @@
 package net.meerkat.instrument.bond;
 
-import java.util.List;
+import java.util.function.Predicate;
 
+import net.coljate.list.List;
+import net.coljate.list.ListIterator;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
@@ -60,16 +62,6 @@ public class VariableRateBond extends StraightBond {
         }
 
         @Override
-        public BondCoupon get(final int index) {
-            return coupons.get(index);
-        }
-
-        @Override
-        public int size() {
-            return coupons == null ? 0 : coupons.size();
-        }
-
-        @Override
         public boolean isEmpty() {
             return coupons == null || coupons.isEmpty();
         }
@@ -77,6 +69,21 @@ public class VariableRateBond extends StraightBond {
         @Override
         public C currencyId() {
             return commonCurrency;
+        }
+
+        @Override
+        public VariableRateBondCoupons<C> filter(Predicate<? super BondCoupon> predicate) {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public ListIterator<BondCoupon> iterator() {
+            return coupons.iterator();
+        }
+
+        @Override
+        public BondCoupon last() {
+            return coupons.last();
         }
 
     }

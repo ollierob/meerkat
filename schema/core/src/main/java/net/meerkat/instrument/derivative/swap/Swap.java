@@ -2,8 +2,8 @@ package net.meerkat.instrument.derivative.swap;
 
 import javax.annotation.Nonnull;
 
+import net.coljate.list.List;
 import net.meerkat.instrument.Security;
-import net.meerkat.utils.collections.sequence.Sequence;
 
 /**
  *
@@ -12,10 +12,10 @@ import net.meerkat.utils.collections.sequence.Sequence;
 public interface Swap extends Security {
 
     @Nonnull
-    Sequence<? extends SwapLeg> legs();
+    List<? extends SwapLeg<?, ?>> legs();
 
     default boolean isBullet() {
-        return this.legs().count().map(i -> i == 1).orElse(false);
+        return this.legs().count() == 1;
     }
 
 }

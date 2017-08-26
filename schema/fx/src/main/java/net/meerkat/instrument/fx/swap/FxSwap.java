@@ -4,12 +4,12 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
+import net.coljate.list.List;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.swap.AbstractSwap;
 import net.meerkat.instrument.fx.FxDerivative;
 import net.meerkat.issue.Issue;
-import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *
@@ -46,8 +46,8 @@ public class FxSwap<P extends CurrencyId, R extends CurrencyId>
     }
 
     @Override
-    public FiniteSequence<FxSwapLeg<?, ?>> legs() {
-        return FiniteSequence.of(near, far);
+    public List<FxSwapLeg<?, ?>> legs() {
+        return List.of(near, far);
     }
 
     @Override

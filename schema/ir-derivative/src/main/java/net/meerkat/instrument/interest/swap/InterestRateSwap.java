@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.coljate.list.List;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
@@ -11,7 +12,6 @@ import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.instrument.dates.Issued;
 import net.meerkat.instrument.derivative.swap.Swap;
 import net.meerkat.instrument.interest.InterestRateDerivative;
-import net.meerkat.utils.collections.sequence.FiniteSequence;
 
 /**
  *
@@ -21,7 +21,7 @@ public interface InterestRateSwap
         extends InterestRateDerivative, Swap, Issued, HasCurrencyIds, Explainable {
 
     @Override
-    FiniteSequence<InterestRateSwapLeg<?, ?>> legs();
+    List<InterestRateSwapLeg<?, ?>> legs();
 
     @Override
     default CurrencyIds currencyIds() {

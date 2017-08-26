@@ -1,11 +1,11 @@
 package net.meerkat.pricing.bond;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
+import net.coljate.list.List;
 import net.meerkat.Explainable.ExplanationBuilder;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.cash.CashPayment;

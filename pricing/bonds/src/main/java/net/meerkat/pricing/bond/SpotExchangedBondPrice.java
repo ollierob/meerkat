@@ -1,13 +1,13 @@
 package net.meerkat.pricing.bond;
 
 import java.time.LocalDate;
-import java.util.List;
 
+import net.coljate.list.List;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.instrument.cash.CashPayment;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

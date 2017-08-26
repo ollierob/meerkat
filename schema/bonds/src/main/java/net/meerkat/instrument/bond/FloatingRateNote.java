@@ -1,9 +1,11 @@
 package net.meerkat.instrument.bond;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
+import java.util.function.Predicate;
 
+import net.coljate.list.List;
+import net.coljate.list.ListIterator;
+import net.coljate.set.Set;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
@@ -29,7 +31,9 @@ public class FloatingRateNote extends StraightBond {
     private final List<LocalDate> couponDates;
     private final Set<? extends RateFeature> features;
 
-    public FloatingRateNote(CurrencyId couponCurrency, Percentage spread, InterestRateId referenceRate, List<LocalDate> couponDates, Set<? extends RateFeature> features, String name, InstrumentIds identifiers, Money<?> par, MaturingBondDates dates, BondCall call, IssuerId issuer) {
+    public FloatingRateNote(
+            final String name, InstrumentIds identifiers, Money<?> par, MaturingBondDates dates, BondCall call, IssuerId issuer,
+            CurrencyId couponCurrency, Percentage spread, InterestRateId referenceRate, List<LocalDate> couponDates, Set<? extends RateFeature> features) {
         super(name, identifiers, par, dates, call, issuer);
         this.couponCurrency = couponCurrency;
         this.spread = spread;
@@ -58,16 +62,6 @@ public class FloatingRateNote extends StraightBond {
         }
 
         @Override
-        public FloatingCoupon get(final int index) {
-            return new FloatingCoupon(currency, couponDates.get(index), spread, referenceRate, features);
-        }
-
-        @Override
-        public int size() {
-            return couponDates.size();
-        }
-
-        @Override
         public boolean isEmpty() {
             return couponDates.isEmpty();
         }
@@ -75,6 +69,21 @@ public class FloatingRateNote extends StraightBond {
         @Override
         public C currencyId() {
             return currency;
+        }
+
+        @Override
+        public FloatingRateNoteCoupons<C> filter(final Predicate<? super FloatingCoupon> predicate) {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public ListIterator<FloatingCoupon> iterator() {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public FloatingCoupon last() {
+            return new FloatingCoupon(currency, couponDates.last(), spread, referenceRate, features);
         }
 
     }

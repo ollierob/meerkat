@@ -1,11 +1,12 @@
 package net.meerkat.instrument.bond;
 
 import java.math.BigDecimal;
-import java.util.AbstractList;
-import java.util.List;
+import java.util.function.Predicate;
 
 import javax.annotation.Nonnull;
 
+import net.coljate.list.List;
+import net.coljate.list.ListIterator;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
@@ -29,7 +30,9 @@ public class ConvertibleBond extends AbstractBond {
     private final CommonStock stock;
     private final BigDecimal conversionRatio;
 
-    public ConvertibleBond(ConvertibleBondDates dates, List<BondCoupon> coupons, CommonStock stock, BigDecimal conversionRatio, String name, InstrumentIds identifiers, Money<?> par, BondCall call, IssuerId issuer) {
+    public ConvertibleBond(
+            final String name, InstrumentIds identifiers, Money<?> par, BondCall call, IssuerId issuer,
+            final ConvertibleBondDates dates, List<BondCoupon> coupons, CommonStock stock, BigDecimal conversionRatio) {
         super(name, identifiers, par, call, issuer);
         this.dates = dates;
         this.coupons = coupons;
@@ -44,7 +47,7 @@ public class ConvertibleBond extends AbstractBond {
 
     @Override
     public ConvertibleBondCoupons coupons() {
-        return new ConvertibleBondCoupons();
+        return new ConvertibleBondCoupons(coupons);
     }
 
     @Nonnull
@@ -62,26 +65,33 @@ public class ConvertibleBond extends AbstractBond {
         return handler.handle(this);
     }
 
-    public class ConvertibleBondCoupons
-            extends AbstractList<BondCoupon>
+    public static class ConvertibleBondCoupons
             implements BondCoupons.Finite<BondCoupon> {
 
-        private ConvertibleBondCoupons() {
-        }
+        private final List<BondCoupon> coupons;
 
-        @Override
-        public BondCoupon get(int index) {
-            return coupons.get(index);
-        }
-
-        @Override
-        public int size() {
-            return coupons.size();
+        ConvertibleBondCoupons(final List<BondCoupon> coupons) {
+            this.coupons = coupons;
         }
 
         @Override
         public CurrencyId currencyId() {
-            return coupons.get(0).currencyId(); //FIXME
+            return coupons.first().currencyId();
+        }
+
+        @Override
+        public ConvertibleBondCoupons filter(final Predicate<? super BondCoupon> predicate) {
+            return new ConvertibleBondCoupons(coupons.filter(predicate));
+        }
+
+        @Override
+        public ListIterator<BondCoupon> iterator() {
+            return coupons.iterator();
+        }
+
+        @Override
+        public BondCoupon last() {
+            return coupons.last();
         }
 
     }
