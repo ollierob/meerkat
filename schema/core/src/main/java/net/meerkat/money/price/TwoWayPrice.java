@@ -21,21 +21,27 @@ public interface TwoWayPrice<C extends CurrencyId> extends Price<C> {
     @Nonnull
     Money<C> offer();
 
-    default Money<C> spread() {
-        return this.offer().minus(this.bid());
-    }
-
-    default Money<C> mid() {
-        return this.bid().plus(this.offer()).over(2);
-    }
-
     @Override
     default C currencyId() {
         return this.bid().currencyId();
     }
 
+    @Nonnull
+    default Money<C> spread() {
+        return this.offer().minus(this.bid());
+    }
+
+    default boolean isCrossed() {
+        return this.spread().isNegative();
+    }
+
     default boolean hasSpread() {
         return !this.mid().isZero();
+    }
+
+    @Nonnull
+    default Money<C> mid() {
+        return this.bid().plus(this.offer()).over(2);
     }
 
     @Override
@@ -44,6 +50,9 @@ public interface TwoWayPrice<C extends CurrencyId> extends Price<C> {
                 .put("bid", this.bid())
                 .put("offer", this.offer());
     }
+
+    @Override
+    TwoWayPrice<C> evaluate();
 
     static <C extends CurrencyId> TwoWayPrice<C> of(final Money<C> bid, final Money<C> offer) {
         throw new UnsupportedOperationException();
