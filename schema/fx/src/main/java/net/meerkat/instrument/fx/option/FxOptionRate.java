@@ -1,8 +1,6 @@
 package net.meerkat.instrument.fx.option;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
@@ -15,22 +13,14 @@ import net.ollie.goat.numeric.fraction.BigDecimalFraction;
  *
  * @author Ollie
  */
-@XmlRootElement
 public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
         extends NamedInstrument
         implements ExchangeRate<C, P> {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "call", required = true)
-    private Money<C> call;
-
-    @XmlElementRef(name = "put", required = true)
-    private Money<P> put;
-
-    @Deprecated
-    FxOptionRate() {
-    }
+    private final Money<C> call;
+    private final Money<P> put;
 
     public FxOptionRate(
             final String name,

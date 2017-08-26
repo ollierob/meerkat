@@ -1,27 +1,27 @@
 package net.meerkat.instrument.fx.option;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
+import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.option.AbstractOption;
+import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
 import net.meerkat.instrument.fx.FxDerivative;
+import net.meerkat.issue.Issue;
+import net.meerkat.money.Money;
 
 /**
  *
  * @author Ollie
  */
-@XmlRootElement
 public class FxOption
         extends AbstractOption<FxOptionRate<?, ?>>
         implements FxDerivative {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElement(name = "rate")
-    private FxOptionRate<?, ?> rate;
+    private final FxOptionRate<?, ?> rate;
 
-    @Deprecated
-    FxOption() {
+    public FxOption(final String name, InstrumentIds identifiers, Issue issue, OptionExercise exercise, Money<?> premium, Money<?> strike, Number contractMultiplier, final FxOptionRate<?, ?> rate) {
+        super(name, identifiers, issue, exercise, premium, strike, contractMultiplier);
+        this.rate = rate;
     }
 
     @Override

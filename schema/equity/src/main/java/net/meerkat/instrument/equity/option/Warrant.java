@@ -1,10 +1,12 @@
 package net.meerkat.instrument.equity.option;
 
-import javax.xml.bind.annotation.XmlElement;
-
+import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.option.AbstractOption;
+import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
 import net.meerkat.instrument.equity.EquityDerivative;
 import net.meerkat.instrument.equity.Stock;
+import net.meerkat.issue.Issue;
+import net.meerkat.money.Money;
 
 /**
  *
@@ -14,11 +16,13 @@ public class Warrant
         extends AbstractOption<Stock>
         implements EquityDerivative<Stock> {
 
-    @XmlElement(name = "underlying")
-    private Stock underlying;
+    private static final long serialVersionUID = 1L;
 
-    @Deprecated
-    Warrant() {
+    private final Stock underlying;
+
+    public Warrant(final String name, InstrumentIds identifiers, Issue issue, OptionExercise exercise, Money<?> premium, Money<?> strike, Number contractMultiplier, final Stock underlying) {
+        super(name, identifiers, issue, exercise, premium, strike, contractMultiplier);
+        this.underlying = underlying;
     }
 
     @Override

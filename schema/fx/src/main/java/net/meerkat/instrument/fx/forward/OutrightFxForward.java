@@ -2,10 +2,6 @@ package net.meerkat.instrument.fx.forward;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
@@ -19,25 +15,15 @@ import net.meerkat.utils.Require;
  *
  * @author Ollie
  */
-@XmlRootElement
 public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
         extends NamedInstrument
         implements FxForward<B, C> {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "base", required = true)
-    private Money<B> base;
-
-    @XmlElementRef(name = "counter", required = true)
-    private Money<C> counter;
-
-    @XmlElement(name = "settlementDate")
-    private LocalDate settlementDate;
-
-    @Deprecated
-    OutrightFxForward() {
-    }
+    private final Money<B> base;
+    private final Money<C> counter;
+    private final LocalDate settlementDate;
 
     public OutrightFxForward(
             final String name,
@@ -52,6 +38,7 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
         this.settlementDate = settlementDate;
     }
 
+    @Override
     public Money<B> baseAmount() {
         return base;
     }
@@ -61,6 +48,7 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
         return base.currencyId();
     }
 
+    @Override
     public Money<C> counterAmount() {
         return counter;
     }

@@ -1,9 +1,5 @@
 package net.meerkat.instrument.equity;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.issuer.IssuerId;
@@ -12,22 +8,14 @@ import net.meerkat.issuer.IssuerId;
  *
  * @author Ollie
  */
-@XmlRootElement
 public class Stock
         extends NamedInstrument
         implements Equity {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlAttribute(name = "preferred")
-    private boolean preferred;
-
-    @XmlElementRef(name = "issuer")
-    private IssuerId issuer;
-
-    @Deprecated
-    Stock() {
-    }
+    private final boolean preferred;
+    private final IssuerId issuer;
 
     public Stock(
             final String name,

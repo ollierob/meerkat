@@ -14,10 +14,6 @@ public abstract class AbstractSwap
 
     private static final long serialVersionUID = 1L;
 
-    @Deprecated
-    protected AbstractSwap() {
-    }
-
     protected AbstractSwap(final String name, final InstrumentIds identifiers, final Issue issue) {
         super(name, identifiers, issue);
     }

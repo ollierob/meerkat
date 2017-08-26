@@ -1,8 +1,5 @@
 package net.meerkat.instrument.derivative.option;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.IssuedSecurity;
@@ -20,23 +17,12 @@ public abstract class AbstractOption<S extends Instrument>
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "exercise")
-    private OptionExercise exercise;
+    private final OptionExercise exercise;
+    private final Money<?> premium;
+    private final Money<?> strike;
+    private final Number contractMultiplier;
 
-    @XmlElement(name = "premium")
-    private Money<?> premium;
-
-    @XmlElement(name = "strike")
-    private Money<?> strike;
-
-    @XmlElementRef(name = "multiplier")
-    private Number contractMultiplier;
-
-    @Deprecated
-    protected AbstractOption() {
-    }
-
-    public AbstractOption(
+    protected AbstractOption(
             final String name,
             final InstrumentIds identifiers,
             final Issue issue,

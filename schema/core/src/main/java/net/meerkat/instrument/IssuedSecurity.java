@@ -1,7 +1,5 @@
 package net.meerkat.instrument;
 
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.issue.HasIssue;
 import net.meerkat.issue.Issue;
@@ -16,12 +14,7 @@ public class IssuedSecurity
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "issue")
-    private Issue issue;
-
-    @Deprecated
-    protected IssuedSecurity() {
-    }
+    private final Issue issue;
 
     public IssuedSecurity(final String name, final InstrumentIds identifiers, final Issue issue) {
         super(name, identifiers);

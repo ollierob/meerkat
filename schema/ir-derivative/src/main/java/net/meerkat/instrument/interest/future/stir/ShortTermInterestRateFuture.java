@@ -1,10 +1,10 @@
 package net.meerkat.instrument.interest.future.stir;
 
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
+import net.meerkat.issue.Issue;
 import net.meerkat.money.Money;
 import net.ollie.goat.temporal.date.interim.Interim;
 
@@ -18,11 +18,14 @@ public class ShortTermInterestRateFuture<C extends CurrencyId>
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElementRef(name = "deliveryDates")
-    private Interim deliveryDates;
+    private final Interim deliveryDates;
+    private final ShortTermInterestRateFutureContract<C> contract;
 
-    @XmlElementRef(name = "contract")
-    private ShortTermInterestRateFutureContract<C> contract;
+    public ShortTermInterestRateFuture(final String name, InstrumentIds identifiers, Issue issue, Interim deliveryDates, ShortTermInterestRateFutureContract<C> contract) {
+        super(name, identifiers, issue);
+        this.deliveryDates = deliveryDates;
+        this.contract = contract;
+    }
 
     @Override
     public Money<C> notional() {

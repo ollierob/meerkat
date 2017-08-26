@@ -3,8 +3,6 @@ package net.meerkat.instrument.fx.swap;
 import java.util.Objects;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
@@ -17,22 +15,14 @@ import net.meerkat.utils.collections.sequence.FiniteSequence;
  *
  * @author ollie
  */
-@XmlRootElement
 public class FxSwap<P extends CurrencyId, R extends CurrencyId>
         extends AbstractSwap
         implements FxDerivative {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlElement(name = "near", required = true)
-    private FxSwapLeg<P, R> near;
-
-    @XmlElement(name = "far", required = true)
-    private FxSwapLeg<R, P> far;
-
-    @Deprecated
-    FxSwap() {
-    }
+    private final FxSwapLeg<P, R> near;
+    private final FxSwapLeg<R, P> far;
 
     public FxSwap(
             final String name,
