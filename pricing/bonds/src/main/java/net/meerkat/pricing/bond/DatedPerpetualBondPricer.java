@@ -113,9 +113,9 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
             final List<FixedCoupon<?>> coupons = bond.coupons().between(start, end);
             return Lists.lazilyComputed(coupons.size(), index -> {
                 final FixedCoupon<?> coupon = coupons.get(index);
-                final Money<C> couponAmount = this.shift(coupon.amount(), shifts, currency, fxRates);
-                final Money<C> discountedAmount = discountRate.discount(couponAmount, date, coupon.date(), interestRateInterpolator);
-                return CashPayment.of(coupon.date(), discountedAmount);
+                final Money<C> couponAmount = this.shift(coupon.paymentAmount(), shifts, currency, fxRates);
+                final Money<C> discountedAmount = discountRate.discount(couponAmount, date, coupon.paymentDate(), interestRateInterpolator);
+                return CashPayment.of(coupon.paymentDate(), discountedAmount);
             });
         }
 
@@ -135,7 +135,7 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
         private Money<C> calculateAccuredInterest() {
             final FixedCoupon<?> priorCoupon = bond.coupons().prior(date);
             final Money<C> priorAmount = this.shiftedCoupon();
-            return this.shiftedDiscountRate().accrue(priorAmount, priorCoupon.date(), date, interestRateInterpolator).minus(priorAmount);
+            return this.shiftedDiscountRate().accrue(priorAmount, priorCoupon.paymentDate(), date, interestRateInterpolator).minus(priorAmount);
         }
 
         @Override

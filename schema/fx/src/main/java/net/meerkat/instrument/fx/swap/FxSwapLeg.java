@@ -106,12 +106,12 @@ public class FxSwapLeg<P extends CurrencyId, R extends CurrencyId>
         }
 
         @Override
-        public LocalDate date() {
+        public LocalDate paymentDate() {
             return valueDate;
         }
 
         @Override
-        public Money<C> amount() {
+        public Money<C> paymentAmount() {
             return amount;
         }
 

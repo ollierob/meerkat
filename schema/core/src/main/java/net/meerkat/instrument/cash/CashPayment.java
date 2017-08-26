@@ -18,19 +18,19 @@ import net.meerkat.money.fx.ExchangeRates;
 public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
 
     @Nonnull
-    LocalDate date();
+    LocalDate paymentDate();
 
     @Nonnull
-    Money<C> amount();
+    Money<C> paymentAmount();
 
     @Override
     default C currencyId() {
-        return this.amount().currencyId();
+        return this.paymentAmount().currencyId();
     }
 
     @CheckReturnValue
     default <T extends CurrencyId> CashPayment<T> convert(final ExchangeRate<C, T> exchangeRate) {
-        return of(this.date(), exchangeRate.convert(this.amount()));
+        return of(this.paymentDate(), exchangeRate.convert(this.paymentAmount()));
     }
 
     default <T extends CurrencyId> CashPayment<T> convert(final T toCurrency, final ExchangeRates exchangeRates) {

@@ -8,9 +8,11 @@ import javax.annotation.Nonnull;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.country.CountryIso;
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.instrument.Security;
 import net.meerkat.utils.algorithm.LuhnAlgorithm;
 
 /**
+ * ISIN is a {@link Security security} identifier, used mainly by bonds and equities.
  *
  * @author Ollie
  */

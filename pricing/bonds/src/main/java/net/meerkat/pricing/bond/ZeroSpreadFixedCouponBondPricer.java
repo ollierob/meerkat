@@ -99,7 +99,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
         @Override
         public Money<C> par() {
-            return this.parFxRate().convert(par.amount());
+            return this.parFxRate().convert(par.paymentAmount());
         }
 
         @Override
@@ -126,7 +126,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
         public Money<C> accruedInterest() {
             final FixedCoupon<Z> prior = coupons.prior(valuationDate);
             final Years years = prior.accrual().yearsBetween(valuationDate, valuationDate);
-            final Money<C> couponAmount = this.couponFxRate().convert(prior.amount());
+            final Money<C> couponAmount = this.couponFxRate().convert(prior.paymentAmount());
             return couponAmount.times(years.decimalValue());
         }
 
@@ -149,7 +149,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
         }
 
         LocalDate maturity() {
-            return par.date();
+            return par.paymentDate();
         }
 
         InterestRate discountRate() {
@@ -169,8 +169,8 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
             final List<FixedCoupon<Z>> coupons = this.coupons.between(startInclusive, endExclusive);
             final SortedMap<LocalDate, Money<C>> flow = new TreeMap<>();
             for (final FixedCoupon<Z> coupon : coupons) {
-                final Money<C> money = fxRate.convert(coupon.amount());
-                flow.compute(coupon.date(), (d, c) -> c == null ? money : money.plus(c));
+                final Money<C> money = fxRate.convert(coupon.paymentAmount());
+                flow.compute(coupon.paymentDate(), (d, c) -> c == null ? money : money.plus(c));
             }
             return flow;
         }

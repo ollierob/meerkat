@@ -36,7 +36,7 @@ public class FixedCoupon<C extends CurrencyId>
     }
 
     @Override
-    public Money<C> amount() {
+    public Money<C> paymentAmount() {
         return amount;
     }
 
@@ -48,11 +48,6 @@ public class FixedCoupon<C extends CurrencyId>
     @Override
     public Percentage spread() {
         return Percentage.zero();
-    }
-
-    @Override
-    public LocalDate date() {
-        return this.paymentDate();
     }
 
     @Override

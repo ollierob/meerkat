@@ -21,12 +21,12 @@ public class DefaultCashPayment<C extends CurrencyId> implements CashPayment<C>,
     }
 
     @Override
-    public LocalDate date() {
+    public LocalDate paymentDate() {
         return date;
     }
 
     @Override
-    public Money<C> amount() {
+    public Money<C> paymentAmount() {
         return amount;
     }
 
