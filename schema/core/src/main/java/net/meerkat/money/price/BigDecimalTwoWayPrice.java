@@ -1,22 +1,26 @@
 package net.meerkat.money.price;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
+import net.ollie.goat.numeric.BigDecimals;
 
 /**
  *
  * @author ollie
  */
-public class DecimalTwoWayPrice<C extends CurrencyId> implements TwoWayPrice<C> {
+public class BigDecimalTwoWayPrice<C extends CurrencyId> implements TwoWayPrice<C> {
 
     private final C currency;
-    private final BigDecimalFraction bid;
-    private final BigDecimalFraction offer;
+    private final BigDecimal bid;
+    private final BigDecimal offer;
+
     private transient Money<C> bidMoney;
     private transient Money<C> offerMoney;
 
-    public DecimalTwoWayPrice(final C currency, final BigDecimalFraction bid, final BigDecimalFraction offer) {
+    public BigDecimalTwoWayPrice(final C currency, final BigDecimal bid, final BigDecimal offer) {
         this.currency = currency;
         this.bid = bid;
         this.offer = offer;
@@ -38,12 +42,12 @@ public class DecimalTwoWayPrice<C extends CurrencyId> implements TwoWayPrice<C> 
 
     @Override
     public Money<C> mid() {
-        return Money.of(currency, bid.plus(offer).over(2));
+        return Money.of(currency, bid.add(offer).divide(BigDecimals.TWO, RoundingMode.HALF_UP));
     }
-    
+
     @Override
     @Deprecated
-    public DecimalTwoWayPrice<C> evaluate() {
+    public BigDecimalTwoWayPrice<C> evaluate() {
         return this;
     }
 
