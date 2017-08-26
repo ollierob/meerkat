@@ -35,7 +35,7 @@ public interface Money<C extends CurrencyId>
     Money<C> times(Number n);
 
     @Override
-    default Money<C> inverse() {
+    default Money<C> reciprocal() {
         return Money.of(this.currencyId(), DecimalFraction.of(1, this.amount()));
     }
 

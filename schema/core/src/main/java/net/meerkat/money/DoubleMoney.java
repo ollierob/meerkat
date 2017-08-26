@@ -57,7 +57,7 @@ public class DoubleMoney<C extends CurrencyId>
     }
     
     @Override
-    public DoubleMoney<C> inverse() {
+    public DoubleMoney<C> reciprocal() {
         return new DoubleMoney<>(1 / amount, currency);
     }
     

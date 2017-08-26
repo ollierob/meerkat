@@ -27,9 +27,9 @@ public class IsoTenorCache implements TenorProvider<NamedTenor> {
         });
     }
 
-    public static IsoTenorCache byName(final Map<String, Period> namedPeriods) {
-        return new IsoTenorCache(namedPeriods.transform(NamedTenor::new));
-    }
+//    public static IsoTenorCache byName(final Map<String, Period> namedPeriods) {
+//        return new IsoTenorCache(namedPeriods.transform(NamedTenor::new));
+//    }
 
     public IsoTenorCache(final Map<String, Period> namedPeriods) {
         namedPeriods.forEach((name, period) -> {

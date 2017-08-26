@@ -44,12 +44,12 @@ public class InverseExchangeRate<T extends CurrencyId, F extends CurrencyId>
 
     @Override
     public DecimalFraction bidRate() {
-        return inverse.bidRate().inverse();
+        return inverse.bidRate().reciprocal();
     }
 
     @Override
     public DecimalFraction offerRate() {
-        return inverse.offerRate().inverse();
+        return inverse.offerRate().reciprocal();
     }
 
     @Override
