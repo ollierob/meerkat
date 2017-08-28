@@ -14,7 +14,7 @@ public class PerpetualBondDates extends IssuedBondDates {
     }
 
     @Override
-    public Optional<LocalDate> maturity() {
+    public Optional<LocalDate> possibleMaturityDate() {
         return Optional.empty();
     }
 

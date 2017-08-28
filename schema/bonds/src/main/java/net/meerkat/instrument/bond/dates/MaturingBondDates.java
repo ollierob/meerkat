@@ -1,7 +1,6 @@
 package net.meerkat.instrument.bond.dates;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import net.meerkat.instrument.dates.Termed;
 
@@ -21,11 +20,6 @@ public class MaturingBondDates extends IssuedBondDates implements Termed {
     @Override
     public LocalDate maturityDate() {
         return matures;
-    }
-
-    @Override
-    public Optional<LocalDate> maturity() {
-        return Optional.of(matures);
     }
 
     @Override
