@@ -1,8 +1,6 @@
 package net.meerkat.identifier.instrument;
 
-import java.util.Collections;
-import java.util.Set;
-
+import net.coljate.set.Set;
 import net.meerkat.identifier.HasIds;
 
 /**
@@ -14,7 +12,7 @@ public class InstrumentIds extends HasIds<InstrumentId> implements HasInstrument
     private static final long serialVersionUID = 1L;
 
     public static InstrumentIds of(final InstrumentId id) {
-        return new InstrumentIds(Collections.singleton(id));
+        return new InstrumentIds(Set.of(id));
     }
 
     public InstrumentIds(final Set<InstrumentId> ids) {

@@ -1,10 +1,9 @@
 package net.meerkat.instrument.interest.swap;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 import net.coljate.list.List;
+import net.coljate.set.MutableSet;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
@@ -25,7 +24,7 @@ public interface InterestRateSwap
 
     @Override
     default CurrencyIds currencyIds() {
-        final Set<CurrencyId> currencies = new HashSet<>(2);
+        final MutableSet<CurrencyId> currencies = MutableSet.createHashSet(2);
         for (final InterestRateSwapLeg<?, ?> leg : this.legs()) {
             currencies.add(leg.payCurrency());
             currencies.add(leg.receiveCurrency());

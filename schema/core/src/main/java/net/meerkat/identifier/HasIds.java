@@ -1,36 +1,24 @@
 package net.meerkat.identifier;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlElement;
 
+import net.coljate.set.ImmutableSet;
+import net.coljate.set.Set;
 import net.meerkat.utils.Classes.Castable;
 
 /**
  *
  * @author ollie
  */
-public abstract class HasIds<T extends Castable> implements Externalizable {
+public abstract class HasIds<T extends Castable> {
 
-    private static final long serialVersionUID = 1L;
-
-    @XmlElement(name = "id")
-    private Set<T> ids;
-
-    @Deprecated
-    protected HasIds() {
-    }
+    private final ImmutableSet<T> ids;
 
     protected HasIds(final Set<T> ids) {
-        this.ids = ids;
+        this.ids = ids.immutableCopy();
     }
 
     public boolean contains(final T id) {
@@ -51,29 +39,12 @@ public abstract class HasIds<T extends Castable> implements Externalizable {
     }
 
     public int size() {
-        return ids.size();
+        return ids.count();
     }
 
     @Nonnull
     public void accept(final Consumer<? super T> consumer) {
         ids.forEach(consumer);
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeInt(ids.size());
-        for (final T id : ids) {
-            out.writeObject(id);
-        }
-    }
-
-    @Override
-    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
-        final int size = in.readInt();
-        ids = new HashSet<>(size);
-        for (int i = 0; i < size; i++) {
-            ids.add((T) in.readObject());
-        }
     }
 
 }
