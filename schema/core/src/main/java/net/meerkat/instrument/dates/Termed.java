@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 public interface Termed extends Issued, Matures {
 
     @Nonnull
-    default Period term() {
+    default Period issueToMaturity() {
         return Period.between(this.issueDate(), this.maturityDate());
     }
 

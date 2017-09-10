@@ -10,16 +10,16 @@ import net.meerkat.instrument.dates.Termed;
  */
 public class MaturingBondDates extends IssuedBondDates implements Termed {
 
-    private final LocalDate matures;
+    private final LocalDate maturityDate;
 
-    public MaturingBondDates(final LocalDate issued, final LocalDate matures) {
-        super(issued);
-        this.matures = matures;
+    public MaturingBondDates(final LocalDate issueDate, final LocalDate maturityDate) {
+        super(issueDate);
+        this.maturityDate = maturityDate;
     }
 
     @Override
     public LocalDate maturityDate() {
-        return matures;
+        return maturityDate;
     }
 
     @Override

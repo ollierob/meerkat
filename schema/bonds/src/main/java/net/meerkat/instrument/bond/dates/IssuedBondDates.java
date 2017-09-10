@@ -8,15 +8,15 @@ import java.time.LocalDate;
  */
 public abstract class IssuedBondDates implements BondDates {
 
-    private final LocalDate issued;
+    private final LocalDate issueDate;
 
-    protected IssuedBondDates(final LocalDate issued) {
-        this.issued = issued;
+    protected IssuedBondDates(final LocalDate issueDate) {
+        this.issueDate = issueDate;
     }
 
     @Override
     public LocalDate issueDate() {
-        return issued;
+        return issueDate;
     }
 
 }
