@@ -5,6 +5,7 @@ import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 
+import net.meerkat.utils.Require;
 import net.ollie.goat.temporal.date.HasDate;
 
 /**
@@ -30,9 +31,7 @@ public interface Calendar<D extends HasDate> {
 
     default D next(final LocalDate date, final int nth) throws InvalidDateException {
         if (nth == 0) {
-            if (!this.is(date)) {
-                throw new InvalidDateException(date);
-            }
+            Require.that(date, this::is, InvalidDateException::new);
             return this.next(date);
         }
         final Function<LocalDate, D> next = nth > 0 ? this::next : this::previous;

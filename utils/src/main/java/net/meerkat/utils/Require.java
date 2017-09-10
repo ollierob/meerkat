@@ -2,6 +2,8 @@ package net.meerkat.utils;
 
 import java.util.Objects;
 import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /**
@@ -24,21 +26,21 @@ public class Require {
     }
 
     public static boolean not(final boolean b, final Supplier<String> message) {
-        return that(!b, message);
+        return argument(!b, message);
     }
 
     public static boolean not(final boolean b, final String message) {
-        return that(!b, message);
+        return Require.argument(!b, message);
     }
 
-    public static boolean that(final boolean b, final String message) {
+    public static boolean argument(final boolean b, final String message) {
         if (!b) {
             throw new IllegalArgumentException(message);
         }
         return b;
     }
 
-    public static boolean that(final boolean b, final Supplier<String> message) {
+    public static boolean argument(final boolean b, final Supplier<String> message) {
         if (!b) {
             throw new IllegalArgumentException(message.get());
         }
@@ -50,13 +52,27 @@ public class Require {
     }
 
     public static void argumentsEqual(final Object left, final Object right, final Supplier<String> message) {
-        that(Objects.equals(left, right), message);
+        argument(Objects.equals(left, right), message);
     }
 
     public static void argumentsNotEqual(final Object left, final Object right, final BiFunction<Object, Object, String> message) {
         if (Objects.equals(left, right)) {
             throw new IllegalArgumentException(message.apply(left, right));
         }
+    }
+
+    public static <X extends Exception> boolean that(final boolean b, final Supplier<? extends X> exceptionSupplier) throws X {
+        if (!b) {
+            throw exceptionSupplier.get();
+        }
+        return b;
+    }
+
+    public static <T, X extends Exception> boolean that(final T object, final Predicate<? super T> predicate, final Function<? super T, ? extends X> makeException) throws X {
+        if (!predicate.test(object)) {
+            throw makeException.apply(object);
+        }
+        return true;
     }
 
 }
