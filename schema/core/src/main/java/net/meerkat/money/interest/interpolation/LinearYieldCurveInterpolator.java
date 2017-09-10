@@ -1,5 +1,7 @@
 package net.meerkat.money.interest.interpolation;
 
+import net.ollie.goat.numeric.interpolation.LinearDecimalInterpolator;
+
 import java.math.BigDecimal;
 import java.time.Period;
 
