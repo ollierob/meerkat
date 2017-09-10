@@ -43,7 +43,7 @@ public interface Calendar<D extends HasDate> {
     }
 
     default boolean contains(final LocalDate date) throws DateOutOfRangeException {
-        return this.next(date).date().compareTo(date) == 0;
+        return this.next(date).is(date);
     }
 
 }
