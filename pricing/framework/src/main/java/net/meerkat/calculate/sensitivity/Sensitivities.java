@@ -1,6 +1,5 @@
 package net.meerkat.calculate.sensitivity;
 
-import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.Nonnull;
@@ -12,9 +11,6 @@ import javax.annotation.Nonnull;
 public interface Sensitivities {
 
     @Nonnull
-    <T> Optional<T> get(Sensitivity<T> sensitivity);
-
-    @Nonnull
-    Map<Sensitivity<?>, ?> toMap();
+    <S extends Sensitivity<?>> Optional<S> get(Class<S> sensitivity);
 
 }

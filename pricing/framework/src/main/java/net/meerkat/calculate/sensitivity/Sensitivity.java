@@ -8,6 +8,8 @@ import net.meerkat.utils.HasName;
  */
 public interface Sensitivity<T> extends HasName {
 
+    T value();
+
     @Override
     default String name() {
         return this.getClass().getSimpleName();
