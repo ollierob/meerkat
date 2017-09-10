@@ -6,6 +6,6 @@ import net.meerkat.time.calendar.Calendar;
  *
  * @author ollie
  */
-public interface SettlementCalendar extends Calendar<SettlementDate> {
+public interface SettlementDateCalendar extends Calendar<SettlementDate> {
 
 }
