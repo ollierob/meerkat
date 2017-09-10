@@ -28,7 +28,13 @@ public interface Calendar<D extends HasDate> {
         return previous;
     }
 
-    default D next(final LocalDate date, final int nth) throws DateOutOfRangeException {
+    default D next(final LocalDate date, final int nth) throws InvalidDateException {
+        if (nth == 0) {
+            if (!this.is(date)) {
+                throw new InvalidDateException(date);
+            }
+            return this.next(date);
+        }
         final Function<LocalDate, D> next = nth > 0 ? this::next : this::previous;
         D d = next.apply(date);
         for (int i = 1; i < Math.abs(nth); i++) {
