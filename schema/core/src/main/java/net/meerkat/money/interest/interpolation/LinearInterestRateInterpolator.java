@@ -2,9 +2,6 @@ package net.meerkat.money.interest.interpolation;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import org.apache.commons.math3.fraction.Fraction;
 
 import net.ollie.goat.temporal.date.count.DayCount;
@@ -15,16 +12,10 @@ import net.ollie.goat.numeric.interpolation.FirstOrderInterpolator;
  *
  * @author ollie
  */
-@XmlRootElement
 public class LinearInterestRateInterpolator
         implements InterestRateInterpolator, FirstOrderInterpolator<LocalDate, Percentage> {
 
-    @XmlElementRef(name = "day_count")
-    private DayCount dayCount;
-
-    @Deprecated
-    LinearInterestRateInterpolator() {
-    }
+    private final DayCount dayCount;
 
     public LinearInterestRateInterpolator(final DayCount dayCount) {
         this.dayCount = dayCount;

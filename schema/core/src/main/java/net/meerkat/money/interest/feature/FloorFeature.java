@@ -1,24 +1,15 @@
 package net.meerkat.money.interest.feature;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.utils.comparators.Comparators;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
  * @author ollie
  */
-@XmlRootElement
 public class FloorFeature implements RateFeature {
 
-    @XmlAttribute(name = "min")
-    private Percentage minRate;
-
-    @Deprecated
-    FloorFeature() {
-    }
+    private final Percentage minRate;
 
     public FloorFeature(final Percentage minRate) {
         this.minRate = minRate;

@@ -1,24 +1,15 @@
 package net.meerkat.money.interest.feature;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.utils.comparators.Comparators;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
  * @author ollie
  */
-@XmlRootElement
 public class CappedFeature implements RateFeature {
 
-    @XmlAttribute(name = "max")
-    private Percentage maxRate;
-
-    @Deprecated
-    CappedFeature() {
-    }
+    private final Percentage maxRate;
 
     public CappedFeature(final Percentage maxRate) {
         this.maxRate = maxRate;
