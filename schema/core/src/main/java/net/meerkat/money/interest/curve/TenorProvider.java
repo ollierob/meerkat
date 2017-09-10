@@ -5,6 +5,7 @@ import java.time.Period;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
+import net.ollie.goat.data.Element;
 import net.ollie.goat.data.Provider;
 import net.ollie.goat.temporal.date.Periods;
 
@@ -13,6 +14,11 @@ import net.ollie.goat.temporal.date.Periods;
  * @author ollie
  */
 public interface TenorProvider<T extends Tenor> extends Provider<String, T> {
+
+    @Override
+    default Element<T> getElement(final String name) {
+        return Element.ofNullable(this.get(name));
+    }
 
     @Override
     T get(String name);
