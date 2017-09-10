@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateProvider;
-import net.meerkat.money.interest.InterestRateProvider.UnknownInterestRateException;
+import net.meerkat.money.interest.UnknownInterestRateException;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 
 /**

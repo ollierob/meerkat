@@ -10,7 +10,7 @@ import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateOrId;
 import net.meerkat.money.interest.InterestRateProvider;
-import net.meerkat.money.interest.InterestRateProvider.UnknownInterestRateException;
+import net.meerkat.money.interest.UnknownInterestRateException;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**

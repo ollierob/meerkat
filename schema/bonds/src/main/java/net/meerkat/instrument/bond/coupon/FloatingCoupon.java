@@ -64,9 +64,6 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
     @Override
     public InterestRate resolve(final InterestRateProvider provider) {
         final InterestRate rate = super.rate(provider);
-        if (rate == null) {
-            return null;
-        }
         Percentage spread = this.spread();
         for (final RateFeature feature : this.features) {
             spread = feature.apply(spread);

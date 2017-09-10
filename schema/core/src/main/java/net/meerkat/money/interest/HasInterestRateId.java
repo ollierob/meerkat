@@ -13,8 +13,8 @@ public interface HasInterestRateId {
     InterestRateId interestRateId();
 
     @CheckForNull
-    default InterestRate resolve(final InterestRateProvider provider) {
-        return this.interestRateId().resolve(provider);
+    default InterestRate resolve(final InterestRateProvider provider) throws UnknownInterestRateException {
+        return provider.require(this.interestRateId());
     }
 
 }
