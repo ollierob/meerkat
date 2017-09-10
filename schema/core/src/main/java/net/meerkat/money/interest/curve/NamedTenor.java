@@ -10,8 +10,6 @@ import net.meerkat.utils.HasName;
  */
 public class NamedTenor extends Tenor implements HasName {
 
-    private static final long serialVersionUID = 1L;
-
     private final String name;
 
     protected NamedTenor(final String name, final Period period) {

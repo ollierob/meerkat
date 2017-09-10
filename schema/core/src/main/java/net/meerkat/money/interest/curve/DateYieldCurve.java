@@ -6,31 +6,25 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
+import net.meerkat.money.interest.floating.ContinousFloatingInterestRate;
+import net.meerkat.money.interest.floating.FloatingInterestRate;
 import net.ollie.goat.numeric.interpolation.Interpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
 
 /**
- * Yield curve whose x-axis is dates.
+ * A {@link YieldCurve yield curve} whose x-axis is formed of {@link LocalDate dates}.
  *
  * @author ollie
  */
-@XmlRootElement
-public class DateYieldCurve extends AbstractYieldCurve<LocalDate, DateYieldCurve> {
+public class DateYieldCurve extends MappedYieldCurve<LocalDate, DateYieldCurve> {
 
     public static DateYieldCurve flat(final LocalDate spot, final Percentage percentage) {
         return new DateYieldCurve(spot, Collections.singletonMap(spot, percentage));
     }
 
-    @XmlAttribute(name = "spot")
-    private LocalDate spot;
-
-    @Deprecated
-    DateYieldCurve() {
-    }
+    private final LocalDate spot;
 
     public DateYieldCurve(final LocalDate spot, final Map<LocalDate, Percentage> curve) {
         super(curve, Comparator.naturalOrder());
@@ -57,8 +51,17 @@ public class DateYieldCurve extends AbstractYieldCurve<LocalDate, DateYieldCurve
     }
 
     @Override
-    protected DateYieldCurve toCurve(final Map<LocalDate, Percentage> curve) {
+    protected DateYieldCurve with(final Map<LocalDate, Percentage> curve) {
         return new DateYieldCurve(spot, curve);
+    }
+
+    @Override
+    public DateYieldCurve resolve(final LocalDate referenceDate) {
+        return new DateYieldCurve(spot, this.toMap());
+    }
+
+    public FloatingInterestRate toInterestRate(final DateArithmetic dateArithmetic) {
+        return new ContinousFloatingInterestRate(spot, this, dateArithmetic);
     }
 
 }

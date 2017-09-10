@@ -17,7 +17,7 @@ import net.ollie.goat.temporal.date.years.Years;
  *
  * @author ollie
  */
-public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
+public class ContinousFloatingInterestRate extends FloatingInterestRate {
 
     private final DateYieldCurve curve;
 
@@ -60,10 +60,10 @@ public class ContinousFloatingInterestRate<K> extends FloatingInterestRate {
     }
 
     @Override
-    public ContinousFloatingInterestRate<K> plus(final Percentage bump) {
+    public ContinousFloatingInterestRate plus(final Percentage bump) {
         return bump.isZero()
                 ? this
-                : new ContinousFloatingInterestRate<>(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
+                : new ContinousFloatingInterestRate(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
     }
 
 }

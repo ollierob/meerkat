@@ -17,6 +17,8 @@ import net.ollie.goat.temporal.date.years.Years;
  */
 public class Tenor implements Explainable, Comparable<Tenor> {
 
+    public static final Tenor SPOT = new Tenor(Period.ZERO);
+
     private final Period period;
 
     public Tenor(@Nonnull final Period period) {

@@ -7,10 +7,12 @@ import java.util.Map.Entry;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
+import net.meerkat.money.interest.floating.FloatingInterestRate;
 import net.ollie.goat.collection.Iterables;
 import net.ollie.goat.numeric.interpolation.Interpolator;
 import net.ollie.goat.numeric.manifold.Curve;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.temporal.date.count.DateArithmetic;
 import net.ollie.goat.temporal.date.years.Years;
 
 /**
@@ -28,6 +30,12 @@ public interface YieldCurve<K> extends Curve<K, Percentage> {
     @Nonnull
     @CheckReturnValue
     YieldCurve<K> plus(@Nonnull Percentage bump);
+
+    DateYieldCurve resolve(LocalDate spotDate);
+
+    default FloatingInterestRate toInterestRate(LocalDate referenceDate, DateArithmetic dateArithmetic) {
+        return this.resolve(referenceDate).toInterestRate(dateArithmetic);
+    }
 
     default boolean isFlat() {
         return Iterables.allEqual(this.yAxis());

@@ -1,12 +1,12 @@
 package net.meerkat.money.interest.curve;
 
+import java.time.LocalDate;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.Set;
 import java.util.TreeMap;
-
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.ollie.goat.collection.Sets;
 import net.ollie.goat.numeric.interpolation.Interpolator;
@@ -14,23 +14,18 @@ import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
 
 /**
- * Yield curve whose x-axis is amounts of years.
+ * A {@link YieldCurve yield curve} whose x-axis is formed of {@link Years amounts of years}.
  *
  * @author Ollie
  */
-@XmlRootElement
-public class YearsYieldCurve extends AbstractYieldCurve<Years, YearsYieldCurve> {
-
-    @Deprecated
-    YearsYieldCurve() {
-    }
+public class YearsYieldCurve extends MappedYieldCurve<Years, YearsYieldCurve> {
 
     public YearsYieldCurve(final Map<Years, Percentage> data) {
         super(data, Comparator.naturalOrder());
     }
 
     @Override
-    protected YearsYieldCurve toCurve(final Map<Years, Percentage> curve) {
+    protected YearsYieldCurve with(final Map<Years, Percentage> curve) {
         return new YearsYieldCurve(curve);
     }
 
@@ -48,6 +43,14 @@ public class YearsYieldCurve extends AbstractYieldCurve<Years, YearsYieldCurve> 
     public Map.Entry<Years, Percentage> interpolate(final Tenor tenor, final Interpolator<Years, Percentage> interpolator) {
         final Years years = Years.of(tenor.period());
         return this.interpolate(years, interpolator);
+    }
+
+    @Override
+    public DateYieldCurve resolve(final LocalDate referenceDate) {
+        final Map<Years, Percentage> in = this.toMap();
+        final Map<LocalDate, Percentage> out = new HashMap<>(in.size());
+        in.forEach((years, rate) -> out.put(referenceDate.plus(years.period()), rate));
+        return new DateYieldCurve(referenceDate, out);
     }
 
 }
