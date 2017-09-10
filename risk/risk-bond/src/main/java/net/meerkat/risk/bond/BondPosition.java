@@ -18,7 +18,7 @@ public interface BondPosition extends PositionWithQuantity {
 
     @Override
     @Deprecated
-    default <C extends CurrencyId> Optional<Money<C>> marketValue(final Price<C> price) {
+    default <C extends CurrencyId> Optional<Money<C>> value(final Price<C> price) {
         return price instanceof BondPrice
                 ? Optional.of(this.marketValue((BondPrice<C>) price))
                 : Optional.empty();

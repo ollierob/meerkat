@@ -16,6 +16,6 @@ import net.meerkat.money.price.Price;
 public interface Position extends HasPositionId {
 
     @Nonnull
-    <C extends CurrencyId> Optional<Money<C>> marketValue(Price<C> price);
+    <C extends CurrencyId> Optional<Money<C>> value(Price<C> price);
 
 }

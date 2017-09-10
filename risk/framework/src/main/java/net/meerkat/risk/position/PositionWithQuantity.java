@@ -1,7 +1,5 @@
 package net.meerkat.risk.position;
 
-
-
 import javax.annotation.Nonnull;
 
 /**
