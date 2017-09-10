@@ -32,7 +32,7 @@ public interface Calendar<D extends HasDate> {
         final Function<LocalDate, D> next = nth > 0 ? this::next : this::previous;
         D d = next.apply(date);
         for (int i = 1; i < Math.abs(nth); i++) {
-            d = next.apply(d.date());
+            d = next.apply(d.date().plusDays(1));
         }
         return d;
     }
