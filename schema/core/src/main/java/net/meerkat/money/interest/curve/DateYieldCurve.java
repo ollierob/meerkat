@@ -57,7 +57,9 @@ public class DateYieldCurve extends MappedYieldCurve<LocalDate, DateYieldCurve> 
 
     @Override
     public DateYieldCurve resolve(final LocalDate referenceDate) {
-        return new DateYieldCurve(spot, this.toMap());
+        return spot.compareTo(referenceDate) == 0
+                ? this
+                : new DateYieldCurve(referenceDate, this.toMap());
     }
 
     public FloatingInterestRate toInterestRate(final DateArithmetic dateArithmetic) {
