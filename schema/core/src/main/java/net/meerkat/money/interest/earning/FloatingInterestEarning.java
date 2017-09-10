@@ -1,14 +1,10 @@
 package net.meerkat.money.interest.earning;
 
-import java.util.function.Function;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.Money;
+import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
+import net.meerkat.money.interest.InterestRateProvider;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
@@ -16,32 +12,24 @@ import net.meerkat.money.interest.InterestRateId;
  */
 public class FloatingInterestEarning implements InterestEarning {
 
-    @XmlElementRef(name = "notional")
-    private Money notional;
+    private final Money<?> notional;
+    private final Percentage spread;
+    private final InterestRateId basis;
 
-    @XmlAttribute(name = "spread")
-    private Percentage spread;
-
-    @XmlElementRef(name = "basis")
-    private InterestRateId basis;
-
-    protected FloatingInterestEarning() {
-    }
-
-    public FloatingInterestEarning(Money notional, Percentage spread, InterestRateId basis) {
+    public FloatingInterestEarning(Money<?> notional, Percentage spread, InterestRateId basis) {
         this.notional = notional;
         this.spread = spread;
         this.basis = basis;
     }
 
     @Override
-    public Money notional() {
+    public Money<?> notional() {
         return notional;
     }
 
     @Override
-    public InterestRate rate(final Function<? super InterestRateId, ? extends InterestRate> getRate) {
-        return getRate.apply(basis).plus(spread);
+    public InterestRate rate(final InterestRateProvider rates) {
+        return rates.require(basis).plus(spread);
     }
 
 }

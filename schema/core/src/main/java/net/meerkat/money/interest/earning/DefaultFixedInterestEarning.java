@@ -1,7 +1,5 @@
 package net.meerkat.money.interest.earning;
 
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 
@@ -11,15 +9,8 @@ import net.meerkat.money.interest.fixed.FixedInterestRate;
  */
 public class DefaultFixedInterestEarning implements FixedInterestEarning {
 
-    @XmlElementRef(name = "notional")
-     Money<?> notional;
-
-    @XmlElementRef(name = "rate")
-     FixedInterestRate rate;
-
-    @Deprecated
-    protected DefaultFixedInterestEarning() {
-    }
+    private final Money<?> notional;
+    private final FixedInterestRate rate;
 
     protected DefaultFixedInterestEarning(final Money<?> notional, final FixedInterestRate rate) {
         this.notional = notional;
