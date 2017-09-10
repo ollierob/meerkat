@@ -1,4 +1,4 @@
-package net.meerkat.risk.position;
+package net.meerkat.position;
 
 import javax.annotation.Nonnull;
 

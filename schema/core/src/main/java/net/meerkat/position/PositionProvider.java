@@ -1,6 +1,5 @@
-package net.meerkat.risk.position;
+package net.meerkat.position;
 
-import net.meerkat.identifier.position.PositionId;
 import net.ollie.goat.data.Provider;
 
 /**

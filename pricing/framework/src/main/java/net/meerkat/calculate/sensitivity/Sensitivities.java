@@ -11,6 +11,6 @@ import javax.annotation.Nonnull;
 public interface Sensitivities {
 
     @Nonnull
-    <S extends Sensitivity<?>> Optional<S> get(Class<S> sensitivity);
+    <S extends Sensitivity<S>> Optional<S> get(Class<S> sensitivity);
 
 }

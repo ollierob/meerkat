@@ -6,8 +6,8 @@ import net.meerkat.calculate.sensitivity.Sensitivity;
  *
  * @author Ollie
  */
-public interface Greek<T> extends Sensitivity<T> {
-    
+public interface Greek<G extends Greek<G>> extends Sensitivity<G> {
+
     int order();
 
 }

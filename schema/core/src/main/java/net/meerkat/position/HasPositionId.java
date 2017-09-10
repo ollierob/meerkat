@@ -1,11 +1,12 @@
-package net.meerkat.identifier.position;
+package net.meerkat.position;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.identifier.portfolio.HasPortfolioId;
-import net.meerkat.identifier.portfolio.PortfolioId;
 import net.meerkat.identifier.HasInstrumentInMarketId;
 import net.meerkat.identifier.InstrumentInMarketId;
+import net.meerkat.identifier.market.MarketId;
+import net.meerkat.identifier.portfolio.HasPortfolioId;
+import net.meerkat.identifier.portfolio.PortfolioId;
 
 /**
  *
@@ -17,8 +18,13 @@ public interface HasPositionId extends HasInstrumentInMarketId, HasPortfolioId {
     PositionId positionId();
 
     @Override
-    public default PortfolioId portfolioId() {
+    default PortfolioId portfolioId() {
         return this.positionId().portfolioId();
+    }
+
+    @Override
+    default MarketId marketId() {
+        return this.positionId().marketId();
     }
 
     @Override

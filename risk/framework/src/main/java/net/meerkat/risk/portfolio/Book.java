@@ -2,9 +2,9 @@ package net.meerkat.risk.portfolio;
 
 import net.coljate.map.Map;
 import net.coljate.set.Set;
-import net.meerkat.identifier.position.PositionId;
-import net.meerkat.risk.position.Position;
-import net.meerkat.risk.position.PositionProvider;
+import net.meerkat.position.PositionId;
+import net.meerkat.position.Position;
+import net.meerkat.position.PositionProvider;
 
 /**
  * Portfolio of positions with no children.

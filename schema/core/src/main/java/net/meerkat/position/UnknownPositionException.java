@@ -1,6 +1,4 @@
-package net.meerkat.risk.position;
-
-import net.meerkat.identifier.position.PositionId;
+package net.meerkat.position;
 
 /**
  *
