@@ -18,6 +18,11 @@ import net.ollie.goat.temporal.date.years.Years;
 public class Tenor implements Explainable, Comparable<Tenor> {
 
     public static final Tenor SPOT = new Tenor(Period.ZERO);
+    public static final Tenor ONE_DAY = new Tenor(Period.ofDays(1));
+    public static final Tenor ONE_MONTH = new Tenor(Period.ofMonths(1));
+    public static final Tenor THREE_MONTHS = new Tenor(Period.ofMonths(3));
+    public static final Tenor SIX_MONTHS = new Tenor(Period.ofMonths(6));
+    public static final Tenor ONE_YEAR = new Tenor(Period.ofYears(1));
 
     private final Period period;
 
@@ -35,7 +40,7 @@ public class Tenor implements Explainable, Comparable<Tenor> {
                 .put("period", period);
     }
 
-    public Years years() {
+    public Years toYears() {
         return Years.of(period);
     }
 
