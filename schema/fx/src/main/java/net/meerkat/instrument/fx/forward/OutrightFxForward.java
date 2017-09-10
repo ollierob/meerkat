@@ -8,6 +8,7 @@ import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.fx.FxInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.time.calendar.settlement.SettlementDate;
 import net.meerkat.utils.Require;
 
 /**
@@ -24,7 +25,7 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
     private final Money<B> base;
     private final Money<C> counter;
     private final LocalDate tradeDate;
-    private final LocalDate settlementDate;
+    private final SettlementDate settlementDate;
 
     public OutrightFxForward(
             final String name,
@@ -32,7 +33,7 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
             final Money<B> base,
             final Money<C> counter,
             final LocalDate tradeDate,
-            final LocalDate settlementDate) {
+            final SettlementDate settlementDate) {
         super(name, identifiers);
         Require.argumentsNotEqual(base.currencyId(), counter.currencyId(), (b, c) -> "Cannot have a forward with base [" + b + "] == counter [" + c + "] currencies!");
         this.base = base;
@@ -72,7 +73,7 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
     }
 
     @Override
-    public LocalDate settlementDate() {
+    public SettlementDate settlementDate() {
         return settlementDate;
     }
 
