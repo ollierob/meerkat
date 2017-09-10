@@ -16,7 +16,7 @@ public class WeekendHolidayCalendar implements HolidayCalendar {
     }
 
     @Override
-    public boolean is(final LocalDate date) throws DateOutOfRangeException {
+    public boolean contains(final LocalDate date) throws DateOutOfRangeException {
         switch (date.getDayOfWeek()) {
             case SATURDAY:
             case SUNDAY:

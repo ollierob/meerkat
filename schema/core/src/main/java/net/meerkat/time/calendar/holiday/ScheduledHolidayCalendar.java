@@ -23,7 +23,7 @@ public class ScheduledHolidayCalendar implements HolidayCalendar {
     }
 
     @Override
-    public boolean is(final LocalDate date) {
+    public boolean contains(final LocalDate date) {
         this.checkInRange(date);
         return holidays.containsKey(date);
     }

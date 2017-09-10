@@ -40,7 +40,7 @@ public abstract class WeekendBusinessDays implements BusinessDayCalendar {
     }
 
     @Override
-    public boolean is(final LocalDate date) {
+    public boolean contains(final LocalDate date) {
         switch (date.getDayOfWeek()) {
             case SATURDAY:
             case SUNDAY:

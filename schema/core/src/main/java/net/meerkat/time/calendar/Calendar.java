@@ -31,7 +31,7 @@ public interface Calendar<D extends HasDate> {
 
     default D next(final LocalDate date, final int nth) throws InvalidDateException {
         if (nth == 0) {
-            Require.that(date, this::is, InvalidDateException::new);
+            Require.that(date, this::contains, InvalidDateException::new);
             return this.next(date);
         }
         final Function<LocalDate, D> next = nth > 0 ? this::next : this::previous;
@@ -42,7 +42,7 @@ public interface Calendar<D extends HasDate> {
         return d;
     }
 
-    default boolean is(final LocalDate date) throws DateOutOfRangeException {
+    default boolean contains(final LocalDate date) throws DateOutOfRangeException {
         return this.next(date).date().compareTo(date) == 0;
     }
 
