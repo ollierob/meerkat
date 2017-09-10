@@ -23,6 +23,7 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
 
     private final Money<B> base;
     private final Money<C> counter;
+    private final LocalDate tradeDate;
     private final LocalDate settlementDate;
 
     public OutrightFxForward(
@@ -30,11 +31,13 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
             final InstrumentIds identifiers,
             final Money<B> base,
             final Money<C> counter,
+            final LocalDate tradeDate,
             final LocalDate settlementDate) {
         super(name, identifiers);
         Require.argumentsNotEqual(base.currencyId(), counter.currencyId(), (b, c) -> "Cannot have a forward with base [" + b + "] == counter [" + c + "] currencies!");
         this.base = base;
         this.counter = counter;
+        this.tradeDate = tradeDate;
         this.settlementDate = settlementDate;
     }
 
@@ -61,6 +64,11 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
     @Override
     public ExchangeRate<B, C> exchangeRate() {
         return ExchangeRate.between(base, counter);
+    }
+
+    @Override
+    public LocalDate tradeDate() {
+        return tradeDate;
     }
 
     @Override
