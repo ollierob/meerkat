@@ -8,7 +8,7 @@ import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
-import net.meerkat.risk.PositionWithQuantity;
+import net.meerkat.risk.position.PositionWithQuantity;
 
 /**
  *
