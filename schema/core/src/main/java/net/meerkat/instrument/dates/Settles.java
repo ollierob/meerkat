@@ -19,7 +19,7 @@ public interface Settles extends Traded {
 
     @Nonnull
     default Period tradeToSettlement() {
-        return Period.between(this.tradeDate(), this.settlementDate().date());
+        return this.tradeDate().until(this.settlementDate());
     }
 
 }
