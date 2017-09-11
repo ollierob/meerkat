@@ -1,22 +1,27 @@
 package net.meerkat.calculate.sensitivity;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
+import net.coljate.util.SelfTyped;
 import net.meerkat.utils.HasName;
-import net.meerkat.utils.SelfTyped;
 
 /**
  *
  * @author Ollie
  */
-public interface Sensitivity<S extends Sensitivity<S>> extends SelfTyped<S>, HasName {
-
-    @Nonnull
-    S plus(@Nonnull S that);
+public interface Sensitivity extends HasSensitivityId, HasName {
 
     @Override
     default String name() {
         return this.getClass().getSimpleName();
+    }
+
+    interface Summing<S extends Summing<S>> extends Sensitivity, SelfTyped<S> {
+
+        @Nonnull
+        S plus(@Nullable S that);
+
     }
 
 }
