@@ -9,9 +9,9 @@ import net.meerkat.money.price.Price;
  *
  * @author ollie
  */
-public interface InstrumentPricer<I extends Instrument> extends Pricer<I> {
+public interface InstrumentPricer<T, I extends Instrument> extends Pricer<T, I> {
 
     @Override
-    <C extends CurrencyId> Price<C> price(I instrument, C currency) throws InstrumentException;
+    <C extends CurrencyId> Price<C> price(T temporal, I instrument, C currency) throws InstrumentException, InstrumentPriceException;
 
 }

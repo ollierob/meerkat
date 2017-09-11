@@ -8,8 +8,9 @@ import net.meerkat.money.price.Price;
  *
  * @author ollie
  */
-public interface Pricer<X> {
+public interface Pricer<T, R> {
 
-    <C extends CurrencyId> Price<C> price(X toPrice, C currency) throws InstrumentException;
+    <C extends CurrencyId> Price<C> price(T temporal, R priced, C currency)
+            throws InstrumentException, InstrumentPriceException;
 
 }
