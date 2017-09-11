@@ -1,12 +1,11 @@
 package net.meerkat.pricing.bond;
 
 import java.time.LocalDate;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 
 import net.coljate.list.List;
-import net.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.coupon.FixedCoupon;
@@ -24,29 +23,30 @@ import net.ollie.goat.suppliers.lazy.Lazy;
  *
  * @author Ollie
  */
-public class DatedPerpetualBondPricer implements BondPricer<LocalDate, PerpetualBond<?>> {
+public class DatedPerpetualBondPricer implements BondPricer<PerpetualBond<?>> {
 
-    private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
-    private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates;
+    private final LocalDate valuationDate;
+    private final ExchangeRates exchangeRates;
+    private final Function<? super CurrencyId, ? extends InterestRate> discountRates;
     private final InterestRateInterpolator interestRateInterpolator;
 
     public DatedPerpetualBondPricer(
-            final ExchangeRatesProvider<LocalDate> getExchangeRates,
-            final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates,
+            final LocalDate valuationDate,
+            final ExchangeRates exchangeRates,
+            final Function<? super CurrencyId, ? extends InterestRate> discountRates,
             final InterestRateInterpolator interestRateInterpolator) {
-        this.exchangeRatesProvider = getExchangeRates;
-        this.getDiscountRates = getDiscountRates;
+        this.valuationDate = valuationDate;
+        this.exchangeRates = exchangeRates;
+        this.discountRates = discountRates;
         this.interestRateInterpolator = interestRateInterpolator;
     }
 
     @Override
     public <C extends CurrencyId> BondPrice.Shiftable<C> price(
-            final LocalDate date,
             final PerpetualBond<?> bond,
             final C currency) {
-        final ExchangeRates exchangeRates = exchangeRatesProvider.require(date);
-        final InterestRate discountRate = getDiscountRates.apply(date, currency);
-        return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, interestRateInterpolator, BondShifts.none());
+        final InterestRate discountRate = discountRates.apply(currency);
+        return new PerpetualBondPrice<>(bond, currency, valuationDate, exchangeRates, discountRate, interestRateInterpolator, BondShifts.none());
     }
 
     private static final class PerpetualBondPrice<F extends CurrencyId, C extends CurrencyId>

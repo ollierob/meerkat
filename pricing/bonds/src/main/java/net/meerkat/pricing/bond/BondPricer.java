@@ -12,14 +12,14 @@ import net.meerkat.pricing.InstrumentPricer;
  * @see GenericBondPricer for pricing any type of bond.
  * @param <B> bond type
  */
-public interface BondPricer<T, B extends Bond>
-        extends InstrumentPricer<T, B> {
+public interface BondPricer<B extends Bond>
+        extends InstrumentPricer<B> {
 
     @Override
-    <C extends CurrencyId> BondPrice.Shiftable<C> price(T temporal, B bond, C currency) throws BondPriceException;
+    <C extends CurrencyId> BondPrice.Shiftable<C> price(B bond, C currency) throws BondPriceException;
 
-    default <C extends CurrencyId> BondPrice.Shiftable<C> price(final T temporal, final B bond, final C currency, final BondShifts shifts) throws BondPriceException {
-        return this.price(temporal, bond, currency).shift(shifts);
+    default <C extends CurrencyId> BondPrice.Shiftable<C> price(final B bond, final C currency, final BondShifts shifts) throws BondPriceException {
+        return this.price(bond, currency).shift(shifts);
     }
 
     class BondPriceException extends InstrumentPriceException {

@@ -13,15 +13,20 @@ import net.meerkat.pricing.InstrumentPriceException;
  *
  * @author ollie
  */
-public class DatedRepoPricer implements RepoPricer<LocalDate> {
+public class DatedRepoPricer implements RepoPricer {
+
+    private final LocalDate valuationDate;
+
+    public DatedRepoPricer(final LocalDate valuationDate) {
+        this.valuationDate = valuationDate;
+    }
 
     @Override
     public <C extends CurrencyId> RepoPrice.Shiftable<C> price(
-            final LocalDate date,
             final Repo<?> repo,
             final C currency)
             throws InstrumentException, InstrumentPriceException {
-        return new DatedRepoPrice<>(date, repo, RepoShifts.none(), currency);
+        return new DatedRepoPrice<>(valuationDate, repo, RepoShifts.none(), currency);
     }
 
     class DatedRepoPrice<F extends CurrencyId, T extends CurrencyId> implements RepoPrice.Shiftable<T> {

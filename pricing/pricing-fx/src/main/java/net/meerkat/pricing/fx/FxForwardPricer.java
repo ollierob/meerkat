@@ -21,17 +21,20 @@ import net.ollie.goat.numeric.percentage.Percentage;
  *
  * @author ollie
  */
-public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward<?, ?>> {
+public class FxForwardPricer implements InstrumentPricer<FxForward<?, ?>> {
 
+    private final LocalDate valuationDate;
     private final InterestRateProvider interestRates;
 
-    public FxForwardPricer(final InterestRateProvider interestRates) {
+    public FxForwardPricer(
+            final LocalDate valuationDate,
+            final InterestRateProvider interestRates) {
+        this.valuationDate = valuationDate;
         this.interestRates = interestRates;
     }
 
     @Override
     public <C extends CurrencyId> FxForwardPrice.Shiftable<C> price(
-            final LocalDate date,
             final FxForward<?, ?> forward,
             final C currency)
             throws InstrumentException, InstrumentPriceException {

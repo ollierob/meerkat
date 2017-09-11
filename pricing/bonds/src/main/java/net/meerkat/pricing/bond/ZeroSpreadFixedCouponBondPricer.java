@@ -4,10 +4,9 @@ import java.time.LocalDate;
 import static java.util.Objects.requireNonNull;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import net.coljate.list.List;
-import net.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
@@ -26,42 +25,42 @@ import net.ollie.goat.temporal.date.years.Years;
  *
  * @author ollie
  */
-public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponBond> {
+public class ZeroSpreadFixedCouponBondPricer implements BondPricer<FixedCouponBond> {
 
-    private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
-    private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRate;
+    private final LocalDate pricingDate;
+    private final ExchangeRates exchangeRates;
+    private final Function<? super CurrencyId, ? extends InterestRate> discountRates;
     private final InterestRateInterpolator interestRateInterpolator;
 
     public ZeroSpreadFixedCouponBondPricer(
-            final ExchangeRatesProvider<LocalDate> exchangeRatesProvider,
-            final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates,
+            final LocalDate pricingDate,
+            final ExchangeRates exchangeRates,
+            final Function<CurrencyId, InterestRate> discountRates,
             final InterestRateInterpolator interestRateInterpolator) {
-        this.exchangeRatesProvider = exchangeRatesProvider;
-        this.getDiscountRate = discountRates;
+        this.pricingDate = pricingDate;
+        this.exchangeRates = exchangeRates;
+        this.discountRates = discountRates;
         this.interestRateInterpolator = interestRateInterpolator;
     }
 
     @Override
     public <C extends CurrencyId> BondPrice.Shiftable<C> price(
-            final LocalDate date,
             final FixedCouponBond bond,
             final C currency) {
-        return this.price(date, bond.nominal(), bond.coupons(), currency);
+        return this.price(bond.nominal(), bond.coupons(), currency);
     }
 
     public <P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId> BondPrice.Shiftable<C> price(
-            final LocalDate date,
             final CashPayment<P> par,
             final FixedCouponBondCoupons<Z> coupons,
             final C currency) {
 
-        final ExchangeRates fxRates = exchangeRatesProvider.require(date);
-        final ExchangeRate<P, C> parFxRate = fxRates.rate(par.currencyId(), currency);
-        final ExchangeRate<Z, C> couponFxRate = fxRates.rate(coupons.currencyId(), currency);
+        final ExchangeRate<P, C> parFxRate = exchangeRates.rate(par.currencyId(), currency);
+        final ExchangeRate<Z, C> couponFxRate = exchangeRates.rate(coupons.currencyId(), currency);
 
-        final InterestRate discountRate = requireNonNull(getDiscountRate.apply(date, currency));
+        final InterestRate discountRate = requireNonNull(discountRates.apply(currency));
 
-        return new ZeroSpreadFixedCouponBondPrice<>(date, par, coupons, parFxRate, couponFxRate, discountRate, interestRateInterpolator, BondShifts.none());
+        return new ZeroSpreadFixedCouponBondPrice<>(pricingDate, par, coupons, parFxRate, couponFxRate, discountRate, interestRateInterpolator, BondShifts.none());
 
     }
 
