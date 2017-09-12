@@ -70,6 +70,7 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
 
         @Override
         public Money<C> value() {
+            final BondPrice<C> bondPrice = this.bondPrice();
             throw new UnsupportedOperationException(); //TODO
         }
 

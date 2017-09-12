@@ -1,12 +1,13 @@
 package net.meerkat.instrument.repo;
 
+import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
+
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.instrument.FixedInterestSecurity;
 import net.meerkat.instrument.cash.CashPayment;
-import net.meerkat.money.Money;
 
 /**
  *
@@ -18,15 +19,10 @@ public interface Repo<C extends CurrencyId> extends FixedInterestSecurity {
     CashPayment<C> purchase();
 
     @Nonnull
-    CashPayment<C> repurchase();
+    RepoRepurchase repurchase();
 
     @Nonnull
     InstrumentId collateralId();
-
-    @Nonnull
-    default Money<C> interestPaid() {
-        return this.repurchase().paymentAmount().minus(this.purchase().paymentAmount());
-    }
 
     @Override
     default <R> R handleWith(final FixedInterestSecurity.Handler<R> handler) {
@@ -39,7 +35,7 @@ public interface Repo<C extends CurrencyId> extends FixedInterestSecurity {
 
     interface Handler<R> extends FixedInterestSecurity.Handler<R> {
 
-        R handle(BondRepo bondRepo);
+        R handle(BondRepo<?> bondRepo);
 
         R handle(EquityRepo equityRepo);
 
