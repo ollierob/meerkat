@@ -5,7 +5,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 import javax.annotation.CheckReturnValue;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.StringWrapper;
 import net.meerkat.identifier.Iso;
@@ -14,12 +13,9 @@ import net.meerkat.identifier.Iso;
  *
  * @author Ollie
  */
-@XmlRootElement
 public class CountryIso
         extends StringWrapper
         implements Iso, CountryId {
-
-    private static final long serialVersionUID = 1L;
 
     private static final Map<String, CountryIso> cache = new ConcurrentHashMap<>(32);
     private static final Pattern PATTERN = Pattern.compile("[A-Z]{2}");
@@ -32,10 +28,6 @@ public class CountryIso
 
     public static CountryIso valueOf(final String iso) {
         return cache.computeIfAbsent(iso.toUpperCase(), CountryIso::new);
-    }
-
-    @Deprecated
-    CountryIso() {
     }
 
     CountryIso(final String iso) {

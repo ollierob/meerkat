@@ -1,7 +1,5 @@
 package net.meerkat.identifier.security;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import net.meerkat.StringWrapper;
 import net.meerkat.identifier.country.CountryIso;
 import net.meerkat.identifier.instrument.InstrumentId;
@@ -12,16 +10,9 @@ import net.meerkat.identifier.instrument.InstrumentId;
  * @author ollie
  * @see <a href="https://en.wikipedia.org/wiki/NSIN">NSIN</a>
  */
-@XmlRootElement
 public class Nsin
         extends StringWrapper
         implements InstrumentId {
-
-    private static final long serialVersionUID = 1L;
-
-    @Deprecated
-    protected Nsin() {
-    }
 
     public Nsin(final String value) {
         super(value);

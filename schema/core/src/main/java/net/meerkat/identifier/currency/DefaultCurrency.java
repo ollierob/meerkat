@@ -1,6 +1,5 @@
 package net.meerkat.identifier.currency;
 
-import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.Named;
@@ -13,17 +12,8 @@ import net.meerkat.identifier.country.CountryId;
 @XmlRootElement
 public class DefaultCurrency extends Named implements Currency {
 
-    private static final long serialVersionUID = 1L;
-
-    @XmlElementRef(name = "ids")
-    private CurrencyIds currencyIds;
-
-    @XmlElementRef(name = "issuer")
-    private CountryId issuer;
-
-    @Deprecated
-    DefaultCurrency() {
-    }
+    private final CurrencyIds currencyIds;
+    private final CountryId issuer;
 
     public DefaultCurrency(
             final CurrencyIds currencyIds,

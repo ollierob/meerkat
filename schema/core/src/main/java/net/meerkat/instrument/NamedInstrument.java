@@ -14,8 +14,6 @@ public class NamedInstrument
         extends Named
         implements Instrument, Explainable {
 
-    private static final long serialVersionUID = 1L;
-
     private final InstrumentIds ids;
 
     public NamedInstrument(final String name, final InstrumentIds ids) {

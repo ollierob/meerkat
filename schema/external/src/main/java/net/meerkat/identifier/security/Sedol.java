@@ -1,23 +1,14 @@
 package net.meerkat.identifier.security;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * Stock Exchange Daily Official List.
  *
  * @author ollie
  * @see <a href="https://en.wikipedia.org/wiki/SEDOL">SEDOL</a>
  */
-@XmlRootElement
 public class Sedol
         extends Nsin
         implements HasCheckDigit {
-
-    private static final long serialVersionUID = 1L;
-
-    @Deprecated
-    Sedol() {
-    }
 
     public Sedol(final String value) {
         super(value);

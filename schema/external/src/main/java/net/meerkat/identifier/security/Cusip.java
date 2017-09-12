@@ -1,7 +1,6 @@
 package net.meerkat.identifier.security;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.country.CountryIso;
 import net.meerkat.utils.algorithm.LuhnAlgorithm;
@@ -10,16 +9,9 @@ import net.meerkat.utils.algorithm.LuhnAlgorithm;
  *
  * @author ollie
  */
-@XmlRootElement
 public class Cusip
         extends Nsin
         implements HasCheckDigit {
-
-    private static final long serialVersionUID = 1L;
-
-    @Deprecated
-    Cusip() {
-    }
 
     public Cusip(final String value) {
         super(value);

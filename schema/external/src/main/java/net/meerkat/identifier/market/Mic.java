@@ -1,7 +1,5 @@
 package net.meerkat.identifier.market;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 import net.meerkat.StringWrapper;
 import net.meerkat.identifier.Iso;
 
@@ -11,16 +9,9 @@ import net.meerkat.identifier.Iso;
  * @author ollie
  * @see <a href="https://en.wikipedia.org/wiki/Market_Identifier_Code">MIC</a>
  */
-@XmlRootElement
 public class Mic
         extends StringWrapper
         implements Iso, MarketId {
-
-    private static final long serialVersionUID = 1L;
-
-    @Deprecated
-    Mic() {
-    }
 
     public Mic(final String value) {
         super(value);

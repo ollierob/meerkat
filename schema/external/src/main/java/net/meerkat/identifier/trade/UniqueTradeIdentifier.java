@@ -1,6 +1,5 @@
 package net.meerkat.identifier.trade;
 
-import javax.xml.bind.annotation.XmlAttribute;
 
 import net.meerkat.StringWrapper;
 
@@ -12,14 +11,7 @@ public class UniqueTradeIdentifier
         extends StringWrapper
         implements TradeId {
 
-    private static final long serialVersionUID = 1L;
-
-    @XmlAttribute(name = "namespace", required = true)
-    private String namespace;
-
-    @Deprecated
-    UniqueTradeIdentifier() {
-    }
+    private final String namespace;
 
     public UniqueTradeIdentifier(final String namespace, final String transaction) {
         super(transaction);

@@ -14,12 +14,6 @@ public class Figi
         extends StringWrapper
         implements HasCheckDigit, InstrumentId {
 
-    private static final long serialVersionUID = 1L;
-
-    @Deprecated
-    Figi() {
-    }
-
     public Figi(final String value) {
         super(value);
     }

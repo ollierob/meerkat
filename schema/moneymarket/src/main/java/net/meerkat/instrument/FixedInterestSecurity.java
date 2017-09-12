@@ -15,17 +15,14 @@ public interface FixedInterestSecurity<C extends CurrencyId>
         extends Security, HasCurrencyId {
 
     @Nonnull
-    CashPayment<C> near();
-
-    @Nonnull
-    CashPayment<C> far();
+    CashPayment<C> purchasePrice();
 
     @Nonnull
     FixedInterestRate impliedRate();
 
     @Override
     default CurrencyId currencyId() {
-        return this.near().currencyId();
+        return this.purchasePrice().currencyId();
     }
 
 }

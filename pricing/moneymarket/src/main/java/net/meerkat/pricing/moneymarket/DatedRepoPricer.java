@@ -7,7 +7,6 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.InstrumentException;
 import net.meerkat.instrument.moneymarket.Repo;
 import net.meerkat.money.Money;
-import net.meerkat.pricing.InstrumentPriceException;
 
 /**
  *
@@ -20,7 +19,7 @@ public class DatedRepoPricer implements RepoPricer<LocalDate> {
             final LocalDate date,
             final Repo<?> repo,
             final C currency)
-            throws InstrumentException, InstrumentPriceException {
+            throws InstrumentException {
         return new DatedRepoPrice<>(date, repo, RepoShifts.none(), currency);
     }
 
@@ -46,6 +45,7 @@ public class DatedRepoPricer implements RepoPricer<LocalDate> {
         @Override
         public Map<String, Object> explain() {
             return this.explanationBuilder()
+                    .put("date", date)
                     .put("currency", currency)
                     .put("repo", repo)
                     .put("shifts", shifts);
