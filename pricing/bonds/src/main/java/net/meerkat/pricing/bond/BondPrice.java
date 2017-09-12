@@ -82,7 +82,6 @@ public interface BondPrice<C extends CurrencyId>
             extends BondPrice<C>, ShiftablePrice<C> {
 
         @Override
-        @Deprecated
         default BondPrice.Shiftable<C> shift(final SecurityShifts shifts) {
             return this.shift(BondShifts.cast(shifts));
         }

@@ -2,7 +2,6 @@ package net.meerkat.instrument.repo;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.instrument.bond.BondProvider;
 import net.meerkat.instrument.bond.UnknownBondException;
@@ -11,7 +10,7 @@ import net.meerkat.instrument.bond.UnknownBondException;
  *
  * @author Ollie
  */
-public interface BondRepo<C extends CurrencyId> extends Repo<C> {
+public interface BondRepo extends Repo {
 
     @Nonnull
     default Bond collateral(final BondProvider bondProvider) throws UnknownBondException {

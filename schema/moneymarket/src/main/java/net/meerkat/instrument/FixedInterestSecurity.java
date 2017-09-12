@@ -2,27 +2,31 @@ package net.meerkat.instrument;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.instrument.cash.CashPayment;
+import net.meerkat.instrument.moneymarket.CertificateOfDeposit;
+import net.meerkat.instrument.repo.Repo;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 
 /**
  *
  * @author ollie
  */
-public interface FixedInterestSecurity<C extends CurrencyId>
-        extends Security, HasCurrencyId {
+public interface FixedInterestSecurity extends InstrumentDefinition {
 
     @Nonnull
-    CashPayment<C> purchasePrice();
+    CashPayment<?> purchasePrice();
 
     @Nonnull
     FixedInterestRate impliedRate();
 
-    @Override
-    default CurrencyId currencyId() {
-        return this.purchasePrice().currencyId();
+    <R> R handleWith(Handler<R> handler);
+
+    interface Handler<R> extends InstrumentDefinition.Handler<R> {
+
+        R handle(Repo repo);
+
+        R handle(CertificateOfDeposit certificateOfDeposit);
+
     }
 
 }

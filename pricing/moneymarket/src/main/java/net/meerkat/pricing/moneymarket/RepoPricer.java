@@ -9,10 +9,9 @@ import net.meerkat.pricing.InstrumentPricer;
  *
  * @author ollie
  */
-public interface RepoPricer<T>
-        extends InstrumentPricer<T, Repo<?>> {
+public interface RepoPricer<T, R extends Repo> extends InstrumentPricer<T, R> {
 
     @Override
-    <C extends CurrencyId> RepoPrice.Shiftable<C> price(T temporal, Repo<?> repo, C currency) throws InstrumentException;
+    <C extends CurrencyId> RepoPrice.Shiftable<C> price(T temporal, R repo, C currency) throws InstrumentException;
 
 }
