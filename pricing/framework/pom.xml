@@ -15,11 +15,6 @@
     
     <dependencies>
         <dependency>
-            <groupId>org.threeten</groupId>
-            <artifactId>threeten-extra</artifactId>
-            <version>${threeten.version}</version>
-        </dependency>
-        <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>schema-external</artifactId>
             <version>${project.version}</version>
