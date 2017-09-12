@@ -8,12 +8,12 @@ import net.meerkat.instrument.repo.Repo;
  *
  * @author Ollie
  */
-public interface GenericRepoPricer<T> extends RepoPricer<T, Repo> {
+public interface GenericRepoPricer<T> extends RepoPricer<T, Repo<?>> {
 
     @Override
     default <C extends CurrencyId> RepoPrice.Shiftable<C> price(
             final T temporal,
-            final Repo repo,
+            final Repo<?> repo,
             final C currency)
             throws InstrumentException {
         return repo.handleWith(this.priceContext(temporal, currency));

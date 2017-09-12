@@ -30,7 +30,7 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
     @Override
     public <C extends CurrencyId> RepoPrice.Shiftable<C> price(
             final LocalDate date,
-            final BondRepo repo,
+            final BondRepo<?> repo,
             final C currency)
             throws InstrumentException {
         return new BondRepoPrice<>(date, repo, currency, RepoShifts.none());
