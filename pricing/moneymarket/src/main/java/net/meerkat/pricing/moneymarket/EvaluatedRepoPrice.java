@@ -1,4 +1,4 @@
-package net.meerkat.calculate.price.moneymarket;
+package net.meerkat.pricing.moneymarket;
 
 import java.util.Map;
 
