@@ -19,3 +19,8 @@
 /pricing/bonds/target/
 /schema/ir-derivative/target/
 /schema/moneymarket/target/
+/pricing/pricing-fx/target/
+/risk/framework/target/
+/pricing/moneymarket/target/
+/risk/risk-bond/target/
+/pricing/fx/target/

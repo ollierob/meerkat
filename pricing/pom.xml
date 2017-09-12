@@ -17,7 +17,7 @@
         <module>framework</module>
         <module>bonds</module>
         <module>moneymarket</module>
-        <module>pricing-fx</module>
+        <module>fx</module>
     </modules>
     <dependencies>
         <dependency>
