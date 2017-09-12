@@ -13,7 +13,7 @@ import net.meerkat.instrument.repo.Repo;
 public interface FixedInterestSecurity extends InstrumentDefinition {
 
     @Nonnull
-    CashPayment<?> purchasePrice();
+    CashPayment<?> purchase();
 
     <R> R handleWith(Handler<R> handler);
 

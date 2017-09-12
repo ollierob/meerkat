@@ -15,17 +15,17 @@ import net.meerkat.money.Money;
 public interface Repo<C extends CurrencyId> extends FixedInterestSecurity {
 
     @Override
-    CashPayment<C> purchasePrice();
+    CashPayment<C> purchase();
 
     @Nonnull
-    CashPayment<C> repurchasePrice();
+    CashPayment<C> repurchase();
 
     @Nonnull
     InstrumentId collateralId();
 
     @Nonnull
     default Money<C> interestPaid() {
-        return this.repurchasePrice().paymentAmount().minus(this.purchasePrice().paymentAmount());
+        return this.repurchase().paymentAmount().minus(this.purchase().paymentAmount());
     }
 
     @Override

@@ -22,12 +22,15 @@ public interface ClassicRepo<C extends CurrencyId> extends Repo<C> {
     @Nonnull
     LocalDate repurchaseDate();
 
+    @Nonnull
+    default Money<C> repurchaseAmount() {
+        final CashPayment<C> purchasePrice = this.purchase();
+        return this.impliedRate().accrue(purchasePrice.paymentAmount(), purchasePrice.paymentDate(), this.repurchaseDate());
+    }
+
     @Override
-    default CashPayment<C> repurchasePrice() {
-        final LocalDate repurchaseDate = this.repurchaseDate();
-        final CashPayment<C> purchasePrice = this.purchasePrice();
-        final Money<C> repurchaseValue = this.impliedRate().accrue(purchasePrice.paymentAmount(), purchasePrice.paymentDate(), repurchaseDate);
-        return new DefaultCashPayment<>(repurchaseDate, repurchaseValue);
+    default CashPayment<C> repurchase() {
+        return new DefaultCashPayment<>(this.repurchaseDate(), this.repurchaseAmount());
     }
 
 }
