@@ -21,8 +21,6 @@ import net.meerkat.money.interest.fixed.FixedInterestRate;
  */
 public class PerpetualBond<C extends CurrencyId> extends AbstractBond {
 
-    private static final long serialVersionUID = 1L;
-
     private final int yearlyFrequency;
     private final Money<C> couponAmount;
     private final FixedInterestRate couponRate;

@@ -1,14 +1,13 @@
 package net.meerkat.pricing.bond;
 
-
 import java.time.temporal.Temporal;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.ConvertibleBond;
 import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FloatingRateNote;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.VariableRateBond;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -53,7 +52,7 @@ public class AnyTypeBondPricer<T extends Temporal> implements GenericBondPricer<
             }
 
             @Override
-            public BondPrice.Shiftable<C> handle(final PerpetualBond bond) {
+            public BondPrice.Shiftable<C> handle(final PerpetualBond<?> bond) {
                 return perpetualPricer.price(temporal, bond, currency);
             }
 

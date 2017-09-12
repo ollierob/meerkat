@@ -14,8 +14,6 @@ import net.meerkat.money.Money;
  */
 public abstract class StraightBond extends AbstractBond {
 
-    private static final long serialVersionUID = 1L;
-
     private final MaturingBondDates dates;
 
     public StraightBond(

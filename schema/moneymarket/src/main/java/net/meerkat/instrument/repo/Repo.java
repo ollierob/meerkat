@@ -1,4 +1,4 @@
-package net.meerkat.instrument.moneymarket;
+package net.meerkat.instrument.repo;
 
 import javax.annotation.Nonnull;
 

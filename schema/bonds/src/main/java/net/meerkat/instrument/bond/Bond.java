@@ -65,7 +65,7 @@ public interface Bond extends Security, InstrumentDefinition, Callable<BondCall>
 
         R handle(FloatingRateNote bond);
 
-        R handle(PerpetualBond bond);
+        R handle(PerpetualBond<?> bond);
 
         R handle(ConvertibleBond bond);
 
