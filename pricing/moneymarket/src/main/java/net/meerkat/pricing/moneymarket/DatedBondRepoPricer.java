@@ -8,6 +8,10 @@ import net.meerkat.instrument.InstrumentException;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.instrument.bond.BondProvider;
 import net.meerkat.instrument.repo.BondRepo;
+import net.meerkat.instrument.repo.repurchase.BuySellBackRepurchase;
+import net.meerkat.instrument.repo.repurchase.ClassicRepoRepurchase;
+import net.meerkat.instrument.repo.repurchase.OpenRepoRepurchase;
+import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
 import net.meerkat.money.Money;
 import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.pricing.bond.GenericBondPricer;
@@ -71,7 +75,8 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
         @Override
         public Money<C> value() {
             final BondPrice<C> bondPrice = this.bondPrice();
-            throw new UnsupportedOperationException(); //TODO
+            final RepurchaseHandler<C> handler = new RepurchaseHandler<>(date, bondPrice);
+            return repo.repurchase().handleWith(handler);
         }
 
         @Override
@@ -82,6 +87,33 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
                     .put("shifts", shifts)
                     .put("bond", this.bond())
                     .put("bond price", this.bondPrice());
+        }
+
+    }
+
+    private static class RepurchaseHandler<C extends CurrencyId> implements RepoRepurchase.Handler<Money<C>> {
+
+        private final LocalDate valueDate;
+        private final BondPrice<C> bondPrice;
+
+        RepurchaseHandler(final LocalDate valueDate, final BondPrice<C> bondPrice) {
+            this.valueDate = valueDate;
+            this.bondPrice = bondPrice;
+        }
+
+        @Override
+        public Money<C> handle(final OpenRepoRepurchase openRepurchase) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public Money<C> handle(final ClassicRepoRepurchase classicRepurchase) {
+            return classicRepurchase.accrue(bondPrice.dirty(), valueDate);
+        }
+
+        @Override
+        public Money<C> handle(final BuySellBackRepurchase<?> buySellBack) {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
 
     }

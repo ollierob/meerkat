@@ -37,6 +37,10 @@ public class ClassicRepoRepurchase implements RepoRepurchase {
         return purchase.accrue(this.rate(), this.date());
     }
 
+    public <C extends CurrencyId> Money<C> accrue(final Money<C> amount, final LocalDate date) {
+        return rate.accrue(amount, date, this.date);
+    }
+
     @Override
     public <R> R handleWith(final Handler<R> handler) {
         return handler.handle(this);
