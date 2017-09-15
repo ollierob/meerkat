@@ -108,7 +108,7 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
 
         @Override
         public Money<C> handle(final ClassicRepoRepurchase classicRepurchase) {
-            return classicRepurchase.accrue(bondPrice.dirty(), valueDate);
+            return classicRepurchase.accrueFrom(bondPrice.dirty(), valueDate);
         }
 
         @Override

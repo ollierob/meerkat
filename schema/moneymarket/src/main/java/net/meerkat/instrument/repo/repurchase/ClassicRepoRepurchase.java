@@ -33,11 +33,11 @@ public class ClassicRepoRepurchase implements RepoRepurchase {
         return date;
     }
 
-    public <C extends CurrencyId> Money<C> amount(final CashPayment<C> purchase) {
-        return purchase.accrue(this.rate(), this.date());
+    public <C extends CurrencyId> Money<C> accrueFrom(final CashPayment<C> purchase) {
+        return this.accrueFrom(purchase.paymentAmount(), purchase.paymentDate());
     }
 
-    public <C extends CurrencyId> Money<C> accrue(final Money<C> amount, final LocalDate date) {
+    public <C extends CurrencyId> Money<C> accrueFrom(final Money<C> amount, final LocalDate date) {
         return rate.accrue(amount, date, this.date);
     }
 
