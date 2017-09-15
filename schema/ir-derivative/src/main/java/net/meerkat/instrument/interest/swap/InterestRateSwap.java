@@ -1,14 +1,12 @@
 package net.meerkat.instrument.interest.swap;
 
-import java.time.LocalDate;
-
+import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
 import net.coljate.list.List;
 import net.coljate.set.MutableSet;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
-import net.meerkat.instrument.dates.Issued;
 import net.meerkat.instrument.derivative.swap.Swap;
 import net.meerkat.instrument.interest.InterestRateDerivative;
 
@@ -17,10 +15,10 @@ import net.meerkat.instrument.interest.InterestRateDerivative;
  * @author ollie
  */
 public interface InterestRateSwap
-        extends InterestRateDerivative, Swap, Issued, HasCurrencyIds, Explainable {
+        extends InterestRateDerivative, Swap, HasCurrencyIds, Explainable {
 
     @Override
-    List<InterestRateSwapLeg<?, ?>> legs();
+    List<? extends InterestRateSwapLeg<?, ?>> legs();
 
     @Override
     default CurrencyIds currencyIds() {
@@ -37,9 +35,8 @@ public interface InterestRateSwap
     }
 
     @Override
-    @Deprecated
-    default LocalDate issueDate() {
-        throw new UnsupportedOperationException();
+    default <R> R handleWith(final Handler<R> handler) {
+        return handler.handle(this);
     }
 
 }

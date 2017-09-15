@@ -2,30 +2,27 @@ package net.meerkat.instrument.interest.swap;
 
 import net.coljate.list.List;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.NamedInstrument;
-import net.meerkat.issuer.IssuerId;
+import net.meerkat.instrument.IssuedSecurity;
+import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
+import net.meerkat.issue.Issue;
 
 /**
  *
  * @author ollie
  */
 public class GenericInterestRateSwap
-        extends NamedInstrument
+        extends IssuedSecurity
         implements InterestRateSwap {
 
-    private static final long serialVersionUID = 1L;
-
     private final List<InterestRateSwapLeg<?, ?>> legs;
-    private final IssuerId issuerId;
 
     public GenericInterestRateSwap(
             final String name,
             final InstrumentIds ids,
             final List<InterestRateSwapLeg<?, ?>> legs,
-            final IssuerId issuerId) {
-        super(name, ids);
+            final Issue issue) {
+        super(name, ids, issue);
         this.legs = legs;
-        this.issuerId = issuerId;
     }
 
     @Override
@@ -34,14 +31,8 @@ public class GenericInterestRateSwap
     }
 
     @Override
-    public IssuerId issuerId() {
-        return issuerId;
-    }
-
-    @Override
     public ExplanationBuilder explain() {
         return super.explain()
-                .put("issuer", issuerId)
                 .put("legs", legs);
     }
 
