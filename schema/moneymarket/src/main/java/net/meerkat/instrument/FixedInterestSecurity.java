@@ -10,7 +10,7 @@ import net.meerkat.instrument.repo.Repo;
  *
  * @author ollie
  */
-public interface FixedInterestSecurity extends InstrumentDefinition {
+public interface FixedInterestSecurity extends Security, InstrumentDefinition {
 
     @Nonnull
     CashPayment<?> purchase();
