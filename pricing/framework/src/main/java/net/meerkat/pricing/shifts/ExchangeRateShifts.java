@@ -1,7 +1,6 @@
 package net.meerkat.pricing.shifts;
 
-import java.util.Map;
-import java.util.Optional;
+import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
@@ -16,8 +15,17 @@ public interface ExchangeRateShifts extends SecurityShifts {
 
     <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate);
 
-    default ExchangeRates shift(final ExchangeRates rates) {
+    default ExchangeRates shift(@Nonnull final ExchangeRates rates) {
         return new ShiftedExchangeRates(rates, this);
+    }
+
+    static ExchangeRateShifts none() {
+        return NoExchangeRateShifts.INSTANCE;
+    }
+
+    @Nonnull
+    static ExchangeRateShifts cast(final SecurityShifts shifts) {
+        return shifts.as(ExchangeRateShifts.class).orElseGet(ExchangeRateShifts::none);
     }
 
     interface ExchangeRateShifter {
@@ -26,42 +34,6 @@ public interface ExchangeRateShifts extends SecurityShifts {
             final ExchangeRate<R, C> baseRate = exchangeRates.rate(amount.currencyId(), reportingCurrency);
             final ExchangeRate<R, C> shiftedRate = shifts.shift(baseRate);
             return shiftedRate.convert(amount);
-        }
-
-    }
-
-    ExchangeRateShifts NONE = new ExchangeRateShifts() {
-
-        @Override
-        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(final ExchangeRate<F, T> rate) {
-            return rate;
-        }
-
-        @Override
-        public Map<String, Object> explain() {
-            return this.explanationBuilder();
-        }
-
-    };
-
-    class ShiftedExchangeRates implements ExchangeRates {
-
-        private final ExchangeRates baseRates;
-        private final ExchangeRateShifts shifts;
-
-        public ShiftedExchangeRates(ExchangeRates baseRates, ExchangeRateShifts shifts) {
-            this.baseRates = baseRates;
-            this.shifts = shifts;
-        }
-
-        @Override
-        public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> rate(final F from, final T to) throws UnavailableExchangeRate {
-            return shifts.shift(baseRates.rate(from, to));
-        }
-
-        @Override
-        public <F extends CurrencyId, T extends CurrencyId> Optional<ExchangeRate<F, T>> maybeRate(final F from, final T to) {
-            return baseRates.maybeRate(from, to).map(shifts::shift);
         }
 
     }

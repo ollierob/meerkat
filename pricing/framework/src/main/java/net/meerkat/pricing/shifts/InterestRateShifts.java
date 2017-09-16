@@ -14,6 +14,14 @@ public interface InterestRateShifts extends SecurityShifts {
     @Nonnull
     InterestRate shift(@Nonnull InterestRate rate);
 
+    static InterestRateShifts none() {
+        return NoInterestRateShifts.INSTANCE;
+    }
+
+    static InterestRateShifts cast(final SecurityShifts shifts) {
+        return shifts.as(InterestRateShifts.class).orElseGet(InterestRateShifts::none);
+    }
+
     interface InterestRateShifter {
 
         default InterestRate shift(final InterestRate rate, final InterestRateShifts shifts) {
