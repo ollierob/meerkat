@@ -17,7 +17,7 @@ import net.ollie.goat.temporal.date.months.Months;
  * @author ollie
  */
 @XmlRootElement
-public class GiltFuture extends GenericBondFutureBasket<GBP> {
+public class GiltFuture extends GenericBondFutureContract<GBP> {
 
     private static final long serialVersionUID = 1L;
 

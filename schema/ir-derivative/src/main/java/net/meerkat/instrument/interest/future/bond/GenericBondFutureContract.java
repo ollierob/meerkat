@@ -3,8 +3,6 @@ package net.meerkat.instrument.interest.future.bond;
 import java.time.Period;
 import java.util.Set;
 
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
@@ -17,29 +15,18 @@ import net.ollie.goat.temporal.date.months.Months;
  *
  * @author ollie
  */
-public class GenericBondFutureBasket<C extends CurrencyId>
+public class GenericBondFutureContract<C extends CurrencyId>
         extends NamedInstrument
         implements BondFutureContract<C> {
 
-    @XmlElementRef(name = "deliverable")
-    private Set<InstrumentId> deliverable;
+    private final Set<InstrumentId> deliverable;
+    private final Period minimumMaturity;
+    private final Period maximumMaturity;
+    private final Percentage nominalCoupon;
+    private final Money<C> notional;
+    private final Months deliveryMonths;
 
-    @XmlElementRef(name = "minimumMaturity")
-    private Period minimumMaturity;
-
-    @XmlElementRef(name = "maximumMaturity")
-    private Period maximumMaturity;
-
-    @XmlElementRef(name = "nominalCoupon")
-    private Percentage nominalCoupon;
-
-    @XmlElementRef(name = "notional")
-    private Money<C> notional;
-
-    @XmlElementRef(name = "deliveryMonths")
-    private Months deliveryMonths;
-
-    public GenericBondFutureBasket(
+    public GenericBondFutureContract(
             final String name,
             final InstrumentIds ids,
             final Set<InstrumentId> deliverable,
