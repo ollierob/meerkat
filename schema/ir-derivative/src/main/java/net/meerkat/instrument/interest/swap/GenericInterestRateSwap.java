@@ -14,19 +14,19 @@ public class GenericInterestRateSwap
         extends IssuedSecurity
         implements InterestRateSwap {
 
-    private final List<InterestRateSwapLeg<?, ?>> legs;
+    private final List<? extends InterestRateSwapLeg<?, ?>> legs;
 
     public GenericInterestRateSwap(
             final String name,
             final InstrumentIds ids,
-            final List<InterestRateSwapLeg<?, ?>> legs,
+            final List<? extends InterestRateSwapLeg<?, ?>> legs,
             final Issue issue) {
         super(name, ids, issue);
         this.legs = legs;
     }
 
     @Override
-    public List<InterestRateSwapLeg<?, ?>> legs() {
+    public List<? extends InterestRateSwapLeg<?, ?>> legs() {
         return legs;
     }
 
