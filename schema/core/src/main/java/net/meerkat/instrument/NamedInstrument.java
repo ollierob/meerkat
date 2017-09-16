@@ -3,40 +3,33 @@ package net.meerkat.instrument;
 import javax.annotation.OverridingMethodsMustInvokeSuper;
 
 import net.meerkat.Explainable;
-import net.meerkat.Named;
 import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.utils.HasName;
 
 /**
  *
  * @author Ollie
  */
 public class NamedInstrument
-        extends Named
-        implements Instrument, Explainable {
+        extends IdentifiedInstrument
+        implements HasName, Explainable {
 
-    private final InstrumentIds ids;
+    private final String name;
 
     public NamedInstrument(final String name, final InstrumentIds ids) {
-        super(name);
-        this.ids = ids;
+        super(ids);
+        this.name = name;
     }
 
     @Override
-    public InstrumentIds instrumentIds() {
-        return ids;
-    }
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + ": " + this.explain();
+    public String name() {
+        return name;
     }
 
     @Override
     @OverridingMethodsMustInvokeSuper
     public ExplanationBuilder explain() {
-        return this.explanationBuilder()
-                .put("name", this.name())
-                .put("ids", ids);
+        return super.explain().put("name", this.name());
     }
 
 }

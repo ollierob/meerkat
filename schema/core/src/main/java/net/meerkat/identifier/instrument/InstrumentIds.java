@@ -9,8 +9,6 @@ import net.meerkat.identifier.HasIds;
  */
 public class InstrumentIds extends HasIds<InstrumentId> implements HasInstrumentIds {
 
-    private static final long serialVersionUID = 1L;
-
     public static InstrumentIds of(final InstrumentId id) {
         return new InstrumentIds(Set.of(id));
     }

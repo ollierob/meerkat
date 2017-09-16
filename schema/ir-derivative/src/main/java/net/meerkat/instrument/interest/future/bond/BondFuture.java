@@ -16,8 +16,6 @@ public class BondFuture<C extends CurrencyId>
         extends AbstractFuture<InterestRateFutureContract<C>>
         implements InterestRateFuture<C, InterestRateFutureContract<C>> {
 
-    private static final long serialVersionUID = 1L;
-
     private final C currencyId;
     private final BondFutureContract<C> basket;
     private final Interim deliveryDates;

@@ -17,8 +17,6 @@ public class Eurodollar3MFutureContract
         extends NamedInstrument
         implements ShortTermInterestRateFutureContract<USD> {
 
-    private static final long serialVersionUID = 1L;
-
     public Eurodollar3MFutureContract(final String name, final InstrumentIds ids) {
         super(name, ids);
     }

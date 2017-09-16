@@ -17,7 +17,6 @@ public class ShortSterlingFutureContract
         extends NamedInstrument
         implements ShortTermInterestRateFutureContract<GBP> {
 
-    private static final long serialVersionUID = 1L;
     private static final Money<GBP> NOTIONAL = Money.of(GBP.GBP, 500_000);
 
     public ShortSterlingFutureContract(final InstrumentIds ids) {

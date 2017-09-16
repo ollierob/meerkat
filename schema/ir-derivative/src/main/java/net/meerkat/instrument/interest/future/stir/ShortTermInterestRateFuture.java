@@ -16,8 +16,6 @@ public class ShortTermInterestRateFuture<C extends CurrencyId>
         extends AbstractFuture<ShortTermInterestRateFutureContract<C>>
         implements InterestRateFuture<C, ShortTermInterestRateFutureContract<C>> {
 
-    private static final long serialVersionUID = 1L;
-
     private final Interim deliveryDates;
     private final ShortTermInterestRateFutureContract<C> contract;
 
