@@ -1,5 +1,6 @@
 package net.meerkat.pricing.moneymarket;
 
+import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.ShiftablePrice;

@@ -1,5 +1,7 @@
 package net.meerkat.pricing.moneymarket;
 
+import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
+
 import java.time.LocalDate;
 import java.util.Map;
 

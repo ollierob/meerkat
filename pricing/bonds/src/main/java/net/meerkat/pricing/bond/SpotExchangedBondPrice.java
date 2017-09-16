@@ -1,5 +1,7 @@
 package net.meerkat.pricing.bond;
 
+import net.meerkat.pricing.bond.shifts.BondShifts;
+
 import java.time.LocalDate;
 
 import net.coljate.list.List;

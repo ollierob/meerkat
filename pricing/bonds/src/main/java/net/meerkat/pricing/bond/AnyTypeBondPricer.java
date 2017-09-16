@@ -1,5 +1,7 @@
 package net.meerkat.pricing.bond;
 
+import net.meerkat.pricing.bond.shifts.BondShifts;
+
 import java.time.temporal.Temporal;
 
 import net.meerkat.identifier.currency.CurrencyId;

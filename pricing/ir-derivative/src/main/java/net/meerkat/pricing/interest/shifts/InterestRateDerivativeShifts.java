@@ -13,10 +13,7 @@ public interface InterestRateDerivativeShifts extends InterestRateShifts, Exchan
     InterestRateDerivativeShifts NONE = null;
 
     static InterestRateDerivativeShifts cast(final SecurityShifts shifts) {
-        return new WrappedInterestRateDerivativeShifts(
-                InterestRateShifts.cast(shifts),
-                ExchangeRateShifts.cast(shifts)
-        );
+        return new WrappedInterestRateDerivativeShifts(shifts);
     }
 
 }

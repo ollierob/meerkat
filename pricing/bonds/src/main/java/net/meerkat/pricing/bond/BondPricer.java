@@ -1,5 +1,6 @@
 package net.meerkat.pricing.bond;
 
+import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.pricing.InstrumentPricer;

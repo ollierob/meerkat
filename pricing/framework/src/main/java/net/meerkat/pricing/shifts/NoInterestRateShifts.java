@@ -8,20 +8,24 @@ import net.meerkat.money.interest.InterestRate;
  *
  * @author Ollie
  */
-class NoInterestRateShifts implements InterestRateShifts {
+public interface NoInterestRateShifts extends InterestRateShifts {
 
-    static final NoInterestRateShifts INSTANCE = new NoInterestRateShifts();
+    NoInterestRateShifts INSTANCE = new NoInterestRateShifts() {
 
-    private NoInterestRateShifts() {
-    }
+        @Override
+        public Map<String, Object> explain() {
+            return this.explanationBuilder();
+        }
+
+    };
 
     @Override
-    public InterestRate shift(InterestRate rate) {
+    default InterestRate shift(final InterestRate rate) {
         return rate;
     }
 
     @Override
-    public Map<String, Object> explain() {
+    default Map<String, Object> explain() {
         return this.explanationBuilder();
     }
 
