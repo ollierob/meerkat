@@ -9,6 +9,6 @@ import javax.annotation.Nonnull;
 public interface InterestRateOrId {
 
     @Nonnull
-    InterestRate resolve(InterestRateProvider provider) throws UnknownInterestRateException;
+    InterestRate resolve(InterestRates provider) throws UnknownInterestRateException;
 
 }

@@ -55,7 +55,7 @@ public interface InterestRate extends InterestRateOrId {
 
     @Override
     @Deprecated
-    default InterestRate resolve(final InterestRateProvider provider) {
+    default InterestRate resolve(final InterestRates provider) {
         return this;
     }
 

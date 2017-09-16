@@ -8,6 +8,7 @@
     </parent>
     <artifactId>pricing-ir-derivative</artifactId>
     <packaging>jar</packaging>
+    
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -16,8 +17,9 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ir-derivative</artifactId>
+            <artifactId>schema-ir-derivative</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+    
 </project>

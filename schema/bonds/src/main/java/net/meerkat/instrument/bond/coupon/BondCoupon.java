@@ -9,9 +9,9 @@ import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateOrId;
-import net.meerkat.money.interest.InterestRateProvider;
 import net.meerkat.money.interest.UnknownInterestRateException;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.money.interest.InterestRates;
 
 /**
  *
@@ -31,7 +31,7 @@ public interface BondCoupon extends HasCurrencyId, Explainable {
     InterestRateOrId rate();
 
     @Nonnull
-    default InterestRate rate(final InterestRateProvider provider) throws UnknownInterestRateException {
+    default InterestRate rate(final InterestRates provider) throws UnknownInterestRateException {
         return this.rate().resolve(provider).plus(this.spread());
     }
 

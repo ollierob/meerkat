@@ -13,7 +13,7 @@ public interface HasInterestRateId {
     InterestRateId interestRateId();
 
     @CheckForNull
-    default InterestRate resolve(final InterestRateProvider provider) throws UnknownInterestRateException {
+    default InterestRate resolve(final InterestRates provider) throws UnknownInterestRateException {
         return provider.require(this.interestRateId());
     }
 

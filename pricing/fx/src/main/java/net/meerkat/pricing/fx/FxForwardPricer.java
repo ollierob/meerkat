@@ -8,7 +8,6 @@ import net.meerkat.instrument.InstrumentException;
 import net.meerkat.instrument.fx.forward.FxForward;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.interest.InterestRateProvider;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.InstrumentPricer;
@@ -16,6 +15,7 @@ import net.meerkat.pricing.shifts.InterestRateShifts;
 import net.meerkat.pricing.shifts.InterestRateShifts.InterestRateShifter;
 import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.money.interest.InterestRates;
 
 /**
  *
@@ -23,9 +23,9 @@ import net.ollie.goat.numeric.percentage.Percentage;
  */
 public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward<?, ?>> {
 
-    private final InterestRateProvider interestRates;
+    private final InterestRates interestRates;
 
-    public FxForwardPricer(final InterestRateProvider interestRates) {
+    public FxForwardPricer(final InterestRates interestRates) {
         this.interestRates = interestRates;
     }
 

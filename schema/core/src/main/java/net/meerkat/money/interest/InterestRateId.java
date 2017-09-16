@@ -7,7 +7,7 @@ package net.meerkat.money.interest;
 public interface InterestRateId extends InterestRateOrId {
 
     @Override
-    default InterestRate resolve(final InterestRateProvider provider) throws UnknownInterestRateException {
+    default InterestRate resolve(final InterestRates provider) throws UnknownInterestRateException {
         return provider.require(this);
     }
 

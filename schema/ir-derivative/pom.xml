@@ -8,8 +8,9 @@
     </parent>
     
     <name>schema-ir-derivative</name>
-    <artifactId>ir-derivative</artifactId>
+    <artifactId>schema-ir-derivative</artifactId>
     <packaging>jar</packaging>
+    
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -22,4 +23,5 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+    
 </project>

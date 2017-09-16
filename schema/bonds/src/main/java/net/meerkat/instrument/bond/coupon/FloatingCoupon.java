@@ -9,9 +9,9 @@ import net.meerkat.money.interest.HasInterestRateId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.InterestRateOrId;
-import net.meerkat.money.interest.InterestRateProvider;
 import net.meerkat.money.interest.feature.RateFeature;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.money.interest.InterestRates;
 
 /**
  *
@@ -62,7 +62,7 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
     }
 
     @Override
-    public InterestRate resolve(final InterestRateProvider provider) {
+    public InterestRate resolve(final InterestRates provider) {
         final InterestRate rate = super.rate(provider);
         Percentage spread = this.spread();
         for (final RateFeature feature : this.features) {

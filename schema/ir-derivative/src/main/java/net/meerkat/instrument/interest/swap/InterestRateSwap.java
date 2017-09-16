@@ -1,6 +1,7 @@
 package net.meerkat.instrument.interest.swap;
 
-import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
+import java.time.LocalDate;
+
 import net.coljate.list.List;
 import net.coljate.set.MutableSet;
 import net.meerkat.Explainable;
@@ -9,6 +10,7 @@ import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.instrument.derivative.swap.Swap;
 import net.meerkat.instrument.interest.InterestRateDerivative;
+import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
 
 /**
  *
@@ -19,6 +21,10 @@ public interface InterestRateSwap
 
     @Override
     List<? extends InterestRateSwapLeg<?, ?>> legs();
+
+    default List<? extends InterestRateSwapLeg<?, ?>> legsAfter(final LocalDate date) {
+        return this.legs().filter(leg -> leg.payDate().isAfter(date));
+    }
 
     @Override
     default CurrencyIds currencyIds() {

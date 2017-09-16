@@ -6,9 +6,9 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.InterestRateProvider;
 import net.meerkat.money.interest.UnknownInterestRateException;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
+import net.meerkat.money.interest.InterestRates;
 
 /**
  *
@@ -20,13 +20,13 @@ public interface InterestEarning {
     Money<?> notional();
 
     @Nonnull
-    InterestRate rate(InterestRateProvider rates) throws UnknownInterestRateException;
+    InterestRate rate(InterestRates rates) throws UnknownInterestRateException;
 
     @Nonnull
     default Money<?> accrue(
             final LocalDate start,
             final LocalDate accrualDate,
-            final InterestRateProvider rates,
+            final InterestRates rates,
             final InterestRateInterpolator interpolator) {
         return this.rate(rates).accrue(this.notional(), start, accrualDate, interpolator);
     }
@@ -35,7 +35,7 @@ public interface InterestEarning {
     default Money<?> discount(
             final LocalDate discountDate,
             final LocalDate end,
-            final InterestRateProvider rates,
+            final InterestRates rates,
             final InterestRateInterpolator interpolator) {
         return this.rate(rates).discount(this.notional(), discountDate, end, interpolator);
     }
