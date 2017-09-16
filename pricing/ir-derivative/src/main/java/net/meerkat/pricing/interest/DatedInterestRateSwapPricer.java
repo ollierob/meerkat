@@ -12,8 +12,7 @@ import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRates;
-import net.meerkat.money.price.Price;
-import net.meerkat.pricing.shifts.ExchangeRateShifts.ExchangeRateShifter;
+import net.meerkat.pricing.interest.shifts.InterestRateDerivativeShifts;
 
 /**
  *
@@ -30,17 +29,19 @@ public class DatedInterestRateSwapPricer implements InterestRateSwapPricer<Local
     }
 
     @Override
-    public <C extends CurrencyId> Price.Valued<C> price(
+    public <C extends CurrencyId> InterestRateDerivativePrice.Shiftable<C> price(
             final LocalDate date,
             final InterestRateSwap instrument,
             final C currency,
             final InterestRateDerivativeShifts shifts)
             throws InstrumentException {
-        return new InterestRateSwapPrice<>(date, instrument, currency, interestRatesProvider.require(date), fxRatesProvider.require(date), shifts);
+        final InterestRates interestRates = interestRatesProvider.require(date);
+        final ExchangeRates fxRates = fxRatesProvider.require(date);
+        return new InterestRateSwapPrice<>(date, instrument, currency, interestRates, fxRates, shifts);
     }
 
     private class InterestRateSwapPrice<C extends CurrencyId>
-            implements Price.Valued<C>, ExchangeRateShifter {
+            implements InterestRateDerivativePrice.Shiftable<C> {
 
         private final LocalDate date;
         private final InterestRateSwap swap;
@@ -49,7 +50,13 @@ public class DatedInterestRateSwapPricer implements InterestRateSwapPricer<Local
         private final ExchangeRates fxRates;
         private final InterestRateDerivativeShifts shifts;
 
-        public InterestRateSwapPrice(final LocalDate date, final InterestRateSwap swap, final C currency, final InterestRates interestRates, final ExchangeRates fxRates, final InterestRateDerivativeShifts shifts) {
+        InterestRateSwapPrice(
+                final LocalDate date,
+                final InterestRateSwap swap,
+                final C currency,
+                final InterestRates interestRates,
+                final ExchangeRates fxRates,
+                final InterestRateDerivativeShifts shifts) {
             this.date = date;
             this.swap = swap;
             this.currency = currency;
@@ -78,6 +85,11 @@ public class DatedInterestRateSwapPricer implements InterestRateSwapPricer<Local
 
         <D extends CurrencyId> Money<D> discount(final Money<D> notional) {
             throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Override
+        public Shiftable<C> shift(final InterestRateDerivativeShifts shifts) {
+            return new InterestRateSwapPrice<>(date, swap, currency, interestRates, fxRates, shifts);
         }
 
         @Override
