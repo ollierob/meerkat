@@ -1,6 +1,7 @@
 package net.meerkat.identifier.interest;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.annotation.CheckReturnValue;
 
@@ -24,36 +25,34 @@ import net.ollie.goat.temporal.date.count.DateArithmetic;
  */
 public class IborId extends NamedInterestRateId implements InterestRatePlusSpreadId, HasCurrencyId {
 
-    public static IborId GBP_LIBOR = new IborId("GBP_LIBOR", CurrencyIso.GBP, DateArithmetic.ACT_365);
+    public static final IborId GBP_LIBOR = new IborId("GBP_LIBOR", CurrencyIso.GBP, DateArithmetic.ACT_365);
+    public static final IborId USD_LIBOR = new IborId("USD_LIBOR", CurrencyIso.USD, DateArithmetic.ACT_360);
+    public static final IborId EUR_LIBOR = new IborId("EUR_LIBOR", CurrencyIso.EUR, DateArithmetic.ACT_360);
+    public static final IborId JPY_LIBOR = new IborId("JPY_LIBOR", CurrencyIso.JPY, DateArithmetic.ACT_360);
 
-    public static IborId USD_LIBOR = new IborId("USD_LIBOR", CurrencyIso.USD, DateArithmetic.ACT_360);
-    public static IborId USD_FED_FUNDS = new IborId("USD_FED_FUNDS", CurrencyIso.USD, DateArithmetic.ACT_360);
+    public static final IborId EURIBOR = new IborId("EURIBOR", CurrencyIso.EUR, DateArithmetic.ACT_360); //EONIA = overnight
+    public static final IborId SONIA = new IborId("SONIA", CurrencyIso.GBP, DateArithmetic.ACT_365);
+    public static final IborId TIBOR = new IborId("TIBOR", CurrencyIso.JPY, DateArithmetic.ACT_365);
+    public static final IborId BBSW = new IborId("BBSW", CurrencyIso.AUD, DateArithmetic.ACT_365);
+    public static final IborId HIBOR = new IborId("HIBOR", CurrencyIso.HKD, DateArithmetic.ACT_365);
+    public static final IborId SIBOR = new IborId("SIBOR", CurrencyIso.SGD, DateArithmetic.ACT_365);
 
-    public static IborId EURIBOR = new IborId("EURIBOR", CurrencyIso.EUR, DateArithmetic.ACT_360);
-    public static IborId EONIA = new IborId("EONIA", CurrencyIso.EUR, DateArithmetic.ACT_360);
-
-    public static IborId SONIA = new IborId("SONIA", CurrencyIso.GBP, DateArithmetic.ACT_365);
-    public static IborId TONAR = new IborId("TONAR", CurrencyIso.JPY, DateArithmetic.ACT_365);
-
-    public static IborId BBSW = new IborId("BBSW", CurrencyIso.AUD, DateArithmetic.ACT_365);
-    public static IborId HIBOR = new IborId("HIBOR", CurrencyIso.HKD, DateArithmetic.ACT_365);
-    public static IborId SARON = new IborId("SARON", CurrencyIso.CHF, DateArithmetic.ACT_360);
-    public static IborId SIBOR = new IborId("SARON", CurrencyIso.SGD, DateArithmetic.ACT_365);
+    public static final IborId FEDERAL_FUNDS = new IborId("FED", CurrencyIso.USD, DateArithmetic.ACT_360);
 
     private final CurrencyIso currencyId;
     private final DateArithmetic dateArithmetic;
     private final Percentage spread;
     private final IborId base;
 
-    public IborId(final String value, final CurrencyIso currencyId, final DateArithmetic dateArithmetic) {
-        this(value, currencyId, dateArithmetic, Percentage.zero(), null);
+    public IborId(final String name, final CurrencyIso currencyId, final DateArithmetic dateArithmetic) {
+        this(name, currencyId, dateArithmetic, Percentage.zero(), null);
     }
 
-    protected IborId(final String value, final CurrencyIso currencyId, final DateArithmetic dateArithmetic, final Percentage spread, final IborId base) {
-        super(value);
-        this.currencyId = currencyId;
-        this.dateArithmetic = dateArithmetic;
-        this.spread = spread;
+    protected IborId(final String name, final CurrencyIso currencyId, final DateArithmetic dateArithmetic, final Percentage spread, final IborId base) {
+        super(name);
+        this.currencyId = Objects.requireNonNull(currencyId);
+        this.dateArithmetic = Objects.requireNonNull(dateArithmetic);
+        this.spread = Objects.requireNonNull(spread);
         this.base = base == null || spread.isZero() ? this : base;
     }
 
