@@ -48,6 +48,7 @@ public interface CurrencyIso
     DKK DKK = new DKK();
     EUR EUR = new EUR();
     GBP GBP = new GBP();
+    HKD HKD = new HKD();
     INR INR = new INR();
     JPY JPY = new JPY();
     MXN MXN = new MXN();
@@ -57,6 +58,7 @@ public interface CurrencyIso
     QAR QAR = new QAR();
     RUB RUB = new RUB();
     SEK SEK = new SEK();
+    SGD SGD = new SGD();
     THB THB = new THB();
     TRY TRY = new TRY();
     TWD TWD = new TWD();

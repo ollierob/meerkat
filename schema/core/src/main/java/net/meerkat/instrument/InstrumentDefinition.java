@@ -1,14 +1,13 @@
 package net.meerkat.instrument;
 
-import java.util.Collections;
 import java.util.Map;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 import net.meerkat.Explainable;
-import net.meerkat.utils.HasName;
 import net.meerkat.identifier.instrument.HasInstrumentIds;
+import net.meerkat.utils.HasName;
 
 /**
  *
@@ -23,7 +22,7 @@ public interface InstrumentDefinition
 
     @Override
     default Map<String, Object> explain() {
-        return Collections.emptyMap();
+        return this.explanationBuilder();
     }
 
     @CheckForNull

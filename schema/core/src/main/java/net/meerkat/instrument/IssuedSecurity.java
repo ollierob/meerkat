@@ -12,8 +12,6 @@ public class IssuedSecurity
         extends NamedInstrument
         implements Security, HasIssue {
 
-    private static final long serialVersionUID = 1L;
-
     private final Issue issue;
 
     public IssuedSecurity(final String name, final InstrumentIds identifiers, final Issue issue) {

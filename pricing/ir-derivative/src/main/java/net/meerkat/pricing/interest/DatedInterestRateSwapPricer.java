@@ -78,9 +78,9 @@ public class DatedInterestRateSwapPricer implements InterestRateSwapPricer<Local
 
         <P extends CurrencyId, R extends CurrencyId> Money<C> netValue(final InterestRateSwapLeg<P, R> leg) {
             final ExchangeRates fxRates = this.fxRates();
-            final Money<C> discountPay = fxRates.convert(this.discount(leg.payNotional()), currency);
-            final Money<C> discountReceive = fxRates.convert(this.discount(leg.receiveNotional()), currency);
-            return discountReceive.minus(discountPay);
+            final Money<C> discountedPay = fxRates.convert(this.discount(leg.payNotional()), currency);
+            final Money<C> discountedReceive = fxRates.convert(this.discount(leg.receiveNotional()), currency);
+            return discountedReceive.minus(discountedPay);
         }
 
         <D extends CurrencyId> Money<D> discount(final Money<D> notional) {
