@@ -2,6 +2,7 @@ package net.meerkat.identifier.currency;
 
 import javax.annotation.Nonnull;
 
+import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.money.MoneyFormat;
 import net.meerkat.utils.Classes.Castable;
 
@@ -10,7 +11,7 @@ import net.meerkat.utils.Classes.Castable;
  *
  * @author Ollie
  */
-public interface CurrencyId extends HasCurrencyId, Castable {
+public interface CurrencyId extends HasCurrencyId, InstrumentId, Castable {
 
     /**
      * @return the character(s) that are used, for example {@code $} for US dollars.
@@ -27,6 +28,12 @@ public interface CurrencyId extends HasCurrencyId, Castable {
     @Override
     @Deprecated
     default CurrencyId currencyId() {
+        return this;
+    }
+
+    @Override
+    @Deprecated
+    default CurrencyId instrumentId() {
         return this;
     }
 

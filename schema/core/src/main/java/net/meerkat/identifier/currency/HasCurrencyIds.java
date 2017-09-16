@@ -14,7 +14,7 @@ public interface HasCurrencyIds {
     CurrencyIds currencyIds();
 
     default <T extends CurrencyId> Optional<T> currencyId(final Class<T> clazz) {
-        return this.currencyIds().id(clazz);
+        return this.currencyIds().thatIs(clazz);
     }
 
 }

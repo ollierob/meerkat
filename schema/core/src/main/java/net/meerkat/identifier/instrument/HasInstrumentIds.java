@@ -20,7 +20,7 @@ public interface HasInstrumentIds {
     }
 
     default <R extends InstrumentId> Optional<R> instrumentId(final Class<R> clazz) {
-        return this.instrumentIds().id(clazz);
+        return this.instrumentIds().thatIs(clazz);
     }
 
 }

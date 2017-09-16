@@ -13,7 +13,7 @@ public class InstrumentIds extends HasIds<InstrumentId> implements HasInstrument
         return new InstrumentIds(Set.of(id));
     }
 
-    public InstrumentIds(final Set<InstrumentId> ids) {
+    public InstrumentIds(final Set<? extends InstrumentId> ids) {
         super(ids);
     }
 

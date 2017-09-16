@@ -2,15 +2,21 @@ package net.meerkat.identifier.currency;
 
 import net.coljate.collection.Collection;
 import net.coljate.set.Set;
-import net.meerkat.identifier.HasIds;
+import net.meerkat.identifier.instrument.InstrumentIds;
 
 /**
  *
  * @author ollie
  */
 public class CurrencyIds
-        extends HasIds<CurrencyId>
+        extends InstrumentIds
         implements HasCurrencyIds {
+
+    public static CurrencyIds of(final InstrumentIds ids) {
+        return ids instanceof CurrencyIds
+                ? (CurrencyIds) ids
+                : of(ids.thatAre(CurrencyId.class));
+    }
 
     public static CurrencyIds of(final CurrencyId id) {
         return new CurrencyIds(Set.of(id));

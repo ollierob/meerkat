@@ -15,9 +15,9 @@ import net.meerkat.utils.Classes.Castable;
  */
 public abstract class HasIds<T extends Castable> {
 
-    private final ImmutableSet<T> ids;
+    private final ImmutableSet<? extends T> ids;
 
-    protected HasIds(final Set<T> ids) {
+    protected HasIds(final Set<? extends T> ids) {
         this.ids = ids.immutableCopy();
     }
 
@@ -26,12 +26,21 @@ public abstract class HasIds<T extends Castable> {
     }
 
     @Nonnull
-    public <M extends T> Optional<M> id(final Class<M> clazz) {
-        return ids.stream()
+    public <M extends T> Optional<M> thatIs(final Class<M> clazz) {
+        return ids.serialStream()
                 .map(id -> id.cast(clazz))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .findAny();
+    }
+
+    @Nonnull
+    public <M extends T> Set<M> thatAre(final Class<M> clazz) {
+        return ids.serialStream()
+                .map(id -> id.cast(clazz))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Set.collector());
     }
 
     public boolean isEmpty() {
