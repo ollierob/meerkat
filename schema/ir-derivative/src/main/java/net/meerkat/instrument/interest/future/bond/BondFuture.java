@@ -5,12 +5,15 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
 import net.meerkat.instrument.interest.future.InterestRateFutureContract;
+import net.meerkat.instrument.interest.future.stir.ShortTermInterestRateFuture;
 import net.meerkat.issue.Issue;
 import net.ollie.goat.temporal.date.interim.Interim;
 
 /**
+ * Long-term interest rate future.
  *
- * @author ollie
+ * @author Ollie
+ * @see ShortTermInterestRateFuture
  */
 public class BondFuture<C extends CurrencyId>
         extends AbstractFuture<InterestRateFutureContract<C>>

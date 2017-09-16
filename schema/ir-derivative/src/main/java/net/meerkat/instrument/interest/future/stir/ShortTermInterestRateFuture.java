@@ -4,13 +4,16 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
+import net.meerkat.instrument.interest.future.bond.BondFuture;
 import net.meerkat.issue.Issue;
 import net.meerkat.money.Money;
 import net.ollie.goat.temporal.date.interim.Interim;
 
 /**
+ * Short-term interest rate future.
  *
- * @author ollie
+ * @author Ollie
+ * @see BondFuture
  */
 public class ShortTermInterestRateFuture<C extends CurrencyId>
         extends AbstractFuture<ShortTermInterestRateFutureContract<C>>
