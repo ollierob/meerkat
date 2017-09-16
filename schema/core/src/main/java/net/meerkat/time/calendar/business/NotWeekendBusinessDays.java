@@ -6,9 +6,9 @@ import java.time.LocalDate;
  *
  * @author Ollie
  */
-public abstract class WeekendBusinessDays implements BusinessDayCalendar {
+public abstract class NotWeekendBusinessDays implements BusinessDayCalendar {
 
-    public static final WeekendBusinessDays WEEKEND_TO_MONDAY = new WeekendBusinessDays() {
+    public static final NotWeekendBusinessDays WEEKEND_TO_MONDAY = new NotWeekendBusinessDays() {
 
         @Override
         public BusinessDay next(final LocalDate date) {
@@ -36,7 +36,7 @@ public abstract class WeekendBusinessDays implements BusinessDayCalendar {
 
     };
 
-    private WeekendBusinessDays() {
+    private NotWeekendBusinessDays() {
     }
 
     @Override
