@@ -12,6 +12,7 @@ import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 /**
  *
  * @author Ollie
+ * @see ExchangeRates
  */
 public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
         extends Comparable<ExchangeRate<F, T>>, HasCurrencyIds {

@@ -24,6 +24,7 @@ public interface ExchangeRates {
     <F extends CurrencyId, T extends CurrencyId> Optional<ExchangeRate<F, T>> maybeRate(F from, T to);
 
     @Nonnull
+    @SuppressWarnings("unchecked")
     default <F extends CurrencyId, T extends CurrencyId> Money<T> convert(
             @Nonnull final Money<F> money,
             @Nonnull final T to) {

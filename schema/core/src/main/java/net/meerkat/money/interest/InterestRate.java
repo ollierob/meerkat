@@ -15,6 +15,7 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
 /**
  *
  * @author Ollie
+ * @see InterestRates
  */
 public interface InterestRate extends InterestRateOrId {
 
