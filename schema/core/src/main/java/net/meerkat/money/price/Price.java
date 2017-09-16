@@ -25,6 +25,11 @@ public interface Price<C extends CurrencyId> extends HasCurrencyId, Explainable 
         Money<C> value();
 
         @Override
+        default EvaluatedPrice<C> evaluate() {
+            return new EvaluatedPrice<>(this.value());
+        }
+
+        @Override
         default C currencyId() {
             return this.value().currencyId();
         }
