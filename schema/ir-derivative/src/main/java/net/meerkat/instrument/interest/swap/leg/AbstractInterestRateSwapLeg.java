@@ -3,6 +3,7 @@ package net.meerkat.instrument.interest.swap.leg;
 import java.time.LocalDate;
 
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRateOrId;
 
 /**
@@ -14,16 +15,16 @@ public abstract class AbstractInterestRateSwapLeg<P extends CurrencyId, R extend
 
     private final LocalDate date;
     private final IP payRate;
-    private final P payCurrency;
+    private final Money<P> payNotional;
     private final IR receiveRate;
-    private final R receiveCurrency;
+    private final Money<R> receiveNotional;
 
-    protected AbstractInterestRateSwapLeg(final LocalDate date, IP payRate, P payCurrency, IR receiveRate, R receiveCurrency) {
+    protected AbstractInterestRateSwapLeg(final LocalDate date, IP payRate, Money<P> payNotional, IR receiveRate, Money<R> receiveNotional) {
         this.date = date;
         this.payRate = payRate;
-        this.payCurrency = payCurrency;
+        this.payNotional = payNotional;
         this.receiveRate = receiveRate;
-        this.receiveCurrency = receiveCurrency;
+        this.receiveNotional = receiveNotional;
     }
 
     @Override
@@ -42,13 +43,13 @@ public abstract class AbstractInterestRateSwapLeg<P extends CurrencyId, R extend
     }
 
     @Override
-    public P payCurrency() {
-        return payCurrency;
+    public Money<P> payNotional() {
+        return payNotional;
     }
 
     @Override
-    public R receiveCurrency() {
-        return receiveCurrency;
+    public Money<R> receiveNotional() {
+        return receiveNotional;
     }
 
 }

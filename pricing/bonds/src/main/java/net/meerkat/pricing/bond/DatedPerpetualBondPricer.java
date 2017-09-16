@@ -43,10 +43,11 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
     public <C extends CurrencyId> BondPrice.Shiftable<C> price(
             final LocalDate date,
             final PerpetualBond<?> bond,
-            final C currency) {
+            final C currency,
+            final BondShifts bondShifts) {
         final ExchangeRates exchangeRates = exchangeRatesProvider.require(date);
         final InterestRate discountRate = getDiscountRates.apply(date, currency);
-        return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, interestRateInterpolator, BondShifts.none());
+        return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, interestRateInterpolator, bondShifts);
     }
 
     private static final class PerpetualBondPrice<F extends CurrencyId, C extends CurrencyId>

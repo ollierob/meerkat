@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.InstrumentException;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.instrument.bond.BondProvider;
 import net.meerkat.instrument.repo.BondRepo;
@@ -14,6 +13,7 @@ import net.meerkat.instrument.repo.repurchase.OpenRepoRepurchase;
 import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
 import net.meerkat.money.Money;
 import net.meerkat.pricing.bond.BondPrice;
+import net.meerkat.pricing.bond.BondPriceException;
 import net.meerkat.pricing.bond.GenericBondPricer;
 import net.ollie.goat.suppliers.lazy.Lazy;
 
@@ -36,7 +36,7 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
             final LocalDate date,
             final BondRepo<?> repo,
             final C currency)
-            throws InstrumentException {
+            throws BondPriceException {
         return new BondRepoPrice<>(date, repo, currency, RepoShifts.none());
     }
 

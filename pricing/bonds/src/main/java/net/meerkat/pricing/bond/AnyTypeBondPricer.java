@@ -37,33 +37,34 @@ public class AnyTypeBondPricer<T extends Temporal> implements GenericBondPricer<
     @Override
     public <C extends CurrencyId> BondPriceContext<C> priceContext(
             final T temporal,
-            final C currency) {
+            final C currency,
+            final BondShifts shifts) {
 
         return new BondPriceContext<C>() {
 
             @Override
             public BondPrice.Shiftable<C> handle(final FixedCouponBond bond) {
-                return fixedCouponPricer.price(temporal, bond, currency);
+                return fixedCouponPricer.price(temporal, bond, currency, shifts);
             }
 
             @Override
             public BondPrice.Shiftable<C> handle(final FloatingRateNote bond) {
-                return floatingNotePricer.price(temporal, bond, currency);
+                return floatingNotePricer.price(temporal, bond, currency, shifts);
             }
 
             @Override
             public BondPrice.Shiftable<C> handle(final PerpetualBond<?> bond) {
-                return perpetualPricer.price(temporal, bond, currency);
+                return perpetualPricer.price(temporal, bond, currency, shifts);
             }
 
             @Override
             public BondPrice.Shiftable<C> handle(final ConvertibleBond bond) {
-                return convertiblePricer.price(temporal, bond, currency);
+                return convertiblePricer.price(temporal, bond, currency, shifts);
             }
 
             @Override
             public BondPrice.Shiftable<C> handle(final VariableRateBond bond) {
-                return variablePricer.price(temporal, bond, currency);
+                return variablePricer.price(temporal, bond, currency, shifts);
             }
 
         };

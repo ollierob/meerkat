@@ -3,9 +3,9 @@ package net.meerkat.pricing.interest;
 import java.time.temporal.Temporal;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.InstrumentException;
 import net.meerkat.instrument.interest.InterestRateDerivative;
 import net.meerkat.money.price.Price;
+import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.InstrumentPricer;
 
 /**
@@ -16,6 +16,10 @@ public interface InterestRateDerivativePricer<T extends Temporal, D extends Inte
         extends InstrumentPricer<T, D> {
 
     @Override
-    <C extends CurrencyId> Price.Valued<C> price(T temporal, D instrument, C currency) throws InstrumentException;
+    default <C extends CurrencyId> Price.Valued<C> price(final T temporal, final D instrument, final C currency) throws InstrumentPriceException {
+        return this.price(temporal, instrument, currency, InterestRateDerivativeShifts.NONE);
+    }
+
+    <C extends CurrencyId> Price.Valued<C> price(T temporal, D instrument, C currency, InterestRateDerivativeShifts shifts) throws InstrumentPriceException;
 
 }

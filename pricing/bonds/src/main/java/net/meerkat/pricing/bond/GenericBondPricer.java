@@ -18,12 +18,13 @@ public interface GenericBondPricer<T extends Temporal>
     default <C extends CurrencyId> BondPrice.Shiftable<C> price(
             final T temporal,
             final Bond bond,
-            final C currency)
+            final C currency,
+            final BondShifts shifts)
             throws BondPriceException {
-        return bond.handleWith(this.priceContext(temporal, currency));
+        return bond.handleWith(this.priceContext(temporal, currency, shifts));
     }
 
-    <C extends CurrencyId> BondPriceContext<C> priceContext(T valuation, C currency)
+    <C extends CurrencyId> BondPriceContext<C> priceContext(T valuation, C currency, BondShifts shifts)
             throws BondPriceException;
 
     interface BondPriceContext<C extends CurrencyId> extends Bond.Handler<BondPrice.Shiftable<C>> {
