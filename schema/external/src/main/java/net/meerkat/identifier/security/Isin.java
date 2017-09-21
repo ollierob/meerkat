@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 import net.meerkat.Explainable;
 import net.meerkat.identifier.country.CountryIso;
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.Security;
 import net.meerkat.utils.algorithm.LuhnAlgorithm;
 
@@ -17,8 +18,6 @@ import net.meerkat.utils.algorithm.LuhnAlgorithm;
  * @author Ollie
  */
 public class Isin implements InstrumentId, HasCheckDigit, HasNsin, Explainable {
-
-    private static final long serialVersionUID = 1L;
 
     public static Isin valueOf(final String isin) {
         //TODO check length
@@ -45,6 +44,11 @@ public class Isin implements InstrumentId, HasCheckDigit, HasNsin, Explainable {
 
     public CountryIso country() {
         return country;
+    }
+
+    @Override
+    public InstrumentIds instrumentIds() {
+        return InstrumentIds.of(this, nsin);
     }
 
     @Override

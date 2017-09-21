@@ -5,6 +5,8 @@ import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 
+import net.coljate.set.Set;
+
 /**
  *
  * @author Ollie
@@ -19,8 +21,13 @@ public interface HasInstrumentIds {
         this.instrumentIds().accept(consumer);
     }
 
-    default <R extends InstrumentId> Optional<R> instrumentId(final Class<R> clazz) {
+    @Nonnull
+    default <T extends InstrumentId> Optional<T> instrumentId(final Class<T> clazz) {
         return this.instrumentIds().thatIs(clazz);
+    }
+
+    default <T extends InstrumentId> Set<T> instrumentIds(final Class<T> clazz) {
+        return this.instrumentIds().thatAre(clazz);
     }
 
 }

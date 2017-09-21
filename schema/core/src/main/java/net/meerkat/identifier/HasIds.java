@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 import net.coljate.set.ImmutableSet;
 import net.coljate.set.Set;
 import net.meerkat.utils.Classes.Castable;
+import net.ollie.goat.collectors.OptionalCollectors;
 
 /**
  *
@@ -29,9 +30,7 @@ public abstract class HasIds<T extends Castable> {
     public <M extends T> Optional<M> thatIs(final Class<M> clazz) {
         return ids.serialStream()
                 .map(id -> id.cast(clazz))
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .findAny();
+                .collect(OptionalCollectors.oneOrEmpty());
     }
 
     @Nonnull
