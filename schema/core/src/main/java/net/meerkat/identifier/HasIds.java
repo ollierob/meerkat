@@ -27,18 +27,19 @@ public abstract class HasIds<T extends Castable> {
     }
 
     @Nonnull
-    public <M extends T> Optional<M> thatIs(final Class<M> clazz) {
-        return ids.serialStream()
-                .map(id -> id.cast(clazz))
+    @SuppressWarnings("unchecked")
+    public <M extends T> Optional<M> thatIs(final Class<? extends M> clazz) {
+        return ids.transform(id -> id.cast(clazz))
+                .transform(o -> (Optional<M>) o)
                 .collect(OptionalCollectors.oneOrEmpty());
     }
 
     @Nonnull
-    public <M extends T> Set<M> thatAre(final Class<M> clazz) {
+    public <M extends T> Set<M> thatAre(final Class<? extends M> clazz) {
         return ids.serialStream()
                 .map(id -> id.cast(clazz))
                 .filter(Optional::isPresent)
-                .map(Optional::get)
+                .map(o -> (M) o.get())
                 .collect(Set.collector());
     }
 

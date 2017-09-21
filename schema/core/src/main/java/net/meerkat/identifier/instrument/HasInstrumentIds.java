@@ -22,11 +22,12 @@ public interface HasInstrumentIds {
     }
 
     @Nonnull
-    default <T extends InstrumentId> Optional<T> instrumentId(final Class<T> clazz) {
+    default <T extends InstrumentId> Optional<T> instrumentId(final Class<? extends T> clazz) {
         return this.instrumentIds().thatIs(clazz);
     }
 
-    default <T extends InstrumentId> Set<T> instrumentIds(final Class<T> clazz) {
+    @Nonnull
+    default <T extends InstrumentId> Set<T> instrumentIds(final Class<? extends T> clazz) {
         return this.instrumentIds().thatAre(clazz);
     }
 
