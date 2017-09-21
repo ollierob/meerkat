@@ -36,10 +36,9 @@ public abstract class HasIds<T extends Castable> {
 
     @Nonnull
     public <M extends T> Set<M> thatAre(final Class<? extends M> clazz) {
-        return ids.serialStream()
-                .map(id -> id.cast(clazz))
+        return ids.transform(id -> id.cast(clazz))
                 .filter(Optional::isPresent)
-                .map(o -> (M) o.get())
+                .transform(o -> (M) o.get())
                 .collect(Set.collector());
     }
 
@@ -47,7 +46,7 @@ public abstract class HasIds<T extends Castable> {
         return ids.isEmpty();
     }
 
-    public int size() {
+    public int count() {
         return ids.count();
     }
 
