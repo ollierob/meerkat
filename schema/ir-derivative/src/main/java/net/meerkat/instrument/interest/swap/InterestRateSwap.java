@@ -37,7 +37,7 @@ public interface InterestRateSwap
     }
 
     default boolean isCrossCurrency() {
-        return this.currencyIds().size() >= 2;
+        return this.currencyIds().count() >= 2;
     }
 
     @Override
