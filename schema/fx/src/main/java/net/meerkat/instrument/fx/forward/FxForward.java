@@ -1,7 +1,6 @@
 package net.meerkat.instrument.fx.forward;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.fx.FxInstrument;
@@ -12,7 +11,6 @@ import net.meerkat.money.fx.ExchangeRate;
  *
  * @author Ollie
  */
-@XmlRootElement
 public interface FxForward<B extends CurrencyId, C extends CurrencyId>
         extends FxInstrument<B, C> {
 

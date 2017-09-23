@@ -70,4 +70,13 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
         return handler.handle(this);
     }
 
+    @Override
+    public ExplanationBuilder explain() {
+        return super.explain()
+                .put("base amount", base)
+                .put("counter amount", counter)
+                .put("settlement date", settlementDate)
+                .put("trade date", tradeDate);
+    }
+
 }

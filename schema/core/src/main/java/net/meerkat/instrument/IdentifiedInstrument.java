@@ -32,7 +32,7 @@ public class IdentifiedInstrument implements Instrument, Explainable {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + ": " + this.explain();
+        return this.explain().toString();
     }
 
 }
