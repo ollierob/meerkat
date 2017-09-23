@@ -12,8 +12,6 @@ public class CommonStock
         extends NamedInstrument
         implements Equity {
 
-    private static final long serialVersionUID = 1L;
-
     private final IssuerId issuer;
 
     public CommonStock(

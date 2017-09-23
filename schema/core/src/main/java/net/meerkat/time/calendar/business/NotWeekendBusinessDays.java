@@ -12,10 +12,29 @@ import net.meerkat.time.calendar.DateOutOfRangeException;
  */
 public class NotWeekendBusinessDays implements BusinessDayCalendar {
 
-    private static final EnumSet<DayOfWeek> SATURDAY_TO_SUNDAY = EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY);
+    private static final EnumSet<DayOfWeek> SATURDAY_SUNDAY = EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY);
+    private static final EnumSet<DayOfWeek> FRIDAY_AND_SATURDAY = EnumSet.of(DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
+    private static final EnumSet<DayOfWeek> FRIDAY_TO_SUNDAY = EnumSet.of(DayOfWeek.FRIDAY, DayOfWeek.SATURDAY, DayOfWeek.SUNDAY);
 
-    public static NotWeekendBusinessDays satSunToMonday(final BusinessDayCache cache) {
-        return new NotWeekendBusinessDays(SATURDAY_TO_SUNDAY, cache);
+    /**
+     * @return business days don't lie on a Saturday or Sunday. Common throughout Western markets.
+     */
+    public static NotWeekendBusinessDays satSunToMon(final BusinessDayCache cache) {
+        return new NotWeekendBusinessDays(SATURDAY_SUNDAY, cache);
+    }
+
+    /**
+     * @return business days don't lie on a Friday or Saturday. Common throughout Arab markets.
+     */
+    public static NotWeekendBusinessDays friSatToSun(final BusinessDayCache cache) {
+        return new NotWeekendBusinessDays(FRIDAY_AND_SATURDAY, cache);
+    }
+
+    /**
+     * @return business days don't lie on a Friday, Saturday or Sunday. Typical in some Arab markets.
+     */
+    public static NotWeekendBusinessDays friSatSunToMon(final BusinessDayCache cache) {
+        return new NotWeekendBusinessDays(FRIDAY_TO_SUNDAY, cache);
     }
 
     private final EnumSet<DayOfWeek> weekend;

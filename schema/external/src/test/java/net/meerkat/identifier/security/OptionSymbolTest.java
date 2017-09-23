@@ -1,13 +1,12 @@
 package net.meerkat.identifier.security;
 
-import net.meerkat.identifier.security.OptionSymbol;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.jupiter.api.Test;
 
 /**
  *

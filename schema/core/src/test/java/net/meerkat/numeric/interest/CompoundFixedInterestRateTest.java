@@ -9,9 +9,9 @@ import net.meerkat.money.interest.fixed.CompoundFixedInterestRate;
 import net.ollie.goat.numeric.percentage.BigDecimalPercentage;
 import net.ollie.goat.temporal.date.count.FixedFixedDateArithmetic;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
-import static org.junit.Assert.assertThat;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 
 /**

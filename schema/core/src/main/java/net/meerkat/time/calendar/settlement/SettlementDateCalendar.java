@@ -13,4 +13,10 @@ public interface SettlementDateCalendar extends Calendar<SettlementDate> {
         return new ForwardBusinessDaysSettlementDateCalendar(n, businessDayCalendar, cache);
     }
 
+    static SettlementDateCalendar bothOf(final SettlementDateCalendar first, final SettlementDateCalendar second) {
+        return first.equals(second)
+                ? first
+                : new SettlementDatePairCalendar(first, second);
+    }
+
 }

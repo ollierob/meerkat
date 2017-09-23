@@ -16,8 +16,6 @@ public class StockIndexOption
         extends AbstractOption<StockIndex>
         implements EquityDerivative<StockIndex> {
 
-    private static final long serialVersionUID = 1L;
-
     private final StockIndex underlying;
 
     public StockIndexOption(

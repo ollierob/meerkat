@@ -3,6 +3,7 @@ package net.meerkat.instrument.bond;
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyIds;
+import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.instrument.Callable;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
@@ -15,7 +16,8 @@ import net.meerkat.money.Money;
  *
  * @author Ollie
  */
-public interface Bond extends Security, InstrumentDefinition, Callable<BondCall> {
+public interface Bond 
+        extends Security, InstrumentDefinition, HasCurrencyIds, Callable<BondCall> {
 
     @Nonnull
     Money<?> par();

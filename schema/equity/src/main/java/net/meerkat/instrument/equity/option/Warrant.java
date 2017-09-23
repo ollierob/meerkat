@@ -3,8 +3,8 @@ package net.meerkat.instrument.equity.option;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.option.AbstractOption;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
-import net.meerkat.instrument.equity.EquityDerivative;
 import net.meerkat.instrument.equity.CommonStock;
+import net.meerkat.instrument.equity.EquityDerivative;
 import net.meerkat.issue.Issue;
 import net.meerkat.money.Money;
 
@@ -15,8 +15,6 @@ import net.meerkat.money.Money;
 public class Warrant
         extends AbstractOption<CommonStock>
         implements EquityDerivative<CommonStock> {
-
-    private static final long serialVersionUID = 1L;
 
     private final CommonStock underlying;
 

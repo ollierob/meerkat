@@ -7,8 +7,8 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.jupiter.api.Test;
 
 /**
  *

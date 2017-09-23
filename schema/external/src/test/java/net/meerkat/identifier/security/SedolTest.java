@@ -1,14 +1,13 @@
 package net.meerkat.identifier.security;
 
-import net.meerkat.identifier.security.Isin;
-import net.meerkat.identifier.security.Sedol;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 import net.meerkat.identifier.country.CountryIso;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /**
  *
