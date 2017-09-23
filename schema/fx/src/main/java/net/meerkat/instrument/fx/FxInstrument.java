@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIdPair;
+import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.dates.Settles;
 import net.meerkat.instrument.fx.forward.FxForward;
@@ -24,7 +25,7 @@ public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
     C counterCurrencyId();
 
     @Nonnull
-    default CurrencyIdPair<B, C> currencyIds() {
+    default CurrencyIds currencyIds() {
         return new CurrencyIdPair<>(this.baseCurrencyId(), this.counterCurrencyId());
     }
 
