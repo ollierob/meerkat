@@ -17,8 +17,6 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
         extends NamedInstrument
         implements ExchangeRate<C, P> {
 
-    private static final long serialVersionUID = 1L;
-
     private final Money<C> call;
     private final Money<P> put;
 

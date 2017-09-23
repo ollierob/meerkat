@@ -4,8 +4,6 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
 
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
@@ -23,18 +21,9 @@ import net.meerkat.money.fx.ExchangeRate;
 public class FxSwapLeg<P extends CurrencyId, R extends CurrencyId>
         implements SwapLeg<P, R>, HasCurrencyIds, Explainable {
 
-    @XmlAttribute(name = "valueDate")
-    private LocalDate valueDate;
-
-    @XmlElementRef(name = "pay")
-    private Money<P> pay;
-
-    @XmlElementRef(name = "receive")
-    private Money<R> receive;
-
-    @Deprecated
-    FxSwapLeg() {
-    }
+    private final LocalDate valueDate;
+    private final Money<P> pay;
+    private final Money<R> receive;
 
     public FxSwapLeg(
             final LocalDate valueDate,

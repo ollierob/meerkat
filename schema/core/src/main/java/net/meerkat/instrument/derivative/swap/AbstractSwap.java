@@ -12,8 +12,6 @@ public abstract class AbstractSwap
         extends IssuedSecurity
         implements Swap {
 
-    private static final long serialVersionUID = 1L;
-
     protected AbstractSwap(final String name, final InstrumentIds identifiers, final Issue issue) {
         super(name, identifiers, issue);
     }
