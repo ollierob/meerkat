@@ -1,58 +1,52 @@
 package net.meerkat.time.calendar.business;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.EnumSet;
+
+import net.meerkat.time.calendar.DateOutOfRangeException;
 
 /**
  *
  * @author Ollie
  */
-public abstract class NotWeekendBusinessDays implements BusinessDayCalendar {
+public class NotWeekendBusinessDays implements BusinessDayCalendar {
 
-    public static final NotWeekendBusinessDays WEEKEND_TO_MONDAY = new NotWeekendBusinessDays() {
+    private static final EnumSet<DayOfWeek> SATURDAY_TO_SUNDAY = EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY);
 
-        @Override
-        public BusinessDay next(final LocalDate date) {
-            switch (date.getDayOfWeek()) {
-                case SATURDAY:
-                    return new BusinessDay(date.plusDays(2));
-                case SUNDAY:
-                    return new BusinessDay(date.plusDays(1));
-                default:
-                    return new BusinessDay(date);
-            }
-        }
+    public static NotWeekendBusinessDays satSunToMonday(final BusinessDayCache cache) {
+        return new NotWeekendBusinessDays(SATURDAY_TO_SUNDAY, cache);
+    }
 
-        @Override
-        public BusinessDay previous(final LocalDate date) {
-            switch (date.getDayOfWeek()) {
-                case SATURDAY:
-                    return new BusinessDay(date.minusDays(1));
-                case SUNDAY:
-                    return new BusinessDay(date.minusDays(2));
-                default:
-                    return new BusinessDay(date);
-            }
-        }
+    private final EnumSet<DayOfWeek> weekend;
+    private final BusinessDayCache cache;
 
-    };
-
-    private NotWeekendBusinessDays() {
+    private NotWeekendBusinessDays(final EnumSet<DayOfWeek> weekend, final BusinessDayCache cache) {
+        this.weekend = weekend;
+        this.cache = cache;
     }
 
     @Override
     public boolean contains(final LocalDate date) {
-        switch (date.getDayOfWeek()) {
-            case SATURDAY:
-            case SUNDAY:
-                return false;
-            default:
-                return true;
-        }
+        return !this.isWeekend(date);
+    }
+
+    boolean isWeekend(final LocalDate date) {
+        return weekend.contains(date.getDayOfWeek());
     }
 
     @Override
     public boolean isInRange(final LocalDate date) {
         return true;
+    }
+
+    @Override
+    public BusinessDay next(final LocalDate date) throws DateOutOfRangeException {
+        LocalDate current = date;
+        while (this.isWeekend(current)) {
+            current = current.plusDays(1);
+        }
+        return cache.get(date);
     }
 
 }

@@ -18,6 +18,9 @@ public interface SettlementDateCache extends Cache<LocalDate, SettlementDate> {
 
         private static final long serialVersionUID = 1L;
 
+        protected Empty() {
+        }
+
         @Override
         public SettlementDate get(final LocalDate key) {
             return new SettlementDate(key);
@@ -28,14 +31,6 @@ public interface SettlementDateCache extends Cache<LocalDate, SettlementDate> {
             return key instanceof LocalDate
                     ? ImmutableEntry.of((LocalDate) key, this.get((LocalDate) key))
                     : null;
-        }
-
-    }
-
-    class Factory {
-
-        protected SettlementDate create(final LocalDate date) {
-            return new SettlementDate(date);
         }
 
     }
