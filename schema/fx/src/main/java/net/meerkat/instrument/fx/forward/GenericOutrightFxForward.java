@@ -18,7 +18,7 @@ import net.meerkat.utils.Require;
  */
 public class GenericOutrightFxForward<B extends CurrencyId, C extends CurrencyId>
         extends NamedInstrument
-        implements OutrightFxForward<B, C> {
+        implements FxOutright<B, C> {
 
     private final Money<B> base;
     private final Money<C> counter;

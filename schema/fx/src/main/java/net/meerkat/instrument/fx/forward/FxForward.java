@@ -11,7 +11,7 @@ import net.meerkat.money.fx.ExchangeRate;
  *
  * @author Ollie
  */
-public interface OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
+public interface FxForward<B extends CurrencyId, C extends CurrencyId>
         extends FxInstrument<B, C> {
 
     @Nonnull

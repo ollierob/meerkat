@@ -15,13 +15,13 @@ import net.meerkat.pricing.shifts.InterestRateShifts.InterestRateShifter;
 import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.money.interest.InterestRates;
-import net.meerkat.instrument.fx.forward.OutrightFxForward;
+import net.meerkat.instrument.fx.forward.FxForward;
 
 /**
  *
  * @author ollie
  */
-public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, OutrightFxForward<?, ?>> {
+public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward<?, ?>> {
 
     private final InterestRates interestRates;
 
@@ -32,7 +32,7 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, OutrightF
     @Override
     public <C extends CurrencyId> FxForwardPrice.Shiftable<C> price(
             final LocalDate date,
-            final OutrightFxForward<?, ?> forward,
+            final FxForward<?, ?> forward,
             final C currency)
             throws InstrumentException, InstrumentPriceException {
         throw new UnsupportedOperationException();
@@ -42,14 +42,14 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, OutrightF
             implements FxForwardPrice.Shiftable<X>, InterestRateShifter {
 
         private final LocalDate date;
-        private final OutrightFxForward<B, C> forward;
+        private final FxForward<B, C> forward;
         private final X currency;
         private final ExchangeRate<B, C> spotFxRate;
         private final FixedInterestRate baseRate;
         private final FixedInterestRate counterRate;
         private final InterestRateShifts shifts;
 
-        Price(LocalDate date, OutrightFxForward<B, C> forward, X currency, ExchangeRate<B, C> spotFxRate,
+        Price(LocalDate date, FxForward<B, C> forward, X currency, ExchangeRate<B, C> spotFxRate,
                 final FixedInterestRate baseRate,
                 final FixedInterestRate counterRate,
                 final InterestRateShifts shifts) {
