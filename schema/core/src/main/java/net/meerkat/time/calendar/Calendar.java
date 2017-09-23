@@ -46,4 +46,10 @@ public interface Calendar<D extends HasDate> {
         return this.next(date).is(date);
     }
 
+    default void requireInRange(final LocalDate date) throws DateOutOfRangeException {
+        if (!this.isInRange(date)) {
+            throw new DateOutOfRangeException(date);
+        }
+    }
+
 }

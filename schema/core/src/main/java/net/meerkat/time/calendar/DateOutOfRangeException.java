@@ -1,6 +1,6 @@
 package net.meerkat.time.calendar;
 
-import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 
 /**
  *
@@ -10,8 +10,8 @@ public class DateOutOfRangeException extends InvalidDateException {
 
     private static final long serialVersionUID = 1L;
 
-    public DateOutOfRangeException(final LocalDate date) {
-        super(date);
+    public DateOutOfRangeException(final ChronoLocalDate date) {
+        super(date + " is out of range!", date);
     }
 
 }
