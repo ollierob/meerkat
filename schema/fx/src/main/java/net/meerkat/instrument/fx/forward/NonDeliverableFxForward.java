@@ -30,6 +30,16 @@ public interface NonDeliverableFxForward<B extends CurrencyId, C extends Currenc
     SettlementDate settlementDate();
 
     @Override
+    default C counterCurrencyId() {
+        return this.spotRate().to();
+    }
+
+    @Override
+    default B baseCurrencyId() {
+        return this.spotRate().from();
+    }
+
+    @Override
     default <R> R handleWith(final FxInstrument.Handler<R> handler) {
         return handler.handle(this);
     }
