@@ -1,6 +1,5 @@
 package net.meerkat.identifier.currency;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
 import net.meerkat.money.Money;
 
@@ -8,7 +7,6 @@ import net.meerkat.money.Money;
  *
  * @author Ollie
  */
-@XmlRootElement
 public class GBP extends NationalCurrencyIso {
 
     private static final long serialVersionUID = 1L;
