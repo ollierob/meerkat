@@ -25,7 +25,7 @@ public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
     @Nonnull
     C counterCurrencyId();
 
-    @Nonnull
+    @Override
     default CurrencyIds currencyIds() {
         return new CurrencyIdPair<>(this.baseCurrencyId(), this.counterCurrencyId());
     }
