@@ -16,16 +16,16 @@ import net.meerkat.utils.Require;
  *
  * @author Ollie
  */
-public class GenericOutrightFxForward<B extends CurrencyId, C extends CurrencyId>
+public abstract class GenericDeliverableFxForward<B extends CurrencyId, C extends CurrencyId>
         extends NamedInstrument
-        implements FxOutright<B, C> {
+        implements DeliverableFxForward<B, C> {
 
     private final Money<B> base;
     private final Money<C> counter;
     private final LocalDate tradeDate;
     private final SettlementDate settlementDate;
 
-    public GenericOutrightFxForward(
+    public GenericDeliverableFxForward(
             final String name,
             final InstrumentIds identifiers,
             final Money<B> base,
