@@ -30,6 +30,16 @@ public class CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
     }
 
     @Override
+    public int count() {
+        return 2;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
     public Set<? extends CurrencyId> values() {
         return Set.of(this.baseCurrencyId(), this.counterCurrencyId());
     }
