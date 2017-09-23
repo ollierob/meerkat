@@ -1,11 +1,17 @@
 package net.meerkat.identifier.currency;
 
-import net.meerkat.instrument.Instrument;
+import net.meerkat.identifier.country.HasCountryId;
+import net.meerkat.instrument.InstrumentDefinition;
 
 /**
  *
- * @author ollie
+ * @author Ollie
  */
-public interface Currency extends Instrument, HasCurrencyIds {
+public interface Currency extends HasCurrencyIds, InstrumentDefinition, HasCountryId {
+
+    @Override
+    default CurrencyIds currencyIds() {
+        return CurrencyIds.of(this.instrumentIds());
+    }
 
 }

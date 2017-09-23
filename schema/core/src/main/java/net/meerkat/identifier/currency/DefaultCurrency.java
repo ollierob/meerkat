@@ -1,19 +1,29 @@
 package net.meerkat.identifier.currency;
 
-import net.meerkat.instrument.IdentifiedInstrument;
+import net.meerkat.identifier.country.CountryId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.NamedInstrument;
 
 /**
  *
- * @author ollie
+ * @author Ollie
  */
-public class DefaultCurrency extends IdentifiedInstrument implements Currency {
+public class DefaultCurrency extends NamedInstrument implements Currency {
 
-    public DefaultCurrency(final CurrencyIds currencyIds) {
-        super(currencyIds);
+    private final CountryId countryId;
+
+    public DefaultCurrency(final String name, final InstrumentIds ids, final CountryId countryId) {
+        super(name, ids);
+        this.countryId = countryId;
     }
 
     @Override
-    public CurrencyIds currencyIds() {
+    public CountryId countryId() {
+        return countryId;
+    }
+
+    @Override
+    public <R> R handleWith(Handler<R> handler) {
         throw new UnsupportedOperationException(); //TODO
     }
 
