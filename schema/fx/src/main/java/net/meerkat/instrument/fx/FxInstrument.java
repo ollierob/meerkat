@@ -7,10 +7,9 @@ import net.meerkat.identifier.currency.CurrencyIdPair;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.dates.Settles;
-import net.meerkat.instrument.fx.forward.FxForward;
+import net.meerkat.instrument.fx.forward.FxOutright;
 import net.meerkat.instrument.fx.forward.FxSpot;
 import net.meerkat.instrument.fx.forward.NonDeliverableFxForward;
-import net.meerkat.instrument.fx.forward.FxOutright;
 
 /**
  *
@@ -42,11 +41,9 @@ public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
     interface Handler<R>
             extends InstrumentDefinition.Handler<R> {
 
-        R handle(FxOutright<?, ?> forward);
+        R handle(FxSpot<?, ?> spot);
 
-        default R handle(final FxSpot<?, ?> spot) {
-            return this.handle((FxForward<?, ?>) spot);
-        }
+        R handle(FxOutright<?, ?> forward);
 
         R handle(NonDeliverableFxForward<?, ?> forward);
 

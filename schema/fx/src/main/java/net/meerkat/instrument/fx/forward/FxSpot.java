@@ -7,6 +7,6 @@ import net.meerkat.identifier.currency.CurrencyId;
  * @author ollie
  */
 public interface FxSpot<B extends CurrencyId, C extends CurrencyId>
-        extends FxForward<B, C> {
+        extends DeliverableFxForward<B, C> {
 
 }

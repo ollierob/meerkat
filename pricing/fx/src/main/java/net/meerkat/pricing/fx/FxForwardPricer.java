@@ -15,13 +15,13 @@ import net.meerkat.pricing.shifts.InterestRateShifts.InterestRateShifter;
 import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.money.interest.InterestRates;
-import net.meerkat.instrument.fx.forward.FxForward;
+import net.meerkat.instrument.fx.forward.DeliverableFxForward;
 
 /**
  *
  * @author ollie
  */
-public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward<?, ?>> {
+public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, DeliverableFxForward<?, ?>> {
 
     private final InterestRates interestRates;
 
@@ -32,7 +32,7 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward
     @Override
     public <C extends CurrencyId> FxForwardPrice.Shiftable<C> price(
             final LocalDate date,
-            final FxForward<?, ?> forward,
+            final DeliverableFxForward<?, ?> forward,
             final C currency)
             throws InstrumentException, InstrumentPriceException {
         throw new UnsupportedOperationException();
@@ -42,14 +42,14 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, FxForward
             implements FxForwardPrice.Shiftable<X>, InterestRateShifter {
 
         private final LocalDate date;
-        private final FxForward<B, C> forward;
+        private final DeliverableFxForward<B, C> forward;
         private final X currency;
         private final ExchangeRate<B, C> spotFxRate;
         private final FixedInterestRate baseRate;
         private final FixedInterestRate counterRate;
         private final InterestRateShifts shifts;
 
-        Price(LocalDate date, FxForward<B, C> forward, X currency, ExchangeRate<B, C> spotFxRate,
+        Price(LocalDate date, DeliverableFxForward<B, C> forward, X currency, ExchangeRate<B, C> spotFxRate,
                 final FixedInterestRate baseRate,
                 final FixedInterestRate counterRate,
                 final InterestRateShifts shifts) {
