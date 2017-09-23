@@ -47,13 +47,13 @@ public interface ExchangeRates {
     @Nonnull
     default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> baseRate(final CurrencyIdPair<F, T> pair)
             throws UnavailableExchangeRate {
-        return this.rate(pair.base(), pair.counter());
+        return this.rate(pair.baseCurrencyId(), pair.counterCurrencyId());
     }
 
     @Nonnull
     default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<T, F> counterRate(final CurrencyIdPair<F, T> pair)
             throws UnavailableExchangeRate {
-        return this.rate(pair.counter(), pair.base());
+        return this.rate(pair.counterCurrencyId(), pair.baseCurrencyId());
     }
 
     class UnavailableExchangeRate extends RuntimeException {

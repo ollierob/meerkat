@@ -20,18 +20,18 @@ public class CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
     }
 
     @Nonnull
-    public B base() {
+    public B baseCurrencyId() {
         return baseId;
     }
 
     @Nonnull
-    public C counter() {
+    public C counterCurrencyId() {
         return counterId;
     }
 
     @Override
     public Set<? extends CurrencyId> values() {
-        return Set.of(this.base(), this.counter());
+        return Set.of(this.baseCurrencyId(), this.counterCurrencyId());
     }
 
     @Override
