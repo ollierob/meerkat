@@ -10,7 +10,7 @@ import net.meerkat.time.calendar.DateOutOfRangeException;
  *
  * @author Ollie
  */
-public class NotWeekendBusinessDays implements BusinessDayCalendar {
+public class BusinessDayIsNotWeekendCalendar implements BusinessDayCalendar {
 
     private static final EnumSet<DayOfWeek> SATURDAY_SUNDAY = EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY);
     private static final EnumSet<DayOfWeek> FRIDAY_AND_SATURDAY = EnumSet.of(DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
@@ -19,28 +19,28 @@ public class NotWeekendBusinessDays implements BusinessDayCalendar {
     /**
      * @return business days don't lie on a Saturday or Sunday. Common throughout Western markets.
      */
-    public static NotWeekendBusinessDays satSunToMon(final BusinessDayCache cache) {
-        return new NotWeekendBusinessDays(SATURDAY_SUNDAY, cache);
+    public static BusinessDayIsNotWeekendCalendar satSunToMon(final BusinessDayCache cache) {
+        return new BusinessDayIsNotWeekendCalendar(SATURDAY_SUNDAY, cache);
     }
 
     /**
      * @return business days don't lie on a Friday or Saturday. Common throughout Arab markets.
      */
-    public static NotWeekendBusinessDays friSatToSun(final BusinessDayCache cache) {
-        return new NotWeekendBusinessDays(FRIDAY_AND_SATURDAY, cache);
+    public static BusinessDayIsNotWeekendCalendar friSatToSun(final BusinessDayCache cache) {
+        return new BusinessDayIsNotWeekendCalendar(FRIDAY_AND_SATURDAY, cache);
     }
 
     /**
      * @return business days don't lie on a Friday, Saturday or Sunday. Typical in some Arab markets.
      */
-    public static NotWeekendBusinessDays friSatSunToMon(final BusinessDayCache cache) {
-        return new NotWeekendBusinessDays(FRIDAY_TO_SUNDAY, cache);
+    public static BusinessDayIsNotWeekendCalendar friSatSunToMon(final BusinessDayCache cache) {
+        return new BusinessDayIsNotWeekendCalendar(FRIDAY_TO_SUNDAY, cache);
     }
 
     private final EnumSet<DayOfWeek> weekend;
     private final BusinessDayCache cache;
 
-    private NotWeekendBusinessDays(final EnumSet<DayOfWeek> weekend, final BusinessDayCache cache) {
+    private BusinessDayIsNotWeekendCalendar(final EnumSet<DayOfWeek> weekend, final BusinessDayCache cache) {
         this.weekend = weekend;
         this.cache = cache;
     }

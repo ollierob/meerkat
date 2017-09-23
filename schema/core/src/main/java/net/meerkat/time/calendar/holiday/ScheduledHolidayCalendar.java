@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.NavigableMap;
 
 import net.meerkat.time.calendar.DateOutOfRangeException;
-import net.ollie.goat.temporal.date.Dates;
+import net.ollie.goat.temporal.date.interim.CompleteInterval;
 
 /**
  *
@@ -12,13 +12,11 @@ import net.ollie.goat.temporal.date.Dates;
  */
 public class ScheduledHolidayCalendar implements HolidayCalendar {
 
-    private final LocalDate validFrom;
-    private final LocalDate validTo;
+    private final CompleteInterval range;
     private final NavigableMap<LocalDate, Holiday> holidays;
 
-    public ScheduledHolidayCalendar(final LocalDate validFrom, final LocalDate validTo, final NavigableMap<LocalDate, Holiday> holidays) {
-        this.validFrom = validFrom;
-        this.validTo = validTo;
+    public ScheduledHolidayCalendar(final CompleteInterval range, final NavigableMap<LocalDate, Holiday> holidays) {
+        this.range = range;
         this.holidays = holidays;
     }
 
@@ -36,7 +34,7 @@ public class ScheduledHolidayCalendar implements HolidayCalendar {
 
     @Override
     public boolean isInRange(final LocalDate date) {
-        return Dates.areOrdered(validFrom, date, validTo);
+        return range.contains(date);
     }
 
     @Override
