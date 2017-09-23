@@ -3,7 +3,7 @@ package net.meerkat.time.calendar.settlement;
 import java.time.LocalDate;
 
 import net.coljate.cache.Cache;
-import net.meerkat.utils.Constructor;
+import net.meerkat.utils.Protected;
 
 /**
  *
@@ -11,6 +11,6 @@ import net.meerkat.utils.Constructor;
  */
 public interface SettlementDateCache extends Cache<LocalDate, SettlementDate> {
     
-    Constructor<LocalDate, SettlementDate> CONSTRUCTOR = Constructor.of(SettlementDate::new);
+    Protected<LocalDate, SettlementDate> CONSTRUCTOR = Protected.of(SettlementDate::new);
 
 }
