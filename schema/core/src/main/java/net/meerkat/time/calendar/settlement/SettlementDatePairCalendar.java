@@ -31,7 +31,7 @@ public class SettlementDatePairCalendar implements SettlementDateCalendar {
         do {
             next = first.next(current);
             current = current.plusDays(1);
-        } while (!second.contains(next.date()));
+        } while (!second.isSettlementDate(next.date()));
         return next;
     }
 

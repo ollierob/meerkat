@@ -37,9 +37,9 @@ public class SettlementDatePairCalendarTest {
         when(usSettlements.next(friday)).thenReturn(new SettlementDate(tuesday));
         when(usSettlements.next(saturday)).thenReturn(new SettlementDate(tuesday));
 
-        when(arabSettlements.contains(thursday)).thenReturn(true);
-        when(arabSettlements.contains(monday)).thenReturn(true);
-        when(arabSettlements.contains(tuesday)).thenReturn(true);
+        when(arabSettlements.isSettlementDate(thursday)).thenReturn(true);
+        when(arabSettlements.isSettlementDate(monday)).thenReturn(true);
+        when(arabSettlements.isSettlementDate(tuesday)).thenReturn(true);
 
         //Then
         assertThat(pair.next(thursday).date(), is(monday));

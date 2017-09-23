@@ -27,7 +27,7 @@ public class BusinessDayPairCalendar implements BusinessDayCalendar {
     public BusinessDay next(final LocalDate date) throws DateOutOfRangeException {
         LocalDate current = date;
         BusinessDay next = first.next(date);
-        while (!second.contains(current)) {
+        while (!second.isBusinessDay(current)) {
             current = current.plusDays(1);
             next = first.next(current);
         }

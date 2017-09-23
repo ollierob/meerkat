@@ -27,7 +27,7 @@ public class BusinessDayIsNotHolidayCalendar implements BusinessDayCalendar {
     @Override
     public BusinessDay next(final LocalDate date) throws DateOutOfRangeException {
         LocalDate current = date;
-        while (holidayCalendar.contains(current)) {
+        while (holidayCalendar.isHoliday(current)) {
             current = current.plusDays(1);
         }
         return cache.get(current);
