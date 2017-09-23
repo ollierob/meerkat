@@ -3,7 +3,6 @@ package net.meerkat.time.calendar.holiday;
 import java.time.LocalDate;
 
 import net.coljate.cache.Cache;
-import net.meerkat.utils.Protected;
 
 /**
  *
@@ -11,6 +10,12 @@ import net.meerkat.utils.Protected;
  */
 public interface HolidayCache extends Cache<LocalDate, Holiday> {
 
-    Protected<LocalDate, Holiday> CONSTRUCTOR = Protected.of(Holiday::new);
+    class Factory {
+
+        protected Holiday create(final LocalDate date) {
+            return new Holiday(date);
+        }
+
+    }
     
 }

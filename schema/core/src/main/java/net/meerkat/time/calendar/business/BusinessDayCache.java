@@ -3,7 +3,6 @@ package net.meerkat.time.calendar.business;
 import java.time.LocalDate;
 
 import net.coljate.cache.Cache;
-import net.meerkat.utils.Protected;
 
 /**
  *
@@ -11,6 +10,12 @@ import net.meerkat.utils.Protected;
  */
 public interface BusinessDayCache extends Cache<LocalDate, BusinessDay> {
 
-    Protected<LocalDate, BusinessDay> CONSTRUCTOR = Protected.of(BusinessDay::new);
+    class Factory {
+
+        protected BusinessDay create(final LocalDate date) {
+            return new BusinessDay(date);
+        }
+
+    }
 
 }
