@@ -20,7 +20,7 @@ public interface FxForward<B extends CurrencyId, C extends CurrencyId>
     Money<B> baseAmount();
 
     @Override
-    default B base() {
+    default B baseCurrencyId() {
         return this.baseAmount().currencyId();
     }
 
@@ -28,7 +28,7 @@ public interface FxForward<B extends CurrencyId, C extends CurrencyId>
     Money<C> counterAmount();
 
     @Override
-    default C counter() {
+    default C counterCurrencyId() {
         return this.counterAmount().currencyId();
     }
 

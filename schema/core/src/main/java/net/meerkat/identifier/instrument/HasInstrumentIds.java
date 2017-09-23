@@ -1,7 +1,6 @@
 package net.meerkat.identifier.instrument;
 
 import java.util.Optional;
-import java.util.function.Consumer;
 
 import javax.annotation.Nonnull;
 
@@ -15,11 +14,6 @@ public interface HasInstrumentIds {
 
     @Nonnull
     InstrumentIds instrumentIds();
-
-    @Nonnull
-    default void instrumentIds(final Consumer<InstrumentId> consumer) {
-        this.instrumentIds().accept(consumer);
-    }
 
     @Nonnull
     default <T extends InstrumentId> Optional<T> instrumentId(final Class<? extends T> clazz) {

@@ -1,13 +1,13 @@
 package net.meerkat.identifier.market;
 
 import net.coljate.set.Set;
-import net.meerkat.identifier.HasIds;
+import net.meerkat.identifier.IdSet;
 
 /**
  *
  * @author ollie
  */
-public class MarketIds extends HasIds<MarketId> implements HasMarketIds {
+public class MarketIds extends IdSet<MarketId> implements HasMarketIds {
 
     public static MarketIds of(final MarketId id) {
         return new MarketIds(Set.of(id));

@@ -2,12 +2,14 @@ package net.meerkat.identifier.currency;
 
 import javax.annotation.Nonnull;
 
+import net.coljate.set.Set;
+
 /**
  *
  * @author ollie
  */
 public interface CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
-        extends HasCurrencyIds {
+        extends CurrencyIds {
 
     @Nonnull
     B base();
@@ -16,12 +18,18 @@ public interface CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
     C counter();
 
     @Override
-    default CurrencyIds currencyIds() {
-        return CurrencyIds.of(this.base(), this.counter());
+    default Set<? extends CurrencyId> values() {
+        return Set.of(this.base(), this.counter());
     }
 
-    interface Untyped extends CurrencyIdPair<CurrencyId, CurrencyId> {
+    @Override
+    @Deprecated
+    default CurrencyIdPair<B, C> currencyIds() {
+        return this;
+    }
 
+    static <B extends CurrencyId, C extends CurrencyId> CurrencyIdPair<B, C> of(final B baseId, final C counterId) {
+        throw new UnsupportedOperationException();
     }
 
 }

@@ -1,29 +1,25 @@
 package net.meerkat.identifier.instrument;
 
 import net.coljate.set.Set;
-import net.meerkat.identifier.HasIds;
+import net.meerkat.identifier.Ids;
 
 /**
  *
  * @author Ollie
  */
-public class InstrumentIds extends HasIds<InstrumentId> implements HasInstrumentIds {
+public interface InstrumentIds extends Ids<InstrumentId>, HasInstrumentIds {
 
     public static InstrumentIds of(final InstrumentId id) {
-        return new InstrumentIds(Set.of(id));
+        return new InstrumentIdSet(Set.of(id));
     }
 
     public static InstrumentIds of(final InstrumentId... ids) {
-        return new InstrumentIds(Set.of(ids));
-    }
-
-    public InstrumentIds(final Set<? extends InstrumentId> ids) {
-        super(ids);
+        return new InstrumentIdSet(Set.of(ids));
     }
 
     @Override
     @Deprecated
-    public InstrumentIds instrumentIds() {
+    default InstrumentIds instrumentIds() {
         return this;
     }
 

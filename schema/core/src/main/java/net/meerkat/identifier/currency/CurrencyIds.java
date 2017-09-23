@@ -10,9 +10,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
  *
  * @author ollie
  */
-public class CurrencyIds
-        extends InstrumentIds
-        implements HasCurrencyIds {
+public interface CurrencyIds extends InstrumentIds, HasCurrencyIds {
 
     public static CurrencyIds of(final InstrumentIds ids) {
         return ids instanceof CurrencyIds
@@ -21,15 +19,15 @@ public class CurrencyIds
     }
 
     public static CurrencyIds of(final CurrencyId id) {
-        return new CurrencyIds(Set.of(id));
+        return new CurrencyIdSet(Set.of(id));
     }
 
     public static CurrencyIds of(final Collection<CurrencyId> ids) {
-        return new CurrencyIds(Set.copyIntoHashSet(ids));
+        return new CurrencyIdSet(Set.copyIntoHashSet(ids));
     }
 
     public static CurrencyIds of(final CurrencyId... ids) {
-        return new CurrencyIds(Set.of(ids));
+        return new CurrencyIdSet(Set.of(ids));
     }
 
     public static CurrencyIds of(final CurrencyIds... currencyIds) {
@@ -37,26 +35,21 @@ public class CurrencyIds
         for (final CurrencyIds ids : currencyIds) {
             set = set.union(ids.values());
         }
-        return new CurrencyIds(set);
+        return new CurrencyIdSet(set);
     }
 
-    public CurrencyIds(final Set<? extends CurrencyId> ids) {
-        super(ids);
-    }
-
-    public Set<? extends CurrencyId> values() {
-        return this.thatAre(CurrencyId.class);
-    }
+    Set<? extends CurrencyId> values();
 
     @Override
-    public CurrencyIds currencyIds() {
+    @Deprecated
+    default CurrencyIds currencyIds() {
         return this;
     }
 
     @CheckReturnValue
-    public CurrencyIds union(final CurrencyIds that) {
+    default CurrencyIds union(final CurrencyIds that) {
         final Set<CurrencyId> ids = Set.<CurrencyId>of().union(this.values()).union(that.values());
-        return new CurrencyIds(ids);
+        return new CurrencyIdSet(ids);
     }
 
 }

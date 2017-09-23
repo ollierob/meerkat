@@ -20,8 +20,6 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
         extends NamedInstrument
         implements FxForward<B, C> {
 
-    private static final long serialVersionUID = 1L;
-
     private final Money<B> base;
     private final Money<C> counter;
     private final LocalDate tradeDate;
@@ -48,18 +46,8 @@ public class OutrightFxForward<B extends CurrencyId, C extends CurrencyId>
     }
 
     @Override
-    public B base() {
-        return base.currencyId();
-    }
-
-    @Override
     public Money<C> counterAmount() {
         return counter;
-    }
-
-    @Override
-    public C counter() {
-        return counter.currencyId();
     }
 
     @Override

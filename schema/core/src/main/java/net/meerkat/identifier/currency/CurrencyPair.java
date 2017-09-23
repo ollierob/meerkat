@@ -1,5 +1,7 @@
 package net.meerkat.identifier.currency;
 
+import javax.annotation.Nonnull;
+
 import net.meerkat.instrument.Instrument;
 
 /**
@@ -8,8 +10,10 @@ import net.meerkat.instrument.Instrument;
  */
 public interface CurrencyPair extends Instrument, HasCurrencyIds {
 
+    @Nonnull
     Currency base();
 
+    @Nonnull
     Currency counter();
 
     @Override
