@@ -1,5 +1,6 @@
 package net.meerkat.instrument.fx;
 
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
@@ -36,6 +37,7 @@ public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
                 : handler.handle(this);
     }
 
+    @CheckForNull
     <R> R handleWith(FxInstrument.Handler<R> handler);
 
     interface Handler<R>
@@ -46,6 +48,13 @@ public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
         R handle(FxOutright<?, ?> forward);
 
         R handle(NonDeliverableFxForward<?, ?> forward);
+
+        @Override
+        default R handle(final InstrumentDefinition instrument) {
+            return instrument instanceof FxInstrument
+                    ? ((FxInstrument<?, ?>) instrument).handleWith(this)
+                    : null;
+        }
 
     }
 
