@@ -2,8 +2,8 @@ package net.meerkat.time.calendar.business;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.EnumSet;
 
+import net.coljate.set.EnumSet;
 import net.meerkat.time.calendar.DateOutOfRangeException;
 
 /**
