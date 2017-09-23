@@ -8,28 +8,36 @@ import net.coljate.set.Set;
  *
  * @author ollie
  */
-public interface CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
-        extends CurrencyIds {
+public class CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
+        implements CurrencyIds {
+
+    private final B baseId;
+    private final C counterId;
+
+    public CurrencyIdPair(final B baseId, final C counterId) {
+        this.baseId = baseId;
+        this.counterId = counterId;
+    }
 
     @Nonnull
-    B base();
+    public B base() {
+        return baseId;
+    }
 
     @Nonnull
-    C counter();
+    public C counter() {
+        return counterId;
+    }
 
     @Override
-    default Set<? extends CurrencyId> values() {
+    public Set<? extends CurrencyId> values() {
         return Set.of(this.base(), this.counter());
     }
 
     @Override
     @Deprecated
-    default CurrencyIdPair<B, C> currencyIds() {
+    public CurrencyIdPair<B, C> currencyIds() {
         return this;
-    }
-
-    static <B extends CurrencyId, C extends CurrencyId> CurrencyIdPair<B, C> of(final B baseId, final C counterId) {
-        throw new UnsupportedOperationException();
     }
 
 }
