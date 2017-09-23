@@ -9,8 +9,8 @@ import net.meerkat.time.calendar.business.BusinessDayCalendar;
  */
 public interface SettlementDateCalendar extends Calendar<SettlementDate> {
 
-    static SettlementDateCalendar nthBusinessDay(final int n, final BusinessDayCalendar businessDayCalendar) {
-        return new ForwardBusinessDaysSettlementDateCalendar(n, businessDayCalendar);
+    static SettlementDateCalendar nthBusinessDay(final int n, final BusinessDayCalendar businessDayCalendar, final SettlementDateCache cache) {
+        return new ForwardBusinessDaysSettlementDateCalendar(n, businessDayCalendar, cache);
     }
 
 }
