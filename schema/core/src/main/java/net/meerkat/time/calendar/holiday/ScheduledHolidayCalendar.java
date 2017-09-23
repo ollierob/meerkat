@@ -22,14 +22,8 @@ public class ScheduledHolidayCalendar implements HolidayCalendar {
 
     @Override
     public boolean contains(final LocalDate date) {
-        this.checkInRange(date);
+        this.requireInRange(date);
         return holidays.containsKey(date);
-    }
-
-    private void checkInRange(final LocalDate date) throws DateOutOfRangeException {
-        if (!this.isInRange(date)) {
-            throw new DateOutOfRangeException(date);
-        }
     }
 
     @Override
@@ -39,7 +33,7 @@ public class ScheduledHolidayCalendar implements HolidayCalendar {
 
     @Override
     public Holiday next(final LocalDate date) throws DateOutOfRangeException {
-        this.checkInRange(date);
+        this.requireInRange(date);
         return holidays.ceilingEntry(date).getValue();
     }
 
