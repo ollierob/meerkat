@@ -7,6 +7,8 @@ import net.meerkat.instrument.equity.future.IndexFuture;
 import net.meerkat.instrument.equity.future.StockFuture;
 import net.meerkat.instrument.equity.option.StockIndexOption;
 import net.meerkat.instrument.equity.option.Warrant;
+import net.meerkat.instrument.equity.swap.EquityForEquitySwap;
+import net.meerkat.instrument.equity.swap.FloatingInterestForEquitySwap;
 
 /**
  *
@@ -32,6 +34,10 @@ public interface EquityDerivative<E extends Instrument> extends Derivative<E>, I
         R handle(StockFuture stockFuture);
 
         R handle(IndexFuture indexFuture);
+        
+        R handle(FloatingInterestForEquitySwap<?> swap);
+        
+        R handle(EquityForEquitySwap swap);
 
     }
 
