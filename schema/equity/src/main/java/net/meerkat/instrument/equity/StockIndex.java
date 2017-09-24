@@ -9,8 +9,6 @@ import net.meerkat.instrument.NamedInstrument;
  */
 public class StockIndex extends NamedInstrument {
 
-    private static final long serialVersionUID = 1L;
-
     public StockIndex(final String name, final InstrumentIds identifiers) {
         super(name, identifiers);
     }

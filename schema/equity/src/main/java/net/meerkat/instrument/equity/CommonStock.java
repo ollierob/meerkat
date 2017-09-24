@@ -10,7 +10,7 @@ import net.meerkat.issuer.IssuerId;
  */
 public class CommonStock
         extends NamedInstrument
-        implements Equity {
+        implements Stock {
 
     private final IssuerId issuer;
 
