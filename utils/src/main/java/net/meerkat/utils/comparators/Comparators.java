@@ -1,5 +1,7 @@
 package net.meerkat.utils.comparators;
 
+import java.util.function.IntPredicate;
+
 /**
  *
  * @author Ollie
@@ -25,6 +27,14 @@ public class Comparators {
             return right;
         }
         return mid;
+    }
+
+    public static IntPredicate isPositive(final boolean includeZero) {
+        return includeZero ? i -> i >= 0 : i -> i > 0;
+    }
+
+    public static IntPredicate isNegative(final boolean includeZero) {
+        return includeZero ? i -> i <= 0 : i -> i < 0;
     }
 
 }

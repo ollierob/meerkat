@@ -1,9 +1,14 @@
 package net.meerkat.time.calendar.holiday;
 
 import java.time.LocalDate;
-import java.util.NavigableMap;
+import java.util.Comparator;
 
+import net.coljate.map.Entry;
+import net.coljate.map.Map;
+import net.coljate.map.SortedMap;
+import net.coljate.set.Set;
 import net.meerkat.time.calendar.DateOutOfRangeException;
+import net.ollie.goat.functions.Functions;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
 
 /**
@@ -12,16 +17,24 @@ import net.ollie.goat.temporal.date.interim.CompleteInterval;
  */
 public class ScheduledHolidayCalendar implements HolidayCalendar {
 
-    private final CompleteInterval range;
-    private final NavigableMap<LocalDate, Holiday> holidays;
+    public static ScheduledHolidayCalendar of(final Set<Holiday> holidays) {
+        return new ScheduledHolidayCalendar(Map.mapFirstKey(holidays, Holiday::date));
+    }
 
-    public ScheduledHolidayCalendar(final CompleteInterval range, final NavigableMap<LocalDate, Holiday> holidays) {
-        this.range = range;
+    private final CompleteInterval range;
+    private final SortedMap<LocalDate, Holiday> holidays;
+
+    protected ScheduledHolidayCalendar(final Map<LocalDate, Holiday> holidays) {
+        this(holidays.sortKeys(Comparator.naturalOrder()));
+    }
+
+    protected ScheduledHolidayCalendar(final SortedMap<LocalDate, Holiday> holidays) {
         this.holidays = holidays;
+        this.range = new CompleteInterval(holidays.keys().first(), holidays.keys().last());
     }
 
     @Override
-    public boolean contains(final LocalDate date) {
+    public boolean isHoliday(final LocalDate date) throws DateOutOfRangeException {
         this.requireInRange(date);
         return holidays.containsKey(date);
     }
@@ -34,7 +47,7 @@ public class ScheduledHolidayCalendar implements HolidayCalendar {
     @Override
     public Holiday next(final LocalDate date) throws DateOutOfRangeException {
         this.requireInRange(date);
-        return holidays.ceilingEntry(date).getValue();
+        return Functions.ifNonNull(holidays.ceilingEntry(date), Entry::value);
     }
 
     @Override

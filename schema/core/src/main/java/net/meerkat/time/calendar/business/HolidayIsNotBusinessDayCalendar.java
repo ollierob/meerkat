@@ -9,12 +9,12 @@ import net.meerkat.time.calendar.holiday.HolidayCalendar;
  *
  * @author ollie
  */
-public class BusinessDayIsNotHolidayCalendar implements BusinessDayCalendar {
+public class HolidayIsNotBusinessDayCalendar implements BusinessDayCalendar {
 
     private final HolidayCalendar holidayCalendar;
     private final BusinessDayCache cache;
 
-    public BusinessDayIsNotHolidayCalendar(final HolidayCalendar holidayCalendar, final BusinessDayCache cache) {
+    public HolidayIsNotBusinessDayCalendar(final HolidayCalendar holidayCalendar, final BusinessDayCache cache) {
         this.holidayCalendar = holidayCalendar;
         this.cache = cache;
     }

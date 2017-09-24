@@ -21,4 +21,8 @@ public interface HolidayCalendar extends Calendar<Holiday> {
         return Calendar.super.contains(date);
     }
 
+    static HolidayCalendar weekendSatSun(final HolidayCache cache) {
+        return WeekendIsHolidayCalendar.satSunToMon(cache);
+    }
+
 }

@@ -8,11 +8,11 @@ import net.meerkat.time.calendar.DateOutOfRangeException;
  *
  * @author ollie
  */
-public class AggregateHolidayCalendar implements HolidayCalendar {
+public class AnyHolidayCalendar implements HolidayCalendar {
 
     private final HolidayCalendar[] calendars;
 
-    public AggregateHolidayCalendar(final HolidayCalendar... calendars) {
+    public AnyHolidayCalendar(final HolidayCalendar... calendars) {
         this.calendars = calendars;
     }
 
