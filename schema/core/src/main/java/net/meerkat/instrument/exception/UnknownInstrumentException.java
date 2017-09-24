@@ -1,4 +1,4 @@
-package net.meerkat.instrument;
+package net.meerkat.instrument.exception;
 
 import net.meerkat.identifier.instrument.InstrumentId;
 

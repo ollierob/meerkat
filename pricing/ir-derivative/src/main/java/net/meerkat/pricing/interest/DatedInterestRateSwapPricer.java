@@ -6,7 +6,7 @@ import java.util.Map;
 import net.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.meerkat.calculate.interest.InterestRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.InstrumentException;
+import net.meerkat.instrument.exception.InstrumentException;
 import net.meerkat.instrument.interest.swap.InterestRateSwap;
 import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
 import net.meerkat.money.Money;

@@ -1,7 +1,7 @@
 package net.meerkat.instrument.equity;
 
 import net.meerkat.identifier.instrument.InstrumentId;
-import net.meerkat.instrument.UnknownInstrumentException;
+import net.meerkat.instrument.exception.UnknownInstrumentException;
 
 /**
  *

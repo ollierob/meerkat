@@ -1,7 +1,7 @@
-package net.meerkat.instrument.bond;
+package net.meerkat.instrument.bond.exception;
 
 import net.meerkat.identifier.instrument.InstrumentId;
-import net.meerkat.instrument.UnknownInstrumentException;
+import net.meerkat.instrument.exception.UnknownInstrumentException;
 
 /**
  *
@@ -11,7 +11,7 @@ public class UnknownBondException extends UnknownInstrumentException {
 
     private static final long serialVersionUID = 1L;
 
-    public UnknownBondException(InstrumentId instrumentId) {
+    public UnknownBondException(final InstrumentId instrumentId) {
         super(instrumentId);
     }
 

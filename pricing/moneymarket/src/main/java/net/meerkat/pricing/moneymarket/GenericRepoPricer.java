@@ -1,7 +1,7 @@
 package net.meerkat.pricing.moneymarket;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.InstrumentException;
+import net.meerkat.instrument.exception.InstrumentException;
 import net.meerkat.instrument.repo.Repo;
 
 /**

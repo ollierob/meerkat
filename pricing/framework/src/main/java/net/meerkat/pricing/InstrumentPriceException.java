@@ -1,6 +1,6 @@
 package net.meerkat.pricing;
 
-import net.meerkat.instrument.InstrumentException;
+import net.meerkat.instrument.exception.InstrumentException;
 
 /**
  *

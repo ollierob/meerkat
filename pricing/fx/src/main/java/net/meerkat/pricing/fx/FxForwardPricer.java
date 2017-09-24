@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Map;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.InstrumentException;
+import net.meerkat.instrument.exception.InstrumentException;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
