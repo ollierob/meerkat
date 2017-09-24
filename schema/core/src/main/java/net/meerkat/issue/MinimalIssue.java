@@ -1,7 +1,5 @@
 package net.meerkat.issue;
 
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.Explainable;
 import net.meerkat.issuer.IssuerId;
 
@@ -11,26 +9,29 @@ import net.meerkat.issuer.IssuerId;
  */
 public class MinimalIssue implements Issue, Explainable {
 
-    @XmlElementRef(name = "issuerId")
-    private IssuerId issuer;
+    private final IssueId issueId;
+    private final IssuerId issuerId;
 
-    @Deprecated
-    protected MinimalIssue() {
+    public MinimalIssue(final IssueId issueId, final IssuerId issuer) {
+        this.issueId = issueId;
+        this.issuerId = issuer;
     }
 
-    public MinimalIssue(final IssuerId issuer) {
-        this.issuer = issuer;
+    @Override
+    public IssueId issueId() {
+        return issueId;
     }
 
     @Override
     public IssuerId issuerId() {
-        return issuer;
+        return issuerId;
     }
 
     @Override
     public ExplanationBuilder explain() {
         return this.explanationBuilder()
-                .put("issuer", issuer);
+                .put("issue", issueId)
+                .put("issuer", issuerId);
     }
 
 }
