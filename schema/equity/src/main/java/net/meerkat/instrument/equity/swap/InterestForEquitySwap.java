@@ -9,7 +9,7 @@ import net.meerkat.money.interest.InterestRateId;
  *
  * @author ollie
  */
-public interface FloatingInterestForEquitySwap<E extends Equity>
+public interface InterestForEquitySwap<E extends Equity>
         extends EquitySwap<E>, HasInterestRateId {
 
     @Override
