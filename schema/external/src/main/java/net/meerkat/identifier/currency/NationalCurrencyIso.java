@@ -1,7 +1,5 @@
 package net.meerkat.identifier.currency;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 import net.meerkat.identifier.country.CountryIso;
 import net.meerkat.identifier.country.HasCountryId;
 
@@ -9,7 +7,6 @@ import net.meerkat.identifier.country.HasCountryId;
  *
  * @author ollie
  */
-@XmlTransient
 public abstract class NationalCurrencyIso
         extends AbstractCurrencyIso
         implements HasCountryId {

@@ -39,7 +39,7 @@ public interface CurrencyId extends HasCurrencyId, InstrumentId, Castable {
 
     @Nonnull
     default MoneyFormat format() {
-        return MoneyFormat.SYMBOL_AMOUNT;
+        return MoneyFormat.UNIQUE_SYMBOL_AMOUNT;
     }
 
 }

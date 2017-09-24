@@ -1,5 +1,7 @@
 package net.meerkat.identifier.currency;
 
+import java.util.Objects;
+
 import javax.annotation.Nonnull;
 
 import net.coljate.set.Set;
@@ -48,6 +50,30 @@ public class CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
     @Deprecated
     public CurrencyIdPair<B, C> currencyIds() {
         return this;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + Objects.hashCode(this.baseId);
+        hash = 73 * hash + Objects.hashCode(this.counterId);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(final Object that) {
+        return that instanceof CurrencyIdPair
+                && this.equals((CurrencyIdPair<?, ?>) that);
+    }
+
+    protected boolean equals(@Nonnull final CurrencyIdPair<?, ?> that) {
+        return Objects.equals(this.baseId, that.baseId)
+                && Objects.equals(this.counterId, that.counterId);
+    }
+
+    @Override
+    public String toString() {
+        return baseId + "/" + counterId;
     }
 
 }

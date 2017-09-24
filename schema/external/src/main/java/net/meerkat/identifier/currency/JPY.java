@@ -20,6 +20,11 @@ public class JPY extends NationalCurrencyIso {
     }
 
     @Override
+    public String uniqueSymbol() {
+        return "JP¥";
+    }
+
+    @Override
     public String name() {
         return "Japanese yen";
     }

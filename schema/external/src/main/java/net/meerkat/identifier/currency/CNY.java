@@ -13,7 +13,12 @@ public class CNY extends NationalCurrencyIso {
 
     @Override
     public String symbol() {
-        return "¥";
+        return "¥"; //Or 元
+    }
+
+    @Override
+    public String uniqueSymbol() {
+        return "CN¥";
     }
 
     @Override

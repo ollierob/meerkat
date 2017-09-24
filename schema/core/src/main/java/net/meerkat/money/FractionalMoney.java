@@ -74,7 +74,7 @@ public class FractionalMoney<C extends CurrencyId>
 
     @Override
     public String toString() {
-        return this.toString(MoneyFormat.SYMBOL_AMOUNT);
+        return this.toString(MoneyFormat.UNIQUE_SYMBOL_AMOUNT);
     }
 
     @Override

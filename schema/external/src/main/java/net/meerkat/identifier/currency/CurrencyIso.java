@@ -20,7 +20,7 @@ public interface CurrencyIso
 
     @Override
     default String uniqueSymbol() {
-        return this.value() + this.symbol();
+        return this.value();
     }
 
     @Override
@@ -36,7 +36,7 @@ public interface CurrencyIso
 
     @Override
     default MoneyFormat format() {
-        return MoneyFormat.CURRENCY_AMOUNT;
+        return MoneyFormat.UNIQUE_SYMBOL_AMOUNT;
     }
 
     AUD AUD = new AUD();
