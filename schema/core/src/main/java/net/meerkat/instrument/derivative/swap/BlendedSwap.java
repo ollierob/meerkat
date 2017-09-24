@@ -12,7 +12,8 @@ import net.meerkat.instrument.derivative.Derivative;
  *
  * @author ollie
  */
-public interface BlendedSwap extends InstrumentDefinition, Derivative<AggregateInstrument> {
+public interface BlendedSwap
+        extends InstrumentDefinition, Derivative<AggregateInstrument> {
 
     @Nonnull
     Set<? extends Swap> swaps();

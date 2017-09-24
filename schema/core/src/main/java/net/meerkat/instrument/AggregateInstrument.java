@@ -6,11 +6,10 @@ import net.meerkat.identifier.instrument.InstrumentIds;
  *
  * @author ollie
  */
-public class AggregateInstrument implements Instrument {
+public class AggregateInstrument extends IdentifiedInstrument {
 
-    @Override
-    public InstrumentIds instrumentIds() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public AggregateInstrument(final InstrumentIds instrumentIds) {
+        super(instrumentIds);
     }
 
 }

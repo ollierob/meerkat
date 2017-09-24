@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
+import net.coljate.collection.Collection;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
@@ -89,6 +90,14 @@ public interface Money<C extends CurrencyId>
         return of(currency, BigDecimals.toBigDecimal(amount));
     }
 
+    static <C extends CurrencyId> Money<C> sum(final Collection<Money<C>> monies) {
+        return monies.reduce(Money::nullSafePlus);
+    }
+
+    static <C extends CurrencyId> Money<C> mean(final Collection<Money<C>> monies) {
+        return sum(monies).over(monies.count());
+    }
+
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {
         return Objects.equals(left.currencyId(), right.currencyId())
                 && Numbers.equals(left.amount(), right.amount());
@@ -99,6 +108,16 @@ public interface Money<C extends CurrencyId>
         hash = 29 * hash + Objects.hashCode(money.currencyId());
         hash = 29 * hash + Double.hashCode(money.doubleValue());
         return hash;
+    }
+
+    static <C extends CurrencyId> Money<C> nullSafePlus(final Money<C> left, final Money<C> right) {
+        if (left == null) {
+            return right;
+        } else if (right == null) {
+            return left;
+        } else {
+            return left.plus(right);
+        }
     }
 
 }

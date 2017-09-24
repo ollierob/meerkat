@@ -41,7 +41,7 @@ public interface InterestRateSwap
     }
 
     @Override
-    default <R> R handleWith(final Handler<R> handler) {
+    default <R> R handleWith(final InterestRateDerivative.Handler<R> handler) {
         return handler.handle(this);
     }
 
