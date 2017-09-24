@@ -3,6 +3,7 @@ package net.meerkat.rating;
 import java.util.Collections;
 import java.util.Set;
 
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 /**
@@ -30,11 +31,13 @@ public interface CreditRating {
         return this.bestBand().isDefault();
     }
 
-    @Nonnull
+    @CheckForNull
     String agency();
 
     default int compareTo(final CreditRating that) {
         return this.bestBand().compareTo(that.bestBand());
     }
+
+    CreditRating UNRATED = new UnratedCreditRating();
 
 }

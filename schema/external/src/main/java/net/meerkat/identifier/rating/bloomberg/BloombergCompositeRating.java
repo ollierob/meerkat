@@ -1,17 +1,19 @@
 package net.meerkat.identifier.rating.bloomberg;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Set;
 
+import net.meerkat.rating.CreditRating;
 import net.meerkat.rating.CreditRatings;
 
 /**
  *
  * @author Ollie
  */
-@XmlRootElement
 public class BloombergCompositeRating extends CreditRatings {
 
-    private static final long serialVersionUID = 1L;
+    public BloombergCompositeRating(final CreditRating finalRating, final Set<CreditRating> otherRatings) {
+        super(finalRating, otherRatings);
+    }
 
     @Override
     public String agency() {

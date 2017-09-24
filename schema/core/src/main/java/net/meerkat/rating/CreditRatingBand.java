@@ -3,13 +3,10 @@ package net.meerkat.rating;
 import java.util.Collections;
 import java.util.Set;
 
-import javax.xml.bind.annotation.XmlEnum;
-
 /**
  *
  * @author Ollie
  */
-@XmlEnum
 public enum CreditRatingBand implements CreditRating {
 
     AAA("Prime"),

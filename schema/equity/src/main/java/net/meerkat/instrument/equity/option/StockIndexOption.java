@@ -5,7 +5,7 @@ import net.meerkat.instrument.derivative.option.AbstractOption;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
 import net.meerkat.instrument.equity.EquityDerivative;
 import net.meerkat.instrument.equity.StockIndex;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 
 /**
@@ -21,13 +21,13 @@ public class StockIndexOption
     public StockIndexOption(
             final String name, 
             final InstrumentIds identifiers, 
-            final Issue issue, 
+            final IssuerId issuerId, 
             final OptionExercise exercise, 
             final Money<?> premium, 
             final Money<?> strike, 
             final Number contractMultiplier, 
             final StockIndex underlying) {
-        super(name, identifiers, issue, exercise, premium, strike, contractMultiplier);
+        super(name, identifiers, issuerId, exercise, premium, strike, contractMultiplier);
         this.underlying = underlying;
     }
 

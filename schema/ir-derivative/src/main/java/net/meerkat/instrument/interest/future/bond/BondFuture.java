@@ -6,7 +6,7 @@ import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
 import net.meerkat.instrument.interest.future.InterestRateFutureContract;
 import net.meerkat.instrument.interest.future.stir.ShortTermInterestRateFuture;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.IssuerId;
 import net.ollie.goat.temporal.date.interim.Interim;
 
 /**
@@ -23,8 +23,14 @@ public class BondFuture<C extends CurrencyId>
     private final BondFutureContract<C> basket;
     private final Interim deliveryDates;
 
-    public BondFuture(final String name, InstrumentIds identifiers, Issue issue, final C currencyId, BondFutureContract<C> basket, Interim deliveryDates) {
-        super(name, identifiers, issue);
+    public BondFuture(
+            final String name,
+            final InstrumentIds identifiers, 
+            final IssuerId issuerId,
+            final C currencyId, 
+            final BondFutureContract<C> basket, 
+            final Interim deliveryDates) {
+        super(name, identifiers, issuerId);
         this.currencyId = currencyId;
         this.basket = basket;
         this.deliveryDates = deliveryDates;

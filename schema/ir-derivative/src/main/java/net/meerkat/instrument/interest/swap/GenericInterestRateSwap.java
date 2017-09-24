@@ -4,7 +4,7 @@ import net.coljate.list.List;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *
@@ -19,8 +19,8 @@ public class GenericInterestRateSwap
     public GenericInterestRateSwap(
             final String name,
             final InstrumentIds ids,
-            final List<? extends InterestRateSwapLeg<?, ?>> legs,
-            final Issue issue) {
+            final IssuerId issue,
+            final List<? extends InterestRateSwapLeg<?, ?>> legs) {
         super(name, ids, issue);
         this.legs = legs;
     }

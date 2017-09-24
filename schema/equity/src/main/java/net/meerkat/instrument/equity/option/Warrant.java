@@ -5,7 +5,7 @@ import net.meerkat.instrument.derivative.option.AbstractOption;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
 import net.meerkat.instrument.equity.CommonStock;
 import net.meerkat.instrument.equity.EquityDerivative;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 
 /**
@@ -18,8 +18,16 @@ public class Warrant
 
     private final CommonStock underlying;
 
-    public Warrant(final String name, InstrumentIds identifiers, Issue issue, OptionExercise exercise, Money<?> premium, Money<?> strike, Number contractMultiplier, final CommonStock underlying) {
-        super(name, identifiers, issue, exercise, premium, strike, contractMultiplier);
+    public Warrant(
+            final String name,
+            final InstrumentIds identifiers,
+            final IssuerId issuerId,
+            final OptionExercise exercise,
+            final Money<?> premium,
+            final Money<?> strike,
+            final Number contractMultiplier,
+            final CommonStock underlying) {
+        super(name, identifiers, issuerId, exercise, premium, strike, contractMultiplier);
         this.underlying = underlying;
     }
 

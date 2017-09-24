@@ -4,7 +4,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 
 /**
@@ -15,8 +15,6 @@ public abstract class AbstractOption<S extends Instrument>
         extends IssuedSecurity
         implements Option<S> {
 
-    private static final long serialVersionUID = 1L;
-
     private final OptionExercise exercise;
     private final Money<?> premium;
     private final Money<?> strike;
@@ -25,12 +23,12 @@ public abstract class AbstractOption<S extends Instrument>
     protected AbstractOption(
             final String name,
             final InstrumentIds identifiers,
-            final Issue issue,
+            final IssuerId issuerId,
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
             final Number contractMultiplier) {
-        super(name, identifiers, issue);
+        super(name, identifiers, issuerId);
         this.exercise = exercise;
         this.premium = premium;
         this.strike = strike;

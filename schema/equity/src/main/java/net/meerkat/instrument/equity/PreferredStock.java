@@ -2,7 +2,7 @@ package net.meerkat.instrument.equity;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.IssuedSecurity;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *
@@ -13,8 +13,8 @@ public class PreferredStock extends IssuedSecurity implements Stock {
     public PreferredStock(
             final String name,
             final InstrumentIds identifiers,
-            final Issue issue) {
-        super(name, identifiers, issue);
+            final IssuerId issuerId) {
+        super(name, identifiers, issuerId);
     }
 
     @Override

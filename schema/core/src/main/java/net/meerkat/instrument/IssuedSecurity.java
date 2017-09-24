@@ -1,8 +1,8 @@
 package net.meerkat.instrument;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.issue.HasIssue;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.HasIssuerId;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *
@@ -10,24 +10,24 @@ import net.meerkat.issue.Issue;
  */
 public class IssuedSecurity
         extends NamedInstrument
-        implements Security, HasIssue {
+        implements Security, HasIssuerId {
 
-    private final Issue issue;
+    private final IssuerId issuerId;
 
-    public IssuedSecurity(final String name, final InstrumentIds identifiers, final Issue issue) {
+    public IssuedSecurity(final String name, final InstrumentIds identifiers, final IssuerId issuerId) {
         super(name, identifiers);
-        this.issue = issue;
+        this.issuerId = issuerId;
     }
 
     @Override
-    public Issue issue() {
-        return issue;
+    public IssuerId issuerId() {
+        return issuerId;
     }
 
     @Override
     public ExplanationBuilder explain() {
         return super.explain()
-                .put("issue", issue);
+                .put("issue", issuerId);
     }
 
 }

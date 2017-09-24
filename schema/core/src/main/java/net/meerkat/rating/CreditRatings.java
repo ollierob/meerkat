@@ -1,29 +1,21 @@
 package net.meerkat.rating;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.util.Collections;
 import java.util.Set;
-
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Ollie
  */
-@XmlRootElement
-public class CreditRatings implements CreditRating, Externalizable {
+public class CreditRatings implements CreditRating {
 
-    private static final long serialVersionUID = 1L;
+    private final CreditRating finalRating;
+    private final Set<CreditRating> otherRatings;
 
-    @XmlElementRef(name = "final")
-    private CreditRating finalRating;
-
-    @XmlElementRef(name = "other")
-    private Set<CreditRating> otherRatings;
+    public CreditRatings(final CreditRating finalRating, final Set<CreditRating> otherRatings) {
+        this.finalRating = finalRating;
+        this.otherRatings = otherRatings;
+    }
 
     @Override
     public String description() {
@@ -52,18 +44,6 @@ public class CreditRatings implements CreditRating, Externalizable {
     @Override
     public int compareTo(final CreditRating that) {
         return finalRating.compareTo(that);
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(finalRating);
-        out.writeObject(otherRatings);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        finalRating = (CreditRating) in.readObject();
-        otherRatings = (Set<CreditRating>) in.readObject();
     }
 
 }

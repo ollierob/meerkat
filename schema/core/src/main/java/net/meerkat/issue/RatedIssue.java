@@ -12,8 +12,8 @@ public class RatedIssue extends MinimalIssue implements HasCreditRating {
 
     private final CreditRating rating;
 
-    public RatedIssue(final IssueId issueId, final IssuerId issuerId, final CreditRating rating) {
-        super(issueId, issuerId);
+    public RatedIssue(final IssuerId issuerId, final CreditRating rating) {
+        super(issuerId);
         this.rating = rating;
     }
 

@@ -5,7 +5,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.forward.AbstractFuture;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
 import net.meerkat.instrument.interest.future.bond.BondFuture;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 import net.ollie.goat.temporal.date.interim.Interim;
 
@@ -22,8 +22,13 @@ public class ShortTermInterestRateFuture<C extends CurrencyId>
     private final Interim deliveryDates;
     private final ShortTermInterestRateFutureContract<C> contract;
 
-    public ShortTermInterestRateFuture(final String name, InstrumentIds identifiers, Issue issue, Interim deliveryDates, ShortTermInterestRateFutureContract<C> contract) {
-        super(name, identifiers, issue);
+    public ShortTermInterestRateFuture(
+            final String name,
+            final InstrumentIds identifiers, 
+            final IssuerId issuerId,
+            final Interim deliveryDates, 
+            final ShortTermInterestRateFutureContract<C> contract) {
+        super(name, identifiers, issuerId);
         this.deliveryDates = deliveryDates;
         this.contract = contract;
     }

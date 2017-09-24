@@ -2,7 +2,7 @@ package net.meerkat.instrument.equity;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.IssuedSecurity;
-import net.meerkat.issue.Issue;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *
@@ -12,8 +12,8 @@ public class CommonStock
         extends IssuedSecurity
         implements Stock {
 
-    public CommonStock(final String name, final InstrumentIds identifiers, final Issue issue) {
-        super(name, identifiers, issue);
+    public CommonStock(final String name, final InstrumentIds identifiers, final IssuerId issuerId) {
+        super(name, identifiers, issuerId);
     }
 
     @Override

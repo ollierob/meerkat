@@ -7,10 +7,10 @@ import net.meerkat.issuer.IssuerId;
  *
  * @author ollie
  */
-public interface Issue extends HasIssueId, HasIssuerId {
+public interface Issue extends HasIssuerId {
 
-    static Issue of(final IssueId issueId, final IssuerId issuerId) {
-        return new MinimalIssue(issueId, issuerId);
+    static Issue of(final IssuerId issuerId) {
+        return new MinimalIssue(issuerId);
     }
 
 }
