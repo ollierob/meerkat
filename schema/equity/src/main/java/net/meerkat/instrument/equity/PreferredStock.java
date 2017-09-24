@@ -6,18 +6,19 @@ import net.meerkat.issue.Issue;
 
 /**
  *
- * @author Ollie
+ * @author ollie
  */
-public class CommonStock
-        extends IssuedSecurity
-        implements Stock {
+public class PreferredStock extends IssuedSecurity implements Stock {
 
-    public CommonStock(final String name, final InstrumentIds identifiers, final Issue issue) {
+    public PreferredStock(
+            final String name,
+            final InstrumentIds identifiers,
+            final Issue issue) {
         super(name, identifiers, issue);
     }
 
     @Override
-    public <R> R handleWith(final Equity.Handler<R> handler) {
+    public <R> R handleWith(final Handler<R> handler) {
         return handler.handle(this);
     }
 
