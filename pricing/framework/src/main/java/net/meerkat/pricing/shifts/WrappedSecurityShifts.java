@@ -1,5 +1,8 @@
 package net.meerkat.pricing.shifts;
 
+import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
+import net.meerkat.pricing.shifts.interest.InterestRateShifts;
+
 import java.util.Map;
 
 import net.meerkat.identifier.currency.CurrencyId;

@@ -3,7 +3,7 @@ package net.meerkat.pricing.fx;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.price.TwoWayPrice;
 import net.meerkat.pricing.ShiftablePrice;
-import net.meerkat.pricing.shifts.InterestRateShifts;
+import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 import net.meerkat.pricing.shifts.SecurityShifts;
 
 /**

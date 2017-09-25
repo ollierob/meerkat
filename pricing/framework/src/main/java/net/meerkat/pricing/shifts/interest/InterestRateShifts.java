@@ -1,9 +1,10 @@
-package net.meerkat.pricing.shifts;
+package net.meerkat.pricing.shifts.interest;
 
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.pricing.shifts.SecurityShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**

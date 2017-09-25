@@ -1,4 +1,4 @@
-package net.meerkat.pricing.shifts;
+package net.meerkat.pricing.shifts.fx;
 
 import javax.annotation.Nonnull;
 
@@ -6,6 +6,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
+import net.meerkat.pricing.shifts.SecurityShifts;
 
 /**
  *

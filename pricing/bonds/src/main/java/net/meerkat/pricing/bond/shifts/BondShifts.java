@@ -4,8 +4,8 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.pricing.shifts.ExchangeRateShifts;
-import net.meerkat.pricing.shifts.InterestRateShifts;
+import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
+import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 import net.meerkat.pricing.shifts.PriceShifts;
 import net.meerkat.pricing.shifts.SecurityShifts;
 import net.ollie.goat.numeric.percentage.Percentage;

@@ -1,4 +1,4 @@
-package net.meerkat.pricing.shifts;
+package net.meerkat.pricing.shifts.interest;
 
 import java.util.Map;
 

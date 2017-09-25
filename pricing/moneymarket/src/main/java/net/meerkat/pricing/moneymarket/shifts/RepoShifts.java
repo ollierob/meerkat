@@ -1,6 +1,6 @@
 package net.meerkat.pricing.moneymarket.shifts;
 
-import net.meerkat.pricing.shifts.ExchangeRateShifts;
+import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.SecurityShifts;
 
 /**

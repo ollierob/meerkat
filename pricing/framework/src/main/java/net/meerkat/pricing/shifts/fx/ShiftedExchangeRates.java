@@ -1,4 +1,4 @@
-package net.meerkat.pricing.shifts;
+package net.meerkat.pricing.shifts.fx;
 
 import java.util.Objects;
 import java.util.Optional;

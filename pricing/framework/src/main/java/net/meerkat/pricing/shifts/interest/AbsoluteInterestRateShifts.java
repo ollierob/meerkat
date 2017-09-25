@@ -1,4 +1,4 @@
-package net.meerkat.pricing.shifts;
+package net.meerkat.pricing.shifts.interest;
 
 import java.util.Map;
 
@@ -9,22 +9,22 @@ import net.ollie.goat.numeric.percentage.Percentage;
  *
  * @author ollie
  */
-public class RelativeInterestRateShifts implements InterestRateShifts {
+public class AbsoluteInterestRateShifts implements InterestRateShifts {
 
     private final Percentage shift;
 
-    protected RelativeInterestRateShifts(final Percentage shift) {
+    protected AbsoluteInterestRateShifts(final Percentage shift) {
         this.shift = shift;
     }
 
     @Override
     public InterestRate shift(final InterestRate rate) {
-        return rate.times(shift);
+        return rate.plus(shift);
     }
 
     @Override
     public Map<String, Object> explain() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.explanationBuilder().put("shift", shift);
     }
 
 }
