@@ -2,8 +2,6 @@ package net.meerkat.money.interest.floating;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.curve.DateYieldCurve;
@@ -19,7 +17,6 @@ import net.ollie.goat.temporal.date.years.Years;
  */
 public class SimpleFloatingInterestRate extends FloatingInterestRate {
 
-    @XmlElementRef(name = "curve")
     private final DateYieldCurve curve;
 
     public SimpleFloatingInterestRate(
@@ -35,6 +32,11 @@ public class SimpleFloatingInterestRate extends FloatingInterestRate {
         return bump.isZero()
                 ? this
                 : new SimpleFloatingInterestRate(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
+    }
+
+    @Override
+    public SimpleFloatingInterestRate times(final Percentage bump) {
+        return new SimpleFloatingInterestRate(this.referenceDate(), curve.times(bump), this.dateArithmetic());
     }
 
     @Override

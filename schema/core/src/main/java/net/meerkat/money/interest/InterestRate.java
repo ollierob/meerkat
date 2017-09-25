@@ -50,6 +50,10 @@ public interface InterestRate extends InterestRateOrId {
 
     @Nonnull
     @CheckReturnValue
+    InterestRate times(@Nonnull Percentage bump);
+
+    @Nonnull
+    @CheckReturnValue
     default InterestRate minus(@Nonnull final Percentage bump) {
         return this.plus(bump.negate());
     }

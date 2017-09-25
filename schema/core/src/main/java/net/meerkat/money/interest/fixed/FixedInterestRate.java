@@ -51,6 +51,13 @@ public abstract class FixedInterestRate
     }
 
     @Override
+    public FixedInterestRate times(final Percentage bump) {
+        return this.with(this.annualRate().times(bump));
+    }
+    
+    
+
+    @Override
     public int compareTo(final FixedInterestRate that) {
         return this.annualRate().compareTo(that.annualRate());
     }

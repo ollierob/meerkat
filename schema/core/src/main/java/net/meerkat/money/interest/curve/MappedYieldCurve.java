@@ -8,6 +8,8 @@ import java.util.NavigableMap;
 import java.util.Set;
 import java.util.TreeMap;
 
+import javax.annotation.Nonnull;
+
 import net.meerkat.utils.SelfTyped;
 import net.ollie.goat.collection.Maps;
 import net.ollie.goat.collection.Sets;
@@ -55,8 +57,12 @@ public abstract class MappedYieldCurve<K, T extends MappedYieldCurve<K, T>>
 
     protected abstract T with(Map<K, Percentage> curve);
 
+    public T times(@Nonnull final Number bump) {
+        return this.with(Maps.lazilyTransformValues(map, p -> p.times(bump)));
+    }
+
     @Override
-    public T plus(final Percentage bump) {
+    public T plus(@Nonnull final Percentage bump) {
         return this.with(Maps.lazilyTransformValues(map, p -> p.plus(bump)));
     }
 

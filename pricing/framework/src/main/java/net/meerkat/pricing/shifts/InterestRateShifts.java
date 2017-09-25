@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *
@@ -16,6 +17,16 @@ public interface InterestRateShifts extends SecurityShifts {
 
     static InterestRateShifts none() {
         return NoInterestRateShifts.INSTANCE;
+    }
+
+    static InterestRateShifts absolute(@Nonnull final Percentage shift) {
+        return shift.isZero()
+                ? none()
+                : new AbsoluteInterestRateShifts(shift);
+    }
+
+    static InterestRateShifts relative(@Nonnull final Percentage shift) {
+        return new RelativeInterestRateShifts(shift);
     }
 
     static InterestRateShifts cast(final SecurityShifts shifts) {

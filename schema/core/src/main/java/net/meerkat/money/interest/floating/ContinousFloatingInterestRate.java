@@ -66,4 +66,9 @@ public class ContinousFloatingInterestRate extends FloatingInterestRate {
                 : new ContinousFloatingInterestRate(this.referenceDate(), curve.plus(bump), this.dateArithmetic());
     }
 
+    @Override
+    public ContinousFloatingInterestRate times(final Percentage bump) {
+        return new ContinousFloatingInterestRate(this.referenceDate(), curve.times(bump), this.dateArithmetic());
+    }
+
 }
