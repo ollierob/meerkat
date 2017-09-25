@@ -13,15 +13,13 @@ public abstract class CastingSensitivityId<S extends Sensitivity> implements Sen
 
     private final Class<S> clazz;
 
-    protected CastingSensitivityId(Class<S> clazz) {
+    protected CastingSensitivityId(final Class<S> clazz) {
         this.clazz = clazz;
     }
 
     @Override
     public Optional<S> convert(final Sensitivity sensitivity) {
-        return clazz.isAssignableFrom(sensitivity.getClass())
-                ? Optional.of(clazz.cast(sensitivity))
-                : Optional.empty();
+        return sensitivity.cast(clazz);
     }
 
 }

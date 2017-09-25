@@ -4,13 +4,14 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.coljate.util.SelfTyped;
+import net.meerkat.utils.Classes.Castable;
 import net.meerkat.utils.HasName;
 
 /**
  *
  * @author Ollie
  */
-public interface Sensitivity extends HasSensitivityId, HasName {
+public interface Sensitivity extends HasSensitivityId, HasName, Castable {
 
     @Override
     default String name() {

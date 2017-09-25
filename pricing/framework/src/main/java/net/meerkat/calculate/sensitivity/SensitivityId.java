@@ -1,12 +1,12 @@
 package net.meerkat.calculate.sensitivity;
 
-import net.meerkat.calculate.sensitivity.id.NonCollectingSensitivityId;
-import net.meerkat.calculate.sensitivity.id.SumingSensitivityId;
-
 import java.util.Optional;
 import java.util.stream.Collector;
 
 import javax.annotation.Nonnull;
+
+import net.meerkat.calculate.sensitivity.id.NonCollectingSensitivityId;
+import net.meerkat.calculate.sensitivity.id.SumingSensitivityId;
 
 /**
  *
@@ -18,9 +18,7 @@ public interface SensitivityId<S extends Sensitivity> extends HasSensitivityId {
     Collector<S, ?, S> collector();
 
     @Nonnull
-    default Optional<S> convert(final Sensitivity sensitivity) {
-        return Optional.of((S) sensitivity);
-    }
+    Optional<S> convert(Sensitivity sensitivity);
 
     @Override
     @Deprecated
