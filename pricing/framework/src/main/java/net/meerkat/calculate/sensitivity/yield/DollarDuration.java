@@ -6,23 +6,22 @@ import net.meerkat.identifier.currency.USD;
 import net.meerkat.money.Money;
 
 /**
+ * Sensitivity to a 1bp change in interest rates.
  *
  * @author ollie
  */
 public class DollarDuration extends DollarSensitivity {
 
-    public DollarDuration(final Money<USD> dollars) {
+    private final SensitivityId<DollarDuration> id;
+
+    public DollarDuration(final SensitivityId<DollarDuration> id, final Money<USD> dollars) {
         super(dollars);
+        this.id = id;
     }
 
     @Override
-    public String name() {
-        return "DV01";
-    }
-
-    @Override
-    public SensitivityId<?> sensitivityId() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public SensitivityId<DollarDuration> sensitivityId() {
+        return id;
     }
 
 }

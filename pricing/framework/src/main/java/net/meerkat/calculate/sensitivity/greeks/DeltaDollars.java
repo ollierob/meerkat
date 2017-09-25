@@ -13,7 +13,7 @@ import net.meerkat.money.Money;
  */
 public class DeltaDollars extends DollarSensitivity implements Greek, Sensitivity.Summing<DeltaDollars> {
 
-    public static final SensitivityId<DeltaDollars> ID = SensitivityId.summing(DeltaDollars.class);
+    public static final SensitivityId<DeltaDollars> ID = SensitivityId.summing("Delta$", DeltaDollars.class);
     public static final DeltaDollars ZERO = new DeltaDollars(Money.zero(CurrencyIso.USD));
 
     public static DeltaDollars of(final Delta delta, final Money<USD> value) {

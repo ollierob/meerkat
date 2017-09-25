@@ -12,12 +12,12 @@ public class SumingSensitivityId<S extends Sensitivity.Summing<S>> extends Casti
 
     private final S defaultValue;
 
-    public SumingSensitivityId(final Class<S> clazz) {
-        this(clazz, null);
+    public SumingSensitivityId(final String name, final Class<S> clazz) {
+        this(name, clazz, null);
     }
 
-    public SumingSensitivityId(final Class<S> clazz, final S defaultValue) {
-        super(clazz);
+    public SumingSensitivityId(final String name, final Class<S> clazz, final S defaultValue) {
+        super(name, clazz);
         this.defaultValue = defaultValue;
     }
 

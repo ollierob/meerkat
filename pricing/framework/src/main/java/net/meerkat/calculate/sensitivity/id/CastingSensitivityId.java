@@ -11,10 +11,17 @@ import net.meerkat.calculate.sensitivity.SensitivityId;
  */
 public abstract class CastingSensitivityId<S extends Sensitivity> implements SensitivityId<S> {
 
+    private final String name;
     private final Class<S> clazz;
 
-    protected CastingSensitivityId(final Class<S> clazz) {
+    protected CastingSensitivityId(final String name, final Class<S> clazz) {
+        this.name = name;
         this.clazz = clazz;
+    }
+
+    @Override
+    public String name() {
+        return name;
     }
 
     @Override

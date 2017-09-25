@@ -9,7 +9,7 @@ import net.meerkat.calculate.sensitivity.SensitivityId;
  */
 public class Delta extends DoubleSensitivity implements Greek {
 
-    public static final SensitivityId<Delta> ID = SensitivityId.nonSumming(Delta.class);
+    public static final SensitivityId<Delta> ID = SensitivityId.nonSumming("Delta", Delta.class);
 
     public Delta(final double value) {
         super(value);

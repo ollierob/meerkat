@@ -1,5 +1,7 @@
 package net.meerkat.calculate.sensitivity;
 
+import java.util.Objects;
+
 import net.meerkat.identifier.currency.USD;
 import net.meerkat.money.Money;
 
@@ -17,6 +19,25 @@ public abstract class DollarSensitivity implements Sensitivity {
 
     public Money<USD> value() {
         return dollars;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.dollars);
+        hash = 67 * hash + Objects.hashCode(this.sensitivityId());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        return obj instanceof DollarSensitivity
+                && this.equals((DollarSensitivity) obj);
+    }
+
+    protected boolean equals(final DollarSensitivity that) {
+        return Objects.equals(dollars, that.dollars)
+                && Objects.equals(this.sensitivityId(), that.sensitivityId());
     }
 
 }

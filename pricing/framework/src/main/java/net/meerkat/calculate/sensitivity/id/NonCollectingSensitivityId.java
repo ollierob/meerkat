@@ -11,8 +11,8 @@ import net.meerkat.calculate.sensitivity.Sensitivity;
  */
 public class NonCollectingSensitivityId<S extends Sensitivity> extends CastingSensitivityId<S> {
 
-    public NonCollectingSensitivityId(Class<S> clazz) {
-        super(clazz);
+    public NonCollectingSensitivityId(final String name, final Class<S> clazz) {
+        super(name, clazz);
     }
 
     @Override
