@@ -1,6 +1,7 @@
 package net.meerkat.calculate.sensitivity.yield;
 
 import net.meerkat.calculate.sensitivity.DollarSensitivity;
+import net.meerkat.calculate.sensitivity.Sensitivity;
 import net.meerkat.calculate.sensitivity.SensitivityId;
 import net.meerkat.identifier.currency.USD;
 import net.meerkat.money.Money;
@@ -10,18 +11,22 @@ import net.meerkat.money.Money;
  *
  * @author ollie
  */
-public class DollarDuration extends DollarSensitivity {
+public class DollarDuration extends DollarSensitivity implements Sensitivity.Summing<DollarDuration> {
 
-    private final SensitivityId<DollarDuration> id;
+    public static final SensitivityId<DollarDuration> ID = SensitivityId.summing("DV01", DollarDuration.class);
 
-    public DollarDuration(final SensitivityId<DollarDuration> id, final Money<USD> dollars) {
+    public DollarDuration(final Money<USD> dollars) {
         super(dollars);
-        this.id = id;
     }
 
     @Override
-    public SensitivityId<DollarDuration> sensitivityId() {
-        return id;
+    public SensitivityId<?> sensitivityId() {
+        return ID;
+    }
+
+    @Override
+    public DollarDuration plus(final DollarDuration that) {
+        return new DollarDuration(this.value().plus(that.value()));
     }
 
 }

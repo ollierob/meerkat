@@ -37,6 +37,9 @@ public interface Explainable {
 
         private final Map<String, Object> explanation = new HashMap<>();
 
+        public ExplanationBuilder() {
+        }
+
         public ExplanationBuilder(@Nonnull final Class<?> clazz) {
             explanation.put("class", clazz);
         }

@@ -25,7 +25,6 @@ public abstract class DollarSensitivity implements Sensitivity {
     public int hashCode() {
         int hash = 3;
         hash = 67 * hash + Objects.hashCode(this.dollars);
-        hash = 67 * hash + Objects.hashCode(this.sensitivityId());
         return hash;
     }
 
@@ -36,8 +35,7 @@ public abstract class DollarSensitivity implements Sensitivity {
     }
 
     protected boolean equals(final DollarSensitivity that) {
-        return Objects.equals(dollars, that.dollars)
-                && Objects.equals(this.sensitivityId(), that.sensitivityId());
+        return Objects.equals(dollars, that.dollars);
     }
 
 }
