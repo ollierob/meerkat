@@ -1,5 +1,6 @@
 package net.meerkat.instrument.equity.swap;
 
+
 import net.meerkat.instrument.equity.Equity;
 import net.meerkat.instrument.equity.EquityDerivative;
 import net.meerkat.money.interest.HasInterestRateId;

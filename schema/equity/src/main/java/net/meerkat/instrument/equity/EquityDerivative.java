@@ -39,7 +39,7 @@ public interface EquityDerivative<E extends Instrument>
 
         R handle(InterestForEquitySwap<?> swap);
 
-        R handle(EquityForEquitySwap swap);
+        R handle(EquityForEquitySwap<?, ?> swap);
 
         R handle(BlendedEquitySwap blendedSwap);
 
