@@ -17,14 +17,14 @@ import net.ollie.goat.numeric.percentage.Percentage;
  *
  * @author ollie
  */
-public class DefaultBondSensitivityCalculator<T extends Temporal>
+public class BondPriceShiftingSensitivityCalculator<T extends Temporal>
         implements GenericBondSensitivityCalculator<T> {
 
     private static final BondShifts ONE_BP_YIELD_SHIFT = BondShifts.absoluteYield(Percentage.oneBasisPoint());
 
     private final GenericBondPricer<T> pricer;
 
-    public DefaultBondSensitivityCalculator(final GenericBondPricer<T> pricer) {
+    public BondPriceShiftingSensitivityCalculator(final GenericBondPricer<T> pricer) {
         this.pricer = pricer;
     }
 
