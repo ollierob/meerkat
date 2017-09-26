@@ -34,6 +34,10 @@ public abstract class DollarSensitivity<T extends DollarSensitivity<T>>
                 : this.with(this.value().plus(that.value()));
     }
 
+    public T times(final Number that) {
+        return this.with(this.value().times(that));
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
