@@ -1,6 +1,6 @@
 package net.meerkat.sensitivity.bond;
 
-import java.time.LocalDate;
+import java.time.temporal.Temporal;
 
 import net.meerkat.Explained;
 import net.meerkat.calculate.sensitivity.yield.DollarDuration;
@@ -17,28 +17,28 @@ import net.ollie.goat.numeric.percentage.Percentage;
  *
  * @author ollie
  */
-public class DatedBondSensitivityCalculator
-        implements GenericBondSensitivityCalculator<LocalDate> {
+public class DefaultBondSensitivityCalculator<T extends Temporal>
+        implements GenericBondSensitivityCalculator<T> {
 
     private static final BondShifts ONE_BP_YIELD_SHIFT = BondShifts.absoluteYield(Percentage.oneBasisPoint());
 
-    private final GenericBondPricer<LocalDate> pricer;
+    private final GenericBondPricer<T> pricer;
 
-    public DatedBondSensitivityCalculator(final GenericBondPricer<LocalDate> pricer) {
+    public DefaultBondSensitivityCalculator(final GenericBondPricer<T> pricer) {
         this.pricer = pricer;
     }
 
     @Override
-    public BondSensitivities sensitivities(final LocalDate date, final Bond bond) {
-        return new DatedBondSensitivities(date, bond);
+    public BondSensitivities sensitivities(final T date, final Bond bond) {
+        return new BondSensitivitiesCalculation(date, bond);
     }
 
-    class DatedBondSensitivities implements BondSensitivities {
+    class BondSensitivitiesCalculation implements BondSensitivities {
 
-        private final LocalDate date;
+        private final T date;
         private final Bond bond;
 
-        DatedBondSensitivities(LocalDate date, Bond bond) {
+        BondSensitivitiesCalculation(final T date, Bond bond) {
             this.date = date;
             this.bond = bond;
         }
@@ -63,7 +63,7 @@ public class DatedBondSensitivityCalculator
         public DollarDuration dollarDuration() {
             return this.explainDollarDuration().value();
         }
-        
+
         @Override
         public ExplanationBuilder explain() {
             return this.explanationBuilder()
