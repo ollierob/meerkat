@@ -7,11 +7,13 @@ import net.meerkat.identifier.currency.USD;
 import net.meerkat.money.Money;
 
 /**
- * Sensitivity to a 1bp change in interest rates.
+ * Sensitivity to a one basis point change in interest rates.
  *
  * @author ollie
  */
-public class DollarDuration extends DollarSensitivity implements Sensitivity.Summing<DollarDuration> {
+public class DollarDuration
+        extends DollarSensitivity<DollarDuration>
+        implements Sensitivity.Summing<DollarDuration> {
 
     public static final SensitivityId<DollarDuration> ID = SensitivityId.summing("DV01", DollarDuration.class);
 
@@ -25,8 +27,8 @@ public class DollarDuration extends DollarSensitivity implements Sensitivity.Sum
     }
 
     @Override
-    public DollarDuration plus(final DollarDuration that) {
-        return new DollarDuration(this.value().plus(that.value()));
+    protected DollarDuration with(final Money<USD> dollars) {
+        return new DollarDuration(dollars);
     }
 
 }

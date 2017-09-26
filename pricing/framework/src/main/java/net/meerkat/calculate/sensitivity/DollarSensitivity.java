@@ -2,6 +2,7 @@ package net.meerkat.calculate.sensitivity;
 
 import java.util.Objects;
 
+import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.currency.USD;
 import net.meerkat.money.Money;
 
@@ -9,7 +10,10 @@ import net.meerkat.money.Money;
  *
  * @author ollie
  */
-public abstract class DollarSensitivity implements Sensitivity {
+public abstract class DollarSensitivity<T extends DollarSensitivity<T>>
+        implements Sensitivity.Summing<T> {
+
+    protected static final Money<USD> ZERO_USD = Money.zero(CurrencyIso.USD);
 
     private final Money<USD> dollars;
 
@@ -19,6 +23,15 @@ public abstract class DollarSensitivity implements Sensitivity {
 
     public Money<USD> value() {
         return dollars;
+    }
+
+    protected abstract T with(Money<USD> dollars);
+
+    @Override
+    public T plus(final T that) {
+        return that == null || that.value().isZero()
+                ? this.self()
+                : this.with(this.value().plus(that.value()));
     }
 
     @Override

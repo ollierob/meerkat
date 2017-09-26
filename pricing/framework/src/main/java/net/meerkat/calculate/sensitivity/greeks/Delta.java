@@ -4,6 +4,7 @@ import net.meerkat.calculate.sensitivity.DoubleSensitivity;
 import net.meerkat.calculate.sensitivity.SensitivityId;
 
 /**
+ * Sensitivity of derivative price to changes in underlying price.
  *
  * @author ollie
  */

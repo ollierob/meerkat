@@ -63,7 +63,7 @@ public class DatedBondSensitivityCalculator
         public DollarDuration dollarDuration() {
             return this.explainDollarDuration().value();
         }
-
+        
         @Override
         public ExplanationBuilder explain() {
             return this.explanationBuilder()
