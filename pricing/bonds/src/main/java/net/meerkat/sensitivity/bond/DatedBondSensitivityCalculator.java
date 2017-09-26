@@ -1,11 +1,8 @@
 package net.meerkat.sensitivity.bond;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import net.meerkat.Explained;
-import net.meerkat.calculate.sensitivity.Sensitivity;
-import net.meerkat.calculate.sensitivity.SensitivityId;
 import net.meerkat.calculate.sensitivity.yield.DollarDuration;
 import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.currency.USD;
@@ -65,11 +62,6 @@ public class DatedBondSensitivityCalculator
         @Override
         public DollarDuration dollarDuration() {
             return this.explainDollarDuration().value();
-        }
-
-        @Override
-        public <S extends Sensitivity> Optional<S> get(final SensitivityId<S> sensitivityId) {
-            throw new UnsupportedOperationException("Not supported yet.");
         }
 
         @Override
