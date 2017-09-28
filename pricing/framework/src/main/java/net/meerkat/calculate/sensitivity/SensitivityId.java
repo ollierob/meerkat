@@ -31,7 +31,7 @@ public interface SensitivityId<S extends Sensitivity> extends HasSensitivityId, 
         return new NonCollectingSensitivityId<>(name, clazz);
     }
 
-    static <S extends Sensitivity.Summing<S>> SensitivityId<S> summing(final String name, final Class<S> clazz) {
+    static <S extends Sensitivity.Summable<S>> SensitivityId<S> summing(final String name, final Class<S> clazz) {
         return new SumingSensitivityId<>(name, clazz);
     }
 

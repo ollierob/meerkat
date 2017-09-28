@@ -10,7 +10,7 @@ import net.meerkat.calculate.sensitivity.Sensitivity;
  *
  * @author ollie
  */
-public class SumingSensitivityId<S extends Sensitivity.Summing<S>> extends CastingSensitivityId<S> {
+public class SumingSensitivityId<S extends Sensitivity.Summable<S>> extends CastingSensitivityId<S> {
 
     private final S defaultValue;
 
@@ -36,7 +36,7 @@ public class SumingSensitivityId<S extends Sensitivity.Summing<S>> extends Casti
                 SumingSensitivityId::add);
     }
 
-    static <S extends Sensitivity.Summing<S>> S add(final S left, final S right) {
+    static <S extends Sensitivity.Summable<S>> S add(final S left, final S right) {
         return left == null ? right : left.plus(right);
     }
 

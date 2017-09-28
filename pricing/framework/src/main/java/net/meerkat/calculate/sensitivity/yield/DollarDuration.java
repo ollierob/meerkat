@@ -13,7 +13,7 @@ import net.meerkat.money.Money;
  */
 public class DollarDuration
         extends DollarSensitivity<DollarDuration>
-        implements Sensitivity.Summing<DollarDuration> {
+        implements Sensitivity.Summable<DollarDuration> {
 
     public static final SensitivityId<DollarDuration> ID = SensitivityId.summing("DV01", DollarDuration.class);
 

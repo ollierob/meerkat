@@ -11,7 +11,7 @@ import net.meerkat.money.Money;
  * @author ollie
  */
 public abstract class DollarSensitivity<T extends DollarSensitivity<T>>
-        implements Sensitivity.Summing<T> {
+        implements Sensitivity.Summable<T> {
 
     protected static final Money<USD> ZERO_USD = Money.zero(CurrencyIso.USD);
 
@@ -34,6 +34,7 @@ public abstract class DollarSensitivity<T extends DollarSensitivity<T>>
                 : this.with(this.value().plus(that.value()));
     }
 
+    @Override
     public T times(final Number that) {
         return this.with(this.value().times(that));
     }
