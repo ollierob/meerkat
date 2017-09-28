@@ -10,10 +10,12 @@ import net.meerkat.calculate.sensitivity.Sensitivities;
 import net.meerkat.calculate.sensitivity.Sensitivity;
 import net.meerkat.calculate.sensitivity.SensitivityId;
 import net.meerkat.calculate.sensitivity.yield.DollarDuration;
+import net.meerkat.pricing.bond.BondPrice;
 
 /**
  *
  * @author Ollie
+ * @see BondPrice
  */
 public interface BondSensitivities extends Sensitivities {
 
