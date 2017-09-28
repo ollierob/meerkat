@@ -35,7 +35,7 @@ public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
         return handler instanceof FxInstrument.Handler
                 ? this.handleWith((FxInstrument.Handler<R>) handler)
-                : handler.handle(this);
+                : handler.handleUnknown(this);
     }
 
     @CheckForNull
@@ -49,13 +49,6 @@ public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
         R handle(FxOutright<?, ?> forward);
 
         R handle(NonDeliverableFxForward<?, ?> forward);
-
-        @Override
-        default R handle(final InstrumentDefinition instrument) {
-            return instrument instanceof FxInstrument
-                    ? ((FxInstrument<?, ?>) instrument).handleWith(this)
-                    : null;
-        }
 
     }
 

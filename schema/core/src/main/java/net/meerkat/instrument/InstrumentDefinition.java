@@ -30,10 +30,6 @@ public interface InstrumentDefinition
 
     interface Handler<R> {
 
-        default R handle(final InstrumentDefinition instrument) {
-            return instrument.handleWith(this);
-        }
-
         default R handleUnknown(final InstrumentDefinition instrument) {
             return null;
         }

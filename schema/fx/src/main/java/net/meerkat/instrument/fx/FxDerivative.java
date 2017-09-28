@@ -14,7 +14,7 @@ public interface FxDerivative extends InstrumentDefinition {
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
         return handler instanceof FxDerivative.Handler
                 ? this.handleWith((FxDerivative.Handler<R>) handler)
-                : handler.handle(this);
+                : handler.handleUnknown(this);
     }
 
     <R> R handleWith(FxDerivative.Handler<R> handler);

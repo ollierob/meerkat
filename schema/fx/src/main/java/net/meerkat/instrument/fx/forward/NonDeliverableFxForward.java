@@ -2,9 +2,9 @@ package net.meerkat.instrument.fx.forward;
 
 import java.time.LocalDate;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.fx.FxInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
@@ -14,33 +14,66 @@ import net.meerkat.time.calendar.settlement.SettlementDate;
  *
  * @author ollie
  */
-public interface NonDeliverableFxForward<B extends CurrencyId, C extends CurrencyId>
-        extends FxInstrument<B, C> {
+public class NonDeliverableFxForward<B extends CurrencyId, C extends CurrencyId>
+        extends NamedInstrument
+        implements FxInstrument<B, C> {
 
-    @Nonnull
-    Money<C> notionalAmount();
+    private final Money<C> notional;
+    private final ExchangeRate<B, C> spotRate;
+    private final LocalDate fixingDate;
+    private final SettlementDate settlementDate;
+    private final LocalDate tradeDate;
 
-    @Nonnull
-    ExchangeRate<B, C> spotRate();
+    public NonDeliverableFxForward(
+            final String name,
+            final InstrumentIds ids,
+            final Money<C> notional,
+            final ExchangeRate<B, C> spotRate,
+            final LocalDate fixingDate,
+            final SettlementDate settlementDate,
+            final LocalDate tradeDate) {
+        super(name, ids);
+        this.notional = notional;
+        this.spotRate = spotRate;
+        this.fixingDate = fixingDate;
+        this.settlementDate = settlementDate;
+        this.tradeDate = tradeDate;
+    }
 
-    @Nonnull
-    LocalDate fixingDate();
+    public Money<C> notionalAmount() {
+        return notional;
+    }
 
-    @Override
-    SettlementDate settlementDate();
-
-    @Override
-    default C counterCurrencyId() {
-        return this.spotRate().to();
+    public ExchangeRate<B, C> spotRate() {
+        return spotRate;
     }
 
     @Override
-    default B baseCurrencyId() {
-        return this.spotRate().from();
+    public B baseCurrencyId() {
+        return spotRate.from();
     }
 
     @Override
-    default <R> R handleWith(final FxInstrument.Handler<R> handler) {
+    public C counterCurrencyId() {
+        return spotRate.to();
+    }
+
+    public LocalDate fixingDate() {
+        return fixingDate;
+    }
+
+    @Override
+    public SettlementDate settlementDate() {
+        return settlementDate;
+    }
+
+    @Override
+    public LocalDate tradeDate() {
+        return tradeDate;
+    }
+
+    @Override
+    public <R> R handleWith(final Handler<R> handler) {
         return handler.handle(this);
     }
 
