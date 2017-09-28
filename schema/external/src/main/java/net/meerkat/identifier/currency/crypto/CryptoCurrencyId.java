@@ -16,6 +16,7 @@ public interface CryptoCurrencyId extends CurrencyId, HasName {
 
     XBT XBT = new XBT();
     ETH ETH = new ETH();
+    ETC ETC = new ETC();
     DASH DASH = new DASH();
     LTC LTC = new LTC();
     ZEC ZEC = new ZEC();
