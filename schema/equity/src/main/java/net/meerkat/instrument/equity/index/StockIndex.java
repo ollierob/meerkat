@@ -11,6 +11,7 @@ import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.equity.Equity;
 import net.meerkat.instrument.equity.EquityProvider;
+import net.meerkat.instrument.equity.UnknownEquityException;
 
 /**
  *
@@ -34,7 +35,7 @@ public class StockIndex extends NamedInstrument implements InstrumentDefinition 
     }
 
     @Nonnull
-    public Map<InstrumentId, Equity> constituents(final EquityProvider equityProvider) {
+    public Map<InstrumentId, Equity> constituents(final EquityProvider equityProvider) throws UnknownEquityException {
         return equityProvider.requireAll(stockIds);
     }
 
