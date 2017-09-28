@@ -2,11 +2,11 @@ package net.meerkat.instrument.equity.swap;
 
 import javax.annotation.Nonnull;
 
-import net.coljate.list.List;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.derivative.swap.Swap;
 import net.meerkat.instrument.derivative.swap.SwapLeg;
+import net.meerkat.instrument.derivative.swap.SwapLegs;
 import net.meerkat.instrument.equity.EquityDerivative;
 import net.meerkat.money.Money;
 
@@ -22,7 +22,7 @@ public interface EquitySwap<E extends Instrument>
     E underlying();
 
     @Override
-    List<? extends EquitySwapLeg<?>> legs();
+    SwapLegs<? extends EquitySwapLeg<?>> legs();
 
     interface EquitySwapLeg<C extends CurrencyId> extends SwapLeg<C, C> {
 
