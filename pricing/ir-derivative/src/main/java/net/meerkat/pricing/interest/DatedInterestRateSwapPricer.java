@@ -67,7 +67,8 @@ public class DatedInterestRateSwapPricer implements InterestRateSwapPricer<Local
 
         @Override
         public Money<C> value() {
-            return swap.legsAfter(date)
+            return swap.legs()
+                    .deliveredOnOrAfter(date)
                     .transform(this::netValue)
                     .reduce(Money.zero(currency), Money::plus);
         }

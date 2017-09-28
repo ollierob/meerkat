@@ -15,7 +15,7 @@ public interface InterestRateSwap
         extends InterestRateDerivative, Swap, HasCurrencyIds, Explainable {
 
     @Override
-    SwapLegs<? extends InterestRateSwapLeg<?, ?>> legs();
+    SwapLegs.Finite<? extends InterestRateSwapLeg<?, ?>> legs();
 
     default boolean isCrossCurrency() {
         return this.currencyIds().count() >= 2;

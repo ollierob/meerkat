@@ -1,5 +1,6 @@
 package net.meerkat.instrument.derivative.swap;
 
+import java.time.LocalDate;
 import java.util.OptionalInt;
 
 import javax.annotation.Nonnull;
@@ -22,6 +23,10 @@ public interface SwapLegs<S extends SwapLeg<?, ?>> extends HasCurrencyIds {
     }
 
     interface Finite<S extends SwapLeg<?, ?>> extends SwapLegs<S>, List<S> {
+
+        default List<S> deliveredOnOrAfter(final LocalDate date) {
+            return this.filter(leg -> !date.isBefore(leg.deliveryDate()));
+        }
 
     }
 
