@@ -62,7 +62,7 @@ public interface Bond
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
         return handler instanceof Bond.Handler
                 ? this.handleWith((Bond.Handler<R>) handler)
-                : handler.handle(this);
+                : handler.handleUnknown(this);
     }
 
     <R> R handleWith(Bond.Handler<R> handler);

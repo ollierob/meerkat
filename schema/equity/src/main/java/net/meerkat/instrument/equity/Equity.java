@@ -2,6 +2,7 @@ package net.meerkat.instrument.equity;
 
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
+import net.meerkat.instrument.equity.index.StockIndex;
 
 /**
  *

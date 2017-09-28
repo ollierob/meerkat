@@ -1,7 +1,7 @@
 package net.meerkat.instrument.equity.future;
 
 import net.meerkat.instrument.equity.EquityDerivative;
-import net.meerkat.instrument.equity.StockIndex;
+import net.meerkat.instrument.equity.index.StockIndex;
 
 /**
  * Stock index future.
