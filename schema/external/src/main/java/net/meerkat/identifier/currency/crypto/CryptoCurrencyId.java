@@ -14,7 +14,12 @@ public interface CryptoCurrencyId extends CurrencyId, HasName {
         return this.getClass().getSimpleName() + this.symbol();
     }
 
-    XBT BITCOIN = new XBT();
-    ETH ETHEREUM = new ETH();
+    XBT XBT = new XBT();
+    ETH ETH = new ETH();
+    DASH DASH = new DASH();
+    LTC LTC = new LTC();
+    ZEC ZEC = new ZEC();
+    XRP XRP = new XRP();
+    XMR XMR = new XMR();
 
 }
