@@ -1,9 +1,9 @@
 package net.meerkat.instrument.interest.swap;
 
-import net.coljate.list.List;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.instrument.derivative.swap.SwapLegs;
 import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
 
 /**
@@ -16,7 +16,7 @@ public interface SingleCurrencyInterestRateSwap<C extends CurrencyId> extends In
     C currencyId();
 
     @Override
-    List<? extends InterestRateSwapLeg<C, C>> legs();
+    SwapLegs.Finite<? extends InterestRateSwapLeg<C, C>> legs();
 
     @Override
     default CurrencyIds currencyIds() {

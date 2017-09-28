@@ -14,7 +14,7 @@ public interface InterestRateDerivative extends InstrumentDefinition {
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
         return handler instanceof Handler
                 ? this.handleWith((Handler<R>) handler)
-                : handler.handle(this);
+                : handler.handleUnknown(this);
     }
 
     <R> R handleWith(Handler<R> handler);

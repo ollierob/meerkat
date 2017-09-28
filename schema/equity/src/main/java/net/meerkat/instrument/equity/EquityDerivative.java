@@ -22,7 +22,7 @@ public interface EquityDerivative<E extends Instrument>
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
         return handler instanceof EquityDerivative.Handler
                 ? this.handleWith((EquityDerivative.Handler<R>) handler)
-                : handler.handle(this);
+                : handler.handleUnknown(this);
     }
 
     <R> R handleWith(EquityDerivative.Handler<R> handler);

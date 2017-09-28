@@ -35,12 +35,6 @@ public abstract class StraightBond extends AbstractBond {
         return dates;
     }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public <R> R handleWith(final Bond.Handler<R> handler) {
-        return handler.handle(this);
-    }
-
     public abstract class StraightBondCoupons<C extends BondCoupon> implements BondCoupons.Finite<C> {
 
     }

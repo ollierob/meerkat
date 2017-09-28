@@ -2,7 +2,7 @@ package net.meerkat.instrument.fx;
 
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.fx.option.FxOption;
-import net.meerkat.instrument.fx.swap.FxSwap;
+import net.meerkat.instrument.fx.swap.MaturingFxSwap;
 
 /**
  *
@@ -21,7 +21,7 @@ public interface FxDerivative extends InstrumentDefinition {
 
     interface Handler<R> extends InstrumentDefinition.Handler<R> {
 
-        R handle(FxSwap swap);
+        R handle(MaturingFxSwap swap);
 
         R handle(FxOption option);
 

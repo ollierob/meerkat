@@ -79,12 +79,6 @@ public interface Bond
 
         R handle(VariableRateBond bond);
 
-        @Override
-        @Deprecated
-        default R handle(final InstrumentDefinition security) {
-            return InstrumentDefinition.Handler.super.handle(security);
-        }
-
     }
 
 }
