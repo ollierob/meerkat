@@ -1,40 +1,22 @@
 package net.meerkat.identifier.security;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.time.Month;
 import java.time.YearMonth;
 import java.util.function.Function;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import net.meerkat.identifier.instrument.InstrumentId;
-
 
 /**
  *
  * @author ollie
  */
-@XmlRootElement
-public class FutureTicker implements InstrumentId, Externalizable {
+public class FutureTicker implements InstrumentId {
 
     private static final long serialVersionUID = 1L;
 
-    @XmlAttribute(name = "underlying", required = true)
-    private String underlying;
-
-    @XmlAttribute(name = "delivery", required = true)
-    private YearMonth delivery;
-
-    @XmlAttribute(name = "suffix", required = false)
-    private String suffix;
-
-    @Deprecated
-    FutureTicker() {
-    }
+    private final String underlying;
+    private final YearMonth delivery;
+    private final String suffix;
 
     public FutureTicker(final String underlying, final YearMonth delivery, final String suffix) {
         this.underlying = underlying;
@@ -62,77 +44,8 @@ public class FutureTicker implements InstrumentId, Externalizable {
 
     @Override
     public String toString() {
-        return this.toString(DeliveryMonth::toString);
+        return this.toString(FutureDeliveryMonth::toString);
     }
 
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeUTF(underlying);
-        out.writeUTF(suffix);
-        out.writeObject(delivery);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        underlying = in.readUTF();
-        suffix = in.readUTF();
-        delivery = (YearMonth) in.readObject();
-    }
-
-    public enum DeliveryMonth {
-
-        JANUARY('F'),
-        FEBRUARY('G'),
-        MARCH('H'),
-        APRIL('J'),
-        MAY('K'),
-        JUNE('M'),
-        JULY('N'),
-        AUGUST('Q'),
-        SEPTEMBER('U'),
-        OCTOBER('V'),
-        NOVEMBER('X'),
-        DECEMBER('Z');
-
-        private final char c;
-
-        private DeliveryMonth(final char m) {
-            this.c = m;
-        }
-
-        public char character() {
-            return c;
-        }
-
-        public Month month() {
-            return Month.of(this.ordinal() + 1);
-        }
-
-        private static final DeliveryMonth[] VALUES;
-        private static final int OFFSET = 65;
-
-        static {
-            VALUES = new DeliveryMonth[26];
-            for (final DeliveryMonth month : values()) {
-                VALUES[month.c - OFFSET] = month;
-            }
-        }
-
-        public static DeliveryMonth valueOf(final char c) {
-            final int ordinal = (int) Character.toUpperCase(c) - OFFSET;
-            return VALUES[ordinal];
-        }
-
-        public static DeliveryMonth valueOf(final Month month) {
-            return DeliveryMonth.values()[month.getValue() - 1];
-        }
-
-        public static String toString(final YearMonth yearMonth) {
-            return ""
-                    + valueOf(yearMonth.getMonth()).character()
-                    + Character.digit(yearMonth.getYear() % 10, 10);
-        }
-
-    }
 
 }
