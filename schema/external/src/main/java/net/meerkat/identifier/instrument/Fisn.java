@@ -3,7 +3,6 @@ package net.meerkat.identifier.instrument;
 import javax.xml.bind.annotation.XmlAttribute;
 
 import net.meerkat.identifier.Iso;
-import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  * Financial Instrument Short Name.
