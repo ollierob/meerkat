@@ -8,21 +8,21 @@ import net.meerkat.identifier.instrument.InstrumentId;
  */
 public class FutureTicker implements InstrumentId {
 
-    private final String underlying;
+    private final FutureUnderlyingId underlying;
     private final FutureDelivery delivery;
     private final String suffix;
 
-    public FutureTicker(final String underlying, final FutureDelivery delivery) {
+    public FutureTicker(final FutureUnderlyingId underlying, final FutureDelivery delivery) {
         this(underlying, delivery, null);
     }
 
-    public FutureTicker(final String underlying, final FutureDelivery delivery, final String suffix) {
+    public FutureTicker(final FutureUnderlyingId underlying, final FutureDelivery delivery, final String suffix) {
         this.underlying = underlying;
         this.delivery = delivery;
         this.suffix = suffix;
     }
 
-    public String underlying() {
+    public FutureUnderlyingId underlying() {
         return underlying;
     }
 
@@ -37,7 +37,7 @@ public class FutureTicker implements InstrumentId {
     public String toTickerString() {
         return underlying
                 + delivery.toDeliveryString()
-                + (suffix == null ? "" : ' ' + suffix);
+                + (suffix == null ? "" : suffix);
     }
 
 }
