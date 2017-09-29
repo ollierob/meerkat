@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.annotation.Nonnull;
 
 import net.coljate.set.Set;
+import net.meerkat.time.calendar.business.BusinessDay;
 import net.meerkat.time.calendar.business.BusinessDayCalendar;
 
 /**
@@ -14,8 +15,8 @@ import net.meerkat.time.calendar.business.BusinessDayCalendar;
 public interface FutureDelivery {
 
     @Nonnull
-    Set<LocalDate> dates(@Nonnull LocalDate referenceDate, @Nonnull BusinessDayCalendar calendar);
-    
+    Set<BusinessDay> dates(@Nonnull LocalDate referenceDate, @Nonnull BusinessDayCalendar calendar);
+
     @Nonnull
     String toDeliveryString();
 

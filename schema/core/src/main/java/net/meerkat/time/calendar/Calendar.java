@@ -5,6 +5,8 @@ import java.util.function.Function;
 
 import javax.annotation.Nonnull;
 
+import net.coljate.set.MutableSet;
+import net.coljate.set.Set;
 import net.meerkat.utils.Require;
 import net.ollie.goat.temporal.date.HasDate;
 
@@ -40,6 +42,17 @@ public interface Calendar<D extends HasDate> {
             d = next.apply(d.date().plusDays(1));
         }
         return d;
+    }
+
+    default Set<D> between(final LocalDate start, final LocalDate end) {
+        LocalDate current = start;
+        final MutableSet<D> set = MutableSet.createHashSet();
+        while (!current.isAfter(end)) {
+            final D next = this.next(current);
+            set.add(next);
+            current = next.date().plusDays(1);
+        }
+        return set;
     }
 
     default boolean contains(final LocalDate date) throws DateOutOfRangeException {

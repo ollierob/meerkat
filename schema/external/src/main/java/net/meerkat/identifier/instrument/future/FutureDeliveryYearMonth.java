@@ -5,6 +5,7 @@ import java.time.Month;
 import java.time.YearMonth;
 
 import net.coljate.set.Set;
+import net.meerkat.time.calendar.business.BusinessDay;
 import net.meerkat.time.calendar.business.BusinessDayCalendar;
 
 /**
@@ -36,8 +37,8 @@ public class FutureDeliveryYearMonth implements FutureDelivery {
     }
 
     @Override
-    public Set<LocalDate> dates(final LocalDate referenceDate, final BusinessDayCalendar calendar) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Set<BusinessDay> dates(final LocalDate referenceDate, final BusinessDayCalendar calendar) {
+        return calendar.between(yearMonth.atDay(1), yearMonth.atEndOfMonth());
     }
 
     @Override
