@@ -53,4 +53,9 @@ public class Tenor implements Explainable, Comparable<Tenor> {
         return dayCount.daysIn(period, start);
     }
 
+    public String toTenorString() {
+        final String periodString = period.toString();
+        return periodString.substring(1, periodString.length()); //Drop P
+    }
+
 }

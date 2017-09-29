@@ -23,6 +23,11 @@ public class NamedTenor extends Tenor implements HasName {
     }
 
     @Override
+    public String toTenorString() {
+        return name;
+    }
+
+    @Override
     public ExplanationBuilder explain() {
         return super.explain()
                 .put("name", name);

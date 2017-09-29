@@ -1,7 +1,5 @@
 package net.meerkat.identifier.instrument.future;
 
-import java.util.function.Function;
-
 import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
@@ -13,6 +11,10 @@ public class FutureTicker implements InstrumentId {
     private final String underlying;
     private final FutureDelivery delivery;
     private final String suffix;
+
+    public FutureTicker(final String underlying, final FutureDelivery delivery) {
+        this(underlying, delivery, null);
+    }
 
     public FutureTicker(final String underlying, final FutureDelivery delivery, final String suffix) {
         this.underlying = underlying;
@@ -32,15 +34,10 @@ public class FutureTicker implements InstrumentId {
         return suffix;
     }
 
-    public String toString(final Function<? super FutureDelivery, String> deliveryToString) {
+    public String toTickerString() {
         return underlying
-                + deliveryToString.apply(delivery)
+                + delivery.toDeliveryString()
                 + (suffix == null ? "" : ' ' + suffix);
-    }
-
-    @Override
-    public String toString() {
-        return this.toString(Object::toString);
     }
 
 }

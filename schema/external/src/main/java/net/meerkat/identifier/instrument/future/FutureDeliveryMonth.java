@@ -7,7 +7,7 @@ import java.time.YearMonth;
  *
  * @author ollie
  */
-public enum FutureDeliveryMonth implements FutureDelivery {
+public enum FutureDeliveryMonth {
 
     JANUARY('F'),
     FEBRUARY('G'),
