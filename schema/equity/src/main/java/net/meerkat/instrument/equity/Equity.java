@@ -1,5 +1,8 @@
 package net.meerkat.instrument.equity;
 
+import java.util.Optional;
+
+import net.meerkat.identifier.instrument.Isin;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
 import net.meerkat.instrument.equity.index.StockIndex;
@@ -9,6 +12,10 @@ import net.meerkat.instrument.equity.index.StockIndex;
  * @author Ollie
  */
 public interface Equity extends InstrumentDefinition, Security {
+
+    default Optional<Isin> isin() {
+        return this.instrumentId(Isin.class);
+    }
 
     @Override
     @Deprecated

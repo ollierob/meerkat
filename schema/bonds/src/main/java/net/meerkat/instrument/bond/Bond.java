@@ -1,9 +1,12 @@
 package net.meerkat.instrument.bond;
 
+import java.util.Optional;
+
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
+import net.meerkat.identifier.instrument.Isin;
 import net.meerkat.instrument.Callable;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
@@ -16,7 +19,7 @@ import net.meerkat.money.Money;
  *
  * @author Ollie
  */
-public interface Bond 
+public interface Bond
         extends Security, InstrumentDefinition, HasCurrencyIds, Callable<BondCall> {
 
     @Nonnull
@@ -35,6 +38,11 @@ public interface Bond
     default boolean isAmortizing() {
         return !this.dates().possibleMaturityDate().isPresent()
                 && this.coupons().isFinite();
+    }
+
+    @Nonnull
+    default Optional<Isin> isin() {
+        return this.instrumentId(Isin.class);
     }
 
     @Override
