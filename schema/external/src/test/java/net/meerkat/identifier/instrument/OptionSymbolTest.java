@@ -1,5 +1,7 @@
 package net.meerkat.identifier.instrument;
 
+import net.meerkat.identifier.instrument.option.OptionSymbol;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
