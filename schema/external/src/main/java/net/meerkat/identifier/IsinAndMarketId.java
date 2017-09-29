@@ -5,9 +5,9 @@ import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.identifier.instrument.HasInstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.identifier.instrument.Isin;
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
-import net.meerkat.identifier.instrument.Isin;
 
 /**
  *
@@ -15,8 +15,6 @@ import net.meerkat.identifier.instrument.Isin;
  */
 public class IsinAndMarketId
         implements InstrumentInMarketId, HasInstrumentId, HasMarketId, HasCurrencyId, Explainable {
-
-    private static final long serialVersionUID = 1L;
 
     private final Isin isin;
     private final Mic market;

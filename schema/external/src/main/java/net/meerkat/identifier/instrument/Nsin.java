@@ -2,7 +2,6 @@ package net.meerkat.identifier.instrument;
 
 import net.meerkat.StringWrapper;
 import net.meerkat.identifier.country.CountryIso;
-import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  * National Securities Identifying Number.

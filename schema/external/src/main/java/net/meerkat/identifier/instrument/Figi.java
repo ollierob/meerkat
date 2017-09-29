@@ -1,7 +1,6 @@
 package net.meerkat.identifier.instrument;
 
 import net.meerkat.StringWrapper;
-import net.meerkat.identifier.instrument.InstrumentId;
 
 /**
  * Fixed Instrument Global Identifier.

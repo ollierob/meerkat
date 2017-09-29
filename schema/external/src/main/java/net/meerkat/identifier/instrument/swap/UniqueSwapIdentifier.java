@@ -10,8 +10,7 @@ import net.meerkat.identifier.trade.UniqueTradeIdentifier;
  *
  * @author Ollie
  * @see
- * <a href="http://www2.isda.org/functional-areas/technology-infrastructure/data-and-reporting/identifiers/uti-usi/">UTI,
- * USI</a>
+ * <a href="http://www2.isda.org/functional-areas/technology-infrastructure/data-and-reporting/identifiers/uti-usi/">USI</a>
  * @see UniqueTradeIdentifier
  */
 public class UniqueSwapIdentifier

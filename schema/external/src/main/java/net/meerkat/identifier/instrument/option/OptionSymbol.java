@@ -11,7 +11,7 @@ import net.meerkat.identifier.instrument.InstrumentId;
 /**
  *
  * @author ollie
- * @see <a href="https://en.wikipedia.org/wiki/Option_symbol">Optional symbol</a>
+ * @see <a href="https://en.wikipedia.org/wiki/Option_symbol">Option symbol</a>
  */
 public class OptionSymbol implements InstrumentId {
 
