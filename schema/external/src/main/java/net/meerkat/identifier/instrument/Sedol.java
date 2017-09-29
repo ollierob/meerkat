@@ -1,4 +1,4 @@
-package net.meerkat.identifier.security;
+package net.meerkat.identifier.instrument;
 
 /**
  * Stock Exchange Daily Official List.

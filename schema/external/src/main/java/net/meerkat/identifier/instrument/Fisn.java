@@ -1,4 +1,4 @@
-package net.meerkat.identifier.security;
+package net.meerkat.identifier.instrument;
 
 import javax.xml.bind.annotation.XmlAttribute;
 

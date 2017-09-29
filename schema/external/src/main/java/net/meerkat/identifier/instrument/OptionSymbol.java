@@ -1,4 +1,4 @@
-package net.meerkat.identifier.security;
+package net.meerkat.identifier.instrument;
 
 import java.io.Externalizable;
 import java.io.IOException;

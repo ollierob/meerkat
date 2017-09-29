@@ -1,7 +1,5 @@
-package net.meerkat.identifier.security;
+package net.meerkat.identifier.instrument.future;
 
-import java.time.Month;
-import java.time.YearMonth;
 import java.util.function.Function;
 
 import net.meerkat.identifier.instrument.InstrumentId;
@@ -12,13 +10,11 @@ import net.meerkat.identifier.instrument.InstrumentId;
  */
 public class FutureTicker implements InstrumentId {
 
-    private static final long serialVersionUID = 1L;
-
     private final String underlying;
-    private final YearMonth delivery;
+    private final FutureDelivery delivery;
     private final String suffix;
 
-    public FutureTicker(final String underlying, final YearMonth delivery, final String suffix) {
+    public FutureTicker(final String underlying, final FutureDelivery delivery, final String suffix) {
         this.underlying = underlying;
         this.delivery = delivery;
         this.suffix = suffix;
@@ -28,7 +24,7 @@ public class FutureTicker implements InstrumentId {
         return underlying;
     }
 
-    public YearMonth yearMonth() {
+    public FutureDelivery delivery() {
         return delivery;
     }
 
@@ -36,16 +32,15 @@ public class FutureTicker implements InstrumentId {
         return suffix;
     }
 
-    public String toString(final Function<YearMonth, String> dateToString) {
+    public String toString(final Function<? super FutureDelivery, String> deliveryToString) {
         return underlying
-                + dateToString.apply(delivery)
+                + deliveryToString.apply(delivery)
                 + (suffix == null ? "" : ' ' + suffix);
     }
 
     @Override
     public String toString() {
-        return this.toString(FutureDeliveryMonth::toString);
+        return this.toString(Object::toString);
     }
-
 
 }

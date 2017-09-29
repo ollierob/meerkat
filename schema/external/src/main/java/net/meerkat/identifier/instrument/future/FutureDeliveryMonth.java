@@ -1,4 +1,4 @@
-package net.meerkat.identifier.security;
+package net.meerkat.identifier.instrument.future;
 
 import java.time.Month;
 import java.time.YearMonth;
@@ -7,7 +7,7 @@ import java.time.YearMonth;
  *
  * @author ollie
  */
-public enum FutureDeliveryMonth {
+public enum FutureDeliveryMonth implements FutureDelivery {
 
     JANUARY('F'),
     FEBRUARY('G'),

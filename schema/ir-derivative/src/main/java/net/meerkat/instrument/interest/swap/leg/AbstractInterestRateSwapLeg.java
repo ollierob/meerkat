@@ -28,7 +28,7 @@ public abstract class AbstractInterestRateSwapLeg<P extends CurrencyId, R extend
     }
 
     @Override
-    public LocalDate payDate() {
+    public LocalDate deliveryDate() {
         return date;
     }
 

@@ -1,4 +1,4 @@
-package net.meerkat.identifier.security;
+package net.meerkat.identifier.instrument;
 
 import net.meerkat.StringWrapper;
 import net.meerkat.identifier.instrument.InstrumentId;

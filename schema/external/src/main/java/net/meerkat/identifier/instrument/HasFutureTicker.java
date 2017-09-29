@@ -1,4 +1,6 @@
-package net.meerkat.identifier.security;
+package net.meerkat.identifier.instrument;
+
+import net.meerkat.identifier.instrument.future.FutureTicker;
 
 import java.util.Optional;
 

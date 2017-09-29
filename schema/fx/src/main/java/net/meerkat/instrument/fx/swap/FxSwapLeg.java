@@ -10,7 +10,6 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.instrument.cash.CashPayment;
-import net.meerkat.instrument.dates.Matures;
 import net.meerkat.instrument.derivative.swap.SwapLeg;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
@@ -20,7 +19,7 @@ import net.meerkat.money.fx.ExchangeRate;
  * @author ollie
  */
 public class FxSwapLeg<P extends CurrencyId, R extends CurrencyId>
-        implements SwapLeg<P, R>, Matures, HasCurrencyIds, Explainable {
+        implements SwapLeg<P, R>, HasCurrencyIds, Explainable {
 
     private final LocalDate valueDate;
     private final Money<P> pay;
@@ -44,7 +43,7 @@ public class FxSwapLeg<P extends CurrencyId, R extends CurrencyId>
     }
 
     @Override
-    public LocalDate maturityDate() {
+    public LocalDate deliveryDate() {
         return maturityDate;
     }
 

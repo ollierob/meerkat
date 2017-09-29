@@ -25,7 +25,7 @@ public interface MaturingFxSwap<P extends CurrencyId, R extends CurrencyId>
 
     @Override
     default LocalDate maturityDate() {
-        return this.farLeg().maturityDate();
+        return this.farLeg().deliveryDate();
     }
 
     @Override

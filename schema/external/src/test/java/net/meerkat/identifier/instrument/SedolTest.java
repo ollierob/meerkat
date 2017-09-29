@@ -1,11 +1,9 @@
-package net.meerkat.identifier.security;
-
-
-import static org.hamcrest.Matchers.is;
+package net.meerkat.identifier.instrument;
 
 import net.meerkat.identifier.country.CountryIso;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 

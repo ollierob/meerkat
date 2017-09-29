@@ -1,6 +1,5 @@
 package net.meerkat.instrument.interest.swap.leg;
 
-import java.time.LocalDate;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -23,9 +22,6 @@ public interface InterestRateSwapLeg<P extends CurrencyId, R extends CurrencyId>
 
     @Nonnull
     Money<P> payNotional();
-
-    @Nonnull
-    LocalDate payDate();
 
     @Nonnull
     InterestRateOrId payRate();
@@ -59,7 +55,7 @@ public interface InterestRateSwapLeg<P extends CurrencyId, R extends CurrencyId>
     @Override
     default Map<String, Object> explain() {
         return this.explanationBuilder()
-                .put("date", this.payDate())
+                .put("delivery date", this.deliveryDate())
                 .put("pay rate", this.payRate())
                 .put("pay notional", this.payNotional())
                 .put("receive rate", this.receiveRate())

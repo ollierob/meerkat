@@ -7,7 +7,7 @@ import net.meerkat.identifier.instrument.HasInstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
-import net.meerkat.identifier.security.Isin;
+import net.meerkat.identifier.instrument.Isin;
 
 /**
  *
