@@ -3,8 +3,6 @@ package net.meerkat.identifier.instrument;
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.InstrumentInMarketId;
-import net.meerkat.identifier.instrument.InstrumentId;
-import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
 
