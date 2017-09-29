@@ -6,6 +6,7 @@ import net.meerkat.StringWrapper;
 /**
  *
  * @author ollie
+ * @see UniqueSwapIdentifier
  */
 public class UniqueTradeIdentifier
         extends StringWrapper

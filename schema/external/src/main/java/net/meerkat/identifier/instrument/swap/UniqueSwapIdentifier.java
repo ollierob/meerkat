@@ -1,6 +1,9 @@
-package net.meerkat.identifier.trade;
+package net.meerkat.identifier.instrument.swap;
 
 import net.meerkat.StringWrapper;
+import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.identifier.trade.TradeId;
+import net.meerkat.identifier.trade.UniqueTradeIdentifier;
 
 /**
  * Unique swap identifier.
@@ -9,10 +12,11 @@ import net.meerkat.StringWrapper;
  * @see
  * <a href="http://www2.isda.org/functional-areas/technology-infrastructure/data-and-reporting/identifiers/uti-usi/">UTI,
  * USI</a>
+ * @see UniqueTradeIdentifier
  */
 public class UniqueSwapIdentifier
         extends StringWrapper
-        implements TradeId {
+        implements InstrumentId, TradeId {
 
     private final String namespace;
 
