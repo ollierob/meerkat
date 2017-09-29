@@ -14,6 +14,10 @@ import net.meerkat.time.calendar.business.BusinessDayCalendar;
  */
 public class FutureDeliveryYearMonth implements FutureDelivery {
 
+    public static FutureDeliveryYearMonth of(final Month month, final int year) {
+        return new FutureDeliveryYearMonth(YearMonth.of(year, month));
+    }
+
     private final YearMonth yearMonth;
 
     public FutureDeliveryYearMonth(final YearMonth yearMonth) {
@@ -28,7 +32,11 @@ public class FutureDeliveryYearMonth implements FutureDelivery {
         return yearMonth.getMonth();
     }
 
-    public char deliveryYear() {
+    public char deliveryMonthDigit() {
+        return this.deliveryMonth().character();
+    }
+
+    public char deliveryYearDigit() {
         return Character.forDigit(this.year() % 10, 10);
     }
 
@@ -43,7 +51,7 @@ public class FutureDeliveryYearMonth implements FutureDelivery {
 
     @Override
     public String toDeliveryString() {
-        return "" + this.deliveryMonth().character() + this.deliveryYear();
+        return new String(new char[]{this.deliveryMonthDigit(), this.deliveryYearDigit()});
     }
 
 }
