@@ -1,6 +1,5 @@
 package net.meerkat.instrument.derivative.option;
 
-import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 import net.meerkat.instrument.Instrument;
@@ -27,7 +26,7 @@ public interface Option<S extends Instrument>
     @Nonnull
     Money<?> premium();
 
-    @CheckForNull
+    @Nonnull
     OptionExercise exercise();
 
 }

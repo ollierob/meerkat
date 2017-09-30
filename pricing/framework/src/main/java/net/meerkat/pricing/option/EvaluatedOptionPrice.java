@@ -1,4 +1,4 @@
-package net.meerkat.pricing.equity.option;
+package net.meerkat.pricing.option;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
@@ -8,13 +8,13 @@ import net.meerkat.money.price.EvaluatedPrice;
  *
  * @author Ollie
  */
-public class EvaluatedWarrantPrice<C extends CurrencyId>
+public class EvaluatedOptionPrice<C extends CurrencyId>
         extends EvaluatedPrice<C>
-        implements WarrantPrice<C> {
+        implements OptionPrice<C> {
 
     private final Money<C> intrinsicValue;
 
-    public EvaluatedWarrantPrice(final Money<C> intrinsicValue, final Money<C> value) {
+    public EvaluatedOptionPrice(final Money<C> intrinsicValue, final Money<C> value) {
         super(value);
         this.intrinsicValue = intrinsicValue;
     }
@@ -31,7 +31,7 @@ public class EvaluatedWarrantPrice<C extends CurrencyId>
 
     @Override
     @Deprecated
-    public EvaluatedWarrantPrice<C> evaluate() {
+    public EvaluatedOptionPrice<C> evaluate() {
         return this;
     }
 
