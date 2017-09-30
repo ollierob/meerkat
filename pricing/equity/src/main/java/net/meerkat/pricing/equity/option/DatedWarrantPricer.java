@@ -78,22 +78,22 @@ public class DatedWarrantPricer implements WarrantPricer<LocalDate> {
             return currencyId;
         }
 
-        Explained<Money<C>> intrinsic() {
+        Explained<Money<C>> explainedIntrinsicValue() {
             return DatedWarrantPricer.this.intrinsicValue(currencyId, date, warrant, fxRates);
         }
 
         @Override
         public Money<C> intrinsicValue() {
-            return this.intrinsic().value();
+            return this.explainedIntrinsicValue().value();
         }
 
-        Explained<Money<C>> time() {
+        Explained<Money<C>> explainedTimeValue() {
             return DatedWarrantPricer.this.timeValue(currencyId, date, warrant, fxRates);
         }
 
         @Override
         public Money<C> timeValue() {
-            return this.time().value();
+            return this.explainedTimeValue().value();
         }
 
         @Override
@@ -102,8 +102,8 @@ public class DatedWarrantPricer implements WarrantPricer<LocalDate> {
                     .put("date", date)
                     .put("currency", currencyId)
                     .put("warrant", warrant)
-                    .put("intrinsic value", this.intrinsic())
-                    .put("time value", this.time());
+                    .put("intrinsic value", this.explainedIntrinsicValue())
+                    .put("time value", this.explainedTimeValue());
         }
 
     }
