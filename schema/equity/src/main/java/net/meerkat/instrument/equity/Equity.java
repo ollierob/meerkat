@@ -31,9 +31,7 @@ public interface Equity extends InstrumentDefinition, Security {
 
         R handle(StockIndex index);
 
-        R handle(CommonStock stock);
-
-        R handle(PreferredStock stock);
+        R handle(Stock stock);
 
     }
 
