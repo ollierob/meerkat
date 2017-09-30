@@ -1,4 +1,4 @@
-package net.meerkat.position;
+package net.meerkat.risk.position;
 
 import net.meerkat.identifier.portfolio.PortfolioId;
 import net.meerkat.identifier.InstrumentInMarketId;
