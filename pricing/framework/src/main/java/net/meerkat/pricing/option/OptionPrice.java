@@ -30,6 +30,9 @@ public interface OptionPrice<C extends CurrencyId> extends Price.Valued<C> {
     @Nonnull
     Money<C> timeValue();
 
+    /**
+     * @return the intrinsic value plus the time value.
+     */
     @Override
     default Money<C> value() {
         return this.intrinsicValue().plus(this.timeValue());
@@ -47,6 +50,7 @@ public interface OptionPrice<C extends CurrencyId> extends Price.Valued<C> {
         Shiftable<C> shift(OptionPriceShifts shifts);
 
         @Override
+        @Deprecated
         default ShiftablePrice<C> shift(final InstrumentPriceShifts shifts) {
             return this.shift(OptionPriceShifts.cast(shifts));
         }
