@@ -1,5 +1,7 @@
 package net.meerkat.pricing.equity.option;
 
+import net.meerkat.pricing.option.OptionPriceShifts;
+
 import java.util.Map;
 
 import net.meerkat.Explainable.ExplanationBuilder;
@@ -11,16 +13,14 @@ import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.InstrumentPriceException;
-import net.meerkat.pricing.InstrumentPricer;
 import net.meerkat.pricing.option.OptionPrice;
-import net.meerkat.pricing.shifts.InstrumentShifts;
 import net.ollie.goat.suppliers.lazy.Lazy;
 
 /**
  *
  * @author Ollie
  */
-public abstract class AbstractOptionPricer<T, O extends Option<?>> implements InstrumentPricer<T, O> {
+public abstract class AbstractOptionPricer<T, O extends Option<?>> implements OptionPricer<T, O> {
 
     private final ExchangeRatesProvider<T> fxRates;
 
@@ -33,10 +33,10 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements In
             final T date,
             final O option,
             final C currency,
-            final InstrumentShifts shifts)
+            final OptionPriceShifts shifts)
             throws InstrumentPriceException {
         final ExchangeRates fxRates = this.fxRates.get(date);
-        return new PricedOption<>(date, option, currency, fxRates);
+        return new PricedOption<>(date, option, currency, fxRates, shifts);
     }
 
     protected abstract <C extends CurrencyId> Price.Valued<C> underlyingPrice(C currencyId, T date, O option, ExchangeRates fxRates);
@@ -60,12 +60,14 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements In
         private final O option;
         private final C currencyId;
         private final ExchangeRates fxRates;
+        private final OptionPriceShifts shifts;
 
-        PricedOption(final T date, final O option, final C currencyId, final ExchangeRates fxRates) {
+        PricedOption(final T date, final O option, final C currencyId, final ExchangeRates fxRates, final OptionPriceShifts shifts) {
             this.date = date;
             this.option = option;
             this.currencyId = currencyId;
             this.fxRates = fxRates;
+            this.shifts = shifts;
         }
 
         @Override
@@ -102,8 +104,8 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements In
         }
 
         @Override
-        public PricedOption<C> shift(final InstrumentShifts shifts) {
-            throw new UnsupportedOperationException(); //TODO
+        public PricedOption<C> shift(final OptionPriceShifts shifts) {
+            return new PricedOption<>(date, option, currencyId, fxRates, shifts);
         }
 
         @Override

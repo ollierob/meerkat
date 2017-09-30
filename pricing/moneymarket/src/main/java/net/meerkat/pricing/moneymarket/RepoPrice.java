@@ -4,7 +4,7 @@ import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.ShiftablePrice;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -22,7 +22,7 @@ public interface RepoPrice<C extends CurrencyId>
             extends RepoPrice<C>, ShiftablePrice<C> {
 
         @Override
-        default ShiftablePrice<C> shift(InstrumentShifts shifts) {
+        default ShiftablePrice<C> shift(InstrumentPriceShifts shifts) {
             return this.shift(RepoShifts.cast(shifts));
         }
 

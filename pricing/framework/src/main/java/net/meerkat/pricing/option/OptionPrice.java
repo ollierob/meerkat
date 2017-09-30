@@ -1,5 +1,6 @@
 package net.meerkat.pricing.option;
 
+import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
@@ -7,7 +8,7 @@ import net.meerkat.instrument.derivative.option.Option;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.ShiftablePrice;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -41,8 +42,14 @@ public interface OptionPrice<C extends CurrencyId> extends Price.Valued<C> {
 
     interface Shiftable<C extends CurrencyId> extends OptionPrice<C>, ShiftablePrice<C> {
 
+        @Nonnull
+        @CheckReturnValue
+        Shiftable<C> shift(OptionPriceShifts shifts);
+
         @Override
-        Shiftable<C> shift(InstrumentShifts shifts);
+        default ShiftablePrice<C> shift(final InstrumentPriceShifts shifts) {
+            return this.shift(OptionPriceShifts.cast(shifts));
+        }
 
     }
 

@@ -6,7 +6,6 @@ import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 import java.util.Map;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.InterestRate;
 import net.ollie.goat.suppliers.Suppliers;
@@ -15,28 +14,20 @@ import net.ollie.goat.suppliers.Suppliers;
  *
  * @author Ollie
  */
-public class WrappedSecurityShifts implements PriceShifts, InterestRateShifts, ExchangeRateShifts {
+public class WrappedInstrumentPriceShifts implements InterestRateShifts, ExchangeRateShifts {
 
-    private final PriceShifts priceShifts;
     private final InterestRateShifts interestRateShifts;
     private final ExchangeRateShifts exchangeRateShifts;
 
-    public WrappedSecurityShifts(final InstrumentShifts shifts) {
-        this(PriceShifts.cast(shifts), InterestRateShifts.cast(shifts), ExchangeRateShifts.cast(shifts));
+    public WrappedInstrumentPriceShifts(final InstrumentPriceShifts shifts) {
+        this(InterestRateShifts.cast(shifts), ExchangeRateShifts.cast(shifts));
     }
 
-    public WrappedSecurityShifts(
-            final PriceShifts priceShifts,
+    public WrappedInstrumentPriceShifts(
             final InterestRateShifts interestRateShifts,
             final ExchangeRateShifts exchangeRateShifts) {
-        this.priceShifts = Suppliers.firstNonNull(priceShifts, PriceShifts.none());
         this.interestRateShifts = Suppliers.firstNonNull(interestRateShifts, InterestRateShifts.none());
         this.exchangeRateShifts = Suppliers.firstNonNull(exchangeRateShifts, ExchangeRateShifts.none());
-    }
-
-    @Override
-    public <C extends CurrencyId> Money<C> shift(final Money<C> price) {
-        return priceShifts.shift(price);
     }
 
     @Override
@@ -52,7 +43,6 @@ public class WrappedSecurityShifts implements PriceShifts, InterestRateShifts, E
     @Override
     public Map<String, Object> explain() {
         return this.explanationBuilder()
-                .put("price shifts", priceShifts)
                 .put("interest rate shifts", interestRateShifts)
                 .put("exchange rate shifts", exchangeRateShifts);
     }

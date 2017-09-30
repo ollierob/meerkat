@@ -6,13 +6,13 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
  * @author Ollie
  */
-public interface ExchangeRateShifts extends InstrumentShifts {
+public interface ExchangeRateShifts extends InstrumentPriceShifts {
 
     <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> shift(ExchangeRate<F, T> rate);
 
@@ -25,7 +25,7 @@ public interface ExchangeRateShifts extends InstrumentShifts {
     }
 
     @Nonnull
-    static ExchangeRateShifts cast(final InstrumentShifts shifts) {
+    static ExchangeRateShifts cast(final InstrumentPriceShifts shifts) {
         return shifts.as(ExchangeRateShifts.class).orElseGet(ExchangeRateShifts::none);
     }
 

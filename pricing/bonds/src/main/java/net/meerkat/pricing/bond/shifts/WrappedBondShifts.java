@@ -1,26 +1,24 @@
 package net.meerkat.pricing.bond.shifts;
 
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
+import net.meerkat.pricing.shifts.WrappedInstrumentPriceShifts;
 import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
-import net.meerkat.pricing.shifts.PriceShifts;
-import net.meerkat.pricing.shifts.WrappedSecurityShifts;
-import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
  * @author Ollie
  */
-public class WrappedBondShifts extends WrappedSecurityShifts implements BondShifts {
+public class WrappedBondShifts extends WrappedInstrumentPriceShifts implements BondShifts {
 
-    public WrappedBondShifts(final InstrumentShifts shifts) {
+    public WrappedBondShifts(final InstrumentPriceShifts shifts) {
         super(shifts);
     }
 
     public WrappedBondShifts(
-            final PriceShifts priceShifts,
             final InterestRateShifts interestRateShifts,
             final ExchangeRateShifts exchangeRateShifts) {
-        super(priceShifts, interestRateShifts, exchangeRateShifts);
+        super(interestRateShifts, exchangeRateShifts);
     }
 
 }

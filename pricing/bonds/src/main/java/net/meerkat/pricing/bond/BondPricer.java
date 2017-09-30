@@ -4,7 +4,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.pricing.InstrumentPricer;
 import net.meerkat.pricing.bond.shifts.BondShifts;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  * Prices particular types of bond.
@@ -22,7 +22,7 @@ public interface BondPricer<T, B extends Bond>
     }
 
     @Override
-    default <C extends CurrencyId> BondPrice.Shiftable<C> price(T temporal, B bond, C currency, InstrumentShifts shifts) throws BondPriceException {
+    default <C extends CurrencyId> BondPrice.Shiftable<C> price(T temporal, B bond, C currency, InstrumentPriceShifts shifts) throws BondPriceException {
         return this.price(temporal, bond, currency, BondShifts.cast(shifts));
     }
 

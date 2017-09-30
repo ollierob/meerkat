@@ -5,13 +5,13 @@ import javax.annotation.Nonnull;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
  * @author Ollie
  */
-public interface InterestRateShifts extends InstrumentShifts {
+public interface InterestRateShifts extends InstrumentPriceShifts {
 
     @Nonnull
     InterestRate shift(@Nonnull InterestRate rate);
@@ -30,7 +30,7 @@ public interface InterestRateShifts extends InstrumentShifts {
         return new RelativeInterestRateShifts(shift);
     }
 
-    static InterestRateShifts cast(final InstrumentShifts shifts) {
+    static InterestRateShifts cast(final InstrumentPriceShifts shifts) {
         return shifts.as(InterestRateShifts.class).orElseGet(InterestRateShifts::none);
     }
 

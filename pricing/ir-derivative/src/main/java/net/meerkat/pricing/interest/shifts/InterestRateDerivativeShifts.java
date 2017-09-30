@@ -2,7 +2,7 @@ package net.meerkat.pricing.interest.shifts;
 
 import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -12,7 +12,7 @@ public interface InterestRateDerivativeShifts extends InterestRateShifts, Exchan
 
     InterestRateDerivativeShifts NONE = null;
 
-    static InterestRateDerivativeShifts cast(final InstrumentShifts shifts) {
+    static InterestRateDerivativeShifts cast(final InstrumentPriceShifts shifts) {
         return new WrappedInterestRateDerivativeShifts(shifts);
     }
 

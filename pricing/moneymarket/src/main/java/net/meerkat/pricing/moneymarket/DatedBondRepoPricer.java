@@ -17,7 +17,7 @@ import net.meerkat.pricing.bond.BondPriceException;
 import net.meerkat.pricing.bond.GenericBondPricer;
 import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
 import net.ollie.goat.suppliers.lazy.Lazy;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -38,7 +38,7 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
             final LocalDate date,
             final BondRepo<?> repo,
             final C currency,
-            final InstrumentShifts shifts)
+            final InstrumentPriceShifts shifts)
             throws BondPriceException {
         return new BondRepoPrice<>(date, repo, currency, RepoShifts.none());
     }

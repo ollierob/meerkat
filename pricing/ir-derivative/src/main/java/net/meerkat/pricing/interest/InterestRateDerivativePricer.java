@@ -7,7 +7,7 @@ import net.meerkat.instrument.interest.InterestRateDerivative;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.InstrumentPricer;
 import net.meerkat.pricing.interest.shifts.InterestRateDerivativeShifts;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -22,7 +22,7 @@ public interface InterestRateDerivativePricer<T extends Temporal, D extends Inte
     }
 
     @Override
-    default <C extends CurrencyId> InterestRateDerivativePrice.Shiftable<C> price(final T temporal, final D instrument, final C currency, final InstrumentShifts shifts) throws InstrumentPriceException {
+    default <C extends CurrencyId> InterestRateDerivativePrice.Shiftable<C> price(final T temporal, final D instrument, final C currency, final InstrumentPriceShifts shifts) throws InstrumentPriceException {
         return this.price(temporal, instrument, currency, InterestRateDerivativeShifts.cast(shifts));
     }
 

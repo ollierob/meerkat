@@ -17,7 +17,7 @@ import net.meerkat.sensitivity.bond.BondSensitivities;
 import net.ollie.goat.numeric.percentage.FractionalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -85,7 +85,7 @@ public interface BondPrice<C extends CurrencyId>
             extends BondPrice<C>, ShiftablePrice<C> {
 
         @Override
-        default BondPrice.Shiftable<C> shift(final InstrumentShifts shifts) {
+        default BondPrice.Shiftable<C> shift(final InstrumentPriceShifts shifts) {
             return this.shift(BondShifts.cast(shifts));
         }
 

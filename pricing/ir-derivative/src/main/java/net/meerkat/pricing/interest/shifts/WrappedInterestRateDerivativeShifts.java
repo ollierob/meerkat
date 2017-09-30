@@ -1,22 +1,22 @@
 package net.meerkat.pricing.interest.shifts;
 
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
+import net.meerkat.pricing.shifts.WrappedInstrumentPriceShifts;
 import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
-import net.meerkat.pricing.shifts.WrappedSecurityShifts;
-import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
  * @author Ollie
  */
-public class WrappedInterestRateDerivativeShifts extends WrappedSecurityShifts implements InterestRateDerivativeShifts {
+public class WrappedInterestRateDerivativeShifts extends WrappedInstrumentPriceShifts implements InterestRateDerivativeShifts {
 
-    public WrappedInterestRateDerivativeShifts(final InstrumentShifts shifts) {
+    public WrappedInterestRateDerivativeShifts(final InstrumentPriceShifts shifts) {
         super(shifts);
     }
 
     public WrappedInterestRateDerivativeShifts(final InterestRateShifts interestRateShifts, final ExchangeRateShifts exchangeRateShifts) {
-        super(null, interestRateShifts, exchangeRateShifts);
+        super(interestRateShifts, exchangeRateShifts);
     }
 
 }

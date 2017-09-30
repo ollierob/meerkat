@@ -17,7 +17,7 @@ import net.ollie.goat.temporal.date.years.Years;
  *
  * @author Ollie
  */
-public class DatedWarrantPricer extends AbstractOptionPricer<LocalDate, Warrant> implements WarrantPricer<LocalDate> {
+public class DatedWarrantPricer extends AbstractOptionPricer<LocalDate, Warrant> {
 
     private final StockPricer<LocalDate> stockPricer;
 

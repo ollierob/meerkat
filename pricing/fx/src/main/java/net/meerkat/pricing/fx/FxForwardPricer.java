@@ -16,7 +16,7 @@ import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts.InterestRateShifter;
 import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -35,7 +35,7 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, Deliverab
             final LocalDate date,
             final DeliverableFxForward<?, ?> forward,
             final C currency,
-            final InstrumentShifts shifts)
+            final InstrumentPriceShifts shifts)
             throws InstrumentException, InstrumentPriceException {
         throw new UnsupportedOperationException();
     }

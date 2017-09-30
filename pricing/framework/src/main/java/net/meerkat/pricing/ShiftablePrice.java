@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.price.Price;
-import net.meerkat.pricing.shifts.InstrumentShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -16,6 +16,6 @@ public interface ShiftablePrice<C extends CurrencyId>
 
     @Nonnull
     @CheckReturnValue
-    ShiftablePrice<C> shift(@Nonnull InstrumentShifts shifts);
+    ShiftablePrice<C> shift(@Nonnull InstrumentPriceShifts shifts);
 
 }
