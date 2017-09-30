@@ -2,6 +2,7 @@ package net.meerkat.risk.bond;
 
 import java.util.Optional;
 
+import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.calculate.sensitivity.InstrumentSensitivities;
@@ -58,8 +59,9 @@ public class BondPosition implements PositionWithQuantity {
     }
 
     @Nonnull
+    @CheckReturnValue
     public BondPositionSensitivities scale(final BondInstrumentSensitivities sensitivities) {
-        return new BondPositionSensitivities(sensitivities, quantity);
+        return new BondPositionSensitivities(sensitivities, this);
     }
 
 }

@@ -18,23 +18,28 @@ import net.meerkat.sensitivity.bond.BondSensitivities;
 public class BondPositionSensitivities implements BondSensitivities, PositionSensitivities {
 
     private final BondInstrumentSensitivities unit;
-    private final long quantity;
+    private final BondPosition position;
 
-    public BondPositionSensitivities(@Nonnull final BondInstrumentSensitivities unit, final long quantity) {
+    public BondPositionSensitivities(@Nonnull final BondInstrumentSensitivities unit, final BondPosition position) {
         this.unit = Objects.requireNonNull(unit, "sensitivities");
-        this.quantity = quantity;
+        this.position = position;
     }
 
     @Override
     public DollarDuration dollarDuration() {
-        return unit.dollarDuration().times(quantity);
+        return unit.dollarDuration().times(position.quantity());
+    }
+
+    @Override
+    public BondInstrumentSensitivities instrumentSensitivities() {
+        return unit;
     }
 
     @Override
     public Map<String, Object> explain() {
         return this.explanationBuilder()
-                .put("unit sensitivities", unit)
-                .put("quantity", quantity);
+                .put("sensitivities", unit)
+                .put("position", position);
     }
 
 }
