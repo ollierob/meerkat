@@ -28,14 +28,14 @@ public interface OptionPrice<C extends CurrencyId> extends Price.Valued<C> {
      * @see <a href="https://en.wikipedia.org/wiki/Option_time_value">Time value</a>
      */
     @Nonnull
-    Money<C> timeValue();
+    Money<C> extrinsicValue();
 
     /**
      * @return the intrinsic value plus the time value.
      */
     @Override
     default Money<C> value() {
-        return this.intrinsicValue().plus(this.timeValue());
+        return this.intrinsicValue().plus(this.extrinsicValue());
     }
 
     @Override

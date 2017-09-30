@@ -1,4 +1,4 @@
-package net.meerkat.instrument.equity.index;
+package net.meerkat.instrument.equity;
 
 import javax.annotation.Nonnull;
 
@@ -7,25 +7,24 @@ import net.coljate.set.ImmutableSet;
 import net.coljate.set.Set;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.InstrumentDefinition;
-import net.meerkat.instrument.NamedInstrument;
-import net.meerkat.instrument.equity.Equity;
-import net.meerkat.instrument.equity.EquityProvider;
+import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.instrument.equity.exception.UnknownEquityException;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *
  * @author Ollie
  */
-public class StockIndex extends NamedInstrument implements InstrumentDefinition {
+public class StockIndex extends IssuedSecurity implements Equity {
 
     private final ImmutableSet<? extends InstrumentId> stockIds;
 
     public StockIndex(
             final String name,
             final InstrumentIds ids,
+            final IssuerId issuerId,
             final Set<? extends InstrumentId> stockIds) {
-        super(name, ids);
+        super(name, ids, issuerId);
         this.stockIds = stockIds.immutableCopy();
     }
 
@@ -40,10 +39,8 @@ public class StockIndex extends NamedInstrument implements InstrumentDefinition 
     }
 
     @Override
-    public <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
-        return handler instanceof Equity.Handler
-                ? ((Equity.Handler<R>) handler).handle(this)
-                : handler.handleUnknown(this);
+    public <R> R handleWith(final Equity.Handler<R> handler) {
+        return handler.handle(this);
     }
 
 }

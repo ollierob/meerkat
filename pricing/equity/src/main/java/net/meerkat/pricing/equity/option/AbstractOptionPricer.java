@@ -94,13 +94,13 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements Op
             return AbstractOptionPricer.this.timeValue(px.currencyId, px.date, px.option, px.fxRates);
         });
 
-        Explained<Money<C>> explainedTimeValue() {
+        Explained<Money<C>> explainedExtrinsicValid() {
             return timeValue.get();
         }
 
         @Override
-        public Money<C> timeValue() {
-            return this.explainedTimeValue().value();
+        public Money<C> extrinsicValue() {
+            return this.explainedExtrinsicValid().value();
         }
 
         @Override
@@ -115,7 +115,7 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements Op
                     .put("currency", currencyId)
                     .put("option", option)
                     .put("intrinsic value", this.explainedIntrinsicValue())
-                    .put("time value", this.explainedTimeValue());
+                    .put("extrinsic value", this.explainedExtrinsicValid());
         }
 
     }

@@ -25,7 +25,7 @@ public class EvaluatedOptionPrice<C extends CurrencyId>
     }
 
     @Override
-    public Money<C> timeValue() {
+    public Money<C> extrinsicValue() {
         return this.value().minus(intrinsicValue);
     }
 

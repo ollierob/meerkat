@@ -5,7 +5,6 @@ import java.util.Optional;
 import net.meerkat.identifier.instrument.Isin;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
-import net.meerkat.instrument.equity.index.StockIndex;
 
 /**
  *

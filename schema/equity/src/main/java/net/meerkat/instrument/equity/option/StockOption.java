@@ -1,13 +1,32 @@
 package net.meerkat.instrument.equity.option;
 
-import net.meerkat.instrument.derivative.option.Option;
+import net.meerkat.identifier.instrument.InstrumentIds;
+import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
 import net.meerkat.instrument.equity.EquityDerivative;
 import net.meerkat.instrument.equity.Stock;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
 
 /**
  *
- * @author Ollie
+ * @author ollie
  */
-public interface StockOption extends EquityDerivative<Stock>, Option<Stock> {
+public class StockOption extends AbstractEquityOption<Stock> {
+
+    public StockOption(
+            final String name,
+            final InstrumentIds identifiers,
+            final IssuerId issuerId,
+            final OptionExercise exercise,
+            final Money<?> premium,
+            final Money<?> strike,
+            final Stock underlying) {
+        super(name, identifiers, issuerId, exercise, premium, strike, underlying);
+    }
+
+    @Override
+    public <R> R handleWith(final EquityDerivative.Handler<R> handler) {
+        return handler.handle(this);
+    }
 
 }
