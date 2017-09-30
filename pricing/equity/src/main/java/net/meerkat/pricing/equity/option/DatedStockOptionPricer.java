@@ -11,6 +11,7 @@ import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.equity.StockPricer;
+import net.meerkat.pricing.option.OptionPriceShifts;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 import net.ollie.goat.temporal.date.years.Years;
 
@@ -37,11 +38,12 @@ public class DatedStockOptionPricer extends AbstractOptionPricer<LocalDate, Stoc
     }
 
     @Override
-    protected <C extends CurrencyId> Explained<Money<C>> timeValue(
+    protected <C extends CurrencyId> Explained<Money<C>> extrinsicValue(
             final C currencyId,
             final LocalDate date,
             final StockOption option,
-            final ExchangeRates fxRates) {
+            final ExchangeRates fxRates,
+            final OptionPriceShifts optionShifts) {
         final Years toExpiration = option.exercise().yearsToExpiration(date);
         if (!toExpiration.isPositive()) {
             return new Explained<>(Money.zero(currencyId), new ExplanationBuilder().put("expiration", toExpiration));

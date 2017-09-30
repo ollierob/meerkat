@@ -52,7 +52,12 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements Op
         return new Explained<>(intrinsic, new ExplanationBuilder().put("underlying price", stockPrice).put("exercise price", exercisePrice));
     }
 
-    protected abstract <C extends CurrencyId> Explained<Money<C>> timeValue(C currencyId, T date, O warrant, ExchangeRates fxRates);
+    protected abstract <C extends CurrencyId> Explained<Money<C>> extrinsicValue(
+            C currencyId,
+            T date,
+            O option,
+            ExchangeRates fxRates,
+            OptionPriceShifts shifts);
 
     private final class PricedOption<C extends CurrencyId> implements OptionPrice.Shiftable<C> {
 
@@ -80,27 +85,30 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements Op
             return AbstractOptionPricer.this.intrinsicValue(px.currencyId, px.date, px.option, px.fxRates, px.shifts);
         });
 
-        Explained<Money<C>> explainedIntrinsicValue() {
+        Explained<Money<C>> explainIntrinsic() {
             return intrinsicValue.get();
         }
 
         @Override
         public Money<C> intrinsicValue() {
-            return this.explainedIntrinsicValue().value();
+            return this.explainIntrinsic().value();
         }
 
         private final Lazy<Explained<Money<C>>> timeValue = Lazy.loadOnce(() -> {
             final PricedOption<C> px = this;
-            return AbstractOptionPricer.this.timeValue(px.currencyId, px.date, px.option, px.fxRates);
+            return AbstractOptionPricer.this.extrinsicValue(px.currencyId, px.date, px.option, px.fxRates, px.shifts);
         });
 
-        Explained<Money<C>> explainedExtrinsicValid() {
+        Explained<Money<C>> explainExtrinsic() {
             return timeValue.get();
         }
 
         @Override
         public Money<C> extrinsicValue() {
-            return this.explainedExtrinsicValid().value();
+            final Money<C> extrinsic = this.explainExtrinsic().value();
+            return extrinsic.isPositive()
+                    ? extrinsic
+                    : Money.zero(currencyId);
         }
 
         @Override
@@ -114,8 +122,8 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements Op
                     .put("date", date)
                     .put("currency", currencyId)
                     .put("option", option)
-                    .put("intrinsic value", this.explainedIntrinsicValue())
-                    .put("extrinsic value", this.explainedExtrinsicValid());
+                    .put("intrinsic value", this.explainIntrinsic())
+                    .put("extrinsic value", this.explainExtrinsic());
         }
 
     }
