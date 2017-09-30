@@ -1,5 +1,7 @@
 package net.meerkat.money.fx;
 
+import net.meerkat.money.fx.exception.UnavailableExchangeRateException;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -17,8 +19,8 @@ import net.meerkat.money.Money;
 public interface ExchangeRates {
 
     default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> rate(final F from, final T to)
-            throws UnavailableExchangeRate {
-        return this.maybeRate(from, to).orElseThrow(() -> new UnavailableExchangeRate(from, to));
+            throws UnavailableExchangeRateException {
+        return this.maybeRate(from, to).orElseThrow(() -> new UnavailableExchangeRateException(from, to));
     }
 
     <F extends CurrencyId, T extends CurrencyId> Optional<ExchangeRate<F, T>> maybeRate(F from, T to);
@@ -46,24 +48,15 @@ public interface ExchangeRates {
 
     @Nonnull
     default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> baseRate(final CurrencyIdPair<F, T> pair)
-            throws UnavailableExchangeRate {
+            throws UnavailableExchangeRateException {
         return this.rate(pair.baseCurrencyId(), pair.counterCurrencyId());
     }
 
     @Nonnull
     default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<T, F> counterRate(final CurrencyIdPair<F, T> pair)
-            throws UnavailableExchangeRate {
+            throws UnavailableExchangeRateException {
         return this.rate(pair.counterCurrencyId(), pair.baseCurrencyId());
     }
 
-    class UnavailableExchangeRate extends RuntimeException {
-
-        private static final long serialVersionUID = 1L;
-
-        public UnavailableExchangeRate(final CurrencyId from, final CurrencyId to) {
-            super("Not available from " + from + " -> " + to);
-        }
-
-    }
 
 }

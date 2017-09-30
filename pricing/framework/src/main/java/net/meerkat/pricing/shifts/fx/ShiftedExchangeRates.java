@@ -6,6 +6,7 @@ import java.util.Optional;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
+import net.meerkat.money.fx.exception.UnavailableExchangeRateException;
 
 /**
  *
@@ -22,7 +23,7 @@ public class ShiftedExchangeRates implements ExchangeRates {
     }
 
     @Override
-    public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> rate(final F from, final T to) throws UnavailableExchangeRate {
+    public <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> rate(final F from, final T to) throws UnavailableExchangeRateException {
         return shifts.shift(baseRates.rate(from, to));
     }
 

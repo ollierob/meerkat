@@ -1,5 +1,7 @@
 package net.meerkat.money.interest;
 
+import net.meerkat.money.interest.exception.UnknownInterestRateException;
+
 import javax.annotation.Nonnull;
 
 /**

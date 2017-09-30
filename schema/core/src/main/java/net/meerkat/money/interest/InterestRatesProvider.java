@@ -1,6 +1,5 @@
-package net.meerkat.calculate.interest;
+package net.meerkat.money.interest;
 
-import net.meerkat.money.interest.InterestRates;
 import net.ollie.goat.data.Provider;
 
 /**

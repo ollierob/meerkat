@@ -14,4 +14,12 @@ public class BondPriceException extends InstrumentPriceException {
         super(message);
     }
 
+    public BondPriceException(final Exception cause) {
+        super(cause);
+    }
+
+    public BondPriceException(final String message, final Exception cause) {
+        super(message, cause);
+    }
+
 }

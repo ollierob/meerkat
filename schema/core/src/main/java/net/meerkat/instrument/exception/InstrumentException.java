@@ -8,11 +8,15 @@ public class InstrumentException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public InstrumentException(String message) {
+    public InstrumentException(final String message) {
         super(message);
     }
 
-    public InstrumentException(String message, Exception cause) {
+    public InstrumentException(final Exception cause) {
+        super(cause);
+    }
+
+    public InstrumentException(final String message, final Exception cause) {
         super(message, cause);
     }
 

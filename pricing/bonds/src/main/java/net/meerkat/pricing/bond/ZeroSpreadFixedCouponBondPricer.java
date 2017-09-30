@@ -1,27 +1,26 @@
 package net.meerkat.pricing.bond;
 
-import net.meerkat.pricing.bond.shifts.BondShifts;
-
 import java.time.LocalDate;
-import static java.util.Objects.requireNonNull;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.function.BiFunction;
 
 import net.coljate.list.List;
-import net.meerkat.calculate.fx.ExchangeRatesProvider;
+import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
 import net.meerkat.instrument.bond.coupon.FixedCoupon;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
-import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.fx.ExchangeRates;
+import net.meerkat.money.fx.exception.ExchangeRateException;
 import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.exception.InterestRateException;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
+import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.years.Years;
+import net.meerkat.money.interest.DiscountRateProvider;
 
 /**
  * Prices fixed coupon bonds purely based on their coupon rate.
@@ -31,15 +30,15 @@ import net.ollie.goat.temporal.date.years.Years;
 public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponBond> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
-    private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRate;
+    private final DiscountRateProvider<LocalDate> discountRatesProvider;
     private final InterestRateInterpolator interestRateInterpolator;
 
     public ZeroSpreadFixedCouponBondPricer(
             final ExchangeRatesProvider<LocalDate> exchangeRatesProvider,
-            final BiFunction<LocalDate, CurrencyId, InterestRate> discountRates,
+            final DiscountRateProvider<LocalDate> discountRatesProvider,
             final InterestRateInterpolator interestRateInterpolator) {
         this.exchangeRatesProvider = exchangeRatesProvider;
-        this.getDiscountRate = discountRates;
+        this.discountRatesProvider = discountRatesProvider;
         this.interestRateInterpolator = interestRateInterpolator;
     }
 
@@ -58,35 +57,38 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
             final FixedCouponBondCoupons<Z> coupons,
             final C currency,
             final BondShifts shifts) {
-
-        final ExchangeRates fxRates = exchangeRatesProvider.require(date);
-        final ExchangeRate<P, C> parFxRate = fxRates.rate(par.currencyId(), currency);
-        final ExchangeRate<Z, C> couponFxRate = fxRates.rate(coupons.currencyId(), currency);
-
-        final InterestRate discountRate = requireNonNull(getDiscountRate.apply(date, currency));
-
-        return new ZeroSpreadFixedCouponBondPrice<>(date, par, coupons, parFxRate, couponFxRate, discountRate, interestRateInterpolator, shifts);
-
+        try {
+            final ExchangeRates fxRates = exchangeRatesProvider.require(date);
+            final InterestRate discountRate = discountRatesProvider.require(date, currency);
+            return new ZeroSpreadFixedCouponBondPrice<>(
+                    date,
+                    par,
+                    coupons,
+                    fxRates,
+                    discountRate,
+                    interestRateInterpolator,
+                    shifts);
+        } catch (final ExchangeRateException | InterestRateException ex) {
+            throw new BondPriceException(ex);
+        }
     }
 
-    private static final class ZeroSpreadFixedCouponBondPrice<P extends CurrencyId, Z extends CurrencyId, C extends CurrencyId>
+    private static final class ZeroSpreadFixedCouponBondPrice<C extends CurrencyId>
             implements BondPrice.Shiftable<C> {
 
         private final LocalDate valuationDate;
-        private final CashPayment<P> par;
-        private final FixedCouponBondCoupons<Z> coupons;
-        private final ExchangeRate<P, C> parFxRate;
-        private final ExchangeRate<Z, C> couponFxRate;
+        private final CashPayment<?> par;
+        private final FixedCouponBondCoupons<?> coupons;
+        private final ExchangeRates fxRates;
         private final InterestRate discountRate;
         private final InterestRateInterpolator interestRateInterpolator;
         private final BondShifts shifts;
 
         ZeroSpreadFixedCouponBondPrice(
                 final LocalDate valuationDate,
-                final CashPayment<P> par,
-                final FixedCouponBondCoupons<Z> coupons,
-                final ExchangeRate<P, C> parFxRate,
-                final ExchangeRate<Z, C> couponFxRate,
+                final CashPayment<?> par,
+                final FixedCouponBondCoupons<?> coupons,
+                final ExchangeRates fxRates,
                 final InterestRate discountRate,
                 final InterestRateInterpolator interestRateInterpolator,
                 final BondShifts shifts) {
@@ -94,15 +96,18 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
             this.par = par;
             this.coupons = coupons;
             this.shifts = shifts;
-            this.parFxRate = parFxRate;
-            this.couponFxRate = couponFxRate;
+            this.fxRates = fxRates;
             this.discountRate = discountRate;
             this.interestRateInterpolator = interestRateInterpolator;
         }
 
+        ExchangeRates fxRates() {
+            return shifts.shift(fxRates);
+        }
+
         @Override
         public Money<C> par() {
-            return this.parFxRate().convert(par.paymentAmount());
+            return this.fxRates().convert(par.paymentAmount(), this.currencyId());
         }
 
         @Override
@@ -127,9 +132,9 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
         @Override
         public Money<C> accruedInterest() {
-            final FixedCoupon<Z> prior = coupons.prior(valuationDate);
+            final FixedCoupon<?> prior = coupons.prior(valuationDate);
             final Years years = prior.accrual().yearsBetween(valuationDate, valuationDate);
-            final Money<C> couponAmount = this.couponFxRate().convert(prior.paymentAmount());
+            final Money<C> couponAmount = this.fxRates().convert(prior.paymentAmount(), this.currencyId());
             return couponAmount.times(years.decimalValue());
         }
 
@@ -140,15 +145,7 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
 
         @Override
         public BondPrice.Shiftable<C> shift(final BondShifts shifts) {
-            return new ZeroSpreadFixedCouponBondPrice<>(valuationDate, par, coupons, parFxRate, couponFxRate, discountRate, interestRateInterpolator, shifts);
-        }
-
-        ExchangeRate<P, C> parFxRate() {
-            return shifts.shift(parFxRate);
-        }
-
-        ExchangeRate<Z, C> couponFxRate() {
-            return shifts.shift(couponFxRate);
+            return new ZeroSpreadFixedCouponBondPrice<>(valuationDate, par, coupons, fxRates, discountRate, interestRateInterpolator, shifts);
         }
 
         LocalDate maturity() {
@@ -168,12 +165,12 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
         }
 
         SortedMap<LocalDate, Money<C>> cleanFlow(LocalDate startInclusive, LocalDate endExclusive, InterestRate discountRate) {
-            final ExchangeRate<Z, C> fxRate = this.couponFxRate();
-            final List<FixedCoupon<Z>> coupons = this.coupons.between(startInclusive, endExclusive);
+            final ExchangeRates fxRates = this.fxRates();
+            final List<? extends FixedCoupon<?>> coupons = this.coupons.between(startInclusive, endExclusive);
             final SortedMap<LocalDate, Money<C>> flow = new TreeMap<>();
-            for (final FixedCoupon<Z> coupon : coupons) {
-                final Money<C> money = fxRate.convert(coupon.paymentAmount());
-                flow.compute(coupon.paymentDate(), (d, c) -> c == null ? money : money.plus(c));
+            for (final FixedCoupon<?> coupon : coupons) {
+                final Money<C> money = fxRates.convert(coupon.paymentAmount(), this.currencyId());
+                flow.compute(coupon.paymentDate(), (date, current) -> current == null ? money : money.plus(current));
             }
             return flow;
         }

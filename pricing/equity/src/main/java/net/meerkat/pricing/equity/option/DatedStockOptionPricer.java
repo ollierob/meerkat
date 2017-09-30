@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 import net.meerkat.Explainable.ExplanationBuilder;
 import net.meerkat.Explained;
-import net.meerkat.calculate.fx.ExchangeRatesProvider;
+import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.equity.option.StockOption;
 import net.meerkat.money.Money;

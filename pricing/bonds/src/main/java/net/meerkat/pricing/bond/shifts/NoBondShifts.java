@@ -11,4 +11,7 @@ public class NoBondShifts implements BondShifts, NoInterestRateShifts, NoExchang
 
     static final NoBondShifts INSTANCE = new NoBondShifts();
 
+    protected NoBondShifts() {
+    }
+
 }

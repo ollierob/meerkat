@@ -14,6 +14,10 @@ public class InstrumentPriceException extends InstrumentException {
         super(message);
     }
 
+    public InstrumentPriceException(final Exception cause) {
+        super(cause);
+    }
+
     public InstrumentPriceException(final String message, final Exception cause) {
         super(message, cause);
     }

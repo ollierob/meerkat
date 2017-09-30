@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 import javax.annotation.Nonnull;
 
 import net.coljate.list.List;
-import net.meerkat.calculate.fx.ExchangeRatesProvider;
+import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.coupon.FixedCoupon;

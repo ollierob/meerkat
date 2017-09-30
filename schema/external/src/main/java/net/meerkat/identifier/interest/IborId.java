@@ -12,7 +12,7 @@ import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.InterestRatePlusSpreadId;
 import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.NamedInterestRateId;
-import net.meerkat.money.interest.UnknownInterestRateException;
+import net.meerkat.money.interest.exception.UnknownInterestRateException;
 import net.meerkat.money.interest.curve.DateYieldCurve;
 import net.meerkat.money.interest.floating.ContinousFloatingInterestRate;
 import net.meerkat.money.interest.floating.FloatingInterestRate;
