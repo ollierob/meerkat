@@ -1,10 +1,12 @@
 package net.meerkat.instrument.repo.repurchase;
 
+import net.meerkat.Explainable;
+
 /**
  *
  * @author ollie
  */
-public interface RepoRepurchase {
+public interface RepoRepurchase extends Explainable {
 
     <R> R handleWith(Handler<R> handler);
 

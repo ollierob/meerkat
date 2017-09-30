@@ -1,6 +1,7 @@
 package net.meerkat.instrument.repo.repurchase;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
@@ -8,6 +9,7 @@ import javax.annotation.Nonnull;
 import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
 
 /**
+ * Repurchase accruing at a fixed interest rate, but with no maturity date.
  *
  * @author ollie
  */
@@ -32,6 +34,11 @@ public class OpenRepoRepurchase implements RepoRepurchase {
     @Override
     public <R> R handleWith(final Handler<R> handler) {
         return handler.handle(this);
+    }
+
+    @Override
+    public Map<String, Object> explain() {
+        return this.explanationBuilder().put("rate", rate);
     }
 
 }
