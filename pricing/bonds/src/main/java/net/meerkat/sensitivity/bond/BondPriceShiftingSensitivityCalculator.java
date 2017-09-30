@@ -29,11 +29,11 @@ public class BondPriceShiftingSensitivityCalculator<T extends Temporal>
     }
 
     @Override
-    public BondSensitivities sensitivities(final T date, final Bond bond) {
+    public BondInstrumentSensitivities sensitivities(final T date, final Bond bond) {
         return new BondSensitivitiesCalculation(date, bond);
     }
 
-    class BondSensitivitiesCalculation implements BondSensitivities {
+    class BondSensitivitiesCalculation implements BondInstrumentSensitivities {
 
         private final T date;
         private final Bond bond;

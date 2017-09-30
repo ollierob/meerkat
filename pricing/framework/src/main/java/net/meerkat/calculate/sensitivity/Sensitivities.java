@@ -9,6 +9,7 @@ import net.meerkat.Explainable;
 /**
  *
  * @author Ollie
+ * @see InstrumentSensitivities
  */
 public interface Sensitivities extends Explainable {
 

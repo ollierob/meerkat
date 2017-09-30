@@ -1,9 +1,9 @@
 package net.meerkat.sensitivity.bond;
 
+
 import java.util.Optional;
 import java.util.function.Function;
 
-import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.coljate.map.ImmutableMap;
@@ -31,11 +31,6 @@ public interface BondSensitivities extends Sensitivities {
         return SENSITIVITY_MAP.maybeGet(id)
                 .map(func -> func.apply(this))
                 .flatMap(id::convert);
-    }
-
-    @CheckReturnValue
-    default ScaledBondSensitivities times(final long quantity) {
-        return new ScaledBondSensitivities(this, quantity);
     }
 
 }

@@ -1,19 +1,22 @@
-package net.meerkat.sensitivity.bond;
+package net.meerkat.risk.bond;
 
 import java.util.Map;
 
 import net.meerkat.calculate.sensitivity.yield.DollarDuration;
+import net.meerkat.risk.sensitivities.PositionSensitivities;
+import net.meerkat.sensitivity.bond.BondInstrumentSensitivities;
+import net.meerkat.sensitivity.bond.BondSensitivities;
 
 /**
  *
  * @author Ollie
  */
-public class ScaledBondSensitivities implements BondSensitivities {
+public class BondPositionSensitivities implements BondSensitivities, PositionSensitivities {
 
-    private final BondSensitivities unit;
+    private final BondInstrumentSensitivities unit;
     private final long quantity;
 
-    protected ScaledBondSensitivities(final BondSensitivities unit, final long quantity) {
+    protected BondPositionSensitivities(final BondInstrumentSensitivities unit, final long quantity) {
         this.unit = unit;
         this.quantity = quantity;
     }
@@ -21,11 +24,6 @@ public class ScaledBondSensitivities implements BondSensitivities {
     @Override
     public DollarDuration dollarDuration() {
         return unit.dollarDuration().times(quantity);
-    }
-
-    @Override
-    public ScaledBondSensitivities times(final long quantity) {
-        return new ScaledBondSensitivities(unit, quantity);
     }
 
     @Override
