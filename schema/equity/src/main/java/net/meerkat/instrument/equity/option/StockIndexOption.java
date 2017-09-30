@@ -19,13 +19,13 @@ public class StockIndexOption
     private final StockIndex underlying;
 
     public StockIndexOption(
-            final String name, 
-            final InstrumentIds identifiers, 
-            final IssuerId issuerId, 
-            final OptionExercise exercise, 
-            final Money<?> premium, 
-            final Money<?> strike, 
-            final Number contractMultiplier, 
+            final String name,
+            final InstrumentIds identifiers,
+            final IssuerId issuerId,
+            final OptionExercise exercise,
+            final Money<?> premium,
+            final Money<?> strike,
+            final Number contractMultiplier,
             final StockIndex underlying) {
         super(name, identifiers, issuerId, exercise, premium, strike, contractMultiplier);
         this.underlying = underlying;

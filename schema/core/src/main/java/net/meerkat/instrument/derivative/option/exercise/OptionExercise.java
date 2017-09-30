@@ -1,6 +1,7 @@
 package net.meerkat.instrument.derivative.option.exercise;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import javax.annotation.Nonnull;
 
@@ -15,5 +16,10 @@ public interface OptionExercise {
 
     @Nonnull
     boolean canExerciseOn(LocalDate date);
+
+    @Nonnull
+    default Period timeToExpiration(final LocalDate from) {
+        return Period.between(from, this.expiration());
+    }
 
 }

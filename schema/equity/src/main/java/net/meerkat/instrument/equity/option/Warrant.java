@@ -14,7 +14,7 @@ import net.meerkat.money.Money;
  */
 public class Warrant
         extends AbstractOption<Stock>
-        implements EquityDerivative<Stock> {
+        implements StockOption {
 
     private final Stock underlying;
 
