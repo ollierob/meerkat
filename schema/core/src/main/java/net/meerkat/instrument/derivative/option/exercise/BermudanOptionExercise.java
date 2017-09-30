@@ -5,23 +5,18 @@ import java.util.Collection;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.xml.bind.annotation.XmlElement;
-
 /**
  *
  * @author Ollie
  */
 public class BermudanOptionExercise implements OptionExercise {
 
-    @XmlElement(name = "exercise")
-    private SortedSet<LocalDate> exerciseDates;
+    private final SortedSet<LocalDate> exerciseDates;
+    private final Number contractMultiplier;
 
-    @Deprecated
-    BermudanOptionExercise() {
-    }
-
-    public BermudanOptionExercise(final Collection<LocalDate> exerciseDates) {
+    public BermudanOptionExercise(final Collection<LocalDate> exerciseDates, final Number contractMultiplier) {
         this.exerciseDates = new TreeSet<>(exerciseDates);
+        this.contractMultiplier = contractMultiplier;
     }
 
     @Override
@@ -30,8 +25,13 @@ public class BermudanOptionExercise implements OptionExercise {
     }
 
     @Override
-    public LocalDate expiration() {
+    public LocalDate expirationDate() {
         return exerciseDates.last();
+    }
+
+    @Override
+    public Number contractMultiplier() {
+        return contractMultiplier;
     }
 
 }

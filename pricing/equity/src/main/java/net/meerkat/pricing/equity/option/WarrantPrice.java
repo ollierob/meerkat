@@ -15,6 +15,9 @@ public interface WarrantPrice<C extends CurrencyId> extends Price.Valued<C> {
     @Nonnull
     Money<C> intrinsicValue();
 
+    /**
+     * @return the "uncertainty" premium.
+     */
     @Nonnull
     Money<C> timeValue();
 

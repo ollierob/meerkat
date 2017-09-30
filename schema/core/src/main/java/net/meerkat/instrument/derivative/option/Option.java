@@ -30,7 +30,4 @@ public interface Option<S extends Instrument>
     @CheckForNull
     OptionExercise exercise();
 
-    @Nonnull
-    Number contractMultiplier();
-
 }

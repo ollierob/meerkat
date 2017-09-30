@@ -69,6 +69,12 @@ public interface Explainable {
         }
 
         @Override
+        public ExplanationBuilder putIfAbsent(final String key, final Object value) {
+            explanation.putIfAbsent(key, value);
+            return this;
+        }
+
+        @Override
         public Map<String, Object> explain() {
             return Collections.unmodifiableMap(explanation);
         }

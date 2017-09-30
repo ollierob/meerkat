@@ -2,28 +2,28 @@ package net.meerkat.instrument.derivative.option.exercise;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 /**
  *
  * @author Ollie
  */
 public abstract class AbstractOptionExercise implements OptionExercise {
 
-    @XmlAttribute(name = "expiration")
-    private LocalDate expiration;
+    private final LocalDate expiration;
+    private final Number contractMultiplier;
 
-    @Deprecated
-    AbstractOptionExercise() {
-    }
-
-    protected AbstractOptionExercise(final LocalDate expiration) {
+    protected AbstractOptionExercise(final LocalDate expiration, final Number contractMultiplier) {
         this.expiration = expiration;
+        this.contractMultiplier = contractMultiplier;
     }
 
     @Override
-    public LocalDate expiration() {
+    public LocalDate expirationDate() {
         return expiration;
+    }
+
+    @Override
+    public Number contractMultiplier() {
+        return contractMultiplier;
     }
 
 }

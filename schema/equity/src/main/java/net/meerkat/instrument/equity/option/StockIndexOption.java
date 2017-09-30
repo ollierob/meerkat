@@ -25,9 +25,8 @@ public class StockIndexOption
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
-            final Number contractMultiplier,
             final StockIndex underlying) {
-        super(name, identifiers, issuerId, exercise, premium, strike, contractMultiplier);
+        super(name, identifiers, issuerId, exercise, premium, strike);
         this.underlying = underlying;
     }
 

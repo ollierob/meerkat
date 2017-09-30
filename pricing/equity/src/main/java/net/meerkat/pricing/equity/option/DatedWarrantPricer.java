@@ -1,10 +1,9 @@
 package net.meerkat.pricing.equity.option;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Map;
 
-import net.meerkat.Explainable;
+import net.meerkat.Explainable.ExplanationBuilder;
 import net.meerkat.Explained;
 import net.meerkat.calculate.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
@@ -14,6 +13,8 @@ import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.equity.StockPricer;
+import net.ollie.goat.suppliers.lazy.Lazy;
+import net.ollie.goat.temporal.date.years.Years;
 
 /**
  *
@@ -50,12 +51,15 @@ public class DatedWarrantPricer implements WarrantPricer<LocalDate> {
     protected <C extends CurrencyId> Explained<Money<C>> intrinsicValue(final C currencyId, final LocalDate date, final Warrant warrant, final ExchangeRates fxRates) {
         final Price.Valued<C> stockPrice = this.stockPrice(currencyId, date, warrant);
         final Money<C> exercisePrice = this.exercisePrice(currencyId, warrant, fxRates);
-        final Money<C> intrinsic = stockPrice.value().minus(exercisePrice).times(warrant.contractMultiplier());
-        return new Explained<>(intrinsic, new Explainable.ExplanationBuilder().put("stock price", stockPrice).put("exercise price", exercisePrice));
+        final Money<C> intrinsic = stockPrice.value().minus(exercisePrice).times(warrant.exercise().contractMultiplier());
+        return new Explained<>(intrinsic, new ExplanationBuilder().put("stock price", stockPrice).put("exercise price", exercisePrice));
     }
 
     protected <C extends CurrencyId> Explained<Money<C>> timeValue(final C currencyId, final LocalDate date, final Warrant warrant, final ExchangeRates fxRates) {
-        final Period timeToExpiration = warrant.exercise().timeToExpiration(date);
+        final Years toExpiration = warrant.exercise().yearsToExpiration(date);
+        if (!toExpiration.isPositive()) {
+            return new Explained<>(Money.zero(currencyId), new ExplanationBuilder().put("expiration", toExpiration));
+        }
         throw new UnsupportedOperationException(); //TODO
     }
 
@@ -78,8 +82,13 @@ public class DatedWarrantPricer implements WarrantPricer<LocalDate> {
             return currencyId;
         }
 
+        private final Lazy<Explained<Money<C>>> intrinsicValue = Lazy.loadOnce(() -> {
+            final DatedWarrantPrice<C> px = this;
+            return DatedWarrantPricer.this.intrinsicValue(px.currencyId, px.date, px.warrant, px.fxRates);
+        });
+
         Explained<Money<C>> explainedIntrinsicValue() {
-            return DatedWarrantPricer.this.intrinsicValue(currencyId, date, warrant, fxRates);
+            return intrinsicValue.get();
         }
 
         @Override
@@ -87,8 +96,13 @@ public class DatedWarrantPricer implements WarrantPricer<LocalDate> {
             return this.explainedIntrinsicValue().value();
         }
 
+        private final Lazy<Explained<Money<C>>> timeValue = Lazy.loadOnce(() -> {
+            final DatedWarrantPrice<C> px = this;
+            return DatedWarrantPricer.this.timeValue(px.currencyId, px.date, px.warrant, px.fxRates);
+        });
+
         Explained<Money<C>> explainedTimeValue() {
-            return DatedWarrantPricer.this.timeValue(currencyId, date, warrant, fxRates);
+            return timeValue.get();
         }
 
         @Override

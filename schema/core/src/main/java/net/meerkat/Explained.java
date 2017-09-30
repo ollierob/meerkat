@@ -11,7 +11,7 @@ public class Explained<T> implements Explainable {
 
     public Explained(final T value, final ExplanationBuilder explanation) {
         this.value = value;
-        this.explanation = explanation;
+        this.explanation = explanation.putIfAbsent("value", value);
     }
 
     public T value() {

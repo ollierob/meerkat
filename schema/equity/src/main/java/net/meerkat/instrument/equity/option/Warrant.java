@@ -11,6 +11,8 @@ import net.meerkat.money.Money;
 /**
  *
  * @author ollie
+ * @see
+ * <a href="http://deutsche-boerse.com/dbg-en/about-us/services/know-how/glossary/glossary-article/Warrant/2561996">Warrants</a>
  */
 public class Warrant
         extends AbstractOption<Stock>
@@ -25,9 +27,8 @@ public class Warrant
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
-            final Number contractMultiplier,
             final Stock underlying) {
-        super(name, identifiers, issuerId, exercise, premium, strike, contractMultiplier);
+        super(name, identifiers, issuerId, exercise, premium, strike);
         this.underlying = underlying;
     }
 
