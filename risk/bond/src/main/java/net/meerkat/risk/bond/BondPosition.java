@@ -4,28 +4,47 @@ import java.util.Optional;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
+import net.meerkat.position.PositionId;
 import net.meerkat.position.PositionWithQuantity;
+import net.meerkat.pricing.bond.BondPrice;
 
 /**
  *
  * @author ollie
  */
-public interface BondPosition extends PositionWithQuantity {
+public class BondPosition implements PositionWithQuantity {
+
+    private final long quantity;
+    private final PositionId positionId;
+
+    public BondPosition(long quantity, PositionId positionId) {
+        this.quantity = quantity;
+        this.positionId = positionId;
+    }
+
+    @Override
+    public Long quantity() {
+        return quantity;
+    }
+
+    @Override
+    public PositionId positionId() {
+        return positionId;
+    }
 
     @Override
     @Deprecated
-    default <C extends CurrencyId> Optional<Money<C>> value(final Price<C> price) {
+    public <C extends CurrencyId> Optional<Money<C>> value(final Price<C> price) {
         return price instanceof BondPrice
                 ? Optional.of(this.marketValue((BondPrice<C>) price))
                 : Optional.empty();
     }
 
     @Nonnull
-    default <C extends CurrencyId> Money<C> marketValue(@Nonnull final BondPrice<C> price) {
+    public <C extends CurrencyId> Money<C> marketValue(@Nonnull final BondPrice<C> price) {
         return price.marketValue(this.quantity());
     }
 
