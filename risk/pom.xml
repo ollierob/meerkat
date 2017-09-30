@@ -10,6 +10,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>framework</module>
-        <module>risk-bond</module>
+        <module>bond</module>
     </modules>
 </project>
