@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.equity.Equity;
 import net.meerkat.instrument.equity.EquityProvider;
-import net.meerkat.instrument.equity.UnknownEquityException;
+import net.meerkat.instrument.equity.exception.UnknownEquityException;
 
 /**
  *
