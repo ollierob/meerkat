@@ -9,13 +9,13 @@ import net.meerkat.money.Money;
  *
  * @author Ollie
  */
-public interface PriceShifts extends SecurityShifts {
+public interface PriceShifts extends InstrumentShifts {
 
     @Nonnull
     <C extends CurrencyId> Money<C> shift(@Nonnull Money<C> price);
 
     @Nonnull
-    static PriceShifts cast(final SecurityShifts shifts) {
+    static PriceShifts cast(final InstrumentShifts shifts) {
         return shifts instanceof PriceShifts
                 ? (PriceShifts) shifts
                 : shifts.as(PriceShifts.class).orElseGet(PriceShifts::none);

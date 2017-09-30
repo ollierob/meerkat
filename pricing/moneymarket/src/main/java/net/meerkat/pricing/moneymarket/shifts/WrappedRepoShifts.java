@@ -1,8 +1,8 @@
 package net.meerkat.pricing.moneymarket.shifts;
 
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.pricing.shifts.WrappedSecurityShifts;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -10,7 +10,7 @@ import net.meerkat.pricing.shifts.WrappedSecurityShifts;
  */
 public class WrappedRepoShifts extends WrappedSecurityShifts implements RepoShifts {
 
-    public WrappedRepoShifts(final SecurityShifts shifts) {
+    public WrappedRepoShifts(final InstrumentShifts shifts) {
         super(shifts);
     }
 

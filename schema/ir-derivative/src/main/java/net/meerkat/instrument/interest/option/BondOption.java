@@ -16,15 +16,14 @@ public class BondOption extends AbstractOption<Bond> {
     private final Bond underlying;
 
     public BondOption(
-            final String name, 
-            final InstrumentIds identifiers, 
+            final String name,
+            final InstrumentIds identifiers,
             final IssuerId issuerId,
-            final OptionExercise exercise, 
-            final Money<?> premium, 
-            final Money<?> strike, 
-            final Number contractMultiplier, 
+            final OptionExercise exercise,
+            final Money<?> premium,
+            final Money<?> strike,
             final Bond underlying) {
-        super(name, identifiers, issuerId, exercise, premium, strike, contractMultiplier);
+        super(name, identifiers, issuerId, exercise, premium, strike);
         this.underlying = underlying;
     }
 

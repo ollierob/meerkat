@@ -5,6 +5,8 @@ import javax.annotation.Nonnull;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
+import net.meerkat.pricing.ShiftablePrice;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -29,6 +31,13 @@ public interface WarrantPrice<C extends CurrencyId> extends Price.Valued<C> {
     @Override
     default EvaluatedWarrantPrice<C> evaluate() {
         return new EvaluatedWarrantPrice<>(this.intrinsicValue(), this.value());
+    }
+
+    interface Shiftable<C extends CurrencyId> extends WarrantPrice<C>, ShiftablePrice<C> {
+
+        @Override
+        WarrantPrice.Shiftable<C> shift(InstrumentShifts shifts);
+
     }
 
 }

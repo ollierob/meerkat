@@ -5,8 +5,10 @@ import java.util.Map;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.exception.InstrumentException;
+import net.meerkat.instrument.fx.forward.DeliverableFxForward;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.InstrumentPricer;
@@ -14,8 +16,7 @@ import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts.InterestRateShifter;
 import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.money.interest.InterestRates;
-import net.meerkat.instrument.fx.forward.DeliverableFxForward;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -33,7 +34,8 @@ public class FxForwardPricer<T> implements InstrumentPricer<LocalDate, Deliverab
     public <C extends CurrencyId> FxForwardPrice.Shiftable<C> price(
             final LocalDate date,
             final DeliverableFxForward<?, ?> forward,
-            final C currency)
+            final C currency,
+            final InstrumentShifts shifts)
             throws InstrumentException, InstrumentPriceException {
         throw new UnsupportedOperationException();
     }

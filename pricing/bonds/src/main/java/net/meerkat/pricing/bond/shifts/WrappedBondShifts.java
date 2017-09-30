@@ -3,8 +3,8 @@ package net.meerkat.pricing.bond.shifts;
 import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 import net.meerkat.pricing.shifts.PriceShifts;
-import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.pricing.shifts.WrappedSecurityShifts;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -12,7 +12,7 @@ import net.meerkat.pricing.shifts.WrappedSecurityShifts;
  */
 public class WrappedBondShifts extends WrappedSecurityShifts implements BondShifts {
 
-    public WrappedBondShifts(final SecurityShifts shifts) {
+    public WrappedBondShifts(final InstrumentShifts shifts) {
         super(shifts);
     }
 

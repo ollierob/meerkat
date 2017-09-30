@@ -5,10 +5,10 @@ import javax.annotation.Nonnull;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.pricing.shifts.PriceShifts;
-import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -35,7 +35,7 @@ public interface BondShifts extends PriceShifts, InterestRateShifts, ExchangeRat
         };
     }
 
-    static BondShifts cast(final SecurityShifts shifts) {
+    static BondShifts cast(final InstrumentShifts shifts) {
         return shifts instanceof BondShifts
                 ? ((BondShifts) shifts)
                 : new WrappedBondShifts(shifts);

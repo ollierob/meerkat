@@ -15,6 +15,7 @@ import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.equity.StockPricer;
 import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.goat.temporal.date.years.Years;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -31,10 +32,11 @@ public class DatedWarrantPricer implements WarrantPricer<LocalDate> {
     }
 
     @Override
-    public <C extends CurrencyId> WarrantPrice<C> price(
+    public <C extends CurrencyId> WarrantPrice.Shiftable<C> price(
             final LocalDate date,
             final Warrant warrant,
-            final C currency)
+            final C currency,
+            final InstrumentShifts shifts)
             throws InstrumentPriceException {
         final ExchangeRates fxRates = exchangeRates.get(date);
         return new DatedWarrantPrice<>(date, warrant, currency, fxRates);
@@ -63,7 +65,7 @@ public class DatedWarrantPricer implements WarrantPricer<LocalDate> {
         throw new UnsupportedOperationException(); //TODO
     }
 
-    private final class DatedWarrantPrice<C extends CurrencyId> implements WarrantPrice<C> {
+    private final class DatedWarrantPrice<C extends CurrencyId> implements WarrantPrice.Shiftable<C> {
 
         private final LocalDate date;
         private final Warrant warrant;
@@ -108,6 +110,11 @@ public class DatedWarrantPricer implements WarrantPricer<LocalDate> {
         @Override
         public Money<C> timeValue() {
             return this.explainedTimeValue().value();
+        }
+
+        @Override
+        public DatedWarrantPrice<C> shift(final InstrumentShifts shifts) {
+            throw new UnsupportedOperationException(); //TODO
         }
 
         @Override

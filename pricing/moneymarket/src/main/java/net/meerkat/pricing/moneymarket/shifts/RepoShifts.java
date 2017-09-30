@@ -1,8 +1,8 @@
 package net.meerkat.pricing.moneymarket.shifts;
 
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.pricing.shifts.SecurityShifts;
 import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -16,7 +16,7 @@ public interface RepoShifts extends ExchangeRateShifts {
         return NoRepoShifts.INSTANCE;
     }
 
-    static RepoShifts cast(final SecurityShifts shifts) {
+    static RepoShifts cast(final InstrumentShifts shifts) {
         return shifts instanceof RepoShifts
                 ? (RepoShifts) shifts
                 : new WrappedRepoShifts(shifts);

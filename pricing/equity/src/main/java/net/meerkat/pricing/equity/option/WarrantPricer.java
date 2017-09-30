@@ -4,6 +4,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.equity.option.Warrant;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.equity.EquityDerivativePricer;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -12,6 +13,6 @@ import net.meerkat.pricing.equity.EquityDerivativePricer;
 public interface WarrantPricer<T> extends EquityDerivativePricer<T, Warrant> {
 
     @Override
-    <C extends CurrencyId> WarrantPrice<C> price(T temporal, Warrant instrument, C currency) throws InstrumentPriceException;
+    <C extends CurrencyId> WarrantPrice.Shiftable<C> price(T temporal, Warrant instrument, C currency, InstrumentShifts shifts) throws InstrumentPriceException;
 
 }

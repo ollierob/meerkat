@@ -21,7 +21,7 @@ public class WrappedSecurityShifts implements PriceShifts, InterestRateShifts, E
     private final InterestRateShifts interestRateShifts;
     private final ExchangeRateShifts exchangeRateShifts;
 
-    public WrappedSecurityShifts(final SecurityShifts shifts) {
+    public WrappedSecurityShifts(final InstrumentShifts shifts) {
         this(PriceShifts.cast(shifts), InterestRateShifts.cast(shifts), ExchangeRateShifts.cast(shifts));
     }
 

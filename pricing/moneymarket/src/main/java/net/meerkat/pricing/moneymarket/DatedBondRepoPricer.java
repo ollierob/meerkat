@@ -1,7 +1,5 @@
 package net.meerkat.pricing.moneymarket;
 
-import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
-
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -17,7 +15,9 @@ import net.meerkat.money.Money;
 import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.pricing.bond.BondPriceException;
 import net.meerkat.pricing.bond.GenericBondPricer;
+import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
 import net.ollie.goat.suppliers.lazy.Lazy;
+import net.meerkat.pricing.shifts.InstrumentShifts;
 
 /**
  *
@@ -37,7 +37,8 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
     public <C extends CurrencyId> RepoPrice.Shiftable<C> price(
             final LocalDate date,
             final BondRepo<?> repo,
-            final C currency)
+            final C currency,
+            final InstrumentShifts shifts)
             throws BondPriceException {
         return new BondRepoPrice<>(date, repo, currency, RepoShifts.none());
     }
