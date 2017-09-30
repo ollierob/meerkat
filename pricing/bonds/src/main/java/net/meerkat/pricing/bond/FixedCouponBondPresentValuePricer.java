@@ -30,13 +30,13 @@ import net.ollie.goat.temporal.date.years.Years;
  *
  * @author ollie
  */
-public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, FixedCouponBond> {
+public class FixedCouponBondPresentValuePricer implements BondPricer<LocalDate, FixedCouponBond> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final DiscountRateProvider<LocalDate> discountRatesProvider;
     private final InterestRateInterpolator interestRateInterpolator;
 
-    public ZeroSpreadFixedCouponBondPricer(
+    public FixedCouponBondPresentValuePricer(
             final ExchangeRatesProvider<LocalDate> exchangeRatesProvider,
             final DiscountRateProvider<LocalDate> discountRatesProvider,
             final InterestRateInterpolator interestRateInterpolator) {
