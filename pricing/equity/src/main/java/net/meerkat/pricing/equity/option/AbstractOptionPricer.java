@@ -1,7 +1,5 @@
 package net.meerkat.pricing.equity.option;
 
-import net.meerkat.pricing.option.OptionPriceShifts;
-
 import java.util.Map;
 
 import net.meerkat.Explainable.ExplanationBuilder;
@@ -14,6 +12,8 @@ import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.option.OptionPrice;
+import net.meerkat.pricing.option.OptionPriceShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 import net.ollie.goat.suppliers.lazy.Lazy;
 
 /**
@@ -39,14 +39,14 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements Op
         return new PricedOption<>(date, option, currency, fxRates, shifts);
     }
 
-    protected abstract <C extends CurrencyId> Price.Valued<C> underlyingPrice(C currencyId, T date, O option, ExchangeRates fxRates);
+    protected abstract <C extends CurrencyId> Price.Valued<C> underlyingPrice(C currencyId, T date, O option, InstrumentPriceShifts underlyingShifts);
 
     protected <C extends CurrencyId> Money<C> exercisePrice(final C currencyId, final O option, final ExchangeRates fxRates) {
         return fxRates.convert(option.strike(), currencyId);
     }
 
-    protected <C extends CurrencyId> Explained<Money<C>> intrinsicValue(final C currencyId, final T date, final O option, final ExchangeRates fxRates) {
-        final Price.Valued<C> stockPrice = this.underlyingPrice(currencyId, date, option, fxRates);
+    protected <C extends CurrencyId> Explained<Money<C>> intrinsicValue(final C currencyId, final T date, final O option, final ExchangeRates fxRates, final OptionPriceShifts optionShifts) {
+        final Price.Valued<C> stockPrice = this.underlyingPrice(currencyId, date, option, optionShifts.underlyingShifts());
         final Money<C> exercisePrice = this.exercisePrice(currencyId, option, fxRates);
         final Money<C> intrinsic = stockPrice.value().minus(exercisePrice).times(option.exercise().contractMultiplier());
         return new Explained<>(intrinsic, new ExplanationBuilder().put("underlying price", stockPrice).put("exercise price", exercisePrice));
@@ -77,7 +77,7 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements Op
 
         private final Lazy<Explained<Money<C>>> intrinsicValue = Lazy.loadOnce(() -> {
             final PricedOption<C> px = this;
-            return AbstractOptionPricer.this.intrinsicValue(px.currencyId, px.date, px.option, px.fxRates);
+            return AbstractOptionPricer.this.intrinsicValue(px.currencyId, px.date, px.option, px.fxRates, px.shifts);
         });
 
         Explained<Money<C>> explainedIntrinsicValue() {

@@ -11,6 +11,7 @@ import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.equity.StockPricer;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 import net.ollie.goat.temporal.date.years.Years;
 
 /**
@@ -22,14 +23,13 @@ public class DatedWarrantPricer extends AbstractOptionPricer<LocalDate, Warrant>
     private final StockPricer<LocalDate> stockPricer;
 
     public DatedWarrantPricer(final StockPricer<LocalDate> stockPricer, final ExchangeRatesProvider<LocalDate> exchangeRates) {
-        super(exchangeRates);;
+        super(exchangeRates);
         this.stockPricer = stockPricer;
     }
 
     @Override
-    protected <C extends CurrencyId> Price.Valued<C> underlyingPrice(final C currencyId, final LocalDate date, final Warrant warrant, final ExchangeRates fxRates) {
-        //TODO use FX rates
-        return stockPricer.price(date, warrant.underlying(), currencyId);
+    protected <C extends CurrencyId> Price.Valued<C> underlyingPrice(final C currencyId, final LocalDate date, final Warrant warrant, final InstrumentPriceShifts stockShifts) {
+        return stockPricer.price(date, warrant.underlying(), currencyId, stockShifts);
     }
 
     @Override
