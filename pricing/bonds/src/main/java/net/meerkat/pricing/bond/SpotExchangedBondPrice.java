@@ -1,14 +1,9 @@
 package net.meerkat.pricing.bond;
 
-import net.meerkat.pricing.bond.shifts.BondShifts;
-
-import java.time.LocalDate;
-
-import net.coljate.list.List;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
@@ -34,11 +29,6 @@ public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
     @Override
     public Money<C> clean() {
         return rate.convert(bondPrice.clean());
-    }
-
-    @Override
-    public List<CashPayment<C>> cleanFlow(final LocalDate start, final LocalDate end) {
-        throw new UnsupportedOperationException("Not supported yet."); //TODO
     }
 
     @Override

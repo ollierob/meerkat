@@ -5,14 +5,12 @@ import java.util.function.BiFunction;
 
 import javax.annotation.Nonnull;
 
-import net.coljate.list.List;
-import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.coupon.FixedCoupon;
-import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
+import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.pricing.bond.shifts.BondShifts;
@@ -113,17 +111,6 @@ public class DatedPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
 
         private InterestRate shiftedDiscountRate() {
             return this.shift(discountRate, shifts);
-        }
-
-        @Override
-        public List<CashPayment<C>> cleanFlow(final LocalDate start, final LocalDate end) {
-            final InterestRate discountRate = PerpetualBondPrice.this.shiftedDiscountRate();
-            final List<FixedCoupon<?>> coupons = bond.coupons().between(start, end);
-            return coupons.transform(coupon -> {
-                final Money<C> couponAmount = this.shift(coupon.paymentAmount());
-                final Money<C> discountedAmount = discountRate.discount(couponAmount, date, coupon.paymentDate(), interestRateInterpolator);
-                return CashPayment.of(coupon.paymentDate(), discountedAmount);
-            });
         }
 
         private final Lazy<Money<C>> accruedInterest = Lazy.loadOnceNonNull(this::calculateAccuredInterest);

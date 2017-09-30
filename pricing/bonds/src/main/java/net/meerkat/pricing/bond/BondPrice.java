@@ -1,23 +1,18 @@
 package net.meerkat.pricing.bond;
 
-import java.time.LocalDate;
-
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.coljate.list.List;
 import net.meerkat.Explainable.ExplanationBuilder;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.ShiftablePrice;
 import net.meerkat.pricing.bond.shifts.BondShifts;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 import net.meerkat.sensitivity.bond.BondSensitivities;
 import net.ollie.goat.numeric.percentage.FractionalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.interim.CompleteInterval;
-import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
  *
@@ -91,13 +86,6 @@ public interface BondPrice<C extends CurrencyId>
 
         @CheckReturnValue
         BondPrice.Shiftable<C> shift(BondShifts shifts);
-
-        @Nonnull
-        default List<CashPayment<C>> cleanFlow(final CompleteInterval interval) {
-            return this.cleanFlow(interval.startInclusive(), interval.endExclusive());
-        }
-
-        List<CashPayment<C>> cleanFlow(LocalDate starInclusive, LocalDate endExclusive);
 
     }
 

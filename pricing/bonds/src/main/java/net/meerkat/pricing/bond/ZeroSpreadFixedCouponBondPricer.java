@@ -5,6 +5,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import net.coljate.list.List;
+import net.meerkat.Explained;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FixedCouponBond.FixedCouponBondCoupons;
@@ -21,6 +22,7 @@ import net.meerkat.money.interest.exception.InterestRateException;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.suppliers.lazy.Lazy;
 import net.ollie.goat.temporal.date.years.Years;
 
 /**
@@ -121,32 +123,34 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
             return this.parFxRate().convert(par.paymentAmount());
         }
 
-        @Override
-        public Money<C> clean() {
-            final InterestRate discountRate = this.discountRate();
-            final Money<C> presentParValue = this.presentParValue(discountRate);
-            return this.cleanFlow(valuationDate, this.maturity(), discountRate)
-                    .values()
-                    .stream()
-                    .reduce(presentParValue, Money::plus);
-        }
+        private final Lazy<Explained<Money<C>>> clean = Lazy.loadOnce(() -> {
+            final ZeroSpreadFixedCouponBondPrice<?, ?, C> price = this;
+            final InterestRate discountRate = price.discountRate();
+            final Money<C> presentParValue = price.presentParValue(discountRate);
+            final SortedMap<LocalDate, Money<C>> cleanFlow = price.cleanFlow(discountRate);
+            return new Explained<>(
+                    cleanFlow.values().stream().reduce(presentParValue, Money::plus),
+                    new ExplanationBuilder().put("discount rate", discountRate));
+        });
 
         @Override
-        public List<CashPayment<C>> cleanFlow(final LocalDate startInclusive, final LocalDate endExclusive) {
-            final InterestRate discountRate = this.discountRate();
-            return this.cleanFlow(startInclusive, endExclusive, discountRate)
-                    .entrySet()
-                    .stream()
-                    .map(entry -> CashPayment.of(entry.getKey(), entry.getValue()))
-                    .collect(List.collector());
+        public Money<C> clean() {
+            return clean.get().value();
         }
+
+        private final Lazy<Explained<Money<C>>> accrued = Lazy.loadOnce(() -> {
+            final ZeroSpreadFixedCouponBondPrice<?, Z, C> price = this;
+            final FixedCoupon<Z> prior = price.coupons.prior(price.valuationDate);
+            final Years years = prior.accrual().yearsBetween(prior.paymentDate(), price.valuationDate);
+            final Money<C> couponAmount = this.couponFxRate().convert(prior.paymentAmount());
+            return new Explained<>(
+                    couponAmount.times(years.decimalValue()),
+                    new ExplanationBuilder().put("prior coupon", prior));
+        });
 
         @Override
         public Money<C> accruedInterest() {
-            final FixedCoupon<Z> prior = coupons.prior(valuationDate);
-            final Years years = prior.accrual().yearsBetween(valuationDate, valuationDate);
-            final Money<C> couponAmount = this.couponFxRate().convert(prior.paymentAmount());
-            return couponAmount.times(years.decimalValue());
+            return accrued.get().value();
         }
 
         @Override
@@ -175,9 +179,9 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
             return this.presentValue(this.par(), this.maturity(), discountRate);
         }
 
-        SortedMap<LocalDate, Money<C>> cleanFlow(LocalDate startInclusive, LocalDate endExclusive, InterestRate discountRate) {
+        SortedMap<LocalDate, Money<C>> cleanFlow(final InterestRate discountRate) {
             final ExchangeRate<Z, C> couponFxRates = this.couponFxRate();
-            final List<? extends FixedCoupon<Z>> coupons = this.coupons.between(startInclusive, endExclusive);
+            final List<? extends FixedCoupon<Z>> coupons = this.coupons.between(valuationDate, this.maturity());
             final SortedMap<LocalDate, Money<C>> flow = new TreeMap<>();
             for (final FixedCoupon<Z> coupon : coupons) {
                 final Money<C> money = couponFxRates.convert(coupon.paymentAmount());
@@ -189,6 +193,17 @@ public class ZeroSpreadFixedCouponBondPricer implements BondPricer<LocalDate, Fi
         @Override
         public Percentage yieldToMaturity() {
             throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public ExplanationBuilder explain() {
+            return this.explanationBuilder()
+                    .put("valuation date", valuationDate)
+                    .put("par", par)
+                    .put("coupons", coupons)
+                    .put("clean price", clean.get())
+                    .put("accrued interest", accrued.get())
+                    .put("dirty price", this.dirty());
         }
 
     }
