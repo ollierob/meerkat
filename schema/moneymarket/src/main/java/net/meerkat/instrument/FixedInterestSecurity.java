@@ -15,6 +15,13 @@ public interface FixedInterestSecurity extends Security, InstrumentDefinition {
     @Nonnull
     CashPayment<?> purchase();
 
+    @Override
+    default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
+        return handler instanceof FixedInterestSecurity.Handler
+                ? this.handleWith((FixedInterestSecurity.Handler<R>) handler)
+                : handler.handleUnknown(this);
+    }
+
     <R> R handleWith(Handler<R> handler);
 
     interface Handler<R> extends InstrumentDefinition.Handler<R> {

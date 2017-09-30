@@ -3,19 +3,33 @@ package net.meerkat.instrument.repo;
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.instrument.bond.BondProvider;
 import net.meerkat.instrument.bond.exception.UnknownBondException;
+import net.meerkat.instrument.cash.CashPayment;
+import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *
  * @author Ollie
  */
-public interface BondRepo<C extends CurrencyId> extends Repo<C> {
+public class BondRepo<C extends CurrencyId> extends AbstractRepo<C> {
+
+    public BondRepo(String name, InstrumentIds identifiers, IssuerId issuerId, CashPayment<C> purchase, RepoRepurchase repurchase, InstrumentId collateralId) {
+        super(name, identifiers, issuerId, purchase, repurchase, collateralId);
+    }
 
     @Nonnull
-    default Bond collateral(final BondProvider bondProvider) throws UnknownBondException {
+    public Bond collateral(final BondProvider bondProvider) throws UnknownBondException {
         return bondProvider.require(this.collateralId());
+    }
+
+    @Override
+    public <R> R handleWith(final Repo.Handler<R> handler) {
+        return handler.handle(this);
     }
 
 }

@@ -1,13 +1,12 @@
 package net.meerkat.instrument.repo;
 
-import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
-
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.instrument.FixedInterestSecurity;
 import net.meerkat.instrument.cash.CashPayment;
+import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
 
 /**
  *
