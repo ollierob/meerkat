@@ -1,7 +1,5 @@
 package net.meerkat.pricing.bond;
 
-import net.meerkat.pricing.bond.shifts.BondShifts;
-
 import java.time.temporal.Temporal;
 
 import net.meerkat.identifier.currency.CurrencyId;
@@ -10,6 +8,7 @@ import net.meerkat.instrument.bond.FixedCouponBond;
 import net.meerkat.instrument.bond.FloatingRateNote;
 import net.meerkat.instrument.bond.PerpetualBond;
 import net.meerkat.instrument.bond.VariableRateBond;
+import net.meerkat.pricing.bond.shifts.BondShifts;
 
 /**
  *
@@ -17,18 +16,18 @@ import net.meerkat.instrument.bond.VariableRateBond;
  */
 public class AnyTypeBondPricer<T extends Temporal> implements GenericBondPricer<T> {
 
-    private final BondPricer<T, PerpetualBond> perpetualPricer;
-    private final BondPricer<T, FixedCouponBond> fixedCouponPricer;
-    private final BondPricer<T, FloatingRateNote> floatingNotePricer;
-    private final BondPricer<T, ConvertibleBond> convertiblePricer;
-    private final BondPricer<T, VariableRateBond> variablePricer;
+    private final BondPricer<T, ? super PerpetualBond<?>> perpetualPricer;
+    private final BondPricer<T, ? super FixedCouponBond> fixedCouponPricer;
+    private final BondPricer<T, ? super FloatingRateNote> floatingNotePricer;
+    private final BondPricer<T, ? super ConvertibleBond> convertiblePricer;
+    private final BondPricer<T, ? super VariableRateBond> variablePricer;
 
     public AnyTypeBondPricer(
-            final BondPricer<T, PerpetualBond> perpetualPricer,
-            final BondPricer<T, FixedCouponBond> fixedCouponPricer,
-            final BondPricer<T, FloatingRateNote> floatingNotePricer,
-            final BondPricer<T, ConvertibleBond> convertiblePricer,
-            final BondPricer<T, VariableRateBond> variablePricer) {
+            final BondPricer<T, ? super PerpetualBond<?>> perpetualPricer,
+            final BondPricer<T, ? super FixedCouponBond> fixedCouponPricer,
+            final BondPricer<T, ? super FloatingRateNote> floatingNotePricer,
+            final BondPricer<T, ? super ConvertibleBond> convertiblePricer,
+            final BondPricer<T, ? super VariableRateBond> variablePricer) {
         this.perpetualPricer = perpetualPricer;
         this.fixedCouponPricer = fixedCouponPricer;
         this.floatingNotePricer = floatingNotePricer;
