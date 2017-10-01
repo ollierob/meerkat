@@ -49,10 +49,10 @@ public interface StraightBondValuationContext<C extends CurrencyId> extends HasC
     }
 
     @Nonnull
-    InterestRate discountRate();
+    InterestRate discountRate(CurrencyId currencyId);
 
     default Money<C> discount(final Money<?> money, final LocalDate paymentDate) {
-        final Money<?> moneyPv = this.discountRate().discount(money, this.valueDate(), paymentDate, this.interestRateInterpolator());
+        final Money<?> moneyPv = this.discountRate(money.currencyId()).discount(money, this.valueDate(), paymentDate, this.interestRateInterpolator());
         return this.convert(moneyPv);
     }
 

@@ -21,8 +21,10 @@ import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
 
 /**
+ * Computes the value of a {@link StraightBond} by summing the present value of all future coupons.
  *
  * @author ollie
+ * @see InterestRates#discountRate
  */
 public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate, StraightBond> {
 
@@ -145,7 +147,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         }
 
         @Override
-        public InterestRate discountRate() {
+        public InterestRate discountRate(final CurrencyId currencyId) {
             return shifts.shift(interestRates.discountRate(currencyId));
         }
 
