@@ -2,6 +2,7 @@ package net.meerkat.pricing.bond;
 
 import java.time.LocalDate;
 
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 import net.coljate.list.List;
@@ -37,10 +38,12 @@ public interface StraightBondValuationContext<C extends CurrencyId> extends HasC
         return this.bond().coupons().allAfter(this.valueDate());
     }
 
+    @CheckForNull
     default BondCoupon previousCoupon() {
         return this.bond().coupons().lastOnOrBefore(this.valueDate());
     }
 
+    @CheckForNull
     default BondCoupon currentCoupon() {
         return this.bond().coupons().nextOnOrAfter(this.valueDate());
     }
@@ -55,8 +58,8 @@ public interface StraightBondValuationContext<C extends CurrencyId> extends HasC
 
     InterestRateInterpolator interestRateInterpolator();
 
-    <F extends CurrencyId> Money<C> convert(Money<F> money);
+    <F extends CurrencyId> Money<C> convert(@Nonnull Money<F> money);
 
-    InterestRate interestRate(BondCoupon coupon);
+    InterestRate interestRate(@Nonnull BondCoupon coupon);
 
 }

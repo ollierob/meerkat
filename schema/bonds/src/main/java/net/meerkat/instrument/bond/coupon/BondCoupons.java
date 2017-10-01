@@ -62,10 +62,12 @@ public interface BondCoupons<C extends BondCoupon>
             return this.filter(coupon -> !coupon.paymentDate().isBefore(start));
         }
 
+        @CheckForNull
         default C nextAfter(final LocalDate date) {
             return this.filter(coupon -> coupon.paymentDate().isAfter(date)).minBy(BondCoupon.COMPARE_BY_DATE);
         }
 
+        @CheckForNull
         default C nextOnOrAfter(final LocalDate date) {
             return this.filter(coupon -> !coupon.paymentDate().isBefore(date)).minBy(BondCoupon.COMPARE_BY_DATE);
         }
