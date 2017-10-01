@@ -8,10 +8,9 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.interest.HasInterestRateId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
-import net.meerkat.money.interest.InterestRateOrId;
+import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.feature.RateFeature;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.money.interest.InterestRates;
 
 /**
  *
@@ -52,7 +51,8 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
     }
 
     @Override
-    public InterestRateOrId rate() {
+    @Deprecated
+    public InterestRateId rate() {
         return rateId;
     }
 

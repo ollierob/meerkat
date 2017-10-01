@@ -2,20 +2,13 @@ package net.meerkat.instrument.bond.coupon;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 /**
  *
  * @author ollie
  */
 public abstract class AbstractBondCoupon implements BondCoupon {
 
-    @XmlAttribute(name = "date")
-    private LocalDate paymentDate;
-
-    @Deprecated
-    protected AbstractBondCoupon() {
-    }
+    private final LocalDate paymentDate;
 
     protected AbstractBondCoupon(final LocalDate paymentDate) {
         this.paymentDate = paymentDate;

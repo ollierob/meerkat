@@ -26,8 +26,6 @@ public class FixedCouponBond
         extends StraightBond
         implements InterestRateInstrument {
 
-    private static final long serialVersionUID = 1L;
-
     private final FixedInterestRate couponRate;
     private final Money<?> couponAmount;
     private final List<LocalDate> couponDates;
