@@ -18,6 +18,7 @@ import net.meerkat.money.interest.InterestRatesProvider;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.ollie.goat.suppliers.lazy.Lazy;
 
 /**
  *
@@ -118,7 +119,8 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
 
     }
 
-    private final class PresentValuePrice<C extends CurrencyId> implements BondPrice.Shiftable<C>, StraightBondValuationContext<C> {
+    private final class PresentValuePrice<C extends CurrencyId>
+            implements BondPrice.Shiftable<C>, StraightBondValuationContext<C> {
 
         private final LocalDate valueDate;
         private final StraightBond bond;
@@ -185,9 +187,15 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
             return this.convert(bond.par());
         }
 
+        private final Lazy<Explained<Money<C>>> clean = Lazy.loadOnce(this::computeClean);
+
+        private Explained<Money<C>> computeClean() {
+            return DailyStraightBondPresentValuePricer.this.cleanValue(this);
+        }
+
         @Override
         public Money<C> clean() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return clean.get().value();
         }
 
         @Override
@@ -203,6 +211,12 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         @Override
         public Shiftable<C> shift(final BondShifts shifts) {
             throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public ExplanationBuilder explain() {
+            return Shiftable.super.explain()
+                    .put("clean", clean.get());
         }
 
     }
