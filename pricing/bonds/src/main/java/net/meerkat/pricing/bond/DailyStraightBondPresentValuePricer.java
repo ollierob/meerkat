@@ -3,18 +3,18 @@ package net.meerkat.pricing.bond;
 import java.time.LocalDate;
 import java.time.Period;
 
-import javax.annotation.Nonnull;
-
-import net.coljate.list.List;
 import net.meerkat.Explained;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.StraightBond;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRates;
+import net.meerkat.money.fx.ExchangeRatesProvider;
+import net.meerkat.money.fx.exception.ExchangeRateException;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.InterestRatesProvider;
+import net.meerkat.money.interest.exception.InterestRateException;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
@@ -28,29 +28,34 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
 
     private final InterestRateInterpolator interestRateInterpolator;
     private final InterestRatesProvider<LocalDate> interestRatesProvider;
+    private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
 
     public DailyStraightBondPresentValuePricer(
             final InterestRateInterpolator interestRateInterpolator,
-            final InterestRatesProvider<LocalDate> interestRatesProvider) {
+            final InterestRatesProvider<LocalDate> interestRatesProvider,
+            final ExchangeRatesProvider<LocalDate> exchangeRatesProvider) {
         this.interestRateInterpolator = interestRateInterpolator;
         this.interestRatesProvider = interestRatesProvider;
+        this.exchangeRatesProvider = exchangeRatesProvider;
     }
 
     @Override
     public <C extends CurrencyId> BondPrice.Shiftable<C> price(
-            final LocalDate date,
+            final LocalDate valueDate,
             final StraightBond bond,
             final C currency,
             final BondShifts shifts)
             throws BondPriceException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            final InterestRates interestRates = interestRatesProvider.require(valueDate);
+            final ExchangeRates exchangeRates = exchangeRatesProvider.require(valueDate);
+            return new PresentValuePrice<>(valueDate, bond, currency, interestRates, exchangeRates, shifts);
+        } catch (final InterestRateException | ExchangeRateException ex) {
+            throw new BondPriceException(ex);
+        }
     }
 
-    protected InterestRate discountRate(final LocalDate valueDate, final CurrencyId currency) {
-        throw new UnsupportedOperationException();
-    }
-
-    protected <C extends CurrencyId> Explained<Money<C>> cleanValue(final StraightBondValuationContext<C> context) {
+    protected <C extends CurrencyId> Explained<Money<C>> explainCleanValue(final StraightBondValuationContext<C> context) {
         final Money<C> parPv = this.presentParValue(context);
         final Money<C> couponPv = this.presentCouponsValue(context);
         final Money<C> total = couponPv.plus(parPv);
@@ -87,36 +92,16 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         return context.convert(accrued);
     }
 
-    protected interface StraightBondValuationContext<C extends CurrencyId> {
-
-        C currencyId();
-
-        LocalDate valueDate();
-
-        StraightBond bond();
-
-        default Money<?> par() {
-            return this.bond().par();
+    protected <C extends CurrencyId> Explained<Money<C>> explainAccruedInterest(final StraightBondValuationContext<C> context) {
+        final BondCoupon currentCoupon = context.currentCoupon();
+        if (currentCoupon == null) {
+            return new Explained<>(Money.zero(context.currencyId()), ex -> ex.put("current coupon", null));
         }
-
-        default List<? extends BondCoupon> unpaidCoupons() {
-            return this.bond().coupons().onOrAfter(this.valueDate());
-        }
-
-        @Nonnull
-        InterestRate discountRate();
-
-        default Money<C> discount(final Money<?> money, final LocalDate paymentDate) {
-            final Money<?> moneyPv = this.discountRate().discount(money, this.valueDate(), paymentDate, this.interestRateInterpolator());
-            return this.convert(moneyPv);
-        }
-
-        InterestRateInterpolator interestRateInterpolator();
-
-        <F extends CurrencyId> Money<C> convert(Money<F> money);
-
-        InterestRate interestRate(BondCoupon coupon);
-
+        final InterestRate couponRate = context.interestRate(currentCoupon);
+        final Money<?> accrued = couponRate.accrue(context.par(), context.valueDate(), currentCoupon.paymentDate(), context.interestRateInterpolator());
+        return new Explained<>(
+                context.convert(accrued),
+                ex -> ex.put("current coupon", currentCoupon).put("coupon rate", couponRate));
     }
 
     private final class PresentValuePrice<C extends CurrencyId>
@@ -126,7 +111,6 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         private final StraightBond bond;
         private final C currencyId;
         private final BondShifts shifts;
-        private final InterestRate discountRate;
         private final InterestRates interestRates;
         private final ExchangeRates fxRates;
 
@@ -134,15 +118,13 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
                 final LocalDate valueDate,
                 final StraightBond bond,
                 final C currencyId,
-                final BondShifts shifts,
-                final InterestRate discountRate,
                 final InterestRates interestRates,
-                final ExchangeRates fxRates) {
+                final ExchangeRates fxRates,
+                final BondShifts shifts) {
             this.valueDate = valueDate;
             this.bond = bond;
             this.currencyId = currencyId;
             this.shifts = shifts;
-            this.discountRate = discountRate;
             this.interestRates = interestRates;
             this.fxRates = fxRates;
         }
@@ -164,7 +146,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
 
         @Override
         public InterestRate discountRate() {
-            return shifts.shift(discountRate);
+            return shifts.shift(interestRates.discountRate(currencyId));
         }
 
         @Override
@@ -187,20 +169,23 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
             return this.convert(bond.par());
         }
 
-        private final Lazy<Explained<Money<C>>> clean = Lazy.loadOnce(this::computeClean);
-
-        private Explained<Money<C>> computeClean() {
-            return DailyStraightBondPresentValuePricer.this.cleanValue(this);
-        }
+        private final Lazy<Explained<Money<C>>> clean = Lazy.loadOnce(() -> explainCleanValue(this));
 
         @Override
         public Money<C> clean() {
             return clean.get().value();
         }
 
+        private final Lazy<Explained<Money<C>>> accrued = Lazy.loadOnce(() -> explainAccruedInterest(this));
+
+        @Override
+        public Money<C> accruedInterest() {
+            return accrued.get().value();
+        }
+
         @Override
         public Money<C> dirty() {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return this.clean().plus(this.accruedInterest());
         }
 
         @Override
@@ -210,13 +195,14 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
 
         @Override
         public Shiftable<C> shift(final BondShifts shifts) {
-            throw new UnsupportedOperationException("Not supported yet.");
+            return new PresentValuePrice<>(valueDate, bond, currencyId, interestRates, fxRates, shifts);
         }
 
         @Override
         public ExplanationBuilder explain() {
             return Shiftable.super.explain()
-                    .put("clean", clean.get());
+                    .put("clean", clean.get())
+                    .put("accrued", accrued.get());
         }
 
     }

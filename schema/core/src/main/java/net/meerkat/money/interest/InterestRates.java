@@ -1,5 +1,6 @@
 package net.meerkat.money.interest;
 
+import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.interest.exception.UnknownInterestRateException;
 import net.ollie.goat.data.Provider;
 
@@ -13,5 +14,7 @@ public interface InterestRates extends Provider<InterestRateId, InterestRate> {
     default InterestRate require(final InterestRateId key) throws UnknownInterestRateException {
         return this.require(key, UnknownInterestRateException::new);
     }
+
+    InterestRate discountRate(CurrencyId currencyId);
 
 }

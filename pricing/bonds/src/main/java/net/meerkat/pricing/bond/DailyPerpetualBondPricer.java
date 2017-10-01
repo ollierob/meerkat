@@ -127,7 +127,7 @@ public class DailyPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
 
         @Nonnull
         private Money<C> calculateAccuredInterest() {
-            final FixedCoupon<?> priorCoupon = bond.coupons().prior(date);
+            final FixedCoupon<?> priorCoupon = bond.coupons().lastOnOrBefore(date);
             final Money<C> priorAmount = this.shiftedCoupon();
             return this.shiftedDiscountRate().accrue(priorAmount, priorCoupon.paymentDate(), date, interestRateInterpolator).minus(priorAmount);
         }

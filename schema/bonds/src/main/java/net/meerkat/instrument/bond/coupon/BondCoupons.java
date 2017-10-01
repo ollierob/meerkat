@@ -18,7 +18,7 @@ public interface BondCoupons<C extends BondCoupon>
         extends Associative<LocalDate, C>, HasCurrencyId {
 
     @Nonnull
-    List<C> between(LocalDate startInclusive, LocalDate endExclusive);
+    List<C> allBetween(LocalDate startInclusive, LocalDate endExclusive);
 
     @Nonnull
     BondCoupons<C> onOrAfter(LocalDate start);
@@ -29,7 +29,7 @@ public interface BondCoupons<C extends BondCoupon>
     boolean hasFloatingRateCoupon();
 
     @CheckForNull
-    C prior(LocalDate current);
+    C lastOnOrBefore(LocalDate current);
 
     boolean isFinite();
 
@@ -49,8 +49,12 @@ public interface BondCoupons<C extends BondCoupon>
         }
 
         @Override
-        default Finite<C> between(final LocalDate startInclusive, final LocalDate endExclusive) {
+        default Finite<C> allBetween(final LocalDate startInclusive, final LocalDate endExclusive) {
             return this.onOrAfter(startInclusive).filter(coupon -> coupon.paymentDate().isBefore(endExclusive));
+        }
+
+        default Finite<C> allAfter(final LocalDate date) {
+            return this.filter(coupon -> coupon.paymentDate().isAfter(date));
         }
 
         @Override
@@ -58,16 +62,17 @@ public interface BondCoupons<C extends BondCoupon>
             return this.filter(coupon -> !coupon.paymentDate().isBefore(start));
         }
 
+        default C nextAfter(final LocalDate date) {
+            return this.filter(coupon -> coupon.paymentDate().isAfter(date)).minBy(BondCoupon.COMPARE_BY_DATE);
+        }
+
+        default C nextOnOrAfter(final LocalDate date) {
+            return this.filter(coupon -> !coupon.paymentDate().isBefore(date)).minBy(BondCoupon.COMPARE_BY_DATE);
+        }
+
         @Override
-        default C prior(final LocalDate current) {
-            C previous = null;
-            for (final C coupon : this) {
-                if (coupon.paymentDate().isAfter(current)) {
-                    return previous;
-                }
-                previous = coupon;
-            }
-            return null;
+        default C lastOnOrBefore(final LocalDate date) {
+            return this.filter(coupon -> !coupon.paymentDate().isAfter(date)).maxBy(BondCoupon.COMPARE_BY_DATE);
         }
 
         @Override

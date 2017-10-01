@@ -47,14 +47,16 @@ public interface Explainable {
         @Override
         public ExplanationBuilder put(final String key, final Object value) {
             final Object newValue;
-            if (value instanceof Explainable) {
+            if (value == null) {
+                newValue = null;
+            } else if (value instanceof Explainable) {
                 newValue = ((Explainable) value).explain();
             } else if (value instanceof Optional) {
                 newValue = ((Optional<?>) value).orElse(null);
-            } else if (value != null && value.getClass().isArray()) {
+            } else if (value.getClass().isArray()) {
                 newValue = Arrays.toString(value);
             } else {
-                newValue = value == null ? null : value.toString();
+                newValue = value.toString();
             }
             explanation.put(key, newValue);
             return this;

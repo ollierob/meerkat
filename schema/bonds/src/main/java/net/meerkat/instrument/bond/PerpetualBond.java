@@ -93,7 +93,7 @@ public class PerpetualBond<C extends CurrencyId> extends AbstractBond {
         }
 
         @Override
-        public FixedCoupon<?> prior(final LocalDate current) {
+        public FixedCoupon<?> lastOnOrBefore(final LocalDate current) {
             throw new UnsupportedOperationException(); //TODO
         }
 
@@ -123,7 +123,7 @@ public class PerpetualBond<C extends CurrencyId> extends AbstractBond {
         }
 
         @Override
-        public List<FixedCoupon<?>> between(LocalDate startInclusive, LocalDate endExclusive) {
+        public List<FixedCoupon<?>> allBetween(LocalDate startInclusive, LocalDate endExclusive) {
             throw new UnsupportedOperationException(); //TODO
         }
 
