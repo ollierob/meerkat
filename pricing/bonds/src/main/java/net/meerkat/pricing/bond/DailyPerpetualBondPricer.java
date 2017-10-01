@@ -22,13 +22,13 @@ import net.ollie.goat.suppliers.lazy.Lazy;
  *
  * @author Ollie
  */
-public class DatedPerpetualBondPricer implements BondPricer<LocalDate, PerpetualBond<?>> {
+public class DailyPerpetualBondPricer implements BondPricer<LocalDate, PerpetualBond<?>> {
 
     private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
     private final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates;
     private final InterestRateInterpolator interestRateInterpolator;
 
-    public DatedPerpetualBondPricer(
+    public DailyPerpetualBondPricer(
             final ExchangeRatesProvider<LocalDate> getExchangeRates,
             final BiFunction<? super LocalDate, ? super CurrencyId, ? extends InterestRate> getDiscountRates,
             final InterestRateInterpolator interestRateInterpolator) {

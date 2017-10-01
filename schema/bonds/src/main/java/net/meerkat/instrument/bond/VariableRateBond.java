@@ -1,5 +1,6 @@
 package net.meerkat.instrument.bond;
 
+import java.time.Period;
 import java.util.function.Predicate;
 
 import net.coljate.list.List;
@@ -20,8 +21,7 @@ import net.ollie.goat.collection.Iterables;
  */
 public class VariableRateBond extends StraightBond {
 
-    private static final long serialVersionUID = 1L;
-
+    private final Period couponFrequency;
     private final List<BondCoupon> coupons;
 
     public VariableRateBond(
@@ -31,15 +31,17 @@ public class VariableRateBond extends StraightBond {
             final MaturingBondDates dates,
             final BondCall call,
             final IssuerId issuer,
+            final Period couponFrequency,
             final List<BondCoupon> coupons) {
         super(name, identifiers, par, dates, call, issuer);
+        this.couponFrequency = couponFrequency;
         this.coupons = coupons;
     }
 
     @Override
     public StraightBondCoupons<?> coupons() {
         final CurrencyId commonCurrency = Iterables.requireCommonElement(coupons, BondCoupon::currencyId);
-        return new VariableRateBondCoupons<>(commonCurrency);
+        return new VariableRateBondCoupons<>(couponFrequency, commonCurrency);
     }
 
     @Override
@@ -57,7 +59,8 @@ public class VariableRateBond extends StraightBond {
 
         private final C commonCurrency;
 
-        VariableRateBondCoupons(final C commonCurrency) {
+        VariableRateBondCoupons(final Period frequency, final C commonCurrency) {
+            super(frequency);
             this.commonCurrency = commonCurrency;
         }
 

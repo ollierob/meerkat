@@ -1,5 +1,7 @@
 package net.meerkat.instrument.bond;
 
+import java.time.Period;
+
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
@@ -36,6 +38,16 @@ public abstract class StraightBond extends AbstractBond {
     }
 
     public abstract class StraightBondCoupons<C extends BondCoupon> implements BondCoupons.Finite<C> {
+
+        private final Period period;
+
+        protected StraightBondCoupons(final Period period) {
+            this.period = period;
+        }
+
+        public Period frequency() {
+            return period;
+        }
 
     }
 

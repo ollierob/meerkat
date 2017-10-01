@@ -2,7 +2,6 @@ package net.meerkat.pricing.equity.option;
 
 import java.util.Map;
 
-import net.meerkat.Explainable.ExplanationBuilder;
 import net.meerkat.Explained;
 import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
@@ -49,7 +48,7 @@ public abstract class AbstractOptionPricer<T, O extends Option<?>> implements Op
         final Price.Valued<C> stockPrice = this.underlyingPrice(currencyId, date, option, optionShifts.underlyingShifts());
         final Money<C> exercisePrice = this.exercisePrice(currencyId, option, fxRates);
         final Money<C> intrinsic = stockPrice.value().minus(exercisePrice).times(option.exercise().contractMultiplier());
-        return new Explained<>(intrinsic, new ExplanationBuilder().put("underlying price", stockPrice).put("exercise price", exercisePrice));
+        return new Explained<>(intrinsic, ex -> ex.put("underlying price", stockPrice).put("exercise price", exercisePrice));
     }
 
     protected abstract <C extends CurrencyId> Explained<Money<C>> extrinsicValue(

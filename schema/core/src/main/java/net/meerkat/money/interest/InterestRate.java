@@ -30,6 +30,9 @@ public interface InterestRate extends InterestRateOrId {
         return this.accrue(money, interval.first(), interval.last(), interpolator);
     }
 
+    /**
+     * @return the amount of interest accrued.
+     */
     @Nonnull
     default <C extends CurrencyId> Money<C> accrued(final Money<C> money, final LocalDate earlier, final LocalDate later, final InterestRateInterpolator interpolator) {
         return this.accrue(money, earlier, later, interpolator).minus(money);

@@ -53,8 +53,7 @@ public class BondPriceShiftingSensitivityCalculator<T extends Temporal>
             final Money<USD> difference = shiftedPrice.dirty().minus(price.dirty());
             return new Explained<>(
                     new DollarDuration(difference),
-                    new ExplanationBuilder()
-                            .put("base price", price)
+                    ex -> ex.put("base price", price)
                             .put("shifted price", shiftedPrice)
                             .put("difference", difference));
         }

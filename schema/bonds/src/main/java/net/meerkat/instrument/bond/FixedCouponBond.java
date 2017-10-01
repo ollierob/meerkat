@@ -1,6 +1,7 @@
 package net.meerkat.instrument.bond;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.function.Predicate;
 
 import javax.annotation.Nonnull;
@@ -28,6 +29,7 @@ public class FixedCouponBond
 
     private final FixedInterestRate couponRate;
     private final Money<?> couponAmount;
+    private final Period couponFrequency;
     private final List<LocalDate> couponDates;
 
     public FixedCouponBond(
@@ -37,12 +39,14 @@ public class FixedCouponBond
             final MaturingBondDates dates,
             final Money<?> couponAmount,
             final FixedInterestRate couponRate,
+            final Period couponFrequency,
             final List<LocalDate> couponDates,
             final BondCall call,
             final IssuerId issuer) {
         super(name, identifiers, par, dates, call, issuer);
         this.couponRate = couponRate;
         this.couponAmount = couponAmount;
+        this.couponFrequency = couponFrequency;
         this.couponDates = couponDates;
     }
 
@@ -71,7 +75,7 @@ public class FixedCouponBond
 
     @Override
     public FixedCouponBondCoupons<?> coupons() {
-        return new FixedCouponBondCoupons<>(couponAmount);
+        return new FixedCouponBondCoupons<>(couponFrequency, couponAmount, coupon -> true);
     }
 
     @Override
@@ -82,9 +86,15 @@ public class FixedCouponBond
     public class FixedCouponBondCoupons<C extends CurrencyId> extends StraightBondCoupons<FixedCoupon<C>> {
 
         private final Money<C> couponAmount;
+        private final Predicate<? super FixedCoupon<?>> predicate;
 
-        FixedCouponBondCoupons(final Money<C> couponAmount) {
+        FixedCouponBondCoupons(
+                final Period frequency,
+                final Money<C> couponAmount,
+                final Predicate<? super FixedCoupon<?>> predicate) {
+            super(frequency);
             this.couponAmount = couponAmount;
+            this.predicate = predicate;
         }
 
         @Override
@@ -94,17 +104,21 @@ public class FixedCouponBond
 
         @Override
         public FixedCouponBondCoupons<C> filter(final Predicate<? super FixedCoupon<C>> predicate) {
-            throw new UnsupportedOperationException(); //TODO
+            return new FixedCouponBondCoupons<>(this.frequency(), couponAmount, this.predicate.and((Predicate) predicate));
         }
 
         @Override
         public ListIterator<FixedCoupon<C>> iterator() {
-            throw new UnsupportedOperationException(); //TODO
+            return couponDates.transform(this::coupon).iterator();
         }
 
         @Override
         public FixedCoupon<C> last() {
-            throw new UnsupportedOperationException(); //TODO
+            return this.coupon(couponDates.last());
+        }
+
+        private FixedCoupon<C> coupon(final LocalDate date) {
+            return new FixedCoupon<>(date, couponAmount, couponRate);
         }
 
     }

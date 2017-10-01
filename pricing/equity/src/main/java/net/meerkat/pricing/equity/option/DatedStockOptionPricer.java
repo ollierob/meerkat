@@ -2,7 +2,6 @@ package net.meerkat.pricing.equity.option;
 
 import java.time.LocalDate;
 
-import net.meerkat.Explainable.ExplanationBuilder;
 import net.meerkat.Explained;
 import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
@@ -46,7 +45,7 @@ public class DatedStockOptionPricer extends AbstractOptionPricer<LocalDate, Stoc
             final OptionPriceShifts optionShifts) {
         final Years toExpiration = option.exercise().yearsToExpiration(date);
         if (!toExpiration.isPositive()) {
-            return new Explained<>(Money.zero(currencyId), new ExplanationBuilder().put("expiration", toExpiration));
+            return new Explained<>(Money.zero(currencyId), ex -> ex.put("expiration", toExpiration));
         }
         throw new UnsupportedOperationException(); //TODO
     }

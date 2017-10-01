@@ -1,6 +1,7 @@
 package net.meerkat.instrument.bond;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.function.Predicate;
 
 import net.coljate.list.List;
@@ -28,23 +29,35 @@ public class FloatingRateNote extends StraightBond {
     private final CurrencyId couponCurrency;
     private final Percentage spread;
     private final InterestRateId referenceRate;
+    private final Period couponFrequency;
     private final List<LocalDate> couponDates;
     private final Set<? extends RateFeature> features;
 
     public FloatingRateNote(
-            final String name, InstrumentIds identifiers, Money<?> par, MaturingBondDates dates, BondCall call, IssuerId issuer,
-            CurrencyId couponCurrency, Percentage spread, InterestRateId referenceRate, List<LocalDate> couponDates, Set<? extends RateFeature> features) {
+            final String name,
+            final InstrumentIds identifiers,
+            final Money<?> par,
+            final MaturingBondDates dates,
+            final BondCall call,
+            final IssuerId issuer,
+            final CurrencyId couponCurrency,
+            final Percentage spread,
+            final InterestRateId referenceRate,
+            final Period couponFrequency,
+            final List<LocalDate> couponDates,
+            final Set<? extends RateFeature> features) {
         super(name, identifiers, par, dates, call, issuer);
         this.couponCurrency = couponCurrency;
         this.spread = spread;
         this.referenceRate = referenceRate;
+        this.couponFrequency = couponFrequency;
         this.couponDates = couponDates;
         this.features = features;
     }
 
     @Override
     public FloatingRateNoteCoupons<?> coupons() {
-        return new FloatingRateNoteCoupons<>(couponCurrency);
+        return new FloatingRateNoteCoupons<>(couponFrequency, couponCurrency);
     }
 
     @Override
@@ -57,7 +70,8 @@ public class FloatingRateNote extends StraightBond {
 
         private final C currency;
 
-        FloatingRateNoteCoupons(final C currency) {
+        FloatingRateNoteCoupons(final Period frequency, final C currency) {
+            super(frequency);
             this.currency = currency;
         }
 
