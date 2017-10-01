@@ -1,5 +1,7 @@
 package net.meerkat.money.interest;
 
+import javax.annotation.Nonnull;
+
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.interest.exception.UnknownInterestRateException;
 import net.ollie.goat.data.Provider;
@@ -15,6 +17,7 @@ public interface InterestRates extends Provider<InterestRateId, InterestRate> {
         return this.require(key, UnknownInterestRateException::new);
     }
 
+    @Nonnull
     InterestRate discountRate(CurrencyId currencyId);
 
 }
