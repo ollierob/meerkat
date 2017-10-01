@@ -2,15 +2,14 @@ package net.meerkat.instrument.bond.coupon;
 
 import java.time.LocalDate;
 import java.util.Map;
-
-import javax.annotation.Nonnull;
+import java.util.Optional;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.YearCount;
 
 /**
@@ -40,19 +39,21 @@ public class FixedCoupon<C extends CurrencyId>
         return amount;
     }
 
-    @Nonnull
-    public FixedInterestRate interestRate() {
-        return rate;
-    }
-
-    @Override
-    public Percentage spread() {
-        return Percentage.zero();
-    }
-
     @Override
     public FixedInterestRate rate() {
         return rate;
+    }
+
+    @Override
+    @Deprecated
+    public FixedInterestRate rate(final InterestRates provider) {
+        return rate;
+    }
+
+    @Override
+    @Deprecated
+    public Optional<Money<?>> couponValue() {
+        return Optional.of(amount);
     }
 
     public Money<?> accrue(final LocalDate to) {

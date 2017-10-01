@@ -1,10 +1,12 @@
 package net.meerkat.instrument.bond.coupon;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import net.coljate.collection.Collection;
 import net.coljate.set.Set;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.money.Money;
 import net.meerkat.money.interest.HasInterestRateId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
@@ -36,7 +38,6 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
         this.features = features;
     }
 
-    @Override
     public Percentage spread() {
         return spread;
     }
@@ -66,9 +67,14 @@ public class FloatingCoupon extends AbstractBondCoupon implements HasInterestRat
         final InterestRate rate = super.rate(provider);
         Percentage spread = this.spread();
         for (final RateFeature feature : this.features) {
-            spread = feature.apply(spread);
+            spread = feature.apply(spread); //TODO do we need to apply this to the rate itself rather than the spread?
         }
         return rate.plus(spread);
+    }
+
+    @Override
+    public Optional<Money<?>> couponValue() {
+        return Optional.empty();
     }
 
     @Override
