@@ -49,7 +49,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         try {
             final InterestRates interestRates = interestRatesProvider.require(valueDate);
             final ExchangeRates exchangeRates = exchangeRatesProvider.require(valueDate);
-            return new PresentValuePrice<>(valueDate, bond, currency, interestRates, exchangeRates, shifts);
+            return new StraightBondPrice<>(valueDate, bond, currency, interestRates, exchangeRates, shifts);
         } catch (final InterestRateException | ExchangeRateException ex) {
             throw new BondPriceException(ex);
         }
@@ -104,7 +104,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
                 ex -> ex.put("current coupon", currentCoupon).put("coupon rate", couponRate));
     }
 
-    private final class PresentValuePrice<C extends CurrencyId>
+    private final class StraightBondPrice<C extends CurrencyId>
             implements BondPrice.Shiftable<C>, StraightBondValuationContext<C> {
 
         private final LocalDate valueDate;
@@ -114,7 +114,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         private final InterestRates interestRates;
         private final ExchangeRates fxRates;
 
-        public PresentValuePrice(
+        StraightBondPrice(
                 final LocalDate valueDate,
                 final StraightBond bond,
                 final C currencyId,
@@ -195,7 +195,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
 
         @Override
         public Shiftable<C> shift(final BondShifts shifts) {
-            return new PresentValuePrice<>(valueDate, bond, currencyId, interestRates, fxRates, shifts);
+            return new StraightBondPrice<>(valueDate, bond, currencyId, interestRates, fxRates, shifts);
         }
 
         @Override
