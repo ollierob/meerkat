@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
@@ -65,6 +66,10 @@ public interface InterestRate extends InterestRateOrId {
     @Deprecated
     default InterestRate resolve(final InterestRates provider) {
         return this;
+    }
+
+    static InterestRate zero() {
+        return SimpleFixedInterestRate.ZERO_ACT_ACT;
     }
 
 }

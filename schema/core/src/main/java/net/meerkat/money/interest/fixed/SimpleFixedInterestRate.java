@@ -13,6 +13,8 @@ import net.ollie.goat.temporal.date.years.Years;
  * @author ollie
  */
 public class SimpleFixedInterestRate extends FixedInterestRate {
+    
+    public static final SimpleFixedInterestRate ZERO_ACT_ACT = new SimpleFixedInterestRate(Percentage.zero(), DateArithmetic.ACT_ACT);
 
     public SimpleFixedInterestRate(
             final Percentage rate,
