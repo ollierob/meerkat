@@ -15,11 +15,11 @@ import net.ollie.goat.temporal.date.years.Years;
  *
  * @author Ollie
  */
-public class DatedStockOptionPricer extends AbstractOptionPricer<LocalDate, StockOption> {
+public class DailyStockOptionPricer extends AbstractOptionPricer<LocalDate, StockOption> {
 
     private final StockPricer<LocalDate> stockPricer;
 
-    public DatedStockOptionPricer(final StockPricer<LocalDate> stockPricer, final ExchangeRatesProvider<LocalDate> exchangeRates) {
+    public DailyStockOptionPricer(final StockPricer<LocalDate> stockPricer, final ExchangeRatesProvider<LocalDate> exchangeRates) {
         super(exchangeRates);
         this.stockPricer = stockPricer;
     }

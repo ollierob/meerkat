@@ -8,7 +8,6 @@ import net.meerkat.instrument.equity.EquityDerivative;
  *
  * @author Ollie
  */
-public interface EquityOption<E extends Equity>
-        extends EquityDerivative<E>, Option<E> {
+public interface EquityOption<E extends Equity> extends EquityDerivative<E>, Option<E> {
 
 }
