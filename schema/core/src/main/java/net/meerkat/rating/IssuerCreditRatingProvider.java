@@ -1,5 +1,7 @@
 package net.meerkat.rating;
 
+import java.time.LocalDate;
+
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
@@ -13,13 +15,13 @@ import net.meerkat.issuer.IssuerId;
 public interface IssuerCreditRatingProvider extends CreditRatingProvider<IssuerId> {
 
     @CheckForNull
-    default CreditRating get(final HasIssuerId hasIssuerId) {
-        return this.get(hasIssuerId.issuerId());
+    default CreditRating get(final LocalDate date, final HasIssuerId hasIssuerId) {
+        return this.get(date, hasIssuerId.issuerId());
     }
 
     @Nonnull
-    default CreditRating require(final HasIssuerId hasIssuerId) throws UnavailableCreditRatingException {
-        return this.require(hasIssuerId.issuerId());
+    default CreditRating require(final LocalDate date, final HasIssuerId hasIssuerId) throws UnavailableCreditRatingException {
+        return this.require(date, hasIssuerId.issuerId());
     }
 
 }
