@@ -18,12 +18,12 @@ import net.meerkat.pricing.interest.shifts.InterestRateDerivativeShifts;
  *
  * @author Ollie
  */
-public class DatedInterestRateSwapPricer implements InterestRateSwapPricer<LocalDate> {
+public class DailyInterestRateSwapPricer implements InterestRateSwapPricer<LocalDate> {
 
     private final InterestRatesProvider<LocalDate> interestRatesProvider;
     private final ExchangeRatesProvider<LocalDate> fxRatesProvider;
 
-    public DatedInterestRateSwapPricer(final InterestRatesProvider<LocalDate> interestRatesProvider, final ExchangeRatesProvider<LocalDate> fxRatesProvider) {
+    public DailyInterestRateSwapPricer(final InterestRatesProvider<LocalDate> interestRatesProvider, final ExchangeRatesProvider<LocalDate> fxRatesProvider) {
         this.interestRatesProvider = interestRatesProvider;
         this.fxRatesProvider = fxRatesProvider;
     }
