@@ -30,12 +30,12 @@ public class BondPriceShiftingSensitivityCalculator<T extends Temporal>
     }
 
     @Override
-    public BondInstrumentSensitivities sensitivities(final T date, final Bond bond) {
+    public BondUnitPriceSensitivities sensitivities(final T date, final Bond bond) {
         final BondPrice.Shiftable<USD> price = pricer.price(date, bond, CurrencyIso.USD);
         return new BondSensitivitiesCalculation(date, bond, price);
     }
 
-    class BondSensitivitiesCalculation implements BondInstrumentSensitivities {
+    class BondSensitivitiesCalculation implements BondUnitPriceSensitivities {
 
         private final T date;
         private final Bond bond;

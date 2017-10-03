@@ -5,7 +5,6 @@ import java.util.function.Function;
 
 import net.coljate.map.ImmutableMap;
 import net.coljate.map.MutableMap;
-import net.meerkat.calculate.sensitivity.Sensitivities;
 import net.meerkat.calculate.sensitivity.Sensitivity;
 import net.meerkat.calculate.sensitivity.SensitivityId;
 import net.meerkat.calculate.sensitivity.greeks.Delta;
@@ -15,12 +14,13 @@ import net.meerkat.calculate.sensitivity.greeks.Rho;
 import net.meerkat.calculate.sensitivity.greeks.Theta;
 import net.meerkat.calculate.sensitivity.greeks.Vega;
 import net.meerkat.pricing.option.EvaluatedOptionPrice;
+import net.meerkat.calculate.sensitivity.PriceSensitivities;
 
 /**
  *
  * @author ollie
  */
-public interface EquityOptionSensitivities extends Sensitivities, HasGreeks {
+public interface EquityOptionSensitivities extends PriceSensitivities, HasGreeks {
 
     @Override
     EvaluatedOptionPrice<?> price();

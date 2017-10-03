@@ -10,6 +10,6 @@ import net.meerkat.instrument.bond.Bond;
 public interface BondSensitivityCalculator<T, B extends Bond> extends InstrumentSensitivityCalculator<T, B> {
 
     @Override
-    BondInstrumentSensitivities sensitivities(T temporal, B bond);
+    BondUnitPriceSensitivities sensitivities(T temporal, B bond);
 
 }

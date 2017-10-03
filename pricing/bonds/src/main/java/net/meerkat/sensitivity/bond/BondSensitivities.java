@@ -6,19 +6,19 @@ import java.util.function.Function;
 import javax.annotation.Nonnull;
 
 import net.coljate.map.ImmutableMap;
-import net.meerkat.calculate.sensitivity.Sensitivities;
 import net.meerkat.calculate.sensitivity.Sensitivity;
 import net.meerkat.calculate.sensitivity.SensitivityId;
 import net.meerkat.calculate.sensitivity.yield.DollarDuration;
 import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.pricing.bond.EvaluatedBondPrice;
+import net.meerkat.calculate.sensitivity.PriceSensitivities;
 
 /**
  *
  * @author Ollie
  * @see BondPrice
  */
-public interface BondSensitivities extends Sensitivities {
+public interface BondSensitivities extends PriceSensitivities {
 
     ImmutableMap<SensitivityId<?>, Function<BondSensitivities, Sensitivity>> SENSITIVITY_MAP = ImmutableMap.of(
             DollarDuration.ID, BondSensitivities::dollarDuration);

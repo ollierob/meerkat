@@ -2,20 +2,26 @@ package net.meerkat.risk.sensitivities;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.calculate.sensitivity.InstrumentSensitivities;
-import net.meerkat.calculate.sensitivity.Sensitivities;
+import net.meerkat.calculate.sensitivity.PriceSensitivities;
+import net.meerkat.calculate.sensitivity.UnitPriceSensitivities;
+import net.meerkat.money.price.Price;
 import net.meerkat.risk.position.Position;
 
 /**
  *
  * @author Ollie
  */
-public interface PositionSensitivities extends Sensitivities {
+public interface PositionSensitivities extends PriceSensitivities {
 
     @Nonnull
     Position position();
 
     @Nonnull
-    InstrumentSensitivities instrumentSensitivities();
+    UnitPriceSensitivities instrumentSensitivities();
+
+    @Override
+    default Price.Evaluated<?> price() {
+        return this.instrumentSensitivities().price();
+    }
 
 }

@@ -5,14 +5,14 @@ import java.util.Optional;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
-import net.meerkat.calculate.sensitivity.InstrumentSensitivities;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.risk.position.PositionId;
 import net.meerkat.risk.position.PositionWithQuantity;
-import net.meerkat.sensitivity.bond.BondInstrumentSensitivities;
+import net.meerkat.calculate.sensitivity.UnitPriceSensitivities;
+import net.meerkat.sensitivity.bond.BondUnitPriceSensitivities;
 
 /**
  *
@@ -52,15 +52,15 @@ public class BondPosition implements PositionWithQuantity {
     }
 
     @Override
-    public Optional<? extends BondPositionSensitivities> scale(final InstrumentSensitivities sensitivities) {
-        return sensitivities instanceof BondInstrumentSensitivities
-                ? Optional.of(this.scale((BondInstrumentSensitivities) sensitivities))
+    public Optional<? extends BondPositionSensitivities> scale(final UnitPriceSensitivities sensitivities) {
+        return sensitivities instanceof BondUnitPriceSensitivities
+                ? Optional.of(this.scale((BondUnitPriceSensitivities) sensitivities))
                 : Optional.empty();
     }
 
     @Nonnull
     @CheckReturnValue
-    public BondPositionSensitivities scale(final BondInstrumentSensitivities sensitivities) {
+    public BondPositionSensitivities scale(final BondUnitPriceSensitivities sensitivities) {
         return new BondPositionSensitivities(sensitivities, this);
     }
 

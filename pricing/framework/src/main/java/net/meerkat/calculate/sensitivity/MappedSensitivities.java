@@ -8,7 +8,7 @@ import net.coljate.map.Map;
  *
  * @author ollie
  */
-public abstract class MappedSensitivities implements Sensitivities {
+public abstract class MappedSensitivities implements PriceSensitivities {
 
     private final Map<SensitivityId<?>, Sensitivity> sensitivities;
 

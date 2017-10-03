@@ -12,7 +12,7 @@ import net.meerkat.money.price.Price;
  * @author Ollie
  * @see InstrumentSensitivities
  */
-public interface Sensitivities extends Explainable {
+public interface PriceSensitivities extends Explainable {
 
     @Nonnull
     Price.Evaluated<?> price();

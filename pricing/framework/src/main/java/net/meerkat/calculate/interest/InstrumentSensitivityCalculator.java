@@ -2,8 +2,8 @@ package net.meerkat.calculate.interest;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.calculate.sensitivity.InstrumentSensitivities;
 import net.meerkat.instrument.Instrument;
+import net.meerkat.calculate.sensitivity.UnitPriceSensitivities;
 
 /**
  *
@@ -12,6 +12,6 @@ import net.meerkat.instrument.Instrument;
 public interface InstrumentSensitivityCalculator<T, I extends Instrument> {
 
     @Nonnull
-    InstrumentSensitivities sensitivities(T temporal, I instrument);
+    UnitPriceSensitivities sensitivities(T temporal, I instrument);
 
 }
