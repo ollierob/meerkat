@@ -41,7 +41,7 @@ public interface Money<C extends CurrencyId>
     }
 
     default <T extends CurrencyId> Money<T> convert(final ExchangeRate<C, T> rate) {
-        return rate.convert(this);
+        return rate.convertAtMid(this);
     }
 
     @Override

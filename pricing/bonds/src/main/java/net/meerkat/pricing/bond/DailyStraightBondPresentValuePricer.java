@@ -158,7 +158,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
 
         @Override
         public <F extends CurrencyId> Money<C> convert(final Money<F> money) {
-            return shifts.shift(fxRates.rate(money.currencyId(), currencyId)).convert(money);
+            return shifts.shift(fxRates.rate(money.currencyId(), currencyId)).convertAtMid(money);
         }
 
         @Override

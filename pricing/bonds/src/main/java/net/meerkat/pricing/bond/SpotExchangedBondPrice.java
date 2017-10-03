@@ -23,22 +23,22 @@ public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
 
     @Override
     public Money<C> par() {
-        return rate.convert(bondPrice.par());
+        return rate.convertAtMid(bondPrice.par());
     }
 
     @Override
     public Money<C> clean() {
-        return rate.convert(bondPrice.clean());
+        return rate.convertAtMid(bondPrice.clean());
     }
 
     @Override
     public Money<C> accruedInterest() {
-        return rate.convert(bondPrice.accruedInterest());
+        return rate.convertAtMid(bondPrice.accruedInterest());
     }
 
     @Override
     public Money<C> dirty() {
-        return rate.convert(bondPrice.dirty());
+        return rate.convertAtMid(bondPrice.dirty());
     }
 
     @Override

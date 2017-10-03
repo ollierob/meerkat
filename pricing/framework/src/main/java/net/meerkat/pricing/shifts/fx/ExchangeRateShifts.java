@@ -34,7 +34,7 @@ public interface ExchangeRateShifts extends InstrumentPriceShifts {
         default <C extends CurrencyId, R extends CurrencyId> Money<C> shift(final Money<R> amount, final ExchangeRateShifts shifts, final C reportingCurrency, final ExchangeRates exchangeRates) {
             final ExchangeRate<R, C> baseRate = exchangeRates.rate(amount.currencyId(), reportingCurrency);
             final ExchangeRate<R, C> shiftedRate = shifts.shift(baseRate);
-            return shiftedRate.convert(amount);
+            return shiftedRate.convertAtMid(amount);
         }
 
     }

@@ -5,32 +5,22 @@ import net.meerkat.money.Money;
 
 /**
  *
- * @author Ollie
+ * @author ollie
  */
-public class TwoWayMoney<C extends CurrencyId> implements TwoWayPrice<C> {
+public interface TwoWayMoney<C extends CurrencyId> extends TwoWayPrice<Money<C>, C> {
 
-    private final Money<C> bid;
-    private final Money<C> offer;
-
-    public TwoWayMoney(final Money<C> bid, final Money<C> offer) {
-        this.bid = bid;
-        this.offer = offer;
+    @Override
+    default boolean isCrossed() {
+        return this.bid().minus(this.offer()).isZero();
     }
 
     @Override
-    public Money<C> bid() {
-        return bid;
+    default boolean hasSpread() {
+        return !this.offer().minus(this.bid()).isZero();
     }
 
-    @Override
-    public Money<C> offer() {
-        return offer;
-    }
-
-    @Override
-    @Deprecated
-    public TwoWayMoney<C> evaluate() {
-        return this;
+    static <C extends CurrencyId> TwoWayMoney<C> of(final Money<C> bid, final Money<C> offer) {
+        throw new UnsupportedOperationException();
     }
 
 }

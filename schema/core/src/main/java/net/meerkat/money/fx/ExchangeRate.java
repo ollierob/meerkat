@@ -6,7 +6,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.money.Money;
-import net.meerkat.money.price.TwoWayPrice;
+import net.meerkat.money.price.TwoWayMoney;
 import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
 /**
@@ -37,17 +37,21 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
         return this.bidRate().plus(this.offerRate()).over(2);
     }
 
-    default TwoWayPrice<T> convert(final TwoWayPrice<F> from) {
+    default TwoWayMoney<T> convert(final TwoWayMoney<F> from) {
         final Money<T> bid = Money.of(this.to(), this.bidRate().times(from.bid().amount())); //TODO extract method
         final Money<T> offer = Money.of(this.to(), this.offerRate().times(from.offer().amount()));
-        return TwoWayPrice.of(bid, offer);
+        return TwoWayMoney.of(bid, offer);
     }
 
-    default Money<T> convert(final Money<F> from) {
+    default Money<T> convertAtMid(final TwoWayMoney<F> from) {
+        return this.convertAtMid(from.mid());
+    }
+
+    default Money<T> convertAtMid(final Money<F> from) {
         return Money.of(this.to(), this.midRate().times(from.amount()));
     }
 
-    default Money<F> convertFrom(final Money<T> from) {
+    default Money<F> convertAtMidFrom(final Money<T> from) {
         return Money.of(this.from(), this.midRate().over(from.amount()));
     }
 

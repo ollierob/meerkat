@@ -33,7 +33,7 @@ public interface ExchangeRates {
         final F from = money.currencyId();
         return Objects.equals(from, to)
                 ? (Money<T>) money
-                : this.rate(from, to).convert(money);
+                : this.rate(from, to).convertAtMid(money);
     }
 
     @Nonnull

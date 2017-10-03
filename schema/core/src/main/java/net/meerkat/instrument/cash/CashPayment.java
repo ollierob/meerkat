@@ -31,7 +31,7 @@ public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
 
     @CheckReturnValue
     default <T extends CurrencyId> CashPayment<T> convert(final ExchangeRate<C, T> exchangeRate) {
-        return of(this.paymentDate(), exchangeRate.convert(this.paymentAmount()));
+        return of(this.paymentDate(), exchangeRate.convertAtMid(this.paymentAmount()));
     }
 
     default <T extends CurrencyId> CashPayment<T> convert(final T toCurrency, final ExchangeRates exchangeRates) {
