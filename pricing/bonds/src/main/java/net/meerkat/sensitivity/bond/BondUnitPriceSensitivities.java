@@ -7,6 +7,6 @@ import net.meerkat.calculate.sensitivity.UnitPriceSensitivities;
  *
  * @author Ollie
  */
-public interface BondUnitPriceSensitivities extends BondSensitivities, UnitPriceSensitivities {
+public interface BondUnitPriceSensitivities extends BondPriceSensitivities, UnitPriceSensitivities {
 
 }

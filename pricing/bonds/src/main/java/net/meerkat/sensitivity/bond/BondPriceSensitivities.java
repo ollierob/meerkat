@@ -18,10 +18,9 @@ import net.meerkat.calculate.sensitivity.PriceSensitivities;
  * @author Ollie
  * @see BondPrice
  */
-public interface BondSensitivities extends PriceSensitivities {
+public interface BondPriceSensitivities extends PriceSensitivities {
 
-    ImmutableMap<SensitivityId<?>, Function<BondSensitivities, Sensitivity>> SENSITIVITY_MAP = ImmutableMap.of(
-            DollarDuration.ID, BondSensitivities::dollarDuration);
+    ImmutableMap<SensitivityId<?>, Function<BondPriceSensitivities, Sensitivity>> SENSITIVITY_MAP = ImmutableMap.of(DollarDuration.ID, BondPriceSensitivities::dollarDuration);
 
     @Override
     EvaluatedBondPrice<?> price();

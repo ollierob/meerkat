@@ -10,9 +10,9 @@ import net.meerkat.money.price.Price;
 import net.meerkat.pricing.ShiftablePrice;
 import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
-import net.meerkat.sensitivity.bond.BondSensitivities;
 import net.ollie.goat.numeric.percentage.FractionalPercentage;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.sensitivity.bond.BondPriceSensitivities;
 
 /**
  *

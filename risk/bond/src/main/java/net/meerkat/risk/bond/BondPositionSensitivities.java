@@ -8,15 +8,15 @@ import javax.annotation.Nonnull;
 import net.meerkat.calculate.sensitivity.yield.DollarDuration;
 import net.meerkat.pricing.bond.EvaluatedBondPrice;
 import net.meerkat.risk.sensitivities.PositionSensitivities;
-import net.meerkat.sensitivity.bond.BondSensitivities;
 import net.meerkat.sensitivity.bond.BondUnitPriceSensitivities;
+import net.meerkat.sensitivity.bond.BondPriceSensitivities;
 
 /**
  *
  * @author Ollie
  * @see BondPosition
  */
-public class BondPositionSensitivities implements BondSensitivities, PositionSensitivities {
+public class BondPositionSensitivities implements BondPriceSensitivities, PositionSensitivities {
 
     private final BondUnitPriceSensitivities sensitivities;
     private final BondPosition position;
