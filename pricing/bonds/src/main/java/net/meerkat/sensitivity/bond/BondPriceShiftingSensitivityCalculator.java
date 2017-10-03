@@ -9,6 +9,7 @@ import net.meerkat.identifier.currency.USD;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.money.Money;
 import net.meerkat.pricing.bond.BondPrice;
+import net.meerkat.pricing.bond.EvaluatedBondPrice;
 import net.meerkat.pricing.bond.GenericBondPricer;
 import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
@@ -30,25 +31,28 @@ public class BondPriceShiftingSensitivityCalculator<T extends Temporal>
 
     @Override
     public BondInstrumentSensitivities sensitivities(final T date, final Bond bond) {
-        return new BondSensitivitiesCalculation(date, bond);
+        final BondPrice.Shiftable<USD> price = pricer.price(date, bond, CurrencyIso.USD);
+        return new BondSensitivitiesCalculation(date, bond, price);
     }
 
     class BondSensitivitiesCalculation implements BondInstrumentSensitivities {
 
         private final T date;
         private final Bond bond;
+        private final BondPrice.Shiftable<USD> price;
 
-        BondSensitivitiesCalculation(final T date, Bond bond) {
+        BondSensitivitiesCalculation(final T date, Bond bond, final BondPrice.Shiftable<USD> price) {
             this.date = date;
             this.bond = bond;
+            this.price = price;
         }
 
-        BondPrice.Shiftable<USD> bondPrice() {
-            return pricer.price(date, bond, CurrencyIso.USD);
+        @Override
+        public EvaluatedBondPrice<?> price() {
+            return price.evaluate();
         }
 
         Explained<DollarDuration> explainDollarDuration() {
-            final BondPrice.Shiftable<USD> price = this.bondPrice();
             final BondPrice.Shiftable<USD> shiftedPrice = price.shift(ONE_BP_YIELD_SHIFT);
             final Money<USD> difference = shiftedPrice.dirty().minus(price.dirty());
             return new Explained<>(

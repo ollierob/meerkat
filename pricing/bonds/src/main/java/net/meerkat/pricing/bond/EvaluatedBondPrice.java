@@ -2,6 +2,7 @@ package net.meerkat.pricing.bond;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.meerkat.money.price.Price;
 import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
@@ -9,7 +10,7 @@ import net.ollie.goat.numeric.percentage.Percentage;
  * @author ollie
  */
 public class EvaluatedBondPrice<C extends CurrencyId>
-        implements BondPrice<C> {
+        implements BondPrice<C>, Price.Evaluated<C> {
 
     private final Money<C> par;
     private final Money<C> clean;

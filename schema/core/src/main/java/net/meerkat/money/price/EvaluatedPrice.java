@@ -7,7 +7,7 @@ import net.meerkat.money.Money;
  *
  * @author Ollie
  */
-public class EvaluatedPrice<C extends CurrencyId> implements Price.Valued<C> {
+public class EvaluatedPrice<C extends CurrencyId> implements Price.Valued<C>, Price.Evaluated<C> {
 
     private final Money<C> value;
 

@@ -11,6 +11,7 @@ import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.currency.USD;
 import net.meerkat.instrument.equity.option.StockOption;
 import net.meerkat.pricing.equity.option.OptionPricer;
+import net.meerkat.pricing.option.EvaluatedOptionPrice;
 import net.meerkat.pricing.option.OptionPrice;
 import net.meerkat.pricing.option.OptionPriceShifts;
 import net.meerkat.sensitivity.equity.EquityDerivativeSensitivityCalculator;
@@ -45,6 +46,11 @@ public class DailyStockOptionSensitivityCalculator implements EquityDerivativeSe
             this.date = date;
             this.option = option;
             this.price = price;
+        }
+
+        @Override
+        public EvaluatedOptionPrice<?> price() {
+            return price.evaluate();
         }
 
         @Override

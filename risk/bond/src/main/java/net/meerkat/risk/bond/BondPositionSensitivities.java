@@ -6,6 +6,7 @@ import java.util.Objects;
 import javax.annotation.Nonnull;
 
 import net.meerkat.calculate.sensitivity.yield.DollarDuration;
+import net.meerkat.pricing.bond.EvaluatedBondPrice;
 import net.meerkat.risk.sensitivities.PositionSensitivities;
 import net.meerkat.sensitivity.bond.BondInstrumentSensitivities;
 import net.meerkat.sensitivity.bond.BondSensitivities;
@@ -23,6 +24,11 @@ public class BondPositionSensitivities implements BondSensitivities, PositionSen
     public BondPositionSensitivities(@Nonnull final BondInstrumentSensitivities unit, final BondPosition position) {
         this.sensitivities = Objects.requireNonNull(unit, "sensitivities");
         this.position = position;
+    }
+
+    @Override
+    public EvaluatedBondPrice<?> price() {
+        return sensitivities.price();
     }
 
     @Override

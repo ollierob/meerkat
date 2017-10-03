@@ -14,12 +14,16 @@ import net.meerkat.calculate.sensitivity.greeks.HasGreeks;
 import net.meerkat.calculate.sensitivity.greeks.Rho;
 import net.meerkat.calculate.sensitivity.greeks.Theta;
 import net.meerkat.calculate.sensitivity.greeks.Vega;
+import net.meerkat.pricing.option.EvaluatedOptionPrice;
 
 /**
  *
  * @author ollie
  */
 public interface EquityOptionSensitivities extends Sensitivities, HasGreeks {
+
+    @Override
+    EvaluatedOptionPrice<?> price();
 
     @Override
     default <S extends Sensitivity> Optional<S> get(final SensitivityId<S> id) {

@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.annotation.Nonnull;
 
 import net.meerkat.Explainable;
+import net.meerkat.money.price.Price;
 
 /**
  *
@@ -12,6 +13,9 @@ import net.meerkat.Explainable;
  * @see InstrumentSensitivities
  */
 public interface Sensitivities extends Explainable {
+
+    @Nonnull
+    Price.Evaluated<?> price();
 
     @Nonnull
     <S extends Sensitivity> Optional<S> get(SensitivityId<S> id);
