@@ -3,8 +3,6 @@ package net.meerkat.identifier.rating.moodys;
 import java.util.Collections;
 import java.util.Set;
 
-import javax.xml.bind.annotation.XmlEnum;
-
 import static net.meerkat.identifier.rating.moodys.MoodysGlobalShortTermRating.*;
 import net.meerkat.rating.CreditRating;
 import net.meerkat.rating.CreditRatingBand;
@@ -14,7 +12,6 @@ import static net.meerkat.rating.CreditRatingBand.*;
  *
  * @author Ollie
  */
-@XmlEnum
 public enum MoodysLongTermRating implements MoodysRating {
 
     Aaa("Highest quality, lowest level of credit risk", P1, AAA),

@@ -1,6 +1,5 @@
 package net.meerkat.issue;
 
-import net.meerkat.issuer.IssuerId;
 import net.meerkat.rating.CreditRating;
 import net.meerkat.rating.HasCreditRating;
 
@@ -12,8 +11,8 @@ public class RatedIssue extends MinimalIssue implements HasCreditRating {
 
     private final CreditRating rating;
 
-    public RatedIssue(final IssuerId issuerId, final CreditRating rating) {
-        super(issuerId);
+    public RatedIssue(final IssueId issueId, final CreditRating rating) {
+        super(issueId);
         this.rating = rating;
     }
 

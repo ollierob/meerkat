@@ -1,7 +1,6 @@
 package net.meerkat.issue;
 
 import net.meerkat.Explainable;
-import net.meerkat.issuer.IssuerId;
 
 /**
  *
@@ -9,21 +8,21 @@ import net.meerkat.issuer.IssuerId;
  */
 public class MinimalIssue implements Issue, Explainable {
 
-    private final IssuerId issuerId;
+    private final IssueId issueId;
 
-    public MinimalIssue(final IssuerId issuer) {
-        this.issuerId = issuer;
+    public MinimalIssue(final IssueId issueId) {
+        this.issueId = issueId;
     }
 
     @Override
-    public IssuerId issuerId() {
-        return issuerId;
+    public IssueId issueId() {
+        return issueId;
     }
 
     @Override
     public ExplanationBuilder explain() {
         return this.explanationBuilder()
-                .put("issuer", issuerId);
+                .put("issue", issueId);
     }
 
 }

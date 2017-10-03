@@ -19,6 +19,7 @@ import net.meerkat.sensitivity.equity.EquityDerivativeSensitivityCalculator;
 /**
  *
  * @author ollie
+ * @see <a href="http://www.macroption.com/black-scholes-formula/">Option sensitivities</a>
  */
 public class DailyStockOptionSensitivityCalculator implements EquityDerivativeSensitivityCalculator<LocalDate, StockOption> {
 

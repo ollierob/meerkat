@@ -12,7 +12,7 @@ import net.meerkat.rating.CreditRatingBand;
  */
 public enum FitchLongTermRating implements FitchIssuerRating {
 
-    AAA("", FitchShortTermRating.F1_PLUS, CreditRatingBand.AAA),
+    AAA("Investment grade", FitchShortTermRating.F1_PLUS, CreditRatingBand.AAA),
     AA_PLUS("", FitchShortTermRating.F1_PLUS, CreditRatingBand.AA),
     AA("", FitchShortTermRating.F1_PLUS, CreditRatingBand.AA),
     AA_MINUS("", FitchShortTermRating.F1_PLUS, CreditRatingBand.AA),
@@ -32,8 +32,8 @@ public enum FitchLongTermRating implements FitchIssuerRating {
     CC("", FitchShortTermRating.C, CreditRatingBand.CC),
     C("", FitchShortTermRating.C, CreditRatingBand.C),
     RD("", FitchShortTermRating.RD, CreditRatingBand.D),
-    D("", FitchShortTermRating.D, CreditRatingBand.D),
-    NR("", FitchShortTermRating.NR, CreditRatingBand.U);
+    D("Speculative grade", FitchShortTermRating.D, CreditRatingBand.D),
+    NR("Not rated", FitchShortTermRating.NR, CreditRatingBand.U);
 
     private final String description;
     private final FitchShortTermRating shortTerm;
