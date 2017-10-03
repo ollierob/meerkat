@@ -10,6 +10,4 @@ public interface TwoWay<T> {
 
     T offer();
 
-    T mid();
-
 }

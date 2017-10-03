@@ -11,6 +11,8 @@ import net.meerkat.identifier.currency.CurrencyId;
  */
 public interface TwoWayPrice<P, C extends CurrencyId> extends TwoWay<P>, Price<C> {
 
+    P mid();
+
     /**
      * @return true if the {@link #bid best bid} exceeds the {@link #offer best offer}.
      */

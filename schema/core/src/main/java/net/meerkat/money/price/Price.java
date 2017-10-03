@@ -1,5 +1,6 @@
 package net.meerkat.money.price;
 
+import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.Explainable;
@@ -32,6 +33,12 @@ public interface Price<C extends CurrencyId> extends HasCurrencyId, Explainable 
 
         @Nonnull
         Money<C> value();
+
+        @CheckReturnValue
+        @Nonnull
+        default TwoWayMoney<C> plusSpread(@Nonnull final Money<C> spread) {
+            return new SpreadMoney<>(this.value(), spread.over(2));
+        }
 
         @Override
         default EvaluatedPrice<C> evaluate() {
