@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 import net.meerkat.calculate.sensitivity.greeks.Delta;
 import net.meerkat.calculate.sensitivity.greeks.Gamma;
+import net.meerkat.calculate.sensitivity.greeks.Rho;
 import net.meerkat.calculate.sensitivity.greeks.Theta;
+import net.meerkat.calculate.sensitivity.greeks.Vega;
 import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.currency.USD;
 import net.meerkat.instrument.equity.option.StockOption;
@@ -47,9 +49,7 @@ public class DailyStockOptionSensitivityCalculator implements EquityDerivativeSe
 
         @Override
         public Delta delta() {
-            final OptionPrice.Shiftable<USD> shifted = price.shift(DELTA_SHIFT);
-            final double delta = price.value().doubleValue() / shifted.value().doubleValue();
-            return new Delta(delta);
+            throw new UnsupportedOperationException();
         }
 
         @Override
@@ -59,6 +59,16 @@ public class DailyStockOptionSensitivityCalculator implements EquityDerivativeSe
 
         @Override
         public Theta theta() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public Vega vega() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public Rho rho() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
