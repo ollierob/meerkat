@@ -18,6 +18,10 @@ public interface InterestRateShifts extends InstrumentPriceShifts {
     @Nonnull
     InterestRate shift(@Nonnull InterestRate rate);
 
+    default FixedInterestRate shift(@Nonnull FixedInterestRate rate) {
+        return (FixedInterestRate) this.shift((InterestRate) rate);
+    }
+
     @Nonnull
     @CheckReturnValue
     default InterestRates shift(@Nonnull final InterestRates rates) {
@@ -40,18 +44,6 @@ public interface InterestRateShifts extends InstrumentPriceShifts {
 
     static InterestRateShifts cast(final InstrumentPriceShifts shifts) {
         return shifts.as(InterestRateShifts.class).orElseGet(InterestRateShifts::none);
-    }
-
-    interface InterestRateShifter {
-
-        default InterestRate shift(final InterestRate rate, final InterestRateShifts shifts) {
-            return shifts.shift(rate);
-        }
-
-        default FixedInterestRate shift(final FixedInterestRate rate, final InterestRateShifts shifts) {
-            return (FixedInterestRate) shifts.shift(rate);
-        }
-
     }
 
 }

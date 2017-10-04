@@ -10,7 +10,7 @@ import net.meerkat.money.price.EvaluatedPrice;
  */
 public class EvaluatedFxForwardPrice<C extends CurrencyId> extends EvaluatedPrice<C> implements FxForwardPrice<C> {
 
-    public EvaluatedFxForwardPrice(Money<C> value) {
+    public EvaluatedFxForwardPrice(final Money<C> value) {
         super(value);
     }
 
