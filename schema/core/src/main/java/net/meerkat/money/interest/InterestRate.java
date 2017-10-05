@@ -1,6 +1,7 @@
 package net.meerkat.money.interest;
 
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
@@ -31,6 +32,14 @@ public interface InterestRate extends InterestRateOrId {
         return this.accrue(money, interval.first(), interval.last(), interpolator);
     }
 
+    default <C extends CurrencyId> Money<C> accrue(
+            final Money<C> money,
+            final ChronoLocalDate from,
+            final ChronoLocalDate to,
+            final InterestRateInterpolator interpolator) {
+        return this.accrue(money, LocalDate.from(from), LocalDate.from(to), interpolator);
+    }
+
     /**
      * @return the amount of interest accrued.
      */
@@ -46,6 +55,14 @@ public interface InterestRate extends InterestRateOrId {
             final LocalDate later,
             final InterestRateInterpolator interpolator) {
         return this.accrue(money, later, earlier, interpolator);
+    }
+
+    default <C extends CurrencyId> Money<C> discount(
+            final Money<C> money,
+            final ChronoLocalDate earlier,
+            final ChronoLocalDate later,
+            final InterestRateInterpolator interpolator) {
+        return this.discount(money, LocalDate.from(earlier), LocalDate.from(later), interpolator);
     }
 
     @Nonnull

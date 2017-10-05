@@ -34,7 +34,11 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
     }
 
     default BigDecimalFraction midRate() {
-        return this.bidRate().plus(this.offerRate()).over(2);
+        final BigDecimalFraction bid = this.bidRate();
+        final BigDecimalFraction offer = this.offerRate();
+        return bid == offer
+                ? bid
+                : bid.plus(offer).over(2);
     }
 
     default TwoWayMoney<T> convert(final TwoWayMoney<F> from) {
