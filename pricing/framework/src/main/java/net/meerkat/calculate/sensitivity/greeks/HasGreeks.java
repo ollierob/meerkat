@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.annotation.CheckForNull;
 
 import net.meerkat.Explainable;
+import net.meerkat.calculate.sensitivity.PriceSensitivitiesMapper;
 
 /**
  *
@@ -36,5 +37,13 @@ public interface HasGreeks extends Explainable {
                 .put("vega", this.vega())
                 .put("rho", this.rho());
     }
+
+    PriceSensitivitiesMapper<HasGreeks> GREEKS = PriceSensitivitiesMapper.<HasGreeks>builder()
+            .put(Delta.ID, HasGreeks::delta)
+            .put(Gamma.ID, HasGreeks::gamma)
+            .put(Theta.ID, HasGreeks::theta)
+            .put(Rho.ID, HasGreeks::rho)
+            .put(Vega.ID, HasGreeks::vega)
+            .build();
 
 }
