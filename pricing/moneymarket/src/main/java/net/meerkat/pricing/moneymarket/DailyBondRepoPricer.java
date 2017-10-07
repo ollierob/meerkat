@@ -78,8 +78,7 @@ public class DailyBondRepoPricer implements BondRepoPricer<LocalDate> {
         @Override
         public Money<C> value() {
             final BondPrice<C> bondPrice = this.bondPrice();
-            final RepurchaseHandler<C> handler = new RepurchaseHandler<>(date, bondPrice);
-            return repo.repurchase().handleWith(handler);
+            return repo.repurchase().handleWith(new RepurchaseValueHandler<>(date, bondPrice));
         }
 
         @Override
@@ -94,12 +93,12 @@ public class DailyBondRepoPricer implements BondRepoPricer<LocalDate> {
 
     }
 
-    private static class RepurchaseHandler<C extends CurrencyId> implements RepoRepurchase.Handler<Money<C>> {
+    private static class RepurchaseValueHandler<C extends CurrencyId> implements RepoRepurchase.Handler<Money<C>> {
 
         private final LocalDate valueDate;
         private final BondPrice<C> bondPrice;
 
-        RepurchaseHandler(final LocalDate valueDate, final BondPrice<C> bondPrice) {
+        RepurchaseValueHandler(final LocalDate valueDate, final BondPrice<C> bondPrice) {
             this.valueDate = valueDate;
             this.bondPrice = bondPrice;
         }
