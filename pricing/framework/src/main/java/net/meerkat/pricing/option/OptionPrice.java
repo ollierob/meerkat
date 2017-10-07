@@ -16,6 +16,9 @@ import net.meerkat.pricing.shifts.InstrumentPriceShifts;
  */
 public interface OptionPrice<C extends CurrencyId> extends Price.Valued<C> {
 
+    @Nonnull
+    Price<C> underlyingPrice();
+
     /**
      * @return the difference between the underlying price and the {@link Option#strike strike price}.
      * @see <a href="https://en.wikipedia.org/wiki/Intrinsic_value_(finance)">Intrinsic value</a>
@@ -40,7 +43,7 @@ public interface OptionPrice<C extends CurrencyId> extends Price.Valued<C> {
 
     @Override
     default EvaluatedOptionPrice<C> evaluate() {
-        return new EvaluatedOptionPrice<>(this.intrinsicValue(), this.value());
+        return new EvaluatedOptionPrice<>(this.underlyingPrice(), this.intrinsicValue(), this.value());
     }
 
     interface Shiftable<C extends CurrencyId> extends OptionPrice<C>, ShiftablePrice<C> {

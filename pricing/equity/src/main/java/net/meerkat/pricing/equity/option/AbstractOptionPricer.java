@@ -43,6 +43,13 @@ public abstract class AbstractOptionPricer<T extends Temporal, O extends Option<
         }
     }
 
+    /**
+     * FIXME put this into the context so it's only calculated once
+     *
+     * @param <C>
+     * @param context
+     * @return
+     */
     protected abstract <C extends CurrencyId> Price.Valued<C> underlyingPrice(OptionPricingContext<C, O, T> context);
 
     protected <C extends CurrencyId> Explained<Money<C>> explainIntrinsicValue(final OptionPricingContext<C, O, T> context) {
@@ -89,6 +96,11 @@ public abstract class AbstractOptionPricer<T extends Temporal, O extends Option<
         @Override
         public OptionPriceShifts optionShifts() {
             return shifts;
+        }
+
+        @Override
+        public Price<C> underlyingPrice() {
+            return AbstractOptionPricer.this.underlyingPrice(this);
         }
 
         private final Lazy<Explained<Money<C>>> intrinsic = Lazy.loadOnce(() -> explainIntrinsicValue(this));

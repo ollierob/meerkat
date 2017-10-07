@@ -16,19 +16,19 @@ import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.pricing.bond.BondPriceException;
 import net.meerkat.pricing.bond.GenericBondPricer;
 import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
-import net.ollie.goat.suppliers.lazy.Lazy;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
+import net.ollie.goat.suppliers.lazy.Lazy;
 
 /**
  *
  * @author Ollie
  */
-public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
+public class DailyBondRepoPricer implements BondRepoPricer<LocalDate> {
 
     private final BondProvider bondProvider;
     private final GenericBondPricer<LocalDate> bondPricer;
 
-    public DatedBondRepoPricer(final BondProvider bondProvider, final GenericBondPricer<LocalDate> bondPricer) {
+    public DailyBondRepoPricer(final BondProvider bondProvider, final GenericBondPricer<LocalDate> bondPricer) {
         this.bondProvider = bondProvider;
         this.bondPricer = bondPricer;
     }
@@ -46,14 +46,14 @@ public class DatedBondRepoPricer implements BondRepoPricer<LocalDate> {
     private final class BondRepoPrice<C extends CurrencyId> implements RepoPrice.Shiftable<C> {
 
         private final LocalDate date;
-        private final BondRepo repo;
+        private final BondRepo<?> repo;
         private final C currency;
         private final RepoShifts shifts;
 
         private final Lazy<Bond> bond;
         private final Lazy<BondPrice<C>> bondPrice;
 
-        BondRepoPrice(final LocalDate date, final BondRepo repo, final C currency, final RepoShifts shifts) {
+        BondRepoPrice(final LocalDate date, final BondRepo<?> repo, final C currency, final RepoShifts shifts) {
             this.date = date;
             this.repo = repo;
             this.currency = currency;

@@ -3,6 +3,7 @@ package net.meerkat.pricing.option;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.EvaluatedPrice;
+import net.meerkat.money.price.Price;
 
 /**
  *
@@ -12,11 +13,21 @@ public class EvaluatedOptionPrice<C extends CurrencyId>
         extends EvaluatedPrice<C>
         implements OptionPrice<C> {
 
+    private final Price<C> underlyingPrice;
     private final Money<C> intrinsicValue;
 
-    public EvaluatedOptionPrice(final Money<C> intrinsicValue, final Money<C> value) {
+    public EvaluatedOptionPrice(
+            final Price<C> underlyingPrice,
+            final Money<C> intrinsicValue,
+            final Money<C> value) {
         super(value);
+        this.underlyingPrice = underlyingPrice;
         this.intrinsicValue = intrinsicValue;
+    }
+
+    @Override
+    public Price<C> underlyingPrice() {
+        return underlyingPrice;
     }
 
     @Override

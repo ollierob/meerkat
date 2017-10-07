@@ -1,6 +1,9 @@
 package net.meerkat.calculate.sensitivity;
 
+import java.util.Optional;
 import java.util.function.Function;
+
+import javax.annotation.Nonnull;
 
 import net.coljate.collection.ImmutableCollection;
 import net.coljate.map.ImmutableEntry;
@@ -13,6 +16,13 @@ import net.coljate.set.ImmutableSet;
  * @author ollie
  */
 public interface PriceSensitivitiesMapper<V> extends ImmutableMap<SensitivityId<?>, Function<? super V, ? extends Sensitivity>> {
+
+    @Nonnull
+    default <S extends Sensitivity> Optional<S> get(final V provider, final SensitivityId<S> id) {
+        return this.maybeGet(id)
+                .map(func -> func.apply(provider))
+                .flatMap(id::convert);
+    }
 
     static <V> Builder<V> builder() {
         return new Builder<>();
