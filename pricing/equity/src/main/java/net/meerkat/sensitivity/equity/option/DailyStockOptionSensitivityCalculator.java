@@ -34,16 +34,16 @@ public class DailyStockOptionSensitivityCalculator implements EquityDerivativeSe
     @Override
     public EquityOptionInstrumentSensitivities sensitivities(final LocalDate date, final StockOption option) {
         final OptionPrice.Shiftable<USD> price = optionPricer.price(date, option, CurrencyIso.USD);
-        return new Sensitivities(date, option, price);
+        return new OptionSensitivities(date, option, price);
     }
 
-    private final class Sensitivities implements EquityOptionInstrumentSensitivities {
+    private final class OptionSensitivities implements EquityOptionInstrumentSensitivities {
 
         private final LocalDate date;
         private final StockOption option;
         private final OptionPrice.Shiftable<USD> price;
 
-        Sensitivities(final LocalDate date, final StockOption option, final OptionPrice.Shiftable<USD> price) {
+        OptionSensitivities(final LocalDate date, final StockOption option, final OptionPrice.Shiftable<USD> price) {
             this.date = date;
             this.option = option;
             this.price = price;
