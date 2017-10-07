@@ -2,12 +2,12 @@ package net.meerkat.pricing.shifts.interest;
 
 import java.util.Objects;
 
-import net.coljate.util.Functions;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.InterestRates;
 import net.ollie.goat.data.Element;
+import net.ollie.goat.functions.Functions;
 
 /**
  *
