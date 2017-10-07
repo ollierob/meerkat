@@ -14,7 +14,6 @@ import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.pricing.bond.shifts.BondShifts;
-import net.meerkat.pricing.shifts.interest.InterestRateShifts.InterestRateShifter;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
 
@@ -49,7 +48,7 @@ public class DailyPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
     }
 
     private static final class PerpetualBondPrice<F extends CurrencyId, C extends CurrencyId>
-            implements BondPrice.Shiftable<C>, InterestRateShifter {
+            implements BondPrice.Shiftable<C> {
 
         private final PerpetualBond<F> bond;
         private final C currency;
@@ -94,7 +93,7 @@ public class DailyPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
         }
 
         Percentage shiftedAnnualRate() {
-            return this.shift(bond.coupons().yearlyRate(), shifts).annualRate();
+            return shifts.shift(bond.coupons().yearlyRate()).annualRate();
         }
 
         private final Lazy<Money<C>> cleanValue = Lazy.loadOnceNonNull(this::calculateCleanValue);
@@ -110,7 +109,7 @@ public class DailyPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
         }
 
         private InterestRate shiftedDiscountRate() {
-            return this.shift(discountRate, shifts);
+            return shifts.shift(discountRate);
         }
 
         private final Lazy<Money<C>> accruedInterest = Lazy.loadOnceNonNull(this::calculateAccuredInterest);
