@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.fx.exception.UnavailableExchangeRateException;
 import net.meerkat.money.fx.ExchangeRateSnapshot;
+import net.meerkat.money.fx.exception.UnavailableExchangeRateException;
 
 /**
  *

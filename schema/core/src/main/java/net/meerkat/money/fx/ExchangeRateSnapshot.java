@@ -9,19 +9,28 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIdPair;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.exception.UnavailableExchangeRateException;
+import net.ollie.goat.data.Element;
+import net.ollie.goat.data.Provider;
 
 /**
  * Snapshot of FX rates at a particular time.
  *
  * @author Ollie
  */
-public interface ExchangeRateSnapshot {
+public interface ExchangeRateSnapshot extends Provider<CurrencyIdPair<?, ?>, ExchangeRate<?, ?>> {
 
+    @Override
+    default Element<ExchangeRate<?, ?>> getElement(final CurrencyIdPair<?, ?> key) {
+        return Element.ofNullable(this.maybeRate(key.baseCurrencyId(), key.counterCurrencyId()).orElse(null));
+    }
+
+    @Nonnull
     default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> rate(final F from, final T to)
             throws UnavailableExchangeRateException {
         return this.maybeRate(from, to).orElseThrow(() -> new UnavailableExchangeRateException(from, to));
     }
 
+    @Nonnull
     <F extends CurrencyId, T extends CurrencyId> Optional<ExchangeRate<F, T>> maybeRate(F from, T to);
 
     @Nonnull
