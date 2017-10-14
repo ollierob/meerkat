@@ -18,14 +18,18 @@ public interface ExchangeRateProvider<T> extends CompositeProvider<T, CurrencyId
         return this.require(temporal, UnavailableExchangeRateException::new);
     }
 
-    @Override
-    default ExchangeRate<?, ?> require(final T temporal, final CurrencyIdPair<?, ?> pair) {
-        return this.rate(temporal, pair.baseCurrencyId(), pair.counterCurrencyId());
-    }
-
     @Nonnull
     default <A extends CurrencyId, B extends CurrencyId> ExchangeRate<A, B> rate(final T temporal, final A from, final B to) throws UnavailableExchangeRateException {
         return this.require(temporal).rate(from, to);
+    }
+
+    /**
+     * @deprecated not well-typed, use {@link #rate} instead.
+     */
+    @Override
+    @Deprecated
+    default ExchangeRate<?, ?> require(final T temporal, final CurrencyIdPair<?, ?> pair) {
+        return this.rate(temporal, pair.baseCurrencyId(), pair.counterCurrencyId());
     }
 
 }
