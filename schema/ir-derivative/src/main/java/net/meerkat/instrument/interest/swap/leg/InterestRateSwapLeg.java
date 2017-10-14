@@ -11,7 +11,7 @@ import net.meerkat.instrument.derivative.swap.SwapLeg;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateOrId;
-import net.meerkat.money.interest.InterestRates;
+import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *
@@ -38,7 +38,7 @@ public interface InterestRateSwapLeg<P extends CurrencyId, R extends CurrencyId>
     }
 
     @Nonnull
-    default InterestRate payRate(final InterestRates interestRateProvider) {
+    default InterestRate payRate(final InterestRateSnapshot interestRateProvider) {
         return this.payRate().resolve(interestRateProvider);
     }
 
@@ -48,7 +48,7 @@ public interface InterestRateSwapLeg<P extends CurrencyId, R extends CurrencyId>
     }
 
     @Nonnull
-    default InterestRate receiveRate(final InterestRates interestRateProvider) {
+    default InterestRate receiveRate(final InterestRateSnapshot interestRateProvider) {
         return this.receiveRate().resolve(interestRateProvider);
     }
 

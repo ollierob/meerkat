@@ -1,4 +1,4 @@
-package net.meerkat.risk.rating;
+package net.meerkat.risk.rating.exception;
 
 import net.ollie.goat.collection.Arrays;
 

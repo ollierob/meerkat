@@ -10,7 +10,6 @@ import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.InterestRatePlusSpreadId;
-import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.NamedInterestRateId;
 import net.meerkat.money.interest.exception.UnknownInterestRateException;
 import net.meerkat.money.interest.curve.DateYieldCurve;
@@ -18,6 +17,7 @@ import net.meerkat.money.interest.floating.ContinousFloatingInterestRate;
 import net.meerkat.money.interest.floating.FloatingInterestRate;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.temporal.date.count.DateArithmetic;
+import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *
@@ -72,7 +72,7 @@ public class IborId extends NamedInterestRateId implements InterestRatePlusSprea
     }
 
     @Override
-    public InterestRate resolve(final InterestRates provider) throws UnknownInterestRateException {
+    public InterestRate resolve(final InterestRateSnapshot provider) throws UnknownInterestRateException {
         return provider.require(base).plus(spread);
     }
 

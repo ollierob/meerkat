@@ -7,12 +7,12 @@ import java.util.Set;
  *
  * @author Ollie
  */
-public class CreditRatings implements CreditRating {
+public class CreditRatingsSet implements CreditRating {
 
     private final CreditRating finalRating;
     private final Set<CreditRating> otherRatings;
 
-    public CreditRatings(final CreditRating finalRating, final Set<CreditRating> otherRatings) {
+    public CreditRatingsSet(final CreditRating finalRating, final Set<CreditRating> otherRatings) {
         this.finalRating = finalRating;
         this.otherRatings = otherRatings;
     }

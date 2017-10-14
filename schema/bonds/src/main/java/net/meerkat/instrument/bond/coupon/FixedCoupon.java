@@ -8,9 +8,9 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.ollie.goat.temporal.date.count.YearCount;
+import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *
@@ -46,7 +46,7 @@ public class FixedCoupon<C extends CurrencyId>
 
     @Override
     @Deprecated
-    public FixedInterestRate rate(final InterestRates provider) {
+    public FixedInterestRate rate(final InterestRateSnapshot provider) {
         return rate;
     }
 

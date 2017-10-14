@@ -4,10 +4,10 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *
@@ -24,7 +24,7 @@ public interface InterestRateShifts extends InstrumentPriceShifts {
 
     @Nonnull
     @CheckReturnValue
-    default InterestRates shift(@Nonnull final InterestRates rates) {
+    default InterestRateSnapshot shift(@Nonnull final InterestRateSnapshot rates) {
         return new ShiftedInterestRates(rates, this);
     }
 

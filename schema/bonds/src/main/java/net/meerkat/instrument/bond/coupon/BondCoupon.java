@@ -12,8 +12,8 @@ import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateOrId;
-import net.meerkat.money.interest.InterestRates;
 import net.meerkat.money.interest.exception.UnknownInterestRateException;
+import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *
@@ -32,7 +32,7 @@ public interface BondCoupon extends HasCurrencyId, Explainable {
     InterestRateOrId rate();
 
     @Nonnull
-    default InterestRate rate(final InterestRates provider) throws UnknownInterestRateException {
+    default InterestRate rate(final InterestRateSnapshot provider) throws UnknownInterestRateException {
         return this.rate().resolve(provider);
     }
 

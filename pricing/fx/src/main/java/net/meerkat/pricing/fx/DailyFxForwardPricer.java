@@ -8,9 +8,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.fx.forward.DeliverableFxForward;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.InterestRatesProvider;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.pricing.InstrumentPriceException;
@@ -21,6 +19,8 @@ import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
+import net.meerkat.money.interest.InterestRateProvider;
 
 /**
  *
@@ -29,11 +29,11 @@ import net.ollie.goat.suppliers.lazy.Lazy;
 public class DailyFxForwardPricer<T> implements InstrumentPricer<LocalDate, DeliverableFxForward<?, ?>> {
     
     private final InterestRateInterpolator interestRateInterpolator;
-    private final InterestRatesProvider<LocalDate> interestRates;
+    private final InterestRateProvider<LocalDate> interestRates;
     
     public DailyFxForwardPricer(
             final InterestRateInterpolator interestRateInterpolator,
-            final InterestRatesProvider<LocalDate> interestRates) {
+            final InterestRateProvider<LocalDate> interestRates) {
         this.interestRateInterpolator = interestRateInterpolator;
         this.interestRates = interestRates;
     }
@@ -67,7 +67,7 @@ public class DailyFxForwardPricer<T> implements InstrumentPricer<LocalDate, Deli
         private final LocalDate date;
         private final DeliverableFxForward<B, C> forward;
         private final X valuationCurrency;
-        private final ExchangeRates fxRates;
+        private final ExchangeRateSnapshot fxRates;
         private final FixedInterestRate baseRate;
         private final FixedInterestRate counterRate;
         private final WrappedInstrumentPriceShifts shifts;
@@ -76,7 +76,7 @@ public class DailyFxForwardPricer<T> implements InstrumentPricer<LocalDate, Deli
                 final LocalDate date,
                 final DeliverableFxForward<B, C> forward,
                 final X valuationCurrency,
-                final ExchangeRates fxRates,
+                final ExchangeRateSnapshot fxRates,
                 final FixedInterestRate baseRate,
                 final FixedInterestRate counterRate,
                 final WrappedInstrumentPriceShifts shifts) {

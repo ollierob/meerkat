@@ -10,12 +10,12 @@ import net.meerkat.identifier.currency.CurrencyId;
  *
  * @author ollie
  */
-public class TriangulatedExchangeRates implements ExchangeRates {
+public class TriangulatedExchangeRates implements ExchangeRateSnapshot {
 
-    private final ExchangeRates baseRates;
+    private final ExchangeRateSnapshot baseRates;
     private final UnaryOperator<CurrencyId> triangulation;
 
-    public TriangulatedExchangeRates(final ExchangeRates baseRates, final UnaryOperator<CurrencyId> triangulation) {
+    public TriangulatedExchangeRates(final ExchangeRateSnapshot baseRates, final UnaryOperator<CurrencyId> triangulation) {
         this.baseRates = baseRates;
         this.triangulation = triangulation;
     }

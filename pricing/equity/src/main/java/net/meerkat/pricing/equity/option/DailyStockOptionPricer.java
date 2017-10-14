@@ -6,10 +6,10 @@ import net.meerkat.Explained;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.equity.option.StockOption;
 import net.meerkat.money.Money;
-import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.equity.StockPricer;
 import net.ollie.goat.temporal.date.years.Years;
+import net.meerkat.money.fx.ExchangeRateProvider;
 
 /**
  *
@@ -19,7 +19,7 @@ public class DailyStockOptionPricer extends AbstractOptionPricer<LocalDate, Stoc
 
     private final StockPricer<LocalDate> stockPricer;
 
-    public DailyStockOptionPricer(final StockPricer<LocalDate> stockPricer, final ExchangeRatesProvider<LocalDate> exchangeRates) {
+    public DailyStockOptionPricer(final StockPricer<LocalDate> stockPricer, final ExchangeRateProvider<LocalDate> exchangeRates) {
         super(exchangeRates);
         this.stockPricer = stockPricer;
     }

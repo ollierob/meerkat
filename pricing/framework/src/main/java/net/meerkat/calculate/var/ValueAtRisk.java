@@ -3,9 +3,9 @@ package net.meerkat.calculate.var;
 import javax.annotation.Nonnull;
 
 import net.meerkat.money.Money;
-import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
 
 /**
  * Value at risk (VaR).
@@ -18,7 +18,7 @@ public interface ValueAtRisk extends HasCurrencyId {
     Money<?> atRisk();
 
     @Nonnull
-    default <R extends CurrencyId> Money<R> atRisk(final ExchangeRates rates, final R currency) {
+    default <R extends CurrencyId> Money<R> atRisk(final ExchangeRateSnapshot rates, final R currency) {
         return rates.convert(this.atRisk(), currency);
     }
 

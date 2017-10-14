@@ -9,8 +9,8 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
 
 /**
  *
@@ -34,7 +34,7 @@ public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
         return of(this.paymentDate(), exchangeRate.convertAtMid(this.paymentAmount()));
     }
 
-    default <T extends CurrencyId> CashPayment<T> convert(final T toCurrency, final ExchangeRates exchangeRates) {
+    default <T extends CurrencyId> CashPayment<T> convert(final T toCurrency, final ExchangeRateSnapshot exchangeRates) {
         return this.convert(exchangeRates.rate(this.currencyId(), toCurrency));
     }
 

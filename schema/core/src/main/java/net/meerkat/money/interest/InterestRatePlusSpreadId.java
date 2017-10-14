@@ -19,7 +19,7 @@ public interface InterestRatePlusSpreadId extends InterestRateId {
     InterestRateId base();
 
     @Override
-    default InterestRate resolve(final InterestRates provider) throws UnknownInterestRateException {
+    default InterestRate resolve(final InterestRateSnapshot provider) throws UnknownInterestRateException {
         return this.base().resolve(provider).plus(this.spread());
     }
 

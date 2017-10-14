@@ -1,27 +1,26 @@
 package net.meerkat.risk.rating;
 
-import java.time.LocalDate;
-
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 import net.meerkat.risk.issue.HasIssueId;
 import net.meerkat.risk.issue.IssueId;
+import net.meerkat.risk.rating.exception.UnavailableCreditRatingException;
 
 /**
  *
  * @author ollie
  */
-public interface IssueCreditRatingProvider extends CreditRatingProvider<IssueId> {
+public interface IssueCreditRatingProvider<T> extends CreditRatingProvider<T, IssueId> {
 
     @CheckForNull
-    default CreditRating get(final LocalDate date, final HasIssueId hasIssueId) {
-        return this.get(date, hasIssueId.issueId());
+    default CreditRating get(final T temporal, final HasIssueId hasIssueId) {
+        return this.get(temporal, hasIssueId.issueId());
     }
 
     @Nonnull
-    default CreditRating require(final LocalDate date, final HasIssueId hasIssueId) throws UnavailableCreditRatingException {
-        return this.require(date, hasIssueId.issueId());
+    default CreditRating require(final T temporal, final HasIssueId hasIssueId) throws UnavailableCreditRatingException {
+        return this.require(temporal, hasIssueId.issueId());
     }
 
 }

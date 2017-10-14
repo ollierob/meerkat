@@ -7,14 +7,14 @@ import net.meerkat.Explained;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.derivative.option.Option;
 import net.meerkat.money.Money;
-import net.meerkat.money.fx.ExchangeRates;
-import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.money.fx.exception.ExchangeRateException;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.option.OptionPrice;
 import net.meerkat.pricing.option.OptionPriceShifts;
 import net.ollie.goat.suppliers.lazy.Lazy;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
+import net.meerkat.money.fx.ExchangeRateProvider;
 
 /**
  *
@@ -22,9 +22,9 @@ import net.ollie.goat.suppliers.lazy.Lazy;
  */
 public abstract class AbstractOptionPricer<T extends Temporal, O extends Option<?>> implements OptionPricer<T, O> {
 
-    private final ExchangeRatesProvider<T> fxRates;
+    private final ExchangeRateProvider<T> fxRates;
 
-    protected AbstractOptionPricer(final ExchangeRatesProvider<T> fxRates) {
+    protected AbstractOptionPricer(final ExchangeRateProvider<T> fxRates) {
         this.fxRates = fxRates;
     }
 
@@ -36,7 +36,7 @@ public abstract class AbstractOptionPricer<T extends Temporal, O extends Option<
             final OptionPriceShifts shifts)
             throws InstrumentPriceException {
         try {
-            final ExchangeRates fxRates = this.fxRates.require(date);
+            final ExchangeRateSnapshot fxRates = this.fxRates.require(date);
             return new PricedOption<>(date, option, currency, fxRates, shifts);
         } catch (final ExchangeRateException ex) {
             throw new InstrumentPriceException(ex);
@@ -67,10 +67,10 @@ public abstract class AbstractOptionPricer<T extends Temporal, O extends Option<
         private final T date;
         private final O option;
         private final C currencyId;
-        private final ExchangeRates fxRates;
+        private final ExchangeRateSnapshot fxRates;
         private final OptionPriceShifts shifts;
 
-        PricedOption(final T date, final O option, final C currencyId, final ExchangeRates fxRates, final OptionPriceShifts shifts) {
+        PricedOption(final T date, final O option, final C currencyId, final ExchangeRateSnapshot fxRates, final OptionPriceShifts shifts) {
             this.date = date;
             this.option = option;
             this.currencyId = currencyId;

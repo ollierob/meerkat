@@ -4,7 +4,7 @@ import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
 import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.money.interest.InterestRates;
+import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *
@@ -28,7 +28,7 @@ public class FloatingInterestEarning implements InterestEarning {
     }
 
     @Override
-    public InterestRate rate(final InterestRates rates) {
+    public InterestRate rate(final InterestRateSnapshot rates) {
         return rates.require(basis).plus(spread);
     }
 

@@ -8,7 +8,7 @@ import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
-import net.meerkat.money.interest.InterestRates;
+import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *
@@ -21,7 +21,7 @@ public interface FixedInterestEarning extends InterestEarning {
 
     @Override
     @Deprecated
-    default InterestRate rate(final InterestRates getRate) {
+    default InterestRate rate(final InterestRateSnapshot getRate) {
         return this.rate();
     }
 
@@ -38,7 +38,7 @@ public interface FixedInterestEarning extends InterestEarning {
     default Money<?> discount(
             final LocalDate discountDate,
             final LocalDate end,
-            final InterestRates getRate,
+            final InterestRateSnapshot getRate,
             final InterestRateInterpolator interpolator) {
         return this.discount(discountDate, end);
     }
@@ -48,7 +48,7 @@ public interface FixedInterestEarning extends InterestEarning {
     default Money<?> accrue(
             final LocalDate start,
             final LocalDate accrualDate,
-            final InterestRates getRate,
+            final InterestRateSnapshot getRate,
             final InterestRateInterpolator interpolator) {
         return this.accrue(start, accrualDate);
     }

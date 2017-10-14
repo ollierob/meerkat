@@ -1,7 +1,5 @@
 package net.meerkat.money.fx;
 
-import net.meerkat.money.fx.exception.UnavailableExchangeRateException;
-
 import java.util.Objects;
 import java.util.Optional;
 
@@ -10,13 +8,14 @@ import javax.annotation.Nonnull;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIdPair;
 import net.meerkat.money.Money;
+import net.meerkat.money.fx.exception.UnavailableExchangeRateException;
 
 /**
  * Snapshot of FX rates at a particular time.
  *
  * @author Ollie
  */
-public interface ExchangeRates {
+public interface ExchangeRateSnapshot {
 
     default <F extends CurrencyId, T extends CurrencyId> ExchangeRate<F, T> rate(final F from, final T to)
             throws UnavailableExchangeRateException {
@@ -57,6 +56,5 @@ public interface ExchangeRates {
             throws UnavailableExchangeRateException {
         return this.rate(pair.counterCurrencyId(), pair.baseCurrencyId());
     }
-
 
 }

@@ -3,16 +3,16 @@ package net.meerkat.pricing.interest;
 import java.time.LocalDate;
 import java.util.Map;
 
-import net.meerkat.money.fx.ExchangeRatesProvider;
-import net.meerkat.money.interest.InterestRatesProvider;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.exception.InstrumentException;
 import net.meerkat.instrument.interest.swap.InterestRateSwap;
 import net.meerkat.instrument.interest.swap.leg.InterestRateSwapLeg;
 import net.meerkat.money.Money;
-import net.meerkat.money.fx.ExchangeRates;
-import net.meerkat.money.interest.InterestRates;
 import net.meerkat.pricing.interest.shifts.InterestRateDerivativeShifts;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
+import net.meerkat.money.fx.ExchangeRateProvider;
+import net.meerkat.money.interest.InterestRateSnapshot;
+import net.meerkat.money.interest.InterestRateProvider;
 
 /**
  *
@@ -20,10 +20,10 @@ import net.meerkat.pricing.interest.shifts.InterestRateDerivativeShifts;
  */
 public class DailyInterestRateSwapPricer implements InterestRateSwapPricer<LocalDate> {
 
-    private final InterestRatesProvider<LocalDate> interestRatesProvider;
-    private final ExchangeRatesProvider<LocalDate> fxRatesProvider;
+    private final InterestRateProvider<LocalDate> interestRatesProvider;
+    private final ExchangeRateProvider<LocalDate> fxRatesProvider;
 
-    public DailyInterestRateSwapPricer(final InterestRatesProvider<LocalDate> interestRatesProvider, final ExchangeRatesProvider<LocalDate> fxRatesProvider) {
+    public DailyInterestRateSwapPricer(final InterestRateProvider<LocalDate> interestRatesProvider, final ExchangeRateProvider<LocalDate> fxRatesProvider) {
         this.interestRatesProvider = interestRatesProvider;
         this.fxRatesProvider = fxRatesProvider;
     }
@@ -35,8 +35,8 @@ public class DailyInterestRateSwapPricer implements InterestRateSwapPricer<Local
             final C currency,
             final InterestRateDerivativeShifts shifts)
             throws InstrumentException {
-        final InterestRates interestRates = interestRatesProvider.require(date);
-        final ExchangeRates fxRates = fxRatesProvider.require(date);
+        final InterestRateSnapshot interestRates = interestRatesProvider.require(date);
+        final ExchangeRateSnapshot fxRates = fxRatesProvider.require(date);
         return new InterestRateSwapPrice<>(date, instrument, currency, interestRates, fxRates, shifts);
     }
 
@@ -46,16 +46,16 @@ public class DailyInterestRateSwapPricer implements InterestRateSwapPricer<Local
         private final LocalDate date;
         private final InterestRateSwap swap;
         private final C currency;
-        private final InterestRates interestRates;
-        private final ExchangeRates fxRates;
+        private final InterestRateSnapshot interestRates;
+        private final ExchangeRateSnapshot fxRates;
         private final InterestRateDerivativeShifts shifts;
 
         InterestRateSwapPrice(
                 final LocalDate date,
                 final InterestRateSwap swap,
                 final C currency,
-                final InterestRates interestRates,
-                final ExchangeRates fxRates,
+                final InterestRateSnapshot interestRates,
+                final ExchangeRateSnapshot fxRates,
                 final InterestRateDerivativeShifts shifts) {
             this.date = date;
             this.swap = swap;
@@ -73,12 +73,12 @@ public class DailyInterestRateSwapPricer implements InterestRateSwapPricer<Local
                     .reduce(Money.zero(currency), Money::plus);
         }
 
-        ExchangeRates fxRates() {
+        ExchangeRateSnapshot fxRates() {
             return shifts.shift(fxRates);
         }
 
         <P extends CurrencyId, R extends CurrencyId> Money<C> netValue(final InterestRateSwapLeg<P, R> leg) {
-            final ExchangeRates fxRates = this.fxRates();
+            final ExchangeRateSnapshot fxRates = this.fxRates();
             final Money<C> discountedPay = fxRates.convert(this.discount(leg.payNotional()), currency);
             final Money<C> discountedReceive = fxRates.convert(this.discount(leg.receiveNotional()), currency);
             return discountedReceive.minus(discountedPay);

@@ -5,20 +5,20 @@ import java.util.Objects;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
-import net.meerkat.money.interest.InterestRates;
 import net.ollie.goat.data.Element;
 import net.ollie.goat.functions.Functions;
+import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *
  * @author ollie
  */
-public class ShiftedInterestRates implements InterestRates {
+public class ShiftedInterestRates implements InterestRateSnapshot {
 
-    private final InterestRates rates;
+    private final InterestRateSnapshot rates;
     private final InterestRateShifts shifts;
 
-    public ShiftedInterestRates(final InterestRates rates, final InterestRateShifts shifts) {
+    public ShiftedInterestRates(final InterestRateSnapshot rates, final InterestRateShifts shifts) {
         this.rates = Objects.requireNonNull(rates);
         this.shifts = Objects.requireNonNull(shifts);
     }

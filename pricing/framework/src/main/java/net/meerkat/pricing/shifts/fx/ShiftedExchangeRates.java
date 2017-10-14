@@ -5,19 +5,19 @@ import java.util.Optional;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.fx.ExchangeRates;
 import net.meerkat.money.fx.exception.UnavailableExchangeRateException;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
 
 /**
  *
  * @author Ollie
  */
-public class ShiftedExchangeRates implements ExchangeRates {
+public class ShiftedExchangeRates implements ExchangeRateSnapshot {
 
-    private final ExchangeRates baseRates;
+    private final ExchangeRateSnapshot baseRates;
     private final ExchangeRateShifts shifts;
 
-    public ShiftedExchangeRates(final ExchangeRates baseRates, final ExchangeRateShifts shifts) {
+    public ShiftedExchangeRates(final ExchangeRateSnapshot baseRates, final ExchangeRateShifts shifts) {
         this.baseRates = Objects.requireNonNull(baseRates);
         this.shifts = Objects.requireNonNull(shifts);
     }

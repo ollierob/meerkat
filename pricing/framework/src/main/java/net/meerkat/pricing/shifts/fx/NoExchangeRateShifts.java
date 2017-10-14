@@ -4,7 +4,7 @@ import java.util.Map;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.fx.ExchangeRates;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
 
 /**
  *
@@ -22,7 +22,7 @@ public interface NoExchangeRateShifts extends ExchangeRateShifts {
     };
 
     @Override
-    default ExchangeRates shift(final ExchangeRates rates) {
+    default ExchangeRateSnapshot shift(final ExchangeRateSnapshot rates) {
         return rates;
     }
 

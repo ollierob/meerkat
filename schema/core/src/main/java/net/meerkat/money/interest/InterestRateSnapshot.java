@@ -10,7 +10,7 @@ import net.ollie.goat.data.Provider;
  *
  * @author ollie
  */
-public interface InterestRates extends Provider<InterestRateId, InterestRate> {
+public interface InterestRateSnapshot extends Provider<InterestRateId, InterestRate> {
 
     @Override
     default InterestRate require(final InterestRateId key) throws UnknownInterestRateException {

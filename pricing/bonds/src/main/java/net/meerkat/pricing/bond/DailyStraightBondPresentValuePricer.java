@@ -8,34 +8,34 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.StraightBond;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.money.Money;
-import net.meerkat.money.fx.ExchangeRates;
-import net.meerkat.money.fx.ExchangeRatesProvider;
 import net.meerkat.money.fx.exception.ExchangeRateException;
 import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.InterestRates;
-import net.meerkat.money.interest.InterestRatesProvider;
 import net.meerkat.money.interest.exception.InterestRateException;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.pricing.bond.shifts.BondShifts;
 import net.ollie.goat.numeric.percentage.Percentage;
 import net.ollie.goat.suppliers.lazy.Lazy;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
+import net.meerkat.money.fx.ExchangeRateProvider;
+import net.meerkat.money.interest.InterestRateSnapshot;
+import net.meerkat.money.interest.InterestRateProvider;
 
 /**
  * Computes the value of a {@link StraightBond} by summing the present value of all future coupons.
  *
  * @author ollie
- * @see InterestRates#discountRate
+ * @see InterestRateSnapshot#discountRate
  */
 public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate, StraightBond> {
 
     private final InterestRateInterpolator interestRateInterpolator;
-    private final InterestRatesProvider<LocalDate> interestRatesProvider;
-    private final ExchangeRatesProvider<LocalDate> exchangeRatesProvider;
+    private final InterestRateProvider<LocalDate> interestRatesProvider;
+    private final ExchangeRateProvider<LocalDate> exchangeRatesProvider;
 
     public DailyStraightBondPresentValuePricer(
             final InterestRateInterpolator interestRateInterpolator,
-            final InterestRatesProvider<LocalDate> interestRatesProvider,
-            final ExchangeRatesProvider<LocalDate> exchangeRatesProvider) {
+            final InterestRateProvider<LocalDate> interestRatesProvider,
+            final ExchangeRateProvider<LocalDate> exchangeRatesProvider) {
         this.interestRateInterpolator = interestRateInterpolator;
         this.interestRatesProvider = interestRatesProvider;
         this.exchangeRatesProvider = exchangeRatesProvider;
@@ -49,8 +49,8 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
             final BondShifts shifts)
             throws BondPriceException {
         try {
-            final InterestRates interestRates = interestRatesProvider.require(valueDate);
-            final ExchangeRates exchangeRates = exchangeRatesProvider.require(valueDate);
+            final InterestRateSnapshot interestRates = interestRatesProvider.require(valueDate);
+            final ExchangeRateSnapshot exchangeRates = exchangeRatesProvider.require(valueDate);
             return new StraightBondPrice<>(valueDate, bond, currency, interestRates, exchangeRates, shifts);
         } catch (final InterestRateException | ExchangeRateException ex) {
             throw new BondPriceException(ex);
@@ -113,15 +113,15 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         private final StraightBond bond;
         private final C currencyId;
         private final BondShifts shifts;
-        private final InterestRates interestRates;
-        private final ExchangeRates fxRates;
+        private final InterestRateSnapshot interestRates;
+        private final ExchangeRateSnapshot fxRates;
 
         StraightBondPrice(
                 final LocalDate valueDate,
                 final StraightBond bond,
                 final C currencyId,
-                final InterestRates interestRates,
-                final ExchangeRates fxRates,
+                final InterestRateSnapshot interestRates,
+                final ExchangeRateSnapshot fxRates,
                 final BondShifts shifts) {
             this.valueDate = valueDate;
             this.bond = bond;
