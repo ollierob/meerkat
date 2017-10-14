@@ -29,10 +29,12 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
     @Nonnull
     BigDecimalFraction offerRate();
 
+    @Nonnull
     default BigDecimalFraction spread() {
         return this.offerRate().minus(this.bidRate());
     }
 
+    @Nonnull
     default BigDecimalFraction midRate() {
         final BigDecimalFraction bid = this.bidRate();
         final BigDecimalFraction offer = this.offerRate();
@@ -41,28 +43,34 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
                 : bid.plus(offer).over(2);
     }
 
+    @Nonnull
     default TwoWayMoney<T> convert(final TwoWayMoney<F> from) {
         final Money<T> bid = Money.of(this.to(), this.bidRate().times(from.bid().amount())); //TODO extract method
         final Money<T> offer = Money.of(this.to(), this.offerRate().times(from.offer().amount()));
         return TwoWayMoney.of(bid, offer);
     }
 
+    @Nonnull
     default Money<T> convertAtMid(final TwoWayMoney<F> from) {
         return this.convertAtMid(from.mid());
     }
 
+    @Nonnull
     default Money<T> convertAtMid(final Money<F> from) {
         return Money.of(this.to(), this.midRate().times(from.amount()));
     }
 
+    @Nonnull
     default Money<F> convertAtMidFrom(final Money<T> from) {
         return Money.of(this.from(), this.midRate().over(from.amount()));
     }
 
+    @Nonnull
     default ExchangeRate<T, F> inverse() {
         return new InverseExchangeRate<>(this);
     }
 
+    @Nonnull
     default <X extends CurrencyId> ExchangeRate<F, X> triangulate(final ExchangeRate<T, X> that) {
         return new TriangulatedExchangeRate<>(this, that);
     }

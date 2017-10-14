@@ -1,5 +1,7 @@
 package net.meerkat.money.fx;
 
+import java.util.Objects;
+
 import net.meerkat.identifier.currency.CurrencyId;
 import net.ollie.goat.numeric.fraction.BigDecimalFraction;
 
@@ -13,9 +15,9 @@ public class TriangulatedExchangeRate<F extends CurrencyId, X extends CurrencyId
     private final ExchangeRate<F, X> first;
     private final ExchangeRate<X, T> second;
 
-    public TriangulatedExchangeRate(ExchangeRate<F, X> first, ExchangeRate<X, T> second) {
-        this.first = first;
-        this.second = second;
+    public TriangulatedExchangeRate(final ExchangeRate<F, X> first, final ExchangeRate<X, T> second) {
+        this.first = Objects.requireNonNull(first);
+        this.second = Objects.requireNonNull(second);
     }
 
     @Override
