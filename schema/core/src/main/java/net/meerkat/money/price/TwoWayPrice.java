@@ -2,6 +2,8 @@ package net.meerkat.money.price;
 
 import java.util.Map;
 
+import javax.annotation.Nonnull;
+
 import net.meerkat.identifier.currency.CurrencyId;
 
 /**
@@ -11,6 +13,7 @@ import net.meerkat.identifier.currency.CurrencyId;
  */
 public interface TwoWayPrice<P, C extends CurrencyId> extends TwoWay<P>, Price<C> {
 
+    @Nonnull
     P mid();
 
     /**

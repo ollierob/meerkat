@@ -40,4 +40,9 @@ public class TriangulatedExchangeRate<F extends CurrencyId, X extends CurrencyId
         return first.offerRate().times(second.offerRate());
     }
 
+    @Override
+    public BigDecimalFraction midRate() {
+        return first.midRate().times(second.midRate());
+    }
+
 }

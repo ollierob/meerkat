@@ -24,10 +24,12 @@ public interface TwoWayMoney<C extends CurrencyId> extends TwoWayPrice<Money<C>,
     }
 
     @Override
-    TwoWayMoney<C> evaluate();
+    default TwoWayMoney<C> evaluate() {
+        return of(this.bid(), this.offer());
+    }
 
     static <C extends CurrencyId> TwoWayMoney<C> of(final Money<C> bid, final Money<C> offer) {
-        throw new UnsupportedOperationException();
+        return new DefaultTwoWayMoney<>(bid, offer);
     }
 
 }
