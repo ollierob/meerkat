@@ -1,4 +1,4 @@
-package net.meerkat.issue.exception;
+package net.meerkat.risk.issue.exception;
 
 /**
  *

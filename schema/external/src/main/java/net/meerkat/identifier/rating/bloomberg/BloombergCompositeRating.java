@@ -2,8 +2,8 @@ package net.meerkat.identifier.rating.bloomberg;
 
 import java.util.Set;
 
-import net.meerkat.rating.CreditRating;
-import net.meerkat.rating.CreditRatings;
+import net.meerkat.risk.rating.CreditRating;
+import net.meerkat.risk.rating.CreditRatings;
 
 /**
  *

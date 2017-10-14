@@ -1,15 +1,19 @@
-package net.meerkat.issuer;
+package net.meerkat.risk.issuer;
 
 import java.util.Objects;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.rating.CreditRating;
-import net.meerkat.rating.HasCreditRating;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.issuer.MinimalIssuer;
+import net.meerkat.risk.issue.RatedIssue;
+import net.meerkat.risk.rating.CreditRating;
+import net.meerkat.risk.rating.HasCreditRating;
 
 /**
  *
  * @author ollie
+ * @see RatedIssue
  */
 public class RatedIssuer extends MinimalIssuer implements HasCreditRating {
 

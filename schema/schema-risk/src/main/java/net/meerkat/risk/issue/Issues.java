@@ -1,7 +1,7 @@
-package net.meerkat.issue;
+package net.meerkat.risk.issue;
 
-import net.meerkat.issue.exception.UnknownIssueException;
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.risk.issue.exception.UnknownIssueException;
 import net.ollie.goat.data.Provider;
 
 /**

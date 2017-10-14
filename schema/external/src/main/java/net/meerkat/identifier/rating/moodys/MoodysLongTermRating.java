@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.Set;
 
 import static net.meerkat.identifier.rating.moodys.MoodysGlobalShortTermRating.*;
-import net.meerkat.rating.CreditRating;
-import net.meerkat.rating.CreditRatingBand;
-import static net.meerkat.rating.CreditRatingBand.*;
+import net.meerkat.risk.rating.CreditRating;
+import net.meerkat.risk.rating.CreditRatingBand;
+import static net.meerkat.risk.rating.CreditRatingBand.*;
 
 /**
  *

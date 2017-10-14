@@ -3,8 +3,8 @@ package net.meerkat.identifier.rating.sandp;
 import java.util.Collections;
 import java.util.Set;
 
-import net.meerkat.rating.CreditRating;
-import net.meerkat.rating.CreditRatingBand;
+import net.meerkat.risk.rating.CreditRating;
+import net.meerkat.risk.rating.CreditRatingBand;
 
 /**
  *

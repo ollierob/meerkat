@@ -1,4 +1,4 @@
-package net.meerkat.rating;
+package net.meerkat.risk.rating;
 
 import java.util.Collections;
 import java.util.Set;

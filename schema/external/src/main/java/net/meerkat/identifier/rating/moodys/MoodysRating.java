@@ -1,6 +1,6 @@
 package net.meerkat.identifier.rating.moodys;
 
-import net.meerkat.rating.CreditRating;
+import net.meerkat.risk.rating.CreditRating;
 
 /**
  *

@@ -2,7 +2,7 @@ package net.meerkat.identifier.rating.fitch;
 
 import javax.annotation.Nonnull;
 
-import net.meerkat.rating.CreditRating;
+import net.meerkat.risk.rating.CreditRating;
 
 /**
  *

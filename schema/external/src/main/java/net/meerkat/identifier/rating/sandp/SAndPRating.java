@@ -1,6 +1,6 @@
 package net.meerkat.identifier.rating.sandp;
 
-import net.meerkat.rating.CreditRating;
+import net.meerkat.risk.rating.CreditRating;
 
 /**
  *

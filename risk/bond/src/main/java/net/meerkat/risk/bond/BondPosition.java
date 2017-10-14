@@ -9,9 +9,9 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.bond.BondPrice;
-import net.meerkat.risk.position.PositionId;
 import net.meerkat.risk.position.PositionWithQuantity;
 import net.meerkat.calculate.sensitivity.UnitPriceSensitivities;
+import net.meerkat.risk.position.PositionId;
 import net.meerkat.sensitivity.bond.BondUnitPriceSensitivities;
 
 /**

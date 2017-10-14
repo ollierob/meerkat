@@ -2,8 +2,8 @@ package net.meerkat.risk.portfolio;
 
 import net.coljate.map.Map;
 import net.coljate.set.Set;
-import net.meerkat.risk.position.PositionId;
 import net.meerkat.risk.position.Position;
+import net.meerkat.risk.position.PositionId;
 import net.meerkat.risk.position.PositionProvider;
 
 /**

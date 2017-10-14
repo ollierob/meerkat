@@ -1,11 +1,13 @@
-package net.meerkat.issue;
+package net.meerkat.risk.issue;
 
-import net.meerkat.rating.CreditRating;
-import net.meerkat.rating.HasCreditRating;
+import net.meerkat.risk.issuer.RatedIssuer;
+import net.meerkat.risk.rating.CreditRating;
+import net.meerkat.risk.rating.HasCreditRating;
 
 /**
  *
  * @author ollie
+ * @see RatedIssuer
  */
 public class RatedIssue extends MinimalIssue implements HasCreditRating {
 

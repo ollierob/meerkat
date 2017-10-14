@@ -1,4 +1,4 @@
-package net.meerkat.issue;
+package net.meerkat.risk.issue;
 
 import javax.annotation.Nonnull;
 

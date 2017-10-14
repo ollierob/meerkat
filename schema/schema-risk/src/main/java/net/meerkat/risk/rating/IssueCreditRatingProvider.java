@@ -1,12 +1,12 @@
-package net.meerkat.rating;
+package net.meerkat.risk.rating;
 
 import java.time.LocalDate;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
-import net.meerkat.issue.HasIssueId;
-import net.meerkat.issue.IssueId;
+import net.meerkat.risk.issue.HasIssueId;
+import net.meerkat.risk.issue.IssueId;
 
 /**
  *

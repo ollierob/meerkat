@@ -6,6 +6,8 @@ package net.meerkat.risk.portfolio;
  */
 public class UnknownPortfolioException extends RuntimeException {
 
+    private static final long serialVersionUID = 1L;
+
     public UnknownPortfolioException(final PortfolioId id) {
     }
 

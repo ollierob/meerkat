@@ -1,10 +1,10 @@
-package net.meerkat.issue;
+package net.meerkat.risk.issue;
 
 import javax.annotation.Nonnull;
 
 import net.meerkat.identifier.instrument.InstrumentId;
-import net.meerkat.issue.exception.IssueException;
-import net.meerkat.issue.exception.UnavailableIssueException;
+import net.meerkat.risk.issue.exception.IssueException;
+import net.meerkat.risk.issue.exception.UnavailableIssueException;
 import net.ollie.goat.data.Provider;
 
 /**
