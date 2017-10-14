@@ -1,4 +1,4 @@
-package net.meerkat.issue;
+package net.meerkat.issue.exception;
 
 import net.meerkat.identifier.instrument.HasInstrumentId;
 import net.meerkat.identifier.instrument.InstrumentId;
@@ -7,14 +7,15 @@ import net.meerkat.identifier.instrument.InstrumentId;
  *
  * @author ollie
  */
-public class UnknownIssueException extends RuntimeException implements HasInstrumentId {
+public class UnknownIssueException extends IssueException implements HasInstrumentId {
 
     private static final long serialVersionUID = 1L;
 
     private final InstrumentId instrumentId;
 
-    public UnknownIssueException(final InstrumentId issueId) {
-        this.instrumentId = issueId;
+    public UnknownIssueException(final InstrumentId instrumentId) {
+        super("Unknown issue for " + instrumentId);
+        this.instrumentId = instrumentId;
     }
 
     @Override
