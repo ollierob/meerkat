@@ -8,7 +8,7 @@ import net.ollie.goat.data.Provider;
  *
  * @author ollie
  */
-public interface Issues extends Provider<InstrumentId, Issue> {
+public interface IssueSnapshot extends Provider<InstrumentId, Issue> {
 
     @Override
     default Issue require(final InstrumentId id) throws UnknownIssueException {

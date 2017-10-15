@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class TriangulatedExchangeRateTest {
 
     @Test
-    public void shouldTriangulate() {
+    public void shouldTriangulateTwoWayMoney() {
 
         final ExchangeRate<GBP, USD> gbpToUsd = mock(ExchangeRate.class);
         when(gbpToUsd.from()).thenReturn(GBP.GBP);
