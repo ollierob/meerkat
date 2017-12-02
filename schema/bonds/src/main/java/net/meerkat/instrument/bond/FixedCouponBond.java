@@ -1,11 +1,5 @@
 package net.meerkat.instrument.bond;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.function.Predicate;
-
-import javax.annotation.Nonnull;
-
 import net.coljate.list.List;
 import net.coljate.list.ListIterator;
 import net.meerkat.identifier.currency.CurrencyId;
@@ -18,6 +12,11 @@ import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRateInstrument;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
+
+import javax.annotation.Nonnull;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.function.Predicate;
 
 /**
  *
@@ -102,6 +101,7 @@ public class FixedCouponBond
             return couponAmount.currencyId();
         }
 
+        @SuppressWarnings("unchecked")
         @Override
         public FixedCouponBondCoupons<C> filter(final Predicate<? super FixedCoupon<C>> predicate) {
             return new FixedCouponBondCoupons<>(this.frequency(), couponAmount, this.predicate.and((Predicate) predicate));

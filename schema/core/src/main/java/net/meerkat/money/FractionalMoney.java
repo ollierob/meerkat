@@ -1,5 +1,10 @@
 package net.meerkat.money;
 
+import net.meerkat.identifier.currency.CurrencyId;
+import net.ollie.goat.numeric.fraction.BigDecimalFraction;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -7,12 +12,6 @@ import java.io.ObjectOutput;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *
@@ -83,6 +82,7 @@ public class FractionalMoney<C extends CurrencyId>
         out.writeObject(fraction);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
         currency = (C) in.readObject();
