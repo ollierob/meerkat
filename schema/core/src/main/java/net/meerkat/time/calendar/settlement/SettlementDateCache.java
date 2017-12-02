@@ -1,13 +1,12 @@
 package net.meerkat.time.calendar.settlement;
 
-import java.time.LocalDate;
-
 import net.coljate.cache.Cache;
 import net.coljate.cache.impl.EmptyCache;
 import net.coljate.map.ImmutableEntry;
 
+import java.time.LocalDate;
+
 /**
- *
  * @author ollie
  */
 public interface SettlementDateCache extends Cache<LocalDate, SettlementDate> {
@@ -22,8 +21,8 @@ public interface SettlementDateCache extends Cache<LocalDate, SettlementDate> {
         }
 
         @Override
-        public SettlementDate get(final LocalDate key) {
-            return new SettlementDate(key);
+        public SettlementDate get(final LocalDate date) {
+            return new UtcSettlementDate(date);
         }
 
         @Override

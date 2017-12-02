@@ -1,7 +1,5 @@
 package net.meerkat.instrument.fx.forward;
 
-import java.time.LocalDate;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
@@ -10,8 +8,9 @@ import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.time.calendar.settlement.SettlementDate;
 
+import java.time.LocalDate;
+
 /**
- *
  * @author ollie
  */
 public class NonDeliverableFxForward<B extends CurrencyId, C extends CurrencyId>
@@ -58,6 +57,9 @@ public class NonDeliverableFxForward<B extends CurrencyId, C extends CurrencyId>
         return spotRate.to();
     }
 
+    /**
+     * @return the date on which the difference between the market and agreed exchange rates is calculated.
+     */
     public LocalDate fixingDate() {
         return fixingDate;
     }
