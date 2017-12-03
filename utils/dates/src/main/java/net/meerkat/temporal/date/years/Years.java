@@ -26,7 +26,7 @@ public interface Years extends TemporalToChrono, Comparable<Years>, Numeric.Summ
 
     @Override
     default Period period() {
-        return this.toPeriod(Periods.DAYS_PER_YEAR);
+        return this.toPeriod(Periods.DAYS_PER_GREGORIAN_YEAR);
     }
 
     default int round(final RoundingMode rounding) {
