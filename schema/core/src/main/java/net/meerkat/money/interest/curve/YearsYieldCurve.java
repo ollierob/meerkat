@@ -1,17 +1,12 @@
 package net.meerkat.money.interest.curve;
 
-import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NavigableMap;
-import java.util.Set;
-import java.util.TreeMap;
+import net.meerkat.collections.Sets;
+import net.meerkat.numeric.interpolation.Interpolator;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.temporal.date.years.Years;
 
-import net.ollie.goat.collection.Sets;
-import net.ollie.goat.numeric.interpolation.Interpolator;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.years.Years;
+import java.time.LocalDate;
+import java.util.*;
 
 /**
  * A {@link YieldCurve yield curve} whose x-axis is formed of {@link Years amounts of years}.

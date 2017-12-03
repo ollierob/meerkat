@@ -1,9 +1,9 @@
 package net.meerkat.instrument.derivative.forward;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.instrument.Instrument;
-import net.ollie.goat.temporal.date.interim.Interim;
+import net.meerkat.temporal.date.interim.Interim;
+
+import javax.annotation.Nonnull;
 
 /**
  *

@@ -1,19 +1,18 @@
 package net.meerkat.instrument.interest.future.bond;
 
-import java.time.Period;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.instrument.bond.BondProvider;
 import net.meerkat.instrument.interest.future.InterestRateFutureContract;
-import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.numeric.percentage.Percentage;
+
+import javax.annotation.Nonnull;
+import java.time.Period;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *

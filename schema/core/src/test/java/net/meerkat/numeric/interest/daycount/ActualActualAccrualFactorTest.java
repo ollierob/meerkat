@@ -1,12 +1,12 @@
 package net.meerkat.numeric.interest.daycount;
 
-import net.ollie.goat.temporal.date.count.ActualActualDateArithmetic;
+import net.meerkat.temporal.date.count.ActualActualDateArithmetic;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import org.junit.jupiter.api.Test;
 
 /**
  *

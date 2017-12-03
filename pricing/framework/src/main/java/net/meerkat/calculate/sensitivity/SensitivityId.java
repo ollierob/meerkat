@@ -1,13 +1,12 @@
 package net.meerkat.calculate.sensitivity;
 
-import java.util.Optional;
-import java.util.stream.Collector;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.calculate.sensitivity.id.NonCollectingSensitivityId;
 import net.meerkat.calculate.sensitivity.id.SumingSensitivityId;
-import net.meerkat.utils.HasName;
+import net.meerkat.objects.HasName;
+
+import javax.annotation.Nonnull;
+import java.util.Optional;
+import java.util.stream.Collector;
 
 /**
  *

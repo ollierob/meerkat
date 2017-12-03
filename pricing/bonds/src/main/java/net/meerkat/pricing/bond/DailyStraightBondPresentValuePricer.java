@@ -1,24 +1,24 @@
 package net.meerkat.pricing.bond;
 
-import java.time.LocalDate;
-import java.time.Period;
-
 import net.meerkat.Explained;
+import net.meerkat.functions.suppliers.lazy.Lazy;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.StraightBond;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.money.Money;
+import net.meerkat.money.fx.ExchangeRateProvider;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
 import net.meerkat.money.fx.exception.ExchangeRateException;
 import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.InterestRateProvider;
+import net.meerkat.money.interest.InterestRateSnapshot;
 import net.meerkat.money.interest.exception.InterestRateException;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
+import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.bond.shifts.BondShifts;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.suppliers.lazy.Lazy;
-import net.meerkat.money.fx.ExchangeRateSnapshot;
-import net.meerkat.money.fx.ExchangeRateProvider;
-import net.meerkat.money.interest.InterestRateSnapshot;
-import net.meerkat.money.interest.InterestRateProvider;
+
+import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * Computes the value of a {@link StraightBond} by summing the present value of all future coupons.

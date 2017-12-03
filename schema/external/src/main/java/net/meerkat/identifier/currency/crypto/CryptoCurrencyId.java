@@ -1,7 +1,7 @@
 package net.meerkat.identifier.currency.crypto;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.utils.HasName;
+import net.meerkat.objects.HasName;
 
 /**
  *

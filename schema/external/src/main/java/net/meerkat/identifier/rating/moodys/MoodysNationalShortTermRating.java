@@ -1,11 +1,12 @@
 package net.meerkat.identifier.rating.moodys;
 
-import java.util.Set;
-
+import net.meerkat.collections.Sets;
 import net.meerkat.risk.rating.CreditRating;
 import net.meerkat.risk.rating.CreditRatingBand;
+
+import java.util.Set;
+
 import static net.meerkat.risk.rating.CreditRatingBand.*;
-import net.ollie.goat.collection.Sets;
 
 /**
  *

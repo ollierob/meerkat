@@ -1,23 +1,18 @@
 package net.meerkat.identifier.interest;
 
-import java.time.LocalDate;
-import java.util.Objects;
-
-import javax.annotation.CheckReturnValue;
-
 import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.currency.HasCurrencyId;
-import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.InterestRateId;
-import net.meerkat.money.interest.InterestRatePlusSpreadId;
-import net.meerkat.money.interest.NamedInterestRateId;
-import net.meerkat.money.interest.exception.UnknownInterestRateException;
+import net.meerkat.money.interest.*;
 import net.meerkat.money.interest.curve.DateYieldCurve;
+import net.meerkat.money.interest.exception.UnknownInterestRateException;
 import net.meerkat.money.interest.floating.ContinousFloatingInterestRate;
 import net.meerkat.money.interest.floating.FloatingInterestRate;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.count.DateArithmetic;
-import net.meerkat.money.interest.InterestRateSnapshot;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.temporal.date.count.DateArithmetic;
+
+import javax.annotation.CheckReturnValue;
+import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *

@@ -1,7 +1,6 @@
 package net.meerkat.identifier.country;
 
-
-import net.meerkat.utils.Classes.Castable;
+import net.meerkat.objects.Classes.Castable;
 
 /**
  *

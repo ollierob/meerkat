@@ -3,8 +3,8 @@ package net.meerkat.pricing.bond;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.bond.shifts.BondShifts;
-import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

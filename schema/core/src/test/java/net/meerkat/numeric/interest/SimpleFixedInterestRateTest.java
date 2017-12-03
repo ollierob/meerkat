@@ -1,22 +1,22 @@
 package net.meerkat.numeric.interest;
 
-import java.math.BigDecimal;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.BigDecimalMoney;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
-import net.ollie.goat.numeric.percentage.BigDecimalPercentage;
-import net.ollie.goat.temporal.date.count.DateArithmetic;
-import net.ollie.goat.temporal.date.years.FractionalYears;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import net.meerkat.numeric.percentage.BigDecimalPercentage;
+import net.meerkat.temporal.date.count.DateArithmetic;
+import net.meerkat.temporal.date.years.FractionalYears;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
+
+import java.math.BigDecimal;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.when;
 
 /**
  *

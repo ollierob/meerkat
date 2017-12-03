@@ -1,14 +1,13 @@
 package net.meerkat.money.interest.curve;
 
+import net.meerkat.numeric.interpolation.Interpolator;
+import net.meerkat.numeric.percentage.Percentage;
+
+import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.xml.bind.annotation.XmlRootElement;
-
-import net.ollie.goat.numeric.interpolation.Interpolator;
-import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  * A {@link YieldCurve yield curve} whose x-axis is formed of {@link Tenor tenors}.

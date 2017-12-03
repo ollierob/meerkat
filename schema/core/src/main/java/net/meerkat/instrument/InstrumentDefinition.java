@@ -1,13 +1,12 @@
 package net.meerkat.instrument;
 
-import java.util.Map;
+import net.meerkat.Explainable;
+import net.meerkat.identifier.instrument.HasInstrumentIds;
+import net.meerkat.objects.HasName;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
-
-import net.meerkat.Explainable;
-import net.meerkat.identifier.instrument.HasInstrumentIds;
-import net.meerkat.utils.HasName;
+import java.util.Map;
 
 /**
  *

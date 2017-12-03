@@ -1,10 +1,10 @@
 package net.meerkat.calculate.sensitivity;
 
+import net.coljate.util.SelfTyped;
+import net.meerkat.objects.Classes.Castable;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import net.coljate.util.SelfTyped;
-import net.meerkat.utils.Classes.Castable;
 
 /**
  *

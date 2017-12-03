@@ -1,14 +1,13 @@
 package net.meerkat.time.calendar;
 
-import java.time.LocalDate;
-import java.util.function.Function;
-
-import javax.annotation.Nonnull;
-
 import net.coljate.set.MutableSet;
 import net.coljate.set.Set;
-import net.meerkat.utils.Require;
-import net.ollie.goat.temporal.date.HasDate;
+import net.meerkat.objects.Require;
+import net.meerkat.temporal.date.HasDate;
+
+import javax.annotation.Nonnull;
+import java.time.LocalDate;
+import java.util.function.Function;
 
 /**
  *

@@ -1,13 +1,12 @@
 package net.meerkat.money.interest.curve;
 
-import java.time.Period;
+import net.meerkat.temporal.date.Periods;
+import net.ollie.goat.data.Element;
+import net.ollie.goat.data.Provider;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
-
-import net.ollie.goat.data.Element;
-import net.ollie.goat.data.Provider;
-import net.ollie.goat.temporal.date.Periods;
+import java.time.Period;
 
 /**
  *

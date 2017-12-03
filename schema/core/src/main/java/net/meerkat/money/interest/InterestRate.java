@@ -1,18 +1,17 @@
 package net.meerkat.money.interest;
 
-import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
-
-import javax.annotation.CheckReturnValue;
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.count.DateArithmetic;
-import net.ollie.goat.temporal.date.interim.CompleteInterval;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.temporal.date.count.DateArithmetic;
+import net.meerkat.temporal.date.interim.CompleteInterval;
+
+import javax.annotation.CheckReturnValue;
+import javax.annotation.Nonnull;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 
 /**
  *

@@ -1,6 +1,6 @@
 package net.meerkat.time.calendar.settlement;
 
-import net.ollie.goat.temporal.PartialDateTime;
+import net.meerkat.temporal.PartialDateTime;
 
 /**
  *

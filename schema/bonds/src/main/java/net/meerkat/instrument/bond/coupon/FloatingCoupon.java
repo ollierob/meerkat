@@ -1,8 +1,5 @@
 package net.meerkat.instrument.bond.coupon;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
 import net.coljate.collection.Collection;
 import net.coljate.set.Set;
 import net.meerkat.identifier.currency.CurrencyId;
@@ -10,9 +7,12 @@ import net.meerkat.money.Money;
 import net.meerkat.money.interest.HasInterestRateId;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
-import net.meerkat.money.interest.feature.RateFeature;
-import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.money.interest.InterestRateSnapshot;
+import net.meerkat.money.interest.feature.RateFeature;
+import net.meerkat.numeric.percentage.Percentage;
+
+import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  *

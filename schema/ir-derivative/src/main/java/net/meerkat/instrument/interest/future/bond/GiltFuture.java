@@ -1,16 +1,15 @@
 package net.meerkat.instrument.interest.future.bond;
 
-import java.time.Period;
-import java.util.Set;
-
-import javax.xml.bind.annotation.XmlRootElement;
-
 import net.meerkat.identifier.currency.GBP;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.money.Money;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.months.Months;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.temporal.date.months.Months;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import java.time.Period;
+import java.util.Set;
 
 /**
  *

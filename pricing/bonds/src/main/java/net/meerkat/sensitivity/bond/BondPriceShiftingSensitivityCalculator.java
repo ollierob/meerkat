@@ -1,18 +1,18 @@
 package net.meerkat.sensitivity.bond;
 
-import java.time.temporal.Temporal;
-
 import net.meerkat.Explained;
 import net.meerkat.calculate.sensitivity.yield.DollarDuration;
 import net.meerkat.identifier.currency.CurrencyIso;
 import net.meerkat.identifier.currency.USD;
 import net.meerkat.instrument.bond.Bond;
 import net.meerkat.money.Money;
+import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.pricing.bond.EvaluatedBondPrice;
 import net.meerkat.pricing.bond.GenericBondPricer;
 import net.meerkat.pricing.bond.shifts.BondShifts;
-import net.ollie.goat.numeric.percentage.Percentage;
+
+import java.time.temporal.Temporal;
 
 /**
  *

@@ -1,10 +1,10 @@
 package net.meerkat.pricing.fx;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.fraction.BigDecimalFraction;
+
+import javax.annotation.Nonnull;
 
 /**
  *

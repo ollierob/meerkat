@@ -1,20 +1,19 @@
 package net.meerkat.money;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-import java.util.Objects;
-
-import javax.annotation.Nonnull;
-
 import net.coljate.collection.Collection;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.utils.Require;
-import net.ollie.goat.numeric.BigDecimals;
-import net.ollie.goat.numeric.Numbers;
-import net.ollie.goat.numeric.Numeric;
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.BigDecimals;
+import net.meerkat.numeric.Numbers;
+import net.meerkat.numeric.Numeric;
+import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.objects.Require;
+
+import javax.annotation.Nonnull;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  *

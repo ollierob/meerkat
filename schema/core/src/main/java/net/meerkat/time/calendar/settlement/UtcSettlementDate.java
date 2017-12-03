@@ -1,6 +1,6 @@
 package net.meerkat.time.calendar.settlement;
 
-import net.ollie.goat.temporal.date.DateWrapper;
+import net.meerkat.temporal.date.DateWrapper;
 
 import java.time.LocalDate;
 

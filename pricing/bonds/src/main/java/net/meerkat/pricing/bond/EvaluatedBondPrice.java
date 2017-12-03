@@ -3,7 +3,7 @@ package net.meerkat.pricing.bond;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
-import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.numeric.percentage.Percentage;
 
 /**
  *

@@ -1,10 +1,10 @@
 package net.meerkat.identifier.currency;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.money.MoneyFormat;
-import net.meerkat.utils.Classes.Castable;
+import net.meerkat.objects.Classes.Castable;
+
+import javax.annotation.Nonnull;
 
 /**
  * A monetary unit.

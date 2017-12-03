@@ -1,9 +1,9 @@
 package net.meerkat.calculate.sensitivity.id;
 
-import java.util.stream.Collector;
-
 import net.meerkat.calculate.sensitivity.Sensitivity;
-import net.ollie.goat.suppliers.Suppliers;
+import net.meerkat.functions.suppliers.Suppliers;
+
+import java.util.stream.Collector;
 
 /**
  *

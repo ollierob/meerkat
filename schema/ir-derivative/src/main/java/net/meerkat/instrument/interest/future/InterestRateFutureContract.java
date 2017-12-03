@@ -1,16 +1,15 @@
 package net.meerkat.instrument.interest.future;
 
-import java.time.Month;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.money.Money;
-import net.ollie.goat.temporal.date.months.AllMonths;
-import net.ollie.goat.temporal.date.months.Months;
-import net.ollie.goat.temporal.date.months.SomeMonths;
+import net.meerkat.temporal.date.months.AllMonths;
+import net.meerkat.temporal.date.months.Months;
+import net.meerkat.temporal.date.months.SomeMonths;
+
+import javax.annotation.Nonnull;
+import java.time.Month;
 
 /**
  *

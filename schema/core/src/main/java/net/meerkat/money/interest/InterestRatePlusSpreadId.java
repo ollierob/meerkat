@@ -1,10 +1,9 @@
 package net.meerkat.money.interest;
 
 import net.meerkat.money.interest.exception.UnknownInterestRateException;
+import net.meerkat.numeric.percentage.Percentage;
 
 import javax.annotation.Nonnull;
-
-import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

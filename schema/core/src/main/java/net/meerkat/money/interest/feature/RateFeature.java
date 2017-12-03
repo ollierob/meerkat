@@ -1,10 +1,10 @@
 package net.meerkat.money.interest.feature;
 
+import net.meerkat.numeric.percentage.Percentage;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.UnaryOperator;
-
-import net.ollie.goat.numeric.percentage.Percentage;
 
 /**
  *

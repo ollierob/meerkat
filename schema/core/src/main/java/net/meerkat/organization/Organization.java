@@ -1,6 +1,6 @@
 package net.meerkat.organization;
 
-import net.meerkat.utils.HasName;
+import net.meerkat.objects.HasName;
 
 /**
  *

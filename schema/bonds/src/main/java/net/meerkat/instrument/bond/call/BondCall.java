@@ -1,10 +1,9 @@
 package net.meerkat.instrument.bond.call;
 
-import java.time.LocalDate;
+import net.meerkat.numeric.percentage.Percentage;
 
 import javax.annotation.Nonnull;
-
-import net.ollie.goat.numeric.percentage.Percentage;
+import java.time.LocalDate;
 
 /**
  *

@@ -1,10 +1,10 @@
 package net.meerkat.instrument;
 
-import javax.annotation.OverridingMethodsMustInvokeSuper;
-
 import net.meerkat.Explainable;
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.utils.HasName;
+import net.meerkat.objects.HasName;
+
+import javax.annotation.OverridingMethodsMustInvokeSuper;
 
 /**
  *

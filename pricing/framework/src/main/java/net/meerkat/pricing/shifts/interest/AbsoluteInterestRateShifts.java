@@ -1,9 +1,9 @@
 package net.meerkat.pricing.shifts.interest;
 
-import java.util.Map;
-
 import net.meerkat.money.interest.InterestRate;
-import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.numeric.percentage.Percentage;
+
+import java.util.Map;
 
 /**
  *

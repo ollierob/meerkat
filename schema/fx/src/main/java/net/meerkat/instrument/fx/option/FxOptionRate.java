@@ -1,13 +1,13 @@
 package net.meerkat.instrument.fx.option;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.fraction.BigDecimalFraction;
+
+import javax.annotation.Nonnull;
 
 /**
  *

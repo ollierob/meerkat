@@ -1,13 +1,13 @@
 package net.meerkat.pricing.shifts.interest;
 
+import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.InterestRateSnapshot;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.pricing.shifts.InstrumentPriceShifts;
+
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
-
-import net.meerkat.money.interest.InterestRate;
-import net.meerkat.money.interest.fixed.FixedInterestRate;
-import net.meerkat.pricing.shifts.InstrumentPriceShifts;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.meerkat.money.interest.InterestRateSnapshot;
 
 /**
  *

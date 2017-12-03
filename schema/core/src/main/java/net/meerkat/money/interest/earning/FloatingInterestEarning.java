@@ -3,8 +3,8 @@ package net.meerkat.money.interest.earning;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateId;
-import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.money.interest.InterestRateSnapshot;
+import net.meerkat.numeric.percentage.Percentage;
 
 /**
  *

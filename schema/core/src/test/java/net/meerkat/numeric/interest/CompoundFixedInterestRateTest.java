@@ -1,17 +1,17 @@
 package net.meerkat.numeric.interest;
 
-import java.time.LocalDate;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.BigDecimalMoney;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.CompoundFixedInterestRate;
-import net.ollie.goat.numeric.percentage.BigDecimalPercentage;
-import net.ollie.goat.temporal.date.count.FixedFixedDateArithmetic;
+import net.meerkat.numeric.percentage.BigDecimalPercentage;
+import net.meerkat.temporal.date.count.FixedFixedDateArithmetic;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
-import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 
 /**

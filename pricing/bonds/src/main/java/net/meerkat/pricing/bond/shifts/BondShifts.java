@@ -1,11 +1,11 @@
 package net.meerkat.pricing.bond.shifts;
 
-import javax.annotation.Nonnull;
-
+import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
-import net.ollie.goat.numeric.percentage.Percentage;
+
+import javax.annotation.Nonnull;
 
 /**
  *

@@ -1,9 +1,5 @@
 package net.meerkat.instrument.bond;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.function.Predicate;
-
 import net.coljate.list.List;
 import net.coljate.list.ListIterator;
 import net.coljate.set.Set;
@@ -16,7 +12,11 @@ import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRateId;
 import net.meerkat.money.interest.feature.RateFeature;
-import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.numeric.percentage.Percentage;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.function.Predicate;
 
 /**
  *

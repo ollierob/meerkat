@@ -1,8 +1,8 @@
 package net.meerkat.identifier.currency;
 
-import javax.xml.bind.annotation.XmlTransient;
+import net.meerkat.objects.HasName;
 
-import net.meerkat.utils.HasName;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *

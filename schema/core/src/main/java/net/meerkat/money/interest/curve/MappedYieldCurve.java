@@ -1,21 +1,15 @@
 package net.meerkat.money.interest.curve;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.NavigableMap;
-import java.util.Set;
-import java.util.TreeMap;
+import net.meerkat.collections.Maps;
+import net.meerkat.collections.Sets;
+import net.meerkat.numeric.interpolation.Interpolator;
+import net.meerkat.numeric.manifold.Curve;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.objects.SelfTyped;
 
 import javax.annotation.Nonnull;
-
-import net.meerkat.utils.SelfTyped;
-import net.ollie.goat.collection.Maps;
-import net.ollie.goat.collection.Sets;
-import net.ollie.goat.numeric.interpolation.Interpolator;
-import net.ollie.goat.numeric.manifold.Curve;
-import net.ollie.goat.numeric.percentage.Percentage;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  *

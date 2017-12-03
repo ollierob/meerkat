@@ -1,17 +1,17 @@
 package net.meerkat.money.interest.curve;
 
+import net.meerkat.money.interest.floating.ContinousFloatingInterestRate;
+import net.meerkat.money.interest.floating.FloatingInterestRate;
+import net.meerkat.numeric.interpolation.Interpolator;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.temporal.date.count.DateArithmetic;
+import net.meerkat.temporal.date.years.Years;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Map;
-
-import net.meerkat.money.interest.floating.ContinousFloatingInterestRate;
-import net.meerkat.money.interest.floating.FloatingInterestRate;
-import net.ollie.goat.numeric.interpolation.Interpolator;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.count.DateArithmetic;
-import net.ollie.goat.temporal.date.years.Years;
 
 /**
  * A {@link YieldCurve yield curve} whose x-axis is formed of {@link LocalDate dates}.

@@ -1,9 +1,9 @@
 package net.meerkat.money.fx;
 
-import java.util.Objects;
-
 import net.meerkat.identifier.currency.CurrencyId;
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.fraction.BigDecimalFraction;
+
+import java.util.Objects;
 
 /**
  *

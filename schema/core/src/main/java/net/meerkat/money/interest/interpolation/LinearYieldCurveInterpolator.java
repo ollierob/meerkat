@@ -1,15 +1,13 @@
 package net.meerkat.money.interest.interpolation;
 
-import net.ollie.goat.numeric.interpolation.LinearDecimalInterpolator;
-
-import java.math.BigDecimal;
-import java.time.Period;
+import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.interpolation.LinearDecimalInterpolator;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.temporal.date.Periods;
 
 import javax.xml.bind.annotation.XmlRootElement;
-
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.Periods;
+import java.math.BigDecimal;
+import java.time.Period;
 
 /**
  *

@@ -1,8 +1,8 @@
 package net.meerkat.money.interest.interpolation;
 
 import net.meerkat.money.interest.curve.Tenor;
-import net.ollie.goat.numeric.interpolation.Interpolator;
-import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.numeric.interpolation.Interpolator;
+import net.meerkat.numeric.percentage.Percentage;
 
 /**
  *

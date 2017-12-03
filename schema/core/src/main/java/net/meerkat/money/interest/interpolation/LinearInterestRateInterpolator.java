@@ -1,12 +1,11 @@
 package net.meerkat.money.interest.interpolation;
 
-import java.time.LocalDate;
-
+import net.meerkat.numeric.interpolation.FirstOrderInterpolator;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.temporal.date.count.DayCount;
 import org.apache.commons.math3.fraction.Fraction;
 
-import net.ollie.goat.temporal.date.count.DayCount;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.numeric.interpolation.FirstOrderInterpolator;
+import java.time.LocalDate;
 
 /**
  *

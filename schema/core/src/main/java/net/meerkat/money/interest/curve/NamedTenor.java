@@ -1,8 +1,8 @@
 package net.meerkat.money.interest.curve;
 
-import java.time.Period;
+import net.meerkat.objects.HasName;
 
-import net.meerkat.utils.HasName;
+import java.time.Period;
 
 /**
  *

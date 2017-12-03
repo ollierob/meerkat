@@ -1,10 +1,10 @@
 package net.meerkat.identifier.rating.fitch;
 
-import java.util.Set;
-
-import net.ollie.goat.collection.Sets;
+import net.meerkat.collections.Sets;
 import net.meerkat.risk.rating.CreditRating;
 import net.meerkat.risk.rating.CreditRatingBand;
+
+import java.util.Set;
 
 /**
  *

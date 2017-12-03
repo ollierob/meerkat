@@ -1,13 +1,13 @@
 package net.meerkat.instrument.interest.future.stir;
 
-import java.time.Period;
-
 import net.meerkat.identifier.currency.USD;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
-import net.ollie.goat.temporal.date.Periods;
-import net.ollie.goat.temporal.date.months.Months;
+import net.meerkat.temporal.date.Periods;
+import net.meerkat.temporal.date.months.Months;
+
+import java.time.Period;
 
 /**
  *

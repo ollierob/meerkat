@@ -3,12 +3,12 @@ package net.meerkat.money.fx;
 import net.meerkat.identifier.currency.StubCurrencyId;
 import net.meerkat.money.price.TwoWayDecimalMoney;
 import net.meerkat.money.price.TwoWayMoney;
-import net.ollie.goat.numeric.BigDecimals;
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.BigDecimals;
+import net.meerkat.numeric.fraction.BigDecimalFraction;
+import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
-import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

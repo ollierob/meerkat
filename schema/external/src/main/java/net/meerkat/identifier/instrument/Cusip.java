@@ -1,9 +1,9 @@
 package net.meerkat.identifier.instrument;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.country.CountryIso;
-import net.meerkat.utils.algorithm.LuhnAlgorithm;
+import net.meerkat.objects.algorithm.LuhnAlgorithm;
+
+import javax.annotation.Nonnull;
 
 /**
  *

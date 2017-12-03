@@ -1,14 +1,13 @@
 package net.meerkat.money.interest.curve;
 
-import java.time.LocalDate;
-import java.time.Period;
+import net.meerkat.Explainable;
+import net.meerkat.temporal.date.Periods;
+import net.meerkat.temporal.date.count.DayCount;
+import net.meerkat.temporal.date.years.Years;
 
 import javax.annotation.Nonnull;
-
-import net.meerkat.Explainable;
-import net.ollie.goat.temporal.date.Periods;
-import net.ollie.goat.temporal.date.count.DayCount;
-import net.ollie.goat.temporal.date.years.Years;
+import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * A normalized {@link Period}.

@@ -1,9 +1,9 @@
 package net.meerkat.calculate.var.historic;
 
-import net.meerkat.money.Money;
-import net.ollie.goat.numeric.percentage.Percentage;
 import net.meerkat.calculate.var.ValueAtRisk;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.money.Money;
+import net.meerkat.numeric.percentage.Percentage;
 
 /**
  *

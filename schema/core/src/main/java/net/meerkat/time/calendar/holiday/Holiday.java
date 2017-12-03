@@ -1,10 +1,10 @@
 package net.meerkat.time.calendar.holiday;
 
+import net.meerkat.objects.HasName;
+import net.meerkat.temporal.date.DateWrapper;
+
 import java.time.LocalDate;
 import java.util.Objects;
-
-import net.meerkat.utils.HasName;
-import net.ollie.goat.temporal.date.DateWrapper;
 
 /**
  *

@@ -1,12 +1,11 @@
 package net.meerkat.identifier;
 
-import java.util.function.Consumer;
-
-import javax.annotation.Nonnull;
-
 import net.coljate.set.ImmutableSet;
 import net.coljate.set.Set;
-import net.meerkat.utils.Classes.Castable;
+import net.meerkat.objects.Classes.Castable;
+
+import javax.annotation.Nonnull;
+import java.util.function.Consumer;
 
 /**
  *

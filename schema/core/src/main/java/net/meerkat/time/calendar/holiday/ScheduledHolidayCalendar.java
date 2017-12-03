@@ -1,15 +1,15 @@
 package net.meerkat.time.calendar.holiday;
 
-import java.time.LocalDate;
-import java.util.Comparator;
-
 import net.coljate.map.Entry;
 import net.coljate.map.Map;
 import net.coljate.map.SortedMap;
 import net.coljate.set.Set;
+import net.meerkat.functions.Functions;
+import net.meerkat.temporal.date.interim.CompleteInterval;
 import net.meerkat.time.calendar.DateOutOfRangeException;
-import net.ollie.goat.functions.Functions;
-import net.ollie.goat.temporal.date.interim.CompleteInterval;
+
+import java.time.LocalDate;
+import java.util.Comparator;
 
 /**
  *

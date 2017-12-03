@@ -1,6 +1,6 @@
 package net.meerkat.money.fx.exception;
 
-import net.ollie.goat.collection.Arrays;
+import net.meerkat.collections.Arrays;
 
 /**
  *

@@ -1,14 +1,13 @@
 package net.meerkat.money;
 
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.numeric.BigDecimals;
+
+import javax.annotation.Nonnull;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Objects;
-
-import javax.annotation.Nonnull;
-
-import net.meerkat.identifier.currency.CurrencyId;
-import net.ollie.goat.numeric.BigDecimals;
 
 /**
  *

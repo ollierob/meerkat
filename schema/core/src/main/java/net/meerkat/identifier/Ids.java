@@ -1,12 +1,11 @@
 package net.meerkat.identifier;
 
-import java.util.Optional;
+import net.coljate.set.Set;
+import net.meerkat.functions.collectors.OptionalCollectors;
+import net.meerkat.objects.Classes.Castable;
 
 import javax.annotation.Nonnull;
-
-import net.coljate.set.Set;
-import net.meerkat.utils.Classes.Castable;
-import net.ollie.goat.collectors.OptionalCollectors;
+import java.util.Optional;
 
 /**
  *

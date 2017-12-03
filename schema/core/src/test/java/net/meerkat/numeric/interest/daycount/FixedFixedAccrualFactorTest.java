@@ -1,14 +1,14 @@
 package net.meerkat.numeric.interest.daycount;
 
-import net.ollie.goat.temporal.date.count.FixedFixedDateArithmetic;
-import net.ollie.goat.temporal.date.count.DayCount;
+import net.meerkat.temporal.date.count.DayCount;
+import net.meerkat.temporal.date.count.FixedFixedDateArithmetic;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import org.junit.jupiter.api.Test;
 
 /**
  *

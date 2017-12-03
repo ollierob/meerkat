@@ -1,6 +1,6 @@
 package net.meerkat.identifier.instrument;
 
-import net.meerkat.utils.Classes.Castable;
+import net.meerkat.objects.Classes.Castable;
 
 /**
  *

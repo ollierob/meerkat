@@ -1,7 +1,7 @@
 package net.meerkat.identifier.country;
 
 import net.meerkat.identifier.currency.HasCurrencyIds;
-import net.meerkat.utils.HasName;
+import net.meerkat.objects.HasName;
 
 /**
  *

@@ -1,10 +1,10 @@
 package net.meerkat.money.fx;
 
+import net.meerkat.functions.optionals.Optionals;
+import net.meerkat.identifier.currency.CurrencyId;
+
 import java.util.Optional;
 import java.util.function.UnaryOperator;
-
-import net.ollie.goat.optionals.Optionals;
-import net.meerkat.identifier.currency.CurrencyId;
 
 /**
  *

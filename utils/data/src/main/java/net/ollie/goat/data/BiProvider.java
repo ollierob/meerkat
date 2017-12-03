@@ -1,6 +1,6 @@
 package net.ollie.goat.data;
 
-import net.ollie.goat.functions.Functions;
+import net.meerkat.functions.Functions;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;

@@ -1,15 +1,15 @@
 package net.meerkat.instrument.interest.future.bond;
 
-import java.time.Period;
-import java.util.Set;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.temporal.date.months.Months;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.temporal.date.months.Months;
+
+import java.time.Period;
+import java.util.Set;
 
 /**
  *

@@ -1,9 +1,9 @@
 package net.meerkat.time.calendar;
 
+import net.meerkat.temporal.date.HasDate;
+
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
-
-import net.ollie.goat.temporal.date.HasDate;
 
 /**
  *

@@ -1,26 +1,26 @@
 package net.meerkat.pricing.fx;
 
-import java.time.LocalDate;
-import java.util.Map;
-
 import net.meerkat.Explained;
+import net.meerkat.functions.suppliers.lazy.Lazy;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.fx.forward.DeliverableFxForward;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.fx.ExchangeRateSnapshot;
 import net.meerkat.money.interest.InterestRate;
+import net.meerkat.money.interest.InterestRateProvider;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
+import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.InstrumentPricer;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 import net.meerkat.pricing.shifts.WrappedInstrumentPriceShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
-import net.ollie.goat.numeric.fraction.BigDecimalFraction;
-import net.ollie.goat.numeric.percentage.Percentage;
-import net.ollie.goat.suppliers.lazy.Lazy;
-import net.meerkat.money.fx.ExchangeRateSnapshot;
-import net.meerkat.money.interest.InterestRateProvider;
+
+import java.time.LocalDate;
+import java.util.Map;
 
 /**
  *

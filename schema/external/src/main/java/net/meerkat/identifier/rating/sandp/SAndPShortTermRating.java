@@ -1,9 +1,9 @@
 package net.meerkat.identifier.rating.sandp;
 
-import java.util.Set;
-
+import net.meerkat.collections.Sets;
 import net.meerkat.risk.rating.CreditRatingBand;
-import net.ollie.goat.collection.Sets;
+
+import java.util.Set;
 
 /**
  *

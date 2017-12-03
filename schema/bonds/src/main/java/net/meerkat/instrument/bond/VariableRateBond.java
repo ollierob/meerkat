@@ -1,10 +1,8 @@
 package net.meerkat.instrument.bond;
 
-import java.time.Period;
-import java.util.function.Predicate;
-
 import net.coljate.list.List;
 import net.coljate.list.ListIterator;
+import net.meerkat.collections.Iterables;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
@@ -12,7 +10,9 @@ import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.instrument.bond.dates.MaturingBondDates;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
-import net.ollie.goat.collection.Iterables;
+
+import java.time.Period;
+import java.util.function.Predicate;
 
 /**
  * A bond with fixed and floating elements.

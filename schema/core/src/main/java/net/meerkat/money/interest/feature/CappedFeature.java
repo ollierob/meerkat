@@ -1,7 +1,7 @@
 package net.meerkat.money.interest.feature;
 
-import net.meerkat.utils.comparators.Comparators;
-import net.ollie.goat.numeric.percentage.Percentage;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.objects.comparators.Comparators;
 
 /**
  *

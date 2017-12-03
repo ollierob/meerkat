@@ -1,27 +1,22 @@
 package net.meerkat.calculate.var.historic;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.NavigableMap;
-import static java.util.Objects.requireNonNull;
-import java.util.TreeMap;
+import net.meerkat.collections.list.Lists;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.money.Money;
+import net.meerkat.numeric.interpolation.ListInterpolator;
+import net.meerkat.numeric.percentage.Percentage;
+import net.meerkat.objects.Require;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.*;
 
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.identifier.currency.HasCurrencyId;
-import net.meerkat.money.Money;
-import net.meerkat.utils.Require;
-import net.ollie.goat.collection.list.Lists;
-import net.ollie.goat.numeric.interpolation.ListInterpolator;
-import net.ollie.goat.numeric.percentage.Percentage;
+import static java.util.Objects.requireNonNull;
 
 /**
  *

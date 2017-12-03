@@ -1,14 +1,13 @@
 package net.meerkat.pricing.shifts;
 
+import net.meerkat.functions.suppliers.Suppliers;
+import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.money.fx.ExchangeRate;
+import net.meerkat.money.interest.InterestRate;
 import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 
 import java.util.Map;
-
-import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.money.interest.InterestRate;
-import net.ollie.goat.suppliers.Suppliers;
 
 /**
  *

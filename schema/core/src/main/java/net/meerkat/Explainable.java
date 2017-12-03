@@ -1,15 +1,9 @@
 package net.meerkat;
 
-import java.util.AbstractMap;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import net.meerkat.collections.Arrays;
 
 import javax.annotation.Nonnull;
-
-import net.ollie.goat.collection.Arrays;
+import java.util.*;
 
 /**
  *

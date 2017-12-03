@@ -7,7 +7,7 @@ import net.meerkat.instrument.interest.future.InterestRateFuture;
 import net.meerkat.instrument.interest.future.InterestRateFutureContract;
 import net.meerkat.instrument.interest.future.stir.ShortTermInterestRateFuture;
 import net.meerkat.issuer.IssuerId;
-import net.ollie.goat.temporal.date.interim.Interim;
+import net.meerkat.temporal.date.interim.Interim;
 
 /**
  * Long-term interest rate future.
