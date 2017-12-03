@@ -9,9 +9,9 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <name>goat-dates</name>
     <artifactId>date-utils</artifactId>
     <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -29,4 +29,5 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+
 </project>
