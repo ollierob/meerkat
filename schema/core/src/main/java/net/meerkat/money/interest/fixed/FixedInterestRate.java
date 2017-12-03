@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.util.Map;
 
 /**
- *
  * @author ollie
  */
 public abstract class FixedInterestRate
@@ -53,8 +52,6 @@ public abstract class FixedInterestRate
     public FixedInterestRate times(final Percentage bump) {
         return this.with(this.annualRate().times(bump));
     }
-    
-    
 
     @Override
     public int compareTo(final FixedInterestRate that) {

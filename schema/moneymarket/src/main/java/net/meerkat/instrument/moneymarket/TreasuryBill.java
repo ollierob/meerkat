@@ -1,37 +1,32 @@
 package net.meerkat.instrument.moneymarket;
 
-import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.currency.USD;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
+import net.meerkat.temporal.date.count.DateArithmetic;
 
 import javax.annotation.Nonnull;
 
-/**
- * TODO
- *
- * @author ollie
- */
-public class CommercialPaper<C extends CurrencyId> extends MoneyMarketSecurity<C> {
+public class TreasuryBill extends MoneyMarketSecurity<USD> {
 
-    private final FixedInterestRate impliedRate;
-
-    public CommercialPaper(
+    public TreasuryBill(
             final String name,
             final InstrumentIds identifiers,
             final IssuerId issuerId,
-            final CashPayment<C> purchase,
-            final CashPayment<C> redemption,
-            final FixedInterestRate impliedRate) {
+            final CashPayment<USD> purchase,
+            final CashPayment<USD> redemption) {
         super(name, identifiers, issuerId, purchase, redemption);
-        this.impliedRate = impliedRate;
     }
 
     @Nonnull
     @Override
     public FixedInterestRate impliedRate() {
-        return impliedRate;
+        final Money<USD> discountSpread = this.discountSpread();
+        final DateArithmetic dayCount = DateArithmetic.ACT_360;
+        throw new UnsupportedOperationException(); //TODO
     }
 
     @Override

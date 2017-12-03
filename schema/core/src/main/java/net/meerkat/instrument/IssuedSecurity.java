@@ -26,8 +26,7 @@ public class IssuedSecurity
 
     @Override
     public ExplanationBuilder explain() {
-        return super.explain()
-                .put("issue", issuerId);
+        return super.explain().put("issue", issuerId);
     }
 
 }

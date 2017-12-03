@@ -1,19 +1,24 @@
 package net.meerkat.instrument;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.moneymarket.CertificateOfDeposit;
+import net.meerkat.instrument.moneymarket.CommercialPaper;
+import net.meerkat.instrument.moneymarket.TreasuryBill;
 import net.meerkat.instrument.repo.Repo;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
+
+import javax.annotation.Nonnull;
 
 /**
- *
  * @author ollie
  */
 public interface FixedInterestSecurity extends Security, InstrumentDefinition {
 
     @Nonnull
     CashPayment<?> purchase();
+
+    @Nonnull
+    FixedInterestRate impliedRate();
 
     @Override
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {
@@ -28,7 +33,11 @@ public interface FixedInterestSecurity extends Security, InstrumentDefinition {
 
         R handle(Repo<?> repo);
 
-        R handle(CertificateOfDeposit certificateOfDeposit);
+        R handle(CertificateOfDeposit<?> certificateOfDeposit);
+
+        R handle(CommercialPaper<?> commercialPaper);
+
+        R handle(TreasuryBill treasuryBill);
 
     }
 

@@ -1,16 +1,15 @@
 package net.meerkat.calculate.sensitivity;
 
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.Explainable;
 import net.meerkat.money.price.Price;
+
+import javax.annotation.Nonnull;
+import java.util.Optional;
 
 /**
  *
  * @author Ollie
- * @see InstrumentSensitivities
+ * @see UnitPriceSensitivities
  */
 public interface PriceSensitivities extends Explainable {
 
