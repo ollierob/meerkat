@@ -4,9 +4,7 @@ import net.meerkat.numeric.interpolation.Interpolator;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
-import java.util.Collections;
-import java.util.NavigableMap;
-import java.util.Objects;
+import java.util.*;
 
 public class MappedCurve<X, Y> implements Curve<X, Y> {
 
@@ -34,4 +32,13 @@ public class MappedCurve<X, Y> implements Curve<X, Y> {
         return Collections.unmodifiableNavigableMap(map);
     }
 
+    @Override
+    public Set<X> xAxis() {
+        return Collections.unmodifiableSet(map.keySet());
+    }
+
+    @Override
+    public Collection<Y> yAxis() {
+        return Collections.unmodifiableCollection(map.values());
+    }
 }
