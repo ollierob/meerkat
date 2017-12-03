@@ -1,17 +1,9 @@
-/schema/security/nbproject/
-/pricing/framework/nbproject/
 /schema/external/target/
-/schema/issue/target/
-/schema/internal/target/
 /reporting/framework/target/
 /utils/target/
 /schema/core/target/
-/schema/security/target/
 /pricing/framework/target/
 /pricing/native/target/
-/schema/core/nbproject/
-/schema/external/nbproject/
-/schema/schema-fx/target/
 /schema/fx/target/
 /schema/equity/target/
 /schema/bonds/target/
@@ -27,6 +19,6 @@
 /pricing/ir-derivative/target/
 /risk/bond/target/
 /pricing/equity/target/
-/schema/schema-risk/target/
+/schema/risk/target/
 *.iml
 /.idea

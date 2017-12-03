@@ -1,10 +1,9 @@
 package net.meerkat.risk.rating;
 
-import java.util.Collections;
-import java.util.Set;
-
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
+import java.util.Collections;
+import java.util.Set;
 
 /**
  *

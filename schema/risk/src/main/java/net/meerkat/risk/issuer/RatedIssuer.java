@@ -1,14 +1,13 @@
 package net.meerkat.risk.issuer;
 
-import java.util.Objects;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.issuer.MinimalIssuer;
 import net.meerkat.risk.issue.RatedIssue;
 import net.meerkat.risk.rating.CreditRating;
 import net.meerkat.risk.rating.HasCreditRating;
+
+import javax.annotation.Nonnull;
+import java.util.Objects;
 
 /**
  *

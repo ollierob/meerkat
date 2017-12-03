@@ -1,12 +1,12 @@
 package net.meerkat.risk.position;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.HasInstrumentInMarketId;
 import net.meerkat.identifier.InstrumentInMarketId;
 import net.meerkat.identifier.market.MarketId;
 import net.meerkat.identifier.portfolio.HasPortfolioId;
 import net.meerkat.identifier.portfolio.PortfolioId;
+
+import javax.annotation.Nonnull;
 
 /**
  *

@@ -1,11 +1,11 @@
 package net.meerkat.risk.rating;
 
-import javax.annotation.CheckForNull;
-import javax.annotation.Nonnull;
-
 import net.meerkat.issuer.HasIssuerId;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.risk.rating.exception.UnavailableCreditRatingException;
+
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 
 /**
  *

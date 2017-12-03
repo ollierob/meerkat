@@ -20,7 +20,7 @@
         <module>bonds</module>
         <module>ir-derivative</module>
         <module>moneymarket</module>
-        <module>schema-risk</module>
+        <module>risk</module>
     </modules>
     
     <dependencies>
