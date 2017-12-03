@@ -21,6 +21,6 @@ public interface DayCount {
         return this.daysBetween(start, start.plus(tenor));
     }
 
-    ActualDayCount ACTUAL = ActualActualDateArithmetic.ACT_ACT;
+    ActualDayCount ACTUAL = ActualActualDateArithmetic.ACT_ACT_ICMA;
 
 }
