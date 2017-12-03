@@ -80,10 +80,12 @@ public class BigDecimalFraction
         this.denominator = denominator;
     }
 
+    @Nonnull
     public BigDecimal numerator() {
         return numerator;
     }
 
+    @Nonnull
     public BigDecimal denominator() {
         return denominator;
     }

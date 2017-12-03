@@ -2,7 +2,6 @@ package net.meerkat.temporal.date.years;
 
 import org.apache.commons.math3.fraction.Fraction;
 
-import javax.xml.bind.annotation.XmlElement;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -21,12 +20,7 @@ public class FractionalYears implements Years {
         return new FractionalYears(new Fraction(numerator, denominator));
     }
 
-    @XmlElement(name = "years") //FIXME not marshalable
-    private Fraction years;
-
-    @Deprecated
-    FractionalYears() {
-    }
+    private final Fraction years;
 
     public FractionalYears(final Fraction years) {
         this.years = years;

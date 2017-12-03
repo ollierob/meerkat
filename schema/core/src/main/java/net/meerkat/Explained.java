@@ -12,7 +12,7 @@ public class Explained<T> implements Explainable {
     private final ExplanationBuilder explanation;
 
     public Explained(final T value, final UnaryOperator<ExplanationBuilder> consumer) {
-        this(value, consumer.apply(new ExplanationBuilder()));
+        this(value, consumer.apply(value == null ? new ExplanationBuilder() : new ExplanationBuilder(value.getClass())));
     }
 
     public Explained(final T value, final ExplanationBuilder explanation) {

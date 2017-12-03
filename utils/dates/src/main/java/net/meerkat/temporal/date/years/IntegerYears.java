@@ -1,7 +1,5 @@
 package net.meerkat.temporal.date.years;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlValue;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -11,7 +9,6 @@ import java.time.Period;
 /**
  * @author Ollie
  */
-@XmlRootElement
 public class IntegerYears implements Years {
 
     private static final long serialVersionUID = 1L;
@@ -30,12 +27,7 @@ public class IntegerYears implements Years {
         }
     }
 
-    @XmlValue
-    private int years;
-
-    @Deprecated
-    IntegerYears() {
-    }
+    private final int years;
 
     protected IntegerYears(final int years) {
         this.years = years;
