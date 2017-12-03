@@ -9,7 +9,6 @@ import net.meerkat.temporal.date.months.Months;
 import java.time.Period;
 
 /**
- *
  * @author ollie
  */
 public class Asx30DCashRateFutureContract

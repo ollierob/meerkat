@@ -1,34 +1,27 @@
 package net.meerkat.temporal.date.months;
 
-import net.meerkat.collections.Sets;
+import net.coljate.set.Set;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.time.Month;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * @author ollie
  */
-@XmlRootElement
 public class SomeMonths implements Months {
 
-    @XmlElement(name = "month")
-    private Set<Month> months;
+    static final SomeMonths NONE = new SomeMonths(Set.of());
 
-    @Deprecated
-    SomeMonths() {
+    public static Months of(final Month... months) {
+        return months.length == 0
+                ? NONE
+                : new SomeMonths(Set.of(months));
     }
 
-    public SomeMonths(final Month... months) {
-        this.months = Sets.asSet(months);
-    }
+    private final Set<Month> months;
 
-    public SomeMonths(final Collection<Month> months) {
-        this.months = new HashSet<>(months);
+    SomeMonths(final Set<Month> months) {
+        this.months = months;
     }
 
     @Override
