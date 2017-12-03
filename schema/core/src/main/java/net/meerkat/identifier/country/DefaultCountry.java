@@ -1,24 +1,21 @@
 package net.meerkat.identifier.country;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElementRef;
-
 import net.meerkat.identifier.currency.CurrencyIds;
 
 /**
- *
  * @author ollie
  */
 public class DefaultCountry implements Country {
 
-    @XmlElementRef(name = "id")
-    private CountryId id;
+    private final CountryId id;
+    private final String name;
+    private final CurrencyIds currencyIds;
 
-    @XmlAttribute(name = "name", required = true)
-    private String name;
-
-    @XmlElementRef(name = "currencies")
-    private CurrencyIds currencyIds;
+    public DefaultCountry(CountryId id, String name, CurrencyIds currencyIds) {
+        this.id = id;
+        this.name = name;
+        this.currencyIds = currencyIds;
+    }
 
     @Override
     public CountryId countryId() {

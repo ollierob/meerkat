@@ -1,14 +1,15 @@
 package net.meerkat.identifier.currency;
 
-import java.util.Objects;
-
-import javax.annotation.Nonnull;
-
 import net.coljate.set.Set;
 
+import javax.annotation.Nonnull;
+import java.util.Objects;
+
 /**
+ * A typed pair of currency IDs.
  *
  * @author ollie
+ * @see CurrencyPair
  */
 public class CurrencyIdPair<B extends CurrencyId, C extends CurrencyId>
         implements CurrencyIds {

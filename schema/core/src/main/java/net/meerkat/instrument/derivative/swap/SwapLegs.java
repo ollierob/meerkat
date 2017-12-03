@@ -1,18 +1,18 @@
 package net.meerkat.instrument.derivative.swap;
 
-import java.time.LocalDate;
-import java.util.OptionalInt;
+import net.coljate.list.List;
+import net.coljate.sequence.Sequence;
+import net.meerkat.identifier.currency.HasCurrencyIds;
 
 import javax.annotation.Nonnull;
-
-import net.coljate.list.List;
-import net.meerkat.identifier.currency.HasCurrencyIds;
+import java.time.LocalDate;
+import java.util.OptionalInt;
 
 /**
  *
  * @author ollie
  */
-public interface SwapLegs<S extends SwapLeg<?, ?>> extends HasCurrencyIds {
+public interface SwapLegs<S extends SwapLeg<?, ?>> extends Sequence<S>, HasCurrencyIds {
 
     @Nonnull
     OptionalInt numLegs();

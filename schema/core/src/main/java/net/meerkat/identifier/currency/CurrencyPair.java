@@ -1,20 +1,22 @@
 package net.meerkat.identifier.currency;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.instrument.Instrument;
 
+import javax.annotation.Nonnull;
+
 /**
+ * A pair of currencies.
  *
  * @author ollie
+ * @see CurrencyIdPair
  */
-public interface CurrencyPair extends Instrument, HasCurrencyIds {
+public interface CurrencyPair<C extends Currency> extends Instrument, HasCurrencyIds {
 
     @Nonnull
-    Currency base();
+    C base();
 
     @Nonnull
-    Currency counter();
+    C counter();
 
     @Override
     default CurrencyIds currencyIds() {
