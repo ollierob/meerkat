@@ -4,6 +4,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 
 /**
+ * Two-way-money with some spread.
  *
  * @author ollie
  */

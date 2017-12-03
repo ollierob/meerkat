@@ -1,9 +1,9 @@
 package net.meerkat.pricing.moneymarket;
 
-import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.money.price.Price;
+import net.meerkat.money.price.MoneyPrice;
 import net.meerkat.pricing.ShiftablePrice;
+import net.meerkat.pricing.moneymarket.shifts.RepoShifts;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 /**
@@ -11,7 +11,7 @@ import net.meerkat.pricing.shifts.InstrumentPriceShifts;
  * @author ollie
  */
 public interface RepoPrice<C extends CurrencyId>
-        extends Price.Valued<C> {
+        extends MoneyPrice<C> {
 
     @Override
     default EvaluatedRepoPrice<C> evaluate() {

@@ -3,12 +3,16 @@ package net.meerkat.money.price;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 
+import javax.annotation.Nonnull;
+
 /**
+ * Price where the {@link #bid} and {@link #offer} prices are just amounts of money.
  *
  * @author ollie
  */
 public interface TwoWayMoney<C extends CurrencyId> extends TwoWayPrice<Money<C>, C> {
 
+    @Nonnull
     default Money<C> spread() {
         return this.offer().minus(this.bid());
     }

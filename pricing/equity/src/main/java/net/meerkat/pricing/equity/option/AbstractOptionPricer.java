@@ -8,6 +8,7 @@ import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRateProvider;
 import net.meerkat.money.fx.ExchangeRateSnapshot;
 import net.meerkat.money.fx.exception.ExchangeRateException;
+import net.meerkat.money.price.MoneyPrice;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.option.OptionPrice;
@@ -50,10 +51,10 @@ public abstract class AbstractOptionPricer<T extends Temporal, O extends Option<
      * @param context
      * @return
      */
-    protected abstract <C extends CurrencyId> Price.Valued<C> underlyingPrice(OptionPricingContext<C, O, T> context);
+    protected abstract <C extends CurrencyId> MoneyPrice<C> underlyingPrice(OptionPricingContext<C, O, T> context);
 
     protected <C extends CurrencyId> Explained<Money<C>> explainIntrinsicValue(final OptionPricingContext<C, O, T> context) {
-        final Price.Valued<C> stockPrice = this.underlyingPrice(context);
+        final MoneyPrice<C> stockPrice = this.underlyingPrice(context);
         final Money<C> exercisePrice = context.exercisePrice();
         final Money<C> intrinsic = stockPrice.value().minus(exercisePrice).times(context.contractMultiplier());
         return new Explained<>(intrinsic, ex -> ex.put("underlying price", stockPrice).put("exercise price", exercisePrice));

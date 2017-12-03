@@ -1,20 +1,21 @@
 package net.meerkat.pricing.option;
 
-import javax.annotation.CheckReturnValue;
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.derivative.option.Option;
 import net.meerkat.money.Money;
+import net.meerkat.money.price.MoneyPrice;
 import net.meerkat.money.price.Price;
 import net.meerkat.pricing.ShiftablePrice;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
+
+import javax.annotation.CheckReturnValue;
+import javax.annotation.Nonnull;
 
 /**
  *
  * @author Ollie
  */
-public interface OptionPrice<C extends CurrencyId> extends Price.Valued<C> {
+public interface OptionPrice<C extends CurrencyId> extends MoneyPrice<C> {
 
     @Nonnull
     Price<C> underlyingPrice();

@@ -21,14 +21,18 @@ public interface Book extends Portfolio {
 
     @Override
     @Deprecated
-    default Map<PortfolioId, ? extends Book> childPortfolios(final PortfolioProvider portfolios) {
+    default Map<PortfolioId, ? extends Book> childPortfolios(final PortfolioSnapshot portfolios) {
         return Map.of();
     }
 
     @Override
     @Deprecated
-    default Map<PositionId, ? extends Position> childPositions(PortfolioProvider portfolioProvider, PositionProvider positionProvider) {
+    default Map<PositionId, ? extends Position> childPositions(final PortfolioSnapshot portfolios, final PositionProvider positionProvider) {
         return Map.of();
+    }
+
+    static Book of(final PortfolioId portfolioId, final Set<PositionId> positionIds) {
+        return new MinimalBook(portfolioId, positionIds);
     }
 
 }

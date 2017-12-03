@@ -5,7 +5,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.equity.option.StockOption;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRateProvider;
-import net.meerkat.money.price.Price;
+import net.meerkat.money.price.MoneyPrice;
 import net.meerkat.pricing.equity.StockPricer;
 import net.meerkat.temporal.date.years.Years;
 
@@ -25,7 +25,7 @@ public class DailyStockOptionPricer extends AbstractOptionPricer<LocalDate, Stoc
     }
 
     @Override
-    protected <C extends CurrencyId> Price.Valued<C> underlyingPrice(final OptionPricingContext<C, StockOption, LocalDate> context) {
+    protected <C extends CurrencyId> MoneyPrice<C> underlyingPrice(final OptionPricingContext<C, StockOption, LocalDate> context) {
         return stockPricer.price(context.valuationTime(), context.option().underlying(), context.currencyId(), context.underlyingShifts());
     }
 

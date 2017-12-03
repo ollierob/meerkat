@@ -1,32 +1,37 @@
 package net.meerkat.money.price;
 
-import javax.annotation.CheckForNull;
-import javax.annotation.Nonnull;
-
-import net.coljate.list.ImmutableList;
+import net.coljate.list.List;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
+
 /**
- *
  * @author Ollie
  */
-public interface TwoWayPriceStack<C extends CurrencyId> extends Price<C> {
+public interface TwoWayMoneyPriceStack<C extends CurrencyId> extends Price<C> {
 
+    /**
+     * @return bids, with the "best" first.
+     */
     @Nonnull
-    ImmutableList<Money<C>> bids();
+    List<Money<C>> bids();
 
+    /**
+     * @return offers, with the "best" first.
+     */
     @Nonnull
-    ImmutableList<Money<C>> offers();
+    List<Money<C>> offers();
 
     @CheckForNull
     default Money<C> bestBid() {
-        return this.bids().first();
+        return this.bids().firstOr(null);
     }
 
     @CheckForNull
     default Money<C> bestOffer() {
-        return this.offers().first();
+        return this.offers().firstOr(null);
     }
 
     @SuppressWarnings("unchecked")

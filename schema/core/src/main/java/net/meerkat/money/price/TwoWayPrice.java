@@ -1,15 +1,15 @@
 package net.meerkat.money.price;
 
-import java.util.Map;
+import net.meerkat.identifier.currency.CurrencyId;
 
 import javax.annotation.Nonnull;
-
-import net.meerkat.identifier.currency.CurrencyId;
+import java.util.Map;
 
 /**
  * A price containing bid and offer values.
  *
  * @author ollie
+ * @see TwoWayMoney
  */
 public interface TwoWayPrice<P, C extends CurrencyId> extends TwoWay<P>, Price<C> {
 
@@ -17,10 +17,13 @@ public interface TwoWayPrice<P, C extends CurrencyId> extends TwoWay<P>, Price<C
     P mid();
 
     /**
-     * @return true if the {@link #bid best bid} exceeds the {@link #offer best offer}.
+     * @return true if the {@link #bid} exceeds the {@link #offer}.
      */
     boolean isCrossed();
 
+    /**
+     * @return true if there is any difference between the {@link #bid} and {@link #offer}.
+     */
     boolean hasSpread();
 
     @Override
