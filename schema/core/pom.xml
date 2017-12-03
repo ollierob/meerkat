@@ -15,13 +15,24 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>utils</artifactId>
+            <artifactId>object-utils</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>net.ollie.goat</groupId>
-            <artifactId>goat-data</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>${groupId}</groupId>
+            <artifactId>data-utils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>numeric-utils</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${groupId}</groupId>
+            <artifactId>date-utils</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
+
 </project>

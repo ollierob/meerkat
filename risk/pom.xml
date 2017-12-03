@@ -5,6 +5,7 @@
         <groupId>net.meerkat</groupId>
         <artifactId>root</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>risk</artifactId>
     <packaging>pom</packaging>
