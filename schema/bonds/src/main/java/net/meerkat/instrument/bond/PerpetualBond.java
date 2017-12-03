@@ -1,8 +1,5 @@
 package net.meerkat.instrument.bond;
 
-import java.time.LocalDate;
-import java.util.function.Predicate;
-
 import net.coljate.list.List;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
@@ -14,6 +11,9 @@ import net.meerkat.instrument.bond.dates.PerpetualBondDates;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
+
+import java.time.LocalDate;
+import java.util.function.Predicate;
 
 /**
  *
@@ -29,9 +29,15 @@ public class PerpetualBond<C extends CurrencyId> extends AbstractBond {
     private transient PerpetualBondCoupons coupons;
 
     public PerpetualBond(
-            final String name, InstrumentIds identifiers, Money<?> par, BondCall call, IssuerId issuer,
+            final String name,
+            final InstrumentIds identifiers,
+            final Money<?> par,
+            final BondCall call,
+            final IssuerId issuer,
             final int yearlyFrequency,
-            final Money<C> couponAmount, FixedInterestRate couponRate, PerpetualBondDates dates) {
+            final Money<C> couponAmount,
+            final FixedInterestRate couponRate,
+            final PerpetualBondDates dates) {
         super(name, identifiers, par, call, issuer);
         this.yearlyFrequency = yearlyFrequency;
         this.couponAmount = couponAmount;

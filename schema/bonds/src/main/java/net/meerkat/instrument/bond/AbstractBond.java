@@ -1,12 +1,12 @@
 package net.meerkat.instrument.bond;
 
-import java.util.Optional;
-
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
+
+import java.util.Optional;
 
 /**
  *
@@ -15,8 +15,6 @@ import net.meerkat.money.Money;
 public abstract class AbstractBond
         extends NamedInstrument
         implements Bond {
-
-    private static final long serialVersionUID = 1L;
 
     private final Money<?> par;
     private final BondCall call;

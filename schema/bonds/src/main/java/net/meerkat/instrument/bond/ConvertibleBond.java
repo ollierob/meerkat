@@ -1,31 +1,31 @@
 package net.meerkat.instrument.bond;
 
-import java.math.BigDecimal;
-import java.util.function.Predicate;
-
-import javax.annotation.Nonnull;
-
 import net.coljate.list.List;
 import net.coljate.list.ListIterator;
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.ConvertibleBondDates;
-import net.meerkat.instrument.equity.Stock;
+import net.meerkat.instrument.equity.Equity;
+import net.meerkat.instrument.equity.EquityProvider;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 
+import javax.annotation.Nonnull;
+import java.math.BigDecimal;
+import java.util.function.Predicate;
+
 /**
- *
  * @author Ollie
  */
 public class ConvertibleBond extends AbstractBond {
 
     private final ConvertibleBondDates dates;
     private final List<BondCoupon> coupons;
-    private final Stock stock;
+    private final InstrumentId stockId;
     private final BigDecimal conversionRatio;
 
     public ConvertibleBond(
@@ -35,12 +35,12 @@ public class ConvertibleBond extends AbstractBond {
             final IssuerId issuer,
             final ConvertibleBondDates dates,
             final List<BondCoupon> coupons,
-            final Stock stock,
+            final InstrumentId stockId,
             final BigDecimal conversionRatio) {
         super(name, identifiers, par, call, issuer);
         this.dates = dates;
         this.coupons = coupons;
-        this.stock = stock;
+        this.stockId = stockId;
         this.conversionRatio = conversionRatio;
     }
 
@@ -57,6 +57,16 @@ public class ConvertibleBond extends AbstractBond {
     @Nonnull
     public BigDecimal conversionRatio() {
         return conversionRatio;
+    }
+
+    @Nonnull
+    public InstrumentId stockId() {
+        return stockId;
+    }
+
+    @Nonnull
+    public Equity stock(final EquityProvider equityProvider) {
+        return equityProvider.require(stockId);
     }
 
     @Nonnull

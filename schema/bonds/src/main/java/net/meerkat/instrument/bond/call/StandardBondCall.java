@@ -2,7 +2,6 @@ package net.meerkat.instrument.bond.call;
 
 import net.meerkat.numeric.percentage.Percentage;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import java.time.LocalDate;
 
 /**
@@ -11,11 +10,13 @@ import java.time.LocalDate;
  */
 public class StandardBondCall implements BondCall {
 
-    @XmlAttribute(name = "earliest")
-    private LocalDate earliest;
+    private final LocalDate earliest;
+    private final Percentage premium;
 
-    @XmlAttribute(name = "premium")
-    private Percentage premium;
+    public StandardBondCall(LocalDate earliest, Percentage premium) {
+        this.earliest = earliest;
+        this.premium = premium;
+    }
 
     @Override
     public LocalDate earliest() {
