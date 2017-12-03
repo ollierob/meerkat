@@ -1,7 +1,8 @@
-package net.meerkat.issuer;
+package net.meerkat.risk.issuer;
 
-import net.meerkat.issuer.exception.IssuerException;
-import net.meerkat.issuer.exception.UnavailableIssuerSnapshotException;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.risk.issuer.exception.IssuerException;
+import net.meerkat.risk.issuer.exception.UnavailableIssuerSnapshotException;
 import net.ollie.goat.data.CompositeProvider;
 
 /**

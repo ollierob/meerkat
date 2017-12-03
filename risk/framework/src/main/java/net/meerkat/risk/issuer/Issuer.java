@@ -1,4 +1,7 @@
-package net.meerkat.issuer;
+package net.meerkat.risk.issuer;
+
+import net.meerkat.issuer.HasIssuerId;
+import net.meerkat.issuer.IssuerId;
 
 /**
  *

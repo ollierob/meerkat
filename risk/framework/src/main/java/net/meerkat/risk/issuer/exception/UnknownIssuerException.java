@@ -1,4 +1,4 @@
-package net.meerkat.issuer.exception;
+package net.meerkat.risk.issuer.exception;
 
 import net.meerkat.issuer.IssuerId;
 

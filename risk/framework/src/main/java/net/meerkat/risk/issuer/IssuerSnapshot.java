@@ -1,6 +1,7 @@
-package net.meerkat.issuer;
+package net.meerkat.risk.issuer;
 
-import net.meerkat.issuer.exception.UnknownIssuerException;
+import net.meerkat.issuer.IssuerId;
+import net.meerkat.risk.issuer.exception.UnknownIssuerException;
 import net.ollie.goat.data.Provider;
 
 /**

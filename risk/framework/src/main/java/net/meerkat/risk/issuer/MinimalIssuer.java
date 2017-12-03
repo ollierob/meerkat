@@ -1,4 +1,6 @@
-package net.meerkat.issuer;
+package net.meerkat.risk.issuer;
+
+import net.meerkat.issuer.IssuerId;
 
 import java.util.Objects;
 
