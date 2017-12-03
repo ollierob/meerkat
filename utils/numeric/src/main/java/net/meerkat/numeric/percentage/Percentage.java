@@ -1,5 +1,6 @@
 package net.meerkat.numeric.percentage;
 
+import net.meerkat.numeric.Arithmetic;
 import net.meerkat.numeric.Numeric;
 
 /**
@@ -8,6 +9,8 @@ import net.meerkat.numeric.Numeric;
 public abstract class Percentage extends Number implements Numeric.Summable<Percentage> {
 
     private static final long serialVersionUID = 1L;
+
+    public static final Arithmetic<Percentage> ARITHMETIC = Arithmetic.of(Percentage::plus, Percentage::minus);
 
     @Override
     public Percentage plus(final Percentage that) {

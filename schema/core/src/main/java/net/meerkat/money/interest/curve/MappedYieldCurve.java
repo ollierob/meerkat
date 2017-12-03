@@ -12,7 +12,6 @@ import java.util.*;
 import java.util.Map.Entry;
 
 /**
- *
  * @author ollie
  */
 public abstract class MappedYieldCurve<K, T extends MappedYieldCurve<K, T>>
@@ -61,7 +60,9 @@ public abstract class MappedYieldCurve<K, T extends MappedYieldCurve<K, T>>
     }
 
     @Override
-    public T plus(final Curve<K, Percentage> that, final Interpolator<K, Percentage> interpolator) {
+    public T plus(
+            final Curve<K, Percentage> that,
+            final Interpolator<K, Percentage> interpolator) {
         final Set<K> combinedAxis = Sets.eagerUnion(this.xAxis(), that.xAxis());
         final NavigableMap<K, Percentage> thatMap = that.toMap();
         final Map<K, Percentage> interpolatedCurve = Maps.lazilyGenerateValues(

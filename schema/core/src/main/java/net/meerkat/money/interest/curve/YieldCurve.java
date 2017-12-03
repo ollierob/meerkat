@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- *
  * @author Ollie
  */
 public interface YieldCurve<K> extends Curve<K, Percentage> {
@@ -29,6 +28,9 @@ public interface YieldCurve<K> extends Curve<K, Percentage> {
     @Nonnull
     @CheckReturnValue
     YieldCurve<K> plus(@Nonnull Percentage bump);
+
+    @CheckReturnValue
+    YieldCurve<K> plus(Curve<K, Percentage> that, Interpolator<K, Percentage> interpolator);
 
     DateYieldCurve resolve(LocalDate spotDate);
 
