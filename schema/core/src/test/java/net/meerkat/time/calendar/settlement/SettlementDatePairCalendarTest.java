@@ -1,10 +1,11 @@
 package net.meerkat.time.calendar.settlement;
 
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import org.junit.jupiter.api.Test;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -33,9 +34,9 @@ public class SettlementDatePairCalendarTest {
         final LocalDate monday = saturday.plusDays(2);
         final LocalDate tuesday = monday.plusDays(1);
 
-        when(usSettlements.next(thursday)).thenReturn(new SettlementDate(monday));
-        when(usSettlements.next(friday)).thenReturn(new SettlementDate(tuesday));
-        when(usSettlements.next(saturday)).thenReturn(new SettlementDate(tuesday));
+        when(usSettlements.next(thursday)).thenReturn(new UtcSettlementDate(monday));
+        when(usSettlements.next(friday)).thenReturn(new UtcSettlementDate(tuesday));
+        when(usSettlements.next(saturday)).thenReturn(new UtcSettlementDate(tuesday));
 
         when(arabSettlements.isSettlementDate(thursday)).thenReturn(true);
         when(arabSettlements.isSettlementDate(monday)).thenReturn(true);

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class UtcSettlementDate extends DateWrapper implements SettlementDate {
 
-    public UtcSettlementDate(final LocalDate date) {
+    protected UtcSettlementDate(final LocalDate date) {
         super(date);
     }
 
