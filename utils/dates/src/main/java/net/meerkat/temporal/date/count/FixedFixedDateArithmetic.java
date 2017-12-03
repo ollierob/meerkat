@@ -3,8 +3,6 @@ package net.meerkat.temporal.date.count;
 import net.meerkat.temporal.date.years.FractionalYears;
 import net.meerkat.temporal.date.years.Years;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
@@ -12,10 +10,8 @@ import java.time.Period;
 /**
  * @author ollie
  */
-@XmlEnum
 public enum FixedFixedDateArithmetic implements DateArithmetic {
 
-    @XmlEnumValue("30_360")
     THIRTY_360(30, 360) {
         @Override
         public int daysBetween(final LocalDate startInclusive, final LocalDate endExclusive) {
@@ -26,7 +22,6 @@ public enum FixedFixedDateArithmetic implements DateArithmetic {
         }
 
     },
-    @XmlEnumValue("30_360_ICMA")
     THIRTY_THREESIXTY_ICMA(30, 360) {
         @Override
         AdjustedDayOfMonth adjustStart(LocalDate start, LocalDate end) {
@@ -39,17 +34,14 @@ public enum FixedFixedDateArithmetic implements DateArithmetic {
         }
 
         private AdjustedDayOfMonth adjust(final LocalDate date) {
-            return date.getDayOfMonth() == 31
-                    ? new AdjustedDayOfMonth(date, 30)
-                    : new AdjustedDayOfMonth(date);
+            return new AdjustedDayOfMonth(date, 30);
         }
 
     },
-    @XmlEnumValue("30_360_ISDA")
     THIRTY_THREESIXTY_ISDA(30, 360) {
         @Override
         AdjustedDayOfMonth adjustStart(final LocalDate start, final LocalDate end) {
-            return isEndOfMonth(start)
+            return isEndOfMonth(start) //Even if Feb
                     ? new AdjustedDayOfMonth(start, 30)
                     : new AdjustedDayOfMonth(start);
         }
@@ -61,6 +53,19 @@ public enum FixedFixedDateArithmetic implements DateArithmetic {
                     : new AdjustedDayOfMonth(end);
         }
 
+    },
+    THIRTY_A_THREESIXTY(30, 360) {
+        @Override
+        AdjustedDayOfMonth adjustStart(final LocalDate start, final LocalDate end) {
+            return new AdjustedDayOfMonth(start, 30);
+        }
+
+        @Override
+        AdjustedDayOfMonth adjustEnd(LocalDate start, LocalDate end) {
+            return start.getDayOfMonth() >= 30
+                    ? new AdjustedDayOfMonth(end, 30)
+                    : new AdjustedDayOfMonth(end);
+        }
     };
 
     private final int daysPerMonth;
@@ -117,15 +122,15 @@ public enum FixedFixedDateArithmetic implements DateArithmetic {
     private static class AdjustedDayOfMonth {
 
         private final LocalDate date;
-        private final int dayOfMonth;
+        private final int maxDayOfMonth;
 
         AdjustedDayOfMonth(final LocalDate date) {
             this(date, date.getDayOfMonth());
         }
 
-        AdjustedDayOfMonth(final LocalDate date, final int dayOfMonth) {
+        AdjustedDayOfMonth(final LocalDate date, final int maxDayOfMonth) {
             this.date = date;
-            this.dayOfMonth = dayOfMonth;
+            this.maxDayOfMonth = maxDayOfMonth;
         }
 
         int year() {
@@ -137,7 +142,7 @@ public enum FixedFixedDateArithmetic implements DateArithmetic {
         }
 
         int day() {
-            return dayOfMonth;
+            return Math.min(maxDayOfMonth, date.getDayOfMonth());
         }
 
     }

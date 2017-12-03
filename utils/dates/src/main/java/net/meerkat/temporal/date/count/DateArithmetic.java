@@ -5,6 +5,8 @@ import java.time.Period;
 
 /**
  * @author Ollie
+ * @see ActualActualDateArithmetic
+ * @see FixedFixedDateArithmetic
  */
 public interface DateArithmetic extends DayCount, YearCount {
 
@@ -12,7 +14,7 @@ public interface DateArithmetic extends DayCount, YearCount {
         return Period.ofDays(this.daysBetween(startInclusive, endExclusive));
     }
 
-    DateArithmetic ACT_ACT = ActualActualDateArithmetic.ACT_ACT;
+    DateArithmetic ACT_ACT = ActualActualDateArithmetic.ACT_ACT_ICMA;
     DateArithmetic ACT_360 = ActualFixedDateArithmetic.ACT_360;
     DateArithmetic ACT_365 = ActualFixedDateArithmetic.ACT_365;
     DateArithmetic THIRTY_360 = FixedFixedDateArithmetic.THIRTY_360;

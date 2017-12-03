@@ -3,27 +3,21 @@ package net.meerkat.temporal.date.count;
 import net.meerkat.temporal.date.years.FractionalYears;
 import net.meerkat.temporal.date.years.Years;
 
-import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import java.time.LocalDate;
 import java.time.Period;
 
 /**
  * @author Ollie
  */
-@XmlEnum
 public enum ActualFixedDateArithmetic implements DateArithmetic, ActualDayCount {
 
-    @XmlEnumValue("ACT_360")
     ACT_360(360),
-    @XmlEnumValue("ACT_364")
     ACT_364(364),
-    @XmlEnumValue("ACT_365")
     ACT_365(365);
 
     private final int daysPerYear;
 
-    private ActualFixedDateArithmetic(int daysPerYear) {
+    ActualFixedDateArithmetic(int daysPerYear) {
         this.daysPerYear = daysPerYear;
     }
 

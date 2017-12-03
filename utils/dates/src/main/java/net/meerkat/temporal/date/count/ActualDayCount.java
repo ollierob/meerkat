@@ -9,7 +9,7 @@ import java.time.temporal.ChronoUnit;
 public interface ActualDayCount extends DayCount {
 
     @Override
-    public default int daysBetween(LocalDate startInclusive, LocalDate endExclusive) {
+    default int daysBetween(LocalDate startInclusive, LocalDate endExclusive) {
         return Math.toIntExact(ChronoUnit.DAYS.between(startInclusive, endExclusive));
     }
 
