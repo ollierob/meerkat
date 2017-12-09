@@ -1,4 +1,4 @@
-package net.meerkat.objects.algorithm;
+package net.meerkat.identifier.instrument.algorithm;
 
 /**
  * @author ollie
