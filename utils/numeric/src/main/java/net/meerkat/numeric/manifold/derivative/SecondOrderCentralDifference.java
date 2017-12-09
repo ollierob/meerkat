@@ -8,7 +8,7 @@ import java.util.function.BiFunction;
 
 public class SecondOrderCentralDifference<X, Y, DY> extends AbstractCentralDifference<X, Y, DY> {
 
-    private final X twoStep;
+    private final X twoH;
     private final Arithmetic<Y> yArithmetic;
 
     public SecondOrderCentralDifference(
@@ -19,7 +19,7 @@ public class SecondOrderCentralDifference<X, Y, DY> extends AbstractCentralDiffe
             final BiFunction<Y, X, DY> division) {
         super(step, xArithmetic, interpolator, division);
         this.yArithmetic = yArithmetic;
-        this.twoStep = xArithmetic.add(step, step);
+        this.twoH = xArithmetic.add(step, step);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class SecondOrderCentralDifference<X, Y, DY> extends AbstractCentralDiffe
 
     @Override
     protected X denominator() {
-        return twoStep;
+        return twoH;
     }
 
 }
