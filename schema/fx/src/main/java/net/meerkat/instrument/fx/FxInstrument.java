@@ -1,8 +1,5 @@
 package net.meerkat.instrument.fx;
 
-import javax.annotation.CheckForNull;
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIdPair;
 import net.meerkat.identifier.currency.CurrencyIds;
@@ -12,13 +9,16 @@ import net.meerkat.instrument.dates.Settles;
 import net.meerkat.instrument.fx.forward.FxOutright;
 import net.meerkat.instrument.fx.forward.FxSpot;
 import net.meerkat.instrument.fx.forward.NonDeliverableFxForward;
+import net.meerkat.objects.Classes;
+
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 
 /**
- *
  * @author Ollie
  */
 public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
-        extends InstrumentDefinition, HasCurrencyIds, Settles {
+        extends InstrumentDefinition, HasCurrencyIds, Settles, Classes.Castable<FxInstrument<?, ?>> {
 
     @Nonnull
     B baseCurrencyId();

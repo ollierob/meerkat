@@ -3,7 +3,7 @@ package net.meerkat.instrument.interest.future.bond;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.instrument.bond.Bond;
-import net.meerkat.instrument.bond.BondProvider;
+import net.meerkat.instrument.bond.BondSnapshot;
 import net.meerkat.instrument.interest.future.InterestRateFutureContract;
 import net.meerkat.numeric.percentage.Percentage;
 
@@ -28,7 +28,7 @@ public interface BondFutureContract<C extends CurrencyId>
     @Nonnull
     Set<InstrumentId> deliverableBonds();
 
-    default Set<Bond> deliverableBonds(final BondProvider bondProvider) {
+    default Set<Bond> deliverableBonds(final BondSnapshot bondProvider) {
         final Map<InstrumentId, Bond> bonds = bondProvider.getAll(this.deliverableBonds());
         return bonds.isEmpty() ? Collections.emptySet() : new HashSet<>(bonds.values());
     }

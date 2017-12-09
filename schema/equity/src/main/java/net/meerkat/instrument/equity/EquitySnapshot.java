@@ -1,7 +1,7 @@
 package net.meerkat.instrument.equity;
 
 import net.meerkat.identifier.instrument.InstrumentId;
-import net.meerkat.instrument.InstrumentProvider;
+import net.meerkat.instrument.InstrumentSnapshot;
 import net.meerkat.instrument.equity.exception.InvalidEquityException;
 import net.meerkat.instrument.equity.exception.UnknownEquityException;
 
@@ -9,7 +9,7 @@ import net.meerkat.instrument.equity.exception.UnknownEquityException;
  *
  * @author Ollie
  */
-public interface EquityProvider extends InstrumentProvider<Equity> {
+public interface EquitySnapshot extends InstrumentSnapshot<Equity> {
 
     @Override
     Equity get(InstrumentId key) throws InvalidEquityException;

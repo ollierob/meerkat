@@ -3,7 +3,7 @@ package net.meerkat.pricing.moneymarket;
 import net.meerkat.functions.suppliers.lazy.Lazy;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.Bond;
-import net.meerkat.instrument.bond.BondProvider;
+import net.meerkat.instrument.bond.BondSnapshot;
 import net.meerkat.instrument.repo.BondRepo;
 import net.meerkat.instrument.repo.repurchase.BuySellBackRepurchase;
 import net.meerkat.instrument.repo.repurchase.ClassicRepoRepurchase;
@@ -25,10 +25,10 @@ import java.util.Map;
  */
 public class DailyBondRepoPricer implements BondRepoPricer<LocalDate> {
 
-    private final BondProvider bondProvider;
+    private final BondSnapshot bondProvider;
     private final GenericBondPricer<LocalDate> bondPricer;
 
-    public DailyBondRepoPricer(final BondProvider bondProvider, final GenericBondPricer<LocalDate> bondPricer) {
+    public DailyBondRepoPricer(final BondSnapshot bondProvider, final GenericBondPricer<LocalDate> bondPricer) {
         this.bondProvider = bondProvider;
         this.bondPricer = bondPricer;
     }

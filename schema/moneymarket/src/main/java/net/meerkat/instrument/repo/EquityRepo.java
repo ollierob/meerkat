@@ -1,16 +1,16 @@
 package net.meerkat.instrument.repo;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.equity.Equity;
-import net.meerkat.instrument.equity.EquityProvider;
+import net.meerkat.instrument.equity.EquitySnapshot;
 import net.meerkat.instrument.equity.exception.UnknownEquityException;
 import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
 import net.meerkat.issuer.IssuerId;
+
+import javax.annotation.Nonnull;
 
 /**
  *
@@ -23,8 +23,8 @@ public class EquityRepo extends AbstractRepo<CurrencyId> {
     }
 
     @Nonnull
-    public Equity collateral(final EquityProvider equityProvider) throws UnknownEquityException {
-        return equityProvider.require(this.collateralId());
+    public Equity collateral(final EquitySnapshot equitySnapshot) throws UnknownEquityException {
+        return equitySnapshot.require(this.collateralId());
     }
 
     @Override

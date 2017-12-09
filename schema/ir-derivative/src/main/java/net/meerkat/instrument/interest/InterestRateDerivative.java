@@ -3,12 +3,13 @@ package net.meerkat.instrument.interest;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
 import net.meerkat.instrument.interest.swap.InterestRateSwap;
+import net.meerkat.objects.Classes;
 
 /**
- *
  * @author ollie
  */
-public interface InterestRateDerivative extends InstrumentDefinition {
+public interface InterestRateDerivative
+        extends InstrumentDefinition, Classes.Castable<InterestRateDerivative> {
 
     @Override
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {

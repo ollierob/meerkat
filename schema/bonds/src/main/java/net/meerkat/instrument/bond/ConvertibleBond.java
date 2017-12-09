@@ -10,7 +10,7 @@ import net.meerkat.instrument.bond.coupon.BondCoupon;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.ConvertibleBondDates;
 import net.meerkat.instrument.equity.Equity;
-import net.meerkat.instrument.equity.EquityProvider;
+import net.meerkat.instrument.equity.EquitySnapshot;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 
@@ -65,8 +65,8 @@ public class ConvertibleBond extends AbstractBond {
     }
 
     @Nonnull
-    public Equity equity(final EquityProvider equityProvider) {
-        return equityProvider.require(equityId);
+    public Equity equity(final EquitySnapshot equitySnapshot) {
+        return equitySnapshot.require(equityId);
     }
 
     @Nonnull

@@ -10,7 +10,8 @@ import java.util.Optional;
 /**
  * @author Ollie
  */
-public interface Equity extends InstrumentDefinition, Security, Classes.Castable<Equity> {
+public interface Equity
+        extends InstrumentDefinition, Security, Classes.Castable<Equity> {
 
     default Optional<Isin> isin() {
         return this.instrumentId(Isin.class);

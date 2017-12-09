@@ -4,7 +4,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.Instrument;
-import net.meerkat.instrument.InstrumentProvider;
+import net.meerkat.instrument.InstrumentSnapshot;
 import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.exception.UnknownInstrumentException;
@@ -59,8 +59,8 @@ public abstract class AbstractRepo<C extends CurrencyId> extends IssuedSecurity 
         return Optional.empty();
     }
 
-    public <I extends Instrument> I collateral(final InstrumentProvider<? extends I> instrumentProvider) throws UnknownInstrumentException {
-        return instrumentProvider.require(collateralId);
+    public <I extends Instrument> I collateral(final InstrumentSnapshot<? extends I> instrumentSnapshot) throws UnknownInstrumentException {
+        return instrumentSnapshot.require(collateralId);
     }
 
     @Override

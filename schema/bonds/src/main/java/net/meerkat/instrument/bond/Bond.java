@@ -1,9 +1,5 @@
 package net.meerkat.instrument.bond;
 
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.identifier.instrument.Isin;
@@ -14,13 +10,16 @@ import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.BondDates;
 import net.meerkat.money.Money;
+import net.meerkat.objects.Classes;
+
+import javax.annotation.Nonnull;
+import java.util.Optional;
 
 /**
- *
  * @author Ollie
  */
 public interface Bond
-        extends Security, InstrumentDefinition, HasCurrencyIds, Callable<BondCall> {
+        extends Security, InstrumentDefinition, HasCurrencyIds, Callable<BondCall>, Classes.Castable<Bond> {
 
     @Nonnull
     Money<?> par();
