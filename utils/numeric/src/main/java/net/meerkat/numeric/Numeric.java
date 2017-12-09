@@ -1,12 +1,12 @@
 package net.meerkat.numeric;
 
+import net.meerkat.numeric.fraction.BigDecimalFraction;
+
 import javax.annotation.Nonnull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-
-import static net.meerkat.numeric.BigDecimals.toBigDecimal;
 
 /**
  * @author Ollie
@@ -44,11 +44,15 @@ public interface Numeric<T extends Numeric<T>>
 
     @Nonnull
     default T over(@Nonnull final Number that, @Nonnull final MathContext context) {
-        return this.times(BigDecimal.ONE.divide(toBigDecimal(that), context), context.getRoundingMode());
+        return this.times(BigDecimalFraction.of(1, that), context.getRoundingMode());
     }
 
     @Nonnull
     T reciprocal();
+
+    default Number value() {
+        return this.decimalValue();
+    }
 
     /**
      * @return the decimal value of this amount, if possible to exact precision, or

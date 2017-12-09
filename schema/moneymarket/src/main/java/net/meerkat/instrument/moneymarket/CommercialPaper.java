@@ -6,16 +6,12 @@ import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 
-import javax.annotation.Nonnull;
-
 /**
  * TODO
  *
  * @author ollie
  */
 public class CommercialPaper<C extends CurrencyId> extends MoneyMarketSecurity<C> {
-
-    private final FixedInterestRate impliedRate;
 
     public CommercialPaper(
             final String name,
@@ -24,14 +20,7 @@ public class CommercialPaper<C extends CurrencyId> extends MoneyMarketSecurity<C
             final CashPayment<C> purchase,
             final CashPayment<C> redemption,
             final FixedInterestRate impliedRate) {
-        super(name, identifiers, issuerId, purchase, redemption);
-        this.impliedRate = impliedRate;
-    }
-
-    @Nonnull
-    @Override
-    public FixedInterestRate impliedRate() {
-        return impliedRate;
+        super(name, identifiers, issuerId, purchase, redemption, impliedRate);
     }
 
     @Override

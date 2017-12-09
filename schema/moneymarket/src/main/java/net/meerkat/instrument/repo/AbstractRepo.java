@@ -10,6 +10,10 @@ import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.exception.UnknownInstrumentException;
 import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
 import net.meerkat.issuer.IssuerId;
+import net.meerkat.money.interest.fixed.FixedInterestRate;
+
+import javax.annotation.Nonnull;
+import java.util.Optional;
 
 /**
  *
@@ -47,6 +51,12 @@ public abstract class AbstractRepo<C extends CurrencyId> extends IssuedSecurity 
     @Override
     public InstrumentId collateralId() {
         return collateralId;
+    }
+
+    @Nonnull
+    @Override
+    public Optional<? extends FixedInterestRate> impliedRate() {
+        return Optional.empty();
     }
 
     public <I extends Instrument> I collateral(final InstrumentProvider<? extends I> instrumentProvider) throws UnknownInstrumentException {

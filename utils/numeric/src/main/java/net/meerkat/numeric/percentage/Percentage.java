@@ -2,6 +2,7 @@ package net.meerkat.numeric.percentage;
 
 import net.meerkat.numeric.Arithmetic;
 import net.meerkat.numeric.Numeric;
+import net.meerkat.numeric.fraction.BigDecimalFraction;
 
 /**
  * @author Ollie
@@ -40,6 +41,10 @@ public abstract class Percentage extends Number implements Numeric.Summable<Perc
 
     public static Percentage of(final long percentage) {
         return new IntegerPercentage(percentage);
+    }
+
+    public static Percentage of(final BigDecimalFraction fraction) {
+        return new BigDecimalFractionPercentage(fraction);
     }
 
 }

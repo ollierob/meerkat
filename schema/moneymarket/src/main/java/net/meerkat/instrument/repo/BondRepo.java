@@ -1,7 +1,5 @@
 package net.meerkat.instrument.repo;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentId;
 import net.meerkat.identifier.instrument.InstrumentIds;
@@ -11,6 +9,8 @@ import net.meerkat.instrument.bond.exception.UnknownBondException;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.instrument.repo.repurchase.RepoRepurchase;
 import net.meerkat.issuer.IssuerId;
+
+import javax.annotation.Nonnull;
 
 /**
  *

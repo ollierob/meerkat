@@ -8,6 +8,7 @@ import net.meerkat.instrument.repo.Repo;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 
 import javax.annotation.Nonnull;
+import java.util.Optional;
 
 /**
  * @author ollie
@@ -18,7 +19,7 @@ public interface FixedInterestSecurity extends Security, InstrumentDefinition {
     CashPayment<?> purchase();
 
     @Nonnull
-    FixedInterestRate impliedRate();
+    Optional<? extends FixedInterestRate> impliedRate();
 
     @Override
     default <R> R handleWith(final InstrumentDefinition.Handler<R> handler) {

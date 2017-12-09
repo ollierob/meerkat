@@ -3,7 +3,7 @@ package net.meerkat.pricing.bond;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.Price;
-import net.meerkat.numeric.percentage.FractionalPercentage;
+import net.meerkat.numeric.percentage.BigDecimalFractionPercentage;
 import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.ShiftablePrice;
 import net.meerkat.pricing.bond.shifts.BondShifts;
@@ -36,12 +36,12 @@ public interface BondPrice<C extends CurrencyId>
 
     @Nonnull
     default Percentage cleanPercent() {
-        return FractionalPercentage.of(this.par().amount(), this.clean().amount());
+        return BigDecimalFractionPercentage.of(this.par().amount(), this.clean().amount());
     }
 
     @Nonnull
     default Percentage dirtyPercent() {
-        return FractionalPercentage.of(this.par().amount(), this.dirty().amount());
+        return BigDecimalFractionPercentage.of(this.par().amount(), this.dirty().amount());
     }
 
     default boolean isPremium() {

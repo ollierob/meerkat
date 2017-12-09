@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
- *
  * @author Ollie
  */
 public interface Money<C extends CurrencyId>
@@ -56,6 +55,10 @@ public interface Money<C extends CurrencyId>
     @Nonnull
     default Money<C> over(final Number number) {
         return new FractionalMoney<>(this.currencyId(), BigDecimalFraction.of(this.amount(), number));
+    }
+
+    default Number over(final Money<C> that) {
+        return BigDecimalFraction.of(this.amount(), that.amount());
     }
 
     default String toString(@Nonnull final MoneyFormat convention) {

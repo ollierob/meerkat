@@ -14,7 +14,6 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 
 /**
- *
  * @author Ollie
  */
 public class FractionalMoney<C extends CurrencyId>
@@ -64,6 +63,11 @@ public class FractionalMoney<C extends CurrencyId>
     @Deprecated
     public FractionalMoney<C> times(final Number that, final RoundingMode rounding) {
         return this.times(that);
+    }
+
+    @Override
+    public Number value() {
+        return fraction;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package net.meerkat.numeric.interest;
 
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.BigDecimalMoney;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
@@ -13,9 +14,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 /**
@@ -60,6 +63,21 @@ public class SimpleFixedInterestRateTest {
             final Money accrued = rate.accrue(money, FractionalYears.of(2, 1));
             assertThat(accrued, is(new BigDecimalMoney(mockCurrency, new BigDecimal("1.16"))));
         }
+
+    }
+
+    @Test
+    public void testImplied() {
+
+        final CurrencyId currencyId = mock(CurrencyId.class);
+        final LocalDate start = LocalDate.of(2016, 1, 1);
+
+        final SimpleFixedInterestRate implied = SimpleFixedInterestRate.implied(
+                CashPayment.of(start, Money.of(currencyId, 600)),
+                CashPayment.of(start.plusYears(1), Money.of(currencyId, 630)),
+                DateArithmetic.ACT_ACT);
+
+        assertThat(implied.annualRate().toString(), is("5%"));
 
     }
 

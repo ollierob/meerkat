@@ -28,7 +28,7 @@ public class IntegerPercentage extends Percentage {
 
     @Override
     public Percentage reciprocal() {
-        return FractionalPercentage.of(1, value);
+        return BigDecimalFractionPercentage.of(1, value);
     }
 
     @Override

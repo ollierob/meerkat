@@ -132,6 +132,10 @@ public class BigDecimalFraction
                 this.denominator.multiply(that.denominator));
     }
 
+    public BigDecimalFraction minus(final int that) {
+        return BigDecimalFraction.of(numerator.subtract(denominator), numerator.multiply(denominator));
+    }
+
     @Override
     public BigDecimalFraction negate() {
         return of(numerator.negate(), denominator);

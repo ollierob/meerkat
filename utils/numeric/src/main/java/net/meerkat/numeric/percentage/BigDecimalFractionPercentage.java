@@ -9,7 +9,7 @@ import java.math.RoundingMode;
 /**
  * @author ollie
  */
-public class FractionalPercentage extends Percentage {
+public class BigDecimalFractionPercentage extends Percentage {
 
     private static final long serialVersionUID = 1L;
 
@@ -17,19 +17,19 @@ public class FractionalPercentage extends Percentage {
         final BigDecimalFraction fraction = BigDecimalFraction.of(numerator, denominator);
         return fraction.isZero()
                 ? zero()
-                : new FractionalPercentage(fraction);
+                : new BigDecimalFractionPercentage(fraction);
     }
 
     public static Percentage of(final Number numerator, final Number denominator) {
         final BigDecimalFraction fraction = BigDecimalFraction.of(numerator, denominator);
         return fraction.isZero()
                 ? zero()
-                : new FractionalPercentage(fraction);
+                : new BigDecimalFractionPercentage(fraction);
     }
 
     private final BigDecimalFraction fraction;
 
-    FractionalPercentage(final BigDecimalFraction fraction) {
+    BigDecimalFractionPercentage(final BigDecimalFraction fraction) {
         this.fraction = fraction;
     }
 
@@ -39,8 +39,8 @@ public class FractionalPercentage extends Percentage {
     }
 
     @Override
-    public FractionalPercentage reciprocal() {
-        return new FractionalPercentage(fraction.reciprocal());
+    public BigDecimalFractionPercentage reciprocal() {
+        return new BigDecimalFractionPercentage(fraction.reciprocal());
     }
 
     @Override
