@@ -28,3 +28,15 @@ Instrument definitions for varying types of:
 * FX - spots, forwards, swaps, options
 * Interest-rate derivatives - interest rate swaps, bond options, interest rate futures, bond futures
 * Money-market - classic repos, open repos, buy/sell back, certificate of deposit, t-bills, commercial paper
+
+## Pricing
+
+* Bonds - clean & dirty price
+* WIP ...
+
+## Risk
+
+Positions and sensitivities:
+
+* Bonds - dollar duration
+* WIP ...
