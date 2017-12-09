@@ -36,6 +36,18 @@ public abstract class BigDecimals {
         decimalConversions = Collections.unmodifiableMap(funcs);
     }
 
+    private static final BigDecimal[] precomputed;
+
+    static {
+        precomputed = new BigDecimal[20];
+        precomputed[0] = BigDecimal.ZERO;
+        precomputed[1] = ONE;
+        precomputed[2] = TWO;
+        for (int i = 3; i < precomputed.length; i++) {
+            precomputed[i] = BigDecimal.valueOf(i);
+        }
+    }
+
     protected BigDecimals() {
         throw new AbstractMethodError();
     }
@@ -61,20 +73,13 @@ public abstract class BigDecimals {
                 || (b1 != null && b2 != null && b1.compareTo(b2) == 0);
     }
 
-    public static BigDecimal toBigDecimal(final int i) {
-        switch (i) {
-            case 0:
-                return BigDecimal.ZERO;
-            case 1:
-                return BigDecimal.ONE;
-            case 2:
-                return TWO;
-            default:
-                return BigDecimal.valueOf(i);
-        }
+    public static BigDecimal toBigDecimal(final long i) {
+        return i >= 0 && i < precomputed.length
+                ? precomputed[(int) i]
+                : BigDecimal.valueOf(i);
     }
 
-    public static BigDecimal mean(final MathContext context, final BigDecimal d1, final BigDecimal d2) {
+    public static BigDecimal mean(final BigDecimal d1, final BigDecimal d2, final MathContext context) {
         return d1.add(d2).divide(TWO, context);
     }
 

@@ -4,12 +4,7 @@ import net.meerkat.numeric.Numeric;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.MathContext;
@@ -18,10 +13,9 @@ import java.math.RoundingMode;
 /**
  * @author Ollie
  */
-@XmlRootElement
 public class BigDecimalFraction
         extends Number
-        implements Numeric.Summable<BigDecimalFraction>, Externalizable {
+        implements Numeric.Summable<BigDecimalFraction>, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -61,15 +55,7 @@ public class BigDecimalFraction
         return new BigDecimalFraction(d, BigDecimal.ONE);
     }
 
-    @XmlAttribute(name = "numerator")
-    private BigDecimal numerator;
-
-    @XmlAttribute(name = "denominator")
-    private BigDecimal denominator;
-
-    @Deprecated
-    BigDecimalFraction() {
-    }
+    private final BigDecimal numerator, denominator;
 
     BigDecimalFraction(final BigDecimal numerator, final BigDecimal denominator) {
         if (denominator.signum() == 0) {
@@ -131,10 +117,17 @@ public class BigDecimalFraction
                 this.denominator.multiply(that.denominator));
     }
 
-    public BigDecimalFraction minus(final int that) {
+    public BigDecimalFraction plus(final long that) {
+        if (that == 0) {
+            return this;
+        }
         return BigDecimalFraction.of(
-                numerator.subtract(denominator.multiply(BigDecimals.toBigDecimal(that))),
+                numerator.add(denominator.multiply(BigDecimals.toBigDecimal(that))),
                 denominator);
+    }
+
+    public BigDecimalFraction minus(final long that) {
+        return this.plus(-that);
     }
 
     @Override
@@ -246,18 +239,6 @@ public class BigDecimalFraction
         final BigDecimal n1 = this.numerator.multiply(that.denominator);
         final BigDecimal n2 = that.numerator.multiply(this.denominator);
         return n1.compareTo(n2);
-    }
-
-    @Override
-    public void writeExternal(final ObjectOutput out) throws IOException {
-        out.writeObject(numerator);
-        out.writeObject(denominator);
-    }
-
-    @Override
-    public void readExternal(final ObjectInput in) throws IOException, ClassNotFoundException {
-        numerator = (BigDecimal) in.readObject();
-        denominator = (BigDecimal) in.readObject();
     }
 
 }
