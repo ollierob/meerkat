@@ -37,6 +37,7 @@ Price according to market data, and subsequently recalculate with absolute or re
 
 * Bonds - clean & dirty price
 * Interest rate swaps
+* FX forwards
 * WIP ...
 
 ## Risk
