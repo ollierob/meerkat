@@ -14,6 +14,10 @@ import java.math.RoundingMode;
 public interface Numeric<T extends Numeric<T>>
         extends Comparable<T>, Serializable {
 
+    default Number value() {
+        return this.decimalValue();
+    }
+
     default boolean isZero() {
         return this.decimalValue().signum() == 0;
     }
@@ -49,10 +53,6 @@ public interface Numeric<T extends Numeric<T>>
 
     @Nonnull
     T reciprocal();
-
-    default Number value() {
-        return this.decimalValue();
-    }
 
     /**
      * @return the decimal value of this amount, if possible to exact precision, or

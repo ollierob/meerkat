@@ -32,7 +32,6 @@ public abstract class BigDecimals {
         funcs.put(Long.class, n -> BigDecimal.valueOf(n.longValue()));
         funcs.put(Double.class, n -> BigDecimal.valueOf(n.doubleValue()));
         funcs.put(Float.class, n -> BigDecimal.valueOf(n.floatValue()));
-        funcs.put(SmallDecimal.class, d -> ((SmallDecimal) d).decimalValue());
         decimalConversions = Collections.unmodifiableMap(funcs);
     }
 
@@ -60,7 +59,7 @@ public abstract class BigDecimals {
     private static BigDecimal genericConversion(final Number number) {
         return number instanceof Numeric
                 ? ((Numeric) number).decimalValue()
-                : new BigDecimal(number.toString());
+                : BigDecimal.valueOf(number.doubleValue());
     }
 
     @Nonnull
