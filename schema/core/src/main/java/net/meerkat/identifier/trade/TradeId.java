@@ -6,7 +6,7 @@ import net.meerkat.objects.Classes.Castable;
  *
  * @author ollie
  */
-public interface TradeId extends HasTradeId, Castable {
+public interface TradeId extends HasTradeId, Castable<TradeId> {
 
     @Override
     @Deprecated

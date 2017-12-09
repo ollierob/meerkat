@@ -11,7 +11,7 @@ import java.util.Optional;
  *
  * @author ollie
  */
-public interface Ids<T extends Castable> {
+public interface Ids<T extends Castable<T>> {
 
     @Nonnull
     Set<? extends T> values();

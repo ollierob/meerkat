@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  *
  * @author ollie
  */
-public abstract class IdSet<T extends Castable> implements Ids<T> {
+public abstract class IdSet<T extends Castable<T>> implements Ids<T> {
 
     private final ImmutableSet<? extends T> ids;
 

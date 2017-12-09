@@ -6,7 +6,7 @@ import net.meerkat.objects.Classes.Castable;
  *
  * @author ollie
  */
-public interface MarketId extends HasMarketId, Castable {
+public interface MarketId extends HasMarketId, Castable<MarketId> {
 
     @Override
     default MarketId marketId() {

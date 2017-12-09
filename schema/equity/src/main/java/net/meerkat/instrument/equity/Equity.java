@@ -1,16 +1,16 @@
 package net.meerkat.instrument.equity;
 
-import java.util.Optional;
-
 import net.meerkat.identifier.instrument.Isin;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
+import net.meerkat.objects.Classes;
+
+import java.util.Optional;
 
 /**
- *
  * @author Ollie
  */
-public interface Equity extends InstrumentDefinition, Security {
+public interface Equity extends InstrumentDefinition, Security, Classes.Castable<Equity> {
 
     default Optional<Isin> isin() {
         return this.instrumentId(Isin.class);
