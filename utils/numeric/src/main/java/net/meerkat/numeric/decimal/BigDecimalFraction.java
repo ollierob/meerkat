@@ -1,6 +1,7 @@
 package net.meerkat.numeric.decimal;
 
 import net.meerkat.numeric.Numeric;
+import net.meerkat.numeric.exception.DivideByZeroException;
 
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
@@ -59,7 +60,7 @@ public class BigDecimalFraction
 
     BigDecimalFraction(final BigDecimal numerator, final BigDecimal denominator) {
         if (denominator.signum() == 0) {
-            throw new ArithmeticException(numerator + "/" + denominator);
+            throw new DivideByZeroException(numerator, denominator);
         }
         this.numerator = numerator;
         this.denominator = denominator;

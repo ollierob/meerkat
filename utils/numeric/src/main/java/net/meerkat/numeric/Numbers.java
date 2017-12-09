@@ -24,12 +24,8 @@ public abstract class Numbers {
     }
 
     public static boolean isEffectiveIntegral(final Number number) {
-        if (number == null) {
-            return false;
-        }
-        return isNativeIntegral(number)
-                ? true
-                : isIntegral(number.doubleValue());
+        return number != null
+                && (isNativeIntegral(number) || isIntegral(number.doubleValue()));
     }
 
     public static boolean isIntegral(final double d) {

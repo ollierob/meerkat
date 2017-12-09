@@ -5,6 +5,7 @@ import net.meerkat.numeric.decimal.BigDecimalFraction;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 /**
  * @author ollie
@@ -30,7 +31,7 @@ public class BigDecimalFractionPercentage extends Percentage {
     private final BigDecimalFraction fraction;
 
     BigDecimalFractionPercentage(final BigDecimalFraction fraction) {
-        this.fraction = fraction;
+        this.fraction = Objects.requireNonNull(fraction);
     }
 
     @Override
