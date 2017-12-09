@@ -16,7 +16,7 @@ Stand-alone, minimal-dependency libraries for:
 
 General interfaces for:
 * Identifiers - instruments, countries, currencies, markets, portfolios
-* Money - amount and currency, interest calculations, exchange rates, prices
+* Money - generically typed per currency ID, interest calculations, exchange rates, prices
 * Calendars - business days, settlement dates, holidays
 
 External definitions of:
