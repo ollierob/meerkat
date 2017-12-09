@@ -16,8 +16,10 @@ public class SmallDecimal extends Number implements Numeric.Summable<SmallDecima
 
     private static final long serialVersionUID = 1L;
 
-    private static final byte BYTE_ZERO = 0;
+    private static final byte ZERO_DP = 0;
     private static final int MAX_DP = 16;
+
+    private static final SmallDecimal ZERO = new SmallDecimal(0, ZERO_DP);
 
     public static SmallDecimal valueOf(final Number number) {
         if (number instanceof SmallDecimal) {
@@ -32,7 +34,7 @@ public class SmallDecimal extends Number implements Numeric.Summable<SmallDecima
     }
 
     public static SmallDecimal valueOf(final long value) {
-        return new SmallDecimal(value, BYTE_ZERO);
+        return new SmallDecimal(value, ZERO_DP);
     }
 
     public static SmallDecimal valueOf(final BigDecimal decimal) {

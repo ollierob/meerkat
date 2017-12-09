@@ -2,6 +2,7 @@ package net.meerkat.numeric;
 
 import javax.annotation.Nonnull;
 import java.util.function.BinaryOperator;
+import java.util.function.DoubleFunction;
 
 public interface Arithmetic<T> {
 
@@ -12,18 +13,11 @@ public interface Arithmetic<T> {
     T subtract(@Nonnull T minuend, @Nonnull T subtrahend);
 
     static <T extends Numeric.Summable<T>> Arithmetic<T> numeric() {
-        return new Arithmetic<T>() {
+        return of(T::plus, T::minus);
+    }
 
-            @Override
-            public T add(final T left, final T right) {
-                return left.plus(right);
-            }
-
-            @Override
-            public T subtract(T minuend, T subtrahend) {
-                return minuend.minus(subtrahend);
-            }
-        };
+    static <T extends Number> Arithmetic<T> doublePrecision(final DoubleFunction<? extends T> fromDouble) {
+        return of((l, r) -> fromDouble.apply(l.doubleValue() + r.doubleValue()), (l, r) -> fromDouble.apply(l.doubleValue() - r.doubleValue()));
     }
 
     static <T> Arithmetic<T> of(final BinaryOperator<T> addition, final BinaryOperator<T> subtraction) {

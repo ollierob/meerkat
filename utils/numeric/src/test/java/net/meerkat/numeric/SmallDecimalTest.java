@@ -11,9 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * @author Ollie
  */
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class SmallDecimalTest {
+public class SmallDecimalTest extends NumericTest {
 
     private static final byte ONE_DP = (byte) 1;
+
+    @Override
+    protected Numeric<?> valueOf(final long l) {
+        return SmallDecimal.valueOf(l);
+    }
 
     @Test
     public void testDecimalValue() {

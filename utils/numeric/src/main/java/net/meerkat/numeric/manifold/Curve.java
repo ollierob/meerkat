@@ -2,7 +2,7 @@ package net.meerkat.numeric.manifold;
 
 import net.meerkat.numeric.Arithmetic;
 import net.meerkat.numeric.interpolation.Interpolator;
-import net.meerkat.numeric.manifold.derivative.FiniteDifference;
+import net.meerkat.numeric.manifold.derivative.Differentiation;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
@@ -47,8 +47,8 @@ public interface Curve<X, Y> {
         return of(outMap);
     }
 
-    default <Z> Curve<X, Z> derivative(final FiniteDifference<X, Y, Z> difference) {
-        return difference.differentiate(this);
+    default <Z> Curve<X, Z> derivative(final Differentiation<X, Y, Z> differentiation) {
+        return differentiation.differentiate(this);
     }
 
     static <X, Y> Curve<X, Y> of(final NavigableMap<X, Y> map) {
