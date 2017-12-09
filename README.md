@@ -3,6 +3,8 @@ Java financial library.
 
 ## Utils
 
+Stand-alone, minimal-dependency libraries for:
+
 * Dates - "partial" date-times (local date and timezone with optional local time)
 * Numeric - big decimal fractions, percentages, curves and surfaces, numerical differentiation
 * Collections - general utility methods
