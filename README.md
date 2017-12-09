@@ -33,7 +33,10 @@ Instrument definitions for varying types of:
 
 ## Pricing
 
+Price according to market data, and subsequently recalculate with absolute or relative "shifts" to the inputs:
+
 * Bonds - clean & dirty price
+* Interest rate swaps
 * WIP ...
 
 ## Risk
