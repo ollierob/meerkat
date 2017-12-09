@@ -65,7 +65,10 @@ public class BigDecimalFractionPercentage extends Percentage {
 
     @Override
     public Percentage times(Number that, RoundingMode rounding) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        final BigDecimalFraction fraction = BigDecimalFraction.of(that);
+        return fraction.isZero()
+                ? zero()
+                : new BigDecimalFractionPercentage(this.fraction.times(fraction));
     }
 
     @Override

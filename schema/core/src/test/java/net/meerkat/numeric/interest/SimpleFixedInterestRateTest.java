@@ -6,6 +6,7 @@ import net.meerkat.money.BigDecimalMoney;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.SimpleFixedInterestRate;
 import net.meerkat.numeric.percentage.BigDecimalPercentage;
+import net.meerkat.temporal.date.count.ActualActualDateArithmetic;
 import net.meerkat.temporal.date.count.DateArithmetic;
 import net.meerkat.temporal.date.years.FractionalYears;
 import org.junit.jupiter.api.BeforeEach;
@@ -71,13 +72,14 @@ public class SimpleFixedInterestRateTest {
 
         final CurrencyId currencyId = mock(CurrencyId.class);
         final LocalDate start = LocalDate.of(2016, 1, 1);
+        final DateArithmetic arithmetic = ActualActualDateArithmetic.ACT_ACT_ICMA;
 
         final SimpleFixedInterestRate implied = SimpleFixedInterestRate.implied(
                 CashPayment.of(start, Money.of(currencyId, 600)),
                 CashPayment.of(start.plusYears(1), Money.of(currencyId, 630)),
-                DateArithmetic.ACT_ACT);
+                arithmetic);
 
-        assertThat(implied.annualRate().toString(), is("5%"));
+        assertThat(implied.annualRate().doubleValue(), is(0.05d));
 
     }
 

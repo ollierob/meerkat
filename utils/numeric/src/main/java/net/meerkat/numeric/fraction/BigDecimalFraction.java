@@ -133,7 +133,7 @@ public class BigDecimalFraction
     }
 
     public BigDecimalFraction minus(final int that) {
-        return BigDecimalFraction.of(numerator.subtract(denominator), numerator.multiply(denominator));
+        return BigDecimalFraction.of(numerator.subtract(denominator), denominator);
     }
 
     @Override

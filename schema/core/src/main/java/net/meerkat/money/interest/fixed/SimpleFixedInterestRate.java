@@ -24,7 +24,7 @@ public class SimpleFixedInterestRate extends FixedInterestRate {
         //c1 * 1+(i/100) * y = c2 => i = 100*[c2/(c1*y)-1]
         final Years term = arithmetic.yearsBetween(start.paymentDate(), end.paymentDate());
         final BigDecimalFraction multiplier = BigDecimalFraction.of(end.paymentAmount().over(start.paymentAmount()), term.decimalValue()).minus(1);
-        final Percentage rate = Percentage.of(multiplier).times(100);
+        final Percentage rate = Percentage.of(multiplier);
         return new SimpleFixedInterestRate(rate, arithmetic);
     }
 
