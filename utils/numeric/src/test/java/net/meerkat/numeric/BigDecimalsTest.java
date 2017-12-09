@@ -1,5 +1,6 @@
 package net.meerkat.numeric;
 
+import net.meerkat.numeric.decimal.BigDecimals;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

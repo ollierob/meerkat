@@ -1,6 +1,5 @@
 package net.meerkat.numeric.decimal;
 
-import net.meerkat.numeric.BigDecimals;
 import net.meerkat.numeric.Numeric;
 
 import javax.annotation.CheckReturnValue;

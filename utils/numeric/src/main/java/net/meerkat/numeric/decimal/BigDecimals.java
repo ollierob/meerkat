@@ -1,6 +1,6 @@
-package net.meerkat.numeric;
+package net.meerkat.numeric.decimal;
 
-import net.meerkat.numeric.decimal.SmallDecimal;
+import net.meerkat.numeric.Numeric;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

@@ -4,10 +4,10 @@ import net.coljate.collection.Collection;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.numeric.BigDecimals;
 import net.meerkat.numeric.Numbers;
 import net.meerkat.numeric.Numeric;
 import net.meerkat.numeric.decimal.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimals;
 import net.meerkat.objects.Require;
 
 import javax.annotation.Nonnull;

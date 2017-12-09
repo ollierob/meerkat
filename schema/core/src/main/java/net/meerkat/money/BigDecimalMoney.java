@@ -1,7 +1,7 @@
 package net.meerkat.money;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.numeric.BigDecimals;
+import net.meerkat.numeric.decimal.BigDecimals;
 
 import javax.annotation.Nonnull;
 import java.math.BigDecimal;
