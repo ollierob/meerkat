@@ -11,7 +11,7 @@ import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateProvider;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.InstrumentPriceException;
 import net.meerkat.pricing.InstrumentPricer;

@@ -1,6 +1,6 @@
 package net.meerkat.money.interest.interpolation;
 
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.numeric.interpolation.LinearDecimalInterpolator;
 import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.temporal.date.Periods;

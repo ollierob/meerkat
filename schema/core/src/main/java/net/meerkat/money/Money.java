@@ -7,7 +7,7 @@ import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.numeric.BigDecimals;
 import net.meerkat.numeric.Numbers;
 import net.meerkat.numeric.Numeric;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.objects.Require;
 
 import javax.annotation.Nonnull;

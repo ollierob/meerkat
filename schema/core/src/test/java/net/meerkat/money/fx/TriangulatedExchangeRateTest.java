@@ -4,7 +4,7 @@ import net.meerkat.identifier.currency.StubCurrencyId;
 import net.meerkat.money.price.TwoWayDecimalMoney;
 import net.meerkat.money.price.TwoWayMoney;
 import net.meerkat.numeric.BigDecimals;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

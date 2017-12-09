@@ -2,7 +2,7 @@ package net.meerkat.pricing.fx;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 
 import javax.annotation.Nonnull;
 

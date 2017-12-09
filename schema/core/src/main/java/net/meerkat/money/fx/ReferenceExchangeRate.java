@@ -1,7 +1,7 @@
 package net.meerkat.money.fx;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.objects.Require;
 
 /**

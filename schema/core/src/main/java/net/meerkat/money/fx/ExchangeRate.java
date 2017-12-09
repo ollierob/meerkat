@@ -5,7 +5,7 @@ import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
 import net.meerkat.money.Money;
 import net.meerkat.money.price.TwoWayMoney;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 
 import javax.annotation.Nonnull;
 

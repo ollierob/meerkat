@@ -1,6 +1,6 @@
 package net.meerkat.numeric.percentage;
 
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

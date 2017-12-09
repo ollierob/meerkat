@@ -2,7 +2,7 @@ package net.meerkat.numeric.percentage;
 
 import net.meerkat.numeric.Arithmetic;
 import net.meerkat.numeric.Numeric;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 
 /**
  * @author Ollie

@@ -1,6 +1,6 @@
 package net.meerkat.numeric.interpolation;
 
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 
 import javax.xml.bind.annotation.XmlTransient;
 import java.math.BigDecimal;

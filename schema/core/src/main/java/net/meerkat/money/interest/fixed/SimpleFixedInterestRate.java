@@ -3,7 +3,7 @@ package net.meerkat.money.interest.fixed;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.temporal.date.count.DateArithmetic;
 import net.meerkat.temporal.date.years.Years;

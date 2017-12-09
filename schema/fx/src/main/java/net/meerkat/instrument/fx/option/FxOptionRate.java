@@ -5,7 +5,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 
 import javax.annotation.Nonnull;
 

@@ -1,4 +1,4 @@
-package net.meerkat.numeric.fraction;
+package net.meerkat.numeric.decimal;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 package net.meerkat.numeric;
 
-import net.meerkat.numeric.fraction.BigDecimalFraction;
+import net.meerkat.numeric.decimal.BigDecimalFraction;
 
 import javax.annotation.Nonnull;
 import java.io.Serializable;

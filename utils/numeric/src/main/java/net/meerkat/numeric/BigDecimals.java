@@ -1,5 +1,7 @@
 package net.meerkat.numeric;
 
+import net.meerkat.numeric.decimal.SmallDecimal;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.math.BigDecimal;

@@ -1,5 +1,7 @@
-package net.meerkat.numeric;
+package net.meerkat.numeric.decimal;
 
+import net.meerkat.numeric.Numeric;
+import net.meerkat.numeric.NumericTest;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.is;
