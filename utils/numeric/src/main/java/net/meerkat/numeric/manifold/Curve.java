@@ -6,11 +6,8 @@ import net.meerkat.numeric.manifold.derivative.Differentiation;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
-import java.util.Collection;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.NavigableMap;
-import java.util.Set;
-import java.util.TreeMap;
 
 /**
  * @author Ollie
@@ -26,12 +23,16 @@ public interface Curve<X, Y> {
     @Nonnull
     NavigableMap<X, Y> toMap();
 
+    default boolean isEmpty() {
+        return this.toMap().isEmpty();
+    }
+
     default Set<X> xAxis() {
         return this.toMap().keySet();
     }
 
-    default Collection<Y> yAxis() {
-        return this.toMap().values();
+    default Points<Y> yAxis() {
+        return Points.of(this.toMap().values());
     }
 
     default Collection<Entry<X, Y>> points() {
@@ -49,6 +50,10 @@ public interface Curve<X, Y> {
 
     default <Z> Curve<X, Z> derivative(final Differentiation<X, Y, Z> differentiation) {
         return differentiation.differentiate(this);
+    }
+
+    default boolean isMonotonicallyIncreasing(final Comparator<? super Y> comparator) {
+        return this.yAxis().isIncreasing(comparator);
     }
 
     static <X, Y> Curve<X, Y> of(final NavigableMap<X, Y> map) {

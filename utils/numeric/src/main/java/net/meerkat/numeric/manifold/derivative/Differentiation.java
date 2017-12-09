@@ -5,6 +5,12 @@ import net.meerkat.numeric.manifold.Curve;
 import javax.annotation.Nonnull;
 import java.util.NavigableMap;
 
+/**
+ * @param <X>  x-axis type
+ * @param <Y>  y-axis type
+ * @param <DY> y'-axis type
+ * @see FiniteDifference
+ */
 public interface Differentiation<X, Y, DY> {
 
     @Nonnull

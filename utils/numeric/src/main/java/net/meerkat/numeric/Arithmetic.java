@@ -16,6 +16,10 @@ public interface Arithmetic<T> {
         return of(T::plus, T::minus);
     }
 
+    static Arithmetic<Double> doublePrecision() {
+        return of(Double::sum, (d1, d2) -> d1 - d2);
+    }
+
     static <T extends Number> Arithmetic<T> doublePrecision(final DoubleFunction<? extends T> fromDouble) {
         return of((l, r) -> fromDouble.apply(l.doubleValue() + r.doubleValue()), (l, r) -> fromDouble.apply(l.doubleValue() - r.doubleValue()));
     }
