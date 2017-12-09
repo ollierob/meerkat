@@ -12,6 +12,34 @@ public interface Arithmetic<T> {
     @Nonnull
     T subtract(@Nonnull T minuend, @Nonnull T subtrahend);
 
+    default T add(final T left, final T... rest) {
+        T sum = left;
+        for (final T r : rest) {
+            sum = this.add(sum, r);
+        }
+        return sum;
+    }
+
+    default T zero(final T value) {
+        return this.subtract(value, value);
+    }
+
+    default T negate(final T value) {
+        return this.multiply(value, -1);
+    }
+
+    default T multiply(final T left, final int n) {
+        if (n == 0) {
+            return this.zero(left);
+        }
+        T sum = left;
+        final int s = Math.abs(n);
+        for (int i = 1; i < s; i++) {
+            sum = this.add(sum, left);
+        }
+        return n > 0 ? sum : this.negate(sum);
+    }
+
     static <T extends Numeric.Summable<T>> Arithmetic<T> numeric() {
         return of(T::plus, T::minus);
     }
