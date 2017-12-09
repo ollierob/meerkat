@@ -15,11 +15,16 @@ Java financial library.
 General interfaces for:
 * Identifiers - instruments, countries, currencies, markets, portfolios
 * Money - amount and currency, interest calculations, exchange rates, prices
-* Time - business days, settlement dates, holidays
+* Calendars - business days, settlement dates, holidays
+
+External definitions of:
+* ISOs - countries, currencies
+* Instrument IDs - ISIN, CUSIP, FIGI and others
+* Ratings - Bloomberg, Fitch, Moodys, S&P
 
 Instrument definitions for varying types of:
-* Bonds
-* Equities
-* FX
-* Interest-rate derivatives
-* Money-market
+* Bonds - fixed coupon, floating rate, variable rate, perpetual, convertible
+* Equities - stocks, indexes, futures, options, swaps, dividends 
+* FX - spots, forwards, swaps, options
+* Interest-rate derivatives - interest rate swaps, bond options, interest rate futures, bond futures
+* Money-market - classic repos, open repos, buy/sell back, certificate of deposit, t-bills, commercial paper
