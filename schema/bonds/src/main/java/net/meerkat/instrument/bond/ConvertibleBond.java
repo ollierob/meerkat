@@ -25,7 +25,7 @@ public class ConvertibleBond extends AbstractBond {
 
     private final ConvertibleBondDates dates;
     private final List<BondCoupon> coupons;
-    private final InstrumentId stockId;
+    private final InstrumentId equityId;
     private final BigDecimal conversionRatio;
 
     public ConvertibleBond(
@@ -40,7 +40,7 @@ public class ConvertibleBond extends AbstractBond {
         super(name, identifiers, par, call, issuer);
         this.dates = dates;
         this.coupons = coupons;
-        this.stockId = stockId;
+        this.equityId = stockId;
         this.conversionRatio = conversionRatio;
     }
 
@@ -60,13 +60,13 @@ public class ConvertibleBond extends AbstractBond {
     }
 
     @Nonnull
-    public InstrumentId stockId() {
-        return stockId;
+    public InstrumentId equityId() {
+        return equityId;
     }
 
     @Nonnull
-    public Equity stock(final EquityProvider equityProvider) {
-        return equityProvider.require(stockId);
+    public Equity equity(final EquityProvider equityProvider) {
+        return equityProvider.require(equityId);
     }
 
     @Nonnull
