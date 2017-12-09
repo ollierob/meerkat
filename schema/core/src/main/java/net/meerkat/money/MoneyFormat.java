@@ -11,9 +11,9 @@ public interface MoneyFormat {
     String toString(@Nonnull Money<?> money);
 
     MoneyFormat PER_CURRENCY = money -> money.currencyId().format().toString(money);
-    MoneyFormat UNIQUE_SYMBOL_AMOUNT = money -> money.currencyId().uniqueSymbol() + ' ' + money.amount();
-    MoneyFormat AMOUNT_UNIQUE_SYMBOL = money -> money.amount() + " " + money.currencyId().uniqueSymbol();
-    MoneyFormat CURRENCY_AMOUNT = money -> money.currencyId() + " " + money.amount();
-    MoneyFormat AMOUNT_CURRENCY = money -> money.amount() + " " + money.currencyId();
+    MoneyFormat UNIQUE_SYMBOL_AMOUNT = money -> money.currencyId().uniqueSymbol() + ' ' + money.value();
+    MoneyFormat AMOUNT_UNIQUE_SYMBOL = money -> money.value() + " " + money.currencyId().uniqueSymbol();
+    MoneyFormat CURRENCY_AMOUNT = money -> money.currencyId() + " " + money.value();
+    MoneyFormat AMOUNT_CURRENCY = money -> money.value() + " " + money.currencyId();
 
 }

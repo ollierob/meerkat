@@ -25,7 +25,10 @@ public interface Money<C extends CurrencyId>
     C currencyId();
 
     @Nonnull
-    Number amount();
+    @Override
+    default Number value() {
+        return this.decimalValue();
+    }
 
     @Override
     Money<C> plus(@Nonnull Money<C> that);
@@ -35,7 +38,7 @@ public interface Money<C extends CurrencyId>
 
     @Override
     default Money<C> reciprocal() {
-        return Money.of(this.currencyId(), BigDecimalFraction.of(1, this.amount()));
+        return Money.of(this.currencyId(), BigDecimalFraction.of(1, this.value()));
     }
 
     default <T extends CurrencyId> Money<T> convert(final ExchangeRate<C, T> rate) {
@@ -54,11 +57,11 @@ public interface Money<C extends CurrencyId>
 
     @Nonnull
     default Money<C> over(final Number number) {
-        return new FractionalMoney<>(this.currencyId(), BigDecimalFraction.of(this.amount(), number));
+        return new FractionalMoney<>(this.currencyId(), BigDecimalFraction.of(this.value(), number));
     }
 
     default Number over(final Money<C> that) {
-        return BigDecimalFraction.of(this.amount(), that.amount());
+        return BigDecimalFraction.of(this.value(), that.value());
     }
 
     default String toString(@Nonnull final MoneyFormat convention) {
@@ -102,7 +105,7 @@ public interface Money<C extends CurrencyId>
 
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {
         return Objects.equals(left.currencyId(), right.currencyId())
-                && Numbers.equals(left.amount(), right.amount());
+                && Numbers.equals(left.value(), right.value());
     }
 
     static int hashCode(final Money<?> money) {

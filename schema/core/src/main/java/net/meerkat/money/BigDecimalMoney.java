@@ -21,7 +21,7 @@ public class BigDecimalMoney<C extends CurrencyId>
     public static <C extends CurrencyId> BigDecimalMoney<C> valueOf(final Money<C> money) {
         return money instanceof BigDecimalMoney
                 ? (BigDecimalMoney<C>) money
-                : valueOf(money.currencyId(), money.amount());
+                : valueOf(money.currencyId(), money.value());
     }
 
     public static <C extends CurrencyId> BigDecimalMoney<C> valueOf(final C currency, final Number amount) {
@@ -37,7 +37,7 @@ public class BigDecimalMoney<C extends CurrencyId>
 
     public BigDecimalMoney(@Nonnull final C currency, @Nonnull final BigDecimal amount) {
         this.currency = Objects.requireNonNull(currency, "currency");
-        this.amount = Objects.requireNonNull(amount, "amount");
+        this.amount = Objects.requireNonNull(amount, "value");
     }
 
     @Override
@@ -46,7 +46,7 @@ public class BigDecimalMoney<C extends CurrencyId>
     }
 
     @Override
-    public BigDecimal amount() {
+    public BigDecimal value() {
         return amount;
     }
 

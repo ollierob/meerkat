@@ -76,8 +76,8 @@ public abstract class DeliverableFxForward<B extends CurrencyId, C extends Curre
     @Override
     public Explainable.ExplanationBuilder explain() {
         return super.explain()
-                .put("base amount", base)
-                .put("counter amount", counter)
+                .put("base value", base)
+                .put("counter value", counter)
                 .put("settlement date", settlementDate)
                 .put("trade date", tradeDate);
     }

@@ -40,7 +40,7 @@ public interface InterestRate extends InterestRateOrId {
     }
 
     /**
-     * @return the amount of interest accrued.
+     * @return the value of interest accrued.
      */
     @Nonnull
     default <C extends CurrencyId> Money<C> accrued(final Money<C> money, final LocalDate earlier, final LocalDate later, final InterestRateInterpolator interpolator) {

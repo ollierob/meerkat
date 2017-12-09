@@ -13,7 +13,7 @@ import java.math.RoundingMode;
  */
 public abstract class Numbers {
 
-    private static final double DELTA = 1e-16;
+    private static final double DOUBLE_PRECISION = 1e-16;
 
     protected Numbers() {
     }
@@ -48,7 +48,7 @@ public abstract class Numbers {
     public static boolean equals(@Nullable final Number left, @Nullable final Number right) {
         return left == null
                 ? right == null
-                : right != null && Math.abs(left.doubleValue() - right.doubleValue()) < DELTA; //FIXME
+                : right != null && Math.abs(left.doubleValue() - right.doubleValue()) < DOUBLE_PRECISION; //FIXME
     }
 
     public static Integer add(final Integer left, final Integer right) {

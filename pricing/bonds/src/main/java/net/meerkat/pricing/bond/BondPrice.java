@@ -36,12 +36,12 @@ public interface BondPrice<C extends CurrencyId>
 
     @Nonnull
     default Percentage cleanPercent() {
-        return BigDecimalFractionPercentage.of(this.par().amount(), this.clean().amount());
+        return BigDecimalFractionPercentage.of(this.par().value(), this.clean().value());
     }
 
     @Nonnull
     default Percentage dirtyPercent() {
-        return BigDecimalFractionPercentage.of(this.par().amount(), this.dirty().amount());
+        return BigDecimalFractionPercentage.of(this.par().value(), this.dirty().value());
     }
 
     default boolean isPremium() {

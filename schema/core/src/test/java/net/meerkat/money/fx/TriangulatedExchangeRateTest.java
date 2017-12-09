@@ -39,8 +39,8 @@ public class TriangulatedExchangeRateTest {
         final TwoWayMoney<GBP> gbp = new TwoWayDecimalMoney(GBP.GBP, BigDecimals.ONE, BigDecimals.TWO);
         final TwoWayMoney<MXN> mxn = gbpToMxn.convert(gbp);
 
-        assertThat(mxn.bid().amount().doubleValue(), closeTo(1 * 1.33 * 18.91, 1e-10));
-        assertThat(mxn.offer().amount().doubleValue(), closeTo(2 * 1.34 * 18.92, 1e-10));
+        assertThat(mxn.bid().value().doubleValue(), closeTo(1 * 1.33 * 18.91, 1e-10));
+        assertThat(mxn.offer().value().doubleValue(), closeTo(2 * 1.34 * 18.92, 1e-10));
 
     }
 

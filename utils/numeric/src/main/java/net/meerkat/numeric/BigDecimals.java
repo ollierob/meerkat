@@ -35,6 +35,7 @@ public abstract class BigDecimals {
     }
 
     protected BigDecimals() {
+        throw new AbstractMethodError();
     }
 
     @Nonnull

@@ -45,8 +45,8 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
 
     @Nonnull
     default TwoWayMoney<T> convert(final TwoWayMoney<F> from) {
-        final Money<T> bid = Money.of(this.to(), this.bidRate().times(from.bid().amount())); //TODO extract method
-        final Money<T> offer = Money.of(this.to(), this.offerRate().times(from.offer().amount()));
+        final Money<T> bid = Money.of(this.to(), this.bidRate().times(from.bid().value())); //TODO extract method
+        final Money<T> offer = Money.of(this.to(), this.offerRate().times(from.offer().value()));
         return TwoWayMoney.of(bid, offer);
     }
 
@@ -57,12 +57,12 @@ public interface ExchangeRate<F extends CurrencyId, T extends CurrencyId>
 
     @Nonnull
     default Money<T> convertAtMid(final Money<F> from) {
-        return Money.of(this.to(), this.midRate().times(from.amount()));
+        return Money.of(this.to(), this.midRate().times(from.value()));
     }
 
     @Nonnull
     default Money<F> convertAtMidFrom(final Money<T> from) {
-        return Money.of(this.from(), this.midRate().over(from.amount()));
+        return Money.of(this.from(), this.midRate().over(from.value()));
     }
 
     @Nonnull

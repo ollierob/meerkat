@@ -1,10 +1,10 @@
 package net.meerkat.instrument.cash;
 
-import java.time.LocalDate;
-
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+
+import java.time.LocalDate;
 
 /**
  *
@@ -39,7 +39,7 @@ public class DefaultCashPayment<C extends CurrencyId> implements CashPayment<C>,
     public ExplanationBuilder explain() {
         return this.explanationBuilder()
                 .put("date", date)
-                .put("amount", amount);
+                .put("value", amount);
     }
 
 }

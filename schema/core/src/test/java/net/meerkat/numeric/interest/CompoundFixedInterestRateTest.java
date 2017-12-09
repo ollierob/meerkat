@@ -36,7 +36,7 @@ public class CompoundFixedInterestRateTest {
         final Money amount = BigDecimalMoney.valueOf(currency, 1200);
         final LocalDate start = LocalDate.now();
         final LocalDate end = start.plusYears(10);
-        assertThat(rate.discount(amount, start, end).amount().doubleValue(), closeTo(736.7, 1e-2));
+        assertThat(rate.discount(amount, start, end).value().doubleValue(), closeTo(736.7, 1e-2));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class CompoundFixedInterestRateTest {
         final Money amount = BigDecimalMoney.valueOf(currency, 1200);
         final LocalDate start = LocalDate.now();
         final LocalDate end = start.plusYears(10);
-        assertThat(rate.discount(amount, start, end).amount().doubleValue(), closeTo(730.1, 1e-2));
+        assertThat(rate.discount(amount, start, end).value().doubleValue(), closeTo(730.1, 1e-2));
     }
 
 }

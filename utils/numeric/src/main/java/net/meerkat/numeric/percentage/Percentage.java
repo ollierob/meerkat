@@ -11,7 +11,7 @@ public abstract class Percentage extends Number implements Numeric.Summable<Perc
 
     private static final long serialVersionUID = 1L;
 
-    public static final Arithmetic<Percentage> ARITHMETIC = Arithmetic.of(Percentage::plus, Percentage::minus);
+    public static final Arithmetic<Percentage> ARITHMETIC = Arithmetic.numeric();
 
     @Override
     public Percentage plus(final Percentage that) {

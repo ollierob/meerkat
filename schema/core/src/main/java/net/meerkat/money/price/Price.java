@@ -7,7 +7,7 @@ import net.meerkat.identifier.currency.HasCurrencyId;
 import javax.annotation.Nonnull;
 
 /**
- * The price of something. This is sometimes more complicated than just an {@link MoneyPrice amount of money}.
+ * The price of something. This is sometimes more complicated than just an {@link MoneyPrice value of money}.
  *
  * @author ollie
  * @see MoneyPrice

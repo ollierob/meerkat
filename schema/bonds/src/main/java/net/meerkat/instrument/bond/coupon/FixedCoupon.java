@@ -73,7 +73,7 @@ public class FixedCoupon<C extends CurrencyId>
     public Map<String, Object> explain() {
         return this.explanationBuilder(super.explain())
                 .put("rate", rate)
-                .put("amount", amount);
+                .put("value", amount);
     }
 
 }

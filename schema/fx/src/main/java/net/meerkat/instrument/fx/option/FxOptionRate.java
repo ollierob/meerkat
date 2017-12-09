@@ -52,7 +52,7 @@ public class FxOptionRate<C extends CurrencyId, P extends CurrencyId>
 
     @Override
     public BigDecimalFraction bidRate() {
-        return BigDecimalFraction.of(put.amount(), call.amount());
+        return BigDecimalFraction.of(put.value(), call.value());
     }
 
     @Override

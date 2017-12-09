@@ -40,7 +40,7 @@ public class RatioExchangeRate<F extends CurrencyId, T extends CurrencyId> imple
 
     @Override
     public BigDecimalFraction midRate() {
-        return BigDecimalFraction.of(to.amount(), from.amount());
+        return BigDecimalFraction.of(to.value(), from.value());
     }
 
 }

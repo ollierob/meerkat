@@ -38,7 +38,7 @@ public class SimpleFixedInterestRateTest {
     @BeforeEach
     public void before() {
         MockitoAnnotations.initMocks(this);
-        when(mockCurrency.format()).thenReturn(money -> "$" + money.amount());
+        when(mockCurrency.format()).thenReturn(money -> "$" + money.value());
     }
 
     @Test
