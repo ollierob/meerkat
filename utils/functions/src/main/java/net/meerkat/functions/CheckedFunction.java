@@ -25,6 +25,11 @@ public interface CheckedFunction<F, T, X extends Exception> {
     }
 
     @CheckReturnValue
+    default Function<F, T> unchecked() {
+        return this.unchecked(RuntimeException::new);
+    }
+
+    @CheckReturnValue
     @SuppressWarnings("unchecked") //This only throws checked exceptions of type X
     default Function<F, T> unchecked(final Function<? super X, ? extends RuntimeException> toRuntime) {
         return from -> {
