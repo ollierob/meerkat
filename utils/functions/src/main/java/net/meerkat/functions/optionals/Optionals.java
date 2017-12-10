@@ -22,9 +22,7 @@ public final class Optionals {
     }
 
     public static <T> boolean equalIfPresent(final Optional<? extends T> left, final Optional<? extends T> right, final BiPredicate<? super T, ? super T> predicate) {
-        return left.isPresent() && right.isPresent()
-                ? predicate.test(left.get(), right.get())
-                : false;
+        return left.isPresent() && right.isPresent() && predicate.test(left.get(), right.get());
     }
 
     public static boolean equalIfAbsent(final Optional<?> left, final Optional<?> right) {
@@ -32,9 +30,7 @@ public final class Optionals {
     }
 
     public static <T> boolean equalIfAbsent(final Optional<? extends T> left, final Optional<? extends T> right, final BiPredicate<? super T, ? super T> predicate) {
-        return left.isPresent() && right.isPresent()
-                ? predicate.test(left.get(), right.get())
-                : true;
+        return !left.isPresent() || !right.isPresent() || predicate.test(left.get(), right.get());
     }
 
     public static <T> Optional<T> firstPresent(final Optional<T> optional, final Supplier<Optional<T>> supplier) {
