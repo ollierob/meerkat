@@ -14,9 +14,11 @@ public class Mic
         extends StringWrapper
         implements Iso, MarketId {
 
-    public static Mic NASDAQ = new Mic("XNAS");
-    public static Mic LSE = new Mic("XLON");
-    public static Mic BOERSE = new Mic("XBER");
+    public static final Mic CME = new Mic("XCME");
+    public static final Mic NASDAQ = new Mic("XNAS");
+    public static final Mic LSE = new Mic("XLON");
+    public static final Mic LME = new Mic("XLME");
+    public static final Mic BOERSE = new Mic("XBER");
 
     public Mic(final String value) {
         super(value);
