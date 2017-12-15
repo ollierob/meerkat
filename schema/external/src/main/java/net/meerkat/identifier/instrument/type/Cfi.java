@@ -10,6 +10,8 @@ import javax.annotation.Nonnull;
  */
 public class Cfi extends StringWrapper implements Iso {
 
+    //http://www.iotafinance.com/en/Classification-of-Financial-Instrument-codes-CFI-ISO-10962.html
+
     public static final char COLLECTIVE_INVESTMENT_VEHICLE = 'C';
     public static final char DEBT = 'D';
     public static final char EQUITY = 'E';
@@ -20,7 +22,7 @@ public class Cfi extends StringWrapper implements Iso {
     public static final char FINANCING = 'L';
     public static final char MISC = 'M';
     public static final char LISTED_OPTION = 'O';
-    public static final char REFERENCE = 'R';
+    public static final char RIGHT = 'R';
     public static final char SWAP = 'S';
 
     public static Cfi bond(final char interestType, final char guarantee, final char reimbursement, final char form) {
