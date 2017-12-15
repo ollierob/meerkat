@@ -1,7 +1,6 @@
-package net.meerkat.identifier.instrument.future;
+package net.meerkat.instrument.derivative.forward;
 
 import net.coljate.set.Set;
-import net.meerkat.instrument.derivative.forward.FutureDelivery;
 import net.meerkat.money.interest.curve.Tenor;
 import net.meerkat.time.calendar.business.BusinessDay;
 import net.meerkat.time.calendar.business.BusinessDayCalendar;
