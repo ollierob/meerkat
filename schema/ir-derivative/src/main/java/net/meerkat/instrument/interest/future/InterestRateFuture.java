@@ -1,32 +1,23 @@
 package net.meerkat.instrument.interest.future;
 
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.HasCurrencyId;
+import net.meerkat.instrument.InstrumentSnapshot;
 import net.meerkat.instrument.derivative.forward.Future;
 import net.meerkat.instrument.interest.InterestRateDerivative;
 import net.meerkat.money.Money;
 
+import javax.annotation.Nonnull;
+
 /**
- *
  * @author ollie
  */
 public interface InterestRateFuture<C extends CurrencyId, U extends InterestRateFutureContract<C>>
         extends InterestRateDerivative, Future<U>, HasCurrencyId {
 
-    @Override
     @Nonnull
-    U underlying();
-
-    @Override
-    default C currencyId() {
-        return this.notional().currencyId();
-    }
-
-    @Nonnull
-    default Money<C> notional() {
-        return this.underlying().notional();
+    default Money<C> notional(final InstrumentSnapshot<? extends U> snapshot) {
+        return this.underlying(snapshot).notional();
     }
 
     @Override

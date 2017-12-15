@@ -19,7 +19,6 @@ public class BondFuture<C extends CurrencyId>
         extends AbstractFuture<InterestRateFutureContract<C>>
         implements InterestRateFuture<C, InterestRateFutureContract<C>> {
 
-    private final C currencyId;
     private final BondFutureContract<C> basket;
     private final FutureDelivery delivery;
 
@@ -27,11 +26,9 @@ public class BondFuture<C extends CurrencyId>
             final String name,
             final InstrumentIds identifiers,
             final IssuerId issuerId,
-            final C currencyId,
             final BondFutureContract<C> basket,
             final FutureDelivery delivery) {
-        super(name, identifiers, issuerId);
-        this.currencyId = currencyId;
+        super(name, identifiers, issuerId, basket.instrumentIds());
         this.basket = basket;
         this.delivery = delivery;
     }
@@ -41,14 +38,13 @@ public class BondFuture<C extends CurrencyId>
         return delivery;
     }
 
-    @Override
-    public BondFutureContract<C> underlying() {
+    public BondFutureContract<C> contract() {
         return basket;
     }
 
     @Override
     public C currencyId() {
-        return currencyId;
+        return basket.currencyId();
     }
 
 }

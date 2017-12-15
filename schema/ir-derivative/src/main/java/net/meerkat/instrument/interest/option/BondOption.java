@@ -13,8 +13,6 @@ import net.meerkat.money.Money;
  */
 public class BondOption extends AbstractOption<Bond> {
 
-    private final Bond underlying;
-
     public BondOption(
             final String name,
             final InstrumentIds identifiers,
@@ -22,14 +20,8 @@ public class BondOption extends AbstractOption<Bond> {
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
-            final Bond underlying) {
-        super(name, identifiers, issuerId, exercise, premium, strike);
-        this.underlying = underlying;
-    }
-
-    @Override
-    public Bond underlying() {
-        return underlying;
+            final InstrumentIds underlyingIds) {
+        super(name, identifiers, issuerId, exercise, premium, strike, underlyingIds);
     }
 
 }

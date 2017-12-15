@@ -3,7 +3,6 @@ package net.meerkat.instrument.equity.option;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.option.exercise.OptionExercise;
 import net.meerkat.instrument.equity.EquityDerivative;
-import net.meerkat.instrument.equity.Stock;
 import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 
@@ -22,8 +21,8 @@ public class Warrant extends StockOption {
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
-            final Stock underlying) {
-        super(name, identifiers, issuerId, exercise, premium, strike, underlying);
+            final InstrumentIds underlyingIds) {
+        super(name, identifiers, issuerId, exercise, premium, strike, underlyingIds);
     }
 
     @Override

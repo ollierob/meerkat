@@ -15,8 +15,6 @@ public abstract class AbstractEquityOption<E extends Equity>
         extends AbstractOption<E>
         implements EquityOption<E> {
 
-    private final E underlying;
-
     protected AbstractEquityOption(
             final String name,
             final InstrumentIds identifiers,
@@ -24,19 +22,8 @@ public abstract class AbstractEquityOption<E extends Equity>
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
-            final E underlying) {
-        super(name, identifiers, issuerId, exercise, premium, strike);
-        this.underlying = underlying;
-    }
-
-    @Override
-    public E underlying() {
-        return underlying;
-    }
-
-    @Override
-    public ExplanationBuilder explain() {
-        return super.explain().put("underlying", underlying);
+            final InstrumentIds underlyingIds) {
+        super(name, identifiers, issuerId, exercise, premium, strike, underlyingIds);
     }
 
 }

@@ -11,9 +11,6 @@ public interface FxOption
         extends Option<FxOptionRate<?, ?>>, FxDerivative {
 
     @Override
-    FxOptionRate<?, ?> underlying();
-
-    @Override
     default <R> R handleWith(final FxDerivative.Handler<R> handler) {
         return handler.handle(this);
     }

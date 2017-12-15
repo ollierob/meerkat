@@ -7,7 +7,8 @@ import net.meerkat.instrument.derivative.forward.FutureDelivery;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
 import net.meerkat.instrument.interest.future.bond.BondFuture;
 import net.meerkat.issuer.IssuerId;
-import net.meerkat.money.Money;
+
+import javax.annotation.Nonnull;
 
 /**
  * Short-term interest rate future.
@@ -28,14 +29,9 @@ public class ShortTermInterestRateFuture<C extends CurrencyId>
             final IssuerId issuerId,
             final FutureDelivery delivery,
             final ShortTermInterestRateFutureContract<C> contract) {
-        super(name, identifiers, issuerId);
+        super(name, identifiers, issuerId, contract.currencyIds());
         this.delivery = delivery;
         this.contract = contract;
-    }
-
-    @Override
-    public Money<C> notional() {
-        return this.underlying().notional();
     }
 
     @Override
@@ -43,8 +39,13 @@ public class ShortTermInterestRateFuture<C extends CurrencyId>
         return delivery;
     }
 
+    @Nonnull
     @Override
-    public ShortTermInterestRateFutureContract<C> underlying() {
+    public CurrencyId currencyId() {
+        return contract.currencyId();
+    }
+
+    public ShortTermInterestRateFutureContract<C> contract() {
         return contract;
     }
 

@@ -20,8 +20,8 @@ public class StockIndexOption extends AbstractEquityOption<StockIndex> {
             final OptionExercise exercise,
             final Money<?> premium,
             final Money<?> strike,
-            final StockIndex underlying) {
-        super(name, identifiers, issuerId, exercise, premium, strike, underlying);
+            final InstrumentIds underlyingIds) {
+        super(name, identifiers, issuerId, exercise, premium, strike, underlyingIds);
     }
 
     @Override

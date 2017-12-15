@@ -5,16 +5,29 @@ import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.issuer.IssuerId;
 
+import javax.annotation.Nonnull;
+
 /**
- *
  * @author Ollie
  */
 public abstract class AbstractFuture<U extends Instrument>
         extends IssuedSecurity
         implements Future<U> {
 
-    protected AbstractFuture(final String name, final InstrumentIds identifiers, final IssuerId issuerId) {
+    private final InstrumentIds underlyingIds;
+
+    protected AbstractFuture(
+            final String name,
+            final InstrumentIds identifiers,
+            final IssuerId issuerId,
+            final InstrumentIds underlyingIds) {
         super(name, identifiers, issuerId);
+        this.underlyingIds = underlyingIds;
     }
 
+    @Nonnull
+    @Override
+    public InstrumentIds underlyingId() {
+        return underlyingIds;
+    }
 }
