@@ -3,9 +3,11 @@ package net.meerkat.instrument;
 import net.coljate.map.Map;
 import net.coljate.set.Set;
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.exception.UnknownInstrumentException;
 import net.ollie.goat.data.Provider;
 
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 /**
@@ -26,6 +28,26 @@ public interface InstrumentSnapshot<I extends Instrument> extends Provider<Instr
     @Nonnull
     default Map<InstrumentId, I> requireAll(final Set<? extends InstrumentId> ids) {
         return Map.mapValues(ids, this::require);
+    }
+
+    @CheckForNull
+    default I get(final InstrumentIds ids) {
+        for (final InstrumentId id : ids.values()) {
+            final I instrument = this.get(id);
+            if (instrument != null) {
+                return instrument;
+            }
+        }
+        return null;
+    }
+
+    @Nonnull
+    default I require(final InstrumentIds ids) {
+        final I instrument = this.get(ids);
+        if (instrument == null) {
+            throw new UnknownInstrumentException(ids);
+        }
+        return instrument;
     }
 
 }
