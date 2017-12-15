@@ -1,4 +1,4 @@
-package net.meerkat.identifier.instrument;
+package net.meerkat.identifier.instrument.type;
 
 import net.meerkat.StringWrapper;
 import net.meerkat.identifier.Iso;
