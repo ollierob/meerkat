@@ -3,11 +3,11 @@ package net.meerkat.instrument.interest.future.bond;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.derivative.forward.AbstractFuture;
+import net.meerkat.instrument.derivative.forward.FutureDelivery;
 import net.meerkat.instrument.interest.future.InterestRateFuture;
 import net.meerkat.instrument.interest.future.InterestRateFutureContract;
 import net.meerkat.instrument.interest.future.stir.ShortTermInterestRateFuture;
 import net.meerkat.issuer.IssuerId;
-import net.meerkat.temporal.date.interim.Interim;
 
 /**
  * Long-term interest rate future.
@@ -21,24 +21,24 @@ public class BondFuture<C extends CurrencyId>
 
     private final C currencyId;
     private final BondFutureContract<C> basket;
-    private final Interim deliveryDates;
+    private final FutureDelivery delivery;
 
     public BondFuture(
             final String name,
-            final InstrumentIds identifiers, 
+            final InstrumentIds identifiers,
             final IssuerId issuerId,
-            final C currencyId, 
-            final BondFutureContract<C> basket, 
-            final Interim deliveryDates) {
+            final C currencyId,
+            final BondFutureContract<C> basket,
+            final FutureDelivery delivery) {
         super(name, identifiers, issuerId);
         this.currencyId = currencyId;
         this.basket = basket;
-        this.deliveryDates = deliveryDates;
+        this.delivery = delivery;
     }
 
     @Override
-    public Interim deliveryDates() {
-        return deliveryDates;
+    public FutureDelivery delivery() {
+        return delivery;
     }
 
     @Override

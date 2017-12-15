@@ -1,6 +1,7 @@
 package net.meerkat.identifier.instrument.future;
 
 import net.meerkat.identifier.instrument.InstrumentId;
+import net.meerkat.instrument.derivative.forward.FutureDelivery;
 
 /**
  *

@@ -1,12 +1,11 @@
-package net.meerkat.identifier.instrument.future;
-
-import java.time.LocalDate;
-
-import javax.annotation.Nonnull;
+package net.meerkat.instrument.derivative.forward;
 
 import net.coljate.set.Set;
 import net.meerkat.time.calendar.business.BusinessDay;
 import net.meerkat.time.calendar.business.BusinessDayCalendar;
+
+import javax.annotation.Nonnull;
+import java.time.LocalDate;
 
 /**
  *
