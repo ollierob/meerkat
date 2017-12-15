@@ -1,11 +1,9 @@
 package net.meerkat;
 
+import javax.annotation.Nonnull;
 import java.util.Objects;
 
-import javax.annotation.Nonnull;
-
 /**
- *
  * @author ollie
  */
 public abstract class StringWrapper {
@@ -19,6 +17,10 @@ public abstract class StringWrapper {
     @Nonnull
     protected String value() {
         return value;
+    }
+
+    protected char chartAt(final int index) {
+        return value.charAt(index);
     }
 
     protected char first() {
