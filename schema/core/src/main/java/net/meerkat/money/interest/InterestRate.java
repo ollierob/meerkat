@@ -12,6 +12,7 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
+import java.time.temporal.TemporalAccessor;
 
 /**
  *
@@ -58,8 +59,8 @@ public interface InterestRate extends InterestRateOrId {
 
     default <C extends CurrencyId> Money<C> discount(
             final Money<C> money,
-            final ChronoLocalDate earlier,
-            final ChronoLocalDate later,
+            final TemporalAccessor earlier,
+            final TemporalAccessor later,
             final InterestRateInterpolator interpolator) {
         return this.discount(money, LocalDate.from(earlier), LocalDate.from(later), interpolator);
     }

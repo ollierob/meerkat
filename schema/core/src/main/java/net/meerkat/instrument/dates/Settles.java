@@ -1,10 +1,9 @@
 package net.meerkat.instrument.dates;
 
-import java.time.Period;
+import net.meerkat.time.calendar.settlement.SettlementDate;
 
 import javax.annotation.Nonnull;
-
-import net.meerkat.time.calendar.settlement.SettlementDate;
+import java.time.Period;
 
 /**
  * @author ollie
@@ -19,7 +18,7 @@ public interface Settles extends Traded {
 
     @Nonnull
     default Period tradeToSettlement() {
-        return this.tradeDate().until(this.settlementDate());
+        return this.tradeDate().until(this.settlementDate().date());
     }
 
 }

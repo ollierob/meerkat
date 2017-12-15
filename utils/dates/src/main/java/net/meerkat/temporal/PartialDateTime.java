@@ -1,18 +1,18 @@
 package net.meerkat.temporal;
 
+import net.meerkat.temporal.date.DateWrapper;
 import net.meerkat.temporal.date.HasDate;
+import net.meerkat.temporal.time.DateTimeWrapper;
 
 import javax.annotation.Nonnull;
 import java.time.*;
-import java.time.chrono.ChronoLocalDate;
-import java.time.chrono.ChronoPeriod;
-import java.time.chrono.IsoChronology;
+import java.time.temporal.Temporal;
 import java.util.Optional;
 
 /**
  * A date and time zone, and maybe also a time.
  */
-public interface PartialDateTime extends HasDate, ChronoLocalDate {
+public interface PartialDateTime extends HasDate, Temporal {
 
     @Override
     @Nonnull
@@ -48,19 +48,12 @@ public interface PartialDateTime extends HasDate, ChronoLocalDate {
         return this.toDateTimeOr(LocalTime.NOON);
     }
 
-    @Override
-    default IsoChronology getChronology() {
-        return this.date().getChronology();
+    static PartialDateTime ofUtcDate(final LocalDate date) {
+        return new DateWrapper(date);
     }
 
-    @Override
-    default int lengthOfMonth() {
-        return this.date().lengthOfMonth();
-    }
-
-    @Override
-    default ChronoPeriod until(ChronoLocalDate endDateExclusive) {
-        return this.date().until(endDateExclusive);
+    static PartialDateTime of(final ZonedDateTime dateTime) {
+        return new DateTimeWrapper(dateTime);
     }
 
 }

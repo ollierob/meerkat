@@ -5,6 +5,7 @@ import net.meerkat.temporal.PartialDateTime;
 import javax.annotation.Nonnull;
 import java.time.*;
 import java.time.chrono.ChronoLocalDate;
+import java.time.chrono.Chronology;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalField;
 import java.time.temporal.TemporalUnit;
@@ -14,12 +15,12 @@ import java.util.Optional;
 /**
  * @author Ollie
  */
-public abstract class DateWrapper implements PartialDateTime {
+public class DateWrapper implements PartialDateTime, ChronoLocalDate {
 
     private final LocalDate date;
     private final ZoneId zoneId;
 
-    protected DateWrapper(final LocalDate date) {
+    public DateWrapper(final LocalDate date) {
         this(date, ZoneOffset.UTC);
     }
 
@@ -57,6 +58,16 @@ public abstract class DateWrapper implements PartialDateTime {
     @Override
     public long getLong(final TemporalField field) {
         return date.getLong(field);
+    }
+
+    @Override
+    public Chronology getChronology() {
+        return date.getChronology();
+    }
+
+    @Override
+    public int lengthOfMonth() {
+        return date.lengthOfMonth();
     }
 
     @Override

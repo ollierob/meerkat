@@ -6,11 +6,11 @@ import net.meerkat.identifier.IdSet;
 /**
  * @author Ollie
  */
-class InstrumentIdSet
+public class InstrumentIdSet
         extends IdSet<InstrumentId>
         implements InstrumentIds {
 
-    InstrumentIdSet(final Set<? extends InstrumentId> ids) {
+    protected InstrumentIdSet(final Set<? extends InstrumentId> ids) {
         super(ids);
     }
 

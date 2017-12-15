@@ -12,11 +12,11 @@ import java.time.temporal.TemporalField;
 import java.time.temporal.TemporalUnit;
 import java.util.Optional;
 
-public abstract class DateTimeWrapper implements PartialDateTime {
+public class DateTimeWrapper implements PartialDateTime {
 
     private final ZonedDateTime zonedDateTime;
 
-    protected DateTimeWrapper(final ZonedDateTime zonedDateTime) {
+    public DateTimeWrapper(final ZonedDateTime zonedDateTime) {
         this.zonedDateTime = zonedDateTime;
     }
 
@@ -57,6 +57,26 @@ public abstract class DateTimeWrapper implements PartialDateTime {
     @Override
     public long getLong(final TemporalField field) {
         return zonedDateTime.getLong(field);
+    }
+
+    @Override
+    public boolean isSupported(TemporalUnit unit) {
+        return zonedDateTime.isSupported(unit);
+    }
+
+    @Override
+    public Temporal with(final TemporalField field, final long newValue) {
+        return zonedDateTime.with(field, newValue);
+    }
+
+    @Override
+    public DateTimeWrapper plus(long amountToAdd, TemporalUnit unit) {
+        return new DateTimeWrapper(zonedDateTime.plus(amountToAdd, unit));
+    }
+
+    @Override
+    public boolean isSupported(final TemporalField field) {
+        return zonedDateTime.isSupported(field);
     }
 
     @Override
