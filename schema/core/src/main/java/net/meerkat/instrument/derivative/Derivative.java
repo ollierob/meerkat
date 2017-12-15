@@ -4,6 +4,7 @@ import net.meerkat.identifier.instrument.InstrumentIds;
 import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.InstrumentSnapshot;
 import net.meerkat.instrument.Security;
+import net.meerkat.instrument.exception.InstrumentException;
 
 import javax.annotation.Nonnull;
 
@@ -16,7 +17,7 @@ public interface Derivative<I extends Instrument> extends Security {
     InstrumentIds underlyingId();
 
     @Nonnull
-    default I underlying(final InstrumentSnapshot<? extends I> snapshot) {
+    default I underlying(final InstrumentSnapshot<? extends I> snapshot) throws InstrumentException {
         return snapshot.require(this.underlyingId());
     }
 

@@ -42,7 +42,7 @@ public interface InstrumentSnapshot<I extends Instrument> extends Provider<Instr
     }
 
     @Nonnull
-    default I require(final InstrumentIds ids) {
+    default I require(final InstrumentIds ids) throws UnknownInstrumentException {
         final I instrument = this.get(ids);
         if (instrument == null) {
             throw new UnknownInstrumentException(ids);
