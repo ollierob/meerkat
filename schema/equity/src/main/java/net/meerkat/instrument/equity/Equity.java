@@ -3,7 +3,7 @@ package net.meerkat.instrument.equity;
 import net.meerkat.identifier.instrument.Isin;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
-import net.meerkat.objects.Classes;
+import net.meerkat.objects.Castable;
 
 import java.util.Optional;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
  * @author Ollie
  */
 public interface Equity
-        extends InstrumentDefinition, Security, Classes.Castable<Equity> {
+        extends InstrumentDefinition, Security, Castable<Equity> {
 
     default Optional<Isin> isin() {
         return this.instrumentId(Isin.class);

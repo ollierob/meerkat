@@ -6,7 +6,7 @@ import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.numeric.interpolation.ListInterpolator;
 import net.meerkat.numeric.percentage.Percentage;
-import net.meerkat.objects.Require;
+import net.meerkat.objects.Arguments;
 
 import javax.annotation.Nonnull;
 import javax.xml.bind.annotation.XmlElementRef;
@@ -32,7 +32,7 @@ public class HistoricPnl<C extends CurrencyId> implements HasCurrencyId {
         final NavigableMap<LocalDate, BigDecimal> pnl = new TreeMap<>();
         while (iterator.hasNext()) {
             final Map.Entry<LocalDate, Money<C>> next = iterator.next();
-            Require.argumentsEqual(currency, next.getValue().currencyId());
+            Arguments.requireEqual(currency, next.getValue().currencyId());
             final Money<C> diff = next.getValue().minus(previous.getValue());
             pnl.put(next.getKey(), diff.decimalValue());
             previous = next;

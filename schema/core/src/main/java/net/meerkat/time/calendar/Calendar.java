@@ -2,7 +2,7 @@ package net.meerkat.time.calendar;
 
 import net.coljate.set.MutableSet;
 import net.coljate.set.Set;
-import net.meerkat.objects.Require;
+import net.meerkat.objects.Arguments;
 import net.meerkat.temporal.date.HasDate;
 
 import javax.annotation.Nonnull;
@@ -32,7 +32,7 @@ public interface Calendar<D extends HasDate> {
 
     default D next(final LocalDate date, final int nth) throws InvalidDateException {
         if (nth == 0) {
-            Require.that(date, this::contains, InvalidDateException::new);
+            Arguments.requireOrThrow(date, this::contains, InvalidDateException::new);
             return this.next(date);
         }
         final Function<LocalDate, D> next = nth > 0 ? this::next : this::previous;

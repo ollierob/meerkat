@@ -7,7 +7,7 @@ import net.meerkat.instrument.NamedInstrument;
 import net.meerkat.instrument.fx.FxInstrument;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
-import net.meerkat.objects.Require;
+import net.meerkat.objects.Arguments;
 import net.meerkat.time.calendar.settlement.SettlementDate;
 
 import java.time.LocalDate;
@@ -34,7 +34,7 @@ public abstract class DeliverableFxForward<B extends CurrencyId, C extends Curre
             final LocalDate tradeDate,
             final SettlementDate settlementDate) {
         super(name, identifiers);
-        Require.argumentsNotEqual(base.currencyId(), counter.currencyId(), (b, c) -> "Cannot have a forward with base [" + b + "] == counter [" + c + "] currencies!");
+        Arguments.requireNotEqual(base.currencyId(), counter.currencyId(), (b, c) -> "Cannot have a forward with base [" + b + "] == counter [" + c + "] currencies!");
         this.base = base;
         this.counter = counter;
         this.tradeDate = tradeDate;

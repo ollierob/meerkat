@@ -1,13 +1,13 @@
 package net.meerkat.identifier.instrument;
 
-import net.meerkat.objects.Classes;
+import net.meerkat.objects.Castable;
 
 /**
  * Instrument identifier.
  *
  * @author Ollie
  */
-public interface InstrumentId extends HasInstrumentId, Classes.Castable<InstrumentId> {
+public interface InstrumentId extends HasInstrumentId, Castable<InstrumentId> {
 
     @Override
     @Deprecated

@@ -2,7 +2,7 @@ package net.meerkat.money.price;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.objects.Require;
+import net.meerkat.objects.Arguments;
 
 /**
  *
@@ -13,7 +13,7 @@ public class DefaultTwoWayMoney<C extends CurrencyId> implements TwoWayMoney<C> 
     private final Money<C> bid, offer;
 
     public DefaultTwoWayMoney(final Money<C> bid, final Money<C> offer) {
-        Require.argumentsEqual(bid.currencyId(), offer.currencyId());
+        Arguments.requireEqual(bid.currencyId(), offer.currencyId());
         this.bid = bid;
         this.offer = offer;
     }

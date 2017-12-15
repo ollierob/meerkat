@@ -2,7 +2,7 @@ package net.meerkat.identifier;
 
 import net.coljate.set.ImmutableSet;
 import net.coljate.set.Set;
-import net.meerkat.objects.Classes.Castable;
+import net.meerkat.objects.Castable;
 
 import javax.annotation.Nonnull;
 import java.util.function.Consumer;

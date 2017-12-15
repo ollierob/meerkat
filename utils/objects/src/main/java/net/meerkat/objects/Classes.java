@@ -13,12 +13,4 @@ public class Classes {
                 : Optional.empty();
     }
 
-    public interface Castable<T> {
-
-        default <R extends T> Optional<R> cast(final Class<? extends R> clazz) {
-            return Classes.cast(this, clazz);
-        }
-
-    }
-
 }

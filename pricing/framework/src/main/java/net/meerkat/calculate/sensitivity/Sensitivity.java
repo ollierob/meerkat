@@ -1,7 +1,7 @@
 package net.meerkat.calculate.sensitivity;
 
 import net.coljate.util.SelfTyped;
-import net.meerkat.objects.Classes.Castable;
+import net.meerkat.objects.Castable;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

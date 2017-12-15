@@ -8,7 +8,7 @@ import net.meerkat.numeric.Numbers;
 import net.meerkat.numeric.Numeric;
 import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.numeric.decimal.BigDecimals;
-import net.meerkat.objects.Require;
+import net.meerkat.objects.Arguments;
 
 import javax.annotation.Nonnull;
 import java.io.Serializable;
@@ -70,7 +70,7 @@ public interface Money<C extends CurrencyId>
 
     @Override
     default int compareTo(final Money<C> that) {
-        Require.argumentsEqual(this.currencyId(), that.currencyId());
+        Arguments.requireEqual(this.currencyId(), that.currencyId());
         return Numeric.Summable.super.compareTo(that);
     }
 

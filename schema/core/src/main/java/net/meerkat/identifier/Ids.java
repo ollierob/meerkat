@@ -2,7 +2,7 @@ package net.meerkat.identifier;
 
 import net.coljate.set.Set;
 import net.meerkat.functions.collectors.OptionalCollectors;
-import net.meerkat.objects.Classes.Castable;
+import net.meerkat.objects.Castable;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;

@@ -9,7 +9,7 @@ import net.meerkat.instrument.dates.Settles;
 import net.meerkat.instrument.fx.forward.FxOutright;
 import net.meerkat.instrument.fx.forward.FxSpot;
 import net.meerkat.instrument.fx.forward.NonDeliverableFxForward;
-import net.meerkat.objects.Classes;
+import net.meerkat.objects.Castable;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
@@ -18,7 +18,7 @@ import javax.annotation.Nonnull;
  * @author Ollie
  */
 public interface FxInstrument<B extends CurrencyId, C extends CurrencyId>
-        extends InstrumentDefinition, HasCurrencyIds, Settles, Classes.Castable<FxInstrument<?, ?>> {
+        extends InstrumentDefinition, HasCurrencyIds, Settles, Castable<FxInstrument<?, ?>> {
 
     @Nonnull
     B baseCurrencyId();

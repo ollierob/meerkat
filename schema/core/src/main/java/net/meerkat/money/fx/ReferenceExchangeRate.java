@@ -2,7 +2,7 @@ package net.meerkat.money.fx;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.numeric.decimal.BigDecimalFraction;
-import net.meerkat.objects.Require;
+import net.meerkat.objects.Arguments;
 
 /**
  *
@@ -22,7 +22,7 @@ public class ReferenceExchangeRate<F extends CurrencyId, T extends CurrencyId>
     private final BigDecimalFraction offerRate;
 
     protected ReferenceExchangeRate(final F from, final T to, final BigDecimalFraction bidRate, final BigDecimalFraction offerRate) {
-        Require.argument(bidRate.isPositive(), "Must have a positive bid rate!");
+        Arguments.require(bidRate.isPositive(), "Must have a positive bid rate!");
         this.from = from;
         this.to = to;
         this.bidRate = bidRate;

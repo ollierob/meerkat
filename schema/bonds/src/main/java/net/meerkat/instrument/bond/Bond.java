@@ -10,7 +10,7 @@ import net.meerkat.instrument.bond.call.BondCall;
 import net.meerkat.instrument.bond.coupon.BondCoupons;
 import net.meerkat.instrument.bond.dates.BondDates;
 import net.meerkat.money.Money;
-import net.meerkat.objects.Classes;
+import net.meerkat.objects.Castable;
 
 import javax.annotation.Nonnull;
 import java.util.Optional;
@@ -19,7 +19,7 @@ import java.util.Optional;
  * @author Ollie
  */
 public interface Bond
-        extends Security, InstrumentDefinition, HasCurrencyIds, Callable<BondCall>, Classes.Castable<Bond> {
+        extends Security, InstrumentDefinition, HasCurrencyIds, Callable<BondCall>, Castable<Bond> {
 
     @Nonnull
     Money<?> par();
