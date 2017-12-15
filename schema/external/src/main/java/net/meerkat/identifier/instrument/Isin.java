@@ -1,9 +1,11 @@
 package net.meerkat.identifier.instrument;
 
 import net.meerkat.Explainable;
+import net.meerkat.identifier.Iso;
 import net.meerkat.identifier.country.CountryIso;
 import net.meerkat.identifier.instrument.algorithm.LuhnAlgorithm;
 import net.meerkat.instrument.Security;
+import net.meerkat.objects.Arguments;
 
 import javax.annotation.Nonnull;
 import java.util.Objects;
@@ -13,10 +15,10 @@ import java.util.Objects;
  *
  * @author Ollie
  */
-public class Isin implements InstrumentId, HasCheckDigit, Explainable {
+public class Isin implements InstrumentId, Iso, HasCheckDigit, Explainable {
 
     public static Isin valueOf(final String isin) {
-        //TODO check length
+        Arguments.require(isin, i -> i.length() == 12, i -> "Invalid ISIN: " + i);
         final CountryIso country = CountryIso.valueOf(isin.substring(0, 2));
         final Nsin nsin = new Nsin(isin.substring(2, 11));
         final char checkDigit = isin.charAt(11);
@@ -72,10 +74,21 @@ public class Isin implements InstrumentId, HasCheckDigit, Explainable {
         return String.valueOf((int) Character.toUpperCase(c) - 55);
     }
 
+    @Override
+    public char first() {
+        return country.first();
+    }
+
+    @Override
     public String value() {
         return country.value()
                 + nsin.isinPart()
                 + checkDigit;
+    }
+
+    @Override
+    public String standard() {
+        return "6166";
     }
 
     @Override

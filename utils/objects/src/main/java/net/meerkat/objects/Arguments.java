@@ -74,4 +74,11 @@ public class Arguments {
         return true;
     }
 
+    public static <T> boolean require(final T object, final Predicate<? super T> predicate, final Function<? super T, String> errorMessage) {
+        if (!predicate.test(object)) {
+            throw new IllegalArgumentException(errorMessage.apply(object));
+        }
+        return true;
+    }
+
 }
