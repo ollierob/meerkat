@@ -13,11 +13,11 @@ import java.time.Period;
  *
  * @author ollie
  */
-public class Eurodollar3MFutureContract
+public class Eurodollar3mFutureContract
         extends NamedInstrument
         implements ShortTermInterestRateFutureContract<USD> {
 
-    public Eurodollar3MFutureContract(final String name, final InstrumentIds ids) {
+    public Eurodollar3mFutureContract(final String name, final InstrumentIds ids) {
         super(name, ids);
     }
 
