@@ -4,7 +4,7 @@ import net.coljate.map.Map;
 import net.coljate.set.Set;
 import net.meerkat.risk.position.Position;
 import net.meerkat.risk.position.PositionId;
-import net.meerkat.risk.position.PositionProvider;
+import net.meerkat.risk.position.PositionSnapshot;
 
 /**
  * Portfolio of positions with no children.
@@ -27,7 +27,7 @@ public interface Book extends Portfolio {
 
     @Override
     @Deprecated
-    default Map<PositionId, ? extends Position> childPositions(final PortfolioSnapshot portfolios, final PositionProvider positionProvider) {
+    default Map<PositionId, ? extends Position> childPositions(final PortfolioSnapshot portfolios, final PositionSnapshot positionSnapshot) {
         return Map.of();
     }
 

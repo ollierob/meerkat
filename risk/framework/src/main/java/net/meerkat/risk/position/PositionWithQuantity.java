@@ -1,8 +1,7 @@
 package net.meerkat.risk.position;
 
-import java.util.Map;
-
 import javax.annotation.Nonnull;
+import java.util.Map;
 
 /**
  *
@@ -12,6 +11,10 @@ public interface PositionWithQuantity extends Position {
 
     @Nonnull
     Number quantity();
+
+    default double doubleQuantity() {
+        return this.quantity().doubleValue();
+    }
 
     @Override
     default Map<String, Object> explain() {

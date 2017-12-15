@@ -139,7 +139,7 @@ public class DailyFxForwardPricer<T> implements InstrumentPricer<LocalDate, Deli
         public DailyFxForwardPrice<B, C, X> shift(final InterestRateShifts shifts) {
             return new DailyFxForwardPrice<>(date, forward, valuationCurrency, fxRates, baseRate, counterRate, new WrappedInstrumentPriceShifts(shifts));
         }
-        
+
         @Override
         public Map<String, Object> explain() {
             return this.explanationBuilder()

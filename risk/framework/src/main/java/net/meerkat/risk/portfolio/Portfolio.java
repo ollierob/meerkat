@@ -7,8 +7,8 @@ import net.coljate.set.Set;
 import net.meerkat.risk.portfolio.exception.UnknownPortfolioException;
 import net.meerkat.risk.position.Position;
 import net.meerkat.risk.position.PositionId;
-import net.meerkat.risk.position.PositionProvider;
-import net.meerkat.risk.position.UnknownPositionException;
+import net.meerkat.risk.position.PositionSnapshot;
+import net.meerkat.risk.position.exception.UnknownPositionException;
 
 import javax.annotation.Nonnull;
 
@@ -41,20 +41,20 @@ public interface Portfolio extends HasPortfolioId {
         return positions;
     }
 
-    default Map<PositionId, ? extends Position> ownPositions(final PositionProvider positions) throws UnknownPositionException {
+    default Map<PositionId, ? extends Position> ownPositions(final PositionSnapshot positions) throws UnknownPositionException {
         return Map.mapValues(this.ownPositionIds(), positions::require);
     }
 
-    default Map<PositionId, ? extends Position> childPositions(final PortfolioSnapshot portfolios, final PositionProvider positionProvider) {
+    default Map<PositionId, ? extends Position> childPositions(final PortfolioSnapshot portfolios, final PositionSnapshot positionSnapshot) {
         final MutableMap<PositionId, Position> positions = Map.create(100);
         for (final Portfolio child : this.childPortfolios(portfolios).values()) {
-            positions.putAll(child.allPositions(portfolios, positionProvider));
+            positions.putAll(child.allPositions(portfolios, positionSnapshot));
         }
         return positions;
     }
 
-    default Map<PositionId, ? extends Position> allPositions(final PortfolioSnapshot portfolioSnapshot, final PositionProvider positionProvider) {
-        return Map.<PositionId, Position>covariantValues(this.ownPositions(positionProvider)).union(this.childPositions(portfolioSnapshot, positionProvider));
+    default Map<PositionId, ? extends Position> allPositions(final PortfolioSnapshot portfolioSnapshot, final PositionSnapshot positionSnapshot) {
+        return Map.<PositionId, Position>covariantValues(this.ownPositions(positionSnapshot)).union(this.childPositions(portfolioSnapshot, positionSnapshot));
     }
 
 }
