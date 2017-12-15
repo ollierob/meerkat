@@ -17,7 +17,7 @@ public class LuhnAlgorithm {
     }
 
     private static int sumDigits(final int c) {
-        return c >= 10 ? c - 9 : c;
+        return c >= 10 ? sumDigits(c - 9) : c;
     }
 
 }
