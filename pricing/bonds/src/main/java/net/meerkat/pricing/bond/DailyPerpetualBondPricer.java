@@ -111,7 +111,7 @@ public class DailyPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
             return shifts.shift(discountRate);
         }
 
-        private final Lazy<Money<C>> accruedInterest = Lazy.loadOnceNonNull(this::calculateAccuredInterest);
+        private final Lazy<Money<C>> accruedInterest = Lazy.loadOnceNonNull(this::calculateAccruedInterest);
 
         @Override
         public Money<C> accruedInterest() {
@@ -124,7 +124,7 @@ public class DailyPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
         }
 
         @Nonnull
-        private Money<C> calculateAccuredInterest() {
+        private Money<C> calculateAccruedInterest() {
             final FixedCoupon<?> priorCoupon = bond.coupons().lastOnOrBefore(date);
             final Money<C> priorAmount = this.shiftedCoupon();
             return this.shiftedDiscountRate().accrue(priorAmount, priorCoupon.paymentDate(), date, interestRateInterpolator).minus(priorAmount);

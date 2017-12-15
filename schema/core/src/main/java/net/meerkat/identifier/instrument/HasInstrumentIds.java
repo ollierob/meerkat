@@ -1,14 +1,13 @@
 package net.meerkat.identifier.instrument;
 
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-
 import net.coljate.set.Set;
 
+import javax.annotation.Nonnull;
+import java.util.Optional;
+
 /**
- *
  * @author Ollie
+ * @see HasInstrumentId
  */
 public interface HasInstrumentIds {
 
