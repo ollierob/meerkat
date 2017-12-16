@@ -3,7 +3,6 @@ package net.meerkat.instrument.bond.coupon;
 import java.time.LocalDate;
 
 /**
- *
  * @author ollie
  */
 public abstract class AbstractBondCoupon implements BondCoupon {

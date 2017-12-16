@@ -12,7 +12,11 @@ import net.meerkat.issuer.IssuerId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
 
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.function.BooleanSupplier;
 import java.util.function.Predicate;
 
 /**
@@ -75,6 +79,18 @@ public class PerpetualBond<C extends CurrencyId> extends AbstractBond {
             this.coupon = coupon;
         }
 
+        @CheckForNull
+        @Override
+        public FixedCoupon<?> first() {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Nonnull
+        @Override
+        public Iterator<FixedCoupon<?>> iterator(BooleanSupplier iterateUntil) {
+            throw new UnsupportedOperationException(); //TODO
+        }
+
         public FixedInterestRate yearlyRate() {
             return couponRate;
         }
@@ -96,6 +112,12 @@ public class PerpetualBond<C extends CurrencyId> extends AbstractBond {
         @Deprecated
         public boolean isEmpty() {
             return false;
+        }
+
+        @Nonnull
+        @Override
+        public List<FixedCoupon<?>> between(LocalDate startInclusive, LocalDate endExclusive) {
+            throw new UnsupportedOperationException(); //TODO
         }
 
         @Override

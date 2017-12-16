@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.util.function.Predicate;
 
 /**
- *
  * @author ollie
  */
 public interface BondCoupons<C extends BondCoupon>
@@ -76,6 +75,12 @@ public interface BondCoupons<C extends BondCoupon>
         @Override
         default C getIfPresent(final Object key) {
             throw new UnsupportedOperationException(); //TODO
+        }
+
+        @Nonnull
+        @Override
+        default Finite<C> between(final LocalDate startInclusive, final LocalDate endExclusive) {
+            return this.filter(coupon -> !coupon.date().isBefore(startInclusive) && coupon.date().isBefore(endExclusive));
         }
 
     }

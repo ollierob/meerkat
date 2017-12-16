@@ -10,6 +10,7 @@ import net.meerkat.money.interest.exception.UnknownInterestRateException;
 import net.meerkat.temporal.date.HasDate;
 
 import javax.annotation.Nonnull;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
@@ -25,6 +26,9 @@ public interface BondCoupon extends HasDate, HasCurrencyId, Explainable {
     boolean hasReferenceRate();
 
     @Nonnull
+    LocalDate paymentDate();
+
+    @Nonnull
     InterestRateOrId rate();
 
     @Nonnull
@@ -34,6 +38,11 @@ public interface BondCoupon extends HasDate, HasCurrencyId, Explainable {
 
     @Nonnull
     Optional<Money<?>> couponValue();
+
+    @Override
+    default LocalDate date() {
+        return this.paymentDate();
+    }
 
     @Override
     default Map<String, Object> explain() {

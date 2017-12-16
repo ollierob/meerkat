@@ -1,4 +1,4 @@
-package net.meerkat.pricing.fx;
+package net.meerkat.pricing.fx.forward;
 
 import net.meerkat.Explained;
 import net.meerkat.functions.suppliers.lazy.Lazy;

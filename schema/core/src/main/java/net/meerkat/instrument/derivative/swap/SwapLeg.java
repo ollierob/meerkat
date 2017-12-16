@@ -1,19 +1,19 @@
 package net.meerkat.instrument.derivative.swap;
 
-import java.time.LocalDate;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.identifier.currency.CurrencyIds;
 import net.meerkat.identifier.currency.HasCurrencyIds;
+import net.meerkat.temporal.date.HasDate;
+
+import javax.annotation.Nonnull;
+import java.time.LocalDate;
 
 /**
  *
  * @author ollie
  */
 public interface SwapLeg<P extends CurrencyId, R extends CurrencyId>
-        extends HasCurrencyIds {
+        extends HasDate, HasCurrencyIds {
 
     @Nonnull
     P payCurrency();
@@ -23,6 +23,12 @@ public interface SwapLeg<P extends CurrencyId, R extends CurrencyId>
 
     @Nonnull
     LocalDate deliveryDate();
+
+    @Nonnull
+    @Override
+    default LocalDate date() {
+        return this.deliveryDate();
+    }
 
     @Override
     default CurrencyIds currencyIds() {

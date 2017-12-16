@@ -1,4 +1,4 @@
-package net.meerkat.pricing.fx;
+package net.meerkat.pricing.fx.forward;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
@@ -10,13 +10,16 @@ import net.meerkat.money.price.EvaluatedPrice;
  */
 public class EvaluatedFxForwardPrice<C extends CurrencyId> extends EvaluatedPrice<C> implements FxForwardPrice<C> {
 
-    public EvaluatedFxForwardPrice(final Money<C> value) {
+    private final Number forwardPoints;
+
+    public EvaluatedFxForwardPrice(final Money<C> value, final Number forwardPoints) {
         super(value);
+        this.forwardPoints = forwardPoints;
     }
 
     @Override
     public Number forwardPoints() {
-        throw new UnsupportedOperationException(); //TODO
+        return forwardPoints;
     }
 
     @Override

@@ -65,6 +65,11 @@ public class FixedCoupon<C extends CurrencyId>
     }
 
     @Override
+    public LocalDate date() {
+        return super.date();
+    }
+
+    @Override
     public <T extends CurrencyId> CashPayment<T> convert(final ExchangeRate<C, T> exchangeRate) {
         return new FixedCoupon<>(this.paymentDate(), amount.convert(exchangeRate), rate);
     }

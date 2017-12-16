@@ -1,10 +1,10 @@
-package net.meerkat.pricing.fx;
-
-import javax.annotation.Nonnull;
+package net.meerkat.pricing.fx.forward;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.money.interest.fixed.FixedInterestRate;
+
+import javax.annotation.Nonnull;
 
 /**
  *
