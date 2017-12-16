@@ -14,7 +14,7 @@ import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.InstrumentPriceException;
-import net.meerkat.pricing.InstrumentPricer;
+import net.meerkat.pricing.fx.FxPricer;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 import net.meerkat.pricing.shifts.WrappedInstrumentPriceShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
@@ -26,7 +26,7 @@ import java.util.Map;
  *
  * @author ollie
  */
-public class DailyFxForwardPricer<T> implements InstrumentPricer<LocalDate, DeliverableFxForward<?, ?>> {
+public class DailyFxForwardPricer<T> implements FxPricer<LocalDate, DeliverableFxForward<?, ?>> {
     
     private final InterestRateInterpolator interestRateInterpolator;
     private final InterestRateProvider<LocalDate> interestRates;
