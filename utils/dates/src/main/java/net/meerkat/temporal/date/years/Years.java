@@ -45,7 +45,12 @@ public interface Years extends TemporalToChrono, Comparable<Years>, Numeric.Summ
 
     @Override
     default Years plus(final Years that) {
-        return new PeriodYears(this.period().plus(that.period()));
+        return this.plus(that.period());
+    }
+
+    @Nonnull
+    default Years plus(final Period that) {
+        return new PeriodYears(this.period().plus(that));
     }
 
     @Override
@@ -71,6 +76,10 @@ public interface Years extends TemporalToChrono, Comparable<Years>, Numeric.Summ
     default Years plus(final long amountToAdd, final ChronoUnit unit) {
         final long multiplier;
         switch (unit) {
+            case DAYS:
+                return this.plus(Period.ofDays(Math.toIntExact(amountToAdd)));
+            case MONTHS:
+                return this.plus(Period.ofMonths(Math.toIntExact(amountToAdd)));
             case YEARS:
                 multiplier = 1;
                 break;
