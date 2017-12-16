@@ -10,7 +10,7 @@ import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.bond.BondPrice;
 import net.meerkat.pricing.bond.EvaluatedBondPrice;
 import net.meerkat.pricing.bond.GenericBondPricer;
-import net.meerkat.pricing.bond.shifts.BondShifts;
+import net.meerkat.pricing.bond.shifts.BondPriceShifts;
 
 import java.time.temporal.Temporal;
 
@@ -21,7 +21,7 @@ import java.time.temporal.Temporal;
 public class BondPriceShiftingSensitivityCalculator<T extends Temporal>
         implements GenericBondSensitivityCalculator<T> {
 
-    private static final BondShifts ONE_BP_YIELD_SHIFT = BondShifts.absoluteYield(Percentage.oneBasisPoint());
+    private static final BondPriceShifts ONE_BP_YIELD_SHIFT = BondPriceShifts.absoluteYield(Percentage.oneBasisPoint());
 
     private final GenericBondPricer<T> pricer;
 

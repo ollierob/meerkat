@@ -1,11 +1,10 @@
 package net.meerkat.pricing.bond;
 
-import net.meerkat.pricing.bond.shifts.BondShifts;
-
-import java.time.temporal.Temporal;
-
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.bond.Bond;
+import net.meerkat.pricing.bond.shifts.BondPriceShifts;
+
+import java.time.temporal.Temporal;
 
 /**
  * Tries to price any type of bond by considering the coupon payments.
@@ -21,12 +20,12 @@ public interface GenericBondPricer<T extends Temporal>
             final T temporal,
             final Bond bond,
             final C currency,
-            final BondShifts shifts)
+            final BondPriceShifts shifts)
             throws BondPriceException {
         return bond.handleWith(this.priceContext(temporal, currency, shifts));
     }
 
-    <C extends CurrencyId> BondPriceContext<C> priceContext(T valuation, C currency, BondShifts shifts)
+    <C extends CurrencyId> BondPriceContext<C> priceContext(T valuation, C currency, BondPriceShifts shifts)
             throws BondPriceException;
 
     interface BondPriceContext<C extends CurrencyId> extends Bond.Handler<BondPrice.Shiftable<C>> {

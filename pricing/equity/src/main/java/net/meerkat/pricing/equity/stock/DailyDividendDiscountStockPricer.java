@@ -1,4 +1,4 @@
-package net.meerkat.pricing.equity;
+package net.meerkat.pricing.equity.stock;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.equity.Stock;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class DailyDividendDiscountStockPricer implements StockPricer<LocalDate> {
 
     @Override
-    public <C extends CurrencyId> EquityPrice.Shiftable<C> price(
+    public <C extends CurrencyId> StockPrice.Shiftable<C> price(
             final LocalDate date,
             final Stock instrument,
             final C currency,

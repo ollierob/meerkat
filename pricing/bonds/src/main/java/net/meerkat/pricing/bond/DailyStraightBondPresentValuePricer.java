@@ -15,7 +15,7 @@ import net.meerkat.money.interest.InterestRateSnapshot;
 import net.meerkat.money.interest.exception.InterestRateException;
 import net.meerkat.money.interest.interpolation.InterestRateInterpolator;
 import net.meerkat.numeric.percentage.Percentage;
-import net.meerkat.pricing.bond.shifts.BondShifts;
+import net.meerkat.pricing.bond.shifts.BondPriceShifts;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -46,7 +46,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
             final LocalDate valueDate,
             final StraightBond bond,
             final C currency,
-            final BondShifts shifts)
+            final BondPriceShifts shifts)
             throws BondPriceException {
         try {
             final InterestRateSnapshot interestRates = interestRatesProvider.require(valueDate);
@@ -112,7 +112,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         private final LocalDate valueDate;
         private final StraightBond bond;
         private final C currencyId;
-        private final BondShifts shifts;
+        private final BondPriceShifts shifts;
         private final InterestRateSnapshot interestRates;
         private final ExchangeRateSnapshot fxRates;
 
@@ -122,7 +122,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
                 final C currencyId,
                 final InterestRateSnapshot interestRates,
                 final ExchangeRateSnapshot fxRates,
-                final BondShifts shifts) {
+                final BondPriceShifts shifts) {
             this.valueDate = valueDate;
             this.bond = bond;
             this.currencyId = currencyId;
@@ -196,7 +196,7 @@ public class DailyStraightBondPresentValuePricer implements BondPricer<LocalDate
         }
 
         @Override
-        public Shiftable<C> shift(final BondShifts shifts) {
+        public Shiftable<C> shift(final BondPriceShifts shifts) {
             return new StraightBondPrice<>(valueDate, bond, currencyId, interestRates, fxRates, shifts);
         }
 

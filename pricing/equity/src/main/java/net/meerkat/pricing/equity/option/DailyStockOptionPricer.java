@@ -8,7 +8,7 @@ import net.meerkat.instrument.equity.option.StockOption;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRateProvider;
 import net.meerkat.money.price.MoneyPrice;
-import net.meerkat.pricing.equity.StockPricer;
+import net.meerkat.pricing.equity.stock.StockPricer;
 import net.meerkat.temporal.date.years.Years;
 
 import java.time.LocalDate;

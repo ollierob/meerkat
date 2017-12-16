@@ -9,13 +9,13 @@ import net.meerkat.pricing.shifts.interest.InterestRateShifts;
  *
  * @author Ollie
  */
-public class WrappedBondShifts extends WrappedInstrumentPriceShifts implements BondShifts {
+public class WrappedBondPriceShifts extends WrappedInstrumentPriceShifts implements BondPriceShifts {
 
-    public WrappedBondShifts(final InstrumentPriceShifts shifts) {
+    public WrappedBondPriceShifts(final InstrumentPriceShifts shifts) {
         super(shifts);
     }
 
-    public WrappedBondShifts(
+    public WrappedBondPriceShifts(
             final InterestRateShifts interestRateShifts,
             final ExchangeRateShifts exchangeRateShifts) {
         super(interestRateShifts, exchangeRateShifts);

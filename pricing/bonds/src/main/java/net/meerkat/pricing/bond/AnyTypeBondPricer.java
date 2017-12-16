@@ -1,14 +1,10 @@
 package net.meerkat.pricing.bond;
 
-import java.time.temporal.Temporal;
-
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.bond.ConvertibleBond;
-import net.meerkat.instrument.bond.FixedCouponBond;
-import net.meerkat.instrument.bond.FloatingRateNote;
-import net.meerkat.instrument.bond.PerpetualBond;
-import net.meerkat.instrument.bond.VariableRateBond;
-import net.meerkat.pricing.bond.shifts.BondShifts;
+import net.meerkat.instrument.bond.*;
+import net.meerkat.pricing.bond.shifts.BondPriceShifts;
+
+import java.time.temporal.Temporal;
 
 /**
  *
@@ -39,7 +35,7 @@ public class AnyTypeBondPricer<T extends Temporal> implements GenericBondPricer<
     public <C extends CurrencyId> BondPriceContext<C> priceContext(
             final T temporal,
             final C currency,
-            final BondShifts shifts) {
+            final BondPriceShifts shifts) {
 
         return new BondPriceContext<C>() {
 

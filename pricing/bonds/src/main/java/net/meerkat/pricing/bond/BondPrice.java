@@ -6,7 +6,7 @@ import net.meerkat.money.price.Price;
 import net.meerkat.numeric.percentage.BigDecimalFractionPercentage;
 import net.meerkat.numeric.percentage.Percentage;
 import net.meerkat.pricing.ShiftablePrice;
-import net.meerkat.pricing.bond.shifts.BondShifts;
+import net.meerkat.pricing.bond.shifts.BondPriceShifts;
 import net.meerkat.pricing.shifts.InstrumentPriceShifts;
 
 import javax.annotation.CheckReturnValue;
@@ -79,11 +79,11 @@ public interface BondPrice<C extends CurrencyId>
 
         @Override
         default BondPrice.Shiftable<C> shift(final InstrumentPriceShifts shifts) {
-            return this.shift(BondShifts.cast(shifts));
+            return this.shift(BondPriceShifts.cast(shifts));
         }
 
         @CheckReturnValue
-        BondPrice.Shiftable<C> shift(BondShifts shifts);
+        BondPrice.Shiftable<C> shift(BondPriceShifts shifts);
 
     }
 

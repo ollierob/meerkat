@@ -4,7 +4,7 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.fx.ExchangeRate;
 import net.meerkat.numeric.percentage.Percentage;
-import net.meerkat.pricing.bond.shifts.BondShifts;
+import net.meerkat.pricing.bond.shifts.BondPriceShifts;
 
 /**
  *
@@ -47,7 +47,7 @@ public class SpotExchangedBondPrice<F extends CurrencyId, C extends CurrencyId>
     }
 
     @Override
-    public SpotExchangedBondPrice<F, C> shift(final BondShifts shifts) {
+    public SpotExchangedBondPrice<F, C> shift(final BondPriceShifts shifts) {
         return new SpotExchangedBondPrice<>(bondPrice.shift(shifts), rate);
     }
 
