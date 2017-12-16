@@ -1,5 +1,6 @@
 package net.meerkat.instrument.equity.dividend;
 
+import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.instrument.cash.CashPayment;
 import net.meerkat.money.Money;
@@ -9,11 +10,12 @@ import net.meerkat.temporal.date.HasDate;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
+import java.util.Map;
 
 /**
  * @author Ollie
  */
-public interface Dividend<C extends CurrencyId> extends HasDate {
+public interface Dividend<C extends CurrencyId> extends HasDate, Explainable {
 
     /**
      * @return the date this dividend is paid.
@@ -40,7 +42,16 @@ public interface Dividend<C extends CurrencyId> extends HasDate {
         return paid.isZero() ? null : CashPayment.of(this.date(), paid);
     }
 
-    interface Dates {
+    @Nonnull
+    @Override
+    default Map<String, Object> explain() {
+        return this.explanationBuilder()
+                .put("dates", this.dates())
+                .put("stock", this.stockIncrease())
+                .put("cash", this.cashPerShare());
+    }
+
+    interface Dates extends Explainable {
 
         /**
          * @return the date the dividend payment was declared.
@@ -63,6 +74,15 @@ public interface Dividend<C extends CurrencyId> extends HasDate {
         @Nonnull
         LocalDate payable();
 
+        @Nonnull
+        @Override
+        default Map<String, Object> explain() {
+            return this.explanationBuilder()
+                    .put("declaration", this.declaration())
+                    .put("record", this.record())
+                    .put("ex-dividend", this.exDividend())
+                    .put("payable", this.payable());
+        }
     }
 
 }
