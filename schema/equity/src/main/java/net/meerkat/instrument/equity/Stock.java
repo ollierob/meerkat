@@ -1,14 +1,13 @@
 package net.meerkat.instrument.equity;
 
 import net.meerkat.identifier.instrument.InstrumentIds;
-import net.meerkat.instrument.IssuedSecurity;
 import net.meerkat.issuer.IssuerId;
 
 /**
  *
  * @author ollie
  */
-public class Stock extends IssuedSecurity implements Equity {
+public class Stock extends AbstractEquity {
 
     private final boolean preferred;
 

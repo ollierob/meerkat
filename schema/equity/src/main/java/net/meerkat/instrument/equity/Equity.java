@@ -33,6 +33,8 @@ public interface Equity
 
         R handle(Stock stock);
 
+        R handle(DepositoryReceipt depositoryReceipt);
+
     }
 
 }
