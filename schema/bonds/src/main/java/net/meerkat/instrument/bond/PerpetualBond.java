@@ -99,7 +99,7 @@ public class PerpetualBond<C extends CurrencyId> extends AbstractBond {
         }
 
         @Override
-        public FixedCoupon<?> lastOnOrBefore(final LocalDate current) {
+        public FixedCoupon<?> latestBefore(final LocalDate current) {
             throw new UnsupportedOperationException(); //TODO
         }
 

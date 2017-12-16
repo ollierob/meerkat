@@ -1,30 +1,26 @@
 package net.meerkat.instrument.bond.coupon;
 
-import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.Explainable;
 import net.meerkat.identifier.currency.HasCurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.money.interest.InterestRate;
 import net.meerkat.money.interest.InterestRateOrId;
-import net.meerkat.money.interest.exception.UnknownInterestRateException;
 import net.meerkat.money.interest.InterestRateSnapshot;
+import net.meerkat.money.interest.exception.UnknownInterestRateException;
+import net.meerkat.temporal.date.HasDate;
+
+import javax.annotation.Nonnull;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  *
  * @author Ollie
  */
-public interface BondCoupon extends HasCurrencyId, Explainable {
+public interface BondCoupon extends HasDate, HasCurrencyId, Explainable {
 
-    Comparator<BondCoupon> COMPARE_BY_DATE = Comparator.comparing(BondCoupon::paymentDate);
-
-    @Nonnull
-    LocalDate paymentDate();
+    Comparator<BondCoupon> COMPARE_BY_DATE = Comparator.comparing(BondCoupon::date);
 
     boolean hasReferenceRate();
 
@@ -41,7 +37,7 @@ public interface BondCoupon extends HasCurrencyId, Explainable {
 
     @Override
     default Map<String, Object> explain() {
-        return this.explanationBuilder().put("payment date", this.paymentDate());
+        return this.explanationBuilder().put("payment date", this.date());
     }
 
 }
