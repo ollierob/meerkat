@@ -10,6 +10,7 @@ import net.meerkat.money.interest.fixed.FixedInterestRate;
 import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * @author ollie
@@ -47,6 +48,12 @@ public interface CashPayment<C extends CurrencyId> extends HasCurrencyId {
 
     static <C extends CurrencyId> CashPayment<C> of(final LocalDate date, final Money<C> amount) {
         return new DefaultCashPayment<>(date, amount);
+    }
+
+    static <C extends CurrencyId> Optional<CashPayment<C>> ofNonZero(final LocalDate date, final Money<C> amount) {
+        return amount.isZero()
+                ? Optional.empty()
+                : Optional.of(of(date, amount));
     }
 
 }

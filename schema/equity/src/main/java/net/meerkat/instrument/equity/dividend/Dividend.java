@@ -11,6 +11,7 @@ import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author Ollie
@@ -37,9 +38,8 @@ public interface Dividend<C extends CurrencyId> extends HasDate, Explainable {
     Money<C> cashPerShare();
 
     @CheckForNull
-    default CashPayment<C> paymentPerShare() {
-        final Money<C> paid = this.cashPerShare();
-        return paid.isZero() ? null : CashPayment.of(this.date(), paid);
+    default Optional<CashPayment<C>> paymentPerShare() {
+        return CashPayment.ofNonZero(this.dates().payable(), this.cashPerShare());
     }
 
     @Nonnull
