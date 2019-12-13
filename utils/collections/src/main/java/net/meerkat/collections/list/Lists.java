@@ -1,12 +1,14 @@
 package net.meerkat.collections.list;
 
 import net.meerkat.collections.Collections;
+import net.meerkat.collections.Iterables;
 
 import javax.annotation.CheckForNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.RandomAccess;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.IntFunction;
@@ -67,6 +69,22 @@ public abstract class Lists extends Collections {
         return size == 0
                 ? java.util.Collections.emptyList()
                 : new LazyList<>(size, func);
+    }
+
+    public static <T> boolean any(final List<T> list, final Predicate<? super T> predicate) {
+        if (!(list instanceof RandomAccess)) return any((Collection<T>) list, predicate);
+        for (int i = 0; i < list.size(); i++) {
+            if (predicate.test(list.get(i))) return true;
+        }
+        return false;
+    }
+
+    public static <T> boolean all(final List<T> list, final Predicate<? super T> predicate) {
+        if (!(list instanceof RandomAccess)) return all((Collection<T>) list, predicate);
+        for (int i = 0; i < list.size(); i++) {
+            if (!predicate.test(list.get(i))) return false;
+        }
+        return true;
     }
 
 }

@@ -60,32 +60,11 @@ public abstract class Iterables {
                 : iterable == null || !iterable.iterator().hasNext();
     }
 
-    public static <T> boolean any(final List<T> list, final Predicate<? super T> predicate) {
-        if (!(list instanceof RandomAccess)) return Collections.any((Collection<T>) list, predicate);
-        for (int i = 0; i < list.size(); i++) {
-            if (predicate.test(list.get(i))) return true;
-        }
-        return false;
-    }
-
-    public static <T> boolean any(final Iterable<T> iterable, final Predicate<? super T> predicate) {
-        if (iterable instanceof Collection) return Collections.any((Collection<T>) iterable, predicate);
-        return anyIterated(iterable, predicate);
-    }
-
     public static <T> boolean anyIterated(final Iterable<T> iterable, final Predicate<? super T> predicate) {
         for (final var element : iterable) {
             if (predicate.test(element)) return true;
         }
         return false;
-    }
-
-    public static <T> boolean all(final List<T> list, final Predicate<? super T> predicate) {
-        if (!(list instanceof RandomAccess)) return Collections.all((Collection<T>) list, predicate);
-        for (int i = 0; i < list.size(); i++) {
-            if (!predicate.test(list.get(i))) return false;
-        }
-        return true;
     }
 
     public static <T> boolean allIterated(final Iterable<T> iterable, final Predicate<? super T> predicate) {
@@ -100,6 +79,11 @@ public abstract class Iterables {
             if (predicate.test(element)) return Optional.of(element);
         }
         return Optional.empty();
+    }
+
+    public static <T> boolean any(final Iterable<? extends T> iterable, final Predicate<? super T> predicate) {
+        if (iterable instanceof Collection) return Collections.any((Collection<T>) iterable, predicate);
+        return anyIterated(iterable, predicate);
     }
 
 }

@@ -1,6 +1,6 @@
 package net.meerkat.objects;
 
-import net.meerkat.collections.Iterables;
+import net.meerkat.collections.list.Lists;
 
 import java.util.Optional;
 import java.util.Set;
@@ -22,7 +22,7 @@ public interface Castable<T> {
     }
 
     default boolean isAny(final Set<? extends Class<?>> types) {
-        return Iterables.any(types, this::is);
+        return Lists.any(types, this::is);
     }
 
 }
