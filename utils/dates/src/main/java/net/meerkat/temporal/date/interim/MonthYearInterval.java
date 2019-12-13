@@ -1,6 +1,5 @@
 package net.meerkat.temporal.date.interim;
 
-import javax.xml.bind.annotation.XmlAttribute;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Optional;
@@ -10,8 +9,11 @@ import java.util.Optional;
  */
 public class MonthYearInterval implements Interim {
 
-    @XmlAttribute(name = "yearMonth")
-    private YearMonth yearMonth;
+    private final YearMonth yearMonth;
+
+    public MonthYearInterval(final YearMonth yearMonth) {
+        this.yearMonth = yearMonth;
+    }
 
     @Override
     public boolean contains(final LocalDate date) {

@@ -12,6 +12,7 @@ public interface Arithmetic<T> {
     @Nonnull
     T subtract(@Nonnull T minuend, @Nonnull T subtrahend);
 
+    @SuppressWarnings("unchecked")
     default T add(final T left, final T... rest) {
         T sum = left;
         for (final T r : rest) {

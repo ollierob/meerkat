@@ -1,24 +1,22 @@
 package net.meerkat.temporal.date.interim;
 
-import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+import java.util.SortedSet;
 import java.util.stream.Stream;
 
 /**
  * @author ollie
  */
-@XmlRootElement
 public class CompleteInterval
         extends Interval
         implements List<LocalDate> {
 
     private static final long serialVersionUID = 1L;
-
-    @Deprecated
-    CompleteInterval() {
-    }
 
     public CompleteInterval(final LocalDate startInclusive, final LocalDate endInclusive) {
         super(startInclusive, endInclusive);

@@ -10,15 +10,8 @@ public final class Consumers {
     private Consumers() {
     }
 
-    public static <T> Consumer<T> ignore() {
-        return object -> {
-        };
-    }
-
-    public static <T> void ifNonNull(final T element, final Consumer<? super T> consumer) {
-        if (element != null) {
-            consumer.accept(element);
-        }
+    public static <T> void ifNonNull(final T object, final Consumer<? super T> ifNonNull) {
+        if (object != null) ifNonNull.accept(object);
     }
 
 }

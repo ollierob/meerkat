@@ -1,8 +1,13 @@
 package net.meerkat.collections;
 
+import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.RandomAccess;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * @author Ollie
@@ -47,6 +52,54 @@ public abstract class Iterables {
             }
         }
         return true;
+    }
+
+    public static boolean isEmpty(final Iterable<?> iterable) {
+        return iterable instanceof Collection
+                ? Collections.isEmpty((Collection<?>) iterable)
+                : iterable == null || !iterable.iterator().hasNext();
+    }
+
+    public static <T> boolean any(final List<T> list, final Predicate<? super T> predicate) {
+        if (!(list instanceof RandomAccess)) return Collections.any((Collection<T>) list, predicate);
+        for (int i = 0; i < list.size(); i++) {
+            if (predicate.test(list.get(i))) return true;
+        }
+        return false;
+    }
+
+    public static <T> boolean any(final Iterable<T> iterable, final Predicate<? super T> predicate) {
+        if (iterable instanceof Collection) return Collections.any((Collection<T>) iterable, predicate);
+        return anyIterated(iterable, predicate);
+    }
+
+    public static <T> boolean anyIterated(final Iterable<T> iterable, final Predicate<? super T> predicate) {
+        for (final var element : iterable) {
+            if (predicate.test(element)) return true;
+        }
+        return false;
+    }
+
+    public static <T> boolean all(final List<T> list, final Predicate<? super T> predicate) {
+        if (!(list instanceof RandomAccess)) return Collections.all((Collection<T>) list, predicate);
+        for (int i = 0; i < list.size(); i++) {
+            if (!predicate.test(list.get(i))) return false;
+        }
+        return true;
+    }
+
+    public static <T> boolean allIterated(final Iterable<T> iterable, final Predicate<? super T> predicate) {
+        for (final var element : iterable) {
+            if (!predicate.test(element)) return false;
+        }
+        return true;
+    }
+
+    public static <T> Optional<T> findFirst(final Iterable<? extends T> iterable, final Predicate<? super T> predicate) {
+        for (final var element : iterable) {
+            if (predicate.test(element)) return Optional.of(element);
+        }
+        return Optional.empty();
     }
 
 }
