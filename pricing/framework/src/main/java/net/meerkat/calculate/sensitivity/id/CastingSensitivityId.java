@@ -26,7 +26,7 @@ public abstract class CastingSensitivityId<S extends Sensitivity> implements Sen
 
     @Override
     public Optional<S> convert(final Sensitivity sensitivity) {
-        return sensitivity.cast(clazz);
+        return sensitivity.as(clazz);
     }
 
 }

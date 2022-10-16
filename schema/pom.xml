@@ -21,6 +21,7 @@
         <module>ir-derivative</module>
         <module>moneymarket</module>
         <module>risk</module>
+        <module>time-series</module>
     </modules>
 
     <dependencies>

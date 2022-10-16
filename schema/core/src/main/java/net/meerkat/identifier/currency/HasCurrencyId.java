@@ -1,7 +1,5 @@
 package net.meerkat.identifier.currency;
 
-import java.util.Optional;
-
 import javax.annotation.Nonnull;
 
 /**
@@ -12,11 +10,6 @@ public interface HasCurrencyId extends HasCurrencyIds {
 
     @Nonnull
     CurrencyId currencyId();
-
-    @Override
-    default <T extends CurrencyId> Optional<T> currencyId(final Class<T> clazz) {
-        return this.currencyId().cast(clazz);
-    }
 
     @Override
     default CurrencyIds currencyIds() {

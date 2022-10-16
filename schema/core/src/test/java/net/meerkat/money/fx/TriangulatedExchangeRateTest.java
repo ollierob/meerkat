@@ -1,6 +1,7 @@
 package net.meerkat.money.fx;
 
 import net.meerkat.identifier.currency.StubCurrencyId;
+import net.meerkat.money.price.DefaultTwoWayMoney;
 import net.meerkat.money.price.TwoWayMoney;
 import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.numeric.decimal.BigDecimals;
@@ -35,7 +36,7 @@ public class TriangulatedExchangeRateTest {
 
         final ExchangeRate<GBP, MXN> gbpToMxn = new TriangulatedExchangeRate<>(gbpToUsd, usdToMxn);
 
-        final TwoWayMoney<GBP> gbp = new TwoWayDecimalMoney(GBP.GBP, BigDecimals.ONE, BigDecimals.TWO);
+        final TwoWayMoney<GBP> gbp = new DefaultTwoWayMoney<>(GBP.GBP, BigDecimals.ONE, BigDecimals.TWO);
         final TwoWayMoney<MXN> mxn = gbpToMxn.convert(gbp);
 
         assertThat(mxn.bid().value().doubleValue(), closeTo(1 * 1.33 * 18.91, 1e-10));

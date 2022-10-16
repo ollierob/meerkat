@@ -26,7 +26,7 @@ public interface Ids<T extends Castable<T>> {
 
     default <R extends T> Set<R> thatAre(final Class<? extends R> clazz) {
         return this.values()
-                .transform(id -> id.<R>cast(clazz))
+                .transform(id -> id.<R>as(clazz))
                 .filter(Optional::isPresent)
                 .transform(Optional::get)
                 .collect(Set.collector());
@@ -34,7 +34,7 @@ public interface Ids<T extends Castable<T>> {
 
     default <R extends T> Optional<R> thatIs(final Class<? extends R> clazz) {
         return this.values()
-                .transform(id -> id.<R>cast(clazz))
+                .transform(id -> id.<R>as(clazz))
                 .collect(OptionalCollectors.oneOrEmpty());
     }
 
