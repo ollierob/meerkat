@@ -4,18 +4,19 @@ import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
 import net.meerkat.objects.Arguments;
 
+import java.math.BigDecimal;
+
 /**
- *
  * @author Ollie
  */
-public class DefaultTwoWayMoney<C extends CurrencyId> implements TwoWayMoney<C> {
+public record DefaultTwoWayMoney<C extends CurrencyId>(Money<C> bid, Money<C> offer) implements TwoWayMoney<C> {
 
-    private final Money<C> bid, offer;
-
-    public DefaultTwoWayMoney(final Money<C> bid, final Money<C> offer) {
+    public DefaultTwoWayMoney {
         Arguments.requireEqual(bid.currencyId(), offer.currencyId());
-        this.bid = bid;
-        this.offer = offer;
+    }
+
+    public DefaultTwoWayMoney(final C currency, final BigDecimal bid, final BigDecimal offer) {
+        this(Money.of(currency, bid), Money.of(currency, offer));
     }
 
     @Override

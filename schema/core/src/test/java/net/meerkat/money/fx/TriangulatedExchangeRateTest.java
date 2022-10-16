@@ -1,7 +1,6 @@
 package net.meerkat.money.fx;
 
 import net.meerkat.identifier.currency.StubCurrencyId;
-import net.meerkat.money.price.TwoWayDecimalMoney;
 import net.meerkat.money.price.TwoWayMoney;
 import net.meerkat.numeric.decimal.BigDecimalFraction;
 import net.meerkat.numeric.decimal.BigDecimals;

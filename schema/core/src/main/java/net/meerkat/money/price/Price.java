@@ -24,7 +24,7 @@ public interface Price<C extends CurrencyId> extends HasCurrencyId, Explainable 
 
         @Override
         @Deprecated
-        default Price<C> evaluate() {
+        default Price.Evaluated<C> evaluate() {
             return this;
         }
 

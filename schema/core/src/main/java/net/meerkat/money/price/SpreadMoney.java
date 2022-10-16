@@ -8,15 +8,7 @@ import net.meerkat.money.Money;
  *
  * @author ollie
  */
-public class SpreadMoney<C extends CurrencyId> implements TwoWayMoney<C> {
-
-    private final Money<C> mid;
-    private final Money<C> halfSpread;
-
-    public SpreadMoney(final Money<C> mid, final Money<C> halfSpread) {
-        this.mid = mid;
-        this.halfSpread = halfSpread;
-    }
+public record SpreadMoney<C extends CurrencyId>(Money<C> mid, Money<C> halfSpread) implements TwoWayMoney<C> {
 
     @Override
     public Money<C> bid() {
@@ -26,11 +18,6 @@ public class SpreadMoney<C extends CurrencyId> implements TwoWayMoney<C> {
     @Override
     public Money<C> offer() {
         return mid.plus(halfSpread);
-    }
-
-    @Override
-    public Money<C> mid() {
-        return mid;
     }
 
     @Override

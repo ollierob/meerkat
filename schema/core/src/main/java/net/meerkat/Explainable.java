@@ -14,6 +14,7 @@ public interface Explainable {
     @Nonnull
     Map<String, Object> explain();
 
+    @Nonnull
     default ExplanationBuilder explanationBuilder() {
         return new ExplanationBuilder(this.getClass());
     }
@@ -39,6 +40,7 @@ public interface Explainable {
         }
 
         @Override
+        @Nonnull
         public ExplanationBuilder put(final String key, final Object value) {
             final Object newValue;
             if (value == null) {
