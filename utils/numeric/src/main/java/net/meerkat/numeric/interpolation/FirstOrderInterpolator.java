@@ -1,5 +1,7 @@
 package net.meerkat.numeric.interpolation;
 
+import net.meerkat.numeric.timeseries.TemporalSeries;
+
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import java.util.Map;
@@ -24,6 +26,13 @@ public interface FirstOrderInterpolator<K, V> extends Interpolator<K, V> {
         } else {
             return this.interpolate(key, floorEntry.getKey(), ceilingEntry.getKey(), floorEntry.getValue(), ceilingEntry.getValue());
         }
+    }
+
+    @Override
+    default V interpolate(final K k1, final TemporalSeries<K, V> series) {
+        final var k0 = series.prev(k1);
+        final var k2 = series.next(k1);
+        return this.interpolate(k1, k0, k2, series.at(k0), series.at(k2));
     }
 
     @CheckForNull

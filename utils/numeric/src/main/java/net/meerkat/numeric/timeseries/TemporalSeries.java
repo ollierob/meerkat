@@ -1,5 +1,7 @@
 package net.meerkat.numeric.timeseries;
 
+import net.meerkat.numeric.interpolation.Interpolator;
+
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
@@ -18,6 +20,11 @@ public interface TemporalSeries<T, V> {
     T next(T temporal);
 
     @CheckForNull
-    V at(T temporal);
+    V at(T key);
+
+    @CheckForNull
+    default V at(final T key, final Interpolator<T, V> interpolator) {
+        return interpolator.interpolate(key, this);
+    }
 
 }
