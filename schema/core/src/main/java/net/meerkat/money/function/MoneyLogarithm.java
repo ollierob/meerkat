@@ -1,6 +1,7 @@
-package net.meerkat.money;
+package net.meerkat.money.function;
 
 import net.meerkat.identifier.currency.CurrencyId;
+import net.meerkat.money.Money;
 
 public interface MoneyLogarithm extends MoneyFunction {
 

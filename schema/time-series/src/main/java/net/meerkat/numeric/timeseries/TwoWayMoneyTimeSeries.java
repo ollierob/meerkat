@@ -2,7 +2,7 @@ package net.meerkat.numeric.timeseries;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
-import net.meerkat.money.MoneyLogarithm;
+import net.meerkat.money.function.MoneyLogarithm;
 import net.meerkat.money.price.TwoWayMoney;
 
 /**
