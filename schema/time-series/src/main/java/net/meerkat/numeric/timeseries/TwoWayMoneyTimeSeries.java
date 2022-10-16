@@ -2,8 +2,8 @@ package net.meerkat.numeric.timeseries;
 
 import net.meerkat.identifier.currency.CurrencyId;
 import net.meerkat.money.Money;
+import net.meerkat.money.MoneyLogarithm;
 import net.meerkat.money.price.TwoWayMoney;
-import net.meerkat.numeric.Logarithm;
 
 /**
  * Bid/ask time series
@@ -28,7 +28,7 @@ public interface TwoWayMoneyTimeSeries<C extends CurrencyId> extends TimeSeries<
         return this.transform(TwoWayMoney::spread);
     }
 
-    default TimeSeries<Money<C>> logarithmicMidSeries(final Logarithm<Money<C>> log) {
+    default TimeSeries<Money<C>> logarithmicMidSeries(final MoneyLogarithm log) {
         return this.transform(p -> log.apply(p.bid()).times(0.5).plus(log.apply(p.offer()).times(0.5)));
     }
 
