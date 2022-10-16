@@ -26,7 +26,7 @@ public record DefaultTwoWayMoney<C extends CurrencyId>(Money<C> bid, Money<C> of
 
     @Override
     public Money<C> mid() {
-        throw new UnsupportedOperationException(); //TODO
+        return bid.times(0.5).plus(offer.times(0.5));
     }
 
     @Override

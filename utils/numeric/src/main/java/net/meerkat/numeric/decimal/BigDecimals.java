@@ -57,8 +57,8 @@ public abstract class BigDecimals {
     }
 
     private static BigDecimal genericConversion(final Number number) {
-        return number instanceof Numeric
-                ? ((Numeric) number).decimalValue()
+        return number instanceof Numeric n
+                ? n.decimalValue()
                 : BigDecimal.valueOf(number.doubleValue());
     }
 
