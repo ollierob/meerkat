@@ -15,4 +15,5 @@ public interface FxPricer<T, F extends FxInstrument<?, ?>> extends InstrumentPri
             C currency,
             InstrumentPriceShifts shifts)
             throws InstrumentPriceException;
+
 }

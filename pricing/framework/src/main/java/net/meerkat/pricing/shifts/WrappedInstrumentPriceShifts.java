@@ -8,9 +8,9 @@ import net.meerkat.pricing.shifts.fx.ExchangeRateShifts;
 import net.meerkat.pricing.shifts.interest.InterestRateShifts;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
- *
  * @author Ollie
  */
 public class WrappedInstrumentPriceShifts implements InterestRateShifts, ExchangeRateShifts {
@@ -27,6 +27,13 @@ public class WrappedInstrumentPriceShifts implements InterestRateShifts, Exchang
             final ExchangeRateShifts exchangeRateShifts) {
         this.interestRateShifts = Suppliers.firstNonNull(interestRateShifts, InterestRateShifts.none());
         this.exchangeRateShifts = Suppliers.firstNonNull(exchangeRateShifts, ExchangeRateShifts.none());
+    }
+
+    @Override
+    public <S extends InstrumentPriceShifts> Optional<S> as(final Class<S> clazz) {
+        if (clazz.isAssignableFrom(interestRateShifts.getClass())) return Optional.of(clazz.cast(interestRateShifts));
+        if (clazz.isAssignableFrom(exchangeRateShifts.getClass())) return Optional.of(clazz.cast(exchangeRateShifts));
+        return InterestRateShifts.super.as(clazz);
     }
 
     @Override
