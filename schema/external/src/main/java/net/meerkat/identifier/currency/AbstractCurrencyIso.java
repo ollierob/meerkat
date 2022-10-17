@@ -2,13 +2,10 @@ package net.meerkat.identifier.currency;
 
 import net.meerkat.objects.HasName;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 /**
- *
  * @author Ollie
  */
-@XmlTransient
+@Deprecated
 public abstract class AbstractCurrencyIso
         implements CurrencyIso, HasName {
 

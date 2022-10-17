@@ -1,39 +1,38 @@
 package net.meerkat.identifier.country;
 
+import net.meerkat.identifier.Iso;
+
+import javax.annotation.Nonnull;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
-import javax.annotation.CheckReturnValue;
-
-import net.meerkat.StringWrapper;
-import net.meerkat.identifier.Iso;
-
 /**
- *
  * @author Ollie
  */
-public class CountryIso
-        extends StringWrapper
-        implements Iso, CountryId {
+public record CountryIso(String country, String subdivision) implements Iso, CountryId {
 
-    private static final Map<String, CountryIso> cache = new ConcurrentHashMap<>(32);
     private static final Pattern PATTERN = Pattern.compile("[A-Z]{2}");
 
+    private static final Map<String, CountryIso> cache = new ConcurrentHashMap<>(32);
     public static final CountryIso AU = valueOf("AU");
     public static final CountryIso EU = valueOf("EU");
     public static final CountryIso JP = valueOf("JP");
     public static final CountryIso GB = valueOf("GB");
     public static final CountryIso US = valueOf("US");
 
+    @Nonnull
     public static CountryIso valueOf(final String iso) {
         return cache.computeIfAbsent(iso.toUpperCase(), CountryIso::new);
     }
 
-    CountryIso(final String iso) {
-        super(iso);
-        if (!PATTERN.matcher(iso).matches()) {
-            throw new IllegalArgumentException("Invalid country ISO: " + iso);
+    public CountryIso(final String country) {
+        this(country, null);
+    }
+
+    public CountryIso {
+        if (!PATTERN.matcher(country).matches()) {
+            throw new IllegalArgumentException("Invalid country ISO: " + country);
         }
     }
 
@@ -43,23 +42,13 @@ public class CountryIso
     }
 
     @Override
-    public char first() {
-        return super.first();
-    }
-
-    @Override
     public String value() {
-        return super.value();
+        return country + (subdivision != null ? "-" + subdivision : "");
     }
 
     @Override
     public String standard() {
         return "3166-1";
-    }
-
-    @CheckReturnValue
-    public CountrySubdivisionIso subdivision(final String subdivision) {
-        return new CountrySubdivisionIso(this, subdivision);
     }
 
     public boolean isUserAssigned() {
