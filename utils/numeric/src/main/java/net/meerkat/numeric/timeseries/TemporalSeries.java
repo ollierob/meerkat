@@ -33,14 +33,28 @@ public interface TemporalSeries<T, V> {
     }
 
     @CheckForNull
-    default V exponentialMovingAverage(T key, final double weight, final AdditionArithmetic<V> add, final MultiplicationArithmetic<V> times) {
+    default V simpleMovingAverage(T key, final int limit, final AdditionArithmetic<V> add, final MultiplicationArithmetic<V> mult) {
         key = this.prevOrEqual(key);
         if (key == null) return null;
-        V sum = times.multiply(this.at(key), weight);
+        var sum = this.at(key);
+        for (var i = 1; i < limit; i++) {
+            key = this.prev(key);
+            if (key == null) break;
+            final var value = this.at(key);
+            sum = add.add(sum, value);
+        }
+        return mult.divide(sum, limit);
+    }
+
+    @CheckForNull
+    default V exponentialMovingAverage(T key, final double weight, final AdditionArithmetic<V> add, final MultiplicationArithmetic<V> mult) {
+        key = this.prevOrEqual(key);
+        if (key == null) return null;
+        V sum = mult.multiply(this.at(key), weight);
         final var coeff = 1 - weight;
         while ((key = this.prev(key)) != null) {
             final var prev = this.at(key);
-            sum = add.add(sum, times.multiply(prev, coeff));
+            sum = add.add(sum, mult.multiply(prev, coeff));
         }
         return sum;
     }
