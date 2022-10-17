@@ -91,6 +91,12 @@ public interface Money<C extends CurrencyId>
 
     }
 
+    static <C extends CurrencyId> Money<C> of(final C currency, final double amount) {
+        return amount == 0
+                ? zero(currency)
+                : new DoubleMoney<>(currency, amount);
+    }
+
     static <C extends CurrencyId> BigDecimalMoney<C> of(final C currency, final Number amount) {
         return of(currency, BigDecimals.toBigDecimal(amount));
     }

@@ -7,58 +7,38 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 
 /**
- *
  * @author ollie
  */
-public class DoubleMoney<C extends CurrencyId>
-        implements Money<C> {
-    
-    private final double amount;
-    private final C currency;
-    
-    public DoubleMoney(double amount, C currency) {
-        this.amount = amount;
-        this.currency = currency;
-    }
-    
-    @Override
-    public C currencyId() {
-        return currency;
-    }
-    
-    @Override
-    public Double value() {
-        return amount;
-    }
-    
+public record DoubleMoney<C extends CurrencyId>(C currencyId, double amount) implements Money<C> {
+
     @Override
     public double doubleValue() {
         return amount;
     }
-    
+
     @Override
     public DoubleMoney<C> times(final Number n) {
-        return new DoubleMoney<>(amount * n.doubleValue(), currency);
+        return new DoubleMoney<>(currencyId, amount * n.doubleValue());
     }
-    
+
     @Override
     public DoubleMoney<C> plus(final Money<C> that) {
-        return new DoubleMoney<>(amount + that.doubleValue(), currency);
+        return new DoubleMoney<>(currencyId, amount + that.doubleValue());
     }
-    
+
     @Override
     public Money<C> times(final Number that, final RoundingMode rounding) {
-        return new DoubleMoney<>(amount * that.doubleValue(), currency);
+        return new DoubleMoney<>(currencyId, amount * that.doubleValue());
     }
-    
+
     @Override
     public BigDecimal decimalValue(final MathContext context) {
         return BigDecimal.valueOf(amount).round(context);
     }
-    
+
     @Override
     public DoubleMoney<C> reciprocal() {
-        return new DoubleMoney<>(1 / amount, currency);
+        return new DoubleMoney<>(currencyId, 1 / amount);
     }
-    
+
 }
