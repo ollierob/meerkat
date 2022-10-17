@@ -28,8 +28,18 @@ public interface TwoWayMoneyTimeSeries<C extends CurrencyId> extends TimeSeries<
         return this.transform(TwoWayMoney::spread);
     }
 
-    default TimeSeries<Money<C>> logarithmicMidSeries(final MoneyLogarithm log) {
-        return this.transform(p -> log.apply(p.bid()).times(0.5).plus(log.apply(p.offer()).times(0.5)));
+    /**
+     * @return logarithmic mid
+     */
+    default TimeSeries<Money<C>> midSeries(final MoneyLogarithm log) {
+        return this.transform(p -> log.applyExp(p.bid().times(p.offer().doubleValue()), 0.5));
+    }
+
+    /**
+     * @return dimensionless relative spread
+     */
+    default TimeSeries<Double> relativeSpreadSeries(final MoneyLogarithm log) {
+        return this.transform(p -> log.apply(p.offer()).minus(log.apply(p.bid())).doubleValue()); //TODO return DoubleTimeSeries
     }
 
 }
