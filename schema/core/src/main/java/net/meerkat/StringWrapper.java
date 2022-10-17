@@ -6,6 +6,7 @@ import java.util.Objects;
 /**
  * @author ollie
  */
+@Deprecated
 public abstract class StringWrapper {
 
     private final String value;

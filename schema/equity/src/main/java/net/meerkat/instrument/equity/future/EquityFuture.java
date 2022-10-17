@@ -1,19 +1,19 @@
 package net.meerkat.instrument.equity.future;
 
-import java.util.Optional;
-
-import javax.annotation.Nonnull;
-
 import net.meerkat.identifier.instrument.future.FutureTicker;
-import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.derivative.forward.Future;
+import net.meerkat.instrument.equity.Equity;
 import net.meerkat.instrument.equity.EquityDerivative;
 
+import javax.annotation.Nonnull;
+import java.util.Optional;
+
 /**
- *
  * @author ollie
+ * @see IndexFuture
+ * @see StockFuture
  */
-public interface EquityFuture<I extends Instrument> extends Future<I>, EquityDerivative<I> {
+public interface EquityFuture<E extends Equity> extends Future<E>, EquityDerivative<E> {
 
     @Nonnull
     default Optional<FutureTicker> futureTicker() {

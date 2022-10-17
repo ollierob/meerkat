@@ -1,35 +1,18 @@
 package net.meerkat.identifier.instrument;
 
-import javax.annotation.Nonnull;
-
+import net.meerkat.Explainable;
 import net.meerkat.identifier.InstrumentInMarketId;
 import net.meerkat.identifier.market.HasMarketId;
 import net.meerkat.identifier.market.Mic;
 
+import javax.annotation.Nonnull;
+import java.util.Map;
+
 /**
- *
  * @author ollie
  */
-public class StockTicker
-        implements InstrumentInMarketId, InstrumentId, HasMarketId {
-
-    private final Mic mic;
-    private final String ticker;
-
-    public StockTicker(final Mic mic, final String ticker) {
-        this.mic = mic;
-        this.ticker = ticker;
-    }
-
-    @Override
-    public Mic marketId() {
-        return mic;
-    }
-
-    @Nonnull
-    public String ticker() {
-        return ticker;
-    }
+public record StockTicker(Mic marketId, String ticker)
+        implements InstrumentInMarketId, InstrumentId, HasMarketId, Explainable {
 
     @Override
     @Deprecated
@@ -37,9 +20,17 @@ public class StockTicker
         return InstrumentId.super.instrumentIds();
     }
 
+    @Nonnull
+    @Override
+    public Map<String, Object> explain() {
+        return this.explanationBuilder()
+                .put("mic", marketId)
+                .put("ticker", ticker);
+    }
+
     @Override
     public String toString() {
-        return mic + ":" + this.ticker();
+        return marketId + ":" + this.ticker();
     }
 
 }

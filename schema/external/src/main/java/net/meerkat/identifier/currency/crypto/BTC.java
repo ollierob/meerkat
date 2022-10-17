@@ -1,12 +1,11 @@
 package net.meerkat.identifier.currency.crypto;
 
 /**
- *
  * @author ollie
  */
-public class XBT implements CryptoCurrencyId {
+public class BTC implements CryptoCurrencyId {
 
-    XBT() {
+    BTC() {
     }
 
     @Override

@@ -1,14 +1,11 @@
 package net.meerkat.identifier.instrument.type;
 
-import net.meerkat.StringWrapper;
 import net.meerkat.identifier.Iso;
-
-import javax.annotation.Nonnull;
 
 /**
  * @see <a href="http://www.anna-web.org/standards/cfi-iso-10962/">Classification of Financial Instruments</a>
  */
-public class Cfi extends StringWrapper implements Iso {
+public record Cfi(String value) implements Iso {
 
     //http://www.iotafinance.com/en/Classification-of-Financial-Instrument-codes-CFI-ISO-10962.html
 
@@ -30,34 +27,19 @@ public class Cfi extends StringWrapper implements Iso {
     }
 
     protected Cfi(final char type, final char group, final char a1, final char a2, final char a3, final char a4) {
-        super(new String(new char[]{type, group, a1, a2, a3, a4}));
-    }
-
-    protected Cfi(final String value) {
-        super(value);
+        this(new String(new char[]{type, group, a1, a2, a3, a4}));
     }
 
     public char category() {
-        return this.chartAt(0);
+        return value.charAt(0);
     }
 
     public char group() {
-        return this.chartAt(1);
+        return value.charAt(1);
     }
 
     public String attributes() {
         return this.value().substring(2);
-    }
-
-    @Override
-    public char first() {
-        return super.first();
-    }
-
-    @Nonnull
-    @Override
-    public String value() {
-        return super.value();
     }
 
     @Override

@@ -5,14 +5,19 @@ import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
 import net.meerkat.objects.Castable;
 
+import javax.annotation.Nonnull;
 import java.util.Optional;
 
 /**
  * @author Ollie
+ * @see Stock
+ * @see StockIndex
+ * @see DepositoryReceipt
  */
 public interface Equity
         extends InstrumentDefinition, Security, Castable<Equity> {
 
+    @Nonnull
     default Optional<Isin> isin() {
         return this.instrumentId(Isin.class);
     }

@@ -1,7 +1,5 @@
 package net.meerkat.identifier.instrument;
 
-import javax.xml.bind.annotation.XmlAttribute;
-
 import net.meerkat.identifier.Iso;
 
 /**
@@ -9,22 +7,7 @@ import net.meerkat.identifier.Iso;
  *
  * @author Ollie
  */
-public class Fisn implements Iso, InstrumentId {
-
-    @XmlAttribute(name = "issuer")
-    private String issuerName;
-
-    @XmlAttribute(name = "instrument")
-    private String instrumentDescription;
-
-    @Deprecated
-    Fisn() {
-    }
-
-    public Fisn(final String issuerName, final String instrumentDescription) {
-        this.issuerName = issuerName;
-        this.instrumentDescription = instrumentDescription;
-    }
+public record Fisn(String issuerName, String instrumentDescription) implements Iso, InstrumentId {
 
     @Override
     public String value() {

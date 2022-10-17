@@ -6,30 +6,18 @@ import net.meerkat.identifier.instrument.algorithm.LuhnAlgorithm;
 import javax.annotation.Nonnull;
 
 /**
- *
  * @author ollie
  */
-public class Cusip
-        extends Nsin
-        implements HasCheckDigit {
-
-    public Cusip(final String value) {
-        super(value);
-    }
+public record Cusip(String value) implements Nsin, HasCheckDigit {
 
     @Override
     public char checkDigit() {
-        return this.last();
+        return this.lastChar();
     }
 
     @Override
     public char computeCheckDigit() {
         return LuhnAlgorithm.check(this.value());
-    }
-
-    @Override
-    protected String isinPart() {
-        return this.value();
     }
 
     @Nonnull

@@ -6,17 +6,11 @@ package net.meerkat.identifier.instrument;
  * @author ollie
  * @see <a href="https://en.wikipedia.org/wiki/SEDOL">SEDOL</a>
  */
-public class Sedol
-        extends Nsin
-        implements HasCheckDigit {
-
-    public Sedol(final String value) {
-        super(value);
-    }
+public record Sedol(String value) implements Nsin, HasCheckDigit {
 
     @Override
     public char checkDigit() {
-        return this.last();
+        return this.lastChar();
     }
 
     @Override
@@ -37,7 +31,7 @@ public class Sedol
     }
 
     @Override
-    protected String isinPart() {
+    public String isinPart() {
         return "00" + this.value();
     }
 

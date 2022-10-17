@@ -5,7 +5,7 @@ import net.meerkat.issuer.IssuerId;
 
 public class DepositoryReceipt extends AbstractEquity {
 
-    public DepositoryReceipt(String name, InstrumentIds identifiers, IssuerId issuerId) {
+    public DepositoryReceipt(final String name, final InstrumentIds identifiers, final IssuerId issuerId) {
         super(name, identifiers, issuerId);
     }
 

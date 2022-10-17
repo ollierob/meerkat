@@ -13,16 +13,10 @@ import java.time.YearMonth;
  *
  * @author ollie
  */
-public class FutureDeliveryYearMonth implements FutureDelivery {
+public record FutureDeliveryYearMonth(YearMonth yearMonth) implements FutureDelivery {
 
     public static FutureDeliveryYearMonth of(final Month month, final int year) {
         return new FutureDeliveryYearMonth(YearMonth.of(year, month));
-    }
-
-    private final YearMonth yearMonth;
-
-    public FutureDeliveryYearMonth(final YearMonth yearMonth) {
-        this.yearMonth = yearMonth;
     }
 
     public int year() {

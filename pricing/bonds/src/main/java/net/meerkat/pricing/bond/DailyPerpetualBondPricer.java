@@ -41,8 +41,8 @@ public class DailyPerpetualBondPricer implements BondPricer<LocalDate, Perpetual
             final PerpetualBond<?> bond,
             final C currency,
             final BondPriceShifts bondPriceShifts) {
-        final ExchangeRateSnapshot exchangeRates = exchangeRatesProvider.require(date);
-        final InterestRate discountRate = getDiscountRates.apply(date, currency);
+        final var exchangeRates = exchangeRatesProvider.require(date);
+        final var discountRate = getDiscountRates.apply(date, currency);
         return new PerpetualBondPrice<>(bond, currency, date, exchangeRates, discountRate, interestRateInterpolator, bondPriceShifts);
     }
 
