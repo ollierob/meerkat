@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class DateArithmeticTest {
+public class DateAdditionArithmeticTest {
 
     @Test
     void shouldBeDefined() {

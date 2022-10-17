@@ -1,6 +1,6 @@
 package net.meerkat.numeric.manifold.derivative;
 
-import net.meerkat.numeric.Arithmetic;
+import net.meerkat.numeric.AdditionArithmetic;
 import net.meerkat.numeric.interpolation.Interpolator;
 
 import java.util.NavigableMap;
@@ -9,12 +9,12 @@ import java.util.function.BiFunction;
 public class SecondOrderCentralDifference<X, Y, DY> extends AbstractCentralDifference<X, Y, DY> {
 
     private final X twoH;
-    private final Arithmetic<Y> yArithmetic;
+    private final AdditionArithmetic<Y> yArithmetic;
 
     public SecondOrderCentralDifference(
             final X step,
-            final Arithmetic<X> xArithmetic,
-            final Arithmetic<Y> yArithmetic,
+            final AdditionArithmetic<X> xArithmetic,
+            final AdditionArithmetic<Y> yArithmetic,
             final Interpolator<X, Y> interpolator,
             final BiFunction<Y, X, DY> division) {
         super(step, xArithmetic, interpolator, division);

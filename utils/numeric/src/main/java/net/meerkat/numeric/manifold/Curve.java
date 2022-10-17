@@ -1,6 +1,6 @@
 package net.meerkat.numeric.manifold;
 
-import net.meerkat.numeric.Arithmetic;
+import net.meerkat.numeric.AdditionArithmetic;
 import net.meerkat.numeric.interpolation.Interpolator;
 import net.meerkat.numeric.manifold.derivative.Differentiation;
 
@@ -39,7 +39,7 @@ public interface Curve<X, Y> {
         return this.toMap().entrySet();
     }
 
-    default Curve<X, Y> plus(final Curve<X, Y> that, final Interpolator<X, Y> interpolator, final Arithmetic<Y> arithmetic) {
+    default Curve<X, Y> plus(final Curve<X, Y> that, final Interpolator<X, Y> interpolator, final AdditionArithmetic<Y> arithmetic) {
         final NavigableMap<X, Y> thisMap = this.toMap();
         final NavigableMap<X, Y> thatMap = that.toMap();
         final NavigableMap<X, Y> outMap = new TreeMap<>();

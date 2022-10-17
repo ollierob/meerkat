@@ -1,6 +1,6 @@
 package net.meerkat.numeric.manifold.derivative;
 
-import net.meerkat.numeric.Arithmetic;
+import net.meerkat.numeric.AdditionArithmetic;
 import net.meerkat.numeric.interpolation.Interpolator;
 
 import java.util.NavigableMap;
@@ -10,11 +10,11 @@ import java.util.function.BiFunction;
 public abstract class AbstractCentralDifference<X, Y, DY> implements FiniteDifference<X, Y, DY> {
 
     private final X step;
-    private final Arithmetic<X> xArithmetic;
+    private final AdditionArithmetic<X> xArithmetic;
     private final Interpolator<X, Y> interpolator;
     private final BiFunction<Y, X, DY> division;
 
-    protected AbstractCentralDifference(X step, Arithmetic<X> xArithmetic, Interpolator<X, Y> interpolator, BiFunction<Y, X, DY> division) {
+    protected AbstractCentralDifference(X step, AdditionArithmetic<X> xArithmetic, Interpolator<X, Y> interpolator, BiFunction<Y, X, DY> division) {
         this.step = step;
         this.xArithmetic = xArithmetic;
         this.interpolator = interpolator;

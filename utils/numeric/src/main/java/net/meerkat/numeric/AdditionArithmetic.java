@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 import java.util.function.BinaryOperator;
 import java.util.function.DoubleFunction;
 
-public interface Arithmetic<T> {
+public interface AdditionArithmetic<T> {
 
     @Nonnull
     T add(@Nonnull T left, @Nonnull T right);
@@ -41,28 +41,28 @@ public interface Arithmetic<T> {
         return n > 0 ? sum : this.negate(sum);
     }
 
-    static <T extends Numeric.Summable<T>> Arithmetic<T> numeric() {
+    static <T extends Numeric.Summable<T>> AdditionArithmetic<T> numeric() {
         return of(T::plus, T::minus);
     }
 
-    static Arithmetic<Double> doublePrecision() {
-        return of(Double::sum, (d1, d2) -> d1 - d2);
+    static AdditionArithmetic<Double> doublePrecision() {
+        return of(Double::sum, (a, b) -> a - b);
     }
 
-    static <T extends Number> Arithmetic<T> doublePrecision(final DoubleFunction<? extends T> fromDouble) {
+    static <T extends Number> AdditionArithmetic<T> doublePrecision(final DoubleFunction<? extends T> fromDouble) {
         return of((l, r) -> fromDouble.apply(l.doubleValue() + r.doubleValue()), (l, r) -> fromDouble.apply(l.doubleValue() - r.doubleValue()));
     }
 
-    static <T> Arithmetic<T> of(final BinaryOperator<T> addition, final BinaryOperator<T> subtraction) {
-        return new Arithmetic<T>() {
+    static <T> AdditionArithmetic<T> of(final BinaryOperator<T> addition, final BinaryOperator<T> subtraction) {
+        return new AdditionArithmetic<T>() {
 
             @Override
-            public T add(T left, T right) {
+            public T add(final T left, final T right) {
                 return addition.apply(left, right);
             }
 
             @Override
-            public T subtract(T minuend, T subtrahend) {
+            public T subtract(final T minuend, final T subtrahend) {
                 return subtraction.apply(minuend, subtrahend);
             }
 

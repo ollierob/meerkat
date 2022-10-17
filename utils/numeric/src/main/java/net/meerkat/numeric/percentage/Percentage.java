@@ -1,6 +1,6 @@
 package net.meerkat.numeric.percentage;
 
-import net.meerkat.numeric.Arithmetic;
+import net.meerkat.numeric.AdditionArithmetic;
 import net.meerkat.numeric.Numeric;
 import net.meerkat.numeric.decimal.BigDecimalFraction;
 
@@ -11,7 +11,7 @@ public abstract class Percentage extends Number implements Numeric.Summable<Perc
 
     private static final long serialVersionUID = 1L;
 
-    public static final Arithmetic<Percentage> ARITHMETIC = Arithmetic.numeric();
+    public static final AdditionArithmetic<Percentage> ARITHMETIC = AdditionArithmetic.numeric();
 
     @Override
     public Percentage plus(final Percentage that) {
