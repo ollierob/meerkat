@@ -11,31 +11,37 @@ public record TransformedTimeSeries<V1, V2>(TimeSeries<V1> underlying, Function<
     @Nonnull
     @Override
     public Instant start() {
-        return underlying().start();
+        return underlying.start();
     }
 
     @Nonnull
     @Override
     public Instant end() {
-        return underlying().end();
+        return underlying.end();
     }
 
     @CheckForNull
     @Override
     public Instant prev(final Instant temporal) {
-        return underlying().prev(temporal);
+        return underlying.prev(temporal);
+    }
+
+    @CheckForNull
+    @Override
+    public Instant prevOrEqual(@Nonnull final Instant temporal) {
+        return underlying.prev(temporal);
     }
 
     @CheckForNull
     @Override
     public Instant next(final Instant temporal) {
-        return underlying().next(temporal);
+        return underlying.next(temporal);
     }
 
     @CheckForNull
     @Override
     public V2 at(final Instant time) {
-        final var v = underlying().at(time);
+        final var v = underlying.at(time);
         return v != null ? operator().apply(v) : null;
     }
 
