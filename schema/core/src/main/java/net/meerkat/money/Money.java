@@ -109,6 +109,10 @@ public interface Money<C extends CurrencyId>
         return sum(monies).over(monies.count());
     }
 
+    default boolean equals(final Money<?> that) {
+        return that != null && valuesEqual(this, that);
+    }
+
     static boolean valuesEqual(final Money<?> left, final Money<?> right) {
         return Objects.equals(left.currencyId(), right.currencyId())
                 && Numbers.equals(left.value(), right.value());

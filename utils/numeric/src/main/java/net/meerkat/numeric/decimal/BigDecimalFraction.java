@@ -18,8 +18,6 @@ public class BigDecimalFraction
         extends Number
         implements Numeric.Summable<BigDecimalFraction>, Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     public static final BigDecimalFraction MINUS_ONE = BigDecimalFraction.of(-1, 1);
     public static final BigDecimalFraction ZERO = new BigDecimalFraction(BigDecimal.ZERO, BigDecimal.ONE);
 

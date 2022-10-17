@@ -41,4 +41,14 @@ public record DoubleMoney<C extends CurrencyId>(C currencyId, double amount) imp
         return new DoubleMoney<>(currencyId, 1 / amount);
     }
 
+    @Override
+    public boolean equals(final Object obj) {
+        return obj instanceof Money<?> m && this.equals(m);
+    }
+
+    @Override
+    public int hashCode() {
+        return Money.hashCode(this);
+    }
+
 }
