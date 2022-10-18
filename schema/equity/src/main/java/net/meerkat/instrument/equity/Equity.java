@@ -32,6 +32,10 @@ public interface Equity
 
     <R> R handleWith(Equity.Handler<R> handler);
 
+    /**
+     * @param <R>
+     * @see EquityDerivative.Handler
+     */
     interface Handler<R> extends InstrumentDefinition.Handler<R> {
 
         R handle(StockIndex index);

@@ -13,7 +13,6 @@ import net.meerkat.instrument.equity.swap.EquityForEquitySwap;
 import net.meerkat.instrument.equity.swap.InterestForEquitySwap;
 
 /**
- *
  * @author Ollie
  */
 public interface EquityDerivative<E extends Instrument>
@@ -28,6 +27,10 @@ public interface EquityDerivative<E extends Instrument>
 
     <R> R handleWith(EquityDerivative.Handler<R> handler);
 
+    /**
+     * @param <R>
+     * @see Equity.Handler
+     */
     interface Handler<R> extends InstrumentDefinition.Handler<R> {
 
         R handle(StockOption option);

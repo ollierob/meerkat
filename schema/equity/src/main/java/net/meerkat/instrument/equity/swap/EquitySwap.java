@@ -1,10 +1,10 @@
 package net.meerkat.instrument.equity.swap;
 
 import net.meerkat.identifier.currency.CurrencyId;
-import net.meerkat.instrument.Instrument;
 import net.meerkat.instrument.derivative.swap.Swap;
 import net.meerkat.instrument.derivative.swap.SwapLeg;
 import net.meerkat.instrument.derivative.swap.SwapLegs;
+import net.meerkat.instrument.equity.Equity;
 import net.meerkat.instrument.equity.EquityDerivative;
 import net.meerkat.money.Money;
 
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
  * @author ollie
  * @see <a href="https://ikenna.net/finance/introduction-to-equity-swaps/">Equity swaps</a>
  */
-public interface EquitySwap<E extends Instrument>
+public interface EquitySwap<E extends Equity>
         extends EquityDerivative<E>, Swap {
 
     @Override

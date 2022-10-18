@@ -11,9 +11,9 @@ import java.time.Instant;
 
 public class DailyDiscreteDividendStockFuturePricer implements StockFuturePricer<Instant> {
 
-    private final StockPriceProvider priceProvider;
+    private final StockPriceProvider<Instant> priceProvider;
 
-    public DailyDiscreteDividendStockFuturePricer(final StockPriceProvider priceProvider) {
+    public DailyDiscreteDividendStockFuturePricer(final StockPriceProvider<Instant> priceProvider) {
         this.priceProvider = priceProvider;
     }
 

@@ -13,9 +13,8 @@ import javax.annotation.CheckReturnValue;
 import javax.annotation.Nonnull;
 
 /**
- *
  * @author ollie
- * @see BondSensitivities
+ * @see net.meerkat.sensitivity.bond.BondPriceSensitivities
  */
 public interface BondPrice<C extends CurrencyId>
         extends Price<C> {

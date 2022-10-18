@@ -8,8 +8,6 @@ import net.meerkat.instrument.exception.InstrumentException;
  */
 public class InstrumentPriceException extends InstrumentException {
 
-    private static final long serialVersionUID = 1L;
-
     public InstrumentPriceException(final String message) {
         super(message);
     }
