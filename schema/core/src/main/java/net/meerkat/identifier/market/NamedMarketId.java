@@ -1,17 +1,10 @@
 package net.meerkat.identifier.market;
 
-import net.meerkat.Named;
+import net.meerkat.objects.HasName;
 
 /**
- *
  * @author ollie
  */
-public class NamedMarketId
-        extends Named
-        implements MarketId {
-
-    public NamedMarketId(final String value) {
-        super(value);
-    }
+public record NamedMarketId(String name) implements MarketId, HasName {
 
 }

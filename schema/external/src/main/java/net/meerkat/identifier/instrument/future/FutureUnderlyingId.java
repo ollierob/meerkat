@@ -1,13 +1,12 @@
 package net.meerkat.identifier.instrument.future;
 
-import net.meerkat.Named;
+import net.meerkat.objects.HasName;
 
 /**
- *
  * @author ollie
  * @see <a href="http://www.futuresknowledge.com/trading-tools/ticker-symbols/">Ticker symbols</a>
  */
-public class FutureUnderlyingId extends Named {
+public record FutureUnderlyingId(String name) implements HasName {
 
     public static final FutureUnderlyingId CRUDE_OIL = of("CL");
 
@@ -25,10 +24,6 @@ public class FutureUnderlyingId extends Named {
 
     public static FutureUnderlyingId of(final String value) {
         return new FutureUnderlyingId(value);
-    }
-
-    protected FutureUnderlyingId(final String value) {
-        super(value);
     }
 
 }

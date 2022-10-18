@@ -1,17 +1,24 @@
 package net.meerkat.money.interest;
 
-import net.meerkat.Named;
+import net.meerkat.objects.HasName;
+
+import javax.annotation.Nonnull;
 
 /**
- *
  * @author ollie
  */
-public class NamedInterestRateId
-        extends Named
-        implements InterestRateId {
+public class NamedInterestRateId implements InterestRateId, HasName {
 
-    public NamedInterestRateId(final String value) {
-        super(value);
+    private final String name;
+
+    public NamedInterestRateId(final String name) {
+        this.name = name;
+    }
+
+    @Nonnull
+    @Override
+    public String name() {
+        return name;
     }
 
 }
