@@ -3,6 +3,7 @@ package net.meerkat.instrument.equity;
 import net.meerkat.identifier.instrument.Isin;
 import net.meerkat.instrument.InstrumentDefinition;
 import net.meerkat.instrument.Security;
+import net.meerkat.instrument.equity.pair.EquityPair;
 import net.meerkat.objects.Castable;
 
 import javax.annotation.Nonnull;
@@ -43,6 +44,8 @@ public interface Equity
         R handle(Stock stock);
 
         R handle(DepositoryReceipt depositoryReceipt);
+
+        R handle(EquityPair pair);
 
     }
 

@@ -8,6 +8,7 @@ import net.meerkat.instrument.equity.future.StockFuture;
 import net.meerkat.instrument.equity.option.StockIndexOption;
 import net.meerkat.instrument.equity.option.StockOption;
 import net.meerkat.instrument.equity.option.Warrant;
+import net.meerkat.instrument.equity.pair.EquityPair;
 import net.meerkat.instrument.equity.swap.BlendedEquitySwap;
 import net.meerkat.instrument.equity.swap.EquityForEquitySwap;
 import net.meerkat.instrument.equity.swap.InterestForEquitySwap;
@@ -48,6 +49,8 @@ public interface EquityDerivative<E extends Instrument>
         R handle(EquityForEquitySwap<?, ?> swap);
 
         R handle(BlendedEquitySwap blendedSwap);
+
+        R handle(EquityPair pair);
 
     }
 

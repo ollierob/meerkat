@@ -13,12 +13,11 @@ import net.meerkat.issuer.IssuerId;
 import javax.annotation.Nonnull;
 
 /**
- *
  * @author Ollie
  */
 public class BondRepo<C extends CurrencyId> extends AbstractRepo<C> {
 
-    public BondRepo(String name, InstrumentIds identifiers, IssuerId issuerId, CashPayment<C> purchase, RepoRepurchase repurchase, InstrumentId collateralId) {
+    public BondRepo(final String name, final InstrumentIds identifiers, final IssuerId issuerId, final CashPayment<C> purchase, final RepoRepurchase repurchase, final InstrumentId collateralId) {
         super(name, identifiers, issuerId, purchase, repurchase, collateralId);
     }
 
